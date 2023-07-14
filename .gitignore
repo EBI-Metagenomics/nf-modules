@@ -12,3 +12,7 @@ tests/data/
 __pycache__
 *.pyo
 *.pyc
+
+node_modules/
+package.json
+package-lock.json
