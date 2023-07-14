@@ -1,0 +1,11 @@
+- name: "infernal cmsearch"
+  command: nextflow run ./tests/modules/ebi-metagenomics/infernal/cmsearch -entry test_infernal_cmsearch -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/infernal/cmsearch/nextflow.config
+  tags:
+    - "infernal"
+    - "infernal/cmsearch"
+  files:
+    - path: "output/infernal/example.cmsearch_matches.tbl"
+      contains:
+        - "# [ok]"
+    - path: "output/infernal/versions.yml"
+      md5sum: 5c71cd952ded67db3cb0ac693a38c4a6
