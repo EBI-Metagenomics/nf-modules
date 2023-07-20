@@ -1,0 +1,58 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/yaml-schema.json
+name: "fraggenescan"
+description: FragGeneScan is an application for finding (fragmented) genes in short reads. It can also be applied to predict prokaryotic genes in incomplete assemblies or complete genomes.
+keywords:
+  - gene
+  - gene finding
+  - microbial
+tools:
+  - "fraggenescan":
+      description: "FragGeneScan is an application for finding (fragmented) genes in short reads."
+      homepage: "https://sourceforge.net/projects/fraggenescan/"
+      documentation: "https://sourceforge.net/projects/fraggenescan/"
+      tool_dev_url: "https://sourceforge.net/projects/fraggenescan/"
+      doi: "10.1093/nar/gkq747"
+      licence: ["GPL v3"]
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'test', single_end:false ]`
+
+  - fasta:
+      type: file
+      description: Database of sequences in FASTA format
+      pattern: "*.{fasta,fna,fasta.gz,fna.gz}"
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'test', single_end:false ]`
+
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+  - nucleotide_fasta:
+      type: file
+      description: nucleotide sequences file
+      pattern: "*.{ffn}"
+
+  - amino_acid_fasta:
+      type: file
+      description: protein translations file
+      pattern: "*.{faa}"
+
+  - gene_annotations:
+      type: file
+      description: gene annotations in plain text
+      pattern: "*.out"
+
+authors:
+  - "@mberacochea"

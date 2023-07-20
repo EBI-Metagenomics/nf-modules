@@ -1,3 +1,7 @@
+fraggenescan:
+  - modules/ebi-metagenomics/fraggenescan/**
+  - tests/modules/ebi-metagenomics/fraggenescan/**
+
 infernal/cmsearch:
   - modules/ebi-metagenomics/infernal/cmsearch/**
   - tests/modules/ebi-metagenomics/infernal/cmsearch/**

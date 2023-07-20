@@ -1,0 +1,13 @@
+- name: "fraggenescan"
+  command: nextflow run ./tests/modules/ebi-metagenomics/fraggenescan -entry test_fraggenescan -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/fraggenescan/nextflow.config
+  tags:
+    - "fraggenescan"
+  files:
+    - path: "output/fraggenescan/test.faa"
+      md5sum: 0d59faacb006fb03e7942310aaefd484
+    - path: output/fraggenescan/test.ffn
+      md5sum: c46c107e4298d3cdd85f5c6009047ec4
+    - path: "output/fraggenescan/test.out"
+      md5sum: 55ecf51a7c48dad2b4440566fbb1a1bf
+    - path: output/fraggenescan/versions.yml
+      md5sum: 5de5e39091ba00d6f70f479835f9d63c
