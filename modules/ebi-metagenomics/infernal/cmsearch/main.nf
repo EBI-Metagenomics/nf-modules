@@ -24,7 +24,14 @@ process INFERNAL_CMSEARCH {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+
+    def is_compressed = seqdb.name.endsWith(".gz")
+    def seqdb_name = seqdb.name.replace(".gz", "")
     """
+    if [ "$is_compressed" == "true" ]; then
+        gzip -c -d $seqdb > $seqdb_name
+    fi
+
     cmsearch \\
         --cpu $task.cpus \\
         --noali \\
@@ -32,9 +39,9 @@ process INFERNAL_CMSEARCH {
         $args \\
         -Z 1000 \\
         -o /dev/null \\
-        --tblout ${seqdb.baseName}.cmsearch_matches.tbl \\
+        --tblout ${prefix}.cmsearch_matches.tbl \\
         $covariance_model_database \\
-        $seqdb
+        $seqdb_name
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -46,11 +53,11 @@ process INFERNAL_CMSEARCH {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    touch ${seqdb.baseName}.cmsearch_matches.tbl
+    touch ${prefix}.cmsearch_matches.tbl
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        cmsearch: \$(cmsearch -h | grep -o '^# INFERNAL [0-9.]*' | sed 's/^# INFERNAL *//')
+        infernal: \$(cmsearch -h | grep -o '^# INFERNAL [0-9.]*' | sed 's/^# INFERNAL *//')
     END_VERSIONS
     """
 }

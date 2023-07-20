@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/yaml-schema.json
 name: "infernal_cmsearch"
 description: RNA secondary structure/sequence profiles for homology search and alignment
 keywords:
@@ -23,7 +24,7 @@ input:
   - seqdb:
       type: file
       description: Database of sequences in FASTA format
-      pattern: "*.{fasta,fna,faa,fa,fasta.gz,fna.gz,faa.gz,fa.gz}"
+      pattern: "*.{fasta,fna,fasta.gz,fna.gz}"
 
 output:
   - meta:
