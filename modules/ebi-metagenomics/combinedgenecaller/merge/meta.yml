@@ -68,10 +68,15 @@ output:
       description: File containing software versions
       pattern: "versions.yml"
 
-  - bam:
+  - ffn:
       type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
+      description: merged nucleotide sequences file
+      pattern: "*.{ffn,fna}"
+
+  - faa:
+      type: file
+      description: merged protein translations file
+      pattern: "*.{faa}"
 
 authors:
   - "@mberacochea"
