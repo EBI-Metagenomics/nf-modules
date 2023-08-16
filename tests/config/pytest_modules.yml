@@ -1,3 +1,7 @@
+combinedgenecaller/merge:
+  - modules/ebi-metagenomics/combinedgenecaller/merge/**
+  - tests/modules/ebi-metagenomics/combinedgenecaller/merge/**
+
 fraggenescan:
   - modules/ebi-metagenomics/fraggenescan/**
   - tests/modules/ebi-metagenomics/fraggenescan/**
