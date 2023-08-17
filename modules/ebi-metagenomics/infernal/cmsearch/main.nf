@@ -15,7 +15,7 @@ process INFERNAL_CMSEARCH {
     path covariance_model_database
 
     output:
-    tuple val(meta), path("*.cmsearch_matches.tbl"), emit: cmsearch_tbl
+    tuple val(meta), path("*.cmsearch_matches.tbl.gz"), emit: cmsearch_tbl
     path "versions.yml"                            , emit: versions
 
     when:
@@ -43,6 +43,8 @@ process INFERNAL_CMSEARCH {
         $covariance_model_database \\
         $seqdb_name
 
+    gzip -n ${prefix}.cmsearch_matches.tbl
+
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         cmsearch: \$(cmsearch -h | grep -o '^# INFERNAL [0-9.]*' | sed 's/^# INFERNAL *//')
@@ -54,6 +56,7 @@ process INFERNAL_CMSEARCH {
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
     touch ${prefix}.cmsearch_matches.tbl
+    gzip ${prefix}.cmsearch_matches.tbl
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

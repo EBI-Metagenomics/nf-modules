@@ -4,7 +4,7 @@
     - "infernal"
     - "infernal/cmsearch"
   files:
-    - path: "output/infernal/test.cmsearch_matches.tbl"
+    - path: "output/infernal/test.cmsearch_matches.tbl.gz"
       contains:
         - "# [ok]"
     - path: "output/infernal/versions.yml"
