@@ -4,9 +4,9 @@
     - "combinedgenecaller"
     - "combinedgenecaller/merge"
   files:
-    - path: "output/combinedgenecaller/test.faa"
-      md5sum: 1577a0613f7fa5c1d989dd5bd2b81397
-    - path: "output/combinedgenecaller/test.ffn"
-      md5sum: 9bac7cc2f074517fd8af849f0f3839e6
+    - path: "output/combinedgenecaller/test.faa.gz"
+      md5sum: ebeb730888e041877206e20603d2f00e
+    - path: "output/combinedgenecaller/test.ffn.gz"
+      md5sum: ad2bab1b799d9de83685c0517e4b8daf
     - path: "output/combinedgenecaller/versions.yml"
       md5sum: 14b7dc5d24f956979c0aeb1b26632e7a

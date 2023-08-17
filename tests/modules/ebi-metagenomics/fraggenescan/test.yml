@@ -3,11 +3,11 @@
   tags:
     - "fraggenescan"
   files:
-    - path: "output/fraggenescan/test.faa"
-      md5sum: 0d59faacb006fb03e7942310aaefd484
-    - path: output/fraggenescan/test.ffn
-      md5sum: c46c107e4298d3cdd85f5c6009047ec4
-    - path: "output/fraggenescan/test.out"
-      md5sum: 55ecf51a7c48dad2b4440566fbb1a1bf
+    - path: "output/fraggenescan/test.faa.gz"
+      md5sum: 72a2e4341849f98b87c1fceabde958ed
+    - path: output/fraggenescan/test.ffn.gz
+      md5sum: f026beb58f5c0cf03a1e873cab4c38a1
+    - path: "output/fraggenescan/test.out.gz"
+      md5sum: 53d57a71a0f7bfd9df4538571ff500be
     - path: output/fraggenescan/versions.yml
       md5sum: 5de5e39091ba00d6f70f479835f9d63c

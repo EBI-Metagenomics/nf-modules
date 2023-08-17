@@ -10,8 +10,8 @@ process COMBINEDGENECALLER_MERGE {
     path(mask_file)
 
     output:
-    tuple val(meta), path("*.faa"), emit: faa
-    tuple val(meta), path("*.ffn"), emit: ffn
+    tuple val(meta), path("*.faa.gz"), emit: faa
+    tuple val(meta), path("*.ffn.gz"), emit: ffn
     path "versions.yml"           , emit: versions
 
     when:
@@ -21,20 +21,30 @@ process COMBINEDGENECALLER_MERGE {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    combined_gene_caller \
-        -n $prefix \
-        --prodigal-out $prodigal_out \
-        --prodigal-ffn $prodigal_ffn \
-        --prodigal-faa $prodigal_faa \
-        --fgs-out $fgs_out \
-        --fgs-ffn $fgs_ffn \
-        --fgs-faa $fgs_faa \
-        --mask $mask_file \
+    gzip -cdf $prodigal_out > prodigal_out_uncompressed
+    gzip -cdf $prodigal_ffn > prodigal_ffn_uncompressed
+    gzip -cdf $prodigal_faa > prodigal_faa_uncompressed
+    gzip -cdf $fgs_out > fgs_out_uncompressed
+    gzip -cdf $fgs_ffn > fgs_ffn_uncompressed
+    gzip -cdf $fgs_faa > fgs_faa_uncompressed
+    gzip -cdf $mask_file > mask_file_uncompressed
+
+    combined_gene_caller \\
+        -n $prefix \\
+        --prodigal-out prodigal_out_uncompressed \\
+        --prodigal-ffn prodigal_ffn_uncompressed \\
+        --prodigal-faa prodigal_faa_uncompressed \\
+        --fgs-out fgs_out_uncompressed \\
+        --fgs-ffn fgs_ffn_uncompressed \\
+        --fgs-faa fgs_faa_uncompressed \\
+        --mask mask_file_uncompressed \\
         $args
+
+    gzip -n $prefix.*
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        combined_gene_caller: \$(echo \$(combined_gene_caller --version))
+        combined_gene_caller: \$(combined_gene_caller --version)
     END_VERSIONS
     """
 
