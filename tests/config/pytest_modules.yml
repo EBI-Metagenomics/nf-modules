@@ -9,3 +9,7 @@ fraggenescan:
 infernal/cmsearch:
   - modules/ebi-metagenomics/infernal/cmsearch/**
   - tests/modules/ebi-metagenomics/infernal/cmsearch/**
+
+subworkflows/combined_gene_caller:
+  - subworkflows/ebi-metagenomics/combined_gene_caller/**
+  - tests/subworkflows/ebi-metagenomics/combined_gene_caller/**
