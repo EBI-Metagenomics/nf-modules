@@ -1,6 +1,6 @@
 ---
 name: "combinedgenecaller_merge"
-description: write your description here
+description: MGnify gene combined calling merge script
 keywords:
   - gene finding
   - prokaryotes

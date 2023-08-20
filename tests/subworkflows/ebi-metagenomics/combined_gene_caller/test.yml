@@ -1,0 +1,12 @@
+- name: "combined gene caller subworkflow"
+  command: nextflow run ./tests/subworkflows/ebi-metagenomics/combined_gene_caller/main.nf -entry test_combined_gene_caller -c ./tests/config/nextflow.config
+  tags:
+    - "subworkflows"
+    - "subworkflows/combined_gene_caller"
+  files:
+    - path: "output/combinedgenecaller/test.faa.gz"
+      md5sum: c472e6c02d2d1555c73b9f5ba85f6f4f
+    - path: "output/combinedgenecaller/test.ffn.gz"
+      md5sum: 6a764d583546b7fa99ba7e8858e11fd0
+    - path: "output/combinedgenecaller/versions.yml"
+      md5sum: aec7df78fa19eefa978a5099d109f265

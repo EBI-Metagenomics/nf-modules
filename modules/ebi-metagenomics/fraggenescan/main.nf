@@ -14,9 +14,9 @@ process FRAGGENESCAN {
     tuple val(meta), path(fasta)
 
     output:
-    tuple val(meta), path("*.ffn"), emit: nucleotide_fasta
-    tuple val(meta), path("*.faa"), emit: amino_acid_fasta
-    tuple val(meta), path("*.out"), emit: gene_annotations
+    tuple val(meta), path("*.ffn.gz"), emit: nucleotide_fasta
+    tuple val(meta), path("*.faa.gz"), emit: amino_acid_fasta
+    tuple val(meta), path("*.out.gz"), emit: gene_annotations
     path "versions.yml"           , emit: versions
 
     when:
@@ -43,6 +43,8 @@ process FRAGGENESCAN {
         -out=$prefix \
         -genome=$fasta_name \
         $args
+
+    gzip *.{ffn,faa,out}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

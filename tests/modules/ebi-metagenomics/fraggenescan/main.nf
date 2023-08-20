@@ -8,7 +8,7 @@ workflow test_fraggenescan {
 
     input = [
         [ id:'test', single_end:false ],                                                               // meta map
-        file("tests/modules/ebi-metagenomics/fraggenescan/data/example.fa", checkIfExists: true), // seqdb
+        file("tests/modules/ebi-metagenomics/fraggenescan/data/example.fa.gz", checkIfExists: true), // seqdb
     ]
 
 

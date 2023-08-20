@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "combined_gene_caller"
+description: MGnify gene combined calling
+keywords:
+  - gene finding
+  - prokaryotes
+  - microbial
+modules:
+  - prodigal
+  - fraggenescan
+  - combinedgenecaller/merge
+input:
+  - ch_assembly:
+      type: list
+      description: |
+        An input channel containing the following files:
+        - assembly: One or more assembly or genome contigs fasta file
+        Structure: [ meta, assembly ]
+  - ch_mask_file:
+      type: list
+      description: |
+        An input channel containing the following files:
+        - mask: One or more mask files.
+        Structure: [ meta, mask_file ]
+output:
+  - faa:
+      type: file
+      description: protein translations file
+      pattern: "*.faa"
+  - ffn:
+      type: file
+      description: nucleotide sequences file
+      pattern: "*.ffn"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+authors:
+  - "@mberacochea"
