@@ -56,33 +56,19 @@
                                 "description": "Pattern of the input channel, given in Java glob syntax"
                             },
                             "default": {
-                                "type": [
-                                    "string",
-                                    "number",
-                                    "boolean",
-                                    "array",
-                                    "object"
-                                ],
+                                "type": ["string", "number", "boolean", "array", "object"],
                                 "description": "Default value for the input channel"
                             },
                             "enum": {
                                 "type": "array",
                                 "description": "List of allowed values for the input channel",
                                 "items": {
-                                    "type": [
-                                        "string",
-                                        "number",
-                                        "boolean",
-                                        "array",
-                                        "object"
-                                    ]
+                                    "type": ["string", "number", "boolean", "array", "object"]
                                 },
                                 "uniqueItems": true
                             }
                         },
-                        "required": [
-                            "description"
-                        ]
+                        "required": ["description"]
                     }
                 }
             }
@@ -112,31 +98,16 @@
                                 "type": "array",
                                 "description": "List of allowed values for the output channel",
                                 "items": {
-                                    "type": [
-                                        "string",
-                                        "number",
-                                        "boolean",
-                                        "array",
-                                        "object"
-                                    ]
+                                    "type": ["string", "number", "boolean", "array", "object"]
                                 },
                                 "uniqueItems": true
                             }
                         },
-                        "required": [
-                            "description"
-                        ]
+                        "required": ["description"]
                     }
                 }
             }
         }
     },
-    "required": [
-        "name",
-        "description",
-        "keywords",
-        "authors",
-        "output",
-        "components"
-    ]
+    "required": ["name", "description", "keywords", "authors", "output", "components"]
 }

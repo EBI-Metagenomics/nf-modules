@@ -3,34 +3,46 @@ include { PRODIGAL                 } from '../../../modules/nf-core/prodigal/mai
 include { FRAGGENESCAN             } from '../../../modules/ebi-metagenomics/fraggenescan/main'
 include { COMBINEDGENECALLER_MERGE } from '../../../modules/ebi-metagenomics/combinedgenecaller/merge/main'
 
-workflow  COMBINED_GENE_CALLER {
+workflow COMBINED_GENE_CALLER {
 
     take:
-    ch_assembly // channel: [ val(meta), [ fasta ] ]
-    ch_mask_file // channel: [ .out | .txt ]
+    // Should the mask_file be merged into the assembly channel ?
+    ch_assembly  // channel: [ val(meta), [ fasta ] ]
+    ch_mask_file // channel: [ val(meta), [.out | .txt] ]
 
     main:
 
     ch_versions = Channel.empty()
 
-    PRODIGAL ( ch_assembly )
+    PRODIGAL ( ch_assembly, channel.value("sco") )
     ch_versions = ch_versions.mix(PRODIGAL.out.versions.first())
 
     FRAGGENESCAN ( ch_assembly )
     ch_versions = ch_versions.mix(FRAGGENESCAN.out.versions.first())
 
-    ch_annotations = PRODIGAL.out.
+    ch_mask_file = ch_mask_file ?: Channel.empty()
 
-    COMBINEDGENECALLER_MERGE (  )
+    ch_annotations = PRODIGAL.out.gene_annotations.join(
+        PRODIGAL.out.nucleotide_fasta, by: [0]
+    ).join(
+        PRODIGAL.out.amino_acid_fasta, by: [0]
+    ).join(
+        FRAGGENESCAN.out.gene_annotations, by: [0]
+    ).join(
+        FRAGGENESCAN.out.nucleotide_fasta, by: [0]
+    ).join(
+        FRAGGENESCAN.out.amino_acid_fasta, by: [0]
+    ).join(
+        ch_mask_file, by: [0], remainder: true
+    )
 
-        tuple val(meta), path(prodigal_out), path(prodigal_ffn), path(prodigal_faa), path(fgs_out), path(fgs_ffn), path(fgs_faa)
-    path(mask_file)
+    COMBINEDGENECALLER_MERGE ( ch_annotations )
+
+    ch_versions = ch_versions.mix(COMBINEDGENECALLER_MERGE.out.versions.first())
 
     emit:
-    bam      = SAMTOOLS_SORT.out.bam           // channel: [ val(meta), [ bam ] ]
-    bai      = SAMTOOLS_INDEX.out.bai          // channel: [ val(meta), [ bai ] ]
-    csi      = SAMTOOLS_INDEX.out.csi          // channel: [ val(meta), [ csi ] ]
-
-    versions = ch_versions                     // channel: [ versions.yml ]
+    faa      = COMBINEDGENECALLER_MERGE.out.faa  // channel: [ val(meta), [ faa ] ]
+    ffn      = COMBINEDGENECALLER_MERGE.out.ffn  // channel: [ val(meta), [ ffn ] ]
+    versions = ch_versions                       // channel: [ versions.yml ]
 }
 
