@@ -1,3 +1,7 @@
+bmtagger:
+  - modules/ebi-metagenomics/bmtagger/**
+  - tests/modules/ebi-metagenomics/bmtagger/**
+
 combinedgenecaller/merge:
   - modules/ebi-metagenomics/combinedgenecaller/merge/**
   - tests/modules/ebi-metagenomics/combinedgenecaller/merge/**

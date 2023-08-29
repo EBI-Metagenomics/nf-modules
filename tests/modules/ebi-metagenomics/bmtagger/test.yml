@@ -1,0 +1,15 @@
+- name: "bmtagger"
+  command: nextflow run ./tests/modules/ebi-metagenomics/bmtagger -entry test_bmtagger -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/bmtagger/nextflow.config
+  tags:
+    - "bmtagger"
+  files:
+    - path: "output/bmtagger/bmtagger_output"
+      md5sum: e7fc2d8250f08c11dc755e50dda3eefb
+
+- name: "bmtagger_fastq"
+  command: nextflow run ./tests/modules/ebi-metagenomics/bmtagger -entry test_bmtagger_fastq -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/bmtagger/nextflow.config
+  tags:
+    - "bmtagger"
+  files:
+    - path: "output/bmtagger/bmtagger_output"
+      md5sum: d41d8cd98f00b204e9800998ecf8427e
