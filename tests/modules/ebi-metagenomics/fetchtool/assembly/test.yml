@@ -1,0 +1,12 @@
+## TODO nf-core: Please run the following command to build this file:
+#                nf-core modules create-test-yml /assembly
+- name: "fetchtool assembly"
+  command: nextflow run ./tests/modules/ebi-metagenomics/fetchtool/assembly -entry test_fetchtool_assembly -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/fetchtool/assembly/nextflow.config
+  tags:
+    - "fetchtool"
+    - "fetchtool/assembly"
+  files:
+    - path: "output/fetchtool/download_folder/ERP115932/raw/ERZ1022727.fasta.gz"
+      md5sum: b7ce3793b824d72dd5134a297a15ca17
+    - path: "output/fetchtool/versions.yml"
+      md5sum: 0d15046718630efdc5a6ebb2f4865431

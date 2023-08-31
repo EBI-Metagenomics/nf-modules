@@ -17,7 +17,7 @@ process FRAGGENESCAN {
     tuple val(meta), path("*.ffn.gz"), emit: nucleotide_fasta
     tuple val(meta), path("*.faa.gz"), emit: amino_acid_fasta
     tuple val(meta), path("*.out.gz"), emit: gene_annotations
-    path "versions.yml"           , emit: versions
+    path "versions.yml"              , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
