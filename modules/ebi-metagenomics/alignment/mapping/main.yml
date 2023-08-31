@@ -1,0 +1,45 @@
+---
+name: "BWA2"
+description: Map reads to reference genome
+keywords:
+  - mapping
+  - bwa
+tools:
+  - "bwa2":
+      description: "Mapping DNA sequences against a large reference genome"
+      tool_dev_url: "https://github.com/bwa-mem2/bwa-mem2"
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'test', single_end:false ]`
+
+  - input_ch_reads:
+      type: file
+      description: raw reads
+      pattern: "*.{fq,fastq}"
+
+  - ref_fasta:
+      type: file
+      description: reference fasta file
+      pattern: "*.{fasta,fa}"
+
+  - ref_fasta_index:
+      type: file
+      description: index for reference fasta
+      pattern: "*.{fai}"
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'test', single_end:false ]`
+  - bams:
+      type: file
+      description: fasta file and alignment (bam and bam.bai) files
+
+authors:
+  - "@KateSakharova"

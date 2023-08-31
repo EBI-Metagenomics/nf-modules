@@ -1,0 +1,36 @@
+---
+name: "INDEX_FASTA"
+description: Index fasta file with BWA2
+keywords:
+  - index
+  - bwa
+tools:
+  - "bwa2":
+      description: "Mapping DNA sequences against a large reference genome"
+      tool_dev_url: "https://github.com/bwa-mem2/bwa-mem2"
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'test', single_end:false ]`
+
+  - fasta:
+      type: file
+      description: reference fasta file
+      pattern: "*.{fasta,fa}"
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'test', single_end:false ]`
+
+  - fasta_with_index:
+      type: file
+      description: reference fasta file, bam and bam.bai
+
+authors:
+  - "@KateSakharova"

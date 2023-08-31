@@ -1,0 +1,22 @@
+include { ALIGNMENT             } from '../../../modules/ebi-metagenomics/alignment/mapping/main'
+include { INDEX_FASTA           } from '../../../modules/ebi-metagenomics/alignment/indexing/main'
+include { SAMTOOLS_FASTQ        } from '../../../modules/nf-core/samtools/fastq/main'
+
+workflow DECONTAMINATION_WITH_BWA {
+    take:
+        reads           // tuple(meta, contigs)
+        ref_genome      // tuple(meta, ref_genome, ref_genome_index)
+
+    main:
+    input = ref_genome
+    if (!ref_genome.map{it -> it[2]}) {
+        INDEX_FASTA(ref_genome)
+        input = INDEX_FASTA.out.fasta_with_index
+    }
+    ALIGNMENT(reads, input)
+
+    SAMTOOLS_FASTQ(ALIGNMENT.out.bams.map{it -> [it[0], it[2]]}, false)
+
+    emit:
+        decontaminated_reads = SAMTOOLS_FASTQ.out.fastq
+}
