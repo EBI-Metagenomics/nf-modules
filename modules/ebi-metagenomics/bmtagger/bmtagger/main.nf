@@ -53,7 +53,7 @@ process BMTAGGER {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        bmtagger: \$(bmtagger.sh -hV | grep 'version' )
+        bmtagger: \$(bmtagger.sh -hV 2>1 | grep version | grep -Eo '[0-9.]+')
     END_VERSIONS
     """
 

@@ -2,7 +2,7 @@
 
 nextflow.enable.dsl = 2
 
-include { BMTAGGER } from '../../../../modules/ebi-metagenomics/bmtagger/main.nf'
+include { BMTAGGER } from '../../../../modules/ebi-metagenomics/bmtagger/bmtagger/main.nf'
 include { CREATE_DB_BMTAGGER } from '../../../../modules/ebi-metagenomics/bmtagger/index_reference/main.nf'
 
 workflow test_bmtagger {

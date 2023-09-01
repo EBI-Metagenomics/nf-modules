@@ -13,29 +13,26 @@ process CREATE_DB_BMTAGGER {
     output:
     path("${reference_fasta.baseName}.bitmask")         , emit: bitmask
     path("${reference_fasta.baseName}.srprism.*")       , emit: srprism
-    path("${reference_fasta}.n*")              , emit: blast_db
+    path("${reference_fasta}.n*")                       , emit: blast_db
+    path "versions.yml"                                 , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
+
+    script:
     def args_bmtool = task.ext.args_bmtool ?: '-A 0 -w 18'
     def args_srprism = task.ext.args_srprism ?: '-M 7168'
     def args_makeblastdb = task.ext.args_makeblastdb ?: '-dbtype nucl'
-
-    script:
     """
     bmtool -d ${reference_fasta} -o ${reference_fasta.baseName}.bitmask ${args_bmtool}
     srprism mkindex -i ${reference_fasta} -o ${reference_fasta.baseName}.srprism ${args_srprism}
     makeblastdb -in ${reference_fasta} ${args_makeblastdb}
 
-    bmtool_version=\$(bmtool --version | tr ' ' '\\t' | cut -f2)
-    srprism_version="2.4.24-alpha"  //\$(srprism --version | grep version | tr ' ' '\\t' | cut -f2)
-    blast_version=\$(makeblastdb -h | grep -w "Application" | tr ',' '\\t' | cut -f2 | tr ' ' '\\t' | cut -f3)
-
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        bmtool: \${bmtool_version}
-        srprism: \${srprism_version}
-        makeblastdb: \${blast_version}
+        bmtool: \$(bmtool --version | tr ' ' '\\t' | cut -f2)
+        srprism: \$(srprism 2>&1 | grep version | sed 's/^.*version //; s/ .*\$//')
+        makeblastdb: \$(makeblastdb -version 2>&1 | sed 's/^.*makeblastdb: //; s/ .*\$//')
     END_VERSIONS
     """
 
@@ -43,15 +40,11 @@ process CREATE_DB_BMTAGGER {
     """
     touch reference.bitmask reference.srprism.idx reference.fasta.nsq
 
-    bmtool_version=\$(bmtool --version | tr ' ' '\\t' | cut -f2)
-    srprism_version="2.4.24-alpha"  //\$(srprism --version | grep version | tr ' ' '\\t' | cut -f2)
-    blast_version=\$(makeblastdb -h | grep -w "Application" | tr ',' '\\t' | cut -f2 | tr ' ' '\\t' | cut -f3)
-
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        bmtool: \${bmtool_version}
-        srprism: \${srprism_version}
-        makeblastdb: \${blast_version}
+        bmtool: \$(bmtool --version | tr ' ' '\\t' | cut -f2)
+        srprism: \$(srprism 2>&1 | grep version | sed 's/^.*version: //; s/ .*\$//')
+        makeblastdb: \$(makeblastdb -version 2>&1 | sed 's/^.*makeblastdb: //; s/ .*\$//')
     END_VERSIONS
     """
 }
