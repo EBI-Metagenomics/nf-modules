@@ -3,7 +3,7 @@ process FETCHTOOL_ASSEMBLY {
 
     label 'process_single'
 
-    container "microbiome-informatics/fetch-tool:0.8.2.rc1"
+    container "microbiome-informatics/fetch-tool:v0.9.0"
 
     input:
     tuple val(meta), val(assembly_accession)

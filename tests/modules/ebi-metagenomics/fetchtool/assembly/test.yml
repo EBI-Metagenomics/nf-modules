@@ -9,4 +9,4 @@
     - path: "output/fetchtool/download_folder/ERP115932/raw/ERZ1022727.fasta.gz"
       md5sum: b7ce3793b824d72dd5134a297a15ca17
     - path: "output/fetchtool/versions.yml"
-      md5sum: 0d15046718630efdc5a6ebb2f4865431
+      md5sum: 4c5998650dd10339af10498288056d84
