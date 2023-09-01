@@ -1,5 +1,5 @@
 
-include { PRODIGAL                 } from '../../../modules/nf-core/prodigal/main'
+include { PRODIGAL                 } from '../../../modules/ebi-metagenomics/prodigal/main'
 include { FRAGGENESCAN             } from '../../../modules/ebi-metagenomics/fraggenescan/main'
 include { COMBINEDGENECALLER_MERGE } from '../../../modules/ebi-metagenomics/combinedgenecaller/merge/main'
 
