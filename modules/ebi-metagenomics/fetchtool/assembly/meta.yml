@@ -1,0 +1,45 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/yaml-schema.json
+name: "fetchtool_assembly"
+description: Microbiome Informatics ENA fetch tool
+keywords:
+  - sort
+  - example
+  - genomics
+tools:
+  - "fetchtool":
+      description: "Utility to fetch public and private RAW read and assembly files from the ENA"
+      homepage: "https://www.ebi.ac.uk/metagenomics"
+      documentation: "https://github.com/EBI-Metagenomics/fetch_tool/"
+      tool_dev_url: "https://github.com/EBI-Metagenomics/fetch_tool/"
+      licence: "Apache License 2.0"
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'test', single_end:false ]`
+
+  - assembly_accession:
+      type: string
+      description: The assembly ENA accession
+
+  - fetchtool_config:
+      type: file
+      description: Configuration file, https://github.com/EBI-Metagenomics/fetch_tool/#configuration-file
+      pattern: "*.json"
+
+output:
+  - assembly:
+      type: file
+      description: The assembly contigs fasta file, gzipped
+      pattern: "*.fasta.gz"
+
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+authors:
+  - "@mberacochea"
