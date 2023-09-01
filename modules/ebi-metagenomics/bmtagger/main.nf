@@ -53,7 +53,7 @@ process BMTAGGER {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        bmtagger: \$(bmtagger.sh -h)
+        bmtagger: \$(bmtagger.sh -hV | grep 'version' )
     END_VERSIONS
     """
 
@@ -65,7 +65,7 @@ process BMTAGGER {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        bmtagger: \$(bmtagger.sh -h)
+        bmtagger: \$(bmtagger.sh -hV | grep 'version' )
     END_VERSIONS
     """
 }
