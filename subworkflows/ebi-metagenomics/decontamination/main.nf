@@ -2,9 +2,12 @@ include { ALIGNMENT             } from '../../../modules/ebi-metagenomics/alignm
 include { INDEX_FASTA           } from '../../../modules/ebi-metagenomics/alignment/indexing/main'
 include { SAMTOOLS_FASTQ        } from '../../../modules/nf-core/samtools/fastq/main'
 
+include { BMTAGGER              } from '../../../modules/ebi-metagenomics/bmtagger/main'
+
+
 workflow DECONTAMINATION_WITH_BWA {
     take:
-        reads           // tuple(meta, contigs)
+        reads           // tuple(meta, reads)
         ref_genome      // tuple(meta, ref_genome, ref_genome_index)
 
     main:
@@ -16,6 +19,22 @@ workflow DECONTAMINATION_WITH_BWA {
     ALIGNMENT(reads, input)
 
     SAMTOOLS_FASTQ(ALIGNMENT.out.bams.map{it -> [it[0], it[2]]}, false)
+
+    emit:
+        decontaminated_reads = SAMTOOLS_FASTQ.out.fastq
+}
+
+
+workflow DECONTAMINATION_WITH_BMTAGGER {
+    take:
+        reads           // tuple(meta, reads)
+        ref_genome_bitmask
+        ref_genome_srprism
+
+    main:
+    input_format = channel.value("fastq")
+    output_directory = channel.value("bmtagger_output")
+    BMTAGGER(reads, ref_genome_bitmask, ref_genome_srprism, input_format, output_directory)
 
     emit:
         decontaminated_reads = SAMTOOLS_FASTQ.out.fastq
