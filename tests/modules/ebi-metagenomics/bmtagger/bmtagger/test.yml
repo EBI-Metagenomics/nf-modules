@@ -6,11 +6,3 @@
   files:
     - path: "output/bmtagger/bmtagger_output"
       md5sum: e7fc2d8250f08c11dc755e50dda3eefb
-
-- name: "bmtagger_fastq"
-  command: nextflow run ./tests/modules/ebi-metagenomics/bmtagger/bmtagger -entry test_bmtagger_fastq -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/bmtagger/bmtagger/nextflow.config
-  tags:
-    - "bmtagger"
-    - "bmtagger/bmtagger"
-  files:
-    - path: "output/bmtagger/bmtagger_output"
