@@ -2,17 +2,17 @@
 
 nextflow.enable.dsl = 2
 
-include { BMTAGGER } from '../../../../modules/ebi-metagenomics/bmtagger/bmtagger/main.nf'
-include { CREATE_DB_BMTAGGER } from '../../../../modules/ebi-metagenomics/bmtagger/index_reference/main.nf'
+include { BMTAGGER } from '../../../../../modules/ebi-metagenomics/bmtagger/bmtagger/main.nf'
+include { CREATE_DB_BMTAGGER } from '../../../../../modules/ebi-metagenomics/bmtagger/index_reference/main.nf'
 
 workflow test_bmtagger {
 
     input = [
         [ id:'test_fasta', single_end:true ],                                                               // meta map
-        file("tests/modules/ebi-metagenomics/bmtagger/data/example.fa", checkIfExists: true), // input
+        file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/example.fa", checkIfExists: true), // input
     ]
 
-    reference_fasta = file("tests/modules/ebi-metagenomics/bmtagger/data/reference.fasta", checkIfExists: true)
+    reference_fasta = file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/reference.fasta", checkIfExists: true)
 
     CREATE_DB_BMTAGGER(reference_fasta)
 
@@ -26,12 +26,12 @@ workflow test_bmtagger_fastq {
 
     input = [
         [ id:'test_fasta', single_end:true ],                                                               // meta map
-        [file("tests/modules/ebi-metagenomics/bmtagger/data/ex_1.fastq", checkIfExists: true),
-        file("tests/modules/ebi-metagenomics/bmtagger/data/ex_2.fastq", checkIfExists: true)
+        [file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/ex_1.fastq", checkIfExists: true),
+        file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/ex_2.fastq", checkIfExists: true)
         ], // input
     ]
 
-    reference_fasta = file("tests/modules/ebi-metagenomics/bmtagger/data/reference.fasta", checkIfExists: true)
+    reference_fasta = file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/reference.fasta", checkIfExists: true)
 
     CREATE_DB_BMTAGGER(reference_fasta)
 
