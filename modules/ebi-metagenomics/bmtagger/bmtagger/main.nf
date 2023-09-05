@@ -4,7 +4,7 @@ process BMTAGGER {
 
     label 'process_low'
 
-    conda "bioconda::bmtagger==3.101"
+    conda "bioconda::bmtagger=3.101"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/bmtagger:3.101--h470a237_4':
         'biocontainers/bmtagger:3.101--h470a237_4' }"

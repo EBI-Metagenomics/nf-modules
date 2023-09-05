@@ -4,6 +4,7 @@ description: Bmtagger tools
 keywords:
   - decontamination
   - host
+  - reference_genome
 tools:
   - "bmtagger":
       description: "Best Match Tagger for removing human reads from metagenomics datasets"
@@ -18,7 +19,7 @@ input:
         e.g. `[ id:'test', single_end:false ]`
 
   - input:
-      type: file
+      type: list
       description: fasta or fastq files
       pattern: "*.{fa,fq,fasta,fastq}"
 
@@ -28,16 +29,16 @@ input:
       pattern: "*.bitmask"
 
   - reference_srprism:
-      type: file
+      type: list
       description: Specifies base of the filename for the previously generated srprism index.
       pattern: "*.srprism"
 
   - input_format:
-      type: value
+      type: string
       description: Format of input data (fastq or fasta)
 
   - output_file:
-      type: value
+      type: string
       description: Name of output file
 
 output:
@@ -53,7 +54,7 @@ output:
       pattern: "versions.yml"
 
   - output_host:
-      type: file
+      type: list
       description: list of host sequences
 
 authors:
