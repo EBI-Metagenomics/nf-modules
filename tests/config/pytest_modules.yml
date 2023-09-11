@@ -2,6 +2,10 @@ blastp:
   - modules/ebi-metagenomics/blastp/**
   - tests/modules/ebi-metagenomics/blastp/**
 
+bmtagger/bmtagger:
+  - modules/ebi-metagenomics/bmtagger/bmtagger/**
+  - tests/modules/ebi-metagenomics/bmtagger/bmtagger/**
+
 combinedgenecaller/merge:
   - modules/ebi-metagenomics/combinedgenecaller/merge/**
   - tests/modules/ebi-metagenomics/combinedgenecaller/merge/**
