@@ -13,7 +13,7 @@ process CMSEARCHTBLOUTDEOVERLAP {
     path(clanin)
 
     output:
-    tuple val(meta), path("*.deoverlapped"), emit: tblout_deoverlapped
+    tuple val(meta), path("*.deoverlapped"), emit: cmsearch_tblout_deoverlapped
     path "versions.yml"                    , emit: versions
 
     when:
@@ -27,6 +27,8 @@ process CMSEARCHTBLOUTDEOVERLAP {
         --clanin $clanin \
         $cmsearch_tblout
 
+    mv ${cmsearch_tblout.name}.deoverlapped ${prefix}.tblout.deoverlapped
+
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         cmsearch_tblout_deoverlap: \$(echo \$(cmsearch-deoverlap.pl 2>&1) | grep -o 'cmsearch-deoverlap v[0-9]\\+\\.[0-9]\\+' | sed 's/cmsearch-deoverlap //g' )
@@ -37,7 +39,7 @@ process CMSEARCHTBLOUTDEOVERLAP {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    touch ${prefix}.bam
+    touch ${prefix}.tblout.deoverlapped
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
