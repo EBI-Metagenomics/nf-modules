@@ -32,7 +32,7 @@ process BLASTP {
     DB=`find -L ./ -name "*.phr" | sed 's/\\.phr\$//'`
     blastp \\
         -db \$DB \\
-        -query ${fasta} \\
+        -query ${fasta_name} \\
         -out ${prefix}.csv \\
         -num_threads ${task.cpus} \\
         -outfmt 10 \\
@@ -52,7 +52,7 @@ process BLASTP {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        : \$(echo \$(blastp --version 2>&1) | sed 's/^.*blastp //; s/Using.*\$//' ))
+        : \$(echo \$(blastp -version 2>&1) | sed 's/^.*blastp //; s/Using.*\$//' ))
     END_VERSIONS
     """
 }
