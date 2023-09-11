@@ -40,7 +40,7 @@ process BLASTP {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        \$(echo \$(blastp -version 2>&1) | sed 's/://' ))
+        \$(echo \$(blastp -version 2>&1) | sed 's/://' )
     END_VERSIONS
     """
 
@@ -52,7 +52,7 @@ process BLASTP {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        \$(echo \$(blastp -version 2>&1) | sed 's/://' ))
+        \$(echo \$(blastp -version 2>&1) | sed 's/://' )
     END_VERSIONS
     """
 }
