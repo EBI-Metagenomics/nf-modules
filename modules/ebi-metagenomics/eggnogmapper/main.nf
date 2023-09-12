@@ -42,7 +42,7 @@ process EGGNOGMAPPER {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        \$(echo \$(emapper.py --version) | grep -o "emapper-[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+" | sed "s/emapper-//")
+        eggnog-mapper: \$(echo \$(emapper.py --version) | grep -o "emapper-[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+" | sed "s/emapper-//")
     END_VERSIONS
     """
 
@@ -54,7 +54,7 @@ process EGGNOGMAPPER {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        \$(echo \$(emapper.py --version) | grep -o "emapper-[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+" | sed "s/emapper-//")
+        eggnog-mapper: \$(echo \$(emapper.py --version) | grep -o "emapper-[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+" | sed "s/emapper-//")
     END_VERSIONS
     """
 }
