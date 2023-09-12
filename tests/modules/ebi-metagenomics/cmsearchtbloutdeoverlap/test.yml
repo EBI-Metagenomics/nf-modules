@@ -1,0 +1,9 @@
+- name: "cmsearchtbloutdeoverlap"
+  command: nextflow run ./tests/modules/ebi-metagenomics/cmsearchtbloutdeoverlap -entry test_cmsearchtbloutdeoverlap -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/cmsearchtbloutdeoverlap/nextflow.config
+  tags:
+    - "cmsearchtbloutdeoverlap"
+  files:
+    - path: "output/cmsearchtbloutdeoverlap/test.tblout.deoverlapped"
+      md5sum: c68f9407a07e6b056025ca97001b5ef8
+    - path: "output/cmsearchtbloutdeoverlap/versions.yml"
+      md5sum: 11c47274f5d926b46ebb7cf0a87dd305

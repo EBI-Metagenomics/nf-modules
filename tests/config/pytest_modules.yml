@@ -6,6 +6,10 @@ bmtagger/bmtagger:
   - modules/ebi-metagenomics/bmtagger/bmtagger/**
   - tests/modules/ebi-metagenomics/bmtagger/bmtagger/**
 
+cmsearchtbloutdeoverlap:
+  - modules/ebi-metagenomics/cmsearchtbloutdeoverlap/**
+  - tests/modules/ebi-metagenomics/cmsearchtbloutdeoverlap/**
+
 combinedgenecaller/merge:
   - modules/ebi-metagenomics/combinedgenecaller/merge/**
   - tests/modules/ebi-metagenomics/combinedgenecaller/merge/**
