@@ -6,3 +6,4 @@
     - path: output/eggnogmapper/test.emapper.hits
       md5sum: f8629819c48c888275dbb1a09749c891
     - path: output/eggnogmapper/versions.yml
+      md5sum: 9ef153431b246ec9619971ee28aabec4

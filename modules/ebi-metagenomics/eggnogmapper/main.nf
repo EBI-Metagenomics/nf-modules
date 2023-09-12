@@ -23,11 +23,16 @@ process EGGNOGMAPPER {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def VERSION = '2.1.12'
+    def is_compressed = fasta.name.endsWith(".gz")
+    def fasta_name = fasta.name.replace(".gz", "")
     """
+    if [ "$is_compressed" == "true" ]; then
+        gzip -c -d $fasta > $fasta_name
+    fi
+
     emapper.py \\
         --cpu ${task.cpus} \\
-        -i ${fasta} \\
+        -i ${fasta_name} \\
         --data_dir ${eggnog_data_dir} \\
         -m diamond \\
         --dmnd_db ${eggnog_diamond_db} \\
@@ -37,20 +42,19 @@ process EGGNOGMAPPER {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        eggnog-mapper: $VERSION
+        \$(echo \$(emapper.py --version) | grep -o "emapper-[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+" | sed "s/emapper-//")
     END_VERSIONS
     """
 
     stub:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def VERSION = '2.1.12'
     """
     touch ${prefix}.emapper.hits
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        eggnog-mapper: $VERSION
+        \$(echo \$(emapper.py --version) | grep -o "emapper-[0-9]\\+\\.[0-9]\\+\\.[0-9]\\+" | sed "s/emapper-//")
     END_VERSIONS
     """
 }
