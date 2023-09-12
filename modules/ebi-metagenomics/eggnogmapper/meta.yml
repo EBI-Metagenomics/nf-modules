@@ -1,55 +1,63 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/yaml-schema.json
 name: "eggnogmapper"
-## TODO nf-core: Add a description of the module and list keywords
-description: write your description here
+description: Fast genome-wide functional annotation through orthology assignment.
 keywords:
-  - sort
-  - example
+  - annotation
+  - orthology
   - genomics
 tools:
   - "eggnogmapper":
-      ## TODO nf-core: Add a description and other details for the software below
       description: "Fast genome-wide functional annotation through orthology assignment."
-      homepage: "https://github.com/eggnogdb/eggnog-mapper/wiki"
+      homepage: "https://github.com/eggnogdb/eggnog-mapper"
       documentation: "https://github.com/eggnogdb/eggnog-mapper/wiki"
-      tool_dev_url: "None"
-      doi: ""
+      tool_dev_url: "https://github.com/eggnogdb/eggnog-mapper"
+      doi: "10.1093/molbev/msab293"
       licence: "['AGPL v3']"
 
-## TODO nf-core: Add a description of all of the variables used as input
 input:
-  # Only when we have meta
   - meta:
       type: map
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'test', single_end:false ]`
-  
-  ## TODO nf-core: Delete / customise this example input
-  - bam:
-      type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
 
-## TODO nf-core: Add a description of all of the variables used as output
+  - fasta:
+      type: file
+      description: Database of sequences in FASTA format
+      pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
+
+  - eggnog_data_dir:
+      type: directory
+      description: Directory containing eggnog database files
+      pattern: "*"
+
+  - eggnog_diamond_db:
+      type: file
+      description: The eggnog Diamond protein database file
+      pattern: "*.dmnd"
+
+  - eggnog_db:
+      type: file
+      description: The eggnog database file
+      pattern: "*.db"
+
 output:
-  #Only when we have meta
   - meta:
       type: map
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'test', single_end:false ]`
-  
+
   - versions:
       type: file
       description: File containing software versions
       pattern: "versions.yml"
-  ## TODO nf-core: Delete / customise this example output
-  - bam:
+
+  - csv:
       type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
+      description: CSV containing protein annotations
+      pattern: "*.emapper.hits"
 
 authors:
   - "@vagkaratzas"
