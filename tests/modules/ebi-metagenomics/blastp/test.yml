@@ -1,0 +1,8 @@
+- name: blastp test_blastp
+  command: nextflow run ./tests/modules/ebi-metagenomics/blastp -entry test_blastp -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/blastp/nextflow.config
+  tags:
+    - blastp
+  files:
+    - path: output/blastp/test.csv
+      md5sum: 544e628e795bfbda95ada9b5d79d13d4
+    - path: output/blastp/versions.yml
