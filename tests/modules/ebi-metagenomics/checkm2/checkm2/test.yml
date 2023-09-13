@@ -1,0 +1,8 @@
+- name: "checkm2"
+  command: nextflow run ./tests/modules/ebi-metagenomics/checkm2/checkm2 -entry test_checkm2 -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/checkm2/checkm2/nextflow.config
+  tags:
+    - "checkm2"
+    - "checkm2/checkm2"
+  files:
+    - path: "test_checkm_output/quality_report.tsv"
+
