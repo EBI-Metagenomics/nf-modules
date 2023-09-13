@@ -11,7 +11,7 @@ process CHECKM2_DOWNLOAD_DB {
     val(meta)
 
     output:
-    tuple val(meta), path("*/*.dmnd"), emit: checkm2_db
+    tuple val(meta), path("out/CheckM2_database/*.dmnd"), emit: checkm2_db
     path "versions.yml"           , emit: versions
 
     when:
@@ -22,11 +22,11 @@ process CHECKM2_DOWNLOAD_DB {
     def prefix = task.ext.prefix ?: "${meta.id}"
 
     """
-    checkm2 database --download
+    checkm2 database --download --path out
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        : \$(echo \$(checkm2 --version ))
+        CheckM2 : \$(checkm2 --version )
     END_VERSIONS
     """
 
@@ -35,12 +35,12 @@ process CHECKM2_DOWNLOAD_DB {
     def prefix = task.ext.prefix ?: "${meta.id}"
 
     """
-    mkdir -p out
-    touch out/fake.dmnd
+    mkdir -p out/CheckM2_database
+    touch out/CheckM2_database/fake.dmnd
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        : \$(echo \$(checkm2 --version ))
+        CheckM2 : \$(checkm2 --version )
     END_VERSIONS
     """
 }

@@ -22,30 +22,59 @@ process CHECKM2 {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
 
-    """
-    checkm2 predict --threads ${task.cpus} \
-                    --input ${bins} \
-                    --output-directory ${meta.id}_checkm_output \
-                    --database_path ${checkm_db} \
-                    ${args}
+    def bins_list = bins.collect()
+    if (bins_list.size() == 0) {
+        """
+        mkdir -p ${meta.id}_checkm_output
+        echo "genome\tcompleteness\tcontamination" > ${meta.id}_checkm_output/quality_report.tsv
 
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        : \$(echo \$(checkm2 --version ))
-    END_VERSIONS
-    """
+        cat <<-END_VERSIONS > versions.yml
+        "${task.process}":
+            CheckM2 : \$(checkm2 --version )
+        END_VERSIONS
+        """ }
+    else {
+        """
+        checkm2 predict --threads ${task.cpus} \
+                        --input ${bins} \
+                        --output-directory ${meta.id}_checkm_output \
+                        --database_path ${checkm_db} \
+                        ${args}
+
+        cat <<-END_VERSIONS > versions.yml
+        "${task.process}":
+            CheckM2 : \$(checkm2 --version )
+        END_VERSIONS
+        """
+    }
 
     stub:
+    // create empty files for empty bins list
+    // create files with headers for not empty bins list
+
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
 
-    """
-    mkdir -p ${meta.id}_checkm_output
-    touch ${meta.id}_checkm_output/quality_report.tsv
+    def bins_list = bins.collect()
+    if (bins_list.size() == 0) {
+        """
+        mkdir -p ${meta.id}_checkm_output
+        touch ${meta.id}_checkm_output/quality_report.tsv
 
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        : \$(echo \$(checkm2 --version ))
-    END_VERSIONS
-    """
+        cat <<-END_VERSIONS > versions.yml
+        "${task.process}":
+            CheckM2 : \$(checkm2 --version )
+        END_VERSIONS
+        """ }
+    else {
+        """
+        mkdir -p ${meta.id}_checkm_output
+        echo "genome\tcompleteness\tcontamination" > ${meta.id}_checkm_output/quality_report.tsv
+
+        cat <<-END_VERSIONS > versions.yml
+        "${task.process}":
+            CheckM2 : \$(checkm2 --version )
+        END_VERSIONS
+        """
+    }
 }

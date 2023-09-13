@@ -7,6 +7,7 @@ include { CHECKM2_DOWNLOAD_DB   } from '../../../../../modules/ebi-metagenomics/
 
 workflow test_checkm2 {
     meta = [ id:'test', single_end:false ]
+
     CHECKM2_DOWNLOAD_DB(meta)
 
     input = [
@@ -17,4 +18,17 @@ workflow test_checkm2 {
     checkm_db = CHECKM2_DOWNLOAD_DB.out.checkm2_db.map{it -> it[1]}
 
     CHECKM2 ( input, checkm_db)
+}
+
+workflow test_checkm2_empty_directory {
+    meta = [ id:'test', single_end:false ]
+
+    input = [
+        meta,
+        file("./tests/modules/ebi-metagenomics/checkm2/checkm2/data/empty_bins/*")
+    ]
+
+    checkm_db = file("./tests/modules/ebi-metagenomics/checkm2/checkm2/data/NO_FILE")
+
+    CHECKM2 (input, checkm_db)
 }
