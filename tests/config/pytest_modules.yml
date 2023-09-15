@@ -18,6 +18,10 @@ eggnogmapper:
   - modules/ebi-metagenomics/eggnogmapper/**
   - tests/modules/ebi-metagenomics/eggnogmapper/**
 
+fastp:
+  - modules/ebi-metagenomics/fastp/**
+  - tests/modules/ebi-metagenomics/fastp/**
+
 fetchtool/assembly:
   - modules/ebi-metagenomics/fetchtool/assembly/**
   - tests/modules/ebi-metagenomics/fetchtool/assembly/**
@@ -33,3 +37,7 @@ infernal/cmsearch:
 subworkflows/combined_gene_caller:
   - subworkflows/ebi-metagenomics/combined_gene_caller/**
   - tests/subworkflows/ebi-metagenomics/combined_gene_caller/**
+
+subworkflows/read_qc:
+  - subworkflows/ebi-metagenomics/read_qc/**
+  - tests/subworkflows/ebi-metagenomics/read_qc/**
