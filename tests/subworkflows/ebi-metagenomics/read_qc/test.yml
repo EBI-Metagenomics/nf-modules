@@ -1,12 +1,28 @@
-## TODO nf-core: Please run the following command to build this file:
-#                nf-core subworkflows create-test-yml 
-- name: ""
-  command: nextflow run ./tests/subworkflows/ebi-metagenomics/ -entry test_ -c ./tests/config/nextflow.config
+- name: read_qc test_read_qc
+  command: nextflow run ./tests/subworkflows/ebi-metagenomics/read_qc -entry test_read_qc -c ./tests/config/nextflow.config
   tags:
-    - "subworkflows"
-    - "subworkflows/"
+    - fastp
+    - seqtk
+    - seqtk/seq
+    - subworkflows
+    - subworkflows/read_qc
   files:
-    - path: "output//test.bam"
-      md5sum: e667c7caad0bc4b7ac383fd023c654fc
-    - path: output//versions.yml
-      md5sum: a01fe51bc4c6a3a6226fbf77b2c7cf3b
+    - path: output/fastp/test.fastp.html
+      contains:
+        - '1.789477 M (97.392334%)'
+    - path: output/fastp/test.fastp.json
+      md5sum: 552903446c04b38bd8f2f8976119fc42
+    - path: output/fastp/test.fastp.log
+      md5sum: 8cecedd967f7e2d7de2f18d175a0bed1
+    - path: output/fastp/test.merged.fastq.gz
+      md5sum: bc9ed1744b5c680ef2eb4428e9e5f0ef
+    - path: output/fastp/test_1.fail.fastq.gz
+      md5sum: 5f8a4ee1f2baee9f8214b4504358a583
+    - path: output/fastp/test_1.fastp.fastq.gz
+      md5sum: 400ca3c0d3e01d1cdd66af6ba51e083c
+    - path: output/fastp/test_2.fail.fastq.gz
+      md5sum: 4f2f1fbc7bac46520a848af89ea87b52
+    - path: output/fastp/test_2.fastp.fastq.gz
+      md5sum: bac3f9e14935b54e09003dcc1843d6e1
+    - path: output/seqtk/test.seqtk-seq.fastq.gz
+      md5sum: 0ac1b4e9e19105cba11cc12ce17e1f24
