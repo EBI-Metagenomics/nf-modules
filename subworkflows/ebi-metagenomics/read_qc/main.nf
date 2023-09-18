@@ -1,36 +1,29 @@
-// TODO nf-core: If in doubt look at other nf-core/subworkflows to see how we are doing things! :)
-//               https://github.com/nf-core/modules/tree/master/subworkflows
-//               You can also ask for help via your pull request or on the #subworkflows channel on the nf-core Slack workspace:
-//               https://nf-co.re/join
-// TODO nf-core: A subworkflow SHOULD import at least two modules
 
-include { SAMTOOLS_SORT      } from '../../../modules/nf-core/samtools/sort/main'
-include { SAMTOOLS_INDEX     } from '../../../modules/nf-core/samtools/index/main'
+include { FASTP      } from '../../../modules/ebi-metagenomics/fastp/main'
+include { SEQTK_SEQ     } from '../../../modules/ebi-metagenomics/seqtk/seq/main'
 
-workflow  {
+workflow  READ_QC {
 
     take:
-    // TODO nf-core: edit input (take) channels
-    ch_bam // channel: [ val(meta), [ bam ] ]
+    ch_reads // channel: [ val(meta), [ fastq ] ]
 
     main:
 
     ch_versions = Channel.empty()
 
-    // TODO nf-core: substitute modules here for the modules of your subworkflow
+    save_trimmed_fail = true
+    save_merged = true
 
-    SAMTOOLS_SORT ( ch_bam )
-    ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions.first())
+    FASTP ( ch_reads, save_trimmed_fail, save_merged )
+    ch_versions = ch_versions.mix(FASTP.out.versions.first())
 
-    SAMTOOLS_INDEX ( SAMTOOLS_SORT.out.bam )
-    ch_versions = ch_versions.mix(SAMTOOLS_INDEX.out.versions.first())
+    SEQTK_SEQ ( FASTP.out.reads_merged )
+    ch_versions = ch_versions.mix(SEQTK_SEQ.out.versions.first())
 
     emit:
-    // TODO nf-core: edit emitted channels
-    bam      = SAMTOOLS_SORT.out.bam           // channel: [ val(meta), [ bam ] ]
-    bai      = SAMTOOLS_INDEX.out.bai          // channel: [ val(meta), [ bai ] ]
-    csi      = SAMTOOLS_INDEX.out.csi          // channel: [ val(meta), [ csi ] ]
-
+    reads      = FASTP.out.reads           // channel: [ val(meta), [ fastq ] ]
+    reads_merged      = FASTP.out.reads_merged          // channel: [ val(meta), [ fastq ] ]
+    reads_fasta      = SEQTK_SEQ.out.fastx          // channel: [ val(meta), [ fasta ] ]
     versions = ch_versions                     // channel: [ versions.yml ]
 }
 
