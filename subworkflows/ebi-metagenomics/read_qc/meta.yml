@@ -1,46 +1,45 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
-name: ""
-## TODO nf-core: Add a description of the subworkflow and list keywords
-description: Sort SAM/BAM/CRAM file
+name: "read_qc"
+description: |
+  Quality control and merging of fastq-format short-reads using fastp, generating fasta
 keywords:
-  - sort
-  - bam
-  - sam
-  - cram
-## TODO nf-core: Add a list of the modules used in the subworkflow
-modules:
-  - samtools/sort
-  - samtools/index
-## TODO nf-core: List all of the variables used as input, including their types and descriptions
+  - trimming
+  - quality control
+  - merging
+  - fastq
+  - fasta
+components:
+  - fastp
+  - seqtk/seq
 input:
   - meta:
       type: map
       description: |
-        Groovy Map containing sample information
-        e.g. `[ id:'test' ]`
-  - bam:
+        Groovy Map containing sample information. Use 'single_end: true' to specify single ended or interleaved FASTQs. Use 'single_end: false' for paired-end reads.
+        e.g. [ id:'test', single_end:false ]
+  - reads:
       type: file
-      description: BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
-## TODO nf-core: List all of the variables used as output, including their types and descriptions
+      description: |
+        List of input FastQ files of size 1 and 2 for single-end and paired-end data,
+        respectively.
 output:
   - meta:
       type: map
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'test' ]`
-  - bam:
+  - reads:
       type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
-  - bai:
+      description: The trimmed/modified/unmerged fastq reads
+      pattern: "*fastp.fastq.gz"
+  - reads_merged:
       type: file
-      description: BAM/CRAM/SAM samtools index
-      pattern: "*.{bai,crai,sai}"
-  - csi:
+      description: Reads that were successfully merged
+      pattern: "*.{merged.fastq.gz}"
+  - sequences:
       type: file
-      description: CSI samtools index
-      pattern: "*.csi"
+      description: FASTQ/FASTA file containing renamed sequences
+      pattern: "*.{fastq.gz, fasta.gz}"
   - versions:
       type: file
       description: File containing software versions
