@@ -11,10 +11,7 @@ workflow  READS_QC {
 
     ch_versions = Channel.empty()
 
-    save_trimmed_fail = true
-    save_merged = true
-
-    FASTP ( ch_reads, save_trimmed_fail, save_merged )
+    FASTP ( ch_reads, params.save_trimmed_fail, params.save_merged )
     ch_versions = ch_versions.mix(FASTP.out.versions.first())
 
     SEQTK_SEQ ( FASTP.out.reads_merged )
