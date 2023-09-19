@@ -5,12 +5,12 @@
   files:
     - path: output/fastp/test.fastp.html
       contains:
-        - '1.789477 M (97.392334%)'
+        - "1.789477 M (97.392334%)"
     - path: output/fastp/test.fastp.json
       md5sum: 552903446c04b38bd8f2f8976119fc42
     - path: output/fastp/test.fastp.log
       contains:
-        - 'Q30 bases: 6864820(64.3075%)'
+        - "Q30 bases: 6864820(64.3075%)"
     - path: output/fastp/test.merged.fastq.gz
       md5sum: bc9ed1744b5c680ef2eb4428e9e5f0ef
     - path: output/fastp/test_1.fail.fastq.gz
