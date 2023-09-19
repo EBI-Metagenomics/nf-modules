@@ -1,4 +1,4 @@
-// This fastp module is simply copied from the already-existing nf-core module (https://nf-co.re/modules/fastp)
+// This fastp module is simply copied from the already-existing nf-core module (https://nf-co.re/modules/fastp, https://github.com/nf-core/modules/commit/d497a4868ace3302016ea8ed4b395072d5e833cd)
 // This is because there are not currently any nf-core ways of adding modules from more than one nf-core repo
 // One slight change to it compared to the original is I've removed the "adapter_fasta" input as we are unlikely
 // to need it for our purposes

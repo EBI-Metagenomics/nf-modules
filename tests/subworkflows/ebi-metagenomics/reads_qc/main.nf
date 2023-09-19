@@ -2,9 +2,9 @@
 
 nextflow.enable.dsl = 2
 
-include { READ_QC } from '../../../../subworkflows/ebi-metagenomics/read_qc/main.nf'
+include { READS_QC } from '../../../../subworkflows/ebi-metagenomics/reads_qc/main.nf'
 
-workflow test_read_qc {
+workflow test_reads_qc {
     
     input = [
         [ id:'test', single_end:false ], // meta map
@@ -12,5 +12,5 @@ workflow test_read_qc {
           file('tests/modules/ebi-metagenomics/fastp/data/SRR21814853_2.fastq.gz', checkIfExists: true) ]
         ]
 
-    READ_QC ( input )
+    READS_QC ( input )
 }

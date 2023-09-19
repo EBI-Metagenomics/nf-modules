@@ -42,6 +42,6 @@ subworkflows/combined_gene_caller:
   - subworkflows/ebi-metagenomics/combined_gene_caller/**
   - tests/subworkflows/ebi-metagenomics/combined_gene_caller/**
 
-subworkflows/read_qc:
-  - subworkflows/ebi-metagenomics/read_qc/**
-  - tests/subworkflows/ebi-metagenomics/read_qc/**
+subworkflows/reads_qc:
+  - subworkflows/ebi-metagenomics/reads_qc/**
+  - tests/subworkflows/ebi-metagenomics/reads_qc/**

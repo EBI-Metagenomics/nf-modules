@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
-name: "read_qc"
+name: "reads_qc"
 description: |
   Quality control and merging of fastq-format short-reads using fastp, generating fasta
 keywords:
@@ -35,11 +35,15 @@ output:
   - reads_merged:
       type: file
       description: Reads that were successfully merged
-      pattern: "*.{merged.fastq.gz}"
-  - sequences:
+      pattern: "*.merged.fastq.gz"
+  - fastp_summary_json:
       type: file
-      description: FASTQ/FASTA file containing renamed sequences
-      pattern: "*.{fastq.gz, fasta.gz}"
+      description: fastp results in JSON format
+      pattern: "*.json"
+  - reads_fasta:
+      type: file
+      description: FASTA file converted from FASTQ
+      pattern: "*.fasta.gz"
   - versions:
       type: file
       description: File containing software versions

@@ -1,11 +1,11 @@
-- name: read_qc test_read_qc
-  command: nextflow run ./tests/subworkflows/ebi-metagenomics/read_qc -entry test_read_qc -c ./tests/config/nextflow.config
+- name: reads_qc test_reads_qc
+  command: nextflow run ./tests/subworkflows/ebi-metagenomics/reads_qc -entry test_reads_qc -c ./tests/config/nextflow.config
   tags:
     - fastp
     - seqtk
     - seqtk/seq
     - subworkflows
-    - subworkflows/read_qc
+    - subworkflows/reads_qc
   files:
     - path: output/fastp/test.fastp.html
       contains:

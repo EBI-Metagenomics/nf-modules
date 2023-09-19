@@ -1,4 +1,4 @@
-// This seqtk/seq module is simply copied from the already-existing nf-core module (https://nf-co.re/modules/seqtk_seq/)
+// This seqtk/seq module is simply copied from the already-existing nf-core module (https://nf-co.re/modules/seqtk_seq/, https://github.com/nf-core/modules/commit/726ee59cd9360a965d96ea9ea8770f16b8ddd6cc)
 // This is because there are not currently any nf-core ways of adding modules from more than one nf-core repo
 
 process SEQTK_SEQ {
