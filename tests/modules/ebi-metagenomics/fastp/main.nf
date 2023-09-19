@@ -6,19 +6,15 @@ include { FASTP } from '../../../../modules/ebi-metagenomics/fastp/main.nf'
 
 workflow test_fastp {
     
-    input_1 = [
+    input = [
         [ id:'test', single_end:false ], // meta map
         [ file('tests/modules/ebi-metagenomics/fastp/data/SRR21814853_1.fastq.gz', checkIfExists: true),
           file('tests/modules/ebi-metagenomics/fastp/data/SRR21814853_2.fastq.gz', checkIfExists: true) ]
         ]
 
-    input_2 = true
-
-    input_3 = true
-
     FASTP (
-        input_1,
-        input_2,
-        input_3
+        input,
+        params.save_trimmed_fail,
+        params.save_merged
      )
 }
