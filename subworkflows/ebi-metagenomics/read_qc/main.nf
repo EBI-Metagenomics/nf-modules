@@ -23,6 +23,7 @@ workflow  READ_QC {
     emit:
     reads      = FASTP.out.reads           // channel: [ val(meta), [ fastq ] ]
     reads_merged      = FASTP.out.reads_merged          // channel: [ val(meta), [ fastq ] ]
+    qc_stats      = FASTP.out.json          // channel: [ val(meta), [ json ] ]
     reads_fasta      = SEQTK_SEQ.out.fastx          // channel: [ val(meta), [ fasta ] ]
     versions = ch_versions                     // channel: [ versions.yml ]
 }

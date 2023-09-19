@@ -1,5 +1,5 @@
 - name: fastp test_fastp
-  command: nextflow run ./tests/modules/ebi-metagenomics/fastp -entry test_fastp -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/fastp/nextflow.config
+  command: nextflow run ./tests/modules/ebi-metagenomics/fastp -entry test_fastp -c ./tests/config/nextflow.config
   tags:
     - fastp
   files:
