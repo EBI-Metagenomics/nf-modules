@@ -32,9 +32,9 @@ output:
       type: file
       description: The trimmed/modified/unmerged fastq reads
       pattern: "*fastp.fastq.gz"
-  - reads_merged:
+  - reads_se_and_merged:
       type: file
-      description: Reads that were successfully merged
+      description: fastp-cleaned single-end reads and merged paired-end reads
       pattern: "*.merged.fastq.gz"
   - fastp_summary_json:
       type: file
