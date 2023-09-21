@@ -14,14 +14,20 @@ workflow  READS_QC {
     FASTP ( ch_reads, params.save_trimmed_fail, params.save_merged )
     ch_versions = ch_versions.mix(FASTP.out.versions.first())
 
-    SEQTK_SEQ ( FASTP.out.reads_merged )
+    ch_se_fastp_reads = FASTP
+                        .out.reads
+                        .filter { it[0].single_end }
+
+    ch_reads_se_and_merged = ch_se_fastp_reads.concat(FASTP.out.reads_merged)
+
+    SEQTK_SEQ(ch_reads_se_and_merged)
     ch_versions = ch_versions.mix(SEQTK_SEQ.out.versions.first())
 
     emit:
-    reads              = FASTP.out.reads           // channel: [ val(meta), [ fastq ] ]
-    reads_merged       = FASTP.out.reads_merged    // channel: [ val(meta), [ fastq ] ]
-    fastp_summary_json = FASTP.out.json            // channel: [ val(meta), [ json ] ]
-    reads_fasta        = SEQTK_SEQ.out.fastx       // channel: [ val(meta), [ fasta ] ]
-    versions           = ch_versions               // channel: [ versions.yml ]
+    reads               = FASTP.out.reads           // channel: [ val(meta), [ fastq ] ]
+    reads_se_and_merged = ch_reads_se_and_merged    // channel: [ val(meta), [ fastq ] ]
+    fastp_summary_json  = FASTP.out.json            // channel: [ val(meta), [ json ] ]
+    reads_fasta         = SEQTK_SEQ.out.fastx       // channel: [ val(meta), [ fasta ] ]
+    versions            = ch_versions               // channel: [ versions.yml ]
 }
 
