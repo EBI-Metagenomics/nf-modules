@@ -8,14 +8,14 @@ include { CHECKM2_DOWNLOAD_DB   } from '../../../../../modules/ebi-metagenomics/
 workflow test_checkm2 {
     meta = [ id:'test', single_end:false ]
 
-    CHECKM2_DOWNLOAD_DB(meta)
+    CHECKM2_DOWNLOAD_DB()
 
     input = [
         meta,
         file("./tests/modules/ebi-metagenomics/checkm2/checkm2/data/bins", checkIfExists: true)
     ]
 
-    checkm_db = CHECKM2_DOWNLOAD_DB.out.checkm2_db.map{it -> it[1]}
+    checkm_db = CHECKM2_DOWNLOAD_DB.out.checkm2_db
 
     CHECKM2 ( input, checkm_db)
 }
