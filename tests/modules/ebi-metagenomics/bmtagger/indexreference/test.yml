@@ -1,0 +1,10 @@
+- name: "bmtagger indexreference"
+  command: nextflow run ./tests/modules/ebi-metagenomics/bmtagger/indexreference -entry test_bmtagger_indexreference -c ./tests/config/nextflow.config
+  tags:
+    - "bmtagger"
+    - "bmtagger/indexreference"
+  files:
+    - path: "output/bmtagger/test.bam"
+      md5sum: e667c7caad0bc4b7ac383fd023c654fc
+    - path: "output/bmtagger/versions.yml"
+      md5sum: a01fe51bc4c6a3a6226fbf77b2c7cf3b

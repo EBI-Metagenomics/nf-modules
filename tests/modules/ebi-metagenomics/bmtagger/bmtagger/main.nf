@@ -3,7 +3,7 @@
 nextflow.enable.dsl = 2
 
 include { BMTAGGER } from '../../../../../modules/ebi-metagenomics/bmtagger/bmtagger/main.nf'
-include { CREATE_DB_BMTAGGER } from '../../../../../modules/ebi-metagenomics/bmtagger/index_reference/main.nf'
+include { BMTAGGER_INDEX_REFERENCE } from '../../../../../modules/ebi-metagenomics/bmtagger/index_reference/main.nf'
 
 workflow test_bmtagger {
 
@@ -14,12 +14,12 @@ workflow test_bmtagger {
 
     reference_fasta = file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/reference.fasta", checkIfExists: true)
 
-    CREATE_DB_BMTAGGER(reference_fasta)
+    BMTAGGER_INDEX_REFERENCE(reference_fasta)
 
     input_format = channel.value("fasta")
     output_directory = channel.value("bmtagger_output")
 
-    BMTAGGER ( input, CREATE_DB_BMTAGGER.out.bitmask, CREATE_DB_BMTAGGER.out.srprism, input_format, output_directory )
+    BMTAGGER ( input, BMTAGGER_INDEX_REFERENCE.out.bitmask, BMTAGGER_INDEX_REFERENCE.out.srprism, input_format, output_directory )
 }
 
 workflow test_bmtagger_fastq {
@@ -33,10 +33,10 @@ workflow test_bmtagger_fastq {
 
     reference_fasta = file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/reference.fasta", checkIfExists: true)
 
-    CREATE_DB_BMTAGGER(reference_fasta)
+    BMTAGGER_INDEX_REFERENCE(reference_fasta)
 
     input_format = channel.value("fastq")
     output_directory = channel.value("bmtagger_output")
 
-    BMTAGGER ( input, CREATE_DB_BMTAGGER.out.bitmask, CREATE_DB_BMTAGGER.out.srprism, input_format, output_directory )
+    BMTAGGER ( input, BMTAGGER_INDEX_REFERENCE.out.bitmask, BMTAGGER_INDEX_REFERENCE.out.srprism, input_format, output_directory )
 }

@@ -1,6 +1,3 @@
-// This module is a verbatim copy of https://github.com/nf-core/modules/blob/master/modules/nf-core/prodigal/main.nf
-// I've copied this as I still have to figure out how to handle nf-core/subworkflows that have dependencies from > 1
-// nf-core repo.
 process PRODIGAL {
     tag "$meta.id"
     label 'process_single'

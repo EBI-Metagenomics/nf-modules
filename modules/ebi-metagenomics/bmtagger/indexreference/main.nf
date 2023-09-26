@@ -1,20 +1,20 @@
-process CREATE_DB_BMTAGGER {
-
+process BMTAGGER_INDEXREFERENCE {
+    tag "$meta.id"
     label 'process_low'
 
-    conda "bioconda::bmtagger==3.101"
+    conda "bioconda::bmtagger=3.101"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/bmtagger:3.101--h470a237_4':
         'biocontainers/bmtagger:3.101--h470a237_4' }"
 
     input:
-    path(reference_fasta)
+    tuple val(meta), path(reference_fasta)
 
     output:
-    path("${reference_fasta.baseName}.bitmask")         , emit: bitmask
-    path("${reference_fasta.baseName}.srprism.*")       , emit: srprism
-    path("${reference_fasta}.n*")                       , emit: blast_db
-    path "versions.yml"                                 , emit: versions
+    tuple val(meta), path("${reference_fasta.baseName}.bitmask")         , emit: bitmask
+    tuple val(meta), path("${reference_fasta.baseName}.srprism.*")       , emit: srprism
+    tuple val(meta), path("${reference_fasta}.n*")                       , emit: blast_db
+    path "versions.yml"                                                  , emit: versions
 
     when:
     task.ext.when == null || task.ext.when

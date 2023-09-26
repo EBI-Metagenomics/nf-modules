@@ -6,6 +6,10 @@ bmtagger/bmtagger:
   - modules/ebi-metagenomics/bmtagger/bmtagger/**
   - tests/modules/ebi-metagenomics/bmtagger/bmtagger/**
 
+bmtagger/indexreference:
+  - modules/ebi-metagenomics/bmtagger/indexreference/**
+  - tests/modules/ebi-metagenomics/bmtagger/indexreference/**
+
 cmsearchtbloutdeoverlap:
   - modules/ebi-metagenomics/cmsearchtbloutdeoverlap/**
   - tests/modules/ebi-metagenomics/cmsearchtbloutdeoverlap/**
@@ -29,6 +33,10 @@ fraggenescan:
 infernal/cmsearch:
   - modules/ebi-metagenomics/infernal/cmsearch/**
   - tests/modules/ebi-metagenomics/infernal/cmsearch/**
+
+prodigal:
+  - modules/ebi-metagenomics/prodigal/**
+  - tests/modules/ebi-metagenomics/prodigal/**
 
 subworkflows/combined_gene_caller:
   - subworkflows/ebi-metagenomics/combined_gene_caller/**
