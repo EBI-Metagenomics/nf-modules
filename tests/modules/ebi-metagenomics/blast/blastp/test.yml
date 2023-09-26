@@ -1,5 +1,5 @@
-- name: blast blastp test_blastp
-  command: nextflow run ./tests/modules/ebi-metagenomics/blast/blastp -entry test_blastp -c ./tests/config/nextflow.config
+- name: blast_blastp
+  command: nextflow run ./tests/modules/ebi-metagenomics/blast/blastp -entry test_blast_blastp -c ./tests/config/nextflow.config
   tags:
     - blast
     - blast/blastp
