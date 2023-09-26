@@ -10,6 +10,10 @@ checkm2/checkm2:
   - modules/ebi-metagenomics/checkm2/checkm2/**
   - tests/modules/ebi-metagenomics/checkm2/checkm2/**
 
+checkm2/download_db:
+  - modules/ebi-metagenomics/checkm2/download_db/**
+  - tests/modules/ebi-metagenomics/checkm2/download_db/**
+
 cmsearchtbloutdeoverlap:
   - modules/ebi-metagenomics/cmsearchtbloutdeoverlap/**
   - tests/modules/ebi-metagenomics/cmsearchtbloutdeoverlap/**

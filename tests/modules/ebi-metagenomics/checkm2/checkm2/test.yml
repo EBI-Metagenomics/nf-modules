@@ -1,8 +1,4 @@
-# TODO: fix test_checkm2 test
-# Doesn't work because of download db issue
-# OSError: [Errno 30] Read-only file system: '/usr/local/lib/python3.8/site-packages/checkm2/version/diamond_path.json'
-
-- name: "checkm2_stub"
+- name: "checkm2 stub"
   command: nextflow run ./tests/modules/ebi-metagenomics/checkm2/checkm2 -stub -entry test_checkm2 -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/checkm2/checkm2/nextflow.config
   tags:
     - "checkm2"
@@ -13,7 +9,7 @@
     - path: "output/checkm2/versions.yml"
       md5sum: fcebefe734201aedddd0037fb274d572
 
-- name: "checkm2_empty_directory"
+- name: "checkm2 empty_directory"
   command: nextflow run ./tests/modules/ebi-metagenomics/checkm2/checkm2 -entry test_checkm2_empty_directory -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/checkm2/checkm2/nextflow.config
   tags:
     - "checkm2"
@@ -24,7 +20,7 @@
     - path: "output/checkm2/versions.yml"
       md5sum: c1ac7bf61a1f5a47711141ca1d34fd8d
 
-- name: "checkm2_empty_directory_stub"
+- name: "checkm2 empty_directory_stub"
   command: nextflow run ./tests/modules/ebi-metagenomics/checkm2/checkm2 -stub -entry test_checkm2_empty_directory -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/checkm2/checkm2/nextflow.config
   tags:
     - "checkm2"

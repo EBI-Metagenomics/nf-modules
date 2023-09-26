@@ -1,0 +1,12 @@
+# stub is used here as the checkm2 db is 2.9GB and to dowlonad it takes more than GA will allow
+
+- name: checkm2 download_db test_checkm2_download_db
+  command: nextflow run ./tests/modules/ebi-metagenomics/checkm2/download_db -stub -entry test_checkm2_download_db -c ./tests/config/nextflow.config
+  tags:
+    - checkm2
+    - checkm2/download_db
+  files:
+    - path: output/checkm2/out/CheckM2_database/uniref100.KO.1.dmnd
+      md5sum: d41d8cd98f00b204e9800998ecf8427e
+      # md5sum: 80ddd6a8998e5ebbc79ebbaeaee667f7 REAL db
+    - path: output/checkm2/versions.yml

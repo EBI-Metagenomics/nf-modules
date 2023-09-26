@@ -31,7 +31,7 @@ process CHECKM2_DOWNLOAD_DB {
 
     """
     mkdir -p out/CheckM2_database
-    touch out/CheckM2_database/fake.dmnd
+    touch out/CheckM2_database/uniref100.KO.1.dmnd
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
