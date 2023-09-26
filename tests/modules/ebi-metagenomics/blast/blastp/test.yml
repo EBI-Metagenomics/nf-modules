@@ -7,3 +7,4 @@
     - path: output/blast/test.csv
       md5sum: d41d8cd98f00b204e9800998ecf8427e
     - path: output/blast/versions.yml
+      md5sum: fe1a7ecc4ce87ef5a6381b54c3cd0d49

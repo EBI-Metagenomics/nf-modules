@@ -2,15 +2,13 @@
 
 nextflow.enable.dsl = 2
 
+include { BLAST_MAKEBLASTDB } from '../../../../../modules/ebi-metagenomics/blast/makeblastdb/main.nf'
 include { BLAST_BLASTP } from '../../../../../modules/ebi-metagenomics/blast/blastp/main.nf'
 
-workflow test_blastp {
+workflow test_blast_blastp {
 
-    input = [
-        [ id:'test', single_end:false ], // meta map
-        file("tests/modules/ebi-metagenomics/blast/blastp/data/test.fa", checkIfExists: true)
-    ]
-    db = file("tests/modules/ebi-metagenomics/blast/blastp/data/uniprot_sprot_subset_DB", checkIfExists: true)
+    input = [ file(params.test_data['sarscov2']['genome']['genome_fasta'], checkIfExists: true) ]
 
-    BLAST_BLASTP ( input, db )
+    BLAST_MAKEBLASTDB ( input )
+    BLAST_BLASTP ( [ [id:'test'], input ], BLAST_MAKEBLASTDB.out.db )
 }
