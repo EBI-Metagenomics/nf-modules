@@ -45,4 +45,3 @@ workflow COMBINED_GENE_CALLER {
     ffn      = COMBINEDGENECALLER_MERGE.out.ffn  // channel: [ val(meta), [ ffn ] ]
     versions = ch_versions                       // channel: [ versions.yml ]
 }
-

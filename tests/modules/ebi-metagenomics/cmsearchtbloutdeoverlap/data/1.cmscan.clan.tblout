@@ -363,7 +363,7 @@
 # Pipeline mode:   SCAN
 # Query file:      50000.1.fa
 # Target file:     ribo.cm
-# Option settings: cmscan -Z 1000 --tblout 1.cmscan.clan.tblout --fmt 2 --noali --cut_ga --hmmonly --clanin ribo.claninfo --oclan --oskip --cpu 4 ribo.cm 50000.1.fa 
+# Option settings: cmscan -Z 1000 --tblout 1.cmscan.clan.tblout --fmt 2 --noali --cut_ga --hmmonly --clanin ribo.claninfo --oclan --oskip --cpu 4 ribo.cm 50000.1.fa
 # Current dir:     /nfs/production/xfam/users/nawrocki/notebook/17_0508_inf_ebi_cmsearch_deoverlap
 # Date:            Wed May 10 21:35:30 2017
 # [ok]
