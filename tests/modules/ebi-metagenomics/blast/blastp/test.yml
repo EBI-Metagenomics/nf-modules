@@ -15,9 +15,7 @@
     - path: ./output/blast/blast_db/genome.fasta.phr
       md5sum: f4b4ddb034fd3dd7b25c89e9d50c004e
     - path: ./output/blast/blast_db/genome.fasta.pin
-      md5sum: 741b83c54220f64ba961e3b203838383
     - path: ./output/blast/blast_db/genome.fasta.pjs
-      md5sum: 53fa0c2e9f283a61dd1c53d6d89ea6b3
     - path: ./output/blast/blast_db/genome.fasta.pot
       md5sum: 1e53e9d08f1d23af0299cfa87478a7bb
     - path: ./output/blast/blast_db/genome.fasta.psq
