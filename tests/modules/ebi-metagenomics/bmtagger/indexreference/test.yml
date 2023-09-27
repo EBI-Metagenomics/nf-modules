@@ -7,7 +7,6 @@
     - path: "output/bmtagger/genome.bitmask"
       md5sum: 94aca46aca636e560401637769284751
     - path: "output/bmtagger/genome.srprism.amp"
-      md5sum: d41d8cd98f00b204e9800998ecf8427e
     - path: "output/bmtagger/genome.srprism.idx"
       md5sum: 107624db4857a965bf6ee20b8d049fac
     - path: "output/bmtagger/genome.srprism.imp"
@@ -17,11 +16,9 @@
     - path: "output/bmtagger/genome.srprism.pmp"
       md5sum: 465dd5c9ae3604922eb1a42ba2225a6f
     - path: "output/bmtagger/genome.srprism.rmp"
-      md5sum: d41d8cd98f00b204e9800998ecf8427e
     - path: "output/bmtagger/genome.srprism.ss"
       md5sum: c3fe88c2904139f24c03361d6e0fdcf7
     - path: "output/bmtagger/genome.srprism.ssa"
-      md5sum: d41d8cd98f00b204e9800998ecf8427e
     - path: "output/bmtagger/genome.srprism.ssd"
       md5sum: 340b812146bdcafb36a6c56f47ebaf86
     - path: "output/bmtagger/genome.fasta"
