@@ -8,12 +8,12 @@ include { BMTAGGER_INDEXREFERENCE } from '../../../../../modules/ebi-metagenomic
 workflow test_bmtagger {
 
     input = [
-        [ id:'test_fasta', single_end:true ],                                                               // meta map
-        file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/example.fa", checkIfExists: true), // input
+        [ id:'test' ],
+        file(params.test_data['sarscov2']['genome']['genome_fasta'], checkIfExists: true)
     ]
     input_ref = [
-        [ id:'test_ref', single_end:true ],
-        file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/reference.fasta", checkIfExists: true),
+        [ id:'ref' ],
+        file(params.test_data['sarscov2']['genome']['genome_fasta'], checkIfExists: true)
     ]
 
     BMTAGGER_INDEXREFERENCE(input_ref)

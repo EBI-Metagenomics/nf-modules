@@ -19,7 +19,7 @@ input:
         e.g. `[ id:'test', single_end:false ]`
 
   - input:
-      type: list
+      type: file
       description: fasta or fastq files
       pattern: "*.{fa,fq,fasta,fastq}"
 
