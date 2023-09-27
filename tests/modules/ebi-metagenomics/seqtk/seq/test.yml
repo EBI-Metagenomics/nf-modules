@@ -1,0 +1,9 @@
+- name: seqtk seq test_seqtk_seq
+  command: nextflow run ./tests/modules/ebi-metagenomics/seqtk/seq -entry test_seqtk_seq -c ./tests/config/nextflow.config
+  tags:
+    - seqtk
+    - seqtk/seq
+  files:
+    - path: output/seqtk/test.seqtk-seq.fasta.gz
+      md5sum: afb4460aa8f0bda84dba3244760155a8
+    - path: output/seqtk/versions.yml
