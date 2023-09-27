@@ -11,10 +11,10 @@ process BMTAGGER_INDEXREFERENCE {
     tuple val(meta), path(reference_fasta)
 
     output:
-    tuple val(meta), path("${reference_fasta.baseName}.bitmask")         , emit: bitmask
-    tuple val(meta), path("${reference_fasta.baseName}.srprism.*")       , emit: srprism
-    tuple val(meta), path("${reference_fasta}.n*")                       , emit: blast_db
-    path "versions.yml"                                                  , emit: versions
+    tuple val(meta), path("${reference_fasta.baseName}.bitmask")  , emit: bitmask
+    tuple val(meta), path("${reference_fasta.baseName}.srprism.*"), emit: srprism
+    tuple val(meta), path("${reference_fasta}.n*")                , emit: blast_db
+    path "versions.yml"                                           , emit: versions
 
     when:
     task.ext.when == null || task.ext.when

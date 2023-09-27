@@ -1,4 +1,4 @@
-process BMTAGGER {
+process BMTAGGER_BMTAGGER {
 
     tag "$meta.id"
 
@@ -17,8 +17,8 @@ process BMTAGGER {
     val output_file
 
     output:
-    tuple val(meta), path("${output_file}")          , emit: output_host
-    path "versions.yml"                              , emit: versions
+    tuple val(meta), path("${output_file}"), emit: output_host
+    path "versions.yml"                    , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
