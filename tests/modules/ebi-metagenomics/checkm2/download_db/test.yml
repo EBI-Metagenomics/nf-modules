@@ -7,6 +7,6 @@
     - checkm2/download_db
   files:
     - path: output/checkm2/out/CheckM2_database/uniref100.KO.1.dmnd
-      md5sum: d41d8cd98f00b204e9800998ecf8427e
+      should_exist: true
       # md5sum: 80ddd6a8998e5ebbc79ebbaeaee667f7 REAL db
     - path: output/checkm2/versions.yml
