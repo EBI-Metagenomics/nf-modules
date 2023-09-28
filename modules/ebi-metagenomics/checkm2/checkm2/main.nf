@@ -49,32 +49,16 @@ process CHECKM2 {
     }
 
     stub:
-    // create empty files for empty bins list
-    // create files with headers for not empty bins list
-
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
 
-    def bins_list = bins.collect()
-    if (bins_list.size() == 0) {
-        """
-        mkdir -p ${prefix}_checkm_output
-        touch ${prefix}_checkm_output/quality_report.tsv
+    """
+    mkdir -p ${prefix}_checkm_output
+    echo "genome\tcompleteness\tcontamination" > ${prefix}_checkm_output/quality_report.tsv
 
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            CheckM2 : \$(checkm2 --version)
-        END_VERSIONS
-        """ }
-    else {
-        """
-        mkdir -p ${prefix}_checkm_output
-        echo "genome\tcompleteness\tcontamination" > ${prefix}_checkm_output/quality_report.tsv
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            CheckM2 : \$(checkm2 --version)
-        END_VERSIONS
-        """
-    }
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        CheckM2 : \$(checkm2 --version)
+    END_VERSIONS
+    """
 }
