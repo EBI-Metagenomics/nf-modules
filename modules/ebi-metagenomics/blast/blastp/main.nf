@@ -1,5 +1,5 @@
 // currently outputs the CSV only with outfmt = 10
-process BLASTP {
+process BLAST_BLASTP {
     tag "$meta.id"
     label 'process_medium'
 

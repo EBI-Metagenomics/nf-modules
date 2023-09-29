@@ -1,12 +1,12 @@
 ---
-name: "bmtagger"
+name: "bmtagger_bmtagger"
 description: Bmtagger tools
 keywords:
   - decontamination
   - host
   - reference_genome
 tools:
-  - "bmtagger":
+  - "bmtagger_bmtagger":
       description: "Best Match Tagger for removing human reads from metagenomics datasets"
       homepage: "https://bioconda-recipes-demo.readthedocs.io/en/docs/recipes/bmtagger/README.html"
       documentation: "https://ftp.ncbi.nlm.nih.gov/pub/agarwala/bmtagger/README.bmtagger.txt"
@@ -19,7 +19,7 @@ input:
         e.g. `[ id:'test', single_end:false ]`
 
   - input:
-      type: list
+      type: file
       description: fasta or fastq files
       pattern: "*.{fa,fq,fasta,fastq}"
 

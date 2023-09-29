@@ -1,8 +1,10 @@
-process BMTAGGER {
+process BMTAGGER_BMTAGGER {
 
     tag "$meta.id"
 
     label 'process_low'
+
+    debug true
 
     conda "bioconda::bmtagger=3.101"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -17,8 +19,8 @@ process BMTAGGER {
     val output_file
 
     output:
-    tuple val(meta), path("${output_file}")          , emit: output_host
-    path "versions.yml"                              , emit: versions
+    tuple val(meta), path("${output_file}"), emit: output_host
+    path "versions.yml"                    , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -32,7 +34,7 @@ process BMTAGGER {
     } else if (input_format == 'fastq') {
         args += ' -q1 '
     } else {
-        print('unknown format')
+        error "Invalid format: ${input_format}"
     }
 
     if (meta.single_end) {
@@ -65,7 +67,7 @@ process BMTAGGER {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        bmtagger: \$(bmtagger.sh -hV | grep 'version' )
+        bmtagger: \$(bmtagger.sh -hV 2>1 | grep version | grep -Eo '[0-9.]+')
     END_VERSIONS
     """
 }

@@ -1,13 +1,13 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/yaml-schema.json
-name: "blastp"
+name: "blast_blastp"
 description: BLASTP (Basic Local Alignment Search Tool- Protein) compares an amino acid (protein) query sequence against a protein database
 keywords:
   - protein alignment
   - functional annotation
   - evolutionary analysis
 tools:
-  - "blastp":
+  - "blast_blastp":
       description: "BLASTP (Basic Local Alignment Search Tool- Protein) compares an amino acid (protein) query sequence against a protein database"
       homepage: "https://blast.ncbi.nlm.nih.gov/Blast.cgi"
       documentation: "https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=Blastdocs"

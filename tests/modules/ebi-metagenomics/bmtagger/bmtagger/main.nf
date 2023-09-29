@@ -2,41 +2,62 @@
 
 nextflow.enable.dsl = 2
 
-include { BMTAGGER } from '../../../../../modules/ebi-metagenomics/bmtagger/bmtagger/main.nf'
-include { CREATE_DB_BMTAGGER } from '../../../../../modules/ebi-metagenomics/bmtagger/index_reference/main.nf'
+include { BMTAGGER_BMTAGGER } from '../../../../../modules/ebi-metagenomics/bmtagger/bmtagger/main.nf'
+include { BMTAGGER_INDEXREFERENCE } from '../../../../../modules/ebi-metagenomics/bmtagger/indexreference/main.nf'
 
-workflow test_bmtagger {
+workflow test_bmtagger_single_end {
 
-    input = [
-        [ id:'test_fasta', single_end:true ],                                                               // meta map
-        file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/example.fa", checkIfExists: true), // input
-    ]
-
-    reference_fasta = file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/reference.fasta", checkIfExists: true)
-
-    CREATE_DB_BMTAGGER(reference_fasta)
-
-    input_format = channel.value("fasta")
-    output_directory = channel.value("bmtagger_output")
-
-    BMTAGGER ( input, CREATE_DB_BMTAGGER.out.bitmask, CREATE_DB_BMTAGGER.out.srprism, input_format, output_directory )
-}
-
-workflow test_bmtagger_fastq {
+    // TODO the following tests are disabled, bmtagger takes way too long to run in the CI server.
 
     input = [
-        [ id:'test_fasta', single_end:true ],                                                               // meta map
-        [file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/ex_1.fastq", checkIfExists: true),
-        file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/ex_2.fastq", checkIfExists: true)
+        [ id:'test_fasta', single_end:true ], // meta map
+        [
+            file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/ex_1.fastq", checkIfExists: true)
         ], // input
     ]
+    input_ref = [
+        file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/reference.fasta", checkIfExists: true),
+    ]
 
-    reference_fasta = file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/reference.fasta", checkIfExists: true)
-
-    CREATE_DB_BMTAGGER(reference_fasta)
+    BMTAGGER_INDEXREFERENCE( input_ref )
 
     input_format = channel.value("fastq")
     output_directory = channel.value("bmtagger_output")
 
-    BMTAGGER ( input, CREATE_DB_BMTAGGER.out.bitmask, CREATE_DB_BMTAGGER.out.srprism, input_format, output_directory )
+    BMTAGGER_BMTAGGER (
+        input,
+        BMTAGGER_INDEXREFERENCE.out.bitmask,
+        BMTAGGER_INDEXREFERENCE.out.srprism,
+        input_format,
+        output_directory
+    )
+}
+
+workflow test_bmtagger_paired_end {
+
+    // TODO the following tests are disabled, bmtagger takes way too long to run in the CI server.
+
+    input = [
+        [ id:'test_fasta', paired_end:true ], // meta map
+        [
+            file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/ex_1.fastq", checkIfExists: true),
+            file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/ex_2.fastq", checkIfExists: true)
+        ], // input
+    ]
+    input_ref = [
+        file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/reference.fasta", checkIfExists: true),
+    ]
+
+    BMTAGGER_INDEXREFERENCE( input_ref )
+
+    input_format = channel.value("fastq")
+    output_directory = channel.value("bmtagger_output")
+
+    BMTAGGER_BMTAGGER (
+        input,
+        BMTAGGER_INDEXREFERENCE.out.bitmask,
+        BMTAGGER_INDEXREFERENCE.out.srprism,
+        input_format,
+        output_directory
+    )
 }

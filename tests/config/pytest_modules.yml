@@ -1,10 +1,18 @@
-blastp:
-  - modules/ebi-metagenomics/blastp/**
-  - tests/modules/ebi-metagenomics/blastp/**
+blast/makeblastdb:
+  - modules/ebi-metagenomics/blast/makeblastdb/**
+  - tests/modules/ebi-metagenomics/blast/makeblastdb/**
+
+blast/blastp:
+  - modules/ebi-metagenomics/blast/blastp/**
+  - tests/modules/ebi-metagenomics/blast/blastp/**
 
 bmtagger/bmtagger:
   - modules/ebi-metagenomics/bmtagger/bmtagger/**
   - tests/modules/ebi-metagenomics/bmtagger/bmtagger/**
+
+bmtagger/indexreference:
+  - modules/ebi-metagenomics/bmtagger/indexreference/**
+  - tests/modules/ebi-metagenomics/bmtagger/indexreference/**
 
 cmsearchtbloutdeoverlap:
   - modules/ebi-metagenomics/cmsearchtbloutdeoverlap/**
@@ -33,6 +41,10 @@ fraggenescan:
 infernal/cmsearch:
   - modules/ebi-metagenomics/infernal/cmsearch/**
   - tests/modules/ebi-metagenomics/infernal/cmsearch/**
+
+prodigal:
+  - modules/ebi-metagenomics/prodigal/**
+  - tests/modules/ebi-metagenomics/prodigal/**
 
 seqtk/seq:
   - modules/ebi-metagenomics/seqtk/seq/**

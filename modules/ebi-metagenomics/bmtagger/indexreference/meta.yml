@@ -1,9 +1,11 @@
 ---
-name: "index_reference"
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/yaml-schema.json
+name: "bmtagger_indexreference"
 description: Create indexed reference DB for bmtagger
 keywords:
   - reference
   - index
+  - fasta
 tools:
   - "bmtool":
       description: "Tool from bmtagger to create a bitmask file for the reference genome"
@@ -15,7 +17,7 @@ tools:
       documentation: "https://ftp.ncbi.nlm.nih.gov/pub/agarwala/bmtagger/README.bmtagger.txt"
   - "makeblastdb":
       description: "Tool from blast to index reference genome"
-      homepage: " ftp://ftp.ncbi.nlm.nih.gov/blast/executables/release/LATEST/"
+      homepage: "https://blast.ncbi.nlm.nih.gov/Blast.cgi"
 
 input:
   - reference_fasta:
@@ -46,3 +48,4 @@ output:
 
 authors:
   - "@KateSakharova"
+  - "@vagkaratzas"
