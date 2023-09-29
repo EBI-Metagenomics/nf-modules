@@ -8,26 +8,27 @@ include { CHECKM2_DOWNLOAD_DB   } from '../../../../../modules/ebi-metagenomics/
 workflow test_checkm2 {
 
     CHECKM2_DOWNLOAD_DB()
+    checkm_db = CHECKM2_DOWNLOAD_DB.out.checkm2_db
+
     meta = [ id:'test', single_end:false ]
     input = [
         meta,
-        file("./tests/modules/ebi-metagenomics/checkm2/checkm2/data/bins", checkIfExists: true)
+        [file(params.test_data['sarscov2']['genome']['genome_fasta'], checkIfExists: true)]
     ]
-
-    checkm_db = CHECKM2_DOWNLOAD_DB.out.checkm2_db
-
     CHECKM2 ( input, checkm_db )
 }
 
 workflow test_checkm2_empty_directory {
 
     meta = [ id:'test', single_end:false ]
+
     input = [
         meta,
-        file("./tests/modules/ebi-metagenomics/checkm2/checkm2/data/empty_bins/*")
+        []
     ]
 
-    checkm_db = file("./tests/modules/ebi-metagenomics/checkm2/checkm2/data/NO_FILE")
+    // TODO: change to dmnd DB when it appears
+    checkm_db = channel.empty()
 
     CHECKM2 ( input, checkm_db )
 }
