@@ -1,33 +1,25 @@
 - name: "bmtagger indexreference"
-  command: nextflow run ./tests/modules/ebi-metagenomics/bmtagger/indexreference -entry test_bmtagger_indexreference -c ./tests/config/nextflow.config
+  command: nextflow run ./tests/modules/ebi-metagenomics/bmtagger/indexreference -stub -entry test_bmtagger_indexreference -c ./tests/config/nextflow.config
   tags:
     - "bmtagger"
     - "bmtagger/indexreference"
   files:
-    - path: "output/bmtagger/genome.bitmask"
-      md5sum: 94aca46aca636e560401637769284751
-    - path: "output/bmtagger/genome.srprism.amp"
-    - path: "output/bmtagger/genome.srprism.idx"
-      md5sum: 107624db4857a965bf6ee20b8d049fac
-    - path: "output/bmtagger/genome.srprism.imp"
-      md5sum: a69ae6cbf37cfe0cb8374ef0cf485642
-    - path: "output/bmtagger/genome.srprism.map"
-      md5sum: 65302fa9c74494f262a27f2bfd4c054c
-    - path: "output/bmtagger/genome.srprism.pmp"
-      md5sum: 465dd5c9ae3604922eb1a42ba2225a6f
-    - path: "output/bmtagger/genome.srprism.rmp"
-    - path: "output/bmtagger/genome.srprism.ss"
-      md5sum: c3fe88c2904139f24c03361d6e0fdcf7
-    - path: "output/bmtagger/genome.srprism.ssa"
-    - path: "output/bmtagger/genome.srprism.ssd"
-      md5sum: 340b812146bdcafb36a6c56f47ebaf86
-    - path: "output/bmtagger/genome.fasta"
-      md5sum: 6e9fe4042a72f2345f644f239272b7e6
-    - path: "output/bmtagger/genome.fasta.nhr"
-      md5sum: f4b4ddb034fd3dd7b25c89e9d50c004e
-    - path: "output/bmtagger/genome.fasta.nin"
-      md5sum: f656f295605e8f69ceb68437a96ec369
-    - path: "output/bmtagger/genome.fasta.nsq"
-      md5sum: 982cbc7d9e38743b9b1037588862b9da
+    # no md5checksum as all the files are emtpy, (-stub)
+    - path: "output/bmtagger/reference.bitmask"
+    - path: "output/bmtagger/reference.srprism.amp"
+    - path: "output/bmtagger/reference.srprism.idx"
+    - path: "output/bmtagger/reference.srprism.imp"
+    - path: "output/bmtagger/reference.srprism.map"
+    - path: "output/bmtagger/reference.srprism.pmp"
+    - path: "output/bmtagger/reference.srprism.rmp"
+    - path: "output/bmtagger/reference.srprism.ss"
+    - path: "output/bmtagger/reference.srprism.ssa"
+    - path: "output/bmtagger/reference.srprism.ssd"
+    - path: "output/bmtagger/reference.nsq"
+    - path: "output/bmtagger/reference.nhr"
+    - path: "output/bmtagger/reference.nhr"
+    - path: "output/bmtagger/reference.nin"
+    - path: "output/bmtagger/reference.nin"
+    - path: "output/bmtagger/reference.nsq"
+    - path: "output/bmtagger/reference.nsq"
     - path: "output/bmtagger/versions.yml"
-      md5sum: 98510331a75f5572be2535a98e004cae

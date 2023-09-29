@@ -1,8 +1,19 @@
-- name: "bmtagger"
-  command: nextflow run ./tests/modules/ebi-metagenomics/bmtagger/bmtagger -entry test_bmtagger -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/bmtagger/bmtagger/nextflow.config
+- name: "bmtagger single_end"
+  command: nextflow run ./tests/modules/ebi-metagenomics/bmtagger/bmtagger -stub -entry test_bmtagger_single_end -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/bmtagger/bmtagger/nextflow.config
   tags:
     - "bmtagger"
     - "bmtagger/bmtagger"
   files:
     - path: "output/bmtagger/bmtagger_output"
-      md5sum: e7fc2d8250f08c11dc755e50dda3eefb
+      md5sum: d41d8cd98f00b204e9800998ecf8427e
+    - path: "output/bmtagger/versions.yml"
+
+- name: "bmtagger paired_end"
+  command: nextflow run ./tests/modules/ebi-metagenomics/bmtagger/bmtagger -stub -entry test_bmtagger_paired_end -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/bmtagger/bmtagger/nextflow.config
+  tags:
+    - "bmtagger"
+    - "bmtagger/bmtagger"
+  files:
+    - path: "output/bmtagger/bmtagger_output"
+      md5sum: d41d8cd98f00b204e9800998ecf8427e
+    - path: "output/bmtagger/versions.yml"

@@ -4,6 +4,8 @@ process BMTAGGER_BMTAGGER {
 
     label 'process_low'
 
+    debug true
+
     conda "bioconda::bmtagger=3.101"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/bmtagger:3.101--h470a237_4':
@@ -32,7 +34,7 @@ process BMTAGGER_BMTAGGER {
     } else if (input_format == 'fastq') {
         args += ' -q1 '
     } else {
-        print('unknown format')
+        error "Invalid format: ${input_format}"
     }
 
     if (meta.single_end) {
@@ -65,7 +67,7 @@ process BMTAGGER_BMTAGGER {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        bmtagger: \$(bmtagger.sh -hV | grep 'version' )
+        bmtagger: \$(bmtagger.sh -hV 2>1 | grep version | grep -Eo '[0-9.]+')
     END_VERSIONS
     """
 }

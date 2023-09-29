@@ -7,8 +7,7 @@ include { BMTAGGER_INDEXREFERENCE } from '../../../../../modules/ebi-metagenomic
 workflow test_bmtagger_indexreference {
 
     input = [
-        [ id:'test' ],
-        file(params.test_data['sarscov2']['genome']['genome_fasta'], checkIfExists: true)
+        file("tests/modules/ebi-metagenomics/bmtagger/bmtagger/data/reference.fasta", checkIfExists: true),
     ]
 
     BMTAGGER_INDEXREFERENCE ( input )
