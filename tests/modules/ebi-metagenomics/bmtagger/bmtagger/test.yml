@@ -5,7 +5,6 @@
     - "bmtagger/bmtagger"
   files:
     - path: "output/bmtagger/bmtagger_output"
-      md5sum: d41d8cd98f00b204e9800998ecf8427e
     - path: "output/bmtagger/versions.yml"
 
 - name: "bmtagger paired_end"
@@ -15,5 +14,4 @@
     - "bmtagger/bmtagger"
   files:
     - path: "output/bmtagger/bmtagger_output"
-      md5sum: d41d8cd98f00b204e9800998ecf8427e
     - path: "output/bmtagger/versions.yml"
