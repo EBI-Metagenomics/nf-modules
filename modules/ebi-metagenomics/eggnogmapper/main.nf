@@ -9,9 +9,9 @@ process EGGNOGMAPPER {
 
     input:
     tuple val(meta), path(fasta)
+    path(eggnog_db)
     path(eggnog_data_dir)
     path(eggnog_diamond_db)
-    path(eggnog_db)
 
     output:
     tuple val(meta), path("*.emapper.hits"), emit: csv
