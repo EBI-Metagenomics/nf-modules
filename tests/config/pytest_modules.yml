@@ -1,10 +1,10 @@
-blast/makeblastdb:
-  - modules/ebi-metagenomics/blast/makeblastdb/**
-  - tests/modules/ebi-metagenomics/blast/makeblastdb/**
-
 blast/blastp:
   - modules/ebi-metagenomics/blast/blastp/**
   - tests/modules/ebi-metagenomics/blast/blastp/**
+
+blast/makeblastdb:
+  - modules/ebi-metagenomics/blast/makeblastdb/**
+  - tests/modules/ebi-metagenomics/blast/makeblastdb/**
 
 bmtagger/bmtagger:
   - modules/ebi-metagenomics/bmtagger/bmtagger/**
@@ -21,6 +21,10 @@ cmsearchtbloutdeoverlap:
 combinedgenecaller/merge:
   - modules/ebi-metagenomics/combinedgenecaller/merge/**
   - tests/modules/ebi-metagenomics/combinedgenecaller/merge/**
+
+diamond/makedb:
+  - modules/ebi-metagenomics/diamond/makedb/**
+  - tests/modules/ebi-metagenomics/diamond/makedb/**
 
 eggnogmapper:
   - modules/ebi-metagenomics/eggnogmapper/**
