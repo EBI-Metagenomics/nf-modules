@@ -1,10 +1,10 @@
 process DEEPTMHMM {
     label 'process_medium'
 
-    conda "bioconda::pybiolib=1.1.1342"
+    conda "bioconda::pybiolib=1.1.1350"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/pybiolib:1.1.1342--pyhdfd78af_0':
-        'biocontainers/pybiolib:1.1.1342--pyhdfd78af_0' }"
+        'https://depot.galaxyproject.org/singularity/pybiolib:1.1.1350--pyhdfd78af_0':
+        'biocontainers/pybiolib:1.1.1350--pyhdfd78af_0' }"
 
     input:
     path fasta
@@ -13,6 +13,8 @@ process DEEPTMHMM {
     path "biolib_results/TMRs.gff3"                 , emit: gff3
     path "biolib_results/predicted_topologies.3line", emit: line3
     path "biolib_results/deeptmhmm_results.md"      , emit: md
+    path "biolib_results/*_probs.csv"               , optional: true, emit: csv
+    path "biolib_results/plot.png"                  , optional: true, emit: png
     path "versions.yml"                             , emit: versions
 
     when:
@@ -50,6 +52,8 @@ process DEEPTMHMM {
     touch biolib_results/TMRs.gff3
     touch biolib_results/predicted_topologies.3line
     touch biolib_results/deeptmhmm_results.md
+    touch biolib_results/MX_probs.csv
+    touch biolib_results/plot.png
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
