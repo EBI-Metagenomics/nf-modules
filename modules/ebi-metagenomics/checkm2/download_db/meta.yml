@@ -1,0 +1,27 @@
+---
+name: "checkm2_download_db"
+description: Download DB for checkm2
+keywords:
+  - completeness
+  - contamination
+  - database
+tools:
+  - "checkm2":
+      description: "CheckM2 - Predicting the quality of metagenome-recovered bins"
+      tool_dev_url: "https://github.com/chklovski/CheckM2/tree/main"
+      doi: "10.1038/s41592-023-01940-w"
+      licence: "['GPL v3']"
+
+output:
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+  - checkm2_db:
+      type: file
+      description: Diamond file with checkm2 database
+      pattern: "*.dmnd"
+
+authors:
+  - "@KateSakharova"

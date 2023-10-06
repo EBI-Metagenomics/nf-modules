@@ -1,0 +1,47 @@
+---
+name: "checkm2"
+description: Rapid assessment of genome bin quality using machine learning
+keywords:
+  - completeness
+  - contamination
+  - quality
+tools:
+  - "checkm2":
+      description: "CheckM2 - Predicting the quality of metagenome-recovered bins"
+      tool_dev_url: "https://github.com/chklovski/CheckM2/tree/main"
+      doi: "10.1038/s41592-023-01940-w"
+      licence: "['GPL v3']"
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'test', single_end:false ]`
+  - bins:
+      type: list
+      description: Bins list or folder with bins
+  - checkm_db:
+      type: file
+      description: Checkm2 database
+      pattern: "*.dmnd"
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'test', single_end:false ]`
+
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+  - checkm2_stats:
+      type: file
+      description: File with completeness and contamination of bins
+      pattern: "*.tsv"
+
+authors:
+  - "@KateSakharova"

@@ -6,6 +6,14 @@ bmtagger/bmtagger:
   - modules/ebi-metagenomics/bmtagger/bmtagger/**
   - tests/modules/ebi-metagenomics/bmtagger/bmtagger/**
 
+checkm2/checkm2:
+  - modules/ebi-metagenomics/checkm2/checkm2/**
+  - tests/modules/ebi-metagenomics/checkm2/checkm2/**
+
+checkm2/download_db:
+  - modules/ebi-metagenomics/checkm2/download_db/**
+  - tests/modules/ebi-metagenomics/checkm2/download_db/**
+
 bmtagger/indexreference:
   - modules/ebi-metagenomics/bmtagger/indexreference/**
   - tests/modules/ebi-metagenomics/bmtagger/indexreference/**
