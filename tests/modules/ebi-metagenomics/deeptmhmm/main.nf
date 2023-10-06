@@ -10,3 +10,10 @@ workflow test_deeptmhmm {
 
     DEEPTMHMM ( fasta )
 }
+
+workflow test_deeptmhmm_gz {
+
+    fasta_gz = [ file(params.test_data['sarscov2']['genome']['genome_fasta_gz'], checkIfExists: true) ]
+
+    DEEPTMHMM ( fasta_gz )
+}

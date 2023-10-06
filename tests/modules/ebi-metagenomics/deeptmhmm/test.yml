@@ -10,3 +10,16 @@
     - path: output/deeptmhmm/biolib_results/predicted_topologies.3line
       md5sum: 50c853fd0dc0f28aff0bdb6d35d08ca2
     - path: output/deeptmhmm/versions.yml
+
+- name: test_deeptmhmm_gz
+  command: nextflow run ./tests/modules/ebi-metagenomics/deeptmhmm -entry test_deeptmhmm_gz -c ./tests/config/nextflow.config
+  tags:
+    - deeptmhmm
+  files:
+    - path: output/deeptmhmm/biolib_results/TMRs.gff3
+      md5sum: 563b7cf9659f955c3353ab7ba2ed4c41
+    - path: output/deeptmhmm/biolib_results/deeptmhmm_results.md
+      md5sum: 14867a44faf50cab3f56874b47ff21ec
+    - path: output/deeptmhmm/biolib_results/predicted_topologies.3line
+      md5sum: 50c853fd0dc0f28aff0bdb6d35d08ca2
+    - path: output/deeptmhmm/versions.yml
