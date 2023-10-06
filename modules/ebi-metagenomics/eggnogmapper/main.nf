@@ -1,6 +1,6 @@
 process EGGNOGMAPPER {
     tag "$meta.id"
-    label 'process_medium'
+    label 'process_long'
 
     conda "bioconda::eggnog-mapper=2.1.12"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -9,9 +9,9 @@ process EGGNOGMAPPER {
 
     input:
     tuple val(meta), path(fasta)
+    path(eggnog_db)
     path(eggnog_data_dir)
     path(eggnog_diamond_db)
-    path(eggnog_db)
 
     output:
     tuple val(meta), path("*.emapper.hits"), emit: csv
@@ -25,6 +25,7 @@ process EGGNOGMAPPER {
     def prefix = task.ext.prefix ?: "${meta.id}"
     def is_compressed = fasta.name.endsWith(".gz")
     def fasta_name = fasta.name.replace(".gz", "")
+    def dbmem = task.memory.toMega() > 40000 ? '--dbmem' : ''
     """
     if [ "$is_compressed" == "true" ]; then
         gzip -c -d $fasta > $fasta_name
@@ -38,6 +39,7 @@ process EGGNOGMAPPER {
         --dmnd_db ${eggnog_diamond_db} \\
         --database ${eggnog_db} \\
         --output ${prefix} \\
+        ${dbmem} \\
         $args
 
     cat <<-END_VERSIONS > versions.yml

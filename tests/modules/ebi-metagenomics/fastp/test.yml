@@ -1,0 +1,24 @@
+- name: fastp test_fastp
+  command: nextflow run ./tests/modules/ebi-metagenomics/fastp -entry test_fastp -c ./tests/config/nextflow.config
+  tags:
+    - fastp
+  files:
+    - path: output/fastp/test.fastp.html
+      contains:
+        - "1.789477 M (97.392334%)"
+    - path: output/fastp/test.fastp.json
+      md5sum: 552903446c04b38bd8f2f8976119fc42
+    - path: output/fastp/test.fastp.log
+      contains:
+        - "Q30 bases: 6864820(64.3075%)"
+    - path: output/fastp/test.merged.fastq.gz
+      md5sum: bc9ed1744b5c680ef2eb4428e9e5f0ef
+    - path: output/fastp/test_1.fail.fastq.gz
+      md5sum: 5f8a4ee1f2baee9f8214b4504358a583
+    - path: output/fastp/test_1.fastp.fastq.gz
+      md5sum: 400ca3c0d3e01d1cdd66af6ba51e083c
+    - path: output/fastp/test_2.fail.fastq.gz
+      md5sum: 4f2f1fbc7bac46520a848af89ea87b52
+    - path: output/fastp/test_2.fastp.fastq.gz
+      md5sum: bac3f9e14935b54e09003dcc1843d6e1
+    - path: output/fastp/versions.yml

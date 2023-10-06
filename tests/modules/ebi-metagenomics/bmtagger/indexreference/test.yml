@@ -1,0 +1,25 @@
+- name: "bmtagger indexreference"
+  command: nextflow run ./tests/modules/ebi-metagenomics/bmtagger/indexreference -stub -entry test_bmtagger_indexreference -c ./tests/config/nextflow.config
+  tags:
+    - "bmtagger"
+    - "bmtagger/indexreference"
+  files:
+    # no md5checksum as all the files are emtpy, (-stub)
+    - path: "output/bmtagger/reference.bitmask"
+    - path: "output/bmtagger/reference.srprism.amp"
+    - path: "output/bmtagger/reference.srprism.idx"
+    - path: "output/bmtagger/reference.srprism.imp"
+    - path: "output/bmtagger/reference.srprism.map"
+    - path: "output/bmtagger/reference.srprism.pmp"
+    - path: "output/bmtagger/reference.srprism.rmp"
+    - path: "output/bmtagger/reference.srprism.ss"
+    - path: "output/bmtagger/reference.srprism.ssa"
+    - path: "output/bmtagger/reference.srprism.ssd"
+    - path: "output/bmtagger/reference.nsq"
+    - path: "output/bmtagger/reference.nhr"
+    - path: "output/bmtagger/reference.nhr"
+    - path: "output/bmtagger/reference.nin"
+    - path: "output/bmtagger/reference.nin"
+    - path: "output/bmtagger/reference.nsq"
+    - path: "output/bmtagger/reference.nsq"
+    - path: "output/bmtagger/versions.yml"

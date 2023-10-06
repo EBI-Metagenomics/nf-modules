@@ -1,9 +1,11 @@
 - name: eggnogmapper test_eggnogmapper
-  command: nextflow run ./tests/modules/ebi-metagenomics/eggnogmapper -entry test_eggnogmapper -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/eggnogmapper/nextflow.config
+  command: nextflow run ./tests/modules/ebi-metagenomics/eggnogmapper -entry test_eggnogmapper -c ./tests/config/nextflow.config
   tags:
     - eggnogmapper
   files:
+    - path: output/diamond/proteome.fasta.dmnd
+      md5sum: fc28c50b202dd7a7c5451cddff2ba1f4
+    - path: output/diamond/versions.yml
     - path: output/eggnogmapper/test.emapper.hits
-      md5sum: f8629819c48c888275dbb1a09749c891
+      md5sum: 864b7a1f902893d8aee6621baeab7be8
     - path: output/eggnogmapper/versions.yml
-      md5sum: e3174784cf7c3918d6d778b9403d7839

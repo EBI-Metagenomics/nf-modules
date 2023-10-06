@@ -1,6 +1,6 @@
-blastp:
-  - modules/ebi-metagenomics/blastp/**
-  - tests/modules/ebi-metagenomics/blastp/**
+blast/makeblastdb:
+  - modules/ebi-metagenomics/blast/makeblastdb/**
+  - tests/modules/ebi-metagenomics/blast/makeblastdb/**
 
 bmtagger/bmtagger:
   - modules/ebi-metagenomics/bmtagger/bmtagger/**
@@ -14,6 +14,10 @@ checkm2/download_db:
   - modules/ebi-metagenomics/checkm2/download_db/**
   - tests/modules/ebi-metagenomics/checkm2/download_db/**
 
+bmtagger/indexreference:
+  - modules/ebi-metagenomics/bmtagger/indexreference/**
+  - tests/modules/ebi-metagenomics/bmtagger/indexreference/**
+
 cmsearchtbloutdeoverlap:
   - modules/ebi-metagenomics/cmsearchtbloutdeoverlap/**
   - tests/modules/ebi-metagenomics/cmsearchtbloutdeoverlap/**
@@ -22,9 +26,17 @@ combinedgenecaller/merge:
   - modules/ebi-metagenomics/combinedgenecaller/merge/**
   - tests/modules/ebi-metagenomics/combinedgenecaller/merge/**
 
+diamond/makedb:
+  - modules/ebi-metagenomics/diamond/makedb/**
+  - tests/modules/ebi-metagenomics/diamond/makedb/**
+
 eggnogmapper:
   - modules/ebi-metagenomics/eggnogmapper/**
   - tests/modules/ebi-metagenomics/eggnogmapper/**
+
+fastp:
+  - modules/ebi-metagenomics/fastp/**
+  - tests/modules/ebi-metagenomics/fastp/**
 
 fetchtool/assembly:
   - modules/ebi-metagenomics/fetchtool/assembly/**
@@ -38,6 +50,18 @@ infernal/cmsearch:
   - modules/ebi-metagenomics/infernal/cmsearch/**
   - tests/modules/ebi-metagenomics/infernal/cmsearch/**
 
+prodigal:
+  - modules/ebi-metagenomics/prodigal/**
+  - tests/modules/ebi-metagenomics/prodigal/**
+
+seqtk/seq:
+  - modules/ebi-metagenomics/seqtk/seq/**
+  - tests/modules/ebi-metagenomics/seqtk/seq/**
+
 subworkflows/combined_gene_caller:
   - subworkflows/ebi-metagenomics/combined_gene_caller/**
   - tests/subworkflows/ebi-metagenomics/combined_gene_caller/**
+
+subworkflows/reads_qc:
+  - subworkflows/ebi-metagenomics/reads_qc/**
+  - tests/subworkflows/ebi-metagenomics/reads_qc/**

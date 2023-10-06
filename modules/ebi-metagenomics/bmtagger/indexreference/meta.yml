@@ -1,0 +1,51 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/yaml-schema.json
+name: "bmtagger_indexreference"
+description: Create indexed reference DB for bmtagger
+keywords:
+  - reference
+  - index
+  - fasta
+tools:
+  - "bmtool":
+      description: "Tool from bmtagger to create a bitmask file for the reference genome"
+      homepage: "https://bioconda-recipes-demo.readthedocs.io/en/docs/recipes/bmtagger/README.html"
+      documentation: "https://ftp.ncbi.nlm.nih.gov/pub/agarwala/bmtagger/README.bmtagger.txt"
+  - "srprism":
+      description: "Tool from bmtagger to create a index for srprism process"
+      homepage: "https://bioconda-recipes-demo.readthedocs.io/en/docs/recipes/bmtagger/README.html"
+      documentation: "https://ftp.ncbi.nlm.nih.gov/pub/agarwala/bmtagger/README.bmtagger.txt"
+  - "makeblastdb":
+      description: "Tool from blast to index reference genome"
+      homepage: "https://blast.ncbi.nlm.nih.gov/Blast.cgi"
+
+input:
+  - reference_fasta:
+      type: file
+      description: reference fasta file
+      pattern: "*.{fa,fasta}"
+
+output:
+  - bitmask:
+      type: file
+      description: bitmask index file
+      pattern: "*.bitmask"
+
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+  - srprism:
+      type: file
+      description: list of srprism indexes
+      pattern: "*.srprism.*"
+
+  - blast_db:
+      type: file
+      description: indexes for blast
+      pattern: "*.n*"
+
+authors:
+  - "@KateSakharova"
+  - "@vagkaratzas"
