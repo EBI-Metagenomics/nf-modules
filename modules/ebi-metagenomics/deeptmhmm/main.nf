@@ -10,9 +10,9 @@ process DEEPTMHMM {
     path fasta
 
     output:
-    path "biolib_results/deeptmhmm_results.md"      , emit: md
-    path "biolib_results/predicted_topologies.3line", emit: line3
     path "biolib_results/TMRs.gff3"                 , emit: gff3
+    path "biolib_results/predicted_topologies.3line", emit: line3
+    path "biolib_results/deeptmhmm_results.md"      , emit: md
     path "versions.yml"                             , emit: versions
 
     when:
@@ -21,12 +21,18 @@ process DEEPTMHMM {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: ""
+    def is_compressed = fasta.name.endsWith(".gz")
+    def fasta_name = fasta.name.replace(".gz", "")
 
     """
+    if [ "$is_compressed" == "true" ]; then
+        gzip -c -d $fasta > $fasta_name
+    fi
+
     biolib \\
         run \\
         DTU/DeepTMHMM \\
-        --fasta ${fasta} \\
+        --fasta ${fasta_name} \\
         $args
 
     cat <<-END_VERSIONS > versions.yml
@@ -41,9 +47,9 @@ process DEEPTMHMM {
 
     """
     mkdir biolib_results
-    touch biolib_results/deeptmhmm_results.md
-    touch biolib_results/predicted_topologies.3line
     touch biolib_results/TMRs.gff3
+    touch biolib_results/predicted_topologies.3line
+    touch biolib_results/deeptmhmm_results.md
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
