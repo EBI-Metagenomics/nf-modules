@@ -7,13 +7,3 @@
     - path: "output/checkm2/test_checkm_output/quality_report.tsv"
       md5sum: 32e53028a395debce647fa88da2261e5
     - path: "output/checkm2/versions.yml"
-
-- name: "checkm2 empty_directory"
-  command: nextflow run ./tests/modules/ebi-metagenomics/checkm2/checkm2 -entry test_checkm2_empty_directory -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/checkm2/checkm2/nextflow.config
-  tags:
-    - "checkm2"
-    - "checkm2/checkm2"
-  files:
-    - path: "output/checkm2/test_checkm_output/quality_report.tsv"
-      md5sum: 32e53028a395debce647fa88da2261e5
-    - path: "output/checkm2/versions.yml"

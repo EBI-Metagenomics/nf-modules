@@ -21,37 +21,22 @@ process CHECKM2 {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    checkm2 predict --threads ${task.cpus} \
+                    --input ${bins} \
+                    --output-directory ${prefix}_checkm_output \
+                    --database_path ${checkm_db} \
+                    ${args}
 
-    def bins_list = bins.collect()
-    if (bins_list.size() == 0) {
-        """
-        mkdir -p ${prefix}_checkm_output
-        echo "genome\tcompleteness\tcontamination" > ${prefix}_checkm_output/quality_report.tsv
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            CheckM2 : \$(checkm2 --version)
-        END_VERSIONS
-        """ }
-    else {
-        """
-        checkm2 predict --threads ${task.cpus} \
-                        --input ${bins} \
-                        --output-directory ${prefix}_checkm_output \
-                        --database_path ${checkm_db} \
-                        ${args}
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            CheckM2 : \$(checkm2 --version)
-        END_VERSIONS
-        """
-    }
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        CheckM2 : \$(checkm2 --version)
+    END_VERSIONS
+    """
 
     stub:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-
     """
     mkdir -p ${prefix}_checkm_output
     echo "genome\tcompleteness\tcontamination" > ${prefix}_checkm_output/quality_report.tsv
