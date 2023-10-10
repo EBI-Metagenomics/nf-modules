@@ -23,18 +23,28 @@ input:
 output:
   - gff3:
       type: file
-      description: Predicted topologies in general Feature Format Version 3
+      description: Predicted topologies (inside, outside, TMhelix) in general Feature Format Version 3
       pattern: "biolib_results/TMRs.gff3"
 
   - line3:
       type: file
-      description: Predicted topologies of protein sequence and predicted topology information in three lines
+      description: Predicted topologies and information of protein sequences in three lines (name, sequence, topology)
       pattern: "biolib_results/predicted_topologies.3line"
 
   - md:
       type: file
       description: Markdown results file
       pattern: "biolib_results/deeptmhmm_results.md"
+
+  - csv:
+      type: file
+      description: CSV file with per-residue predictions for the likelihood of each amino acid being in structural regions such as Beta-sheet, Periplasm, Membrane, Inside, Outside or Signal (only when querying against genomic fasta)
+      pattern: "biolib_results/*_probs.csv"
+
+  - png:
+      type: file
+      description: Most likely topology probability line plots (only when querying against genomic fasta)
+      pattern: "biolib_results/plot.png"
 
   - versions:
       type: file
