@@ -3,9 +3,9 @@
 name: deeptmhmm
 description: A Deep Learning Model for Transmembrane Topology Prediction and Classification
 keywords:
-  - sort
-  - example
-  - genomics
+  - transmembrane
+  - protein
+  - classification
 tools:
   - deeptmhmm:
       description: Deep Learning model for Transmembrane Helices protein domain prediction through the BioLib Python Client
