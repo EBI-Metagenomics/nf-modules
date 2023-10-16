@@ -1,3 +1,7 @@
+blast/blastp:
+  - modules/ebi-metagenomics/blast/blastp/**
+  - tests/modules/ebi-metagenomics/blast/blastp/**
+
 blast/makeblastdb:
   - modules/ebi-metagenomics/blast/makeblastdb/**
   - tests/modules/ebi-metagenomics/blast/makeblastdb/**
@@ -6,6 +10,10 @@ bmtagger/bmtagger:
   - modules/ebi-metagenomics/bmtagger/bmtagger/**
   - tests/modules/ebi-metagenomics/bmtagger/bmtagger/**
 
+bmtagger/indexreference:
+  - modules/ebi-metagenomics/bmtagger/indexreference/**
+  - tests/modules/ebi-metagenomics/bmtagger/indexreference/**
+
 checkm2/checkm2:
   - modules/ebi-metagenomics/checkm2/checkm2/**
   - tests/modules/ebi-metagenomics/checkm2/checkm2/**
@@ -13,10 +21,6 @@ checkm2/checkm2:
 checkm2/download_db:
   - modules/ebi-metagenomics/checkm2/download_db/**
   - tests/modules/ebi-metagenomics/checkm2/download_db/**
-
-bmtagger/indexreference:
-  - modules/ebi-metagenomics/bmtagger/indexreference/**
-  - tests/modules/ebi-metagenomics/bmtagger/indexreference/**
 
 cmsearchtbloutdeoverlap:
   - modules/ebi-metagenomics/cmsearchtbloutdeoverlap/**
