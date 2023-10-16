@@ -6,15 +6,15 @@ include { EGGNOGMAPPER      } from '../../../modules/ebi-metagenomics/eggnogmapp
 workflow FASTA_DOMAINANNOTATION {
 
     take:
-    ch_fasta    // channel: [ val(meta), [ fasta ] ]
-    ch_blastdb  // channel:
-    ch_eggnog   // channel:
+    ch_fasta       // channel: [ val(meta), [ fasta ] ]
+    ch_blast_fasta // channel: [ blast_fasta ]
+    ch_eggnog      // channel: [ eggnog_db, eggnog_data_dir, diamond_db ]
 
     main:
 
     ch_versions = Channel.empty()
 
-    BLAST_MAKEBLASTDB ( ch_fasta.fasta )
+    BLAST_MAKEBLASTDB ( blast_fasta )
     ch_versions = ch_versions.mix(BLAST_MAKEBLASTDB.out.versions.first())
     BLAST_BLASTP ( ch_fasta, BLAST_MAKEBLASTDB.out.db )
     ch_versions = ch_versions.mix(BLAST_BLASTP.out.versions.first())
