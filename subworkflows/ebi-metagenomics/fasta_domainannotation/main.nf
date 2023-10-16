@@ -6,27 +6,31 @@ include { EGGNOGMAPPER      } from '../../../modules/ebi-metagenomics/eggnogmapp
 workflow FASTA_DOMAINANNOTATION {
 
     take:
-    // TODO nf-core: edit input (take) channels
-    ch_bam // channel: [ val(meta), [ bam ] ]
+    ch_fasta    // channel: [ val(meta), [ fasta ] ]
+    ch_blastdb  // channel:
+    ch_eggnog   // channel:
 
     main:
 
     ch_versions = Channel.empty()
 
-    // TODO nf-core: substitute modules here for the modules of your subworkflow
+    BLAST_MAKEBLASTDB ( ch_fasta.fasta )
+    ch_versions = ch_versions.mix(BLAST_MAKEBLASTDB.out.versions.first())
+    BLAST_BLASTP ( ch_fasta, BLAST_MAKEBLASTDB.out.db )
+    ch_versions = ch_versions.mix(BLAST_BLASTP.out.versions.first())
 
-    SAMTOOLS_SORT ( ch_bam )
-    ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions.first())
+    out_ext = 'tsv'
+    INTERPROSCAN ( ch_fasta, out_ext )
+    ch_versions = ch_versions.mix(INTERPROSCAN.out.versions.first())
 
-    SAMTOOLS_INDEX ( SAMTOOLS_SORT.out.bam )
-    ch_versions = ch_versions.mix(SAMTOOLS_INDEX.out.versions.first())
+    EGGNOGMAPPER ( ch_fasta, ch_eggnog.eggnog_db, ch_eggnog.eggnog_data_dir, ch_eggnog.diamond_db )
+    ch_versions = ch_versions.mix(EGGNOGMAPPER.out.versions.first())
 
     emit:
-    // TODO nf-core: edit emitted channels
-    bam      = SAMTOOLS_SORT.out.bam           // channel: [ val(meta), [ bam ] ]
-    bai      = SAMTOOLS_INDEX.out.bai          // channel: [ val(meta), [ bai ] ]
-    csi      = SAMTOOLS_INDEX.out.csi          // channel: [ val(meta), [ csi ] ]
+    blastp_csv       = BLAST_BLASTP.out.csv // channel: [ val(meta), [ csv ] ]
+    inteproscan_tsv  = INTERPROSCAN.out.tsv // channel: [ val(meta), [ tsv ] ]
+    eggnogmapper_csv = EGGNOGMAPPER.out.csv // channel: [ val(meta), [ csv ] ]
 
-    versions = ch_versions                     // channel: [ versions.yml ]
+    versions = ch_versions // channel: [ versions.yml ]
 }
 
