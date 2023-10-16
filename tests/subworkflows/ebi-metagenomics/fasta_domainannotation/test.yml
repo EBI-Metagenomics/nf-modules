@@ -9,4 +9,10 @@
     - subworkflows
     - subworkflows/fasta_domainannotation
   files:
+    - path: output/fasta_domainannotation/test.csv
+      md5sum: 19214c68e1a208705dd4d6f0c5dea78b
+    - path: output/fasta_domainannotation/test.tsv
+      md5sum: 31b8837bb7dc2d963bf05d39b55afdf1
+    - path: output/fasta_domainannotation/test.emapper.hits
+      md5sum: 864b7a1f902893d8aee6621baeab7be8
     - path: output/fasta_domainannotation/versions.yml
