@@ -26,7 +26,7 @@ workflow FASTA_DOMAINANNOTATION {
     ch_versions = ch_versions.mix(INTERPROSCAN.out.versions)
 
     EGGNOGMAPPER ( ch_fasta, val_eggnog_db, val_eggnog_data_dir, val_diamond_db )
-    ch_versions = ch_versions.mix(EGGNOGMAPPER.out.versions.first())
+    ch_versions = ch_versions.mix(EGGNOGMAPPER.out.versions)
 
     emit:
     blastp_csv       = BLAST_BLASTP.out.csv // channel: [ val(meta), [ csv ] ]
