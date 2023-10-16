@@ -1,44 +1,52 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
 name: "fasta_domainannotation"
-## TODO nf-core: Add a description of the subworkflow and list keywords
-description: Sort SAM/BAM/CRAM file
+description: Protein domain annotation
 keywords:
-  - sort
-  - bam
-  - sam
-  - cram
-## TODO nf-core: Add a list of the modules and/or subworkflows used in the subworkflow
+  - protein
+  - domain
+  - annotation
 components:
-  - samtools/sort
-  - samtools/index
-## TODO nf-core: List all of the channels used as input with a description and their structure
+  - blast/makeblastdb
+  - blast/blastp
+  - interproscan
+  - eggnogmapper
 input:
-  - ch_bam:
+  - ch_fasta:
+      type: list
+      description: |
+        The input channel containing the meta id and the fasta with the proteins to annotate
+        Structure: [ val(meta), path(fasta) ]
+      pattern: "*.{fa/fasta/fa.gz/fasta.gz}"
+  - ch_blast_fasta:
       type: file
       description: |
-        The input channel containing the BAM/CRAM/SAM files
-        Structure: [ val(meta), path(bam) ]
-      pattern: "*.{bam/cram/sam}"
-## TODO nf-core: List all of the channels used as output with a descriptions and their structure
+        The input channel containing the fasta with the protein database (e.g. UniprotSP) including their annotations, which blastp will be used against
+        Structure: path(fasta)
+      pattern: "*.{fa/fasta/fa.gz/fasta.gz}"
+  - ch_eggnog:
+      type: list
+      description: |
+        Input paths to eggnog folders and files required for the eggnogmapper annotation
+        Structure: [ path(eggnog_db), path(eggnog_data_dir), path(diamond_db) ]
 output:
-  - bam:
+  - blastp_csv:
       type: file
       description: |
-        Channel containing BAM files
-        Structure: [ val(meta), path(bam) ]
-      pattern: "*.bam"
-  - bai:
+        Channel containing CSV domain annotation output from blastp
+        Structure: [ val(meta), path(csv) ]
+      pattern: "*.csv"
+  - inteproscan_tsv:
       type: file
       description: |
-        Channel containing indexed BAM (BAI) files
-        Structure: [ val(meta), path(bai) ]
-      pattern: "*.bai"
-  - csi:
+        Channel containing TSV domain annotation output from InterProScan
+        Structure: [ val(meta), path(tsv) ]
+      pattern: "*.tsv"
+  - eggnogmapper_csv:
       type: file
       description: |
-        Channel containing CSI files
-        Structure: [ val(meta), path(csi) ]
-      pattern: "*.csi"
+        Channel containing CSV domain annotation output from eggNOG-mapper
+        Structure: [ val(meta), path(csv) ]
+      pattern: "*.emapper.hits"
   - versions:
       type: file
       description: |
