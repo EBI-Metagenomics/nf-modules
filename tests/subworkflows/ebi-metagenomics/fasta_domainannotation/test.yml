@@ -1,5 +1,5 @@
 - name: fasta_domainannotation
-  command: nextflow run ./tests/subworkflows/ebi-metagenomics/fasta_domainannotation/main.nf -entry test_fasta_domainannotation -c ./tests/config/nextflow.config -c ./tests//subworkflows/ebi-metagenomics/fasta_domainannotation/nextflow.config
+  command: nextflow run ./tests/subworkflows/ebi-metagenomics/fasta_domainannotation/main.nf -entry test_fasta_domainannotation -c ./tests/config/nextflow.config -c ./tests/subworkflows/ebi-metagenomics/fasta_domainannotation/nextflow.config
   tags:
     - blast
     - blast/makeblastdb
@@ -9,10 +9,9 @@
     - subworkflows
     - subworkflows/fasta_domainannotation
   files:
-    - path: output/fasta_domainannotation/test.csv
+    - path: output/blast/test.csv
       md5sum: 19214c68e1a208705dd4d6f0c5dea78b
-    - path: output/fasta_domainannotation/test.tsv
+    - path: output/interproscan/test.tsv
       md5sum: 31b8837bb7dc2d963bf05d39b55afdf1
-    - path: output/fasta_domainannotation/test.emapper.hits
+    - path: output/eggnogmapper/test.emapper.hits
       md5sum: 864b7a1f902893d8aee6621baeab7be8
-    - path: output/fasta_domainannotation/versions.yml
