@@ -1,11 +1,11 @@
 - name: fasta_domainannotation
   command: nextflow run ./tests/subworkflows/ebi-metagenomics/fasta_domainannotation/main.nf -entry test_fasta_domainannotation -c ./tests/config/nextflow.config -c ./tests/subworkflows/ebi-metagenomics/fasta_domainannotation/nextflow.config
   tags:
-    - blast
-    - blast/makeblastdb
-    - blast/blastp
-    - interproscan
-    - eggnogmapper
+    # - blast
+    # - blast/makeblastdb
+    # - blast/blastp
+    # - interproscan
+    # - eggnogmapper
     - subworkflows
     - subworkflows/fasta_domainannotation
   files:
