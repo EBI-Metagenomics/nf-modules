@@ -14,6 +14,8 @@ workflow FASTA_DOMAINANNOTATION {
     main:
 
     ch_versions = Channel.empty()
+    blastp_csv = Channel.empty()
+    blastp_tsv = Channel.empty()
 
     if (val_blast_mode == "blast") {
         println("blast mode")
@@ -30,7 +32,7 @@ workflow FASTA_DOMAINANNOTATION {
         blast_columns = '' // defaults: qseqid, sseqid, pident, length, mismatch, gapopen, qstart, qend, sstart, send, evalue, bitscore
         DIAMOND_BLASTP ( ch_fasta, DIAMOND_MAKEDB.out.db, out_ext, blast_columns )
         ch_versions = ch_versions.mix(DIAMOND_BLASTP.out.versions)
-        blastp_csv = DIAMOND_BLASTP.out.txt
+        blastp_tsv = DIAMOND_BLASTP.out.txt
     } else {
         throw new Exception("Invalid mode value '$val_blast_mode'. Should be 'blast' or 'diamond'.")
     }
@@ -40,8 +42,9 @@ workflow FASTA_DOMAINANNOTATION {
     ch_versions = ch_versions.mix(INTERPROSCAN.out.versions)
 
     emit:
-    blastp_csv       = blastp_csv // channel: [ val(meta), [ csv ] ]
-    inteproscan_tsv  = INTERPROSCAN.out.tsv // channel: [ val(meta), [ tsv ] ]
-    versions         = ch_versions // channel: [ versions.yml ]
+    blastp_csv      = blastp_csv // channel: [ val(meta), [ csv ] ]
+    blastp_tsv      = blastp_tsv // channel: [ val(meta), [ tsv ] ]
+    inteproscan_tsv = INTERPROSCAN.out.tsv // channel: [ val(meta), [ tsv ] ]
+    versions        = ch_versions // channel: [ versions.yml ]
 }
 
