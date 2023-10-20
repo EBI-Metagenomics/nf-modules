@@ -4,6 +4,9 @@
     # - blast
     # - blast/makeblastdb
     # - blast/blastp
+    # - diamond
+    # - diamond/makedb
+    # - diamond/blastp
     # - interproscan
     - subworkflows
     - subworkflows/fasta_domainannotation
@@ -12,4 +15,4 @@
       md5sum: 19214c68e1a208705dd4d6f0c5dea78b
     - path: output/interproscan/test.tsv
       contains:
-        - "ENSSASP00005000005.1\tb100d0849c3e01fc6c75ead0e916ce0f\t419\tMobiDBLite"
+        - "ENSSASP00005000002.1\te6608b50fcd6e004708a875615ddf2d9\t7096\tCDD\tcd00009\tAAA"

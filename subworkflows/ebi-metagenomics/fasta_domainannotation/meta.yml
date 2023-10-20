@@ -23,6 +23,10 @@ input:
         The input channel containing the fasta with the protein database (e.g. UniprotSP) including their annotations, which blastp will be used against
         Structure: path(fasta)
       pattern: "*.{fa/fasta/fa.gz/fasta.gz}"
+  - val_blast_mode:
+      type: value
+      description: Type of database search against UniprotSP
+      pattern: "blast|diamond"
 output:
   - blastp_csv:
       type: file

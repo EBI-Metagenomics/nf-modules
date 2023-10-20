@@ -34,6 +34,10 @@ deeptmhmm:
   - modules/ebi-metagenomics/deeptmhmm/**
   - tests/modules/ebi-metagenomics/deeptmhmm/**
 
+diamond/blastp:
+  - modules/ebi-metagenomics/diamond/blastp/**
+  - tests/modules/ebi-metagenomics/diamond/blastp/**
+
 diamond/makedb:
   - modules/ebi-metagenomics/diamond/makedb/**
   - tests/modules/ebi-metagenomics/diamond/makedb/**
