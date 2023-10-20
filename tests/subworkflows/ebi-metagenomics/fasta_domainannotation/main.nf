@@ -12,9 +12,5 @@ workflow test_fasta_domainannotation {
 
     blast_fasta = Channel.value( fasta )
 
-    eggnog_db = Channel.value( file("tests/modules/ebi-metagenomics/eggnogmapper/data/fixtures/eggnog.db", checkIfExists: true) )
-    eggnog_data_dir = eggnog_db.parent
-    diamond_db = DIAMOND_MAKEDB ( fasta ).db
-
-    FASTA_DOMAINANNOTATION ( input, blast_fasta, eggnog_db, eggnog_data_dir, diamond_db )
+    FASTA_DOMAINANNOTATION ( input, blast_fasta )
 }

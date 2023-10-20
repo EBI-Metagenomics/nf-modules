@@ -23,11 +23,6 @@ input:
         The input channel containing the fasta with the protein database (e.g. UniprotSP) including their annotations, which blastp will be used against
         Structure: path(fasta)
       pattern: "*.{fa/fasta/fa.gz/fasta.gz}"
-  - ch_eggnog:
-      type: list
-      description: |
-        Input paths to eggnog folders and files required for the eggnogmapper annotation
-        Structure: [ path(eggnog_db), path(eggnog_data_dir), path(diamond_db) ]
 output:
   - blastp_csv:
       type: file
@@ -41,12 +36,6 @@ output:
         Channel containing TSV domain annotation output from InterProScan
         Structure: [ val(meta), path(tsv) ]
       pattern: "*.tsv"
-  - eggnogmapper_csv:
-      type: file
-      description: |
-        Channel containing CSV domain annotation output from eggNOG-mapper
-        Structure: [ val(meta), path(csv) ]
-      pattern: "*.emapper.hits"
   - versions:
       type: file
       description: |
