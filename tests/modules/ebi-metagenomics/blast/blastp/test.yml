@@ -1,5 +1,5 @@
 - name: blast blastp test_blast_blastp
-  command: nextflow run ./tests/modules/nf-core/blast/blastp -entry test_blast_blastp -c ./tests/config/nextflow.config -c ./tests/modules/nf-core/blast/blastp/nextflow.config
+  command: nextflow run ./tests/modules/ebi-metagenomics/blast/blastp -entry test_blast_blastp -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/blast/blastp/nextflow.config
   tags:
     - blast
     - blast/blastp
@@ -25,7 +25,7 @@
     - path: output/blast/versions.yml
 
 - name: blast blastp test_blast_blastp_xml
-  command: nextflow run ./tests/modules/nf-core/blast/blastp -entry test_blast_blastp_xml -c ./tests/config/nextflow.config -c ./tests/modules/nf-core/blast/blastp/nextflow.config
+  command: nextflow run ./tests/modules/ebi-metagenomics/blast/blastp -entry test_blast_blastp_xml -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/blast/blastp/nextflow.config
   tags:
     - blast
     - blast/blastp
@@ -35,7 +35,7 @@
     - path: output/blast/versions.yml
 
 - name: blast blastp test_blast_blastp_tsv
-  command: nextflow run ./tests/modules/nf-core/blast/blastp -entry test_blast_blastp_tsv -c ./tests/config/nextflow.config -c ./tests/modules/nf-core/blast/blastp/nextflow.config
+  command: nextflow run ./tests/modules/ebi-metagenomics/blast/blastp -entry test_blast_blastp_tsv -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/blast/blastp/nextflow.config
   tags:
     - blast
     - blast/blastp
@@ -45,7 +45,7 @@
     - path: output/blast/versions.yml
 
 - name: blast blastp test_blast_blastp_csv
-  command: nextflow run ./tests/modules/nf-core/blast/blastp -entry test_blast_blastp_csv -c ./tests/config/nextflow.config -c ./tests/modules/nf-core/blast/blastp/nextflow.config
+  command: nextflow run ./tests/modules/ebi-metagenomics/blast/blastp -entry test_blast_blastp_csv -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/blast/blastp/nextflow.config
   tags:
     - blast
     - blast/blastp
