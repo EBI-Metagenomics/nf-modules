@@ -15,6 +15,6 @@ workflow test_fastp {
     FASTP (
         input,
         params.save_trimmed_fail,
-        params.save_merged
+        true
      )
 }
