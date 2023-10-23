@@ -8,6 +8,8 @@ keywords:
 components:
   - blast/makeblastdb
   - blast/blastp
+  - diamond/makedb
+  - diamond/blastp
   - interproscan
   - eggnogmapper
 input:
@@ -28,12 +30,12 @@ input:
       description: Type of database search against UniprotSP
       pattern: "blast|diamond"
 output:
-  - blastp_csv:
+  - blastp_tsv:
       type: file
       description: |
-        Channel containing CSV domain annotation output from blastp
+        Channel containing TSV domain annotation output from blastp
         Structure: [ val(meta), path(csv) ]
-      pattern: "*.csv"
+      pattern: "*.tsv"
   - inteproscan_tsv:
       type: file
       description: |
