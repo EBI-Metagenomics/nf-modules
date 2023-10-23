@@ -1,0 +1,8 @@
+- name: mapseq test_mapseq
+  command: nextflow run ./tests/modules/ebi-metagenomics/mapseq -entry test_mapseq -c ./tests/config/nextflow.config
+  tags:
+    - mapseq
+  files:
+    - path: output/mapseq/test.mseq
+      md5sum: 63516e3bb952100b8f003e336fb13600
+    - path: output/mapseq/versions.yml
