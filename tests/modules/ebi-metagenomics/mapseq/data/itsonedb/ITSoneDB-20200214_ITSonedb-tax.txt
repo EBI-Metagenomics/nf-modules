@@ -1,0 +1,6 @@
+#cutoff: 0.00:0.08 0.00:0.08 0.70:0.35 0.70:0.35 0.70:0.35 0.80:0.25 0.92:0.08 0.95:0.05	
+#levels: Superkingdom Kingdom Phylum Class Order Family Genus Species	
+#name: ITSone	
+ITS1DB00501286|5518|Fusarium	sk__Eukaryota;k__Fungi;p__Ascomycota;c__Sordariomycetes;o__Hypocreales;f__Nectriaceae;g__Fusarium;s__Fusarium_graminearum
+ITS1DB00588024|199510|Erigeron	sk__Eukaryota;k__Viridiplantae;p__Streptophyta;c__Magnoliopsida;o__Asterales;f__Asteraceae;g__Erigeron;s__Erigeron_subtrinervis
+ITS1DB00588022|199508|Erigeron	sk__Eukaryota;k__Viridiplantae;p__Streptophyta;c__Magnoliopsida;o__Asterales;f__Asteraceae;g__Erigeron;s__Erigeron_bellidiastrum

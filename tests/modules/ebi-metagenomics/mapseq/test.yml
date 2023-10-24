@@ -1,8 +1,35 @@
-- name: mapseq test_mapseq
-  command: nextflow run ./tests/modules/ebi-metagenomics/mapseq -entry test_mapseq -c ./tests/config/nextflow.config
+- name: mapseq test_mapseq_silva_ssu
+  command: nextflow run ./tests/modules/ebi-metagenomics/mapseq -entry test_mapseq_silva_ssu -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/mapseq/nextflow.config
   tags:
     - mapseq
   files:
     - path: output/mapseq/test.mseq
       md5sum: 63516e3bb952100b8f003e336fb13600
+    - path: output/mapseq/versions.yml
+
+- name: mapseq test_mapseq_silva_lsu
+  command: nextflow run ./tests/modules/ebi-metagenomics/mapseq -entry test_mapseq_silva_lsu -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/mapseq/nextflow.config
+  tags:
+    - mapseq
+  files:
+    - path: output/mapseq/test.mseq
+      md5sum: 216196a8ebf6b1ef1abe842fe300157a
+    - path: output/mapseq/versions.yml
+
+- name: mapseq test_mapseq_unite
+  command: nextflow run ./tests/modules/ebi-metagenomics/mapseq -entry test_mapseq_unite -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/mapseq/nextflow.config
+  tags:
+    - mapseq
+  files:
+    - path: output/mapseq/test.mseq
+      md5sum: 45ff0f6e841c7d0416a226bd44579cc4
+    - path: output/mapseq/versions.yml
+
+- name: mapseq test_mapseq_itsonedb
+  command: nextflow run ./tests/modules/ebi-metagenomics/mapseq -entry test_mapseq_itsonedb -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/mapseq/nextflow.config
+  tags:
+    - mapseq
+  files:
+    - path: output/mapseq/test.mseq
+      md5sum: 4b29b21670c4348b70ce857aca029d19
     - path: output/mapseq/versions.yml
