@@ -8,7 +8,7 @@ workflow FASTA_DOMAINANNOTATION {
 
     take:
     ch_fasta       // channel: [ val(meta), path(fasta) ]
-    ch_blast_fasta // channel: /path/to/reference/fasta for blast
+    val_blast_fasta // value: /path/to/reference/fasta for blast
     val_blast_mode // value: blast or diamond
 
     main:
@@ -16,15 +16,13 @@ workflow FASTA_DOMAINANNOTATION {
     ch_versions = Channel.empty()
 
     if (val_blast_mode == "blast") {
-        println("blast mode")
-        BLAST_MAKEBLASTDB ( ch_blast_fasta )
+        BLAST_MAKEBLASTDB ( val_blast_fasta )
         ch_versions = ch_versions.mix(BLAST_MAKEBLASTDB.out.versions)
         BLAST_BLASTP ( ch_fasta, BLAST_MAKEBLASTDB.out.db, 'tsv' )
         ch_versions = ch_versions.mix(BLAST_BLASTP.out.versions)
         blastp_tsv = BLAST_BLASTP.out.tsv
     } else if (val_blast_mode == "diamond") {
-        println("diamond mode")
-        DIAMOND_MAKEDB ( ch_blast_fasta )
+        DIAMOND_MAKEDB ( val_blast_fasta )
         ch_versions = ch_versions.mix(DIAMOND_MAKEDB.out.versions)
         blast_columns = '' // defaults: qseqid, sseqid, pident, length, mismatch, gapopen, qstart, qend, sstart, send, evalue, bitscore
         DIAMOND_BLASTP ( ch_fasta, DIAMOND_MAKEDB.out.db.map { meta, dmnd -> dmnd }, 'txt', blast_columns )

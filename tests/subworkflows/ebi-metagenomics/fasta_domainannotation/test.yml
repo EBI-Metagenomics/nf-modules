@@ -1,13 +1,13 @@
 - name: fasta_domainannotation_diamond
   command: nextflow run ./tests/subworkflows/ebi-metagenomics/fasta_domainannotation/main.nf -entry test_fasta_domainannotation_diamond -c ./tests/config/nextflow.config -c ./tests/subworkflows/ebi-metagenomics/fasta_domainannotation/nextflow.config
   tags:
-    # - blast
-    # - blast/makeblastdb
-    # - blast/blastp
-    # - diamond
-    # - diamond/makedb
-    # - diamond/blastp
-    # - interproscan
+    - blast
+    - blast/makeblastdb
+    - blast/blastp
+    - diamond
+    - diamond/makedb
+    - diamond/blastp
+    - interproscan
     - subworkflows
     - subworkflows/fasta_domainannotation
   files:
@@ -20,13 +20,13 @@
 - name: fasta_domainannotation_blast
   command: nextflow run ./tests/subworkflows/ebi-metagenomics/fasta_domainannotation/main.nf -entry test_fasta_domainannotation_blast -c ./tests/config/nextflow.config -c ./tests/subworkflows/ebi-metagenomics/fasta_domainannotation/nextflow.config
   tags:
-    # - blast
-    # - blast/makeblastdb
-    # - blast/blastp
-    # - diamond
-    # - diamond/makedb
-    # - diamond/blastp
-    # - interproscan
+    - blast
+    - blast/makeblastdb
+    - blast/blastp
+    - diamond
+    - diamond/makedb
+    - diamond/blastp
+    - interproscan
     - subworkflows
     - subworkflows/fasta_domainannotation
   files:

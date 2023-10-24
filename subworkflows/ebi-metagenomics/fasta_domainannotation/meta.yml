@@ -19,15 +19,15 @@ input:
         The input channel containing the meta id and the fasta with the proteins to annotate
         Structure: [ val(meta), path(fasta) ]
       pattern: "*.{fa/fasta/fa.gz/fasta.gz}"
-  - ch_blast_fasta:
+  - val_blast_fasta:
       type: file
       description: |
-        The input channel containing the fasta with the protein database (e.g. UniprotSP) including their annotations, which blastp will be used against
+        The input file containing the fasta with the protein database (UniprotSP is recommended) including their annotations, which blastp will be used against
         Structure: path(fasta)
       pattern: "*.{fa/fasta/fa.gz/fasta.gz}"
   - val_blast_mode:
       type: value
-      description: Type of database search against UniprotSP
+      description: Type of database search against the reference db (e.g. UniprotSP)
       pattern: "blast|diamond"
 output:
   - blastp_tsv:
