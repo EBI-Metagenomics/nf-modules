@@ -1,3 +1,7 @@
+blast/blastp:
+  - modules/ebi-metagenomics/blast/blastp/**
+  - tests/modules/ebi-metagenomics/blast/blastp/**
+
 blast/makeblastdb:
   - modules/ebi-metagenomics/blast/makeblastdb/**
   - tests/modules/ebi-metagenomics/blast/makeblastdb/**
@@ -6,6 +10,10 @@ bmtagger/bmtagger:
   - modules/ebi-metagenomics/bmtagger/bmtagger/**
   - tests/modules/ebi-metagenomics/bmtagger/bmtagger/**
 
+bmtagger/indexreference:
+  - modules/ebi-metagenomics/bmtagger/indexreference/**
+  - tests/modules/ebi-metagenomics/bmtagger/indexreference/**
+
 checkm2/checkm2:
   - modules/ebi-metagenomics/checkm2/checkm2/**
   - tests/modules/ebi-metagenomics/checkm2/checkm2/**
@@ -13,10 +21,6 @@ checkm2/checkm2:
 checkm2/download_db:
   - modules/ebi-metagenomics/checkm2/download_db/**
   - tests/modules/ebi-metagenomics/checkm2/download_db/**
-
-bmtagger/indexreference:
-  - modules/ebi-metagenomics/bmtagger/indexreference/**
-  - tests/modules/ebi-metagenomics/bmtagger/indexreference/**
 
 cmsearchtbloutdeoverlap:
   - modules/ebi-metagenomics/cmsearchtbloutdeoverlap/**
@@ -29,6 +33,10 @@ combinedgenecaller/merge:
 deeptmhmm:
   - modules/ebi-metagenomics/deeptmhmm/**
   - tests/modules/ebi-metagenomics/deeptmhmm/**
+
+diamond/blastp:
+  - modules/ebi-metagenomics/diamond/blastp/**
+  - tests/modules/ebi-metagenomics/diamond/blastp/**
 
 diamond/makedb:
   - modules/ebi-metagenomics/diamond/makedb/**
@@ -54,6 +62,10 @@ infernal/cmsearch:
   - modules/ebi-metagenomics/infernal/cmsearch/**
   - tests/modules/ebi-metagenomics/infernal/cmsearch/**
 
+interproscan:
+  - modules/ebi-metagenomics/interproscan/**
+  - tests/modules/ebi-metagenomics/interproscan/**
+
 prodigal:
   - modules/ebi-metagenomics/prodigal/**
   - tests/modules/ebi-metagenomics/prodigal/**
@@ -65,6 +77,10 @@ seqtk/seq:
 subworkflows/combined_gene_caller:
   - subworkflows/ebi-metagenomics/combined_gene_caller/**
   - tests/subworkflows/ebi-metagenomics/combined_gene_caller/**
+
+subworkflows/fasta_domainannotation:
+  - subworkflows/ebi-metagenomics/fasta_domainannotation/**
+  - tests/subworkflows/ebi-metagenomics/fasta_domainannotation/**
 
 subworkflows/reads_qc:
   - subworkflows/ebi-metagenomics/reads_qc/**
