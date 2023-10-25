@@ -16,16 +16,16 @@ workflow FASTA_DOMAINANNOTATION {
     ch_versions = Channel.empty()
 
     if (val_blast_mode == "blast") {
-        BLAST_MAKEBLASTDB ( val_blast_fasta )
+        BLAST_MAKEBLASTDB ( val_blast_fasta.map { meta, db -> db } )
         ch_versions = ch_versions.mix(BLAST_MAKEBLASTDB.out.versions)
-        BLAST_BLASTP ( ch_fasta, BLAST_MAKEBLASTDB.out.db, 'tsv' )
+        BLAST_BLASTP ( ch_fasta, BLAST_MAKEBLASTDB.out.db.first(), 'tsv' )
         ch_versions = ch_versions.mix(BLAST_BLASTP.out.versions)
         blastp_tsv = BLAST_BLASTP.out.tsv
     } else if (val_blast_mode == "diamond") {
         DIAMOND_MAKEDB ( val_blast_fasta )
         ch_versions = ch_versions.mix(DIAMOND_MAKEDB.out.versions)
         blast_columns = '' // defaults: qseqid, sseqid, pident, length, mismatch, gapopen, qstart, qend, sstart, send, evalue, bitscore
-        DIAMOND_BLASTP ( ch_fasta, DIAMOND_MAKEDB.out.db.map { meta, dmnd -> dmnd }, 'txt', blast_columns )
+        DIAMOND_BLASTP ( ch_fasta, DIAMOND_MAKEDB.out.db.map { meta, dmnd -> dmnd }.first(), 'txt', blast_columns )
         ch_versions = ch_versions.mix(DIAMOND_BLASTP.out.versions)
         blastp_tsv = DIAMOND_BLASTP.out.txt
     } else {

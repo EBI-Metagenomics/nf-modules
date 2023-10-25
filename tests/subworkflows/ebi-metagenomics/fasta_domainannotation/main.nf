@@ -19,7 +19,7 @@ workflow test_fasta_domainannotation_blast {
 
     fasta = [ file(params.test_data['sarscov2']['genome']['proteome_fasta'], checkIfExists: true) ]
     input = Channel.of( [ [id:'test'], fasta ] )
-    blast_fasta = Channel.value( fasta )
+    blast_fasta = Channel.of( [ [id:'test'], fasta ] )
     blast_mode = "blast"
 
     FASTA_DOMAINANNOTATION ( input, blast_fasta, blast_mode )
