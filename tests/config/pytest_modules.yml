@@ -69,7 +69,7 @@ mapseq:
 interproscan:
   - modules/ebi-metagenomics/interproscan/**
   - tests/modules/ebi-metagenomics/interproscan/**
-  
+
 prodigal:
   - modules/ebi-metagenomics/prodigal/**
   - tests/modules/ebi-metagenomics/prodigal/**
