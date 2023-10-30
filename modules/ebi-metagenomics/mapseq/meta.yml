@@ -1,55 +1,56 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/yaml-schema.json
 name: "mapseq"
-## TODO nf-core: Add a description of the module and list keywords
-description: write your description here
+description: Perform taxonomic classification of rRNA reads using reference databases
 keywords:
-  - sort
-  - example
-  - genomics
+  - taxonomy
+  - reads
+  - otu
+  - rRNA
 tools:
   - "mapseq":
-      ## TODO nf-core: Add a description and other details for the software below
       description: "Open source metagenomic 16S/18S read classifier enabling comparative metagenomics."
-      homepage: "None"
-      documentation: "None"
-      tool_dev_url: "None"
-      doi: ""
+      documentation: https://github.com/jfmrod/MAPseq
+      doi: "10.1093/bioinformatics/btx517"
       licence: "['dual-licensed under GPL v3+ or BSD 2-clause']"
 
-## TODO nf-core: Add a description of all of the variables used as input
 input:
-  # Only when we have meta
   - meta:
       type: map
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'test', single_end:false ]`
-  
-  ## TODO nf-core: Delete / customise this example input
-  - bam:
+  - subunit_reads:
       type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
+      description: FASTA file containing rRNA gene reads
+      pattern: "*.{fa,fasta}"
+  - db_fasta:
+      type: file
+      description: Reference database FASTA file
+      pattern: "*.{fa,fasta}"
+  - db_tax:
+      type: file
+      description: Reference database OTU classifications file
+      pattern: "*.txt"
+  - db_mscluster:
+      type: file
+      description: Reference database OTU pre-clustering file
+      pattern: "*.txt"
 
-## TODO nf-core: Add a description of all of the variables used as output
 output:
-  #Only when we have meta
   - meta:
       type: map
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'test', single_end:false ]`
-  
   - versions:
       type: file
       description: File containing software versions
       pattern: "versions.yml"
-  ## TODO nf-core: Delete / customise this example output
-  - bam:
+  - mseq:
       type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
+      description: Read classification output file
+      pattern: "*.mseq"
 
 authors:
   - "@chrisata"
