@@ -1,3 +1,7 @@
+blast/blastp:
+  - modules/ebi-metagenomics/blast/blastp/**
+  - tests/modules/ebi-metagenomics/blast/blastp/**
+
 blast/makeblastdb:
   - modules/ebi-metagenomics/blast/makeblastdb/**
   - tests/modules/ebi-metagenomics/blast/makeblastdb/**
@@ -30,6 +34,10 @@ deeptmhmm:
   - modules/ebi-metagenomics/deeptmhmm/**
   - tests/modules/ebi-metagenomics/deeptmhmm/**
 
+diamond/blastp:
+  - modules/ebi-metagenomics/diamond/blastp/**
+  - tests/modules/ebi-metagenomics/diamond/blastp/**
+
 diamond/makedb:
   - modules/ebi-metagenomics/diamond/makedb/**
   - tests/modules/ebi-metagenomics/diamond/makedb/**
@@ -58,6 +66,10 @@ mapseq:
   - modules/ebi-metagenomics/mapseq/**
   - tests/modules/ebi-metagenomics/mapseq/**
 
+interproscan:
+  - modules/ebi-metagenomics/interproscan/**
+  - tests/modules/ebi-metagenomics/interproscan/**
+  
 prodigal:
   - modules/ebi-metagenomics/prodigal/**
   - tests/modules/ebi-metagenomics/prodigal/**
@@ -69,6 +81,10 @@ seqtk/seq:
 subworkflows/combined_gene_caller:
   - subworkflows/ebi-metagenomics/combined_gene_caller/**
   - tests/subworkflows/ebi-metagenomics/combined_gene_caller/**
+
+subworkflows/fasta_domainannotation:
+  - subworkflows/ebi-metagenomics/fasta_domainannotation/**
+  - tests/subworkflows/ebi-metagenomics/fasta_domainannotation/**
 
 subworkflows/reads_qc:
   - subworkflows/ebi-metagenomics/reads_qc/**
