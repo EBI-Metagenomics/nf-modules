@@ -62,6 +62,10 @@ infernal/cmsearch:
   - modules/ebi-metagenomics/infernal/cmsearch/**
   - tests/modules/ebi-metagenomics/infernal/cmsearch/**
 
+mapseq:
+  - modules/ebi-metagenomics/mapseq/**
+  - tests/modules/ebi-metagenomics/mapseq/**
+
 interproscan:
   - modules/ebi-metagenomics/interproscan/**
   - tests/modules/ebi-metagenomics/interproscan/**
