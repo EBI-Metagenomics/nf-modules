@@ -23,7 +23,11 @@ process FOLDSEEK_CREATEDB {
 
     """
     mkdir -p targetDB
-    foldseek createdb ${pdb_folder} targetDB/${prefix}
+    foldseek \\
+        createdb \\
+        ${pdb_folder} \\
+        targetDB/${prefix} \\
+        ${args}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

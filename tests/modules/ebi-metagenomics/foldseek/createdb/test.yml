@@ -1,8 +1,8 @@
 - name: foldseek createdb test_foldseek_createdb
   command: nextflow run ./tests/modules/ebi-metagenomics/foldseek/createdb -entry test_foldseek_createdb -c ./tests/config/nextflow.config
   tags:
-    - foldseek/createdb
     - foldseek
+    - foldseek/createdb
   files:
     - path: output/foldseek/targetDB/test
       md5sum: cd934132716b79a04ecd9e2d919d00d3

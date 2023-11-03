@@ -1,13 +1,37 @@
-## TODO nf-core: Please run the following command to build this file:
-#                nf-core modules create-test-yml /easysearch
-- name: "foldseek easysearch"
+- name: foldseek easysearch test_foldseek_easysearch
   command: nextflow run ./tests/modules/ebi-metagenomics/foldseek/easysearch -entry test_foldseek_easysearch -c ./tests/config/nextflow.config
   tags:
-    - "foldseek"
-    - "foldseek/easysearch"
+    - foldseek
+    - foldseek/easysearch
   files:
-    - path: "output/foldseek/test.bam"
-      md5sum: e667c7caad0bc4b7ac383fd023c654fc
-    - path: "output/foldseek/versions.yml"
-      md5sum: a01fe51bc4c6a3a6226fbf77b2c7cf3b
-    
+    - path: output/foldseek/targetDB/test
+      md5sum: cd934132716b79a04ecd9e2d919d00d3
+    - path: output/foldseek/targetDB/test.dbtype
+      md5sum: f1d3ff8443297732862df21dc4e57262
+    - path: output/foldseek/targetDB/test.index
+      md5sum: 2f05bfe2b27eb6b6244b87a7ef847692
+    - path: output/foldseek/targetDB/test.lookup
+      md5sum: d344a18334e0afdc3cd9342becc2fb33
+    - path: output/foldseek/targetDB/test.source
+      md5sum: d8a5958a134fb96104349a31e9922abe
+    - path: output/foldseek/targetDB/test_ca
+      md5sum: b13abb07f4b4bd81660b8bc7f81777b1
+    - path: output/foldseek/targetDB/test_ca.dbtype
+      md5sum: 3fd85f9ee7ca8882c8caa747d0eef0b3
+    - path: output/foldseek/targetDB/test_ca.index
+      md5sum: ee0d7a59fc8bc3234d2439ef0787d396
+    - path: output/foldseek/targetDB/test_h
+      md5sum: 27c2f5f6de039376615570182359b325
+    - path: output/foldseek/targetDB/test_h.dbtype
+      md5sum: 740bab4f9ec8808aedb68d6b1281aeb2
+    - path: output/foldseek/targetDB/test_h.index
+      md5sum: 0240bb43458f001ec83c6be35aafcf9d
+    - path: output/foldseek/targetDB/test_ss
+      md5sum: 2b7915b349681becf224e2d98675bf16
+    - path: output/foldseek/targetDB/test_ss.dbtype
+      md5sum: f1d3ff8443297732862df21dc4e57262
+    - path: output/foldseek/targetDB/test_ss.index
+      md5sum: 2f05bfe2b27eb6b6244b87a7ef847692
+    - path: output/foldseek/test.m8
+      md5sum: 9f2d4dae7900e1602b6ac78b9ecc08d3
+    - path: output/foldseek/versions.yml
