@@ -54,6 +54,14 @@ fetchtool/assembly:
   - modules/ebi-metagenomics/fetchtool/assembly/**
   - tests/modules/ebi-metagenomics/fetchtool/assembly/**
 
+foldseek/createdb:
+  - modules/ebi-metagenomics/foldseek/createdb/**
+  - tests/modules/ebi-metagenomics/foldseek/createdb/**
+
+foldseek/easysearch:
+  - modules/ebi-metagenomics/foldseek/easysearch/**
+  - tests/modules/ebi-metagenomics/foldseek/easysearch/**
+
 fraggenescan:
   - modules/ebi-metagenomics/fraggenescan/**
   - tests/modules/ebi-metagenomics/fraggenescan/**
@@ -62,13 +70,13 @@ infernal/cmsearch:
   - modules/ebi-metagenomics/infernal/cmsearch/**
   - tests/modules/ebi-metagenomics/infernal/cmsearch/**
 
-mapseq:
-  - modules/ebi-metagenomics/mapseq/**
-  - tests/modules/ebi-metagenomics/mapseq/**
-
 interproscan:
   - modules/ebi-metagenomics/interproscan/**
   - tests/modules/ebi-metagenomics/interproscan/**
+
+mapseq:
+  - modules/ebi-metagenomics/mapseq/**
+  - tests/modules/ebi-metagenomics/mapseq/**
 
 prodigal:
   - modules/ebi-metagenomics/prodigal/**
