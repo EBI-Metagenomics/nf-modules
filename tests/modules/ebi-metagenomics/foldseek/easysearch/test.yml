@@ -33,5 +33,6 @@
     - path: output/foldseek/test_db/test_db_ss.index
       md5sum: 3cfefb5fba32a02b785d8bed70cc620a
     - path: output/foldseek/test_search.m8
-      md5sum: 109e12c5c8be6b2a349fd14fbac0225d
+      contains:
+        - "1tim.pdb_A\t8tim.pdb_B\t0.967\t247\t8"
     - path: output/foldseek/versions.yml

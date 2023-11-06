@@ -9,7 +9,7 @@ workflow test_foldseek_easysearch {
 
     input = [
         [ id:'test_db', single_end:false ], // meta map
-        file("tests/modules/ebi-metagenomics/foldseek/createdb/data", checkIfExists: true)
+        file("tests/modules/ebi-metagenomics/foldseek/createdb/data/*", checkIfExists: true)
     ]
 
     input2 = [
