@@ -11,8 +11,8 @@ process FOLDSEEK_CREATEDB {
     tuple val(meta), path(pdb_folder)
 
     output:
-    tuple val(meta), path("targetDB"), emit: db
-    path "versions.yml"              , emit: versions
+    tuple val(meta), path("${meta.id}"), emit: db
+    path "versions.yml"                , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -22,11 +22,11 @@ process FOLDSEEK_CREATEDB {
     def prefix = task.ext.prefix ?: "${meta.id}"
 
     """
-    mkdir -p targetDB
+    mkdir -p ${prefix}
     foldseek \\
         createdb \\
         ${pdb_folder} \\
-        targetDB/${prefix} \\
+        ${prefix}/${prefix} \\
         ${args}
 
     cat <<-END_VERSIONS > versions.yml
