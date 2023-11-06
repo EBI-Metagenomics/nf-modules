@@ -8,12 +8,12 @@ include { FOLDSEEK_EASYSEARCH } from '../../../../../modules/ebi-metagenomics/fo
 workflow test_foldseek_easysearch {
 
     input = [
-        [ id:'test', single_end:false ], // meta map
+        [ id:'test_db', single_end:false ], // meta map
         file("tests/modules/ebi-metagenomics/foldseek/createdb/data", checkIfExists: true)
     ]
 
     input2 = [
-        [ id:'test2', single_end:false ], // meta map
+        [ id:'test_search', single_end:false ], // meta map
         file("tests/modules/ebi-metagenomics/foldseek/createdb/data/1tim.pdb", checkIfExists: true)
     ]
 

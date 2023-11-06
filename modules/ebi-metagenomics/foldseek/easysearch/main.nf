@@ -8,8 +8,8 @@ process FOLDSEEK_EASYSEARCH {
         'biocontainers/foldseek:8.ef4e960--pl5321hb365157_0' }"
 
     input:
-    tuple val(meta), path(pdb)
-    tuple val(meta), path(db)
+    tuple val(meta)   , path(pdb)
+    tuple val(meta_db), path(db)
 
     output:
     tuple val(meta), path("${meta.id}.m8"), emit: aln
@@ -23,15 +23,12 @@ process FOLDSEEK_EASYSEARCH {
     def prefix = task.ext.prefix ?: "${meta.id}"
 
     """
-    mkdir -p data
-    mv ${pdb} data/
-
     foldseek \\
         easy-search \\
-        data/${pdb} \\
-        data/ \\
+        ${pdb} \\
+        ${db}/${meta_db.id} \\
         ${prefix}.m8 \\
-        ${db} \\
+        tmp \\
         ${args}
 
     cat <<-END_VERSIONS > versions.yml
