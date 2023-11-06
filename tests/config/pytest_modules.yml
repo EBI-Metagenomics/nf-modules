@@ -1,3 +1,7 @@
+aaa:
+  - modules/ebi-metagenomics/aaa/**
+  - tests/modules/ebi-metagenomics/aaa/**
+
 blast/blastp:
   - modules/ebi-metagenomics/blast/blastp/**
   - tests/modules/ebi-metagenomics/blast/blastp/**
