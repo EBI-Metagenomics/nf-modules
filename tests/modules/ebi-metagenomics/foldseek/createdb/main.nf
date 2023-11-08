@@ -8,7 +8,7 @@ workflow test_foldseek_createdb {
 
     input = [
         [ id:'test', single_end:false ], // meta map
-        file("tests/modules/ebi-metagenomics/foldseek/createdb/data/*", checkIfExists: true)
+        [ file(params.test_data['proteomics']['pdb']['tim1_pdb'], checkIfExists: true) ]
     ]
 
     FOLDSEEK_CREATEDB ( input )

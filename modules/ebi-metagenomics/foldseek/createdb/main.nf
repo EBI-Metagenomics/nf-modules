@@ -8,7 +8,7 @@ process FOLDSEEK_CREATEDB {
         'biocontainers/foldseek:8.ef4e960--pl5321hb365157_0' }"
 
     input:
-    tuple val(meta), path(pdb_folder)
+    tuple val(meta), path(pdb)
 
     output:
     tuple val(meta), path("${meta.id}"), emit: db
@@ -25,7 +25,7 @@ process FOLDSEEK_CREATEDB {
     mkdir -p ${prefix}
     foldseek \\
         createdb \\
-        ${pdb_folder} \\
+        ${pdb} \\
         ${prefix}/${prefix} \\
         ${args}
 

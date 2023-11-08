@@ -9,12 +9,12 @@ workflow test_foldseek_easysearch {
 
     input = [
         [ id:'test_db', single_end:false ], // meta map
-        file("tests/modules/ebi-metagenomics/foldseek/createdb/data/*", checkIfExists: true)
+        [ file(params.test_data['proteomics']['pdb']['tim1_pdb'], checkIfExists: true) ]
     ]
 
     input2 = [
         [ id:'test_search', single_end:false ], // meta map
-        file("tests/modules/ebi-metagenomics/foldseek/createdb/data/1tim.pdb", checkIfExists: true)
+        [ file(params.test_data['proteomics']['pdb']['tim8_pdb'], checkIfExists: true) ]
     ]
 
     FOLDSEEK_CREATEDB ( input )

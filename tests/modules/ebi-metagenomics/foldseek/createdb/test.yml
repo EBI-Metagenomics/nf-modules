@@ -1,35 +1,35 @@
 - name: foldseek createdb test_foldseek_createdb
   command: nextflow run ./tests/modules/ebi-metagenomics/foldseek/createdb -entry test_foldseek_createdb -c ./tests/config/nextflow.config
   tags:
-    - foldseek
     - foldseek/createdb
+    - foldseek
   files:
     - path: output/foldseek/test/test
-      md5sum: 9c0241f98f4e5d22dc42183d4601136f
+      md5sum: 5509f0851612be656f0659d62e290366
     - path: output/foldseek/test/test.dbtype
       md5sum: f1d3ff8443297732862df21dc4e57262
     - path: output/foldseek/test/test.index
-      md5sum: 3cfefb5fba32a02b785d8bed70cc620a
+      md5sum: e7eb45c3cbd57553ff8f024c7c83ed11
     - path: output/foldseek/test/test.lookup
-      md5sum: a1c0a9a49b8de39f118d61dba9a9bc13
+      md5sum: bc6d0e967a6b30342597737ea862ae62
     - path: output/foldseek/test/test.source
-      md5sum: 986528ecaa9ea6c4bcfb5a91e7a50e0d
+      md5sum: 42c68f3f5196a489d80b6d26ac8ac5f6
     - path: output/foldseek/test/test_ca
-      md5sum: 8b8ca1cbc0b7b739c7a751b0fb8cc547
+      md5sum: a5c5ffa9e813f7c35ed9a2737d4ef786
     - path: output/foldseek/test/test_ca.dbtype
       md5sum: 3fd85f9ee7ca8882c8caa747d0eef0b3
     - path: output/foldseek/test/test_ca.index
-      md5sum: eedb82b50c13843c978f2e2249df80f0
+      md5sum: 4020bfeefff484c9c973a895fa76c4bd
     - path: output/foldseek/test/test_h
-      md5sum: d7cade638d3fcbb00a12cfc37fee7e62
+      md5sum: 6420b4e4730941b10e159971f826e74b
     - path: output/foldseek/test/test_h.dbtype
       md5sum: 740bab4f9ec8808aedb68d6b1281aeb2
     - path: output/foldseek/test/test_h.index
-      md5sum: ef0b8b196ee5438702da43b073c1e90f
+      md5sum: e194f33e47acf6d687d572a45b784550
     - path: output/foldseek/test/test_ss
-      md5sum: 29ba5ac600fac34230507f16ff348fa7
+      md5sum: 88d06580a2ee6a6a81a7821a423013a9
     - path: output/foldseek/test/test_ss.dbtype
       md5sum: f1d3ff8443297732862df21dc4e57262
     - path: output/foldseek/test/test_ss.index
-      md5sum: 3cfefb5fba32a02b785d8bed70cc620a
+      md5sum: e7eb45c3cbd57553ff8f024c7c83ed11
     - path: output/foldseek/versions.yml

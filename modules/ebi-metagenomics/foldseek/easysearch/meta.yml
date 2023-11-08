@@ -22,7 +22,7 @@ input:
         e.g. `[ id:'test', single_end:false ]`
   - pdb:
       type: file
-      description: protein structure file to compare against a foldseek database (also works with folder input)
+      description: Protein structure(s) in PDB, mmCIF or mmJSON format to compare against a foldseek database (also works with folder input)
       pattern: "*.{pdb,mmcif,mmjson}"
   - meta_db:
       type: map

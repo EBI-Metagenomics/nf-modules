@@ -20,10 +20,10 @@ input:
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'test', single_end:false ]`
-  - pdf_folder:
-      type: directory
-      description: Directory containing protein structures in PDB, mmCIF or mmJSON format
-      pattern: "*"
+  - pdb:
+      type: file
+      description: Protein structure(s) in PDB, mmCIF or mmJSON format (also works with folder input)
+      pattern: "*.{pdb,mmcif,mmjson}"
 output:
   - meta:
       type: map
