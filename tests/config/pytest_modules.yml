@@ -46,6 +46,10 @@ eggnogmapper:
   - modules/ebi-metagenomics/eggnogmapper/**
   - tests/modules/ebi-metagenomics/eggnogmapper/**
 
+esmfold:
+  - modules/ebi-metagenomics/esmfold/**
+  - tests/modules/ebi-metagenomics/esmfold/**
+
 fastp:
   - modules/ebi-metagenomics/fastp/**
   - tests/modules/ebi-metagenomics/fastp/**
@@ -62,13 +66,13 @@ infernal/cmsearch:
   - modules/ebi-metagenomics/infernal/cmsearch/**
   - tests/modules/ebi-metagenomics/infernal/cmsearch/**
 
-mapseq:
-  - modules/ebi-metagenomics/mapseq/**
-  - tests/modules/ebi-metagenomics/mapseq/**
-
 interproscan:
   - modules/ebi-metagenomics/interproscan/**
   - tests/modules/ebi-metagenomics/interproscan/**
+
+mapseq:
+  - modules/ebi-metagenomics/mapseq/**
+  - tests/modules/ebi-metagenomics/mapseq/**
 
 prodigal:
   - modules/ebi-metagenomics/prodigal/**
