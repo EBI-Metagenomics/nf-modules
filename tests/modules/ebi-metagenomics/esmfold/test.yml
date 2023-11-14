@@ -1,5 +1,5 @@
 - name: "esmfold"
-  command: nextflow run ./tests/modules/ebi-metagenomics/esmfold -entry test_esmfold -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/esmfold/nextflow.config
+  command: nextflow run ./tests/modules/ebi-metagenomics/esmfold -entry test_esmfold -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/esmfold/nextflow.config -profile local
   tags:
     - "esmfold"
   files:

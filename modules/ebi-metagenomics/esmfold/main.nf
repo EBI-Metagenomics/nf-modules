@@ -2,14 +2,16 @@ process ESMFOLD {
     tag "$meta.id"
     label 'process_high'
 
-    conda '/home/vangelis/miniconda3/envs/esmfold_new_test' // /hps/nobackup/rdf/metagenomics/service-team/users/vangelis/miniconda3/envs/esmfold_new
+    conda params.esm_conda_path
 
     input:
     tuple val(meta), path(fasta)
+    val(compute_mode)
 
     output:
-    tuple val(meta), path("${meta.id}/*pdb"), emit: pdb
-    path "versions.yml"                     , emit: versions
+    tuple val(meta), path("${meta.id}/*pdb")      , emit: pdb
+    tuple val(meta), path("${meta.id}_scores.txt"), emit: scores
+    path "versions.yml"                           , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -19,6 +21,7 @@ process ESMFOLD {
     def prefix = task.ext.prefix ?: "${meta.id}"
     def is_compressed = fasta.getExtension() == "gz" ? true : false
     def fasta_name = is_compressed ? fasta.getBaseName() : fasta
+    def compute_flag = compute_mode == 'gpu' ? '' : '--cpu-only'
     """
     if [ "${is_compressed}" == "true" ]; then
         gzip -c -d ${fasta} > ${fasta_name}
@@ -27,8 +30,8 @@ process ESMFOLD {
     esm-fold \\
         -i ${fasta_name} \\
         -o ${prefix} \\
-        --cpu-only \\
-        ${args}
+        ${compute_flag} \\
+        ${args} > ${prefix}_scores.txt
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -42,6 +45,7 @@ process ESMFOLD {
     """
     mkdir -p ${prefix}
     touch ${prefix}/${fasta}.pdb
+    touch ${prefix}_scores.txt
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
