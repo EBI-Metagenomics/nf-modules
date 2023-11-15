@@ -1,4 +1,4 @@
-process FOLDCOMP_DECOMPRESS {
+process FOLDCOMP_EXTRACT {
     tag "$meta.id"
     label 'process_low'
 
@@ -9,10 +9,12 @@ process FOLDCOMP_DECOMPRESS {
 
     input:
     tuple val(meta), path(fcz)
+    val(mode)
 
     output:
-    tuple val(meta), path("{${fcz}_pdb,*.pdb,*.cif}"), emit: pdb
-    path "versions.yml"                              , emit: versions
+    tuple val(meta), path("{${fcz}_plddt,*.plddt}"), optional: true, emit: plddt
+    tuple val(meta), path("{${fcz}_fasta,*.fasta}"), optional: true, emit: fasta
+    path "versions.yml"                            , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -20,10 +22,12 @@ process FOLDCOMP_DECOMPRESS {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def mode_arg = mode == "fasta" ? "--fasta" : "--plddt"
     """
     foldcomp \\
-        decompress \\
+        extract \\
         -t ${task.cpus} \\
+        ${mode_arg} \\
         ${fcz} \\
         ${args}
 
@@ -37,7 +41,7 @@ process FOLDCOMP_DECOMPRESS {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    touch ${prefix}.pdb
+    touch ${prefix}.plddt
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

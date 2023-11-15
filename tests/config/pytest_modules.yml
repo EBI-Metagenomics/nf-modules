@@ -62,6 +62,10 @@ foldcomp/decompress:
   - modules/ebi-metagenomics/foldcomp/decompress/**
   - tests/modules/ebi-metagenomics/foldcomp/decompress/**
 
+foldcomp/extract:
+  - modules/ebi-metagenomics/foldcomp/extract/**
+  - tests/modules/ebi-metagenomics/foldcomp/extract/**
+
 fraggenescan:
   - modules/ebi-metagenomics/fraggenescan/**
   - tests/modules/ebi-metagenomics/fraggenescan/**

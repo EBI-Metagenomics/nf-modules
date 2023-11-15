@@ -1,0 +1,25 @@
+- name: foldcomp extract test_foldcomp_extract_plddt_single
+  command: nextflow run ./tests/modules/ebi-metagenomics/foldcomp/extract -entry test_foldcomp_extract_plddt_single -c ./tests/config/nextflow.config
+  tags:
+    - foldcomp
+    - foldcomp/extract
+  files:
+    - path: output/foldcomp/test.fcz
+      md5sum: 074c5977e6021a4b4e00f831d80c456a
+    - path: output/foldcomp/test.plddt
+      md5sum: 4e31413c37d16a013c2b2ee2f5831983
+    - path: output/foldcomp/versions.yml
+
+- name: foldcomp extract test_foldcomp_extract_fasta_directory
+  command: nextflow run ./tests/modules/ebi-metagenomics/foldcomp/extract -entry test_foldcomp_extract_fasta_directory -c ./tests/config/nextflow.config
+  tags:
+    - foldcomp
+    - foldcomp/extract
+  files:
+    - path: output/foldcomp/test_fcz/4590051235.fcz
+      md5sum: 24502c3621af44f8ae804675bf87fdcd
+    - path: output/foldcomp/test_fcz/4590785447.fcz
+      md5sum: 6d9849e9b25f5008c240479dbc37f34e
+    - path: output/foldcomp/test_fcz_fasta
+      md5sum: 5c3d6ee53bf93f0353b86a89de02068f
+    - path: output/foldcomp/versions.yml
