@@ -1,0 +1,21 @@
+- name: foldcomp compress test_foldcomp_compress
+  command: nextflow run ./tests/modules/ebi-metagenomics/foldcomp/compress -entry test_foldcomp_compress -c ./tests/config/nextflow.config
+  tags:
+    - foldcomp/compress
+    - foldcomp
+  files:
+    - path: output/foldcomp/test/4590051235.fcz
+      md5sum: 24502c3621af44f8ae804675bf87fdcd
+    - path: output/foldcomp/test/4590785447.fcz
+      md5sum: 6d9849e9b25f5008c240479dbc37f34e
+    - path: output/foldcomp/versions.yml
+
+- name: foldcomp compress test_foldcomp_compress_single
+  command: nextflow run ./tests/modules/ebi-metagenomics/foldcomp/compress -entry test_foldcomp_compress_single -c ./tests/config/nextflow.config
+  tags:
+    - foldcomp/compress
+    - foldcomp
+  files:
+    - path: output/foldcomp/test.fcz
+      md5sum: b04e6ca0b0f1c4aad0c0fc78267c1fa4
+    - path: output/foldcomp/versions.yml
