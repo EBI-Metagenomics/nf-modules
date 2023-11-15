@@ -1,7 +1,7 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/yaml-schema.json
-name: "foldcomp_compress"
-description: Efficient compression tool for protein structures
+name: "foldcomp_decompress"
+description: Decompression tool for foldcomp compressed structures
 keywords:
   - protein
   - structure
@@ -20,21 +20,21 @@ input:
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'test' ]`
-  - pdb:
+  - fcz:
       type: file
-      description: Protein structure(s) in PDB or CIF format to compress (also works with folder input)
-      pattern: "*.{pdb,cif}"
+      description: Foldcomp compressed protein structure(s) (also works with folder input)
+      pattern: "*{*,*.fcz}"
 output:
   - meta:
       type: map
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'test' ]`
-  - fcz:
+  - pdb:
       type: file
       description: |
-        Either single compressed protein structure (if input was file) or folder with all compressed protein structures (if input was directory)
-      pattern: "{*_fcz,*.fcz}"
+        Either single protein structure (if input was file) or folder with all decompressed protein structures (if input was directory)
+      pattern: "{*_pdb,*.pdb,*.cif}"
   - versions:
       type: file
       description: File containing software versions

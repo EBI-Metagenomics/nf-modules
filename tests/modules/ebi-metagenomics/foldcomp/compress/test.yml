@@ -4,9 +4,9 @@
     - foldcomp/compress
     - foldcomp
   files:
-    - path: output/foldcomp/test/4590051235.fcz
+    - path: output/foldcomp/test_fcz/4590051235.fcz
       md5sum: 24502c3621af44f8ae804675bf87fdcd
-    - path: output/foldcomp/test/4590785447.fcz
+    - path: output/foldcomp/test_fcz/4590785447.fcz
       md5sum: 6d9849e9b25f5008c240479dbc37f34e
     - path: output/foldcomp/versions.yml
 

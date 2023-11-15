@@ -1,6 +1,7 @@
-process FOLDCOMP_COMPRESS {
+process FOLDCOMP_DECOMPRESS {
     tag "$meta.id"
     label 'process_low'
+    debug true
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -8,11 +9,11 @@ process FOLDCOMP_COMPRESS {
         'biocontainers/foldcomp:0.0.5--h43eeafb_2' }"
 
     input:
-    tuple val(meta), path(pdb)
+    tuple val(meta), path(fcz)
 
     output:
-    tuple val(meta), path("{${meta.id}_fcz,*.fcz}"), emit: fcz
-    path "versions.yml"                        , emit: versions
+    tuple val(meta), path("{${fcz}_pdb,*.pdb,*.cif}"), emit: pdb
+    path "versions.yml"                              , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -20,13 +21,11 @@ process FOLDCOMP_COMPRESS {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def ext = pdb.isDirectory() ? "_fcz" : ".fcz"
     """
     foldcomp \\
-        compress \\
+        decompress \\
         -t ${task.cpus} \\
-        ${pdb} \\
-        ${prefix}${ext} \\
+        ${fcz} \\
         ${args}
 
     cat <<-END_VERSIONS > versions.yml
@@ -39,7 +38,7 @@ process FOLDCOMP_COMPRESS {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    touch ${prefix}.fcz
+    touch ${prefix}.pdb
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

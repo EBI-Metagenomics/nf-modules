@@ -1,0 +1,27 @@
+- name: foldcomp decompress test_foldcomp_decompress
+  command: nextflow run ./tests/modules/ebi-metagenomics/foldcomp/decompress -entry test_foldcomp_decompress -c ./tests/config/nextflow.config
+  tags:
+    - foldcomp
+    - foldcomp/decompress
+  files:
+    - path: output/foldcomp/test_fcz/4590051235.fcz
+      md5sum: 24502c3621af44f8ae804675bf87fdcd
+    - path: output/foldcomp/test_fcz/4590785447.fcz
+      md5sum: 6d9849e9b25f5008c240479dbc37f34e
+    - path: output/foldcomp/test_fcz_pdb/4590051235.pdb
+      md5sum: 04c29709bde1c2159f9d273ac48686b5
+    - path: output/foldcomp/test_fcz_pdb/4590785447.pdb
+      md5sum: 27180673c9e720e73a9bc6a62326000b
+    - path: output/foldcomp/versions.yml
+
+- name: foldcomp decompress test_foldcomp_decompress_single
+  command: nextflow run ./tests/modules/ebi-metagenomics/foldcomp/decompress -entry test_foldcomp_decompress_single -c ./tests/config/nextflow.config
+  tags:
+    - foldcomp
+    - foldcomp/decompress
+  files:
+    - path: output/foldcomp/test.fcz
+      md5sum: b04e6ca0b0f1c4aad0c0fc78267c1fa4
+    - path: output/foldcomp/test.pdb
+      md5sum: 2ddf8280aba39aa3c6cbf38f9f66ba32
+    - path: output/foldcomp/versions.yml
