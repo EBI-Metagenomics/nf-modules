@@ -10,8 +10,8 @@
       md5sum: 4e31413c37d16a013c2b2ee2f5831983
     - path: output/foldcomp/versions.yml
 
-- name: foldcomp extract test_foldcomp_extract_fasta_directory
-  command: nextflow run ./tests/modules/ebi-metagenomics/foldcomp/extract -entry test_foldcomp_extract_fasta_directory -c ./tests/config/nextflow.config
+- name: foldcomp extract test_foldcomp_extract_fasta_dir
+  command: nextflow run ./tests/modules/ebi-metagenomics/foldcomp/extract -entry test_foldcomp_extract_fasta_dir -c ./tests/config/nextflow.config
   tags:
     - foldcomp
     - foldcomp/extract

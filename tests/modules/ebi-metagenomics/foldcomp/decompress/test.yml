@@ -1,5 +1,5 @@
-- name: foldcomp decompress test_foldcomp_decompress
-  command: nextflow run ./tests/modules/ebi-metagenomics/foldcomp/decompress -entry test_foldcomp_decompress -c ./tests/config/nextflow.config
+- name: foldcomp decompress test_foldcomp_decompress_dir
+  command: nextflow run ./tests/modules/ebi-metagenomics/foldcomp/decompress -entry test_foldcomp_decompress_dir -c ./tests/config/nextflow.config
   tags:
     - foldcomp
     - foldcomp/decompress

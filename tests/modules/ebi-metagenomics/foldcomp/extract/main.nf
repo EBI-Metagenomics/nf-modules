@@ -16,7 +16,7 @@ workflow test_foldcomp_extract_plddt_single {
     FOLDCOMP_EXTRACT ( FOLDCOMP_COMPRESS.out.fcz, "plddt" )
 }
 
-workflow test_foldcomp_extract_fasta_directory {
+workflow test_foldcomp_extract_fasta_dir {
 
     input = [
         [ id:'test' ],

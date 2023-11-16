@@ -5,7 +5,7 @@ nextflow.enable.dsl = 2
 include { FOLDCOMP_COMPRESS   } from '../../../../../modules/ebi-metagenomics/foldcomp/compress/main.nf'
 include { FOLDCOMP_DECOMPRESS } from '../../../../../modules/ebi-metagenomics/foldcomp/decompress/main.nf'
 
-workflow test_foldcomp_decompress {
+workflow test_foldcomp_decompress_dir {
 
     input = [
         [ id:'test' ],
