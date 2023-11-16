@@ -1,0 +1,7 @@
+name: foldcomp_compress
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - bioconda::foldcomp=0.0.5
