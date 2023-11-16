@@ -1,8 +1,8 @@
 - name: foldcomp decompress test_foldcomp_decompress_dir
   command: nextflow run ./tests/modules/ebi-metagenomics/foldcomp/decompress -entry test_foldcomp_decompress_dir -c ./tests/config/nextflow.config
   tags:
-    - foldcomp
     - foldcomp/decompress
+    - foldcomp
   files:
     - path: output/foldcomp/test_fcz/4590051235.fcz
       md5sum: 24502c3621af44f8ae804675bf87fdcd
@@ -17,8 +17,8 @@
 - name: foldcomp decompress test_foldcomp_decompress_single
   command: nextflow run ./tests/modules/ebi-metagenomics/foldcomp/decompress -entry test_foldcomp_decompress_single -c ./tests/config/nextflow.config
   tags:
-    - foldcomp
     - foldcomp/decompress
+    - foldcomp
   files:
     - path: output/foldcomp/test.fcz
       md5sum: b04e6ca0b0f1c4aad0c0fc78267c1fa4

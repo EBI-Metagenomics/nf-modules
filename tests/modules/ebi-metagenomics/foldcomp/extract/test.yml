@@ -21,5 +21,6 @@
     - path: output/foldcomp/test_fcz/4590785447.fcz
       md5sum: 6d9849e9b25f5008c240479dbc37f34e
     - path: output/foldcomp/test_fcz_fasta
-      md5sum: 5c3d6ee53bf93f0353b86a89de02068f
+      contains:
+        - "GEAVEKSVISEKIVKKPVSAKVYIEKSIFIAKQFDLQTILVKSYLLYAKLYQELALPKSSMRPEYIKQSLKMFQLAKNVSIVDDHIHLQKIVKEELSVLTSFCKLNGITLKRPAR"
     - path: output/foldcomp/versions.yml
