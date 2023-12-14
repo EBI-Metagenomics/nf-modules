@@ -1,0 +1,12 @@
+## TODO nf-core: Please run the following command to build this file:
+#                nf-core subworkflows create-test-yml rrna_extraction
+- name: "rrna_extraction"
+  command: nextflow run ./tests/subworkflows/ebi-metagenomics/ -entry test_rrna_extraction -c ./tests/config/nextflow.config
+  tags:
+    - "subworkflows"
+    - "subworkflows/rrna_extraction"
+  files:
+    - path: "output/rrna_extraction/test.bam"
+      md5sum: e667c7caad0bc4b7ac383fd023c654fc
+    - path: output/rrna_extraction/versions.yml
+      md5sum: a01fe51bc4c6a3a6226fbf77b2c7cf3b
