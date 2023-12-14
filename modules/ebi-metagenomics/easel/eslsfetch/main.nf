@@ -9,13 +9,12 @@ process EASEL_ESLSFETCH {
         'biocontainers/easel:0.49--h031d066_0' }"
 
     input:
-    tuple val(meta), path(fasta)
-    tuple val(meta), path(cmsearch_deoverlap_out)
+    tuple val(meta), path(fasta), path(cmsearch_deoverlap_out)
 
     output:
-    tuple val(meta), path("*easel_coords.fasta"), emit: easel_coords
+    tuple val(meta), path("*easel_coords.fasta"),       emit: easel_coords
     tuple val(meta), path("*matched_seqs_with_coords"), emit: matched_seqs_with_coords
-    path "versions.yml"           , emit: versions
+    path "versions.yml",                                emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -24,8 +23,8 @@ process EASEL_ESLSFETCH {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
 
-    def is_compressed = fasta.name.endsWith(".gz")
-    def fasta_name= fasta.name.replace(".gz", "")
+    def is_compressed = fasta.getExtension() == "gz" ? true : false
+    def fasta_name = is_compressed ? fasta.getBaseName() : fasta
 
     """
 
