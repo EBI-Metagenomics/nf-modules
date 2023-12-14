@@ -42,6 +42,10 @@ diamond/makedb:
   - modules/ebi-metagenomics/diamond/makedb/**
   - tests/modules/ebi-metagenomics/diamond/makedb/**
 
+easel/eslsfetch:
+  - modules/ebi-metagenomics/easel/eslsfetch/**
+  - tests/modules/ebi-metagenomics/easel/eslsfetch/**
+
 eggnogmapper:
   - modules/ebi-metagenomics/eggnogmapper/**
   - tests/modules/ebi-metagenomics/eggnogmapper/**
@@ -62,13 +66,13 @@ infernal/cmsearch:
   - modules/ebi-metagenomics/infernal/cmsearch/**
   - tests/modules/ebi-metagenomics/infernal/cmsearch/**
 
-mapseq:
-  - modules/ebi-metagenomics/mapseq/**
-  - tests/modules/ebi-metagenomics/mapseq/**
-
 interproscan:
   - modules/ebi-metagenomics/interproscan/**
   - tests/modules/ebi-metagenomics/interproscan/**
+
+mapseq:
+  - modules/ebi-metagenomics/mapseq/**
+  - tests/modules/ebi-metagenomics/mapseq/**
 
 prodigal:
   - modules/ebi-metagenomics/prodigal/**
