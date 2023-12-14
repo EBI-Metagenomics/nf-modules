@@ -36,7 +36,7 @@ process EASEL_ESLSFETCH {
     awk \\
         '{print \$1"-"\$3"/"\$8"-"\$9" "\$8" "\$9" "\$1}' \\
         $cmsearch_deoverlap_out \\
-        > ${prefix}.matched_seqs_with_coords    
+        > ${prefix}.matched_seqs_with_coords
 
     esl-sfetch \\
         --index \\
@@ -46,7 +46,7 @@ process EASEL_ESLSFETCH {
         -Cf \\
         $fasta_name \\
         ${prefix}.matched_seqs_with_coords \\
-        > ${prefix}_easel_coords.fasta    
+        > ${prefix}_easel_coords.fasta
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
