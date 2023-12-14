@@ -23,7 +23,7 @@ process EASEL_ESLSFETCH {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
 
-    def is_compressed = fasta.getExtension() == "gz" ? true : false
+    def is_compressed = fasta.getExtension() == "gz"
     def fasta_name = is_compressed ? fasta.getBaseName() : fasta
 
     """
@@ -49,7 +49,7 @@ process EASEL_ESLSFETCH {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        : \$(esl-sfetch -h | grep -o '^# Easel [0-9.]*' | sed 's/^# Easel *//')
+        easel: \$(esl-sfetch -h | grep -o '^# Easel [0-9.]*' | sed 's/^# Easel *//')
     END_VERSIONS
     """
 
@@ -62,7 +62,7 @@ process EASEL_ESLSFETCH {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        : \$(esl-sfetch -h | grep -o '^# Easel [0-9.]*' | sed 's/^# Easel *//')
+        easel: \$(esl-sfetch -h | grep -o '^# Easel [0-9.]*' | sed 's/^# Easel *//')
     END_VERSIONS
     """
 }
