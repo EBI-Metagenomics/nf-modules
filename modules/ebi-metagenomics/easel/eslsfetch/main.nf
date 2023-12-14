@@ -49,7 +49,7 @@ process EASEL_ESLSFETCH {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        : \$(esl-sfetch -h | grep -o '^# Easel [0-9.]*' | sed 's/^# Easel *//')
+        easel: \$(esl-sfetch -h | grep -o '^# Easel [0-9.]*' | sed 's/^# Easel *//')
     END_VERSIONS
     """
 
