@@ -93,3 +93,7 @@ subworkflows/fasta_domainannotation:
 subworkflows/reads_qc:
   - subworkflows/ebi-metagenomics/reads_qc/**
   - tests/subworkflows/ebi-metagenomics/reads_qc/**
+
+subworkflows/rrna_extraction:
+  - subworkflows/ebi-metagenomics/rrna_extraction/**
+  - tests/subworkflows/ebi-metagenomics/rrna_extraction/**
