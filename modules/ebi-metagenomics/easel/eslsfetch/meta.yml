@@ -25,8 +25,8 @@ input:
       pattern: "*.{fasta, fasta.gz, fa, fa.gz}"
   - cmsearch_deoverlap_out:
       type: file
-      description: Tabular output from 'cmsearchtnloutdeoverlap' module
-      pattern: "*.{tblout.deoverlap}"
+      description: Tabular output from 'cmsearchtbloutdeoverlap' module
+      pattern: "*.{tblout.deoverlap, tab, txt}"
 output:
   - meta:
       type: map
