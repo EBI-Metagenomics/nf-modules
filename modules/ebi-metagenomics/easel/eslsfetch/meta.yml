@@ -1,7 +1,7 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/yaml-schema.json
 name: "easel_eslsfetch"
-description: Extract fasta sequences by name from a cmsearchdeoverlap result 
+description: Extract fasta sequences by name from a cmsearchdeoverlap result
 keywords:
   - fasta
   - cmsearch
