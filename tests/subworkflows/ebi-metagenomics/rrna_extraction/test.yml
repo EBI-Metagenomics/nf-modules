@@ -1,12 +1,17 @@
-## TODO nf-core: Please run the following command to build this file:
-#                nf-core subworkflows create-test-yml rrna_extraction
-- name: "rrna_extraction"
-  command: nextflow run ./tests/subworkflows/ebi-metagenomics/ -entry test_rrna_extraction -c ./tests/config/nextflow.config
+- name: rrna_extraction test_rrna_extraction
+  command: nextflow run ./tests/subworkflows/ebi-metagenomics/rrna_extraction -entry test_rrna_extraction -c ./tests/config/nextflow.config -c ./tests/subworkflows/ebi-metagenomics/rrna_extraction/nextflow.config
   tags:
-    - "subworkflows"
-    - "subworkflows/rrna_extraction"
+    - cmsearchtbloutdeoverlap
+    - easel
+    - easel/eslsfetch
+    - infernal
+    - infernal/cmsearch
+    - subworkflows
+    - subworkflows/rrna_extraction
   files:
-    - path: "output/rrna_extraction/test.bam"
-      md5sum: e667c7caad0bc4b7ac383fd023c654fc
-    - path: output/rrna_extraction/versions.yml
-      md5sum: a01fe51bc4c6a3a6226fbf77b2c7cf3b
+    - path: output/cmsearchtbloutdeoverlap/test.tblout.deoverlapped
+      md5sum: 2ff422ba8581127bc95262d9751dbcba
+    - path: output/easel/test.matched_seqs_with_coords
+      md5sum: 401222d263116bb145c1a67e6acc4709
+    - path: output/easel/test_easel_coords.fasta
+      md5sum: fb23f13526672a300845b767dbc5fd44
