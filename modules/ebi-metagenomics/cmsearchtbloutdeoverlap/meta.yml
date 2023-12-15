@@ -23,8 +23,8 @@ input:
 
   - cmsearch_tblout:
       type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.tblout"
+      description: Tabular file from cmsearch
+      pattern: "*.{tblout, tblout.gz}"
 
 output:
   - meta:
@@ -40,7 +40,7 @@ output:
 
   - cmsearch_tblout_deoverlapped:
       type: file
-      description: Sorted BAM/CRAM/SAM file
+      description: Deoverlapped .tblout file
       pattern: "*.tblout.deoverlapped"
 
 authors:

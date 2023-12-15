@@ -14,3 +14,14 @@ workflow test_cmsearchtbloutdeoverlap {
 
     CMSEARCHTBLOUTDEOVERLAP ( sample, claninfo )
 }
+
+workflow test_cmsearchtbloutdeoverlap_decompress {
+
+    sample = [
+        [ id:'test', single_end: false ], // meta map
+        file("tests/modules/ebi-metagenomics/cmsearchtbloutdeoverlap/data/1.cmscan.clan.tblout.gz", checkIfExists: true),
+    ]
+    claninfo = file("tests/modules/ebi-metagenomics/cmsearchtbloutdeoverlap/data/ribo.claninfo", checkIfExists: true)
+
+    CMSEARCHTBLOUTDEOVERLAP ( sample, claninfo )
+}
