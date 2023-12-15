@@ -12,7 +12,7 @@ tools:
       homepage: "https://github.com/nawrockie/cmsearch_tblout_deoverlap/"
       documentation: "https://github.com/nawrockie/cmsearch_tblout_deoverlap/wiki"
       tool_dev_url: "https://github.com/nawrockie/cmsearch_tblout_deoverlap/"
-      licence: "['Public Domain']"
+      licence: ["Public Domain"]
 
 input:
   - meta:
