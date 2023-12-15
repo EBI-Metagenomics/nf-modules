@@ -1,42 +1,41 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
 name: "rrna_extraction"
-## TODO nf-core: Add a description of the subworkflow and list keywords
-description: Sort SAM/BAM/CRAM file
+description: Extraction of specific cmsearch-identified rRNA sequences from a fasta file using EASEL
 keywords:
-  - sort
-  - bam
-  - sam
-  - cram
-## TODO nf-core: Add a list of the modules and/or subworkflows used in the subworkflow
+  - rRNA
+  - fasta
+  - easel
+  - amplicon
+  - cmsearch
+  - covariance models
 components:
-  - samtools/sort
-  - samtools/index
-## TODO nf-core: List all of the channels used as input with a description and their structure
+  - infernal/cmsearch
+  - cmsearchtbloutdeoverlap
+  - easel/eslsfetch
 input:
-  - ch_bam:
+  - ch_fasta:
       type: file
       description: |
-        The input channel containing the BAM/CRAM/SAM files
-        Structure: [ val(meta), path(bam) ]
-      pattern: "*.{bam/cram/sam}"
-## TODO nf-core: List all of the channels used as output with a descriptions and their structure
+        The input channel containing the fasta files
+        Structure: [ val(meta), path(fasta) ]
+      pattern: "*.{fasta, fasta.gz, fa, fa.gz}"
 output:
-  - bam:
+  - cmsearch_deoverlap:
       type: file
       description: |
-        Channel containing BAM files
-        Structure: [ val(meta), path(bam) ]
+        Channel containing cmsearchdeoverlap files
+        Structure: [ val(meta), path(deoverlapped) ]
       pattern: "*.bam"
-  - bai:
+  - easel_sfetch:
       type: file
       description: |
-        Channel containing indexed BAM (BAI) files
-        Structure: [ val(meta), path(bai) ]
-      pattern: "*.bai"
-  - csi:
+        Channel containing extracted rRNA fasta files
+        Structure: [ val(meta), path(fasta) ]
+      pattern: "*.fasta"
+  - matched_seqs_with_coords:
       type: file
       description: |
-        Channel containing CSI files
+        Channel containing converted cmsearchdeoverlap files for use by easel
         Structure: [ val(meta), path(csi) ]
       pattern: "*.csi"
   - versions:
