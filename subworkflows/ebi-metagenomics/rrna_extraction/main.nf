@@ -25,7 +25,7 @@ workflow RRNA_EXTRACTION {
     ch_versions = ch_versions.mix(CMSEARCHTBLOUTDEOVERLAP.out.versions.first())
 
     ch_easel = ch_fasta
-               .join(CMSEARCHTBLOUTDEOVERLAP.out.cmsearch_tblout_deoverlapped)
+                .join(CMSEARCHTBLOUTDEOVERLAP.out.cmsearch_tblout_deoverlapped)
 
 
     EASEL_ESLSFETCH(
