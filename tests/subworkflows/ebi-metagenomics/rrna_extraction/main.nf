@@ -6,12 +6,15 @@ include { RRNA_EXTRACTION } from '../../../../subworkflows/ebi-metagenomics/rrna
 
 workflow test_rrna_extraction {
     
-    input = [
+    fa = [
         [ id:'test', single_end:false ], // meta map
         file('tests/subworkflows/ebi-metagenomics/rrna_extraction/data/test.fasta.gz', checkIfExists: true)
     ]
-
-    input_ch = Channel.of( input )
-
-    RRNA_EXTRACTION ( input_ch )
+    input_fa = Channel.of( fa )
+    
+    RRNA_EXTRACTION (
+        input_fa,
+        params.rfam,
+        params.rfam_clan
+    )
 }

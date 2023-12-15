@@ -6,7 +6,9 @@ include { EASEL_ESLSFETCH             } from '../../../modules/ebi-metagenomics/
 workflow RRNA_EXTRACTION {
 
     take:
-    ch_fasta // channel: [ val(meta), [ fasta ] ]
+    ch_fasta     // channel: [ val(meta), [ fasta ] ]
+    val_rfam     // value: /path/to/rfam for cmsearch
+    val_claninfo // value: /path/to/claninfo for cmsearchtbloutdeoverlap
 
     main:
 
@@ -14,13 +16,13 @@ workflow RRNA_EXTRACTION {
 
     INFERNAL_CMSEARCH(
         ch_fasta,
-        file(params.rfam)
+        file(val_rfam)
     )
     ch_versions = ch_versions.mix(INFERNAL_CMSEARCH.out.versions.first())
 
     CMSEARCHTBLOUTDEOVERLAP(
         INFERNAL_CMSEARCH.out.cmsearch_tbl,
-        file(params.rfam_clan)
+        file(val_claninfo)
     )
     ch_versions = ch_versions.mix(CMSEARCHTBLOUTDEOVERLAP.out.versions.first())
 
