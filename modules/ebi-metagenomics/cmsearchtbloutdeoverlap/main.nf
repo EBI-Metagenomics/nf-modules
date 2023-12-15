@@ -22,12 +22,19 @@ process CMSEARCHTBLOUTDEOVERLAP {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def is_compressed = cmsearch_tblout.getExtension() == "gz"
+    def cmsearch_tblout_name = cmsearch_tblout.name.replace(".gz", "")
+
     """
+    if [ "$is_compressed" == "true" ]; then
+        gzip -c -d $cmsearch_tblout > $cmsearch_tblout_name
+    fi
+
     cmsearch-deoverlap.pl $args \
         --clanin $clanin \
-        $cmsearch_tblout
+        $cmsearch_tblout_name
 
-    mv ${cmsearch_tblout.name}.deoverlapped ${prefix}.tblout.deoverlapped
+    mv ${cmsearch_tblout_name}.deoverlapped ${prefix}.tblout.deoverlapped
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
