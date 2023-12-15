@@ -25,7 +25,7 @@ output:
       description: |
         Channel containing cmsearchdeoverlap files
         Structure: [ val(meta), path(deoverlapped) ]
-      pattern: "*.bam"
+      pattern: "*.deoverlapped"
   - easel_sfetch:
       type: file
       description: |
