@@ -28,7 +28,7 @@ input:
   - val_claninfo:
       type: file
       description: |
-        The input file containing the claninfo to use for cmsearchtbloutdeoverlap 
+        The input file containing the claninfo to use for cmsearchtbloutdeoverlap
         Structure: path(claninfo)
       pattern: "*.claninfo"
 output:
