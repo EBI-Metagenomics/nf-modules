@@ -16,13 +16,13 @@ workflow RRNA_EXTRACTION {
 
     INFERNAL_CMSEARCH(
         ch_fasta,
-        file(val_rfam)
+        val_rfam
     )
     ch_versions = ch_versions.mix(INFERNAL_CMSEARCH.out.versions.first())
 
     CMSEARCHTBLOUTDEOVERLAP(
         INFERNAL_CMSEARCH.out.cmsearch_tbl,
-        file(val_claninfo)
+        val_claninfo
     )
     ch_versions = ch_versions.mix(CMSEARCHTBLOUTDEOVERLAP.out.versions.first())
 

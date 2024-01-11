@@ -14,7 +14,7 @@ workflow test_rrna_extraction {
     
     RRNA_EXTRACTION (
         input_fa,
-        params.rfam,
-        params.rfam_clan
+        file(params.rfam),
+        file(params.rfam_clan)
     )
 }
