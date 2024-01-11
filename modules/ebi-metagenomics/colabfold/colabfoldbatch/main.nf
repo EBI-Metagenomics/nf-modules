@@ -28,7 +28,7 @@ process COLABFOLD_COLABFOLDBATCH {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        colabfold: 1.5.2
+        colabfold: 1.5.5
     END_VERSIONS
     """
 
@@ -40,7 +40,7 @@ process COLABFOLD_COLABFOLDBATCH {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        colabfold: 1.5.2
+        colabfold: 1.5.5
     END_VERSIONS
     """
 }
