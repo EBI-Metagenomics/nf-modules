@@ -9,7 +9,7 @@ process ESMFOLD {
     val(compute_mode)
 
     output:
-    tuple val(meta), path("${meta.id}/*pdb")      , emit: pdb
+    tuple val(meta), path("${meta.id}")           , emit: pdb
     tuple val(meta), path("${meta.id}_scores.txt"), emit: scores
     path "versions.yml"                           , emit: versions
 

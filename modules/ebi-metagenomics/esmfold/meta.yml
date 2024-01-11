@@ -24,6 +24,10 @@ input:
       type: file
       description: Input fasta file containing queries sequences
       pattern: "*.{fa,fasta,fa.gz,fasta.gz}"
+  - compute_mode:
+      type: string
+      description: Execution mode depending on if system has a GPU
+      pattern: "gpu|cpu"
 output:
   - meta:
       type: map
@@ -31,9 +35,13 @@ output:
         Groovy Map containing sample information
         e.g. `[ id:'test' ]`
   - pdb:
-      type: list
-      description: Predicted protein structure files for each input amino acid sequence
-      pattern: "*.pdb"
+      type: directory
+      description: Directory containing predicted protein structure files for each input amino acid sequence
+      pattern: "*"
+  - scores:
+      type: file
+      description: Execution log file containing overall length, pLDDT and pTM scores for each protein
+      pattern: "*.txt"
   - versions:
       type: file
       description: File containing software versions
