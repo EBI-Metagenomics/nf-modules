@@ -7,8 +7,8 @@ workflow RRNA_EXTRACTION {
 
     take:
     ch_fasta     // channel: [ val(meta), [ fasta ] ]
-    val_rfam     // value: /path/to/rfam for cmsearch
-    val_claninfo // value: /path/to/claninfo for cmsearchtbloutdeoverlap
+    rfam         // file: rfam for cmsearch
+    claninfo     // file: claninfo for cmsearchtbloutdeoverlap
 
     main:
 
@@ -16,13 +16,13 @@ workflow RRNA_EXTRACTION {
 
     INFERNAL_CMSEARCH(
         ch_fasta,
-        val_rfam
+        rfam
     )
     ch_versions = ch_versions.mix(INFERNAL_CMSEARCH.out.versions.first())
 
     CMSEARCHTBLOUTDEOVERLAP(
         INFERNAL_CMSEARCH.out.cmsearch_tbl,
-        val_claninfo
+        claninfo
     )
     ch_versions = ch_versions.mix(CMSEARCHTBLOUTDEOVERLAP.out.versions.first())
 
