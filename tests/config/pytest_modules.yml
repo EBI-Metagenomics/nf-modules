@@ -30,6 +30,10 @@ combinedgenecaller/merge:
   - modules/ebi-metagenomics/combinedgenecaller/merge/**
   - tests/modules/ebi-metagenomics/combinedgenecaller/merge/**
 
+cutadapt:
+  - modules/ebi-metagenomics/cutadapt/**
+  - tests/modules/ebi-metagenomics/cutadapt/**
+
 deeptmhmm:
   - modules/ebi-metagenomics/deeptmhmm/**
   - tests/modules/ebi-metagenomics/deeptmhmm/**

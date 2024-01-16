@@ -1,0 +1,59 @@
+- name: cutadapt test_cutadapt_pe_double_trim
+  command: nextflow run ./tests/modules/ebi-metagenomics/cutadapt -entry test_cutadapt_pe_double_trim -c ./tests/config/nextflow.config
+  tags:
+    - cutadapt
+  files:
+    - path: output/cutadapt/test_1.trim.fastq.gz
+      md5sum: 358e1026441aaf7e99721c51ff8cd5c6
+    - path: output/cutadapt/test_2.trim.fastq.gz
+      md5sum: d23d5301fcb8b0d3746b7ad5778c9223
+    - path: output/cutadapt/versions.yml
+
+- name: cutadapt test_cutadapt_pe_fwd_trim
+  command: nextflow run ./tests/modules/ebi-metagenomics/cutadapt -entry test_cutadapt_pe_fwd_trim -c ./tests/config/nextflow.config
+  tags:
+    - cutadapt
+  files:
+    - path: output/cutadapt/test_1.trim.fastq.gz
+      md5sum: 358e1026441aaf7e99721c51ff8cd5c6
+    - path: output/cutadapt/test_2.trim.fastq.gz
+      md5sum: 60919c0575d57f5c42dc6a27ffb1565a
+    - path: output/cutadapt/versions.yml
+
+- name: cutadapt test_cutadapt_pe_rev_trim
+  command: nextflow run ./tests/modules/ebi-metagenomics/cutadapt -entry test_cutadapt_pe_rev_trim -c ./tests/config/nextflow.config
+  tags:
+    - cutadapt
+  files:
+    - path: output/cutadapt/test_1.trim.fastq.gz
+      md5sum: 25bce21740bb55ef055a945bec5016de
+    - path: output/cutadapt/test_2.trim.fastq.gz
+      md5sum: d23d5301fcb8b0d3746b7ad5778c9223
+    - path: output/cutadapt/versions.yml
+
+- name: cutadapt test_cutadapt_se_double_trim
+  command: nextflow run ./tests/modules/ebi-metagenomics/cutadapt -entry test_cutadapt_se_double_trim -c ./tests/config/nextflow.config
+  tags:
+    - cutadapt
+  files:
+    - path: output/cutadapt/test.trim.fastq.gz
+      md5sum: c21079ea6de65260a5a71de3b5b2eec5
+    - path: output/cutadapt/versions.yml
+
+- name: cutadapt test_cutadapt_se_fwd_trim
+  command: nextflow run ./tests/modules/ebi-metagenomics/cutadapt -entry test_cutadapt_se_fwd_trim -c ./tests/config/nextflow.config
+  tags:
+    - cutadapt
+  files:
+    - path: output/cutadapt/test.trim.fastq.gz
+      md5sum: da6b8ba59b3814643ed0ed0d516405f8
+    - path: output/cutadapt/versions.yml
+
+- name: cutadapt test_cutadapt_se_rev_trim
+  command: nextflow run ./tests/modules/ebi-metagenomics/cutadapt -entry test_cutadapt_se_rev_trim -c ./tests/config/nextflow.config
+  tags:
+    - cutadapt
+  files:
+    - path: output/cutadapt/test.trim.fastq.gz
+      md5sum: 33e4b8e23b42ab9aaa005b46c99b88a6
+    - path: output/cutadapt/versions.yml
