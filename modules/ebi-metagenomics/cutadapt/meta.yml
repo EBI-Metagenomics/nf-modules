@@ -22,7 +22,7 @@ input:
       type: map
       description: |
         Groovy Map containing sample information
-        e.g. `[ id:'test', single_end:false ]`  
+        e.g. `[ id:'test', single_end:false ]`
   - reads:
       type: file
       description: List of fastq read files
@@ -57,7 +57,6 @@ output:
       type: file
       description: File containing software versions
       pattern: "versions.yml"
-
 
 authors:
   - "@chrisata"
