@@ -36,8 +36,8 @@ input:
         If you only want to trim a primer from one strand,
         then use an empty file as a standin for the second
         e.g. `[ path/to/fwd_primer, empty.txt ]` for only using
-        the forward priemer
-      pattern: "*.{fasta}"
+        the forward primer
+      pattern: "*.fasta"
 
 output:
   - meta:
@@ -48,7 +48,7 @@ output:
   - reads:
       type: file
       description: List of trimmed reads files
-      pattern: "*.{fastq.gz}"
+      pattern: "*.fastq.gz"
   - log:
       type: file
       description: Log file containing stdout from cutadapt
