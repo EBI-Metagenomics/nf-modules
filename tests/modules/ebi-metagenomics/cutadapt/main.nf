@@ -49,7 +49,7 @@ workflow test_cutadapt_se_double_trim {
         [ id:'test', single_end:true ], // meta map
         [ file('tests/modules/ebi-metagenomics/cutadapt/data/ERR4334351.fastq.gz', checkIfExists: true)],
         [ file('tests/modules/ebi-metagenomics/cutadapt/data/fwd_primer.fasta', checkIfExists: true),
-          file('tests/modules/ebi-metagenomics/cutadapt/data/rev_primer.fasta', checkIfExists: true) ]
+          file('tests/modules/ebi-metagenomics/cutadapt/data/rev_primer_rc.fasta', checkIfExists: true) ]
         ]
 
     CUTADAPT ( input )
@@ -73,7 +73,7 @@ workflow test_cutadapt_se_rev_trim {
         [ id:'test', single_end:true ], // meta map
         [ file('tests/modules/ebi-metagenomics/cutadapt/data/ERR4334351.fastq.gz', checkIfExists: true)],
         [ file('tests/modules/ebi-metagenomics/cutadapt/data/empty.txt', checkIfExists: true),
-          file('tests/modules/ebi-metagenomics/cutadapt/data/rev_primer.fasta', checkIfExists: true) ]
+          file('tests/modules/ebi-metagenomics/cutadapt/data/rev_primer_rc.fasta', checkIfExists: true) ]
         ]
 
     CUTADAPT ( input )
