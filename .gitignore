@@ -3,6 +3,7 @@ work/
 results/
 test_output/
 .nf-test/
+.nf-test.log
 output/
 .DS_Store
 *.code-workspace

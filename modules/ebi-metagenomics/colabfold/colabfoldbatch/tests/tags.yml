@@ -1,0 +1,2 @@
+colabfold/colabfoldbatch:
+  - "modules/ebi-metagenomics/colabfold/colabfoldbatch/**"
