@@ -1,44 +1,45 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
 name: "reads_bwamem_decont"
-## TODO nf-core: Add a description of the subworkflow and list keywords
-description: Sort SAM/BAM/CRAM file
+
+## A description of the subworkflow and list keywords
+description: Map short reads to a reference genome and remove matching reads
 keywords:
-  - sort
-  - bam
-  - sam
-  - cram
-## TODO nf-core: Add a list of the modules and/or subworkflows used in the subworkflow
+  - decontamination
+  - short-reads
+  - mapping
+
+    ## A list of the modules and/or subworkflows used in the subworkflow
 components:
-  - samtools/sort
-  - samtools/index
-## TODO nf-core: List all of the channels used as input with a description and their structure
+  - bwamem2/mem
+  - samtools/bam2fq
+
+## List all of the channels used as input with a description and their structure
 input:
-  - ch_bam:
+  - reads:
       type: file
       description: |
-        The input channel containing the BAM/CRAM/SAM files
-        Structure: [ val(meta), path(bam) ]
-      pattern: "*.{bam/cram/sam}"
-## TODO nf-core: List all of the channels used as output with a descriptions and their structure
+        The input channel containing the short reads
+        Structure: [ val(meta), path(reads) ]
+      pattern: "*.{fastq/fq}.gz"
+  - ref_genome:
+      type: file
+      description: |
+        The input channel containing the reference genome name
+        Structure: path(reference_genome)
+  - ref_genome_index:
+      type: file
+      description: |
+        The input channel containing the reference genome index for bwa-mem2
+        Structure: path(reference_genome_index)
+
+## List all of the channels used as output with a descriptions and their structure
 output:
-  - bam:
+  - decontaminated_reads:
       type: file
       description: |
-        Channel containing BAM files
-        Structure: [ val(meta), path(bam) ]
-      pattern: "*.bam"
-  - bai:
-      type: file
-      description: |
-        Channel containing indexed BAM (BAI) files
-        Structure: [ val(meta), path(bai) ]
-      pattern: "*.bai"
-  - csi:
-      type: file
-      description: |
-        Channel containing CSI files
-        Structure: [ val(meta), path(csi) ]
-      pattern: "*.csi"
+        Channel containing the unmapped reads
+        Structure: [ val(meta), path(reads) ]
+      pattern: "*.fq.gz"
   - versions:
       type: file
       description: |
