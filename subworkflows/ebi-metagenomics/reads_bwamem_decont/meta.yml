@@ -20,7 +20,7 @@ input:
   - reads:
       type: file
       description: |
-        A list of input FastQ files of size 1 or 2 
+        A list of input FastQ files of size 1 or 2
         for single-end and paired-end data, respectively
       pattern: "*.{fastq/fq}.gz"
   - meta2:
