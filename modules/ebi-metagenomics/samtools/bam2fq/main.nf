@@ -49,5 +49,5 @@ process SAMTOOLS_BAM2FQ {
             samtools: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//')
         END_VERSIONS
         """
-    } 
+    }
 }
