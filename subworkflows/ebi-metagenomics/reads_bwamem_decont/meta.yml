@@ -2,7 +2,7 @@
 name: "reads_bwamem_decont"
 
 ## A description of the subworkflow and list keywords
-description: Map short reads to a reference genome and remove matching reads
+description: Short-reads mapping to a reference genome and remove matching reads
 keywords:
   - decontamination
   - short-reads
@@ -15,22 +15,18 @@ components:
 
 ## List all of the channels used as input with a description and their structure
 input:
-  - reads:
+  - ch_reads:
       type: file
       description: |
-        The input channel containing the short reads
-        Structure: [ val(meta), path(reads) ]
+        The input channel containing the sample ID and a list of input FastQ files of size 1 and 2 for single-end and paired-end data, respectively.
+      Structure: [ val(meta), path(reads) ]
       pattern: "*.{fastq/fq}.gz"
-  - ref_genome:
-      type: file
-      description: |
-        The input channel containing the reference genome name
-        Structure: path(reference_genome)
-  - ref_genome_index:
+  - ch_index:
       type: file
       description: |
         The input channel containing the reference genome index for bwa-mem2
-        Structure: path(reference_genome_index)
+      Structure: path(reference_genome_index)
+      pattern: "Directory containing BWA index *.{amb,ann,bwt,pac,sa}"
 
 ## List all of the channels used as output with a descriptions and their structure
 output:

@@ -8,31 +8,28 @@ process SAMTOOLS_BAM2FQ {
         'biocontainers/samtools:1.18--h50ea8bc_1' }"
 
     input:
-    tuple val(meta), path(inputbam)
+    tuple val(meta), path(bam)
+    tuple val(meta), path(bai)
     val split
 
     output:
-    tuple val(meta), path("*.fq.gz"), emit: reads
-    path "versions.yml"             , emit: versions
+    tuple val(meta), path("*.decont.fq.gz"), emit: reads
+    path "versions.yml"                    , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
-    def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}"
-
     if (split){
         """
         samtools \\
             bam2fq \\
-            $args \\
             -@ $task.cpus \\
-            -1 ${prefix}_1.fq.gz \\
-            -2 ${prefix}_2.fq.gz \\
+            -1 ${prefix}_1.decont.fq.gz \\
+            -2 ${prefix}_2.decont.fq.gz \\
             -0 /dev/null \\
             -s /dev/null \\
-            $inputbam
+            $bam
 
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":
@@ -43,9 +40,8 @@ process SAMTOOLS_BAM2FQ {
         """
         samtools \\
             bam2fq \\
-            $args \\
             -@ $task.cpus \\
-            $inputbam | gzip --no-name > ${prefix}_single.fq.gz
+            $inputbam | gzip --no-name > ${prefix}.decont.fq.gz
 
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":
