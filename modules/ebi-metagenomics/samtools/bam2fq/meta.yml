@@ -34,8 +34,8 @@ input:
         for single-end and paired-end data, respectively.
 
 output:
-  - meta:
-      type: map
+  - reads:
+      type: file
       description: |
         Groovy Map containing sample information
         e.g. [ id:'test', single_end:false ]
