@@ -34,10 +34,7 @@ process INFERNAL_CMSEARCH {
 
     cmsearch \\
         --cpu $task.cpus \\
-        --noali \\
-        --hmmonly \\
         $args \\
-        -Z 1000 \\
         -o /dev/null \\
         --tblout ${prefix}.cmsearch_matches.tbl \\
         $covariance_model_database \\
