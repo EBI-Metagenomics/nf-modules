@@ -14,7 +14,7 @@ process BWAMEM2_MEM {
     path "versions.yml"                                            , emit: versions
 
     when:
-    task.ext.when == null || task.ext.when
+        task.ext.when == null || task.ext.when
 
     script:
     def args = "-M"
