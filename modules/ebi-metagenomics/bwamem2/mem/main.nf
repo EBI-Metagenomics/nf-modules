@@ -9,16 +9,16 @@ process BWAMEM2_MEM {
     
 
     input:
-    tuple val(meta), path(reads), 
-    path(index_dir)
+        tuple val(meta), path(reads)
+        path(index_dir)
 
     output:
-    tuple val(meta), path("${meta.id}_sorted.bam")    , emit: bam 
-    tuple val(meta), path("${meta.id}_sorted.bam.bai"), emit: bai
-    path  "versions.yml"                              , emit: versions
+        tuple val(meta), path("${meta.id}_sorted.bam")    , emit: bam 
+        tuple val(meta), path("${meta.id}_sorted.bam.bai"), emit: bai
+        path  "versions.yml"                              , emit: versions
 
     when:
-    task.ext.when == null || task.ext.when
+        task.ext.when == null || task.ext.when
 
     script:
     def args = "-M"
