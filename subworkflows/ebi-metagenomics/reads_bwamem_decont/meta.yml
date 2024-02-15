@@ -13,45 +13,45 @@ components:
 
 input:
   - meta:
-        type: map
-        description: |
-                Groovy Map containing sample information
-                e.g. [ id:'test', single_end:false ]
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
   - reads:
-        type: file
-        description: |
-                A list of input FastQ files of size 1 or 2 
-                for single-end and paired-end data, respectively
-        pattern: "*.{fastq/fq}.gz"
+      type: file
+      description: |
+        A list of input FastQ files of size 1 or 2 
+        for single-end and paired-end data, respectively
+      pattern: "*.{fastq/fq}.gz"
   - meta2:
-        type: map
-        description: |
-                Groovy Map containing reference genome information
-                e.g. [ id:'ref_name' ]
+      type: map
+      description: |
+        Groovy Map containing reference genome information
+        e.g. [ id:'ref_name' ]
   - ref_index:
-        type: file
-        description: |
-                A list of BWA index reference files
-        pattern: "*.{amb,ann,bwt,pac,sa}"
+      type: file
+      description: |
+        A list of BWA index reference files
+      pattern: "*.{amb,ann,bwt,pac,sa}"
 
 output:
   - meta:
-        type: map
-        description: |
-                Groovy Map containing sample information
-                e.g. [ id:'test', single_end:false ]
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
   - decont_reads:
-        type: file
-        description: |
-                A list of decontaminated FastQ files of size 1 or 2
-                for single-end and paired-end data, respectively
-        pattern: "*.decont.fq.gz"
+      type: file
+      description: |
+        A list of decontaminated FastQ files of size 1 or 2
+        for single-end and paired-end data, respectively
+      pattern: "*.decont.fq.gz"
   - versions:
-        type: file
-        description: |
-                File containing software versions
-        Structure: [ path(versions.yml) ]
-        pattern: "versions.yml"
+      type: file
+      description: |
+        File containing software versions
+      Structure: [path(versions.yml)]
+      pattern: "versions.yml"
 
 authors:
   - "@EBI-Metagenomics"

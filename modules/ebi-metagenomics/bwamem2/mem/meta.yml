@@ -10,47 +10,47 @@ tools:
 
 input:
   - meta:
-        type: map
-        description: |
-                Groovy Map containing sample information
-                e.g. [ id:'test', single_end:false ]
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
   - reads:
-        type: file
-        description: |
-                List of input FastQ files of size 1 and 2 
-                for single-end and paired-end data, respectively.
+      type: file
+      description: |
+        List of input FastQ files of size 1 and 2 
+        for single-end and paired-end data, respectively.
   - meta2:
-        type: map
-        description: |
-                Groovy Map containing reference genome information
-                e.g. [ id:'ref_name' ]
+      type: map
+      description: |
+        Groovy Map containing reference genome information
+        e.g. [ id:'ref_name' ]
   - ref_index:
-        type: file
-        description: |
-                A list of BWA index reference files
-        pattern: "*.{amb,ann,bwt,pac,sa}"
+      type: file
+      description: |
+        A list of BWA index reference files
+      pattern: "*.{amb,ann,bwt,pac,sa}"
 
 output:
   - meta:
-        type: map
-        description: |
-                Groovy Map containing sample information
-                e.g. [ id:'test', single_end:false ]
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
   - bam_file:
-        type: file
-        description: |
-                Sorted alignment in bam format
-        pattern: "*_sorted.bam"
+      type: file
+      description: |
+        Sorted alignment in bam format
+      pattern: "*_sorted.bam"
   - bai_file:
-        type: file
-        description: |
-                Index of sorted bam file
-        pattern: "*_sorted.bam.bai"
+      type: file
+      description: |
+        Index of sorted bam file
+      pattern: "*_sorted.bam.bai"
   - versions:
-        type: file
-        description: |
-                File containing software versions
-        pattern: "versions.yml"
+      type: file
+      description: |
+        File containing software versions
+      pattern: "versions.yml"
 
 authors:
   - "@EBI-Metagenomics"

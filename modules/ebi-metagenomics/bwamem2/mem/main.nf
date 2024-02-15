@@ -6,18 +6,17 @@ process BWAMEM2_MEM {
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/mulled-v2-e5d375990341c5aef3c9aff74f96f66f65375ef6:6351200f24497efba12c219c2bea4bb0f69a9d47-0' :
         'biocontainers/mulled-v2-e5d375990341c5aef3c9aff74f96f66f65375ef6:6351200f24497efba12c219c2bea4bb0f69a9d47-0' }"
-    
 
     input:
-        tuple val(meta), path(reads)
-        tuple val(meta2), path(ref_index)
+    tuple val(meta), path(reads)
+    tuple val(meta2), path(ref_index)
 
     output:
-        tuple val(meta), path("${meta.id}_sorted.bam"), path("${meta.id}_sorted.bam.bai"), emit: bam 
-        path "versions.yml"                                                              , emit: versions
+    tuple val(meta), path("${meta.id}_sorted.bam"), path("${meta.id}_sorted.bam.bai"), emit: bam
+    path "versions.yml"                                                              , emit: versions
 
     when:
-        task.ext.when == null || task.ext.when
+    task.ext.when == null || task.ext.when
 
     script:
     def args = "-M"
@@ -34,8 +33,8 @@ process BWAMEM2_MEM {
         $reads \\
         | samtools view -@ ${task.cpus} $args2 - \\
         | samtools sort -@ ${task.cpus} -O bam - -o ${prefix}_sorted.bam
+
     samtools index -@ ${task.cpus} ${prefix}_sorted.bam
-    """
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
