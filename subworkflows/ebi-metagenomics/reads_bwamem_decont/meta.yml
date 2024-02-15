@@ -1,47 +1,58 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
 name: "reads_bwamem_decont"
 
-## A description of the subworkflow and list keywords
 description: Short-reads mapping to a reference genome and remove matching reads
 keywords:
   - decontamination
   - short-reads
   - mapping
 
-    ## A list of the modules and/or subworkflows used in the subworkflow
 components:
   - bwamem2/mem
   - samtools/bam2fq
 
-## List all of the channels used as input with a description and their structure
 input:
-  - ch_reads:
-      type: file
-      description: |
-        The input channel containing the sample ID and a list of input FastQ files of size 1 and 2 for single-end and paired-end data, respectively.
-      Structure: [ val(meta), path(reads) ]
-      pattern: "*.{fastq/fq}.gz"
-  - ch_index:
-      type: file
-      description: |
-        The input channel containing the reference genome index for bwa-mem2
-      Structure: path(reference_genome_index)
-      pattern: "Directory containing BWA index *.{amb,ann,bwt,pac,sa}"
+  - meta:
+        type: map
+        description: |
+                Groovy Map containing sample information
+                e.g. [ id:'test', single_end:false ]
+  - reads:
+        type: file
+        description: |
+                A list of input FastQ files of size 1 or 2 
+                for single-end and paired-end data, respectively
+        pattern: "*.{fastq/fq}.gz"
+  - meta2:
+        type: map
+        description: |
+                Groovy Map containing reference genome information
+                e.g. [ id:'ref_name' ]
+  - ref_index:
+        type: file
+        description: |
+                A list of BWA index reference files
+        pattern: "*.{amb,ann,bwt,pac,sa}"
 
-## List all of the channels used as output with a descriptions and their structure
 output:
-  - decontaminated_reads:
-      type: file
-      description: |
-        Channel containing the unmapped reads
-        Structure: [ val(meta), path(reads) ]
-      pattern: "*.fq.gz"
+  - meta:
+        type: map
+        description: |
+                Groovy Map containing sample information
+                e.g. [ id:'test', single_end:false ]
+  - decont_reads:
+        type: file
+        description: |
+                A list of decontaminated FastQ files of size 1 or 2
+                for single-end and paired-end data, respectively
+        pattern: "*.decont.fq.gz"
   - versions:
-      type: file
-      description: |
-        File containing software versions
+        type: file
+        description: |
+                File containing software versions
         Structure: [ path(versions.yml) ]
-      pattern: "versions.yml"
+        pattern: "versions.yml"
+
 authors:
   - "@EBI-Metagenomics"
 maintainers:

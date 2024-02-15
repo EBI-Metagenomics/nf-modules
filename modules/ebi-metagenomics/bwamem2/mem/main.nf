@@ -1,5 +1,5 @@
 process BWAMEM2_MEM {
-    tag "${meta.id}"
+    tag "${meta.id} align to ${meta2.id}"
     label 'process_high'
 
     conda "${moduleDir}/environment.yml"
@@ -10,12 +10,11 @@ process BWAMEM2_MEM {
 
     input:
         tuple val(meta), path(reads)
-        path(index_dir)
+        tuple val(meta2), path(ref_index)
 
     output:
-        tuple val(meta), path("${meta.id}_sorted.bam")    , emit: bam 
-        tuple val(meta), path("${meta.id}_sorted.bam.bai"), emit: bai
-        path  "versions.yml"                              , emit: versions
+        tuple val(meta), path("${meta.id}_sorted.bam"), path("${meta.id}_sorted.bam.bai"), emit: bam 
+        path "versions.yml"                                                              , emit: versions
 
     when:
         task.ext.when == null || task.ext.when
@@ -25,13 +24,13 @@ process BWAMEM2_MEM {
     def args2 = "-f 12 -F 256 -uS"
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    INDEX=`find -L ./ -name "*.amb" | sed 's/\\.amb\$//'`
+    DB=`find -L ./ -name "*.amb" | sed 's/\\.amb\$//'`
+    echo Using \$DB
 
-    script:
     bwa mem \\
         $args \\
         -t $task.cpus \\
-        \$INDEX \\
+        \$DB \\
         $reads \\
         | samtools view -@ ${task.cpus} $args2 - \\
         | samtools sort -@ ${task.cpus} -O bam - -o ${prefix}_sorted.bam

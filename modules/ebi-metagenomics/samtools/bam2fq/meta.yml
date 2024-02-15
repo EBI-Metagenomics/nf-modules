@@ -12,28 +12,43 @@ tools:
       documentation: http://www.htslib.org/doc/1.1/samtools.html
       licence: ["MIT"]
 input:
-  - bam:
-      type: file
-      description: sorted BAM file
-      pattern: "*_sorted.bam"
-  - bai:
-      type: file
-      description: index of BAM file
-      pattern: "*_sorted.bam.bai"
+  - meta:
+        type: map
+        description: |
+                Groovy Map containing sample information
+                e.g. [ id:'test', single_end:false ]
+  - bam_file:
+        type: file
+        description: |
+                Sorted BAM file
+        pattern: "*_sorted.bam"
+  - bai_file:
+        type: file
+        description: |
+                Index of BAM file
+        pattern: "*_sorted.bam.bai"
   - split:
-      type: boolean
-      description: |
-        TRUE/FALSE value to indicate if reads should be separated into /1, /2 for paired-end, or singleton.
+        type: boolean
+        description: |
+                TRUE/FALSE value to indicate if reads should be separated
+                into /1, /2 for paired-end, or singleton.
+
 output:
+  - meta:
+        type: map
+        description: |
+                Groovy Map containing sample information
+                e.g. [ id:'test', single_end:false ]
   - reads:
-      type: file
-      description: |
-        List of fastq files. Two files for paired-end reads and one file for single-end reads
-      pattern: "*.decont.fq.gz"
+        type: file
+        description: |
+                List of fastq files. Two files for paired-end reads and one file for single-end reads
+        pattern: "*.decont.fq.gz"
   - versions:
-      type: file
-      description: File containing software versions
-      pattern: "versions.yml"
+        type: file
+        description: |
+                File containing software versions
+        pattern: "versions.yml"
 authors:
   - "@lescai"
 maintainers:
