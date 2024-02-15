@@ -19,7 +19,6 @@ workflow READS_BWAMEM_DECONT {
 
         ch_versions = ch_versions.mix(SAMTOOLS_BAM2FQ.out.versions.first())
 
-
     emit:
         decontaminated_reads = SAMTOOLS_BAM2FQ.out.reads  // channel: [ val(meta), [ path(decont_reads) ]]
         versions = ch_versions                            // channel: [ versions.yml ]

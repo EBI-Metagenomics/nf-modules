@@ -14,7 +14,7 @@ process BWAMEM2_MEM {
     path "versions.yml"                                            , emit: versions
 
     when:
-        task.ext.when == null || task.ext.when
+    task.ext.when == null || task.ext.when
 
     script:
     def args = "-M"
@@ -36,6 +36,7 @@ process BWAMEM2_MEM {
         $reads \\
         | samtools view -@ ${task.cpus} $args2 - \\
         | samtools sort -@ ${task.cpus} -O bam - -o ${prefix}_sorted.bam
+
     samtools index -@ ${task.cpus} ${prefix}_sorted.bam
 
     cat <<-END_VERSIONS > versions.yml
