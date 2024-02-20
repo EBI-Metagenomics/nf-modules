@@ -15,14 +15,7 @@ workflow READS_BWAMEM_DECONT {
 
         ch_versions = ch_versions.mix(BWAMEM2_MEM.out.versions.first())
 
-        split = false
-        ch_reads.subscribe { 
-            if (it.size() == 2) {
-                split = true
-            }
-        }
-
-        SAMTOOLS_BAM2FQ(BWAMEM2_MEM.out.bam.map { meta, bam, bai -> [ meta, bam ] }, split)
+        SAMTOOLS_BAM2FQ(BWAMEM2_MEM.out.bam.map { meta, bam, bai -> [ meta, bam ] }, ch_reads) 
 
         ch_versions = ch_versions.mix(SAMTOOLS_BAM2FQ.out.versions.first())
         

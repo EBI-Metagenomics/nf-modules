@@ -1,5 +1,4 @@
 process SAMTOOLS_BAM2FQ {
-    tag "$meta.id"
     label 'process_low'
 
     conda "${moduleDir}/environment.yml"
@@ -9,7 +8,7 @@ process SAMTOOLS_BAM2FQ {
 
     input:
 	tuple val(meta), path(bam)
-    	val split
+    	tuple val(meta), path(reads)
 
     output:
     	tuple val(meta), path("*.decont.fq.gz"), emit: reads
@@ -19,7 +18,22 @@ process SAMTOOLS_BAM2FQ {
     task.ext.when == null || task.ext.when
 
     script:
-    if (split){
+    def prefix = task.ext.prefix ?: meta[0].id
+    def single_end = reads.collect().size() == 1
+
+    if (single_end){
+        """
+        samtools \\
+            bam2fq \\
+            -@ $task.cpus \\
+            $bam | gzip --no-name > ${prefix}.decont.fq.gz
+
+        cat <<-END_VERSIONS > versions.yml
+        "${task.process}":
+            samtools: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//')
+        END_VERSIONS
+        """
+    } else {
         """
         samtools \\
             bam2fq \\
@@ -35,17 +49,5 @@ process SAMTOOLS_BAM2FQ {
             samtools: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//')
         END_VERSIONS
         """
-    } else {
-        """
-        samtools \\
-            bam2fq \\
-            -@ $task.cpus \\
-            $bam | gzip --no-name > ${prefix}.decont.fq.gz
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            samtools: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//')
-        END_VERSIONS
-        """
-    }
+    } 
 }

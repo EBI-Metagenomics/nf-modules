@@ -1,19 +1,15 @@
 process BWAMEM2_MEM {
-    tag "${meta.id} align to ${meta2.id}"
     label 'process_high'
 
-    conda "${moduleDir}/environment.yml"
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mulled-v2-e5d375990341c5aef3c9aff74f96f66f65375ef6:6351200f24497efba12c219c2bea4bb0f69a9d47-0' :
-        'biocontainers/mulled-v2-e5d375990341c5aef3c9aff74f96f66f65375ef6:6351200f24497efba12c219c2bea4bb0f69a9d47-0' }"
+    container 'quay.io/microbiome-informatics/bwamem2:2.2.1'
 
     input:
     tuple val(meta), path(reads)
     tuple val(meta2), path(ref_index)
 
     output:
-    tuple val(meta), path("${meta.id}_sorted.bam"), path("${meta.id}_sorted.bam.bai"), emit: bam
-    path "versions.yml"                                                              , emit: versions
+    tuple val(meta), path("*_sorted.bam"), path("*_sorted.bam.bai"), emit: bam
+    path "versions.yml"                                            , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -21,15 +17,13 @@ process BWAMEM2_MEM {
     script:
     def args = "-M"
     def args2 = "-f 12 -F 256 -uS"
-    def prefix = task.ext.prefix ?: "${meta.id}"
+    def prefix = task.ext.prefix ?: meta[0].id
+    def database = task.ext.database ?: meta2[0].id
     """
-    DB=`find -L ./ -name "*.amb" | sed 's/\\.amb\$//'`
-    echo Using \$DB
-
-    bwa mem \\
+    bwa-mem2 mem \\
         $args \\
         -t $task.cpus \\
-        \$DB \\
+        $database \\
         $reads \\
         | samtools view -@ ${task.cpus} $args2 - \\
         | samtools sort -@ ${task.cpus} -O bam - -o ${prefix}_sorted.bam
