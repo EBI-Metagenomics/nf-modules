@@ -11,7 +11,7 @@ workflow READS_BWAMEM_DECONT {
     main:
         ch_versions = Channel.empty()
 
-        BWAMEM2_MEM( ch_reads, ch_reference )
+        BWAMEM2_MEM( ch_reads, ch_reference, false )
 
         ch_versions = ch_versions.mix(BWAMEM2_MEM.out.versions.first())
 

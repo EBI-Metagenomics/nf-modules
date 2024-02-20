@@ -29,6 +29,11 @@ input:
       description: |
         A list of BWA index reference files
       pattern: "*.{amb,ann,bwt,pac,sa}"
+  - align:
+      type: boolean
+      description: |
+        TRUE/FALSE value to indicate if the process
+        is for decontamination or regular alignment
 
 output:
   - meta:

@@ -27,11 +27,11 @@ input:
       description: |
         Index of BAM file
       pattern: "*_sorted.bam.bai"
-  - split:
-      type: boolean
+  - reads:
+      type: file
       description: |
-        TRUE/FALSE value to indicate if reads should be separated
-        into /1, /2 for paired-end, or singleton.
+        List of input FastQ files of size 1 and 2
+        for single-end and paired-end data, respectively.
 
 output:
   - meta:
@@ -43,7 +43,7 @@ output:
       type: file
       description: |
         List of fastq files. Two files for paired-end reads and one file for single-end reads
-      pattern: "*.decont.fq.gz"
+      pattern: "*.bwa.fq.gz"
   - versions:
       type: file
       description: |

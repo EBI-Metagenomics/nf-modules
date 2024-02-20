@@ -6,6 +6,8 @@ process BWAMEM2_MEM {
     input:
     tuple val(meta), path(reads)
     tuple val(meta2), path(ref_index)
+    val align // if true: align (include reads), else: decontaminate (exclude reads)
+
 
     output:
     tuple val(meta), path("*_sorted.bam"), path("*_sorted.bam.bai"), emit: bam
@@ -16,9 +18,16 @@ process BWAMEM2_MEM {
 
     script:
     def args = "-M"
-    def args2 = "-f 12 -F 256 -uS"
     def prefix = task.ext.prefix ?: meta[0].id
     def database = task.ext.database ?: meta2[0].id
+
+    def samtools_args = ""
+    if ( align ) {
+        args2 = "-q 20 -Sb"
+    } else {
+        args2 = "-f 12 -F 256 -uS"
+    }
+
     """
     bwa-mem2 mem \\
         $args \\

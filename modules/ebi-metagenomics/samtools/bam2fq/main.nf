@@ -11,7 +11,7 @@ process SAMTOOLS_BAM2FQ {
     	tuple val(meta), path(reads)
 
     output:
-    	tuple val(meta), path("*.decont.fq.gz"), emit: reads
+    	tuple val(meta), path("*.bwa.fq.gz"), emit: reads
     	path "versions.yml"                    , emit: versions
 
     when:
@@ -26,7 +26,7 @@ process SAMTOOLS_BAM2FQ {
         samtools \\
             bam2fq \\
             -@ $task.cpus \\
-            $bam | gzip --no-name > ${prefix}.decont.fq.gz
+            $bam | gzip --no-name > ${prefix}.bwa.fq.gz
 
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":
@@ -38,8 +38,8 @@ process SAMTOOLS_BAM2FQ {
         samtools \\
             bam2fq \\
             -@ $task.cpus \\
-            -1 ${prefix}_1.decont.fq.gz \\
-            -2 ${prefix}_2.decont.fq.gz \\
+            -1 ${prefix}_1.bwa.fq.gz \\
+            -2 ${prefix}_2.bwa.fq.gz \\
             -0 /dev/null \\
             -s /dev/null \\
             $bam
