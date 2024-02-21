@@ -1,12 +1,12 @@
 nextflow_workflow {
 
-    name "Test Subworkflow READS_BWAMEM_DECONT"
+    name "Test Subworkflow READS_BWAMEM2_DECONTAMINATON"
     script "../main.nf"
-    workflow "READS_BWAMEM_DECONT"
+    workflow "READS_BWAMEM2_DECONTAMINATON"
 
     tag "subworkflows"
     tag "subworkflows_nfcore"
-    tag "subworkflows/reads_bwamem_decont"
+    tag "subworkflows/reads_bwamem2_decontamination"
 
     // Tags for all modules used within this subworkflow
     tag "bwamem2/mem"

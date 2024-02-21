@@ -1,8 +1,8 @@
-include { BWAMEM2_MEM } from '../../../modules/ebi-metagenomics/bwamem2/mem/main'
+include { BWAMEM2_MEM     } from '../../../modules/ebi-metagenomics/bwamem2/mem/main'
 include { SAMTOOLS_BAM2FQ } from '../../../modules/ebi-metagenomics/samtools/bam2fq/main'
 
 
-workflow READS_BWAMEM_DECONT {
+workflow READS_BWAMEM2_DECONTAMINATION   {
 
     take:
         ch_reads       // channel (mandatory): [ val(meta), [ path(reads) ] ]

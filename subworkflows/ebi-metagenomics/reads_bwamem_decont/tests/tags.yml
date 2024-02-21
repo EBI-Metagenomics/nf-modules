@@ -1,2 +1,0 @@
-subworkflows/reads_bwamem_decont:
-  - subworkflows/ebi-metagenomics/reads_bwamem_decont/**
