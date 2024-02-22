@@ -1,0 +1,77 @@
+// TODO nf-core: Once you have added the required tests, please run the following command to build this file:
+// nf-core modules test mapseq2biom
+nextflow_process {
+
+    name "Test Process MAPSEQ2BIOM"
+    script "../main.nf"
+    process "MAPSEQ2BIOM"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "mapseq2biom"
+
+    test("test_silva - mseq") {
+
+        when {
+            process {
+                """                
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/test.mseq", checkIfExists: true)
+                    ]
+                input[1] = [
+                    file("${moduleDir}/tests/silva_ssu/test.fasta", checkIfExists: true),
+                    file("${moduleDir}/tests/silva_ssu/test.txt", checkIfExists: true),
+                    file("${moduleDir}/tests/silva_ssu/test.otu", checkIfExists: true),
+                    file("${moduleDir}/tests/silva_ssu/test.mscluster", checkIfExists: true),
+                    "SILVA-SSU"
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() },
+                { assert snapshot(process.out.krona_input).match("krona_input") },
+                { assert snapshot(process.out.biom_out).match("biom_out") }
+            )
+        }
+
+    }
+
+    test("test_silva - mseq - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/test.mseq", checkIfExists: true)
+                    ]
+                input[1] = [
+                    file("${moduleDir}/tests/silva_ssu/test.fasta", checkIfExists: true),
+                    file("${moduleDir}/tests/silva_ssu/test.txt", checkIfExists: true),
+                    file("${moduleDir}/tests/silva_ssu/test.otu", checkIfExists: true),
+                    file("${moduleDir}/tests/silva_ssu/test.mscluster", checkIfExists: true),
+                    "SILVA-SSU"
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() },
+                { assert snapshot(process.out.krona_input).match("krona_input") },
+                { assert snapshot(process.out.biom_out).match("biom_out") }
+            )
+        }
+
+    }
+
+}
