@@ -25,7 +25,7 @@ process BWAMEM2_MEM {
     if ( align ) {
         args2 = "-q 20 -Sb"
     } else {
-        args2 = "-f 12 -F 256 -uS"
+        args2 = "-f 4 -F 256 -uS"
     }
 
     """
