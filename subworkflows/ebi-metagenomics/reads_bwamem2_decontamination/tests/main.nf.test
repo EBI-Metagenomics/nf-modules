@@ -2,25 +2,26 @@ nextflow_workflow {
 
     name "Test Subworkflow READS_BWAMEM2_DECONTAMINATON"
     script "../main.nf"
-    workflow "READS_BWAMEM2_DECONTAMINATON"
+    workflow "READS_BWAMEM2_DECONTAMINATION"
 
     tag "subworkflows"
     tag "subworkflows_nfcore"
     tag "subworkflows/reads_bwamem2_decontamination"
-
-    // Tags for all modules used within this subworkflow
     tag "bwamem2/mem"
     tag "samtools/bam2fq"
 
-    test("Illumina paired_end decontamination with human") {
+    test("paired_end decontamination") {
         when {
             workflow {
                 """
-                // Define inputs of the workflow:
-                input[0] = [ [ id:'test', [fastq_1, fastq_2] ], // meta map
-                        file(params.test_data['bifido_illumina']['reads'], checkIfExists: true)
-                        ]
-                input[1] = [ file(params.test_data['human_ch1']['genome']['genome_index'], checkIfExists: true)]
+                input[0] = Channel.of([
+			[ id:'test' ], // meta map
+			[ file('/hps/nobackup/rdf/metagenomics/service-team/projects/finding-pheno/shallow_shotgun/nf_tool/decont_subwf_test/local_data_test/input_reads/mock_1_R1.fastq.gz', checkIfExists: true),
+			  file('/hps/nobackup/rdf/metagenomics/service-team/projects/finding-pheno/shallow_shotgun/nf_tool/decont_subwf_test/local_data_test/input_reads/mock_1_R2.fastq.gz', checkIfExists: true)] // list of raw-reads
+                ])
+
+                input[1] = Channel.fromPath("/hps/nobackup/rdf/metagenomics/service-team/projects/finding-pheno/shallow_shotgun/nf_tool/decont_subwf_test/local_data_test/database_indices/MGYG000317500.fna*", checkIfExists: true).collect().map { db_files -> [ [ ["id": "MGYG000317500.fna"] ], db_files ]}
+
                 """
             }
         }
@@ -29,12 +30,12 @@ nextflow_workflow {
             assertAll(
                 { assert workflow.success},
                 { assert snapshot(workflow.out.decontaminated_reads[0][1].findAll {
-                    file(it).name != "test_1.decont.fq.gz" &&
-                    file(it).name != "test_2.decont.fq.gz"  }).match()},
+                    file(it).name != "test_1.bwa.fq.gz" &&
+                    file(it).name != "test_2.bwa.fq.gz"  }).match()},
                 { assert file(workflow.out.decontaminated_reads[0][1].find {
-                    file(it).name == "test_1.decont.fq.gz" }).exists() },
+                    file(it).name == "test_1.bwa.fq.gz" }).exists() },
                 { assert file(workflow.out.decontaminated_reads[0][1].find {
-                    file(it).name == "test_2.decont.fq.gz" }).exists() },
+                    file(it).name == "test_2.bwa.fq.gz" }).exists() },
                 { assert snapshot(workflow.out.versions).match("versions") }
             )
         }
