@@ -1,10 +1,35 @@
 {
-    "versions": {
+    "Illumina paired_end decontamination with MGYG000317500": {
         "content": [
-            [
-                
-            ]
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_interleaved.fq.gz:md5,659ad5349e9c4feae7e0df70b5be31d6"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,98561f4229a379b4f71eef3c21e66b48",
+                    "versions.yml:md5,e4e3dce9e83da56b345251a1a376f814"
+                ],
+                "decontaminated_reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_interleaved.fq.gz:md5,659ad5349e9c4feae7e0df70b5be31d6"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,98561f4229a379b4f71eef3c21e66b48",
+                    "versions.yml:md5,e4e3dce9e83da56b345251a1a376f814"
+                ]
+            }
         ],
-        "timestamp": "2024-02-22T12:02:01.880623843"
+        "timestamp": "2024-02-24T00:03:49.560099"
     }
 }

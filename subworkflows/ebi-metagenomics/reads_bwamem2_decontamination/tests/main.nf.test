@@ -1,8 +1,9 @@
 nextflow_workflow {
 
-    name "Test Subworkflow READS_BWAMEM2_DECONTAMINATON"
+    name "Test Subworkflow READS_BWAMEM2_DECONTAMINATION"
     script "../main.nf"
     workflow "READS_BWAMEM2_DECONTAMINATION"
+    config "subworkflows/ebi-metagenomics/reads_bwamem2_decontamination/tests/nextflow.config"
 
     tag "subworkflows"
     tag "subworkflows_nfcore"
@@ -10,33 +11,38 @@ nextflow_workflow {
     tag "bwamem2/mem"
     tag "samtools/bam2fq"
 
-    test("paired_end decontamination") {
+    test("Illumina paired_end decontamination with MGYG000317500") {
+
         when {
             workflow {
                 """
+                // Define inputs of the workflow:
                 input[0] = Channel.of([
-			[ id:'test' ], // meta map
-			[ file('/hps/nobackup/rdf/metagenomics/service-team/projects/finding-pheno/shallow_shotgun/nf_tool/decont_subwf_test/local_data_test/input_reads/mock_1_R1.fastq.gz', checkIfExists: true),
-			  file('/hps/nobackup/rdf/metagenomics/service-team/projects/finding-pheno/shallow_shotgun/nf_tool/decont_subwf_test/local_data_test/input_reads/mock_1_R2.fastq.gz', checkIfExists: true)] // list of raw-reads
+                    [ id: "test", single_end: false ],
+                    [
+                        file("${baseDir}/subworkflows/ebi-metagenomics/reads_bwamem2_decontamination/tests/data/test_R1.fastq.gz", checkIfExists: true),
+                        file("${baseDir}/subworkflows/ebi-metagenomics/reads_bwamem2_decontamination/tests/data/test_R2.fastq.gz", checkIfExists: true)
+                    ]
                 ])
-
-                input[1] = Channel.fromPath("/hps/nobackup/rdf/metagenomics/service-team/projects/finding-pheno/shallow_shotgun/nf_tool/decont_subwf_test/local_data_test/database_indices/MGYG000317500.fna*", checkIfExists: true).collect().map { db_files -> [ [ ["id": "MGYG000317500.fna"] ], db_files ]}
-
+                input[1] = Channel.of([
+                    [ id: "MGYG000317500" ],
+                    [
+                        file("${baseDir}/subworkflows/ebi-metagenomics/reads_bwamem2_decontamination/tests/data/MGYG000317500.fna", checkIfExists: true),
+                        file("${baseDir}/subworkflows/ebi-metagenomics/reads_bwamem2_decontamination/tests/data/MGYG000317500.fna.0123", checkIfExists: true),
+                        file("${baseDir}/subworkflows/ebi-metagenomics/reads_bwamem2_decontamination/tests/data/MGYG000317500.fna.amb", checkIfExists: true),
+                        file("${baseDir}/subworkflows/ebi-metagenomics/reads_bwamem2_decontamination/tests/data/MGYG000317500.fna.ann", checkIfExists: true),
+                        file("${baseDir}/subworkflows/ebi-metagenomics/reads_bwamem2_decontamination/tests/data/MGYG000317500.fna.bwt.2bit.64", checkIfExists: true),
+                        file("${baseDir}/subworkflows/ebi-metagenomics/reads_bwamem2_decontamination/tests/data/MGYG000317500.fna.pac", checkIfExists: true)
+                    ]
+                ])
                 """
             }
         }
 
         then {
             assertAll(
-                { assert workflow.success},
-                { assert snapshot(workflow.out.decontaminated_reads[0][1].findAll {
-                    file(it).name != "test_1.bwa.fq.gz" &&
-                    file(it).name != "test_2.bwa.fq.gz"  }).match()},
-                { assert file(workflow.out.decontaminated_reads[0][1].find {
-                    file(it).name == "test_1.bwa.fq.gz" }).exists() },
-                { assert file(workflow.out.decontaminated_reads[0][1].find {
-                    file(it).name == "test_2.bwa.fq.gz" }).exists() },
-                { assert snapshot(workflow.out.versions).match("versions") }
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
             )
         }
     }

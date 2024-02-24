@@ -1,13 +1,14 @@
 process BWAMEM2_MEM {
     label 'process_high'
 
-    container 'quay.io/microbiome-informatics/bwamem2:2.2.1'
+    conda "${moduleDir}/environment.yml"
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/mulled-v2-e5d375990341c5aef3c9aff74f96f66f65375ef6:2d15960ccea84e249a150b7f5d4db3a42fc2d6c3-0' :
+        'biocontainers/mulled-v2-e5d375990341c5aef3c9aff74f96f66f65375ef6:2d15960ccea84e249a150b7f5d4db3a42fc2d6c3-0' }"
 
     input:
     tuple val(meta), path(reads)
-    tuple val(meta2), path(ref_index)
-    val align // if true: align (include reads), else: decontaminate (exclude reads)
-
+    tuple val(meta2), path(index)
 
     output:
     tuple val(meta), path("*_sorted.bam"), path("*_sorted.bam.bai"), emit: bam
@@ -17,22 +18,18 @@ process BWAMEM2_MEM {
     task.ext.when == null || task.ext.when
 
     script:
-    def args = "-M"
-    def prefix = task.ext.prefix ?: meta[0].id
-    def database = task.ext.database ?: meta2[0].id
-
-    def samtools_args = ""
-    if ( align ) {
-        args2 = "-q 20 -Sb"
-    } else {
-        args2 = "-f 4 -F 256 -uS"
-    }
-
+    def args = task.ext.args ?: ''
+    def args2 = task.ext.args2 ?: ''
+    def prefix = task.ext.prefix ?: meta.id
+    def database = task.ext.database ?: meta2.id
     """
-    bwa-mem2 mem \\
+    INDEX=`find -L ./ -name "*.amb" | sed 's/\\.amb\$//'`
+
+    bwa-mem2 \\
+        mem \\
         $args \\
         -t $task.cpus \\
-        $database \\
+        \$INDEX \\
         $reads \\
         | samtools view -@ ${task.cpus} $args2 - \\
         | samtools sort -@ ${task.cpus} -O bam - -o ${prefix}_sorted.bam
