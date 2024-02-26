@@ -8,7 +8,8 @@ process SAMTOOLS_BAM2FQ {
         'biocontainers/samtools:1.19.2--h50ea8bc_0' }"
 
     input:
-    tuple val(meta), path(inputbam), val(split)
+    tuple val(meta), path(inputbam)
+    val(split)
 
     output:
     tuple val(meta), path("*.fq.gz"), emit: reads
