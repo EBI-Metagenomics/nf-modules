@@ -46,4 +46,41 @@ nextflow_workflow {
             )
         }
     }
+
+
+    test("Illumina single_end decontamination with MGYG000317500") {
+
+        when {
+            workflow {
+                """
+                // Define inputs of the workflow:
+                input[0] = Channel.of([
+                    [ id: "test", single_end: true ],
+                    [
+                        file("${baseDir}/subworkflows/ebi-metagenomics/reads_bwamem2_decontamination/tests/data/test_R1.fastq.gz", checkIfExists: true)
+                    ]
+                ])
+
+                input[1] = Channel.of([
+                    [ id: "MGYG000317500" ],
+                    [
+                        file("${baseDir}/subworkflows/ebi-metagenomics/reads_bwamem2_decontamination/tests/data/MGYG000317500.fna", checkIfExists: true),
+                        file("${baseDir}/subworkflows/ebi-metagenomics/reads_bwamem2_decontamination/tests/data/MGYG000317500.fna.0123", checkIfExists: true),
+                        file("${baseDir}/subworkflows/ebi-metagenomics/reads_bwamem2_decontamination/tests/data/MGYG000317500.fna.amb", checkIfExists: true),
+                        file("${baseDir}/subworkflows/ebi-metagenomics/reads_bwamem2_decontamination/tests/data/MGYG000317500.fna.ann", checkIfExists: true),
+                        file("${baseDir}/subworkflows/ebi-metagenomics/reads_bwamem2_decontamination/tests/data/MGYG000317500.fna.bwt.2bit.64", checkIfExists: true),
+                        file("${baseDir}/subworkflows/ebi-metagenomics/reads_bwamem2_decontamination/tests/data/MGYG000317500.fna.pac", checkIfExists: true)
+                    ]
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
 }
