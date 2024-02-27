@@ -13,7 +13,7 @@ workflow READS_BWAMEM2_DECONTAMINATION   {
 
     ch_versions = Channel.empty()
 
-    // Run bwamem2 indexing the reference if needed
+    // Checking if the bwamem2 index files are present
     def expected_index_files = [".0123", ".amb", ".ann", ".bwt.2bit.64", "pac"]
 
     def index_files = expected_index_files.any { pattern ->
