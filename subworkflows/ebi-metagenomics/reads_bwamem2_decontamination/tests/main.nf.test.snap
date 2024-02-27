@@ -12,6 +12,7 @@
                     ]
                 ],
                 "1": [
+                    "versions.yml:md5,5fb7876004d2aa46e66fa566284a0850",
                     "versions.yml:md5,98561f4229a379b4f71eef3c21e66b48",
                     "versions.yml:md5,e4e3dce9e83da56b345251a1a376f814"
                 ],
@@ -25,12 +26,48 @@
                     ]
                 ],
                 "versions": [
+                    "versions.yml:md5,5fb7876004d2aa46e66fa566284a0850",
                     "versions.yml:md5,98561f4229a379b4f71eef3c21e66b48",
                     "versions.yml:md5,e4e3dce9e83da56b345251a1a376f814"
                 ]
             }
         ],
-        "timestamp": "2024-02-26T22:05:23.411069973"
+        "timestamp": "2024-02-27T14:01:34.429549027"
+    },
+    "Illumina single_end decontamination with MGYG000317500 and no indexed files": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_interleaved.fq.gz:md5,273909d939fd2e0919fb0b6293a78128"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,5fb7876004d2aa46e66fa566284a0850",
+                    "versions.yml:md5,98561f4229a379b4f71eef3c21e66b48",
+                    "versions.yml:md5,e4e3dce9e83da56b345251a1a376f814"
+                ],
+                "decontaminated_reads": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_interleaved.fq.gz:md5,273909d939fd2e0919fb0b6293a78128"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,5fb7876004d2aa46e66fa566284a0850",
+                    "versions.yml:md5,98561f4229a379b4f71eef3c21e66b48",
+                    "versions.yml:md5,e4e3dce9e83da56b345251a1a376f814"
+                ]
+            }
+        ],
+        "timestamp": "2024-02-27T14:02:11.868219474"
     },
     "Illumina paired_end decontamination with MGYG000317500": {
         "content": [
@@ -50,6 +87,7 @@
                     ]
                 ],
                 "1": [
+                    "versions.yml:md5,5fb7876004d2aa46e66fa566284a0850",
                     "versions.yml:md5,98561f4229a379b4f71eef3c21e66b48",
                     "versions.yml:md5,e4e3dce9e83da56b345251a1a376f814"
                 ],
@@ -68,11 +106,12 @@
                     ]
                 ],
                 "versions": [
+                    "versions.yml:md5,5fb7876004d2aa46e66fa566284a0850",
                     "versions.yml:md5,98561f4229a379b4f71eef3c21e66b48",
                     "versions.yml:md5,e4e3dce9e83da56b345251a1a376f814"
                 ]
             }
         ],
-        "timestamp": "2024-02-26T15:48:02.682025683"
+        "timestamp": "2024-02-27T14:00:41.5883599"
     }
 }
