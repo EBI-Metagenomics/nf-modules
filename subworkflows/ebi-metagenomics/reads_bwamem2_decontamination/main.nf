@@ -20,7 +20,7 @@ workflow READS_BWAMEM2_DECONTAMINATION   {
             ch_reference.map { meta2, ref_index -> ref_index.find { file -> file.endsWith(pattern) } != null }
     }
 
-    if (index_files.isEmpty()) {
+    if (index_files) {
         reference_fasta = ch_reference.map { meta2, ref_index -> [ meta2, ref_index[0]] }
         BWAMEM2_INDEX(reference_fasta)
         ch_versions = ch_versions.mix(BWAMEM2_INDEX.out.versions)
