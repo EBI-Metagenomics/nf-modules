@@ -21,12 +21,10 @@ input:
       type: file
       description: |
         Sorted BAM file
-      pattern: "*_sorted.bam"
   - bai_file:
       type: file
       description: |
         Index of BAM file
-      pattern: "*_sorted.bam.bai"
   - reads:
       type: file
       description: |
@@ -48,12 +46,11 @@ output:
       type: file
       description: |
         List of fastq files. Two files for paired-end reads and one file for single-end reads
-      pattern: "*.bwa.fq.gz"
   - versions:
       type: file
       description: |
         File containing software versions
-      pattern: "versions.yml"
+
 authors:
   - "@lescai"
 maintainers:
