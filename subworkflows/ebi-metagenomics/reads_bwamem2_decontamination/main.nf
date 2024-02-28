@@ -1,9 +1,8 @@
 include { BWAMEM2_MEM     } from '../../../modules/ebi-metagenomics/bwamem2/mem/main'
-include { BWAMEM2_INDEX   } from '../../../modules/ebi-metagenomics/bwamem2/index/main'
 include { SAMTOOLS_BAM2FQ } from '../../../modules/ebi-metagenomics/samtools/bam2fq/main'
 
 
-workflow READS_BWAMEM2_DECONTAMINATION   {
+workflow READS_BWAMEM2_DECONTAMINATION {
 
     take:
     ch_reads       // channel (mandatory): [ val(meta), [ path(reads) ] ]
@@ -20,8 +19,7 @@ workflow READS_BWAMEM2_DECONTAMINATION   {
         .multiMap { meta, bam, bai ->
             bam: [ meta, bam ],
             split: meta.single_end == false
-        }
-        .set { ch_in_bam2fq }
+        } .set { ch_in_bam2fq }
 
     SAMTOOLS_BAM2FQ( ch_in_bam2fq.bam, ch_in_bam2fq.split )
     ch_versions = ch_versions.mix(SAMTOOLS_BAM2FQ.out.versions.first())
