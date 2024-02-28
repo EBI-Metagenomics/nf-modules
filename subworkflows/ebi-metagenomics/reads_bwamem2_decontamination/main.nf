@@ -21,14 +21,14 @@ workflow READS_BWAMEM2_DECONTAMINATION   {
     }
 
     if (index_files) {
+        BWAMEM2_MEM(ch_reads, ch_reference)
+        ch_versions = ch_versions.mix(BWAMEM2_MEM.out.versions.first())
+    } else {
         reference_fasta = ch_reference.map { meta2, ref_index -> [ meta2, ref_index[0]] }
         BWAMEM2_INDEX(reference_fasta)
         ch_versions = ch_versions.mix(BWAMEM2_INDEX.out.versions)
 
         BWAMEM2_MEM(ch_reads, BWAMEM2_INDEX.out.index)
-        ch_versions = ch_versions.mix(BWAMEM2_MEM.out.versions.first())
-    } else {
-        BWAMEM2_MEM(ch_reads, ch_reference)
         ch_versions = ch_versions.mix(BWAMEM2_MEM.out.versions.first())
     }
 
