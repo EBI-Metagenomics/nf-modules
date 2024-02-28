@@ -14,13 +14,16 @@ workflow READS_BWAMEM2_DECONTAMINATION   {
     ch_versions = Channel.empty()
 
     // Checking if the bwamem2 index files are present
-    def expected_index_files = [".0123", ".amb", ".ann", ".bwt.2bit.64", "pac"]
+    def expected_index_files = [".0123", ".amb", ".ann", ".bwt.2bit.64", ".pac"]
 
-    def index_files = expected_index_files.any { pattern ->
-            ch_reference.map { meta2, ref_index -> ref_index.find { file -> file.endsWith(pattern) } != null }
-    }
+    def index_files_count = expected_index_files.count { pattern ->
+        ch_reference.map { meta2, ref_index -> ref_index.count { file -> file.endsWith(pattern) } }.sum()
+    }    
 
-    if (index_files) {
+    println index_files_count
+    ch_reference.view()
+
+    if (index_files_count == expected_index_files.size()) {
         BWAMEM2_MEM(ch_reads, ch_reference)
         ch_versions = ch_versions.mix(BWAMEM2_MEM.out.versions.first())
     } else {
