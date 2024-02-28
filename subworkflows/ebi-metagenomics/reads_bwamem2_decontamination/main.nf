@@ -19,17 +19,14 @@ workflow READS_BWAMEM2_DECONTAMINATION {
     BWAMEM2_MEM.out.bam
         .multiMap { meta, bam, bai ->
             bam: [ meta, bam, meta.single_end == false ]
-        } 
+        }
         .set { ch_in_bam2fq }
 
     SAMTOOLS_BAM2FQ( ch_in_bam2fq.bam )
     ch_versions = ch_versions.mix(SAMTOOLS_BAM2FQ.out.versions.first())
-   
+
     emit:
     decontaminated_reads = SAMTOOLS_BAM2FQ.out.reads  // channel: [ val(meta), [ path(decont_reads) ]]
     versions = ch_versions                            // channel: [ versions.yml ]
 
 }
-
-
-
