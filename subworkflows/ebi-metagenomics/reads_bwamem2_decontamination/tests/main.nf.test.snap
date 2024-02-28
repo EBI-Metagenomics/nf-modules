@@ -8,7 +8,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test_interleaved.fq.gz:md5,d3e22fc7e4b3eaf6bb29f73c1db8ab67"
+                        "test_interleaved.fq.gz:md5,273909d939fd2e0919fb0b6293a78128"
                     ]
                 ],
                 "1": [
@@ -21,7 +21,7 @@
                             "id": "test",
                             "single_end": true
                         },
-                        "test_interleaved.fq.gz:md5,d3e22fc7e4b3eaf6bb29f73c1db8ab67"
+                        "test_interleaved.fq.gz:md5,273909d939fd2e0919fb0b6293a78128"
                     ]
                 ],
                 "versions": [
@@ -30,7 +30,7 @@
                 ]
             }
         ],
-        "timestamp": "2024-02-28T13:53:27.82003"
+        "timestamp": "2024-02-28T15:03:08.981546608"
     },
     "Illumina paired_end decontamination with MGYG000317500": {
         "content": [
@@ -42,10 +42,10 @@
                             "single_end": false
                         },
                         [
-                            "test_1.fq.gz:md5,8eaf1bcef3286c45c03044770aabb305",
-                            "test_2.fq.gz:md5,819439578ddfdbb322aba906861689b3",
-                            "test_other.fq.gz:md5,709872fc2910431b1e8b7074bfe38c67",
-                            "test_singleton.fq.gz:md5,40e275e2b2556e7812f2700e0aa46ecf"
+                            "test_1.fq.gz:md5,376ebcb72b7859bdaf0417041ddc6ca7",
+                            "test_2.fq.gz:md5,75db2027c9071c41f2a46a53b0aa311a",
+                            "test_other.fq.gz:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_singleton.fq.gz:md5,5f43a3bb2af2f46ead48e60e3bd304a0"
                         ]
                     ]
                 ],
@@ -60,10 +60,10 @@
                             "single_end": false
                         },
                         [
-                            "test_1.fq.gz:md5,8eaf1bcef3286c45c03044770aabb305",
-                            "test_2.fq.gz:md5,819439578ddfdbb322aba906861689b3",
-                            "test_other.fq.gz:md5,709872fc2910431b1e8b7074bfe38c67",
-                            "test_singleton.fq.gz:md5,40e275e2b2556e7812f2700e0aa46ecf"
+                            "test_1.fq.gz:md5,376ebcb72b7859bdaf0417041ddc6ca7",
+                            "test_2.fq.gz:md5,75db2027c9071c41f2a46a53b0aa311a",
+                            "test_other.fq.gz:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_singleton.fq.gz:md5,5f43a3bb2af2f46ead48e60e3bd304a0"
                         ]
                     ]
                 ],
@@ -73,6 +73,6 @@
                 ]
             }
         ],
-        "timestamp": "2024-02-28T13:53:15.083696"
+        "timestamp": "2024-02-28T15:02:32.532036989"
     }
 }
