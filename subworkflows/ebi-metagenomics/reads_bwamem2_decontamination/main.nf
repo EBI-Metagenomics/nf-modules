@@ -16,13 +16,7 @@ workflow READS_BWAMEM2_DECONTAMINATION {
     BWAMEM2_MEM(ch_reads, ch_reference)
     ch_versions = ch_versions.mix(BWAMEM2_MEM.out.versions.first())
 
-    BWAMEM2_MEM.out.bam
-        .multiMap { meta, bam, bai ->
-            bam: [ meta, bam, meta.single_end == false ]
-        }
-        .set { ch_in_bam2fq }
-
-    SAMTOOLS_BAM2FQ( ch_in_bam2fq.bam )
+    SAMTOOLS_BAM2FQ( BWAMEM2_MEM.out.bam.map { meta, bam, _ -> [ meta, bam, meta.single_end == false ] } )
     ch_versions = ch_versions.mix(SAMTOOLS_BAM2FQ.out.versions.first())
 
     emit:
