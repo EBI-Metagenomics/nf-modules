@@ -41,7 +41,9 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out).match() }
+                // gzip stores extra information in the header, which makes comparing checksums impossible between operating systems.
+                // that is why we use the sizes of files, and that sort of thing
+                { assert path(workflow.out.decontaminated_reads.get(0).get(1).get(0)).linesGzip.size() == 374028 }
             )
         }
     }
