@@ -28,11 +28,6 @@ input:
       type: file
       description: |
         A list of BWA index reference files
-  - align:
-      type: boolean
-      description: |
-        TRUE/FALSE value to indicate if the process
-        is for decontamination or regular alignment
 
 output:
   - meta:
