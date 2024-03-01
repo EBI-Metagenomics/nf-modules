@@ -1,0 +1,57 @@
+name: samtools_bam2fq
+description: |
+  The module uses bam2fq method from samtools to
+  convert a SAM, BAM or CRAM file to FASTQ format
+keywords:
+  - bam2fq
+  - samtools
+  - fastq
+tools:
+  - samtools:
+      description: Tools for dealing with SAM, BAM and CRAM files
+      documentation: http://www.htslib.org/doc/1.1/samtools.html
+      licence: ["MIT"]
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - bam_file:
+      type: file
+      description: |
+        Sorted BAM file
+  - bai_file:
+      type: file
+      description: |
+        Index of BAM file
+  - reads:
+      type: file
+      description: |
+        List of input FastQ files of size 1 and 2
+        for single-end and paired-end data, respectively.
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - reads:
+      type: file
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - reads:
+      type: file
+      description: |
+        List of fastq files. Two files for paired-end reads and one file for single-end reads
+  - versions:
+      type: file
+      description: |
+        File containing software versions
+
+authors:
+  - "@lescai"
+maintainers:
+  - "@lescai"
