@@ -45,7 +45,6 @@ output:
       description: |
         A list of decontaminated FastQ files of size 1 or 2
         for single-end and paired-end data, respectively
-      pattern: "*.decont.fq.gz"
   - versions:
       type: file
       description: |
