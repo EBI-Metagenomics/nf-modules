@@ -11,8 +11,10 @@ process SAMTOOLS_BAM2FQ {
     tuple val(meta), path(inputbam), val(split)
 
     output:
-    tuple val(meta), path("*.fq.gz"), emit: reads
-    path "versions.yml"             , emit: versions
+    tuple val(meta), path("*{_1,_2,_interleaved}.fq.gz"),         emit: reads
+    tuple val(meta), path("*_singleton.fq.gz"),   optional: true, emit: singleton_reads
+    tuple val(meta), path("*_other.fq.gz"),       optional: true, emit: other_reads
+    path "versions.yml",                                          emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -29,8 +31,8 @@ process SAMTOOLS_BAM2FQ {
             -@ $task.cpus \\
             -1 ${prefix}_1.fq.gz \\
             -2 ${prefix}_2.fq.gz \\
-            -0 /dev/null \\
-            -s /dev/null \\
+            -0 ${prefix}_other.fq.gz \\
+            -s ${prefix}_singleton.fq.gz \\
             $inputbam
 
         cat <<-END_VERSIONS > versions.yml

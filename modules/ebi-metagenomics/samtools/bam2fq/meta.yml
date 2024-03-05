@@ -21,15 +21,11 @@ input:
       type: file
       description: |
         Sorted BAM file
-  - bai_file:
-      type: file
+  - split:
+      type: boolean
       description: |
-        Index of BAM file
-  - reads:
-      type: file
-      description: |
-        List of input FastQ files of size 1 and 2
-        for single-end and paired-end data, respectively.
+        True or false indicating whether the output
+        is for single or paired-end reads
 
 output:
   - meta:
@@ -40,18 +36,21 @@ output:
   - reads:
       type: file
       description: |
-        Groovy Map containing sample information
-        e.g. [ id:'test', single_end:false ]
-  - reads:
+        List of fastq files. Two files for paired-end reads and one file for single-end reads
+  - singleton_reads:
       type: file
       description: |
-        List of fastq files. Two files for paired-end reads and one file for single-end reads
+        Fastq files generated for unpaired paired-end reads
+  - other_reads:
+      type: file
+      description: | 
+        Other fastq files generated for paired-end reads
   - versions:
       type: file
       description: |
         File containing software versions
 
 authors:
-  - "@lescai"
+  - "@EBI-Metagenomics"
 maintainers:
-  - "@lescai"
+  - "@EBI-Metagenomics"
