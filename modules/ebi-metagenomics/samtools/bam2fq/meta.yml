@@ -43,7 +43,7 @@ output:
         Fastq files generated for unpaired paired-end reads
   - other_reads:
       type: file
-      description: | 
+      description: |
         Other fastq files generated for paired-end reads
   - versions:
       type: file
