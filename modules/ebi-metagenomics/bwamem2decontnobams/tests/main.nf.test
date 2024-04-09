@@ -6,9 +6,7 @@ nextflow_workflow {
 
     tag "modules"
     tag "modules_nfcore"
-    tag "modules/bwamem2decontnobams"
-    tag "bwamem2/mem"
-    tag "samtools/bam2fq"
+    tag "bwamem2decontnobams"
 
     test("Illumina paired_end decontamination with MGYG000317500") {
         when {
