@@ -22,6 +22,7 @@ process BWAMEM2DECONTNOBAMS {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def ref_prefix = task.ext.ref_prefix ?: "${meta2.id}"
     """
     INDEX=`find -L ./ -name "*.amb" | sed 's/\\.amb\$//'`
     if [[ "${meta.single_end}" == "true" ]]; then
@@ -33,7 +34,7 @@ process BWAMEM2DECONTNOBAMS {
             $reads \\
             | samtools view -@ ${task.cpus} -f 4 -F 256 -uS - \\
             | samtools sort -@ ${task.cpus} -n -O bam - \\
-            | samtools bam2fq -@ $task.cpus - | gzip --no-name > ${prefix}_interleaved.fq.gz
+            | samtools bam2fq -@ $task.cpus - | gzip --no-name > ${ref_prefix}_${prefix}_interleaved.fq.gz
     else
         bwa-mem2 \\
             mem \\
@@ -43,7 +44,7 @@ process BWAMEM2DECONTNOBAMS {
             $reads \\
             | samtools view -@ ${task.cpus} -f 4 -F 256 -uS - \\
             | samtools sort -@ ${task.cpus} -n -O bam - \\
-            | samtools bam2fq -@ ${task.cpus} -1 ${prefix}_1.fq.gz -2 ${prefix}_2.fq.gz -0 /dev/null -s /dev/null
+            | samtools bam2fq -@ ${task.cpus} -1 ${ref_prefix}_${prefix}_1.fq.gz -2 ${ref_prefix}_${prefix}_2.fq.gz -0 /dev/null -s /dev/null
     fi
 
     cat <<-END_VERSIONS > versions.yml
