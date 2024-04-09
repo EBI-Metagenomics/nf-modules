@@ -1,13 +1,12 @@
 nextflow_workflow {
 
-    name "Test Subworkflow READS_BWAMEM2_DECONTAMINATION"
+    name "Test module bwamem2decontnobams"
     script "../main.nf"
-    workflow "READS_BWAMEM2_DECONTAMINATION"
-    config "subworkflows/ebi-metagenomics/reads_bwamem2_decontamination/tests/nextflow.config"
+    workflow "BWAMEM2DECONTNOBAMS"
 
-    tag "subworkflows"
-    tag "subworkflows_nfcore"
-    tag "subworkflows/reads_bwamem2_decontamination"
+    tag "modules"
+    tag "modules_nfcore"
+    tag "modules/bwamem2decontnobams"
     tag "bwamem2/mem"
     tag "samtools/bam2fq"
 

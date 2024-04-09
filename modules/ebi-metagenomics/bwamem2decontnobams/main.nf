@@ -5,7 +5,7 @@ process BWAMEM2DECONTNOBAMS {
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/bwa-mem2:2.2.1--hd03093a_5':
-        'quay.io/biocontainers/bwa-mem2:2.2.1--hd03093a_5' }"
+        'biocontainers/bwa-mem2:2.2.1--hd03093a_5' }"
 
     input:
     tuple val(meta), path(reads)
