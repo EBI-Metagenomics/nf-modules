@@ -5,7 +5,8 @@ nextflow_process {
     name "Test Process MAPSEQ2BIOM"
     script "../main.nf"
     process "MAPSEQ2BIOM"
-
+    config "./nextflow.config"
+    
     tag "modules"
     tag "modules_nfcore"
     tag "mapseq2biom"
