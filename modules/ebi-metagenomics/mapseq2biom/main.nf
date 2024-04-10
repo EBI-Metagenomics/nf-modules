@@ -24,17 +24,17 @@ process MAPSEQ2BIOM {
 
     """
     mapseq2biom \
-        $args
+        $args \
         --krona ${prefix}.txt \
         --no-tax-id-file ${prefix}.notaxid.tsv \
-        --label $label \
-        --query ${mapseq_out} \
+        --label $db_label \
+        --query $msq \
         --otu-table ${db_otu} \
         --out-file ${prefix}.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        mapseq2biom: 0.1.0
+        mapseq2biom: 0.1.1
     END_VERSIONS
     """
 
@@ -49,7 +49,7 @@ process MAPSEQ2BIOM {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        mapseq2biom: 0.1.0
+        mapseq2biom: 0.1.1
     END_VERSIONS
     """
 }
