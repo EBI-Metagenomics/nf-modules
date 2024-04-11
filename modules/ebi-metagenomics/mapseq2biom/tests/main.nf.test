@@ -20,10 +20,7 @@ nextflow_process {
                     file("${moduleDir}/tests/test.mseq", checkIfExists: true)
                     ]
                 input[1] = [
-                    file("${moduleDir}/tests/silva_ssu/test.fasta", checkIfExists: true),
-                    file("${moduleDir}/tests/silva_ssu/test.txt", checkIfExists: true),
                     file("${moduleDir}/tests/silva_ssu/test.otu", checkIfExists: true),
-                    file("${moduleDir}/tests/silva_ssu/test.mscluster", checkIfExists: true),
                     "SILVA-SSU"
                 ]
                 """
@@ -33,10 +30,7 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() },
-                { assert snapshot(process.out.krona_input).match("krona_input") },
-                { assert snapshot(process.out.biom_out).match("biom_out") },
-                { assert snapshot(process.out.biom_out).match("biom_notaxid_out") }
+                { assert snapshot(process.out).match() }
             )
         }
 
@@ -54,10 +48,7 @@ nextflow_process {
                     file("${moduleDir}/tests/test.mseq", checkIfExists: true)
                     ]
                 input[1] = [
-                    file("${moduleDir}/tests/silva_ssu/test.fasta", checkIfExists: true),
-                    file("${moduleDir}/tests/silva_ssu/test.txt", checkIfExists: true),
                     file("${moduleDir}/tests/silva_ssu/test.otu", checkIfExists: true),
-                    file("${moduleDir}/tests/silva_ssu/test.mscluster", checkIfExists: true),
                     "SILVA-SSU"
                 ]
                 """
@@ -67,10 +58,7 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() },
-                { assert snapshot(process.out.krona_input).match("krona_input_stub") },
-                { assert snapshot(process.out.biom_out).match("biom_out_stub") },
-                { assert snapshot(process.out.biom_out).match("biom_notaxid_out_stub") }
+                { assert snapshot(process.out).match() }
             )
         }
 

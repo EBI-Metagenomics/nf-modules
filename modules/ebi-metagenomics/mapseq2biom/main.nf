@@ -10,7 +10,7 @@ process MAPSEQ2BIOM {
 
     input:
     tuple val(meta), path(msq)
-    tuple path(db_fasta), path(db_tax), path(db_otu), path(db_mscluster), val(db_label)
+    tuple path(db_otu), val(db_label)
 
     output:
     tuple val(meta), path("${meta.id}.txt")         , emit: krona_input
@@ -25,14 +25,13 @@ process MAPSEQ2BIOM {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
 
-
     """
     mapseq2biom \
-        $args \
+        ${args} \
         --krona ${prefix}.txt \
         --no-tax-id-file ${prefix}.notaxid.tsv \
-        --label $db_label \
-        --query $msq \
+        --label ${db_label} \
+        --query ${msq} \
         --otu-table ${db_otu} \
         --out-file ${prefix}.tsv
 

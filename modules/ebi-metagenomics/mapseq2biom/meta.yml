@@ -16,7 +16,6 @@ tools:
       licence: ["Apache-2.0"]
 
 input:
-  # Only when we have meta
   - meta:
       type: map
       description: |
@@ -26,28 +25,15 @@ input:
       type: file
       description: MAPseq output file
       pattern: "*.mseq"
-  - db_fasta:
-      type: file
-      description: Processed reference database fasta file
-      pattern: "*.{fasta, fasta.gz}"
-  - db_tax:
-      type: file
-      description: Processed reference database taxonomy file
-      pattern: "*.txt"
   - db_otu:
       type: file
       description: Processed reference database otu file
       pattern: "*.otu"
-  - db_mscluster:
-      type: file
-      description: Pre-computed MAPseq cluster file
-      pattern: "*.mscluster"
   - db_label:
       type: string
       description: Reference database label
 
 output:
-  #Only when we have meta
   - meta:
       type: map
       description: |
