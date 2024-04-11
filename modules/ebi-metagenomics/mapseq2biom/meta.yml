@@ -1,23 +1,20 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "mapseq2biom"
-## TODO nf-core: Add a description of the module and list keywords
-description: write your description here
+description: Process MAPseq output into biom and krona-txt formats
 keywords:
-  - sort
-  - example
-  - genomics
+  - mapseq
+  - taxonomy
+  - krona
+
 tools:
   - "mapseq2biom":
-      ## TODO nf-core: Add a description and other details for the software below
-      description: "Collection of scripts and tools for MGnify pipelines"
-      homepage: "None"
-      documentation: "None"
-      tool_dev_url: "None"
-      doi: ""
+      description: "Process MAPseq output into biom and krona-txt formats, uses mgnify-pipelines-toolkit as conda environment"
+      homepage: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
+      documentation: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
+      tool_dev_url: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
       licence: ['Apache-2.0']
 
-## TODO nf-core: Add a description of all of the variables used as input
 input:
   # Only when we have meta
   - meta:
@@ -25,14 +22,30 @@ input:
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'sample1', single_end:false ]`
-  
-  ## TODO nf-core: Delete / customise this example input
-  - bam:
+  - msq:
       type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
+      description: MAPseq output file
+      pattern: "*.mseq"
+  - db_fasta:
+      type: file
+      description: Processed reference database fasta file
+      pattern: "*.{fasta, fasta.gz}"
+  - db_tax:
+      type: file
+      description: Processed reference database taxonomy file
+      pattern: "*.txt"
+  - db_otu:
+      type: file
+      description: Processed reference database otu file
+      pattern: "*.otu"
+  - db_mscluster:
+      type: file
+      description: Pre-computed MAPseq cluster file
+      pattern: "*.mscluster"
+  - db_label:
+      type: string
+      description: Reference database label
 
-## TODO nf-core: Add a description of all of the variables used as output
 output:
   #Only when we have meta
   - meta:
@@ -40,16 +53,22 @@ output:
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'sample1', single_end:false ]`
-  
+  - krona_input:
+      type: file
+      description: Converted .txt file to be used with Krona
+      pattern: "*.txt"
+  - biom_out:
+      type: file
+      description: Converted biom file
+      pattern: "*.tsv"
+  - biom_notaxid_out:
+      type: file
+      description: Converted biom file without taxids
+      pattern: "*.tsv"
   - versions:
       type: file
       description: File containing software versions
       pattern: "versions.yml"
-  ## TODO nf-core: Delete / customise this example output
-  - bam:
-      type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
 
 authors:
   - "@chrisata"

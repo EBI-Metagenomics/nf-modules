@@ -17,12 +17,29 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "test.notaxid.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.notaxid.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
                     "versions.yml:md5,d8270f637a909a58d0070c3abc946c52"
+                ],
+                "biom_notaxid_out": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.notaxid.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "biom_out": [
                     [
@@ -30,8 +47,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
-                        "test.notaxid.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "krona_input": [
@@ -52,7 +68,43 @@
             "nf-test": "0.8.4",
             "nextflow": "23.10.1"
         },
-        "timestamp": "2024-04-10T15:52:50.670433"
+        "timestamp": "2024-04-11T09:35:26.295587"
+    },
+    "biom_notaxid_out_stub": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false
+                    },
+                    "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-04-11T09:40:59.430421"
+    },
+    "biom_notaxid_out": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false
+                    },
+                    "test.tsv:md5,627ca596232e79fe2777f0e9352df993"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-04-11T09:35:09.690135"
     },
     "krona_input": {
         "content": [
@@ -80,8 +132,7 @@
                         "id": "test",
                         "single_end": false
                     },
-                    "test.tsv:md5,627ca596232e79fe2777f0e9352df993",
-                    "test.notaxid.tsv:md5,4b4dc1c98f5da99339fa477dd47f371d"
+                    "test.tsv:md5,627ca596232e79fe2777f0e9352df993"
                 ]
             ]
         ],
@@ -89,7 +140,7 @@
             "nf-test": "0.8.4",
             "nextflow": "23.10.1"
         },
-        "timestamp": "2024-04-10T16:01:39.333509"
+        "timestamp": "2024-04-11T09:35:09.683552"
     },
     "test_silva - mseq": {
         "content": [
@@ -109,12 +160,29 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.tsv:md5,627ca596232e79fe2777f0e9352df993",
-                        "test.notaxid.tsv:md5,4b4dc1c98f5da99339fa477dd47f371d"
+                        "test.tsv:md5,627ca596232e79fe2777f0e9352df993"
                     ]
                 ],
                 "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.notaxid.tsv:md5,4b4dc1c98f5da99339fa477dd47f371d"
+                    ]
+                ],
+                "3": [
                     "versions.yml:md5,d8270f637a909a58d0070c3abc946c52"
+                ],
+                "biom_notaxid_out": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.notaxid.tsv:md5,4b4dc1c98f5da99339fa477dd47f371d"
+                    ]
                 ],
                 "biom_out": [
                     [
@@ -122,8 +190,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.tsv:md5,627ca596232e79fe2777f0e9352df993",
-                        "test.notaxid.tsv:md5,4b4dc1c98f5da99339fa477dd47f371d"
+                        "test.tsv:md5,627ca596232e79fe2777f0e9352df993"
                     ]
                 ],
                 "krona_input": [
@@ -144,7 +211,7 @@
             "nf-test": "0.8.4",
             "nextflow": "23.10.1"
         },
-        "timestamp": "2024-04-10T16:01:39.312655"
+        "timestamp": "2024-04-11T09:35:09.669445"
     },
     "biom_out_stub": {
         "content": [
@@ -154,8 +221,7 @@
                         "id": "test",
                         "single_end": false
                     },
-                    "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e",
-                    "test.notaxid.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ]
             ]
         ],
@@ -163,7 +229,7 @@
             "nf-test": "0.8.4",
             "nextflow": "23.10.1"
         },
-        "timestamp": "2024-04-10T16:09:22.899999"
+        "timestamp": "2024-04-11T09:35:26.305058"
     },
     "krona_input_stub": {
         "content": [
