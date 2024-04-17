@@ -1,0 +1,19 @@
+{
+    "test_mapseq_otu_krona": {
+        "content": [
+            {
+                "0": [
+                    
+                ],
+                "mseq": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-04-17T13:59:04.430544"
+    }
+}
