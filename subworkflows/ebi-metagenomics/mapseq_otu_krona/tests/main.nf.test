@@ -5,6 +5,8 @@ nextflow_workflow {
     name "Test Subworkflow MAPSEQ_OTU_KRONA"
     script "../main.nf"
     workflow "MAPSEQ_OTU_KRONA"
+    config "./nextflow.config"
+
 
     tag "subworkflows"
     tag "subworkflows_nfcore"
