@@ -1,44 +1,59 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
 name: "mapseq_otu_krona"
-## TODO nf-core: Add a description of the subworkflow and list keywords
-description: Sort SAM/BAM/CRAM file
+description: Taxononmy assignment and visualisation of reads using input reference database
 keywords:
-  - sort
-  - bam
-  - sam
-  - cram
-## TODO nf-core: Add a list of the modules and/or subworkflows used in the subworkflow
+  - taxonomy
+  - rRNA
+  - MAPseq
+  - krona
 components:
-  - samtools/sort
-  - samtools/index
-## TODO nf-core: List all of the channels used as input with a description and their structure
+  - mapseq
+  - mapseq2biom
+  - krona/ktimporttext
 input:
-  - ch_bam:
+  - ch_fasta:
       type: file
       description: |
-        The input channel containing the BAM/CRAM/SAM files
-        Structure: [ val(meta), path(bam) ]
-      pattern: "*.{bam/cram/sam}"
-## TODO nf-core: List all of the channels used as output with a descriptions and their structure
+        The input channel containing the FASTA file containing reads 
+        Structure: [ val(meta), path(fasta) ]
+      pattern: "*.{fasta/fasta.gz}"
+  - ch_dbs:
+      type: tuple
+      description: |
+        A structured tuple containing the different reference database files
+        Some of these files are processed specifically for use by MAPseq
+        Structure: [ path(fasta), path(tax), path(otu), path(mscluster), val(label) ]
 output:
-  - bam:
+  - mseq:
       type: file
       description: |
-        Channel containing BAM files
-        Structure: [ val(meta), path(bam) ]
-      pattern: "*.bam"
-  - bai:
+        MAPseq output file
+        Structure: [ val(meta), path(mseq) ]
+      pattern: "*.mseq"
+  - krona_input:
       type: file
       description: |
-        Channel containing indexed BAM (BAI) files
-        Structure: [ val(meta), path(bai) ]
-      pattern: "*.bai"
-  - csi:
+        mapseq2biom output file to be used as input to Krona
+        Structure: [ val(meta), path(txt) ]
+      pattern: "*.txt"
+  - biom_out:
       type: file
       description: |
-        Channel containing CSI files
-        Structure: [ val(meta), path(csi) ]
-      pattern: "*.csi"
+        mapseq2biom output Biom file
+        Structure: [ val(meta), path(tsv) ]
+      pattern: "*.tsv"
+  - biom_notaxid_out:
+      type: file
+      description: |
+        mapseq2biom output Biom file without taxids
+        Structure: [ val(meta), path(tsv) ]
+      pattern: "*.tsv"
+  - html:
+      type: file
+      description: |
+        Krona output html file
+        Structure: [ val(meta), path(html) ]
+      pattern: "*.html"
   - versions:
       type: file
       description: |
