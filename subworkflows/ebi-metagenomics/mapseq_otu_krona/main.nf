@@ -18,7 +18,6 @@ workflow MAPSEQ_OTU_KRONA {
     db_otu = ch_dbs[2]
     db_mscluster = ch_dbs[3]
     db_label = ch_dbs[4]
-    
 
     MAPSEQ(
         ch_fasta,
@@ -45,4 +44,3 @@ workflow MAPSEQ_OTU_KRONA {
     html                  = KRONA_KTIMPORTTEXT.out.html       // channel: [ val(meta), [ bam ] ]
     versions              = ch_versions                       // channel: [ versions.yml ]
 }
-
