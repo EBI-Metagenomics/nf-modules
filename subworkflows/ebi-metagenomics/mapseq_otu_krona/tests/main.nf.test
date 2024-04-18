@@ -1,5 +1,3 @@
-// TODO nf-core: Once you have added the required tests, please run the following command to build this file:
-// nf-core subworkflows test mapseq_otu_krona
 nextflow_workflow {
 
     name "Test Subworkflow MAPSEQ_OTU_KRONA"
@@ -11,19 +9,15 @@ nextflow_workflow {
     tag "subworkflows"
     tag "subworkflows_nfcore"
     tag "subworkflows/mapseq_otu_krona"
-    // TODO nf-core: Add tags for all modules used within this subworkflow. Example:
-    tag "samtools"
-    tag "samtools/sort"
-    tag "samtools/index"
+    tag "mapseq"
+    tag "mapseq2biom"
+    tag "krona/ktimporttext"
 
-
-    // TODO nf-core: Change the test name preferably indicating the test-data and file-format used
     test("test_mapseq_otu_krona") {
 
         when {
             workflow {
                 """
-                // TODO nf-core: define inputs of the workflow here. Example:
                 input[0] = [ [ id:'test', single_end:false ], // meta map
                         file("${moduleDir}/tests/subunit_silva_SSU.fasta", checkIfExists: true)
                         ]
@@ -39,9 +33,14 @@ nextflow_workflow {
         }
         then {
             assertAll(
+                // These tests mainly check for headers rather than content because MAPseq is not deterministic. 
+                // This will change soon though so we can update these tests later.
                 { assert workflow.success},
-                { assert snapshot(workflow.out).match()}
-                //TODO nf-core: Add all required assertions to verify the test output.
+                { assert snapshot(path(workflow.out.mseq.get(0).get(1)).readLines()[0].contains("# mapseq v1.2.6 (Jan 20 2023)")).match("mapseq_output") },
+                { assert snapshot(path(workflow.out.krona_input.get(0).get(1)).readLines()[0].contains("sk__Bacteria")).match("mapseq2biom_output_krona") },
+                { assert snapshot(path(workflow.out.biom_out.get(0).get(1)).readLines()[0].contains("# Constructed from biom file")).match("mapseq2biom_output_biom") },
+                { assert snapshot(path(workflow.out.biom_notaxid_out.get(0).get(1)).readLines()[0].contains("# Constructed from biom file")).match("mapseq2biom_output_biom_notaxid") },
+                { assert snapshot(path(workflow.out.html.get(0).get(1)).readLines()[0].contains("DOCTYPE html PUBLIC")).match("krona_output") },                
             )
         }
     }
