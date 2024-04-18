@@ -6,15 +6,12 @@ include { KRONA_KTIMPORTTEXT } from '../../../modules/ebi-metagenomics/krona/kti
 workflow MAPSEQ_OTU_KRONA {
 
     take:
-    // TODO nf-core: edit input (take) channels
     ch_fasta    // channel: [ val(meta), [ bam ] ]
     ch_dbs      // channel: [ path(fasta), path(tax), path(otu), path(mscluster), val(label) ]
 
     main:
 
     ch_versions = Channel.empty()
-
-    // TODO nf-core: substitute modules here for the modules of your subworkflow
 
     db_fasta = ch_dbs[0]
     db_tax = ch_dbs[1]
@@ -27,20 +24,25 @@ workflow MAPSEQ_OTU_KRONA {
         ch_fasta,
         tuple(db_fasta, db_tax, db_mscluster)
     )
+    ch_versions = ch_versions.mix(MAPSEQ.out.versions.first())
 
+    MAPSEQ2BIOM(
+        MAPSEQ.out.mseq,
+        tuple(db_otu, db_label)
+    )
+    ch_versions = ch_versions.mix(MAPSEQ2BIOM.out.versions.first())
 
-    // SAMTOOLS_SORT ( ch_bam )
-    // ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions.first())
-
-    // SAMTOOLS_INDEX ( SAMTOOLS_SORT.out.bam )
-    // ch_versions = ch_versions.mix(SAMTOOLS_INDEX.out.versions.first())
+    KRONA_KTIMPORTTEXT(
+        MAPSEQ2BIOM.out.krona_input
+    )
+    ch_versions = ch_versions.mix(KRONA_KTIMPORTTEXT.out.versions.first())
 
     emit:
-    // TODO nf-core: edit emitted channels
-    mseq      = MAPSEQ.out.mseq          // channel: [ val(meta), [ bam ] ]
-    // bai      = SAMTOOLS_INDEX.out.bai          // channel: [ val(meta), [ bai ] ]
-    // csi      = SAMTOOLS_INDEX.out.csi          // channel: [ val(meta), [ csi ] ]
-
-    // versions = ch_versions                     // channel: [ versions.yml ]
+    mseq                  = MAPSEQ.out.mseq                   // channel: [ val(meta), [ mseq ] ]
+    krona_input           = MAPSEQ2BIOM.out.krona_input       // channel: [ val(meta), [ txt ] ]
+    biom_out              = MAPSEQ2BIOM.out.biom_out          // channel: [ val(meta), [ tsv ] ]
+    biom_notaxid_out      = MAPSEQ2BIOM.out.biom_notaxid_out  // channel: [ val(meta), [ tsv ] ]
+    html                  = KRONA_KTIMPORTTEXT.out.html       // channel: [ val(meta), [ bam ] ]
+    versions              = ch_versions                       // channel: [ versions.yml ]
 }
 
