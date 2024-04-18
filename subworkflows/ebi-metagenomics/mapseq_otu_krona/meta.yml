@@ -14,7 +14,7 @@ input:
   - ch_fasta:
       type: file
       description: |
-        The input channel containing the FASTA file containing reads 
+        The input channel containing the FASTA file containing reads
         Structure: [ val(meta), path(fasta) ]
       pattern: "*.{fasta/fasta.gz}"
   - ch_dbs:
