@@ -13,21 +13,29 @@ workflow MAPSEQ_OTU_KRONA {
 
     ch_versions = Channel.empty()
 
-    db_fasta = ch_dbs[0]
-    db_tax = ch_dbs[1]
-    db_otu = ch_dbs[2]
-    db_mscluster = ch_dbs[3]
-    db_label = ch_dbs[4]
+    // db_fasta = ch_dbs[0]
+    // db_tax = ch_dbs[1]
+    // db_otu = ch_dbs[2]
+    // db_mscluster = ch_dbs[3]
+    // db_label = ch_dbs[4]
+
+    ch_dbs.multiMap { fasta, tax, otu, mscluster, label ->
+            mapseq_input: [fasta, tax, mscluster]
+            mapseq_to_biom_input: [ otu, label ]
+        }.set {
+            input
+        }
+
 
     MAPSEQ(
         ch_fasta,
-        tuple(db_fasta, db_tax, db_mscluster)
+        input.mapseq_input
     )
     ch_versions = ch_versions.mix(MAPSEQ.out.versions.first())
 
     MAPSEQ2BIOM(
         MAPSEQ.out.mseq,
-        tuple(db_otu, db_label)
+        input.mapseq_to_biom_input
     )
     ch_versions = ch_versions.mix(MAPSEQ2BIOM.out.versions.first())
 
@@ -41,6 +49,6 @@ workflow MAPSEQ_OTU_KRONA {
     krona_input           = MAPSEQ2BIOM.out.krona_input       // channel: [ val(meta), [ txt ] ]
     biom_out              = MAPSEQ2BIOM.out.biom_out          // channel: [ val(meta), [ tsv ] ]
     biom_notaxid_out      = MAPSEQ2BIOM.out.biom_notaxid_out  // channel: [ val(meta), [ tsv ] ]
-    html                  = KRONA_KTIMPORTTEXT.out.html       // channel: [ val(meta), [ bam ] ]
+    html                  = KRONA_KTIMPORTTEXT.out.html       // channel: [ val(meta), [ html ] ]
     versions              = ch_versions                       // channel: [ versions.yml ]
 }
