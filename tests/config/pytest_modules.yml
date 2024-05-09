@@ -22,10 +22,6 @@ checkm2/download_db:
   - modules/ebi-metagenomics/checkm2/download_db/**
   - tests/modules/ebi-metagenomics/checkm2/download_db/**
 
-cmsearchtbloutdeoverlap:
-  - modules/ebi-metagenomics/cmsearchtbloutdeoverlap/**
-  - tests/modules/ebi-metagenomics/cmsearchtbloutdeoverlap/**
-
 combinedgenecaller/merge:
   - modules/ebi-metagenomics/combinedgenecaller/merge/**
   - tests/modules/ebi-metagenomics/combinedgenecaller/merge/**
@@ -65,10 +61,6 @@ fetchtool/assembly:
 fraggenescan:
   - modules/ebi-metagenomics/fraggenescan/**
   - tests/modules/ebi-metagenomics/fraggenescan/**
-
-infernal/cmsearch:
-  - modules/ebi-metagenomics/infernal/cmsearch/**
-  - tests/modules/ebi-metagenomics/infernal/cmsearch/**
 
 interproscan:
   - modules/ebi-metagenomics/interproscan/**
