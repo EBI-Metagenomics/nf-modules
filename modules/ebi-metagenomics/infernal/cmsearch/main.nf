@@ -5,7 +5,7 @@ process INFERNAL_CMSEARCH {
 
     label 'process_low'
 
-    conda "bioconda::infernal=1.1.4"
+    conda "bioconda::infernal=1.1.5"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/infernal:1.1.4--pl5321hec16e2b_1':
         'biocontainers/infernal:1.1.4--pl5321hec16e2b_1' }"

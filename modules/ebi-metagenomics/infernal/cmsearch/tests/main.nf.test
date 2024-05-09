@@ -7,6 +7,7 @@ nextflow_process {
 
     tag "modules"
     tag "modules_nfcore"
+    tag "infernal"
     tag "cmsearch"
     tag "infernal/cmsearch"
 

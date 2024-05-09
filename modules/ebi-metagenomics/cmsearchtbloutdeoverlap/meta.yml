@@ -26,6 +26,11 @@ input:
       description: Tabular file from cmsearch
       pattern: "*.{tblout, tblout.gz}"
 
+  - clanin:
+      type: file
+      description: Text file containing the Rfam clans to deoverlap on
+      pattern: "*.claninfo"
+
 output:
   - meta:
       type: map
