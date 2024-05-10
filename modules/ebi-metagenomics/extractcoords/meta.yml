@@ -27,8 +27,8 @@ input:
       pattern: "*.fasta"
   - matched_seqs_with_coords:
       type: file
-      description: cmsearchdeoverlap output formatted for use by esl-sfetch
-      pattern: "*.matched_seqs_with_coords"
+      description: Space-separated cmsearchdeoverlap output formatted for use by esl-sfetch
+      pattern: "*.txt"
 
 output:
   - meta:
