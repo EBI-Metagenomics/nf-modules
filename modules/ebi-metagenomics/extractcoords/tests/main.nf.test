@@ -20,7 +20,7 @@ nextflow_process {
                     ]
                 input[1] = [
                     [ id:'test', single_end:false ], // meta map
-                    file("${moduleDir}/tests/test.matched_seqs_with_coords", checkIfExists: true),
+                    file("${moduleDir}/tests/test.matched_seqs_with_coords.txt", checkIfExists: true),
                 ]
                 """
             }
