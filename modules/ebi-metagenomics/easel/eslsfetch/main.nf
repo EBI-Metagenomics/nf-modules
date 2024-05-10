@@ -12,9 +12,9 @@ process EASEL_ESLSFETCH {
     tuple val(meta), path(fasta), path(cmsearch_deoverlap_out)
 
     output:
-    tuple val(meta), path("*easel_coords.fasta"),       emit: easel_coords
+    tuple val(meta), path("*easel_coords.fasta"),           emit: easel_coords
     tuple val(meta), path("*matched_seqs_with_coords.txt"), emit: matched_seqs_with_coords
-    path "versions.yml",                                emit: versions
+    path "versions.yml",                                    emit: versions
 
     when:
     task.ext.when == null || task.ext.when
