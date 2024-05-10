@@ -15,7 +15,7 @@ process EXTRACTCOORDS {
     output:
     tuple val(meta),  path("sequence-categorisation/*SSU.fasta") , optional: true, emit: ssu_fasta
     tuple val(meta),  path("sequence-categorisation/*LSU.fasta") , optional: true, emit: lsu_fasta
-    tuple val(meta),  path("*concat_SSU_LSU_coords.txt")             , emit: concat_ssu_lsu_coords
+    tuple val(meta),  path("*concat_SSU_LSU_coords.txt")         , emit: concat_ssu_lsu_coords
     path "versions.yml"                                          , emit: versions
 
     when:
