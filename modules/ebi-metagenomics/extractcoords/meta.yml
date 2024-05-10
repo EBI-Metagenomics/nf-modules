@@ -46,8 +46,8 @@ output:
       pattern: "*.fasta"
   - concat_ssu_lsu_coords:
       type: file
-      description: Concatenated file of coordinates of matches of both SSU and LSU
-      pattern: "*.concat_SSU_LSU_coords"
+      description: Space-separated concatenated file of coordinates of matches of both SSU and LSU
+      pattern: "*.txt"
   - versions:
       type: file
       description: File containing software versions
