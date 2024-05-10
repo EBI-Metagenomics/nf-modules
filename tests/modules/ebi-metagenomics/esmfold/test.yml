@@ -1,0 +1,8 @@
+- name: "esmfold"
+  command: nextflow run ./tests/modules/ebi-metagenomics/esmfold -entry test_esmfold -c ./tests/config/nextflow.config -c ./tests/modules/ebi-metagenomics/esmfold/nextflow.config -profile local
+  tags:
+    - "esmfold"
+  files:
+    - path: "output/esmfold/test/UniRef50_UPI0003108055.pdb"
+      md5sum: 7e148fb4c99973a7d0ec9c86b1bc08b6
+    - path: "output/esmfold/versions.yml"

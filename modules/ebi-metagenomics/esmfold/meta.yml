@@ -1,0 +1,50 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/yaml-schema.json
+name: "esmfold"
+description: Predict protein structures out of amino acid sequences
+keywords:
+  - protein
+  - structure
+  - prediction
+tools:
+  - "esmfold":
+      description: "Predict protein structures out of amino acid sequences"
+      homepage: "https://esmatlas.com/resources?action=fold"
+      documentation: "https://github.com/facebookresearch/esm"
+      tool_dev_url: "https://github.com/facebookresearch/esm"
+      doi: "10.1126/science.ade2574"
+      licence: ["MIT"]
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'test' ]`
+  - fasta:
+      type: file
+      description: Input fasta file containing queries sequences
+      pattern: "*.{fa,fasta,fa.gz,fasta.gz}"
+  - compute_mode:
+      type: string
+      description: Execution mode depending on if system has a GPU
+      pattern: "gpu|cpu"
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'test' ]`
+  - pdb:
+      type: directory
+      description: Directory containing predicted protein structure files for each input amino acid sequence
+      pattern: "*"
+  - scores:
+      type: file
+      description: Execution log file containing overall length, pLDDT and pTM scores for each protein
+      pattern: "*.txt"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+authors:
+  - "@vagkaratzas"

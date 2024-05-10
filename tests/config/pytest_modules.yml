@@ -54,6 +54,10 @@ eggnogmapper:
   - modules/ebi-metagenomics/eggnogmapper/**
   - tests/modules/ebi-metagenomics/eggnogmapper/**
 
+esmfold:
+  - modules/ebi-metagenomics/esmfold/**
+  - tests/modules/ebi-metagenomics/esmfold/**
+
 fastp:
   - modules/ebi-metagenomics/fastp/**
   - tests/modules/ebi-metagenomics/fastp/**
