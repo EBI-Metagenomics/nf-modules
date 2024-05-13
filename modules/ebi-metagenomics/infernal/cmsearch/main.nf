@@ -35,7 +35,6 @@ process INFERNAL_CMSEARCH {
     cmsearch \\
         --cpu $task.cpus \\
         $args \\
-        -o /dev/null \\
         --tblout ${prefix}.cmsearch_matches.tbl \\
         $covariance_model_database \\
         $seqdb_name
