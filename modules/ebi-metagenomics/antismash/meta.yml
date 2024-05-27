@@ -1,56 +1,65 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "antismash"
-## TODO nf-core: Add a description of the module and list keywords
-description: write your description here
+description: |
+  antiSMASH allows the rapid genome-wide identification, annotation and analysis | 
+  of secondary metabolite biosynthesis gene clusters in bacterial and fungal genomes.|
+  Uses custom container with Node.js to generate GFF output file.
 keywords:
-  - sort
-  - example
-  - genomics
+  - bgc
+  - biosynthetic gene cluster
+  - antismash
 tools:
   - "antismash":
-      ## TODO nf-core: Add a description and other details for the software below
       description: "antiSMASH - the antibiotics and Secondary Metabolite Analysis SHell"
       homepage: "https://docs.antismash.secondarymetabolites.org"
       documentation: "https://docs.antismash.secondarymetabolites.org"
       tool_dev_url: "https://github.com/antismash/antismash"
-      doi: ""
+      doi: "10.1093/nar/gkad344"
       licence: ['AGPL v3-or-later']
-
-## TODO nf-core: Add a description of all of the variables used as input
 input:
-  # Only when we have meta
   - meta:
       type: map
       description: |
         Groovy Map containing sample information
-        e.g. `[ id:'sample1', single_end:false ]`
-  
-  ## TODO nf-core: Delete / customise this example input
-  - bam:
+        e.g. `[ id:'sample1', single_end:false ]`  
+  - contigs:
       type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
-
-## TODO nf-core: Add a description of all of the variables used as output
+      description: FASTA file containing the contigs genes originate from
+      pattern: "*.{fa,fasta}"
+  - genes:
+      type: file
+      description: GFF file containing the genes to be annotated by antiSMASH
+      pattern: "*.gff"
+  - antismash_db:
+      type: file
+      description: antiSMASH database
+      pattern: "*.tar.gz"
+  - db_version:
+      type: string
+      description: antiSMASH database version string
 output:
-  #Only when we have meta
   - meta:
       type: map
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'sample1', single_end:false ]`
-  
+  - gbk:
+      type: file
+      description: GENBANK output file from antiSMASH
+      pattern: "*.gbk"
+  - results_tarball:
+      type: file
+      description: Compressed output result directory from antiSMASH
+      pattern: "*.tar.gz"
+  - regions:
+      type: file
+      description: JSON regions file generated with Node.js
+      pattern: "*.json"
   - versions:
       type: file
       description: File containing software versions
       pattern: "versions.yml"
-  ## TODO nf-core: Delete / customise this example output
-  - bam:
-      type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
-
 authors:
   - "@tgurbich"
   - "@chrisata"
