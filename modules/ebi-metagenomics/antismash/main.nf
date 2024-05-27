@@ -3,10 +3,12 @@ process ANTISMASH {
     tag "$meta.id"
     label 'process_medium'
 
-    conda "${moduleDir}/environment.yml"
+    // conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/antismash:7.1.0.1_2':
-        'microbiome-informatics/antismash:7.1.0.1_2' }"
+        'quay.io/microbiome-informatics/antismash:7.1.0.1_2' }"
+
+    container 'quay.io/microbiome-informatics/antismash:7.1.0.1_2'
 
     input:
     tuple val(meta), path(contigs)
@@ -14,10 +16,10 @@ process ANTISMASH {
     tuple path(antismash_db), val(db_version)
 
     output:
-    tuple val(meta), path("${prefix}_results/${prefix}.gbk")  , emit: gbk
-    tuple val(meta), path("${prefix}_antismash.tar.gz")       , emit: results_tarball
-    tuple val(meta), path("${prefix}_regions.json")           , emit: regions
-    path "versions.yml"                                       , emit: versions
+    tuple val(meta), path("${meta.id}_results/${meta.id}.gbk")  , emit: gbk
+    tuple val(meta), path("${meta.id}_antismash.tar.gz")        , emit: results_tarball
+    tuple val(meta), path("${meta.id}_regions.json")            , emit: regions
+    path "versions.yml"                                         , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -25,14 +27,18 @@ process ANTISMASH {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    
-    // --genefinding-tool none --asf --smcog-trees --cb-general
+    def is_compressed = antismash_db.name.endsWith(".tar.gz")
+    def antismashdb_name = antismash_db.name.replace(".tar.gz", "")
 
     """
+    if [ "$is_compressed" == "true" ]; then
+        tar -xzvf $antismash_db
+    fi
+
     antismash \\
         -c ${task.cpus} \\
         ${args} \\
-        --databases ${antismash_db} \\
+        --databases ${antismashdb_name} \\
         --genefinding-gff3 ${genes} \\
         --output-dir ${prefix}_results \\
         ${contigs}
@@ -60,7 +66,10 @@ process ANTISMASH {
     def prefix = task.ext.prefix ?: "${meta.id}"
 
     """
-    touch ${prefix}.bam
+    touch ${prefix}_antismash.tar.gz
+    touch ${prefix}_regions.json
+    mkdir ${prefix}_results/
+    touch ${prefix}_results/${prefix}.gbk
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
