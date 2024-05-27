@@ -2,13 +2,7 @@
 process ANTISMASH {
     tag "$meta.id"
     label 'process_medium'
-
-    // conda "${moduleDir}/environment.yml"
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/antismash:7.1.0.1_2':
-        'quay.io/microbiome-informatics/antismash:7.1.0.1_2' }"
-
-    container 'quay.io/microbiome-informatics/antismash:7.1.0.1_2'
+    container "microbiome-informatics/antismash:7.1.0.1_2"
 
     input:
     tuple val(meta), path(contigs)
