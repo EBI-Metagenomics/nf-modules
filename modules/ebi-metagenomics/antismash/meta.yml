@@ -16,13 +16,13 @@ tools:
       documentation: "https://docs.antismash.secondarymetabolites.org"
       tool_dev_url: "https://github.com/antismash/antismash"
       doi: "10.1093/nar/gkad344"
-      licence: ['AGPL v3-or-later']
+      licence: ["AGPL v3-or-later"]
 input:
   - meta:
       type: map
       description: |
         Groovy Map containing sample information
-        e.g. `[ id:'sample1', single_end:false ]`  
+        e.g. `[ id:'sample1', single_end:false ]`
   - contigs:
       type: file
       description: FASTA file containing the contigs genes originate from
