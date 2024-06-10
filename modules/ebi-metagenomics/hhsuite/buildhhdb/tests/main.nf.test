@@ -1,0 +1,78 @@
+// TODO nf-core: Once you have added the required tests, please run the following command to build this file:
+// nf-core modules test hhsuite/buildhhdb
+nextflow_process {
+
+    name "Test Process HHSUITE_BUILDHHDB"
+    script "../main.nf"
+    process "HHSUITE_BUILDHHDB"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "hhsuite"
+    tag "hhsuite/buildhhdb"
+
+    test("a3m") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/test_a3m", checkIfExists: true)
+                    ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out.hh_db
+                    with(process.out.hh_db) {
+                            assert size() == 1
+                            with(get(0).get(1)) {
+                                File folder = new File(get(0).get(1))
+                                File[] listOfFiles = folder.listFiles()
+                                listOfFiles = listOfFiles.sort { it.name }
+                                assert listOfFiles.length == 7
+                                assert snapshot("${get(0).get(1)}/${listOfFiles[0].name}").match("test_a3m_a3m.ffdata")
+                                assert snapshot("${get(0).get(1)}/${listOfFiles[1].name}").match("test_a3m_a3m.ffindex")
+                                assert snapshot("${get(0).get(1)}/${listOfFiles[2].name}").match("test_a3m_cs219.ffdata")
+                                assert snapshot("${get(0).get(1)}/${listOfFiles[3].name}").match("test_a3m_cs219.ffindex")
+                                assert snapshot("${get(0).get(1)}/${listOfFiles[4].name}").match("test_a3m_cs219.log1")
+                                assert file("${get(0).get(1)}/${listOfFiles[5].name}").exists()
+                                assert snapshot("${get(0).get(1)}/${listOfFiles[6].name}").match("test_a3m_hmm.ffindex")
+                            }
+                    }
+                },
+                { assert process.out.versions }
+            )
+        }
+
+    }
+
+    test("a3m - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/test_a3m", checkIfExists: true)
+                    ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}

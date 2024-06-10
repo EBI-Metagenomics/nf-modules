@@ -1,0 +1,85 @@
+{
+    "test_a3m_cs219.ffindex": {
+        "content": [
+            "test_a3m_cs219.ffindex:md5,1893a6d1cf11667bbb65520f5e8d6497"
+        ],
+        "timestamp": "2024-06-10T13:57:44.959353034"
+    },
+    "test_a3m_cs219.ffdata": {
+        "content": [
+            "test_a3m_cs219.ffdata:md5,0a03ab702bc958b26fba34f8d1c5fce9"
+        ],
+        "timestamp": "2024-06-10T13:57:44.956413336"
+    },
+    "test_a3m_a3m.ffdata": {
+        "content": [
+            "test_a3m_a3m.ffdata:md5,1d3e01ef4418ae118cce3e43cd5669aa"
+        ],
+        "timestamp": "2024-06-10T13:57:44.947206544"
+    },
+    "a3m - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test_a3m_a3m.ffdata:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_a3m_a3m.ffindex:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_a3m_cs219.ffdata:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_a3m_cs219.ffindex:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_a3m_cs219.log1:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_a3m_hmm.ffdata:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_a3m_hmm.ffindex:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,ab0aa7b758ce2f2f171fbf1e14339a52"
+                ],
+                "hh_db": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "test_a3m_a3m.ffdata:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_a3m_a3m.ffindex:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_a3m_cs219.ffdata:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_a3m_cs219.ffindex:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_a3m_cs219.log1:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_a3m_hmm.ffdata:md5,d41d8cd98f00b204e9800998ecf8427e",
+                            "test_a3m_hmm.ffindex:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,ab0aa7b758ce2f2f171fbf1e14339a52"
+                ]
+            }
+        ],
+        "timestamp": "2024-06-10T13:57:49.193842411"
+    },
+    "test_a3m_cs219.log1": {
+        "content": [
+            "test_a3m_cs219.log.1:md5,979c3846e8b0e1637d8646ca5581daca"
+        ],
+        "timestamp": "2024-06-10T13:57:44.962639859"
+    },
+    "test_a3m_a3m.ffindex": {
+        "content": [
+            "test_a3m_a3m.ffindex:md5,34f597e4cb2d7d3afa4c655146ff3eb0"
+        ],
+        "timestamp": "2024-06-10T13:57:44.953720066"
+    },
+    "test_a3m_hmm.ffindex": {
+        "content": [
+            "test_a3m_hhm.ffindex:md5,d28d458f9df4962c2e8194d1850c1426"
+        ],
+        "timestamp": "2024-06-10T13:57:44.967162415"
+    }
+}
