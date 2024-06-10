@@ -13,7 +13,7 @@ tools:
       documentation: "https://github.com/soedinglab/hh-suite/wiki"
       tool_dev_url: "https://github.com/soedinglab/hh-suite"
       doi: "10.1371/journal.pone.0082138"
-      licence: ['GPL v3']
+      licence: ["GPL v3"]
 
 input:
   - meta:
