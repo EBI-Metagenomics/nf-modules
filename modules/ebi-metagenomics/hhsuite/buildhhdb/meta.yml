@@ -39,7 +39,6 @@ output:
   - hh_db:
       type: directory
       description: HH db directory containing all precomputed required data and index files (HMMs and context states for prefiltering)
-      pattern: "*"
 
 authors:
   - "@vagkaratzas"

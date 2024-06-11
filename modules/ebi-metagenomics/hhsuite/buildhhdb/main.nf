@@ -8,15 +8,15 @@ process HHSUITE_BUILDHHDB {
     tuple val(meta), path(a3m)
 
     output:
-    tuple val(meta), path("${meta.id}"), emit: hh_db
-    path "versions.yml"                , emit: versions
+    tuple val(meta), path("${meta.id}_hh_db"), emit: hh_db
+    path "versions.yml"                      , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}"
+    def prefix = task.ext.prefix ?: "${meta.id}_hh_db"
 
     """
     ffindex_build -s ${a3m}_a3m.ff{data,index} ${a3m}
@@ -30,7 +30,7 @@ process HHSUITE_BUILDHHDB {
     mv ${a3m}_a3m_ordered.ffindex ${a3m}_a3m.ffindex
     mv ${a3m}_a3m_ordered.ffdata ${a3m}_a3m.ffdata
 
-    mkdir -p ${prefix}
+    mkdir ${prefix}
     mv ${a3m}_* ${prefix}/
 
     cat <<-END_VERSIONS > versions.yml
@@ -41,10 +41,10 @@ process HHSUITE_BUILDHHDB {
 
     stub:
     def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}"
+    def prefix = task.ext.prefix ?: "${meta.id}_hh_db"
 
     """
-    mkdir -p ${prefix}
+    mkdir ${prefix}
     touch ${prefix}/test_a3m_a3m.ffdata
     touch ${prefix}/test_a3m_a3m.ffindex
     touch ${prefix}/test_a3m_cs219.ffdata
