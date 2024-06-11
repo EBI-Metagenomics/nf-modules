@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "antismash"
 description: |
-  antiSMASH allows the rapid genome-wide identification, annotation and analysis | 
+  antiSMASH allows the rapid genome-wide identification, annotation and analysis |
   of secondary metabolite biosynthesis gene clusters in bacterial and fungal genomes.|
   Uses custom container with Node.js to generate GFF output file.
 keywords:
