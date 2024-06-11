@@ -24,7 +24,6 @@ input:
   - a3m:
       type: directory
       description: Directory containing a3m format MSAs
-      pattern: "*"
 
 output:
   - meta:
