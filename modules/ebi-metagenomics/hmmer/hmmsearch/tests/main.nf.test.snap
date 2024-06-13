@@ -1,0 +1,47 @@
+{
+    "hmmsearch- stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_hmmsearch.tbl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,37393b1da5a14113d3290ab8b3b4c40f"
+                ],
+                "tbl": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_hmmsearch.tbl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,37393b1da5a14113d3290ab8b3b4c40f"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-06-13T12:28:01.358951221"
+    },
+    "hmmsearch": {
+        "content": [
+            true
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-06-13T12:25:33.775461342"
+    }
+}

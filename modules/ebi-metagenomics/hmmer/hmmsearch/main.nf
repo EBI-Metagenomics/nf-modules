@@ -23,13 +23,26 @@ process HMMER_HMMSEARCH {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
 
+    def hmm_file = "" 
+    if (!hmm_db instanceof List) {
+        hmm_file = hmm_db
+    }
+    else{
+        for(iter_file in hmm_db) {
+            if (iter_file.getExtension() == 'hmm'){
+                hmm_file = iter_file
+                break
+            }
+        }
+    }
+
     """
     hmmsearch \\
         ${args} \\
         --cpu ${task.cpus} \\
         --domtblout ${prefix}_hmmsearch.tbl \\
         -o /dev/null \\
-        ${hmm_db} \\
+        ${hmm_file} \\
         ${fasta}
 
     cat <<-END_VERSIONS > versions.yml
