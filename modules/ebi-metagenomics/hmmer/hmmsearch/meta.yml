@@ -1,56 +1,48 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "hmmer_hmmsearch"
-## TODO nf-core: Add a description of the module and list keywords
-description: write your description here
+description: search for sequences against a HMM profile database
 keywords:
-  - sort
-  - example
-  - genomics
+  - hmm
+  - hmmer
+  - sequence search
+  - hmmsearch
 tools:
   - "hmmer":
-      ## TODO nf-core: Add a description and other details for the software below
       description: "Biosequence analysis using profile hidden Markov models"
-      homepage: "None"
-      documentation: "None"
-      tool_dev_url: "None"
-      doi: ""
+      homepage: http://hmmer.org/
+      documentation: http://hmmer.org/documentation.html
+      tool_dev_url: https://github.com/EddyRivasLab/hmmer
+      doi: "10.1371/journal.pcbi.1002195"
       licence: ['BSD']
-
-## TODO nf-core: Add a description of all of the variables used as input
 input:
-  # Only when we have meta
   - meta:
       type: map
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'sample1', single_end:false ]`
-  
-  ## TODO nf-core: Delete / customise this example input
-  - bam:
+  - fasta:
       type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
-
-## TODO nf-core: Add a description of all of the variables used as output
+      description: FASTA file containing amino acid sequences to be searched for in profile 
+      pattern: "*.fasta"
+  - hmm_db:
+      type: file
+      description: HMM profile database
+      pattern: "*.hmm"
 output:
-  #Only when we have meta
   - meta:
       type: map
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'sample1', single_end:false ]`
-  
+  - tbl:
+      type: file
+      description: Table output file containing results of hmmsearch
+      pattern: "*.tbl"
   - versions:
       type: file
       description: File containing software versions
       pattern: "versions.yml"
-  ## TODO nf-core: Delete / customise this example output
-  - bam:
-      type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
-
 authors:
   - "@chrisata"
 maintainers:

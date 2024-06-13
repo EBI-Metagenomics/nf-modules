@@ -23,6 +23,7 @@ process HMMER_HMMSEARCH {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
 
+    // Input could either be a .hmm file, or a list of files from a wildcard that includes a .hmm file and index files from running hmmpress
     def hmm_file = "" 
     if (!hmm_db instanceof List) {
         hmm_file = hmm_db
