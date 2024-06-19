@@ -62,10 +62,6 @@ fraggenescan:
   - modules/ebi-metagenomics/fraggenescan/**
   - tests/modules/ebi-metagenomics/fraggenescan/**
 
-interproscan:
-  - modules/ebi-metagenomics/interproscan/**
-  - tests/modules/ebi-metagenomics/interproscan/**
-
 mapseq:
   - modules/ebi-metagenomics/mapseq/**
   - tests/modules/ebi-metagenomics/mapseq/**
