@@ -30,7 +30,7 @@ process INTERPROSCAN {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
 
-    def appl = "-appl TIGRFAM,SFLD,SUPERFAMILY,Gene3D,Hamap,Coils,ProSiteProfiles,SMART,CDD,PRINTS,PIRSF,ProSitePatterns,PfamA,ProDom,MobiDBLite,SignalP_GRAM_POSITIVE,SignalP_GRAM_NEGATIVE,SignalP_EUK,Phobius,TMHMM"
+    def appl = "-appl TIGRFAM,SFLD,SUPERFAMILY,Gene3D,Hamap,Coils,ProSiteProfiles,SMART,CDD,PRINTS,PIRSF,ProSitePatterns,PfamA,MobiDBLite"
     if ( args.contains("-appl") ) {
         appl = ""
     }
