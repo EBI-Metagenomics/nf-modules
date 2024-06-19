@@ -23,6 +23,12 @@ input:
       type: file
       description: Input fasta file containing query sequences
       pattern: "*.{fa,fasta}"
+  - interproscan_db:
+      type: directory
+      description: Directory containing interproscan database
+  - db_version:
+      type: string
+      description: Version of the interproscan database for the versions.yml
   - out_ext:
       type: string
       description: Specify the type of output file to be generated
