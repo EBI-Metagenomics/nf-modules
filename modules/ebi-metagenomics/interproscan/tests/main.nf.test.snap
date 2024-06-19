@@ -3,7 +3,13 @@
         "content": [
             {
                 "0": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "1": [
                     
@@ -15,7 +21,7 @@
                     
                 ],
                 "4": [
-                    
+                    "versions.yml:md5,0a34cde772087a3023970ecd15299699"
                 ],
                 "gff3": [
                     
@@ -24,10 +30,16 @@
                     
                 ],
                 "tsv": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "versions": [
-                    
+                    "versions.yml:md5,0a34cde772087a3023970ecd15299699"
                 ],
                 "xml": [
                     
@@ -38,6 +50,6 @@
             "nf-test": "0.8.4",
             "nextflow": "23.04.3"
         },
-        "timestamp": "2024-06-18T16:36:38.815395527"
+        "timestamp": "2024-06-19T10:08:19.616771598"
     }
 }
