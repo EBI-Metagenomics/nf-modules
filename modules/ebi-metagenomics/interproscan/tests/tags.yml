@@ -1,2 +1,2 @@
-krona/ktimporttext:
+interproscan:
   - "modules/ebi-metagenomics/interproscan/**"

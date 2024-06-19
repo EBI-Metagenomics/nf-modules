@@ -2,7 +2,7 @@ process INTERPROSCAN {
     tag "$meta.id"
     label 'process_long'
 
-    container 'quay.io/microbiome-informatics/genomes-pipeline.ips:5.62-94.0'
+    container 'microbiome-informatics/genomes-pipeline.ips:5.62-94.0'
     containerOptions {
         if (workflow.containerEngine == 'singularity') {
             return "--bind ${interproscan_db}/data:/opt/interproscan-5.62-94.0/data"
