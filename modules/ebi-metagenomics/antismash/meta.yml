@@ -48,14 +48,14 @@ output:
       type: file
       description: GENBANK output file from antiSMASH
       pattern: "*.gbk"
+  - json:
+      type: file
+      description: JSON output file from antiSMASH
+      pattern: "*.json"
   - results_tarball:
       type: file
       description: Compressed output result directory from antiSMASH
       pattern: "*.tar.gz"
-  - regions:
-      type: file
-      description: JSON regions file generated with Node.js
-      pattern: "*.json"
   - versions:
       type: file
       description: File containing software versions

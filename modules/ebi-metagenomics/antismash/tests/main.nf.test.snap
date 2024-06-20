@@ -9,6 +9,16 @@
         },
         "timestamp": "2024-05-27T13:07:35.548186959"
     },
+    "json": {
+        "content": [
+            true
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-06-20T10:20:42.129730858"
+    },
     "stub_gbk": {
         "content": [
             [
