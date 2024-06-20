@@ -34,7 +34,8 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(path(process.out.gbk.get(0).get(1)).readLines()[0].contains("31398 bp")).match("gbk") }
+                { assert snapshot(path(process.out.gbk.get(0).get(1)).readLines()[0].contains("31398 bp")).match("gbk") },
+                { assert snapshot(path(process.out.gbk.get(0).get(1)).readLines()[0].contains("NODE_1_length_31398_cov_44.290974")).match("json") }
             )
         }
 

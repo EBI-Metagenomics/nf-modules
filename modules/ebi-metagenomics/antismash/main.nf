@@ -2,6 +2,8 @@
 process ANTISMASH {
     tag "$meta.id"
     label 'process_medium'
+
+    // current antiSMASH bioconda container is buggy so we use our custom one (https://github.com/antismash/antismash/discussions/711)
     container "microbiome-informatics/antismash:7.1.0.1_2"
 
     input:
@@ -11,8 +13,8 @@ process ANTISMASH {
 
     output:
     tuple val(meta), path("${meta.id}_results/${meta.id}.gbk")  , emit: gbk
+    tuple val(meta), path("${meta.id}_results/${meta.id}.json") , emit: json
     tuple val(meta), path("${meta.id}_antismash.tar.gz")        , emit: results_tarball
-    tuple val(meta), path("${meta.id}_regions.json")            , emit: regions
     path "versions.yml"                                         , emit: versions
 
     when:
@@ -39,15 +41,6 @@ process ANTISMASH {
 
     tar -czf ${prefix}_antismash.tar.gz ${prefix}_results
 
-    # To build the GFF3 file the scripts needs the regions.js file to be converted to json
-    # In order to do that this process uses nodejs (using a patched version of the antismash container)
-
-    echo ";var fs = require('fs'); fs.writeFileSync('./regions.json', JSON.stringify(recordData));" >> ${prefix}_results/regions.js
-
-    node ${prefix}_results/regions.js
-
-    mv regions.json ${prefix}_regions.json
-
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         antiSMASH: \$(echo \$(antismash --version | sed 's/^antiSMASH //' ))
@@ -61,9 +54,9 @@ process ANTISMASH {
 
     """
     touch ${prefix}_antismash.tar.gz
-    touch ${prefix}_regions.json
     mkdir ${prefix}_results/
     touch ${prefix}_results/${prefix}.gbk
+    touch ${prefix}_results/${prefix}.json
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
