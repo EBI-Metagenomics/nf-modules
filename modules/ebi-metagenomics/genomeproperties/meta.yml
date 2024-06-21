@@ -1,0 +1,54 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "genomeproperties"
+description: Genome properties is an annotation system whereby functional attributes can be assigned to a genome, based on the presence of a defined set of protein signatures within that genome.
+keywords:
+  - metagenome
+  - annotation
+  - pathways
+  - interpro
+  - interproscan
+tools:
+  - "genomeproperties":
+      description: "Genome properties use protein signatures as evidence to determine the presence of each step within a property."
+      homepage: "https://www.ebi.ac.uk/interpro/genomeproperties/"
+      documentation: "https://genome-properties.readthedocs.io/en/latest/index.html"
+      tool_dev_url: "https://github.com/ebi-pf-team/genome-properties"
+      doi: "10.1093/nar/gky1013"
+      licence: [GPL-3.0"]
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+  - ips:
+      type: file
+      description: TSV file from InterProScan
+      pattern: "*.tsv"
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+  - summary:
+      type: file
+      description: Summary file of genome properties
+      pattern: "*.txt"
+  - json:
+      type: file
+      description: JSON results file of genome properties
+      pattern: "*.txt"
+  - tsv:
+      type: file
+      description: TSV results file of genome properties
+      pattern: "*.txt"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+authors:
+  - "@chrisata"
+maintainers:
+  - "@chrisata"
