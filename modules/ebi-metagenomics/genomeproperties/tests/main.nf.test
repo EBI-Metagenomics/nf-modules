@@ -1,0 +1,60 @@
+
+nextflow_process {
+
+    name "Test Process GENOMEPROPERTIES"
+    script "../main.nf"
+    process "GENOMEPROPERTIES"
+    config "./nextflow.config"
+
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "genomeproperties"
+
+    test("genome-properties - interproscan tsv") {
+
+        when {
+            process {
+                """                
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/fixtures/test_ips.tsv", checkIfExists: true)
+                    ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.summary).match("summary") }
+            )
+        }
+
+    }
+
+    test("genome-properties - interproscan tsv - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """                
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/fixtures/test_ips.tsv", checkIfExists: true)
+                    ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}
