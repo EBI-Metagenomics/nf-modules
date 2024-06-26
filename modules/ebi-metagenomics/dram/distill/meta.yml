@@ -1,0 +1,42 @@
+name: "dramdistill"
+description: Produces summary files with DRAM distill
+keywords:
+  - annotation
+  - visualisation
+  - dram
+tools:
+  - "DRAM":
+      description: "Summarises annotations from multiple tools like KEGG, Pfam and CAZy."
+      args_id: "$args"
+      homepage: "https://github.com/WrightonLabCSU/DRAM"
+      documentation: "https://github.com/WrightonLabCSU/DRAM/wiki"
+      doi: "doi.org/10.1093/nar/gkaa621"
+      licence: ["GPL v3"]
+
+  input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - dram_input:
+      type: file
+      description: Input tsv file containing sequence annotations from different tools
+      pattern: "*.{tsv}"
+
+output:
+  - distill_out_html:
+      type: file
+      description: HTML file containing heatmaps of summarised annotations
+      pattern: "*.{html}"
+  - distill_out_tsv:
+      type: file
+      description: TSV file containing summarised annotations
+      pattern: "*.{tsv}"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+authors:
+  - "@Ales-ibt, @Ge94"

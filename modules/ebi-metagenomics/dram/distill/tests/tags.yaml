@@ -1,0 +1,2 @@
+dram/distill:
+  - "modules/ebi-metagenomics/dram/distill/**"
