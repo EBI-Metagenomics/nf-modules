@@ -1,0 +1,70 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "antismash"
+description: |
+  antiSMASH allows the rapid genome-wide identification, annotation and analysis |
+  of secondary metabolite biosynthesis gene clusters in bacterial and fungal genomes.|
+  Uses custom container with Node.js to generate GFF output file.
+keywords:
+  - bgc
+  - biosynthetic gene cluster
+  - antismash
+tools:
+  - "antismash":
+      description: "antiSMASH - the antibiotics and Secondary Metabolite Analysis SHell"
+      homepage: "https://docs.antismash.secondarymetabolites.org"
+      documentation: "https://docs.antismash.secondarymetabolites.org"
+      tool_dev_url: "https://github.com/antismash/antismash"
+      doi: "10.1093/nar/gkad344"
+      licence: ["AGPL v3-or-later"]
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+  - contigs:
+      type: file
+      description: FASTA file containing the contigs genes originate from
+      pattern: "*.{fa,fasta}"
+  - genes:
+      type: file
+      description: GFF file containing the genes to be annotated by antiSMASH
+      pattern: "*.gff"
+  - gbk_input:
+      type: file
+      description: GenBank file to be annotated by antiSMASH
+      pattern: "*.ggk"
+  - antismash_db:
+      type: directory
+      description: antiSMASH database
+  - db_version:
+      type: string
+      description: antiSMASH database version string
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+  - gbk:
+      type: file
+      description: GENBANK output file from antiSMASH
+      pattern: "*.gbk"
+  - json:
+      type: file
+      description: JSON output file from antiSMASH
+      pattern: "*.json"
+  - results_tarball:
+      type: file
+      description: Compressed output result directory from antiSMASH
+      pattern: "*.tar.gz"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+authors:
+  - "@tgurbich"
+  - "@chrisata"
+maintainers:
+  - "@chrisata"
