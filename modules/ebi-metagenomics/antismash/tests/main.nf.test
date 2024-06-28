@@ -10,7 +10,7 @@ nextflow_process {
     tag "modules_nfcore"
     tag "antismash"
 
-    test("antismash") {
+    test("antismash - GFF input") {
 
         when {
             process {
@@ -24,7 +24,7 @@ nextflow_process {
                     file("${moduleDir}/tests/test.gff", checkIfExists: true)
                     ]
                 input[2] = [
-                    file("${moduleDir}/tests/antismash_trimmed.tar.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/antismash_trimmed", type: 'dir', checkIfExists: true),
                     "7.0.1"
                     ]
                 """
@@ -57,7 +57,7 @@ nextflow_process {
                     file("${moduleDir}/tests/test.gff", checkIfExists: true)
                     ]
                 input[2] = [
-                    file("${moduleDir}/tests/antismash_trimmed.tar.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/antismash_trimmed", type: 'dir', checkIfExists: true),
                     "7.0.1"
                     ]
                 """
