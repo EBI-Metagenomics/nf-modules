@@ -31,6 +31,10 @@ input:
       type: file
       description: GFF file containing the genes to be annotated by antiSMASH
       pattern: "*.gff"
+  - gbk_input:
+      type: file
+      description: GenBank file to be annotated by antiSMASH
+      pattern: "*.ggk"
   - antismash_db:
       type: directory
       description: antiSMASH database

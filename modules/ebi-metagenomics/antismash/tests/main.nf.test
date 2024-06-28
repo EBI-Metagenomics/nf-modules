@@ -24,6 +24,10 @@ nextflow_process {
                     file("${moduleDir}/tests/test.gff", checkIfExists: true)
                     ]
                 input[2] = [
+                    [ id:'test', single_end:false ], // meta map
+                    [] // empty list for optional input
+                    ]
+                input[3] = [
                     file("${moduleDir}/tests/antismash_trimmed", type: 'dir', checkIfExists: true),
                     "7.0.1"
                     ]
@@ -34,8 +38,43 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(path(process.out.gbk.get(0).get(1)).readLines()[0].contains("31398 bp")).match("gbk") },
-                { assert snapshot(path(process.out.gbk.get(0).get(1)).readLines()[0].contains("NODE_1_length_31398_cov_44.290974")).match("json") }
+                { assert snapshot(path(process.out.gbk.get(0).get(1)).readLines()[0].contains("31398 bp")).match("gff_input_gbk_out") },
+                { assert snapshot(path(process.out.json.get(0).get(1)).readLines()[0].contains("NODE_1_length_31398_cov_44.290974")).match("gff_input_json_out") }
+            )
+        }
+
+    }
+
+    test("antismash - GBK input") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    [] // empty list for optional input
+                    ]
+                input[1] = [
+                    [ id:'test', single_end:false ], // meta map
+                    [] // empty list for optional input
+                    ]
+                input[2] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/test.gbk", checkIfExists: true)
+                    ]
+                input[3] = [
+                    file("${moduleDir}/tests/antismash_trimmed", type: 'dir', checkIfExists: true),
+                    "7.0.1"
+                    ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(path(process.out.gbk.get(0).get(1)).readLines()[0].contains("31398 bp")).match("gbk_input_gbk_out") },
+                { assert snapshot(path(process.out.json.get(0).get(1)).readLines()[0].contains("NODE_1_length_31398_cov_44.290974")).match("gbk_input_json_out") }
             )
         }
 
@@ -57,6 +96,10 @@ nextflow_process {
                     file("${moduleDir}/tests/test.gff", checkIfExists: true)
                     ]
                 input[2] = [
+                    [ id:'test', single_end:false ], // meta map
+                    [] // empty list for optional input
+                    ]
+                input[3] = [
                     file("${moduleDir}/tests/antismash_trimmed", type: 'dir', checkIfExists: true),
                     "7.0.1"
                     ]
