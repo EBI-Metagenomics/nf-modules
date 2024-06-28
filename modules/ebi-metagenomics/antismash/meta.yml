@@ -32,9 +32,8 @@ input:
       description: GFF file containing the genes to be annotated by antiSMASH
       pattern: "*.gff"
   - antismash_db:
-      type: file
+      type: directory
       description: antiSMASH database
-      pattern: "*.tar.gz"
   - db_version:
       type: string
       description: antiSMASH database version string

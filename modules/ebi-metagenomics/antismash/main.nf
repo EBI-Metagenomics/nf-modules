@@ -23,18 +23,12 @@ process ANTISMASH {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def is_compressed = antismash_db.name.endsWith(".tar.gz")
-    def antismashdb_name = antismash_db.name.replace(".tar.gz", "")
 
     """
-    if [ "$is_compressed" == "true" ]; then
-        tar -xzvf $antismash_db
-    fi
-
     antismash \\
         -c ${task.cpus} \\
         ${args} \\
-        --databases ${antismashdb_name} \\
+        --databases ${antismash_db} \\
         --genefinding-gff3 ${genes} \\
         --output-dir ${prefix}_results \\
         ${contigs}
