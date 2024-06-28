@@ -10,10 +10,10 @@ process GENOMEPROPERTIES {
     tuple val(meta), path(ips)
 
     output:
-    tuple val(meta), path("*.txt")  , emit: summary
-    tuple val(meta), path("*.json") , emit: json
-    tuple val(meta), path("*.tsv")  , emit: tsv
-    path "versions.yml"             , emit: versions
+    tuple val(meta), path("*.txt") , emit: summary
+    tuple val(meta), path("*.json"), emit: json
+    tuple val(meta), path("*.tsv") , emit: tsv
+    path "versions.yml"            , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -29,7 +29,7 @@ process GENOMEPROPERTIES {
         -matches ${ips} \\
         -gpdir /opt/genome-properties/flatfiles/ \\
         -gpff genomeProperties.txt \\
-        -name ${prefix} \\
+        -name ${prefix}
 
     mv JSON_${prefix} ${prefix}_gp.json
     mv SUMMARY_FILE_${prefix} ${prefix}_gp.txt
@@ -37,7 +37,7 @@ process GENOMEPROPERTIES {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        genomeproperties: ${gp_version}
+        Genome Properties: ${gp_version}
     END_VERSIONS
     """
 
@@ -53,7 +53,7 @@ process GENOMEPROPERTIES {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        genomeproperties: ${gp_version}
+        Genome Properties: ${gp_version}
     END_VERSIONS
     """
 }
