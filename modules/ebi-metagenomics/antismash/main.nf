@@ -7,8 +7,9 @@ process ANTISMASH {
     container "microbiome-informatics/antismash:7.1.0.1_2"
 
     input:
-    tuple val(meta), path(contigs)
-    tuple val(meta), path(genes)
+    tuple val(meta)         , path(contigs)
+    tuple val(meta)         , path(genes)
+    tuple val(meta)         , path(gbk_input)
     tuple path(antismash_db), val(db_version)
 
     output:
@@ -24,23 +25,43 @@ process ANTISMASH {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
 
-    """
-    antismash \\
-        -c ${task.cpus} \\
-        ${args} \\
-        --databases ${antismash_db} \\
-        --genefinding-gff3 ${genes} \\
-        --output-dir ${prefix}_results \\
-        ${contigs}
+    if (gbk_input == []){
+        """
+        antismash \\
+            -c ${task.cpus} \\
+            ${args} \\
+            --databases ${antismash_db} \\
+            --genefinding-gff3 ${genes} \\
+            --output-dir ${prefix}_results \\
+            ${contigs}
 
-    tar -czf ${prefix}_antismash.tar.gz ${prefix}_results
+        tar -czf ${prefix}_antismash.tar.gz ${prefix}_results
 
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        antiSMASH: \$(echo \$(antismash --version | sed 's/^antiSMASH //' ))
-        antiSMASH database: ${db_version}
-    END_VERSIONS
-    """
+        cat <<-END_VERSIONS > versions.yml
+        "${task.process}":
+            antiSMASH: \$(echo \$(antismash --version | sed 's/^antiSMASH //' ))
+            antiSMASH database: ${db_version}
+        END_VERSIONS
+        """
+    }
+    else{
+        """
+        antismash \\
+            -c ${task.cpus} \\
+            ${args} \\
+            --databases ${antismash_db} \\
+            --output-dir ${prefix}_results \\
+            ${gbk_input}
+
+        tar -czf ${prefix}_antismash.tar.gz ${prefix}_results
+
+        cat <<-END_VERSIONS > versions.yml
+        "${task.process}":
+            antiSMASH: \$(echo \$(antismash --version | sed 's/^antiSMASH //' ))
+            antiSMASH database: ${db_version}
+        END_VERSIONS
+        """
+    }
 
     stub:
     def args = task.ext.args ?: ''
