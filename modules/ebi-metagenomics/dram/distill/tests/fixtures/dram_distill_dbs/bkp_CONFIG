@@ -1,0 +1,32 @@
+{
+  "search_databases": {
+    "kegg": null,
+    "kofam_hmm": null,
+    "kofam_ko_list": null,
+    "uniref": null,
+    "pfam": null,
+    "dbcan": null,
+    "viral": null,
+    "peptidase": null,
+    "vogdb": null,
+    "camper_fa_db": null,
+    "camper_fa_db_cutoffs": null,
+    "camper_hmm": null
+  },
+  "custom_dbs": null,
+  "database_descriptions": {
+    "pfam_hmm_dat": null,
+    "dbcan_fam_activities": null,
+    "vog_annotations": null
+  },
+  "dram_sheets": {
+    "camper_distillate": null,
+    "genome_summary_form": "/data/genome_summary_form.tsv",
+    "module_step_form": "/data/module_step_form.tsv",
+    "etc_module_database": "/data/etc_module_database.tsv",
+    "function_heatmap_form": "/data/function_heatmap_form.tsv",
+    "amg_database": "/data/amg_database.tsv"
+  },
+  "description_db": null,
+  "dram_version": "1.4.6"
+}

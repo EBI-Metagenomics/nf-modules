@@ -1,0 +1,55 @@
+{
+    "test_dram_distill": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "prefix": "ERR4968564"
+                        },
+                        "test_dram.html:md5,ca0e6e137649d70865168568ab92b10f"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "prefix": "ERR4968564"
+                        },
+                        "test_dram.tsv:md5,1b3861355147dc83ad6afd67d0258fff"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,474145e9ff22e5243cb59230b6f981ea"
+                ],
+                "distill_out_html": [
+                    [
+                        {
+                            "id": "test",
+                            "prefix": "ERR4968564"
+                        },
+                        "test_dram.html:md5,ca0e6e137649d70865168568ab92b10f"
+                    ]
+                ],
+                "distill_out_tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "prefix": "ERR4968564"
+                        },
+                        "test_dram.tsv:md5,1b3861355147dc83ad6afd67d0258fff"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,474145e9ff22e5243cb59230b6f981ea"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.1"
+        },
+        "timestamp": "2024-06-25T17:42:39.304240761"
+    }
+}
