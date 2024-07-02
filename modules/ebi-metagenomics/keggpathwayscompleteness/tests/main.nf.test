@@ -1,0 +1,103 @@
+
+nextflow_process {
+
+    name "Test Process KEGGPATHWAYSCOMPLETENESS"
+    script "../main.nf"
+    process "KEGGPATHWAYSCOMPLETENESS"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "keggpathwayscompleteness"
+
+    test("keggpathwayscompleteness - hmmsearch_table") {
+
+        when {
+            process {
+                """                
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/fixtures/test.fasta", checkIfExists: true)
+                    ]
+                input[1] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/fixtures/test.tbl", checkIfExists: true)
+                    ]
+                input[2] = [
+                    [ id:'test', single_end:false ], // meta map
+                    [] // empty list for optional input
+                    ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("keggpathwayscompleteness - KO list") {
+
+        when {
+            process {
+                """                
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    [] // empty list for optional input
+                    ]
+                input[1] = [
+                    [ id:'test', single_end:false ], // meta map
+                    [] // empty list for optional input
+                    ]
+                input[2] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/fixtures/test_kos.txt", checkIfExists: true)
+                    ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    // TODO nf-core: Change the test name preferably indicating the test-data and file-format used but keep the " - stub" suffix.
+    test("keggpathwayscompleteness - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """                
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/fixtures/test.fasta", checkIfExists: true)
+                    ]
+                input[1] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/fixtures/test.tbl", checkIfExists: true)
+                    ]
+                input[2] = [
+                    [ id:'test', single_end:false ], // meta map
+                    [] // empty list for optional input
+                    ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}

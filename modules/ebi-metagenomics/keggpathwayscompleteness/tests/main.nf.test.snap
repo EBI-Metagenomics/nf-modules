@@ -1,0 +1,31 @@
+{
+    "keggpathwayscompleteness - hmmsearch_table": {
+        "content": [
+            {
+                "0": [
+                    
+                ],
+                "1": [
+                    
+                ],
+                "2": [
+                    
+                ],
+                "kegg_contigs": [
+                    
+                ],
+                "kegg_pathways": [
+                    
+                ],
+                "versions": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-07-02T10:56:21.415531081"
+    }
+}
