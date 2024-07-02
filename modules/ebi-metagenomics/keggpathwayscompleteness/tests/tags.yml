@@ -1,0 +1,2 @@
+keggpathwayscompleteness:
+  - "modules/ebi-metagenomics/keggpathwayscompleteness/**"

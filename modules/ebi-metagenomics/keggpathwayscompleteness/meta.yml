@@ -1,0 +1,56 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "keggpathwayscompleteness"
+description: This tool computes the completeness of each KEGG pathway module for given set of KEGG orthologues (KOs) based on their presence/absence. 
+keywords:
+  - KEGG
+  - modules
+  - pathways
+  - orthologues
+tools:
+  - "keggpathwayscompleteness":
+      description: "The tool counts completeness of each KEGG pathway for protein sequences."
+      homepage: "https://github.com/EBI-Metagenomics/kegg-pathways-completeness-tool"
+      documentation: "https://github.com/EBI-Metagenomics/kegg-pathways-completeness-tool"
+      tool_dev_url: "https://github.com/EBI-Metagenomics/kegg-pathways-completeness-tool"
+      licence: ['Apache-2.0']
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`  
+  - fasta:
+      type: file
+      description: FASTA file containing the contigs that were analysed by hmmsearch to be used with hmmsearch_tbl
+      pattern: "*.fasta"
+  - hmmsearch_tbl:
+      type: file
+      description: Tabulated output file from hmmsearch to be used with fasta
+      pattern: "*.tbl"
+  - ko_list:
+      type: file
+      description: Text file containing a list of comma-separated KO terms, to be run instead of using fasta+hmmsearch_tbl
+      pattern: "*.tbl"
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+  - kegg_contigs:
+      type: file
+      description: KEGG completeness results with added contig column if fasta+hmmsearch_tbl were used
+      pattern: "*.tsv"
+  - kegg_pathways:
+      type: file
+      description: KEGG completeness results
+      pattern: "*.tsv"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+authors:
+  - "@chrisata"
+maintainers:
+  - "@chrisata"
