@@ -64,7 +64,7 @@ output:
   - orthologs:
       type: file
       description: Tabulated file containing EggNOG orthologs
-      pattern: "*.emapper.orthologs"
+      pattern: "*.seed_orthologs"
   - versions:
       type: file
       description: File containing software versions

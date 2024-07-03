@@ -53,7 +53,7 @@ nextflow_process {
 
     }
 
-    test("test_eggnogmapper_withoutdiamond") {
+    test("test_eggnogmapper_withdiamond_compressed") {
         setup {
             run("DIAMOND_MAKEDB"){
                 script "../../diamond/makedb/main.nf"
@@ -61,12 +61,42 @@ nextflow_process {
                     """
                     input[0] = [
                         [ id:'test', single_end:false ], // meta map
-                        file("${moduleDir}/tests/fixtures/test.fasta", checkIfExists: true)
+                        file("${moduleDir}/tests/fixtures/test.fasta.gz", checkIfExists: true)
                         ]
                     """
                 }
             }
         }
+        when {
+            process {
+                config "./withdiamond.nextflow.config"
+
+                """                
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/fixtures/test.fasta.gz", checkIfExists: true)
+                    ]
+                input[1] = [
+                    [ id:'test', single_end:false ], // meta map
+                    []
+                    ]
+                input[2] = file("${moduleDir}/tests/fixtures", type: 'dir', checkIfExists: true)
+                input[3] = file("${moduleDir}/tests/fixtures/eggnog.db", checkIfExists: true)
+                input[4] = DIAMOND_MAKEDB.out.db.map{ it[1] }
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("test_eggnogmapper_withoutdiamond") {
         when {
             process {
                 config "./withoutdiamond.nextflow.config"
@@ -96,4 +126,35 @@ nextflow_process {
 
     }
 
+    test("test_eggnogmapper_withoutdiamond_stub") {
+
+        options "-stub"
+        
+        when {
+            process {
+                config "./withoutdiamond.nextflow.config"
+
+                """                
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    []
+                    ]
+                input[1] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/fixtures/test.hits", checkIfExists: true)
+                    ]
+                input[2] = file("${moduleDir}/tests/fixtures", type: 'dir', checkIfExists: true)
+                input[3] = []
+                input[4] = []
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
 }

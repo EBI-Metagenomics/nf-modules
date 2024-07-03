@@ -9,16 +9,16 @@ process EGGNOGMAPPER {
 
     input:
     tuple val(meta), path(fasta)
-    tuple val(meta), path(annotation_hit_table)
+    tuple val(meta2), path(annotation_hit_table)
     path(eggnog_data_dir)
     path(eggnog_db)
     path(eggnog_diamond_db)
 
     output:
-    tuple val(meta), path("*.emapper.hits"), emit: hits, optional: true
-    tuple val(meta), path("*annotations*") , emit: annotations, optional: true
-    tuple val(meta), path("*orthologs*")   , emit: orthologs, optional: true
-    path "versions.yml"                    , emit: versions
+    tuple val(meta), path("*.hits")   , emit: hits, optional: true
+    tuple val(meta), path("*.annotations")    , emit: annotations, optional: true
+    tuple val(meta2), path("*.seed_orthologs"), emit: orthologs, optional: true
+    path "versions.yml"                       , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -26,13 +26,21 @@ process EGGNOGMAPPER {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def fasta_input = fasta ? "-i ${fasta}" : ""
     def annotation_hit_input = annotation_hit_table ? "--annotate_hits_table ${annotation_hit_table}" : ""
     def eggnog_db_input = eggnog_db ? "--database ${eggnog_db}" : ""
     def eggnog_diamond_db_input = eggnog_diamond_db ? "--dmnd_db ${eggnog_diamond_db}" : ""
     def dbmem = task.memory.toMega() > 40000 ? '--dbmem' : ''
 
+    def fasta_bool = fasta ? fasta.name : "no_fasta"
+    def is_compressed = fasta_bool.endsWith(".gz")
+    def fasta_name = fasta_bool.replace(".gz", "")
+    def fasta_input = fasta ? "-i ${fasta_name}" : ""
+
     """
+    if [ "$is_compressed" == "true" ]; then
+        gzip -c -d $fasta > $fasta_name
+    fi
+
     emapper.py \\
         ${args} \\
         ${fasta_input} \\
