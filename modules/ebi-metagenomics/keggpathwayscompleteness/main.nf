@@ -5,8 +5,8 @@ process KEGGPATHWAYSCOMPLETENESS {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/kegg-pathways-completeness:1.0.2--pyhdfd78af_0':
-        'biocontainers/kegg-pathways-completeness:1.0.2--pyhdfd78af_0' }"
+        'https://depot.galaxyproject.org/singularity/kegg-pathways-completeness:1.0.3--pyhdfd78af_0':
+        'biocontainers/kegg-pathways-completeness:1.0.3--pyhdfd78af_0' }"
 
     input:
     tuple val(meta), path(fasta)
@@ -14,8 +14,8 @@ process KEGGPATHWAYSCOMPLETENESS {
     tuple val(meta), path(ko_list)
 
     output:
-    tuple val(meta), path("*.contigs.tsv") , emit: kegg_contigs
-    tuple val(meta), path("*.pathways.tsv"), emit: kegg_pathways
+    tuple val(meta), path("*_contigs.tsv") , emit: kegg_contigs
+    tuple val(meta), path("*_pathways.tsv"), emit: kegg_pathways
     path "versions.yml"                    , emit: versions
 
     when:
@@ -24,7 +24,7 @@ process KEGGPATHWAYSCOMPLETENESS {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def version = "1.0.2" // No way to get version automatically so hard-coding it
+    def version = "1.0.3" // No way to get version automatically so hard-coding it
 
     if (ko_list == []){
         """
@@ -63,7 +63,7 @@ process KEGGPATHWAYSCOMPLETENESS {
     stub:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def version = "1.0.2" // No way to get version automatically so hard-coding it
+    def version = "1.0.3" // No way to get version automatically so hard-coding it
 
     """
     touch ${prefix}.kegg_contigs.tsv
