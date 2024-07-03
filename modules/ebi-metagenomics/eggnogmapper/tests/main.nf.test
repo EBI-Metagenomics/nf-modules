@@ -1,0 +1,98 @@
+
+nextflow_process {
+
+    name "Test Process EGGNOGMAPPER"
+    script "../main.nf"
+    process "EGGNOGMAPPER"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "eggnogmapper"
+
+    test("test_eggnogmapper_withdiamond") {
+        setup {
+            run("DIAMOND_MAKEDB"){
+                script "../../diamond/makedb/main.nf"
+                process {
+                    """
+                    input[0] = [
+                        [ id:'test', single_end:false ], // meta map
+                        file("${moduleDir}/tests/fixtures/test.fasta", checkIfExists: true)
+                        ]
+                    """
+                }
+            }
+        }
+        when {
+            process {
+                config "./withdiamond.nextflow.config"
+
+                """                
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/fixtures/test.fasta", checkIfExists: true)
+                    ]
+                input[1] = [
+                    [ id:'test', single_end:false ], // meta map
+                    []
+                    ]
+                input[2] = file("${moduleDir}/tests/fixtures", type: 'dir', checkIfExists: true)
+                input[3] = file("${moduleDir}/tests/fixtures/eggnog.db", checkIfExists: true)
+                input[4] = DIAMOND_MAKEDB.out.db.map{ it[1] }
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("test_eggnogmapper_withoutdiamond") {
+        setup {
+            run("DIAMOND_MAKEDB"){
+                script "../../diamond/makedb/main.nf"
+                process {
+                    """
+                    input[0] = [
+                        [ id:'test', single_end:false ], // meta map
+                        file("${moduleDir}/tests/fixtures/test.fasta", checkIfExists: true)
+                        ]
+                    """
+                }
+            }
+        }
+        when {
+            process {
+                config "./withoutdiamond.nextflow.config"
+
+                """                
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    []
+                    ]
+                input[1] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/fixtures/test.hits", checkIfExists: true)
+                    ]
+                input[2] = file("${moduleDir}/tests/fixtures", type: 'dir', checkIfExists: true)
+                input[3] = []
+                input[4] = []
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}
