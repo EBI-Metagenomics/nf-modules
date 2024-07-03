@@ -46,10 +46,6 @@ easel/eslsfetch:
   - modules/ebi-metagenomics/easel/eslsfetch/**
   - tests/modules/ebi-metagenomics/easel/eslsfetch/**
 
-eggnogmapper:
-  - modules/ebi-metagenomics/eggnogmapper/**
-  - tests/modules/ebi-metagenomics/eggnogmapper/**
-
 fastp:
   - modules/ebi-metagenomics/fastp/**
   - tests/modules/ebi-metagenomics/fastp/**
