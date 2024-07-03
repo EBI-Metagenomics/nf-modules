@@ -1,4 +1,110 @@
 {
+    "test_eggnogmapper_withoutdiamond_stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.emapper.hits:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    "versions.yml:md5,d3e4efad28b5a924585ea3dfcf72c32c"
+                ],
+                "annotations": [
+                    
+                ],
+                "hits": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.emapper.hits:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "orthologs": [
+                    
+                ],
+                "versions": [
+                    "versions.yml:md5,d3e4efad28b5a924585ea3dfcf72c32c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-07-03T15:54:43.604878554"
+    },
+    "test_eggnogmapper_withdiamond_compressed": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.emapper.hits:md5,86e4f5944b48e35533e14bb0518064e6"
+                    ]
+                ],
+                "1": [
+                    
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.emapper.seed_orthologs:md5,4535c05b5da52ec45c02d1df0176fc42"
+                    ]
+                ],
+                "3": [
+                    "versions.yml:md5,d3e4efad28b5a924585ea3dfcf72c32c"
+                ],
+                "annotations": [
+                    
+                ],
+                "hits": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.emapper.hits:md5,86e4f5944b48e35533e14bb0518064e6"
+                    ]
+                ],
+                "orthologs": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.emapper.seed_orthologs:md5,4535c05b5da52ec45c02d1df0176fc42"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,d3e4efad28b5a924585ea3dfcf72c32c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-07-03T17:13:51.02557317"
+    },
     "test_eggnogmapper_withoutdiamond": {
         "content": [
             {
@@ -29,7 +135,7 @@
                         "test.emapper.annotations:md5,acf16652adebcb33083edd74c5ec6e5f"
                     ]
                 ],
-                "csv": [
+                "hits": [
                     
                 ],
                 "orthologs": [
@@ -44,7 +150,7 @@
             "nf-test": "0.8.4",
             "nextflow": "23.04.3"
         },
-        "timestamp": "2024-07-03T14:39:05.516376238"
+        "timestamp": "2024-07-03T17:39:22.198996052"
     },
     "test_eggnogmapper_withdiamond": {
         "content": [
@@ -76,7 +182,7 @@
                 "annotations": [
                     
                 ],
-                "csv": [
+                "hits": [
                     [
                         {
                             "id": "test",
@@ -103,6 +209,6 @@
             "nf-test": "0.8.4",
             "nextflow": "23.04.3"
         },
-        "timestamp": "2024-07-03T14:15:10.109814679"
+        "timestamp": "2024-07-03T17:07:37.444222805"
     }
 }
