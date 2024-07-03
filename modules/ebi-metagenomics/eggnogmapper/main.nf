@@ -15,7 +15,7 @@ process EGGNOGMAPPER {
     path(eggnog_diamond_db)
 
     output:
-    tuple val(meta), path("*.emapper.hits"), emit: csv, optional: true
+    tuple val(meta), path("*.emapper.hits"), emit: hits, optional: true
     tuple val(meta), path("*annotations*") , emit: annotations, optional: true
     tuple val(meta), path("*orthologs*")   , emit: orthologs, optional: true
     path "versions.yml"                    , emit: versions

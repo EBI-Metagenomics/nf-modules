@@ -13,7 +13,7 @@ tools:
       documentation: "https://github.com/eggnogdb/eggnog-mapper/wiki"
       tool_dev_url: "https://github.com/eggnogdb/eggnog-mapper"
       doi: "10.1093/molbev/msab293"
-      licence: "['AGPL v3']"
+      licence: ["AGPL v3"]
 
 input:
   - meta:
@@ -26,6 +26,11 @@ input:
       type: file
       description: Database of sequences in FASTA format
       pattern: "*.{fasta,fa,fasta.gz,fa.gz}"
+
+  - annotation_hit_table:
+      type: file
+      description: Hits file from previous EggNOG run with Diamond
+      pattern: "*.hits"
 
   - eggnog_db:
       type: file
@@ -48,12 +53,18 @@ output:
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'test', single_end:false ]`
-
-  - csv:
+  - hits:
       type: file
-      description: CSV containing protein annotations
-      pattern: "*.emapper.hits"
-
+      description: Tabulated file containing hits
+      pattern: "*.hits"
+  - annotations:
+      type: file
+      description: Tabulated file containing annotations
+      pattern: "*.annotations"
+  - orthologs:
+      type: file
+      description: Tabulated file containing EggNOG orthologs
+      pattern: "*.emapper.orthologs"
   - versions:
       type: file
       description: File containing software versions
@@ -61,3 +72,4 @@ output:
 
 authors:
   - "@vagkaratzas"
+  - "@chrisata"
