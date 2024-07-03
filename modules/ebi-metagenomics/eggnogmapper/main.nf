@@ -26,10 +26,10 @@ process EGGNOGMAPPER {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def fasta_input = fasta ? "-i ${fasta}" : "" 
-    def annotation_hit_input = annotation_hit_table ? "--annotate_hits_table ${annotation_hit_table}" : "" 
-    def eggnog_db_input = eggnog_db ? "--database ${eggnog_db}" : "" 
-    def eggnog_diamond_db_input = eggnog_diamond_db ? "--dmnd_db ${eggnog_diamond_db}" : "" 
+    def fasta_input = fasta ? "-i ${fasta}" : ""
+    def annotation_hit_input = annotation_hit_table ? "--annotate_hits_table ${annotation_hit_table}" : ""
+    def eggnog_db_input = eggnog_db ? "--database ${eggnog_db}" : ""
+    def eggnog_diamond_db_input = eggnog_diamond_db ? "--dmnd_db ${eggnog_diamond_db}" : ""
     def dbmem = task.memory.toMega() > 40000 ? '--dbmem' : ''
 
     """
