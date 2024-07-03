@@ -1,0 +1,108 @@
+{
+    "test_eggnogmapper_withoutdiamond": {
+        "content": [
+            {
+                "0": [
+                    
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.emapper.annotations:md5,acf16652adebcb33083edd74c5ec6e5f"
+                    ]
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    "versions.yml:md5,d3e4efad28b5a924585ea3dfcf72c32c"
+                ],
+                "annotations": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.emapper.annotations:md5,acf16652adebcb33083edd74c5ec6e5f"
+                    ]
+                ],
+                "csv": [
+                    
+                ],
+                "orthologs": [
+                    
+                ],
+                "versions": [
+                    "versions.yml:md5,d3e4efad28b5a924585ea3dfcf72c32c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-07-03T14:39:05.516376238"
+    },
+    "test_eggnogmapper_withdiamond": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.emapper.hits:md5,86e4f5944b48e35533e14bb0518064e6"
+                    ]
+                ],
+                "1": [
+                    
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.emapper.seed_orthologs:md5,4535c05b5da52ec45c02d1df0176fc42"
+                    ]
+                ],
+                "3": [
+                    "versions.yml:md5,d3e4efad28b5a924585ea3dfcf72c32c"
+                ],
+                "annotations": [
+                    
+                ],
+                "csv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.emapper.hits:md5,86e4f5944b48e35533e14bb0518064e6"
+                    ]
+                ],
+                "orthologs": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.emapper.seed_orthologs:md5,4535c05b5da52ec45c02d1df0176fc42"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,d3e4efad28b5a924585ea3dfcf72c32c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-07-03T14:15:10.109814679"
+    }
+}
