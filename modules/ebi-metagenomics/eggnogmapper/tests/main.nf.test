@@ -7,6 +7,7 @@ nextflow_process {
 
     tag "modules"
     tag "modules_nfcore"
+    tag "diamond/makedb"
     tag "eggnogmapper"
 
     test("test_eggnogmapper_withdiamond") {
