@@ -15,7 +15,7 @@ process EGGNOGMAPPER {
     path(eggnog_diamond_db)
 
     output:
-    tuple val(meta), path("*.hits")   , emit: hits, optional: true
+    tuple val(meta), path("*.hits")           , emit: hits, optional: true
     tuple val(meta), path("*.annotations")    , emit: annotations, optional: true
     tuple val(meta2), path("*.seed_orthologs"), emit: orthologs, optional: true
     path "versions.yml"                       , emit: versions
