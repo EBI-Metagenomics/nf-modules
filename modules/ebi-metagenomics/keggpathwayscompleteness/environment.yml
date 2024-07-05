@@ -6,4 +6,4 @@ channels:
   - bioconda
   - defaults
 dependencies:
-  - "bioconda::kegg-pathways-completeness=1.0.3"
+  - "bioconda::kegg-pathways-completeness=1.0.4"

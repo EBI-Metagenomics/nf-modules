@@ -3,22 +3,46 @@
         "content": [
             {
                 "0": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.summary.kegg_contigs.tsv:md5,a31fd7add583c5f29f39144d2009948f"
+                    ]
                 ],
                 "1": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.summary.kegg_pathways.tsv:md5,44d303bdd75a8965ab6b519f8ab32db2"
+                    ]
                 ],
                 "2": [
-                    
+                    "versions.yml:md5,bd56d75d90a3f3c7d73b85498ab80303"
                 ],
                 "kegg_contigs": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.summary.kegg_contigs.tsv:md5,a31fd7add583c5f29f39144d2009948f"
+                    ]
                 ],
                 "kegg_pathways": [
-                    
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.summary.kegg_pathways.tsv:md5,44d303bdd75a8965ab6b519f8ab32db2"
+                    ]
                 ],
                 "versions": [
-                    
+                    "versions.yml:md5,bd56d75d90a3f3c7d73b85498ab80303"
                 ]
             }
         ],
@@ -26,7 +50,7 @@
             "nf-test": "0.8.4",
             "nextflow": "23.04.3"
         },
-        "timestamp": "2024-07-02T10:56:21.415531081"
+        "timestamp": "2024-07-05T11:27:37.754704837"
     },
     "keggpathwayscompleteness - stub": {
         "content": [
@@ -50,7 +74,7 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,a01d7161c227c603a6eb143393cd5b3b"
+                    "versions.yml:md5,bd56d75d90a3f3c7d73b85498ab80303"
                 ],
                 "kegg_contigs": [
                     [
@@ -71,7 +95,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,a01d7161c227c603a6eb143393cd5b3b"
+                    "versions.yml:md5,bd56d75d90a3f3c7d73b85498ab80303"
                 ]
             }
         ],
@@ -79,7 +103,7 @@
             "nf-test": "0.8.4",
             "nextflow": "23.04.3"
         },
-        "timestamp": "2024-07-03T08:55:58.478640109"
+        "timestamp": "2024-07-05T11:27:58.526033486"
     },
     "keggpathwayscompleteness - KO list": {
         "content": [
@@ -103,7 +127,7 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,a01d7161c227c603a6eb143393cd5b3b"
+                    "versions.yml:md5,bd56d75d90a3f3c7d73b85498ab80303"
                 ],
                 "kegg_contigs": [
                     [
@@ -124,7 +148,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,a01d7161c227c603a6eb143393cd5b3b"
+                    "versions.yml:md5,bd56d75d90a3f3c7d73b85498ab80303"
                 ]
             }
         ],
@@ -132,6 +156,6 @@
             "nf-test": "0.8.4",
             "nextflow": "23.04.3"
         },
-        "timestamp": "2024-07-03T08:55:53.486394198"
+        "timestamp": "2024-07-05T11:27:51.669458937"
     }
 }
