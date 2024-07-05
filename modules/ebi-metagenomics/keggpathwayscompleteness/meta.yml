@@ -1,7 +1,7 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "keggpathwayscompleteness"
-description: This tool computes the completeness of each KEGG pathway module for given set of KEGG orthologues (KOs) based on their presence/absence. 
+description: This tool computes the completeness of each KEGG pathway module for given set of KEGG orthologues (KOs) based on their presence/absence.
 keywords:
   - KEGG
   - modules
@@ -13,13 +13,13 @@ tools:
       homepage: "https://github.com/EBI-Metagenomics/kegg-pathways-completeness-tool"
       documentation: "https://github.com/EBI-Metagenomics/kegg-pathways-completeness-tool"
       tool_dev_url: "https://github.com/EBI-Metagenomics/kegg-pathways-completeness-tool"
-      licence: ['Apache-2.0']
+      licence: ["Apache-2.0"]
 input:
   - meta:
       type: map
       description: |
         Groovy Map containing sample information
-        e.g. `[ id:'sample1', single_end:false ]`  
+        e.g. `[ id:'sample1', single_end:false ]`
   - fasta:
       type: file
       description: FASTA file containing the contigs that were analysed by hmmsearch to be used with hmmsearch_tbl
