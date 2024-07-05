@@ -24,44 +24,24 @@ process ANTISMASH {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def antismash_input = gbk_input ? "${gbk_input}" : "--genefinding-gff3 ${genes} ${contigs}"
 
-    if (gbk_input == []){
-        """
-        antismash \\
-            -c ${task.cpus} \\
-            ${args} \\
-            --databases ${antismash_db} \\
-            --genefinding-gff3 ${genes} \\
-            --output-dir ${prefix}_results \\
-            ${contigs}
+    """
+    antismash \\
+        -c ${task.cpus} \\
+        ${args} \\
+        --databases ${antismash_db} \\
+        --output-dir ${prefix}_results \\
+        ${antismash_input}
 
-        tar -czf ${prefix}_antismash.tar.gz ${prefix}_results
+    tar -czf ${prefix}_antismash.tar.gz ${prefix}_results
 
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            antiSMASH: \$(echo \$(antismash --version | sed 's/^antiSMASH //' ))
-            antiSMASH database: ${db_version}
-        END_VERSIONS
-        """
-    }
-    else{
-        """
-        antismash \\
-            -c ${task.cpus} \\
-            ${args} \\
-            --databases ${antismash_db} \\
-            --output-dir ${prefix}_results \\
-            ${gbk_input}
-
-        tar -czf ${prefix}_antismash.tar.gz ${prefix}_results
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            antiSMASH: \$(echo \$(antismash --version | sed 's/^antiSMASH //' ))
-            antiSMASH database: ${db_version}
-        END_VERSIONS
-        """
-    }
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        antiSMASH: \$(echo \$(antismash --version | sed 's/^antiSMASH //' ))
+        antiSMASH database: ${db_version}
+    END_VERSIONS
+    """
 
     stub:
     def args = task.ext.args ?: ''
