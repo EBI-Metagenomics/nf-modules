@@ -25,7 +25,7 @@ process KEGGPATHWAYSCOMPLETENESS {
     def kegg_input = ko_list ? "-l ${ko_list}" : "-i ${filtered_tbl}"
 
     if (ko_list && filtered_tbl){
-        log.warn("Both \$ko_list and \$filtered_tbl were given as input types, will fall back to using \$filtered_tbl i.e. ${filtered_tbl}");
+        log.warn("Both \$ko_list and \$filtered_tbl were given as input types, will fall back to using \$ko_list i.e. ${ko_list}");
     }
 
     """
