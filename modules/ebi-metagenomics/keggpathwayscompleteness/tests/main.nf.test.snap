@@ -1,4 +1,57 @@
 {
+    "keggpathwayscompleteness - warn because both inputs specified": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.summary.kegg_contigs.tsv:md5,d18735f58cc8593bd7abc0270e1af891"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.summary.kegg_pathways.tsv:md5,e6538c3dd00b1ffb015780a90003f81d"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,fdc86d119def3d1ab9b14546eb3efe4a"
+                ],
+                "kegg_contigs": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.summary.kegg_contigs.tsv:md5,d18735f58cc8593bd7abc0270e1af891"
+                    ]
+                ],
+                "kegg_pathways": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.summary.kegg_pathways.tsv:md5,e6538c3dd00b1ffb015780a90003f81d"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,fdc86d119def3d1ab9b14546eb3efe4a"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-07-09T10:15:54.832804727"
+    },
     "keggpathwayscompleteness - filtered_tbl": {
         "content": [
             {
