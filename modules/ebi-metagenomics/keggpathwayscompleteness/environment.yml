@@ -1,9 +1,9 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/environment-schema.json
-name: "keggpathwayscompleteness"
+name: "kegg-pathways-completeness"
 channels:
   - conda-forge
   - bioconda
   - defaults
 dependencies:
-  - "bioconda::kegg-pathways-completeness=1.0.4"
+  - "bioconda::kegg-pathways-completeness=1.0.5"
