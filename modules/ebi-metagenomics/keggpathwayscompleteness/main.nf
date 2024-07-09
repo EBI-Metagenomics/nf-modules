@@ -5,13 +5,11 @@ process KEGGPATHWAYSCOMPLETENESS {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/kegg-pathways-completeness:1.0.4--pyhdfd78af_0':
-        'biocontainers/kegg-pathways-completeness:1.0.4--pyhdfd78af_0' }"
+        'https://depot.galaxyproject.org/singularity/kegg-pathways-completeness:1.0.5--pyhdfd78af_0':
+        'biocontainers/kegg-pathways-completeness:1.0.5--pyhdfd78af_0' }"
 
     input:
-    tuple val(meta), path(fasta)
-    tuple val(meta), path(hmmsearch_tbl)
-    tuple val(meta), path(ko_list)
+    tuple val(meta), path(filtered_tbl), path(ko_list)
 
     output:
     tuple val(meta), path("*_contigs.tsv") , emit: kegg_contigs
@@ -24,46 +22,22 @@ process KEGGPATHWAYSCOMPLETENESS {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def version = "1.0.4" // No way to get version automatically so hard-coding it
+    def kegg_input = ko_list ? "-l ${ko_list}" : "-i ${filtered_tbl}"
 
-    if (ko_list == []){
-        """
-        sed \\
-        '/^#/d; s/ \\+/\\t/g' \\
-        ${hmmsearch_tbl} \\
-        > ${prefix}.filtered.tbl
+    """
+    give_pathways \\
+    ${kegg_input} \\
+    -o ${prefix}
 
-        parsing_hmmscan \\
-        -i ${prefix}.filtered.tbl \\
-        -f ${fasta}
-
-        give_pathways \\
-        -i ${prefix}.filtered.tbl_parsed \\
-        -o ${prefix}
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            keggpathwayscompleteness: ${version}
-        END_VERSIONS
-        """
-    }
-    else {
-        """
-        give_pathways \\
-        -l ${ko_list} \\
-        -o ${prefix}
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            keggpathwayscompleteness: ${version}
-        END_VERSIONS
-        """
-    }
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        kegg-pathways-completeness: \$(give_pathways --version | cut -d' ' -f2)
+    END_VERSIONS
+    """
 
     stub:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def version = "1.0.4" // No way to get version automatically so hard-coding it
 
     """
     touch ${prefix}.kegg_contigs.tsv
@@ -71,7 +45,7 @@ process KEGGPATHWAYSCOMPLETENESS {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        keggpathwayscompleteness: ${version}
+        kegg-pathways-completeness: \$(give_pathways --version | cut -d' ' -f2)
     END_VERSIONS
     """
 }

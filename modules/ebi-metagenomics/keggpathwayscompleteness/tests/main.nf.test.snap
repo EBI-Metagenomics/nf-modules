@@ -1,5 +1,5 @@
 {
-    "keggpathwayscompleteness - hmmsearch_table": {
+    "keggpathwayscompleteness - filtered_tbl": {
         "content": [
             {
                 "0": [
@@ -21,7 +21,7 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,bd56d75d90a3f3c7d73b85498ab80303"
+                    "versions.yml:md5,fdc86d119def3d1ab9b14546eb3efe4a"
                 ],
                 "kegg_contigs": [
                     [
@@ -42,7 +42,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,bd56d75d90a3f3c7d73b85498ab80303"
+                    "versions.yml:md5,fdc86d119def3d1ab9b14546eb3efe4a"
                 ]
             }
         ],
@@ -50,7 +50,7 @@
             "nf-test": "0.8.4",
             "nextflow": "23.04.3"
         },
-        "timestamp": "2024-07-05T11:27:37.754704837"
+        "timestamp": "2024-07-09T09:44:04.378610297"
     },
     "keggpathwayscompleteness - stub": {
         "content": [
@@ -74,7 +74,7 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,bd56d75d90a3f3c7d73b85498ab80303"
+                    "versions.yml:md5,fdc86d119def3d1ab9b14546eb3efe4a"
                 ],
                 "kegg_contigs": [
                     [
@@ -95,7 +95,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,bd56d75d90a3f3c7d73b85498ab80303"
+                    "versions.yml:md5,fdc86d119def3d1ab9b14546eb3efe4a"
                 ]
             }
         ],
@@ -103,7 +103,7 @@
             "nf-test": "0.8.4",
             "nextflow": "23.04.3"
         },
-        "timestamp": "2024-07-05T11:27:58.526033486"
+        "timestamp": "2024-07-09T09:25:11.02773529"
     },
     "keggpathwayscompleteness - KO list": {
         "content": [
@@ -127,7 +127,7 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,bd56d75d90a3f3c7d73b85498ab80303"
+                    "versions.yml:md5,fdc86d119def3d1ab9b14546eb3efe4a"
                 ],
                 "kegg_contigs": [
                     [
@@ -148,7 +148,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,bd56d75d90a3f3c7d73b85498ab80303"
+                    "versions.yml:md5,fdc86d119def3d1ab9b14546eb3efe4a"
                 ]
             }
         ],
@@ -156,6 +156,6 @@
             "nf-test": "0.8.4",
             "nextflow": "23.04.3"
         },
-        "timestamp": "2024-07-05T11:27:51.669458937"
+        "timestamp": "2024-07-09T09:25:03.771670203"
     }
 }

@@ -1,6 +1,6 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
-name: "keggpathwayscompleteness"
+name: "kegg-pathways-completeness"
 description: This tool computes the completeness of each KEGG pathway module for given set of KEGG orthologues (KOs) based on their presence/absence.
 keywords:
   - KEGG
@@ -8,7 +8,7 @@ keywords:
   - pathways
   - orthologues
 tools:
-  - "keggpathwayscompleteness":
+  - "kegg-pathways-completeness":
       description: "The tool counts completeness of each KEGG pathway for protein sequences."
       homepage: "https://github.com/EBI-Metagenomics/kegg-pathways-completeness-tool"
       documentation: "https://github.com/EBI-Metagenomics/kegg-pathways-completeness-tool"
@@ -20,18 +20,14 @@ input:
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'sample1', single_end:false ]`
-  - fasta:
+  - filtered_tbl:
       type: file
-      description: FASTA file containing the contigs that were analysed by hmmsearch to be used with hmmsearch_tbl
-      pattern: "*.fasta"
-  - hmmsearch_tbl:
-      type: file
-      description: Tabulated output file from hmmsearch to be used with fasta
+      description: Filtered tabulated output file from processing hmmsearch output
       pattern: "*.tbl"
   - ko_list:
       type: file
-      description: Text file containing a list of comma-separated KO terms, to be run instead of using fasta+hmmsearch_tbl
-      pattern: "*.tbl"
+      description: Text file containing a list of comma-separated KO terms, to be run instead of using filtered_tbl
+      pattern: "*.txt"
 output:
   - meta:
       type: map

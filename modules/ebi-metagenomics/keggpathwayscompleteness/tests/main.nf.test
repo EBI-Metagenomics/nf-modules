@@ -9,22 +9,15 @@ nextflow_process {
     tag "modules_nfcore"
     tag "keggpathwayscompleteness"
 
-    test("keggpathwayscompleteness - hmmsearch_table") {
+    test("keggpathwayscompleteness - filtered_tbl") {
 
         when {
             process {
                 """                
                 input[0] = [
                     [ id:'test', single_end:false ], // meta map
-                    file("${moduleDir}/tests/fixtures/test.fasta", checkIfExists: true)
-                    ]
-                input[1] = [
-                    [ id:'test', single_end:false ], // meta map
-                    file("${moduleDir}/tests/fixtures/test.tbl", checkIfExists: true)
-                    ]
-                input[2] = [
-                    [ id:'test', single_end:false ], // meta map
-                    [] // empty list for optional input
+                    file("${moduleDir}/tests/fixtures/test_filtered.tbl", checkIfExists: true),
+                    []
                     ]
                 """
             }
@@ -46,14 +39,7 @@ nextflow_process {
                 """                
                 input[0] = [
                     [ id:'test', single_end:false ], // meta map
-                    [] // empty list for optional input
-                    ]
-                input[1] = [
-                    [ id:'test', single_end:false ], // meta map
-                    [] // empty list for optional input
-                    ]
-                input[2] = [
-                    [ id:'test', single_end:false ], // meta map
+                    [],
                     file("${moduleDir}/tests/fixtures/test_kos.txt", checkIfExists: true)
                     ]
                 """
@@ -78,15 +64,8 @@ nextflow_process {
                 """                
                 input[0] = [
                     [ id:'test', single_end:false ], // meta map
-                    file("${moduleDir}/tests/fixtures/test.fasta", checkIfExists: true)
-                    ]
-                input[1] = [
-                    [ id:'test', single_end:false ], // meta map
-                    file("${moduleDir}/tests/fixtures/test.tbl", checkIfExists: true)
-                    ]
-                input[2] = [
-                    [ id:'test', single_end:false ], // meta map
-                    [] // empty list for optional input
+                    file("${moduleDir}/tests/fixtures/test_filtered.tbl", checkIfExists: true),
+                    []
                     ]
                 """
             }
