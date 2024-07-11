@@ -38,7 +38,7 @@ process DRAM_DISTILL {
         ${args}
     mv dram_out/product.html ${prefix}_dram.html
     mv dram_out/product.tsv ${prefix}_dram.tsv
-    
+
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         dram: $VERSION
