@@ -19,24 +19,25 @@ tools:
       description: |
         Groovy Map containing sample information
         e.g. [ id:'test', single_end:false ]
-  - dram_input:
+  - tsv_input:
       type: file
       description: Input tsv file containing sequence annotations from different tools
-      pattern: "*.{tsv}"
+      pattern: "*.tsv"
 
 output:
-  - distill_out_html:
+  - html:
       type: file
       description: HTML file containing heatmaps of summarised annotations
-      pattern: "*.{html}"
-  - distill_out_tsv:
+      pattern: "*.html"
+  - tsv:
       type: file
       description: TSV file containing summarised annotations
-      pattern: "*.{tsv}"
+      pattern: "*.tsv"
   - versions:
       type: file
       description: File containing software versions
       pattern: "versions.yml"
 
 authors:
-  - "@Ales-ibt, @Ge94"
+  - "@Ales-ibt"
+  - "@Ge94"

@@ -6,14 +6,20 @@ process DRAM_DISTILL {
         'https://depot.galaxyproject.org/singularity/dram:1.3.5--pyhdfd78af_0':
         'quay.io/biocontainers/dram:1.3.5--pyhdfd78af_0' }"
 
-    containerOptions="--bind ${moduleDir}/tests/fixtures/dram_distill_dbs/:/data/ --bind ${moduleDir}/tests/fixtures/dram_distill_dbs/CONFIG:/usr/local/lib/python3.10/site-packages/mag_annotator/CONFIG"
+    containerOptions {
+        if (workflow.containerEngine == 'singularity') {
+            return "--bind ${moduleDir}/tests/fixtures/dram_distill_dbs/:/data/ --bind ${moduleDir}/tests/fixtures/dram_distill_dbs/CONFIG:/usr/local/lib/python3.10/site-packages/mag_annotator/CONFIG"
+        } else {
+            return "-v ${moduleDir}/tests/fixtures/dram_distill_dbs/:/data/ -v ${moduleDir}/tests/fixtures/dram_distill_dbs/CONFIG:/usr/local/lib/python3.10/site-packages/mag_annotator/CONFIG"
+        }
+    }
 
     input:
-    tuple val(meta), path(dram_input)
+    tuple val(meta), path(tsv_input)
 
     output:
-    tuple val(meta), path("*_dram.html"), emit: distill_out_html // removed "optional" e.g. we don't launch the module when missing input files
-    tuple val(meta), path("*_dram.tsv") , emit: distill_out_tsv
+    tuple val(meta), path("*_dram.html"), emit: html
+    tuple val(meta), path("*_dram.tsv") , emit: tsv
     path "versions.yml"                 , emit: versions
 
     when:
@@ -28,7 +34,8 @@ process DRAM_DISTILL {
     DRAM.py \\
         distill \\
         -i ${dram_input}  \\
-        -o dram_out
+        -o dram_out \\
+        ${args}
     mv dram_out/product.html ${prefix}_dram.html
     mv dram_out/product.tsv ${prefix}_dram.tsv
     
