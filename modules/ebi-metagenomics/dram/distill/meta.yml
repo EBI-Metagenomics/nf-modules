@@ -13,7 +13,7 @@ tools:
       doi: "doi.org/10.1093/nar/gkaa621"
       licence: ["GPL v3"]
 
-  input:
+input:
   - meta:
       type: map
       description: |
