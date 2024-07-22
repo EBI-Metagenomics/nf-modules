@@ -33,7 +33,7 @@ process DRAM_DISTILL {
     """
     DRAM.py \\
         distill \\
-        -i ${dram_input}  \\
+        -i ${tsv_input}  \\
         -o dram_out \\
         ${args}
     mv dram_out/product.html ${prefix}_dram.html
