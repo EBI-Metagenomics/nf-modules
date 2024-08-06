@@ -1,0 +1,212 @@
+{
+    "fastqutils - noerrors_pe": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_sanity.txt:md5,d36f8f9425c4a8000ad9c4a97185aca5"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,a5c6b30aead5ce782fac3c3f0a292704"
+                ],
+                "sanity": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_sanity.txt:md5,d36f8f9425c4a8000ad9c4a97185aca5"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,a5c6b30aead5ce782fac3c3f0a292704"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-08-01T16:19:09.857435291"
+    },
+    "fastqutils - brokenfileerror": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_sanity.txt:md5,98c83b763d170c0f16bf9000869bd86a"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,a5c6b30aead5ce782fac3c3f0a292704"
+                ],
+                "sanity": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_sanity.txt:md5,98c83b763d170c0f16bf9000869bd86a"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,a5c6b30aead5ce782fac3c3f0a292704"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-08-01T16:39:34.912369382"
+    },
+    "fastqutils - headeruniqueerror": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_sanity.txt:md5,133ae8181370b213d9da44eef0e2421e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,a5c6b30aead5ce782fac3c3f0a292704"
+                ],
+                "sanity": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_sanity.txt:md5,133ae8181370b213d9da44eef0e2421e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,a5c6b30aead5ce782fac3c3f0a292704"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-08-01T16:42:30.465915574"
+    },
+    "fastqutils - readcounterror": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_sanity.txt:md5,0437b4c2d398aee0614f0e46235fdc41"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,a5c6b30aead5ce782fac3c3f0a292704"
+                ],
+                "sanity": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_sanity.txt:md5,0437b4c2d398aee0614f0e46235fdc41"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,a5c6b30aead5ce782fac3c3f0a292704"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-08-01T16:42:39.557786664"
+    },
+    "fastqutils - headermatcherror": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_sanity.txt:md5,c39c6444668ee1ef02cbc995708018f9"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,a5c6b30aead5ce782fac3c3f0a292704"
+                ],
+                "sanity": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_sanity.txt:md5,c39c6444668ee1ef02cbc995708018f9"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,a5c6b30aead5ce782fac3c3f0a292704"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-08-01T16:42:15.58774212"
+    },
+    "fastqutils - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_sanity.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,a5c6b30aead5ce782fac3c3f0a292704"
+                ],
+                "sanity": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_sanity.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,a5c6b30aead5ce782fac3c3f0a292704"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-08-01T16:21:48.395516095"
+    }
+}
