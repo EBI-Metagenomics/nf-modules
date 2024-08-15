@@ -1,0 +1,7 @@
+---
+name: "taxonkit_reformat"
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - "bioconda::taxonkit=0.17.0"
