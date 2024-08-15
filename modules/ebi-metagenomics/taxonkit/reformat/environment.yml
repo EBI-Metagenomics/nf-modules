@@ -3,5 +3,6 @@ name: "taxonkit_reformat"
 channels:
   - conda-forge
   - bioconda
+  - defaults
 dependencies:
   - "bioconda::taxonkit=0.17.0"
