@@ -1,0 +1,187 @@
+{
+    "assessmcpproportions - FR": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "var_region": "16S-V3-V4"
+                        },
+                        "test_16S-V3-V4_mcp_cons.tsv:md5,875c712aadf9b21bd535e555dbb4b7e1"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "var_region": "16S-V3-V4"
+                        },
+                        "test_16S-V3-V4_mcp_cons.tsv:md5,875c712aadf9b21bd535e555dbb4b7e1"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-08-23T16:36:34.394283463"
+    },
+    "assessmcpproportions - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "var_region": "16S-V3-V4"
+                        },
+                        "test_16S-V3-V4_mcp_cons.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "var_region": "16S-V3-V4"
+                        },
+                        "test_16S-V3-V4_mcp_cons.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-08-23T16:38:04.950310837"
+    },
+    "assessmcpproportions - R": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "var_region": "16S-V3-V4"
+                        },
+                        "test_16S-V3-V4_mcp_cons.tsv:md5,e4500d4e1aabab1e143063f4c26029ea"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "var_region": "16S-V3-V4"
+                        },
+                        "test_16S-V3-V4_mcp_cons.tsv:md5,e4500d4e1aabab1e143063f4c26029ea"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-08-23T16:40:24.152136973"
+    },
+    "assessmcpproportions - F": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "var_region": "16S-V3-V4"
+                        },
+                        "test_16S-V3-V4_mcp_cons.tsv:md5,1c566bc27d2bf777e76ffb8e52db7132"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "var_region": "16S-V3-V4"
+                        },
+                        "test_16S-V3-V4_mcp_cons.tsv:md5,1c566bc27d2bf777e76ffb8e52db7132"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-08-23T16:40:16.902138558"
+    },
+    "assessmcpproportions - none": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "var_region": "16S-V3-V4"
+                        },
+                        "test_16S-V3-V4_mcp_cons.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "var_region": "16S-V3-V4"
+                        },
+                        "test_16S-V3-V4_mcp_cons.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "23.04.3"
+        },
+        "timestamp": "2024-08-23T16:40:30.246560204"
+    }
+}
