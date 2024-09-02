@@ -13,9 +13,9 @@ process ASSESSMCPPROPORTIONS {
     val library_check
 
     output:
-    tuple val(meta), path("*.tsv"), emit: tsv
-    tuple val(meta), path("*.txt"), optional: true, emit: txt
-    path "versions.yml"           , emit: versions
+    tuple val(meta), path("*.tsv") , emit: tsv
+    tuple val(meta), env(check_out), optional: true, emit: library_check_out
+    path "versions.yml"            , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -39,7 +39,7 @@ process ASSESSMCPPROPORTIONS {
     if (strands == "") {
         """
         touch ${prefix}_${var_region}_mcp_cons.tsv
-        
+
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":
             mgnify-pipelines-toolkit: 0.1.5
@@ -58,6 +58,8 @@ process ASSESSMCPPROPORTIONS {
             -s ${prefix} \\
             -o ./
 
+        check_out=\$(cat ${prefix}_library_check_out.txt)
+
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":
             mgnify-pipelines-toolkit: 0.1.5
@@ -75,7 +77,7 @@ process ASSESSMCPPROPORTIONS {
         "${task.process}":
             mgnify-pipelines-toolkit: 0.1.5
         END_VERSIONS
-        """   
+        """
     }
 
     stub:
