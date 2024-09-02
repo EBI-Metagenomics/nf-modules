@@ -13,6 +13,9 @@
                     ]
                 ],
                 "1": [
+                    
+                ],
+                "2": [
                     "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
                 ],
                 "tsv": [
@@ -25,6 +28,9 @@
                         "test_16S-V3-V4_mcp_cons.tsv:md5,875c712aadf9b21bd535e555dbb4b7e1"
                     ]
                 ],
+                "txt": [
+                    
+                ],
                 "versions": [
                     "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
                 ]
@@ -32,9 +38,9 @@
         ],
         "meta": {
             "nf-test": "0.8.4",
-            "nextflow": "23.04.3"
+            "nextflow": "24.04.4"
         },
-        "timestamp": "2024-08-23T16:36:34.394283463"
+        "timestamp": "2024-09-02T11:51:42.150221278"
     },
     "assessmcpproportions - stub": {
         "content": [
@@ -50,6 +56,9 @@
                     ]
                 ],
                 "1": [
+                    
+                ],
+                "2": [
                     "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
                 ],
                 "tsv": [
@@ -62,6 +71,9 @@
                         "test_16S-V3-V4_mcp_cons.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
+                "txt": [
+                    
+                ],
                 "versions": [
                     "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
                 ]
@@ -69,9 +81,9 @@
         ],
         "meta": {
             "nf-test": "0.8.4",
-            "nextflow": "23.04.3"
+            "nextflow": "24.04.4"
         },
-        "timestamp": "2024-08-23T16:38:04.950310837"
+        "timestamp": "2024-09-02T11:39:59.689876211"
     },
     "assessmcpproportions - R": {
         "content": [
@@ -87,6 +99,9 @@
                     ]
                 ],
                 "1": [
+                    
+                ],
+                "2": [
                     "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
                 ],
                 "tsv": [
@@ -99,6 +114,9 @@
                         "test_16S-V3-V4_mcp_cons.tsv:md5,e4500d4e1aabab1e143063f4c26029ea"
                     ]
                 ],
+                "txt": [
+                    
+                ],
                 "versions": [
                     "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
                 ]
@@ -106,9 +124,66 @@
         ],
         "meta": {
             "nf-test": "0.8.4",
-            "nextflow": "23.04.3"
+            "nextflow": "24.04.4"
         },
-        "timestamp": "2024-08-23T16:40:24.152136973"
+        "timestamp": "2024-09-02T11:51:57.412900632"
+    },
+    "assessmcpproportions - FR - library_check": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "var_region": "16S-V3-V4"
+                        },
+                        "test_16S-V3-V4_mcp_cons.tsv:md5,875c712aadf9b21bd535e555dbb4b7e1"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "var_region": "16S-V3-V4"
+                        },
+                        "test_library_check_out.txt:md5,1605ca08f9028fe03bcb53a0c50ba2ff"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "var_region": "16S-V3-V4"
+                        },
+                        "test_16S-V3-V4_mcp_cons.tsv:md5,875c712aadf9b21bd535e555dbb4b7e1"
+                    ]
+                ],
+                "txt": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false,
+                            "var_region": "16S-V3-V4"
+                        },
+                        "test_library_check_out.txt:md5,1605ca08f9028fe03bcb53a0c50ba2ff"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-02T14:49:41.829696996"
     },
     "assessmcpproportions - F": {
         "content": [
@@ -124,6 +199,9 @@
                     ]
                 ],
                 "1": [
+                    
+                ],
+                "2": [
                     "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
                 ],
                 "tsv": [
@@ -136,6 +214,9 @@
                         "test_16S-V3-V4_mcp_cons.tsv:md5,1c566bc27d2bf777e76ffb8e52db7132"
                     ]
                 ],
+                "txt": [
+                    
+                ],
                 "versions": [
                     "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
                 ]
@@ -143,9 +224,9 @@
         ],
         "meta": {
             "nf-test": "0.8.4",
-            "nextflow": "23.04.3"
+            "nextflow": "24.04.4"
         },
-        "timestamp": "2024-08-23T16:40:16.902138558"
+        "timestamp": "2024-09-02T11:51:49.77201054"
     },
     "assessmcpproportions - none": {
         "content": [
@@ -161,6 +242,9 @@
                     ]
                 ],
                 "1": [
+                    
+                ],
+                "2": [
                     "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
                 ],
                 "tsv": [
@@ -173,6 +257,9 @@
                         "test_16S-V3-V4_mcp_cons.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
+                "txt": [
+                    
+                ],
                 "versions": [
                     "versions.yml:md5,1991dfecb03dab8f53e250d7fe03f999"
                 ]
@@ -180,8 +267,8 @@
         ],
         "meta": {
             "nf-test": "0.8.4",
-            "nextflow": "23.04.3"
+            "nextflow": "24.04.4"
         },
-        "timestamp": "2024-08-23T16:40:30.246560204"
+        "timestamp": "2024-09-02T11:52:03.891384461"
     }
 }
