@@ -10,9 +10,11 @@ process ASSESSMCPPROPORTIONS {
 
     input:
     tuple val(meta), val(fwd_flag), val(rev_flag), path(fastq)
+    val library_check
 
     output:
     tuple val(meta), path("*.tsv"), emit: tsv
+    tuple val(meta), path("*.txt"), optional: true, emit: txt
     path "versions.yml"           , emit: versions
 
     when:
@@ -22,17 +24,19 @@ process ASSESSMCPPROPORTIONS {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     def var_region = "${meta.var_region}"
+    def assess_mcp_prop_prefix = "${prefix}_${var_region}"
     def strands = ""
+    def library_check_input = "${assess_mcp_prop_prefix}_mcp_cons.tsv"
 
     if (fwd_flag == "auto" && rev_flag == "auto") {
         strands = "FR"
-    } else if (fwd_flag == "auto"){
+    } else if (fwd_flag == "auto") {
         strands = "F"
     } else if (rev_flag == "auto") {
         strands = "R"
     }
 
-    if (strands == ""){
+    if (strands == "") {
         """
         touch ${prefix}_${var_region}_mcp_cons.tsv
         
@@ -41,12 +45,17 @@ process ASSESSMCPPROPORTIONS {
             mgnify-pipelines-toolkit: 0.1.5
         END_VERSIONS
         """
-    } else{
+    } else if (library_check) {
         """
         assess_mcp_proportions \\
             -i ${fastq} \\
-            -s ${prefix}_${var_region} \\
+            -s ${assess_mcp_prop_prefix} \\
             -st ${strands} \\
+            -o ./
+
+        library_strategy_check \\
+            -i ${library_check_input} \\
+            -s ${prefix} \\
             -o ./
 
         cat <<-END_VERSIONS > versions.yml
@@ -54,15 +63,29 @@ process ASSESSMCPPROPORTIONS {
             mgnify-pipelines-toolkit: 0.1.5
         END_VERSIONS
         """
+    }   else {
+        """
+        assess_mcp_proportions \\
+            -i ${fastq} \\
+            -s ${assess_mcp_prop_prefix} \\
+            -st ${strands} \\
+            -o ./
+
+        cat <<-END_VERSIONS > versions.yml
+        "${task.process}":
+            mgnify-pipelines-toolkit: 0.1.5
+        END_VERSIONS
+        """   
     }
 
     stub:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     def var_region = "${meta.var_region}"
+    def assess_mcp_prop_prefix = "${prefix}_${var_region}"
 
     """
-    touch ${prefix}_${var_region}_mcp_cons.tsv
+    touch ${assess_mcp_prop_prefix}_mcp_cons.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
