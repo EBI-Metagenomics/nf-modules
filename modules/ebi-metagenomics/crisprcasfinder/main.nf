@@ -2,7 +2,6 @@ process CRISPRCASFINDER {
     tag "$meta.id"
     label 'process_single'
 
-
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/genomes-pipeline.crisprcasfinder:4.3.2':
@@ -27,8 +26,6 @@ process CRISPRCASFINDER {
     """
     CRISPRCasFinder.pl -i $fasta \
         -so /opt/CRISPRCasFinder/sel392v2.so \
-        -def G \
-        -drpt /opt/CRISPRCasFinder/supplementary_files/repeatDirection.tsv \
         -outdir crisprcasfinder_results
 
     cat <<-END_VERSIONS > versions.yml

@@ -3,12 +3,12 @@
 name: "crisprcasfinder"
 description: crisprcasfinder
 keywords:
-  - sort
+  - casfinder
   - crisprcasfinder
   - genomics
 tools:
   - "crisprcasfinder":
-      description: "commandline tool"
+      description: "CRISPRCasFinder is an updated, improved, and integrated version of CRISPRFinder and CasFinder."
       homepage: "https://github.com/dcouvin/CRISPRCasFinder"
       documentation: "https://github.com/dcouvin/CRISPRCasFinder"
       tool_dev_url: "https://github.com/dcouvin/CRISPRCasFinder"
