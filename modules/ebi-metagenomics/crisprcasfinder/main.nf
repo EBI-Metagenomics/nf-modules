@@ -14,7 +14,7 @@ process CRISPRCASFINDER {
     output:
     tuple val(meta), path("crisprcasfinder_results/GFF/*.gff"), emit: gff
     tuple val(meta), path("crisprcasfinder_results/TSV"), emit: tsv
-    tuple val(meta), path("crisprcasfinder_results/rawCRISPRs.fna"), optional: true, emit: fna 
+    tuple val(meta), path("crisprcasfinder_results/rawCRISPRs.fna"), optional: true, emit: fna
     path "versions.yml" , emit: versions
 
     when:
@@ -23,7 +23,7 @@ process CRISPRCASFINDER {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    
+
     """
     CRISPRCasFinder.pl -i $fasta \
         -so /opt/CRISPRCasFinder/sel392v2.so \
@@ -40,7 +40,7 @@ process CRISPRCASFINDER {
     stub:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-  
+
     """
     mkdir -p crisprcasfinder_results/TSV
     mkdir -p crisprcasfinder_results/GFF

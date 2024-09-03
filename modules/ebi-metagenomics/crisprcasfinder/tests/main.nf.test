@@ -11,7 +11,7 @@ nextflow_process {
     test("test_crisprcasfinder") {
         when {
             process {
-                 """
+                """
                 input[0] = [
                     [ id:'test', single_end:false ], // meta map
                     file("${moduleDir}/tests/fixtures/test.fasta", checkIfExists: true)
