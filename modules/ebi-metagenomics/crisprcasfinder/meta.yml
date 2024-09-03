@@ -37,9 +37,8 @@ output:
       description: annotations file
       pattern: "*.gff"
   - tsv:
-      type: file
+      type: directory
       description: tab separated values
-      pattern: "*.tsv"
   - fna:
       type: file
       description: rawCRISPRs fna file
