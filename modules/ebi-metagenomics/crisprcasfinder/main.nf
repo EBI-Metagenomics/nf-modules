@@ -25,6 +25,7 @@ process CRISPRCASFINDER {
 
     """
     CRISPRCasFinder.pl -i $fasta \
+        ${args} \\
         -so /opt/CRISPRCasFinder/sel392v2.so \
         -outdir crisprcasfinder_results
 
