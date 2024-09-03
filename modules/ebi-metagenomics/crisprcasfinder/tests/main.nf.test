@@ -29,7 +29,6 @@ nextflow_process {
     }
 
     test("test_crisprcasfinder - stub") {
-
         options "-stub"
 
         when {
