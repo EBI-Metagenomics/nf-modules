@@ -6,7 +6,7 @@ nextflow_process {
 
     tag "modules"
     tag "modules_nfcore"
-    tag "crisprcasfinder" 
+    tag "crisprcasfinder"
 
     test("test_crisprcasfinder") {
         when {
@@ -17,7 +17,6 @@ nextflow_process {
                     file("${moduleDir}/tests/fixtures/test.fasta", checkIfExists: true)
                     ]
                 """
-
             }
         }
         then {
