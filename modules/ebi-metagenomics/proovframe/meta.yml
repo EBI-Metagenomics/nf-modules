@@ -14,8 +14,8 @@ tools:
       homepage: "https://github.com/thackl/proovframe"
       documentation: "https://github.com/thackl/proovframe"
       tool_dev_url: "https://github.com/thackl/proovframe"
-#      doi: ""
-      licence: ['MIT']
+      #      doi: ""
+      licence: ["MIT"]
 
 ## TODO nf-core: Add a description of all of the variables used as input
 input:
