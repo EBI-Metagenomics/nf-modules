@@ -41,7 +41,7 @@ process DADA2 {
             $args \\
             $prefix \\
             $reads
-        
+
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":
             R: \$( R --version | head -1 | cut -d' ' -f3 )
