@@ -1,0 +1,14 @@
+{
+    "mytest1 - faa_fasta": {
+        "content": [
+            [
+                "versions.yml:md5,e53c6536069419ce043e4405538c6cae"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-03T16:03:22.339841"
+    }
+}

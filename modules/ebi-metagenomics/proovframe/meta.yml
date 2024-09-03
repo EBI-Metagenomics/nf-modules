@@ -1,0 +1,61 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "proovframe"
+## TODO nf-core: Add a description of the module and list keywords
+description: "frame-shift correction for long read (meta)genomics"
+keywords:
+  - sort
+  - example
+  - genomics
+tools:
+  - "proovframe":
+      ## TODO nf-core: Add a description and other details for the software below
+      description: "frame-shift correction for long read (meta)genomics"
+      homepage: "https://github.com/thackl/proovframe"
+      documentation: "https://github.com/thackl/proovframe"
+      tool_dev_url: "https://github.com/thackl/proovframe"
+#      doi: ""
+      licence: ['MIT']
+
+## TODO nf-core: Add a description of all of the variables used as input
+input:
+  # Only when we have meta
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+
+  ## TODO nf-core: Delete / customise this example input
+  - faa:
+      type: file
+      description: "Input FASTA file"
+      pattern: "*.{faa}"
+  - fasta:
+      type: file
+      description: "Input FASTA file"
+      pattern: "*.{fasta,fa}"
+
+## TODO nf-core: Add a description of all of the variables used as output
+output:
+  #Only when we have meta
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+  ## TODO nf-core: Delete / customise this example output
+  - tsv:
+      type: file
+      description: "Output TSV file"
+      pattern: "*.{tsv}"
+
+authors:
+  - "@MGS-sails"
+maintainers:
+  - "@MGS-sails"
