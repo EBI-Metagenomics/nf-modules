@@ -15,7 +15,7 @@ tools:
       documentation: ""
       tool_dev_url: ""
       doi: ""
-      licence: 
+      licence:
 
 ## TODO nf-core: Add a description of all of the variables used as input
 input:
@@ -25,7 +25,7 @@ input:
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'sample1', single_end:false ]`
-  
+
   ## TODO nf-core: Delete / customise this example input
   - bam:
       type: file
@@ -40,7 +40,7 @@ output:
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'sample1', single_end:false ]`
-  
+
   - versions:
       type: file
       description: File containing software versions
