@@ -3,7 +3,9 @@ process SANNTIS {
     label 'process_high'
 
     conda "${moduleDir}/environment.yml"
-    container 'microbiome-informatics/sanntis:0.9.3.4'
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'biocontainers/sanntis:0.9.3.5--pyhdfd78af_1' :
+        'biocontainers/sanntis:0.9.3.5--pyhdfd78af_1' }"
 
     input:
     tuple val(meta), path(interproscan_output), path(gbk)
