@@ -12,7 +12,7 @@ process SANNTIS {
 
     output:
     tuple val(meta), path("*_sanntis.gff"), emit: gff
-    path "versions.yml"           , emit: versions
+    path "versions.yml"                   , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -23,11 +23,11 @@ process SANNTIS {
     """
     grep -v "/protein_id=" ${gbk} > ${prefix}_prepped.gbk
     sanntis \
-    --ip-file ${interproscan_output} \
-    --outfile ${prefix}_sanntis.gff \
-    --cpu ${task.cpus} \
-    ${args} \
-    ${prefix}_prepped.gbk
+        --ip-file ${interproscan_output} \
+        --outfile ${prefix}_sanntis.gff \
+        --cpu ${task.cpus} \
+        ${args} \
+        ${prefix}_prepped.gbk
 
 
     cat <<-END_VERSIONS > versions.yml
