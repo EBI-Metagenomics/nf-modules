@@ -1,38 +1,125 @@
 {
-    "Toy test fastq pared reads": {
+    "Toy test fastq single reads": {
         "content": [
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "test_asvs.fasta:md5,7c861997aa34debd2ca2d80805c1cc25"
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_asvs.fasta:md5,f74d3b2d6572da28137bbd9fc782b0ac"
+                    ]
+                ],
+                "1": [
+                    "test_asv_counts.tsv:md5,acc9231178a33511c5bf9f087f8a586b"
+                ],
+                "2": [
+                    "versions.yml:md5,686bb72a2339cb9bfa1f404c84266536"
+                ],
+                "dada2_asv_counts": [
+                    "test_asv_counts.tsv:md5,acc9231178a33511c5bf9f087f8a586b"
+                ],
+                "dada2_out": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_asvs.fasta:md5,f74d3b2d6572da28137bbd9fc782b0ac"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,686bb72a2339cb9bfa1f404c84266536"
                 ]
-            ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-03T16:01:52.259429"
+        "timestamp": "2024-09-04T17:08:55.726691"
     },
-    "Toy test fastq pared reads - stub": {
+    "Toy test fastq paired reads - stub": {
         "content": [
-            [
-                [
-                    {
-                        "id": "test",
-                        "single_end": false
-                    },
-                    "test.asvs.fasta:md5,d41d8cd98f00b204e9800998ecf8427e"
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.asvs.fasta:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "test.asv_counts.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "2": [
+                    "versions.yml:md5,a431ec00e291eb67b51f237b42fcff00"
+                ],
+                "dada2_asv_counts": [
+                    "test.asv_counts.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ],
+                "dada2_out": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.asvs.fasta:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,a431ec00e291eb67b51f237b42fcff00"
                 ]
-            ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-03T16:02:00.489973"
+        "timestamp": "2024-09-04T17:09:03.860859"
+    },
+    "Toy test fastq paired reads": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_asvs.fasta:md5,7c861997aa34debd2ca2d80805c1cc25"
+                    ]
+                ],
+                "1": [
+                    "test_asv_counts.tsv:md5,e1744417a43b13a558ca0d93eb2b12fa"
+                ],
+                "2": [
+                    "versions.yml:md5,686bb72a2339cb9bfa1f404c84266536"
+                ],
+                "dada2_asv_counts": [
+                    "test_asv_counts.tsv:md5,e1744417a43b13a558ca0d93eb2b12fa"
+                ],
+                "dada2_out": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_asvs.fasta:md5,7c861997aa34debd2ca2d80805c1cc25"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,686bb72a2339cb9bfa1f404c84266536"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-04T17:08:41.196351"
     }
 }
