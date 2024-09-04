@@ -1,55 +1,53 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "dada2"
-## TODO nf-core: Add a description of the module and list keywords
 description: write your description here
 keywords:
-  - sort
-  - example
-  - genomics
+  - microbial taxonomy
+  - amplicon sequence variant (asv)
+  - amplicon sequencing
+  - error correction
+  - denoising
+
 tools:
   - "dada2":
-      ## TODO nf-core: Add a description and other details for the software below
-      description: ""
-      homepage: ""
-      documentation: ""
-      tool_dev_url: ""
-      doi: ""
-      licence:
+      description: "DADA2: High-resolution sample inference from Illumina amplicon data"
+      homepage: "https://benjjneb.github.io/dada2/"
+      documentation: "https://www.bioconductor.org/packages/3.6/bioc/manuals/dada2/man/dada2.pdf"
+      tool_dev_url: "https://github.com/benjjneb/dada2"
+      doi: "https://doi.org/10.1038/nmeth.3869"
+      licence: LGPL version 3
 
-## TODO nf-core: Add a description of all of the variables used as input
 input:
-  # Only when we have meta
   - meta:
       type: map
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'sample1', single_end:false ]`
 
-  ## TODO nf-core: Delete / customise this example input
-  - bam:
+  - reads:
       type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
+      description: Reads after QC and filtering
+      pattern: "*.fastq"
 
-## TODO nf-core: Add a description of all of the variables used as output
 output:
-  #Only when we have meta
   - meta:
       type: map
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'sample1', single_end:false ]`
-
   - versions:
       type: file
       description: File containing software versions
       pattern: "versions.yml"
-  ## TODO nf-core: Delete / customise this example output
-  - bam:
+  - fasta:
       type: file
-      description: Sorted BAM/CRAM/SAM file
-      pattern: "*.{bam,cram,sam}"
+      description: Fasta file with ASV sequences
+      pattern: "*asvs.fasta"
+  - counts:
+      type: file
+      description: Counts for unique ASV sequences
+      pattern: "*asv_counts.tsv"
 
 authors:
   - "@ochkalova"
