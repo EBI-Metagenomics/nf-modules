@@ -11,9 +11,9 @@ process DADA2 {
     tuple val(meta), path(reads)
 
     output:
-    tuple val(meta), path("*asvs.fasta")    , emit: dada2_out
-    path("*asv_counts.tsv")                 , emit: dada2_asv_counts
-    path "versions.yml"                     , emit: versions
+    tuple val(meta), path("*asvs.fasta"), emit: dada2_out
+    path("*asv_counts.tsv")             , emit: dada2_asv_counts
+    path "versions.yml"                 , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
