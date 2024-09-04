@@ -30,7 +30,7 @@ input:
   - gbk:
       type: file
       description: A file in .gbk format specifying the coding sequences.
-      pattern: "*.{gbk}"
+      pattern: "*.gbk"
 
 output:
   - meta:
