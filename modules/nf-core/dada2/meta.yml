@@ -1,7 +1,7 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "dada2"
-description: write your description here
+description: Infer Amplicon Sequence Variants (ASVs) from amplicon reads using DADA2 package
 keywords:
   - microbial taxonomy
   - amplicon sequence variant (asv)
@@ -24,7 +24,6 @@ input:
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'sample1', single_end:false ]`
-
   - reads:
       type: file
       description: Reads after QC and filtering
