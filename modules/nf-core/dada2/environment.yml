@@ -6,4 +6,4 @@ channels:
   - bioconda
   - defaults
 dependencies:
-  - "bioconda::dada2=1.0.3"
+  - "bioconda::dada2=1.30.0"
