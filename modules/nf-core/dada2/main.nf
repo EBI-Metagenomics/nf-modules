@@ -21,34 +21,19 @@ process DADA2 {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    if ( meta.single_end ){
-        """
-        $moduleDir/dada2.R \\
-            $args \\
-            $prefix \\
-            $reads
+    def reads_args = meta.single_end ? "${reads}" : "${reads[0]} ${reads[1]}"
+    """
+    $moduleDir/dada2.R \\
+        $args \\
+        $prefix \\
+        $reads_args
 
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            R: \$( R --version | head -1 | cut -d' ' -f3 )
-            dada2: \$( R -e "suppressMessages(library(dada2));packageDescription('dada2')" | grep 'Version' | cut -d' ' -f2 )
-        END_VERSIONS
-        """
-    } else {
-        """
-        $moduleDir/dada2.R \\
-            $args \\
-            $prefix \\
-            ${reads[0]} \\
-            ${reads[1]}
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            R: \$( R --version | head -1 | cut -d' ' -f3 )
-            dada2: \$( R -e "suppressMessages(library(dada2));packageDescription('dada2')" | grep 'Version' | cut -d' ' -f2 )
-        END_VERSIONS
-        """
-    }
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        R: \$( R --version | head -1 | cut -d' ' -f3 )
+        dada2: \$( R -e "suppressMessages(library(dada2));packageDescription('dada2')" | grep 'Version' | cut -d' ' -f2 )
+    END_VERSIONS
+    """
 
     stub:
     def args = task.ext.args ?: ''
