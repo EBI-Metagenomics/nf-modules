@@ -29,7 +29,7 @@ jobs:
         uses: adamrtalbot/detect-nf-test-changes@7c8be3ffd0d6538312b363c8c949dbbf5f26c3dd # v0.0.4
         with:
           head: ${{ github.sha }}
-          base: ${{ github.event.pull_request.base.sha || github.event.merge_group.base_sha }}
+          base: ${{ github.event.pull_request.base.sha }}
           n_parents: 2
 
       - name: Separate modules and subworkflows
@@ -45,7 +45,7 @@ jobs:
 
 
   nf-test:
-    runs-on: ${{ github.event.inputs.runners  || 'self-hosted' }}
+    runs-on: ubuntu-latest
     name: nf-test
     needs: [nf-test-changes]
     if: ( needs.nf-test-changes.outputs.paths != '[]' )
@@ -106,12 +106,7 @@ jobs:
           NFT_DIFF: "pdiff"
           NFT_DIFF_ARGS: "--line-numbers --width 120 --expand-tabs=2"
         run: |
-          # use "docker_self_hosted" if it runs on self-hosted runner and matrix.profile=docker
-          if [ "${{ matrix.profile }}" == "docker" ]; then
-            PROFILE="docker_self_hosted"
-          else
-            PROFILE=${{ matrix.profile }}
-          fi
+          PROFILE=${{ matrix.profile }}
 
           NFT_WORKDIR=~ \
           nf-test test \
