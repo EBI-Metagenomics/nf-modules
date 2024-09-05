@@ -1,0 +1,57 @@
+nextflow_process {
+
+    name "Test Process SANNTIS"
+    script "../main.nf"
+    process "SANNTIS"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "sanntis"
+
+    test("test_sanntis") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'MGYG000300113' ], // meta map
+                    file("${moduleDir}/tests/fixtures/IPS.subset.tsv", checkIfExists: true),
+                    file("${moduleDir}/tests/fixtures/MGYG000300113.gbk", checkIfExists: true)
+                    ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("test_sanntis_stub") {
+        options '-stub'
+
+        when {
+            process {
+                """
+                input[0] = [
+				    [ id:'MGYG000300113' ], // meta map
+                    file("${moduleDir}/tests/fixtures/IPS.subset.tsv"),
+                    file("${moduleDir}/tests/fixtures/MGYG000300113.gbk")
+				]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+
+}
