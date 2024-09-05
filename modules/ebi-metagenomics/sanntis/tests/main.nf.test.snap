@@ -1,0 +1,68 @@
+{
+    "test_sanntis": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "MGYG000300113"
+                        },
+                        "MGYG000300113_sanntis.gff:md5,587842de5d5ca8b731b97f03bec58101"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,14d0b69d48fa9993cb4602246082d0de"
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "MGYG000300113"
+                        },
+                        "MGYG000300113_sanntis.gff:md5,587842de5d5ca8b731b97f03bec58101"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,14d0b69d48fa9993cb4602246082d0de"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.04.5"
+        },
+        "timestamp": "2024-09-05T09:50:25.397800952"
+    },
+    "test_sanntis_stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "MGYG000300113"
+                        },
+                        "MGYG000300113_sanntis.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,14d0b69d48fa9993cb4602246082d0de"
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "MGYG000300113"
+                        },
+                        "MGYG000300113_sanntis.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,14d0b69d48fa9993cb4602246082d0de"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.04.5"
+        },
+        "timestamp": "2024-09-05T09:50:32.439151633"
+    }
+}
