@@ -348,8 +348,8 @@ var viewer;
                     return 0 === t
                         ? Math.round(Math.sqrt(n * n - e * e))
                         : 0 === e
-                          ? Math.round(Math.sqrt(n * n - t * t))
-                          : Math.round(Math.sqrt(t * t + e * e));
+                        ? Math.round(Math.sqrt(n * n - t * t))
+                        : Math.round(Math.sqrt(t * t + e * e));
                 }
                 function v(t, e) {
                     const n = e;
@@ -476,8 +476,8 @@ var viewer;
                                           R && R.special && n.modifier
                                               ? a - m(0, o, l + a)
                                               : R.level !== n.level
-                                                ? s
-                                                : R.radius),
+                                              ? s
+                                              : R.radius),
                                 R.cds === n.cds && (n.terminalDocking || R.terminalDocking) && (L -= c)),
                                 (C += L),
                                 n.special ? (n.radius = l) : (n.radius = a),
@@ -2116,8 +2116,8 @@ var viewer;
                         ("biosynthetic" === t.type && "biosynthetic" === e.type)
                         ? t.start - e.start
                         : "biosynthetic" === t.type
-                          ? 1
-                          : -1;
+                        ? 1
+                        : -1;
                 }
                 function x(t) {
                     return t.replace(/(:|\.)/g, "-").replace(/-svgeneorf/g, "_orf");
@@ -2232,8 +2232,8 @@ var viewer;
                             "legend-tta-codon" === e
                                 ? ".contains-tta-codon"
                                 : "legend-resistance" === e
-                                  ? ".svgene-resistance-orf"
-                                  : `.${e.replace("legend-", "svgene-")}`),
+                                ? ".svgene-resistance-orf"
+                                : `.${e.replace("legend-", "svgene-")}`),
                         $(this).hasClass("legend-selected"))
                     )
                         return (
@@ -2408,8 +2408,8 @@ var viewer;
                                         "candidatecluster" === t.kind
                                             ? `candidate-${t.product.split(" ")[2].replace("chemical_", "")}`
                                             : "subregion" === t.kind && 0 === t.prefix.length
-                                              ? `svgene-border-${t.tool}`
-                                              : "",
+                                            ? `svgene-border-${t.tool}`
+                                            : "",
                                     )
                                     .on("click", (t) => {
                                         ($(`.${g}`).length !== e.length && (s.event.ctrlKey || s.event.metaKey)) || L(),
@@ -2838,8 +2838,8 @@ var viewer;
                                         ? "M" + x * y + "," + C + "H0.5V" + S + "H" + x * y
                                         : "M0.5," + C + "V" + S
                                     : y
-                                      ? "M" + C + "," + x * y + "V0.5H" + S + "V" + x * y
-                                      : "M" + C + ",0.5H" + S,
+                                    ? "M" + C + "," + x * y + "V0.5H" + S + "V" + x * y
+                                    : "M" + C + ",0.5H" + S,
                             ),
                             R.attr("opacity", 1).attr("transform", function (t) {
                                 return $(M(t));
@@ -3089,39 +3089,39 @@ var viewer;
                               6 === n
                                   ? $(e)
                                   : 3 === n
-                                    ? new C(
-                                          ((e >> 8) & 15) | ((e >> 4) & 240),
-                                          ((e >> 4) & 15) | (240 & e),
-                                          ((15 & e) << 4) | (15 & e),
-                                          1,
-                                      )
-                                    : 8 === n
-                                      ? A((e >> 24) & 255, (e >> 16) & 255, (e >> 8) & 255, (255 & e) / 255)
-                                      : 4 === n
-                                        ? A(
-                                              ((e >> 12) & 15) | ((e >> 8) & 240),
-                                              ((e >> 8) & 15) | ((e >> 4) & 240),
-                                              ((e >> 4) & 15) | (240 & e),
-                                              (((15 & e) << 4) | (15 & e)) / 255,
-                                          )
-                                        : null)
+                                  ? new C(
+                                        ((e >> 8) & 15) | ((e >> 4) & 240),
+                                        ((e >> 4) & 15) | (240 & e),
+                                        ((15 & e) << 4) | (15 & e),
+                                        1,
+                                    )
+                                  : 8 === n
+                                  ? A((e >> 24) & 255, (e >> 16) & 255, (e >> 8) & 255, (255 & e) / 255)
+                                  : 4 === n
+                                  ? A(
+                                        ((e >> 12) & 15) | ((e >> 8) & 240),
+                                        ((e >> 8) & 15) | ((e >> 4) & 240),
+                                        ((e >> 4) & 15) | (240 & e),
+                                        (((15 & e) << 4) | (15 & e)) / 255,
+                                    )
+                                  : null)
                             : (e = d.exec(t))
-                              ? new C(e[1], e[2], e[3], 1)
-                              : (e = g.exec(t))
-                                ? new C((255 * e[1]) / 100, (255 * e[2]) / 100, (255 * e[3]) / 100, 1)
-                                : (e = f.exec(t))
-                                  ? A(e[1], e[2], e[3], e[4])
-                                  : (e = p.exec(t))
-                                    ? A((255 * e[1]) / 100, (255 * e[2]) / 100, (255 * e[3]) / 100, e[4])
-                                    : (e = m.exec(t))
-                                      ? k(e[1], e[2] / 100, e[3] / 100, 1)
-                                      : (e = v.exec(t))
-                                        ? k(e[1], e[2] / 100, e[3] / 100, e[4])
-                                        : y.hasOwnProperty(t)
-                                          ? $(y[t])
-                                          : "transparent" === t
-                                            ? new C(NaN, NaN, NaN, 0)
-                                            : null
+                            ? new C(e[1], e[2], e[3], 1)
+                            : (e = g.exec(t))
+                            ? new C((255 * e[1]) / 100, (255 * e[2]) / 100, (255 * e[3]) / 100, 1)
+                            : (e = f.exec(t))
+                            ? A(e[1], e[2], e[3], e[4])
+                            : (e = p.exec(t))
+                            ? A((255 * e[1]) / 100, (255 * e[2]) / 100, (255 * e[3]) / 100, e[4])
+                            : (e = m.exec(t))
+                            ? k(e[1], e[2] / 100, e[3] / 100, 1)
+                            : (e = v.exec(t))
+                            ? k(e[1], e[2] / 100, e[3] / 100, e[4])
+                            : y.hasOwnProperty(t)
+                            ? $(y[t])
+                            : "transparent" === t
+                            ? new C(NaN, NaN, NaN, 0)
+                            : null
                     );
                 }
                 function $(t) {
@@ -4309,22 +4309,22 @@ var viewer;
                         : ("number" === i
                               ? B.Z
                               : "string" === i
-                                ? (n = (0, P.ZP)(e))
-                                    ? ((e = n), D.ZP)
-                                    : F.Z
-                                : e instanceof P.ZP
-                                  ? D.ZP
-                                  : e instanceof Date
-                                    ? E
-                                    : ((r = e),
-                                      !ArrayBuffer.isView(r) || r instanceof DataView
-                                          ? Array.isArray(e)
-                                              ? I
-                                              : ("function" != typeof e.valueOf && "function" != typeof e.toString) ||
-                                                  isNaN(e)
-                                                ? O
-                                                : B.Z
-                                          : q))(t, e);
+                              ? (n = (0, P.ZP)(e))
+                                  ? ((e = n), D.ZP)
+                                  : F.Z
+                              : e instanceof P.ZP
+                              ? D.ZP
+                              : e instanceof Date
+                              ? E
+                              : ((r = e),
+                                !ArrayBuffer.isView(r) || r instanceof DataView
+                                    ? Array.isArray(e)
+                                        ? I
+                                        : ("function" != typeof e.valueOf && "function" != typeof e.toString) ||
+                                          isNaN(e)
+                                        ? O
+                                        : B.Z
+                                    : q))(t, e);
                 }
                 function j(t, e) {
                     return (
@@ -4479,8 +4479,8 @@ var viewer;
                     return i < 0
                         ? "0." + new Array(-i).join("0") + r
                         : r.length > i + 1
-                          ? r.slice(0, i + 1) + "." + r.slice(i + 1)
-                          : r + new Array(i - r.length + 2).join("0");
+                        ? r.slice(0, i + 1) + "." + r.slice(i + 1)
+                        : r + new Array(i - r.length + 2).join("0");
                 }
                 (it.prototype = at.prototype),
                     (at.prototype.toString = function () {
@@ -4536,10 +4536,10 @@ var viewer;
                         return a === o
                             ? r
                             : a > o
-                              ? r + new Array(a - o + 1).join("0")
-                              : a > 0
-                                ? r.slice(0, a) + "." + r.slice(a)
-                                : "0." + new Array(1 - a).join("0") + tt(t, Math.max(0, e + a - 1))[0];
+                            ? r + new Array(a - o + 1).join("0")
+                            : a > 0
+                            ? r.slice(0, a) + "." + r.slice(a)
+                            : "0." + new Array(1 - a).join("0") + tt(t, Math.max(0, e + a - 1))[0];
                     },
                     X: function (t) {
                         return Math.round(t).toString(16).toUpperCase();
@@ -4718,10 +4718,10 @@ var viewer;
                                 return 10 === t
                                     ? $t
                                     : t === Math.E
-                                      ? Math.exp
-                                      : function (e) {
-                                            return Math.pow(t, e);
-                                        };
+                                    ? Math.exp
+                                    : function (e) {
+                                          return Math.pow(t, e);
+                                      };
                             })(a)),
                             i()[0] < 0 ? ((e = At(e)), (n = At(n)), t(xt, wt)) : t(yt, bt),
                             r
@@ -4853,8 +4853,8 @@ var viewer;
                                 ? 1 == (n = +e)
                                     ? t(W, W)
                                     : 0.5 === n
-                                      ? t(Nt, Lt)
-                                      : t(Rt(n), Rt(1 / n))
+                                    ? t(Nt, Lt)
+                                    : t(Rt(n), Rt(1 / n))
                                 : n;
                         }),
                         ft(e)
@@ -5099,8 +5099,8 @@ var viewer;
                                 null == g
                                     ? 6
                                     : /[gprs]/.test(p)
-                                      ? Math.max(1, Math.min(21, g))
-                                      : Math.max(0, Math.min(20, g))),
+                                    ? Math.max(1, Math.min(21, g))
+                                    : Math.max(0, Math.min(20, g))),
                             (x.toString = function () {
                                 return t + "";
                             }),
@@ -6071,18 +6071,18 @@ var viewer;
                             s(i) < i
                                 ? g
                                 : o(i) < i
-                                  ? p
-                                  : a(i) < i
-                                    ? m
-                                    : r(i) < i
-                                      ? v
-                                      : e(i) < i
-                                        ? n(i) < i
-                                            ? y
-                                            : b
-                                        : t(i) < i
-                                          ? x
-                                          : w
+                                ? p
+                                : a(i) < i
+                                ? m
+                                : r(i) < i
+                                ? v
+                                : e(i) < i
+                                ? n(i) < i
+                                    ? y
+                                    : b
+                                : t(i) < i
+                                ? x
+                                : w
                         )(i);
                     }
                     function _(e, n, r, a) {
@@ -6094,8 +6094,8 @@ var viewer;
                             s === $.length
                                 ? ((a = f(n / ir, r / ir, e)), (e = t))
                                 : s
-                                  ? ((a = (s = $[o / $[s - 1][2] < $[s][2] / o ? s - 1 : s])[1]), (e = s[0]))
-                                  : ((a = Math.max(f(n, r, e), 1)), (e = l));
+                                ? ((a = (s = $[o / $[s - 1][2] < $[s][2] / o ? s - 1 : s])[1]), (e = s[0]))
+                                : ((a = Math.max(f(n, r, e), 1)), (e = l));
                         }
                         return null == a ? e : e.every(a);
                     }
@@ -6893,12 +6893,12 @@ var viewer;
                                     ? A
                                     : $
                                 : "function" == typeof e
-                                  ? n.local
-                                      ? M
-                                      : S
-                                  : n.local
-                                    ? C
-                                    : _)(n, e),
+                                ? n.local
+                                    ? M
+                                    : S
+                                : n.local
+                                ? C
+                                : _)(n, e),
                         );
                     },
                     style: function (t, e, n) {
@@ -7420,10 +7420,10 @@ var viewer;
                         "number" == typeof e
                             ? q.Z
                             : e instanceof K.ZP
-                              ? Q.ZP
-                              : (n = (0, K.ZP)(e))
-                                ? ((e = n), Q.ZP)
-                                : J.Z
+                            ? Q.ZP
+                            : (n = (0, K.ZP)(e))
+                            ? ((e = n), Q.ZP)
+                            : J.Z
                     )(t, e);
                 }
                 function et(t) {
@@ -7464,8 +7464,8 @@ var viewer;
                             return (o = this.getAttribute(t)) === (s = l + "")
                                 ? null
                                 : o === r && s === i
-                                  ? a
-                                  : ((i = s), (a = e((r = o), l)));
+                                ? a
+                                : ((i = s), (a = e((r = o), l)));
                         this.removeAttribute(t);
                     };
                 }
@@ -7479,8 +7479,8 @@ var viewer;
                             return (o = this.getAttributeNS(t.space, t.local)) === (s = l + "")
                                 ? null
                                 : o === r && s === i
-                                  ? a
-                                  : ((i = s), (a = e((r = o), l)));
+                                ? a
+                                : ((i = s), (a = e((r = o), l)));
                         this.removeAttributeNS(t.space, t.local);
                     };
                 }
@@ -7687,8 +7687,8 @@ var viewer;
                                 "function" == typeof e
                                     ? (n.local ? ot : at)(n, r, G(this, "attr." + t, e))
                                     : null == e
-                                      ? (n.local ? nt : et)(n)
-                                      : (n.local ? it : rt)(n, r, e),
+                                    ? (n.local ? nt : et)(n)
+                                    : (n.local ? it : rt)(n, r, e),
                             );
                         },
                         attrTween: function (t, e) {
@@ -7712,60 +7712,60 @@ var viewer;
                                               return o === s
                                                   ? null
                                                   : o === n && s === r
-                                                    ? i
-                                                    : (i = e((n = o), (r = s)));
+                                                  ? i
+                                                  : (i = e((n = o), (r = s)));
                                           };
                                       })(t, r),
                                   ).on("end.style." + t, ft(t))
                                 : "function" == typeof e
-                                  ? this.styleTween(
-                                        t,
-                                        (function (t, e, n) {
-                                            var r, i, o;
-                                            return function () {
-                                                var s = (0, a.style)(this, t),
-                                                    l = n(this),
-                                                    c = l + "";
-                                                return (
-                                                    null == l &&
-                                                        (this.style.removeProperty(t), (c = l = (0, a.style)(this, t))),
-                                                    s === c
-                                                        ? null
-                                                        : s === r && c === i
-                                                          ? o
-                                                          : ((i = c), (o = e((r = s), l)))
-                                                );
-                                            };
-                                        })(t, r, G(this, "style." + t, e)),
-                                    ).each(
-                                        (function (t, e) {
-                                            var n,
-                                                r,
-                                                i,
-                                                a,
-                                                o = "style." + e,
-                                                s = "end." + o;
-                                            return function () {
-                                                var l = D(this, t),
-                                                    c = l.on,
-                                                    u = null == l.value[o] ? a || (a = ft(e)) : void 0;
-                                                (c === n && i === u) || (r = (n = c).copy()).on(s, (i = u)), (l.on = r);
-                                            };
-                                        })(this._id, t),
-                                    )
-                                  : this.styleTween(
-                                        t,
-                                        (function (t, e, n) {
-                                            var r,
-                                                i,
-                                                o = n + "";
-                                            return function () {
-                                                var s = (0, a.style)(this, t);
-                                                return s === o ? null : s === r ? i : (i = e((r = s), n));
-                                            };
-                                        })(t, r, e),
-                                        n,
-                                    ).on("end.style." + t, null);
+                                ? this.styleTween(
+                                      t,
+                                      (function (t, e, n) {
+                                          var r, i, o;
+                                          return function () {
+                                              var s = (0, a.style)(this, t),
+                                                  l = n(this),
+                                                  c = l + "";
+                                              return (
+                                                  null == l &&
+                                                      (this.style.removeProperty(t), (c = l = (0, a.style)(this, t))),
+                                                  s === c
+                                                      ? null
+                                                      : s === r && c === i
+                                                      ? o
+                                                      : ((i = c), (o = e((r = s), l)))
+                                              );
+                                          };
+                                      })(t, r, G(this, "style." + t, e)),
+                                  ).each(
+                                      (function (t, e) {
+                                          var n,
+                                              r,
+                                              i,
+                                              a,
+                                              o = "style." + e,
+                                              s = "end." + o;
+                                          return function () {
+                                              var l = D(this, t),
+                                                  c = l.on,
+                                                  u = null == l.value[o] ? a || (a = ft(e)) : void 0;
+                                              (c === n && i === u) || (r = (n = c).copy()).on(s, (i = u)), (l.on = r);
+                                          };
+                                      })(this._id, t),
+                                  )
+                                : this.styleTween(
+                                      t,
+                                      (function (t, e, n) {
+                                          var r,
+                                              i,
+                                              o = n + "";
+                                          return function () {
+                                              var s = (0, a.style)(this, t);
+                                              return s === o ? null : s === r ? i : (i = e((r = s), n));
+                                          };
+                                      })(t, r, e),
+                                      n,
+                                  ).on("end.style." + t, null);
                         },
                         styleTween: function (t, e, n) {
                             var r = "style." + (t += "");
@@ -8663,8 +8663,8 @@ var viewer;
                                     ? (a ? ((l.fillStyle = "#f00"), l.fill()) : ((l.strokeStyle = "#f00"), l.stroke()),
                                       this.drawDebugText(t, e, s))
                                     : a
-                                      ? ((l.fillStyle = i), l.fill())
-                                      : ((l.strokeStyle = i), l.stroke()),
+                                    ? ((l.fillStyle = i), l.fill())
+                                    : ((l.strokeStyle = i), l.stroke()),
                                 l.restore();
                         }
                         drawLine(t, e = !1, n = 1) {
@@ -8905,14 +8905,14 @@ var viewer;
                                     "left" === a
                                         ? (n += x)
                                         : "right" === a || ("up" === a && o) || ("down" === a && o)
-                                          ? (n += b)
-                                          : "up" !== a || o
-                                            ? "down" !== a ||
-                                              o ||
-                                              ((r += this.opts.fontSizeLarge + this.opts.quarterFontSizeLarge),
-                                              (n -= this.halfHydrogenWidth))
-                                            : ((r -= this.opts.fontSizeLarge + this.opts.quarterFontSizeLarge),
-                                              (n -= this.halfHydrogenWidth)),
+                                        ? (n += b)
+                                        : "up" !== a || o
+                                        ? "down" !== a ||
+                                          o ||
+                                          ((r += this.opts.fontSizeLarge + this.opts.quarterFontSizeLarge),
+                                          (n -= this.halfHydrogenWidth))
+                                        : ((r -= this.opts.fontSizeLarge + this.opts.quarterFontSizeLarge),
+                                          (n -= this.halfHydrogenWidth)),
                                     u.fillText("H", n, r),
                                     (b += w);
                             } else if (i > 1) {
@@ -8925,14 +8925,14 @@ var viewer;
                                     "left" === a
                                         ? (n += x)
                                         : "right" === a || ("up" === a && o) || ("down" === a && o)
-                                          ? (n += b)
-                                          : "up" !== a || o
-                                            ? "down" !== a ||
-                                              o ||
-                                              ((r += this.opts.fontSizeLarge + this.opts.quarterFontSizeLarge),
-                                              (n -= this.halfHydrogenWidth))
-                                            : ((r -= this.opts.fontSizeLarge + this.opts.quarterFontSizeLarge),
-                                              (n -= this.halfHydrogenWidth)),
+                                        ? (n += b)
+                                        : "up" !== a || o
+                                        ? "down" !== a ||
+                                          o ||
+                                          ((r += this.opts.fontSizeLarge + this.opts.quarterFontSizeLarge),
+                                          (n -= this.halfHydrogenWidth))
+                                        : ((r -= this.opts.fontSizeLarge + this.opts.quarterFontSizeLarge),
+                                          (n -= this.halfHydrogenWidth)),
                                     (u.font = this.fontLarge),
                                     u.fillText("H", n, r),
                                     (u.font = this.fontSmall),
@@ -9777,8 +9777,8 @@ var viewer;
                             "up" === r.wedge
                                 ? this.canvasWrapper.drawWedge(new o(h, d, c, u, t, e))
                                 : "down" === r.wedge
-                                  ? this.canvasWrapper.drawDashedWedge(new o(h, d, c, u, t, e))
-                                  : this.canvasWrapper.drawLine(new o(h, d, c, u, t, e));
+                                ? this.canvasWrapper.drawDashedWedge(new o(h, d, c, u, t, e))
+                                : this.canvasWrapper.drawLine(new o(h, d, c, u, t, e));
                         }
                         if (e) {
                             let e = a.midpoint(h, d);
@@ -10051,8 +10051,8 @@ var viewer;
                                                 ? this.graph.vertices[1].position
                                                 : t.previousPosition
                                             : 0 === t.id
-                                              ? this.graph.vertices[1].position
-                                              : t.position;
+                                            ? this.graph.vertices[1].position
+                                            : t.position;
                                         let i = 0 === n.id ? this.graph.vertices[1].position : n.previousPosition;
                                         n.position.rotateAwayFrom(e, i, r.toRad(20));
                                     }
@@ -10205,8 +10205,8 @@ var viewer;
                                 "C" === o.value.element && "C" !== a.value.element && i > 1 && r < 5
                                     ? ((c = 1), (h = 0))
                                     : "C" !== o.value.element && "C" === a.value.element && r > 1 && i < 5
-                                      ? ((c = 0), (h = 1))
-                                      : i > r && ((c = 1), (h = 0));
+                                    ? ((c = 0), (h = 1))
+                                    : i > r && ((c = 1), (h = 0));
                                 let d = this.graph.vertices[s[c]],
                                     g = this.graph.vertices[s[h]],
                                     f = (this.graph.getEdge(t.id, d.id), this.graph.getEdge(t.id, g.id), !1);
@@ -10279,17 +10279,17 @@ var viewer;
                                           (c = this.graph.vertices[s[2]]),
                                           (h = this.graph.vertices[s[3]]))
                                         : i > e && i > n && i > a
-                                          ? ((o = this.graph.vertices[s[2]]),
-                                            (l = this.graph.vertices[s[0]]),
-                                            (c = this.graph.vertices[s[1]]),
-                                            (h = this.graph.vertices[s[3]]))
-                                          : a > e &&
-                                            a > n &&
-                                            a > i &&
-                                            ((o = this.graph.vertices[s[3]]),
-                                            (l = this.graph.vertices[s[0]]),
-                                            (c = this.graph.vertices[s[1]]),
-                                            (h = this.graph.vertices[s[2]])),
+                                        ? ((o = this.graph.vertices[s[2]]),
+                                          (l = this.graph.vertices[s[0]]),
+                                          (c = this.graph.vertices[s[1]]),
+                                          (h = this.graph.vertices[s[3]]))
+                                        : a > e &&
+                                          a > n &&
+                                          a > i &&
+                                          ((o = this.graph.vertices[s[3]]),
+                                          (l = this.graph.vertices[s[0]]),
+                                          (c = this.graph.vertices[s[1]]),
+                                          (h = this.graph.vertices[s[2]])),
                                     (o.angle = -r.toRad(36)),
                                     (l.angle = r.toRad(36)),
                                     (c.angle = -r.toRad(108)),
@@ -12752,8 +12752,8 @@ var viewer;
                         0 == arguments.length
                             ? ((this.x = 0), (this.y = 0))
                             : 1 == arguments.length
-                              ? ((this.x = t.x), (this.y = t.y))
-                              : ((this.x = t), (this.y = e));
+                            ? ((this.x = t.x), (this.y = t.y))
+                            : ((this.x = t), (this.y = e));
                     }
                     clone() {
                         return new e(this.x, this.y);
@@ -13026,12 +13026,12 @@ var viewer;
                             2 === i
                                 ? "down"
                                 : -2 === i
-                                  ? "up"
-                                  : 0 === i || -0 === i
-                                    ? "right"
-                                    : 3 === i || -3 === i
-                                      ? "left"
-                                      : "down"
+                                ? "up"
+                                : 0 === i || -0 === i
+                                ? "right"
+                                : 3 === i || -3 === i
+                                ? "left"
+                                : "down"
                         );
                     }
                     getNeighbours(t = null) {
@@ -13181,8 +13181,8 @@ var viewer;
                         ? i.first().trigger("click")
                         : a.next().trigger("click")
                     : a.is(i.first())
-                      ? i.last().trigger("click")
-                      : a.prev().trigger("click"));
+                    ? i.last().trigger("click")
+                    : a.prev().trigger("click"));
         }
         function k(t) {
             const e = t.keyCode;
@@ -13191,12 +13191,12 @@ var viewer;
                     (65 === e
                         ? T("body-details-header", -1)
                         : 83 === e
-                          ? T("body-details-header", 1)
-                          : 68 === e
-                            ? T("sidepanel-details-header", -1)
-                            : 70 === e
-                              ? T("sidepanel-details-header", 1)
-                              : 77 === e && $("input.show-module-domains").first().click());
+                        ? T("body-details-header", 1)
+                        : 68 === e
+                        ? T("sidepanel-details-header", -1)
+                        : 70 === e
+                        ? T("sidepanel-details-header", 1)
+                        : 77 === e && $("input.show-module-domains").first().click());
         }
         function R(t) {
             t.preventDefault();
