@@ -18,7 +18,6 @@ nextflow_process {
                     file("${moduleDir}/tests/fixtures/IPS.subset.tsv", checkIfExists: true),
                     file("${moduleDir}/tests/fixtures/MGYG000300113.gbk", checkIfExists: true)
                     ]
-
                 """
             }
         }
@@ -40,10 +39,9 @@ nextflow_process {
                 """
                 input[0] = [
 				    [ id:'MGYG000300113' ], // meta map
-				    file("${moduleDir}/tests/fixtures/IPS.subset.tsv"),
-				    file("${moduleDir}/tests/fixtures/MGYG000300113.gbk")
+                    file("${moduleDir}/tests/fixtures/IPS.subset.tsv"),
+                    file("${moduleDir}/tests/fixtures/MGYG000300113.gbk")
 				]
-
                 """
             }
         }
