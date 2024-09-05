@@ -1,0 +1,54 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "crisprcasfinder"
+description: crisprcasfinder
+keywords:
+  - casfinder
+  - crisprcasfinder
+  - genomics
+tools:
+  - "crisprcasfinder":
+      description: "CRISPRCasFinder is an updated, improved, and integrated version of CRISPRFinder and CasFinder."
+      homepage: "https://github.com/dcouvin/CRISPRCasFinder"
+      documentation: "https://github.com/dcouvin/CRISPRCasFinder"
+      tool_dev_url: "https://github.com/dcouvin/CRISPRCasFinder"
+      doi: "10.1093/nar/gkm360"
+      licence: ["MIT"]
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+  - fasta:
+      type: file
+      description: fasta file
+      pattern: "*.{fa,fasta}"
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+  - gff:
+      type: file
+      description: annotations file
+      pattern: "*.gff"
+  - tsv:
+      type: directory
+      description: tab separated values
+  - fna:
+      type: file
+      description: rawCRISPRs fna file
+      pattern: "*.fna"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+authors:
+  - "@vikasg11"
+maintainers:
+  - "@vikasg11"

@@ -1,0 +1,55 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "sanntis"
+description: Runs SanntiS to identify biosynthetic gene clusters.
+keywords:
+  - sanntis
+  - biosynthetic gene clusters
+  - BGCs
+tools:
+  - "sanntis":
+      description: "SMBGC Annotation using Neural Networks Trained on Interpro Signatures"
+      homepage: "https://github.com/Finn-Lab/SanntiS"
+      documentation: "https://github.com/Finn-Lab/SanntiS/blob/master/README.md"
+      tool_dev_url: "https://github.com/Finn-Lab/SanntiS"
+      doi: "10.1101/2023.05.23.540769"
+      licence: ["Apache-2.0"]
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing genome information - genome accession or ID to use.
+        e.g. `[ id:'GCA_123456789' ]`
+
+  - interproscan_output:
+      type: file
+      description: Output of InterProScan in the TSV or GFF3 format.
+      pattern: "*.{tsv,gff,gff3}"
+
+  - gbk:
+      type: file
+      description: A file in .gbk format specifying the coding sequences.
+      pattern: "*.gbk"
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing genome information - genome accession or ID to use.
+        e.g. `[ id:'GCA_123456789' ]`
+
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+  - gff:
+      type: file
+      description: GFF3 file
+      pattern: "*.gff"
+
+authors:
+  - "@tgurbich"
+maintainers:
+  - "@tgurbich"
