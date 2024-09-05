@@ -1,0 +1,241 @@
+{
+    "test_crisprcasfinder-extended": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "CP014688.gff:md5,b697f2edfd64cede0f5618ff8c13c59f"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "CRISPR-Cas_summary.tsv:md5,c62c254459aa0e8a94394747c80552f6",
+                            "CRISPR-Cas_summary.xls:md5,c62c254459aa0e8a94394747c80552f6",
+                            "Crisprs_REPORT.tsv:md5,810e9294308fb4f3acc45aeda8e2906e",
+                            "Crisprs_REPORT.xls:md5,810e9294308fb4f3acc45aeda8e2906e",
+                            "crisprs_orientations_count.tsv:md5,e4eeac6809e14287004e98096c63feef"
+                        ]
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "rawCRISPRs.fna:md5,73e040d552272acae0f3108457860777"
+                    ]
+                ],
+                "3": [
+                    "versions.yml:md5,978e39de4c8c4593c80b89636cd6363c"
+                ],
+                "fna": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "rawCRISPRs.fna:md5,73e040d552272acae0f3108457860777"
+                    ]
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "CP014688.gff:md5,b697f2edfd64cede0f5618ff8c13c59f"
+                    ]
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "CRISPR-Cas_summary.tsv:md5,c62c254459aa0e8a94394747c80552f6",
+                            "CRISPR-Cas_summary.xls:md5,c62c254459aa0e8a94394747c80552f6",
+                            "Crisprs_REPORT.tsv:md5,810e9294308fb4f3acc45aeda8e2906e",
+                            "Crisprs_REPORT.xls:md5,810e9294308fb4f3acc45aeda8e2906e",
+                            "crisprs_orientations_count.tsv:md5,e4eeac6809e14287004e98096c63feef"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,978e39de4c8c4593c80b89636cd6363c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-03T16:26:32.626449"
+    },
+    "test_crisprcasfinder": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "CP014688.gff:md5,b697f2edfd64cede0f5618ff8c13c59f"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "CRISPR-Cas_summary.tsv:md5,c62c254459aa0e8a94394747c80552f6",
+                            "CRISPR-Cas_summary.xls:md5,c62c254459aa0e8a94394747c80552f6",
+                            "Crisprs_REPORT.tsv:md5,810e9294308fb4f3acc45aeda8e2906e",
+                            "Crisprs_REPORT.xls:md5,810e9294308fb4f3acc45aeda8e2906e"
+                        ]
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "rawCRISPRs.fna:md5,73e040d552272acae0f3108457860777"
+                    ]
+                ],
+                "3": [
+                    "versions.yml:md5,978e39de4c8c4593c80b89636cd6363c"
+                ],
+                "fna": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "rawCRISPRs.fna:md5,73e040d552272acae0f3108457860777"
+                    ]
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "CP014688.gff:md5,b697f2edfd64cede0f5618ff8c13c59f"
+                    ]
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+                            "CRISPR-Cas_summary.tsv:md5,c62c254459aa0e8a94394747c80552f6",
+                            "CRISPR-Cas_summary.xls:md5,c62c254459aa0e8a94394747c80552f6",
+                            "Crisprs_REPORT.tsv:md5,810e9294308fb4f3acc45aeda8e2906e",
+                            "Crisprs_REPORT.xls:md5,810e9294308fb4f3acc45aeda8e2906e"
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,978e39de4c8c4593c80b89636cd6363c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-03T16:26:21.657382"
+    },
+    "test_crisprcasfinder - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_crisprcasfinder.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+
+                        ]
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "rawCRISPRs.fna:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    "versions.yml:md5,978e39de4c8c4593c80b89636cd6363c"
+                ],
+                "fna": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "rawCRISPRs.fna:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_crisprcasfinder.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        [
+
+                        ]
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,978e39de4c8c4593c80b89636cd6363c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-03T16:26:40.347247"
+    }
+}
