@@ -37,20 +37,11 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-05T16:00:03.717473"
+        "timestamp": "2024-09-05T16:25:04.56578"
     },
     "test - faa_fasta - stub": {
         "content": [
             [
-                [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false
-                        },
-                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
                 [
                     "versions.yml:md5,21e7c01365c64d6213f1a566e70d6c69"
                 ]
@@ -60,6 +51,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-05T16:00:06.197111"
+        "timestamp": "2024-09-05T16:25:07.522059"
     }
 }
