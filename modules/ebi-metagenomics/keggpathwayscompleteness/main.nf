@@ -27,11 +27,8 @@ process KEGGPATHWAYSCOMPLETENESS {
     if (ko_list && filtered_tbl){
         log.warn("Both \$ko_list and \$filtered_tbl were given as input types, will fall back to using \$ko_list i.e. ${ko_list}");
     }
-
     """
-    give_pathways \\
-    ${kegg_input} \\
-    -o ${prefix}
+    give_pathways ${kegg_input} -o ${prefix}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
