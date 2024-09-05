@@ -29,7 +29,7 @@ process PROOVFRAME_MAP {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        proovframe: 0.9.8
+        proovframe: 0.9.7
     END_VERSIONS
     """
 
@@ -41,7 +41,7 @@ process PROOVFRAME_MAP {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        proovframe: 0.9.8
+        proovframe: 0.9.7
     END_VERSIONS
     """
 }
