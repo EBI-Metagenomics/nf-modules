@@ -2,14 +2,14 @@
     "test - faa_fasta": {
         "content": [
             [
-                "versions.yml:md5,21e7c01365c64d6213f1a566e70d6c69"
+                "versions.yml:md5,f49f29b8134fdb539364ee46855eb313"
             ]
         ],
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-05T16:56:10.193442"
+        "timestamp": "2024-09-05T17:23:11.865268"
     },
     "test - faa_fasta - stub": {
         "content": [
@@ -24,7 +24,7 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,21e7c01365c64d6213f1a566e70d6c69"
+                    "versions.yml:md5,f49f29b8134fdb539364ee46855eb313"
                 ],
                 "tsv": [
                     [
@@ -36,7 +36,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,21e7c01365c64d6213f1a566e70d6c69"
+                    "versions.yml:md5,f49f29b8134fdb539364ee46855eb313"
                 ]
             }
         ],
@@ -44,6 +44,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-05T16:56:13.150689"
+        "timestamp": "2024-09-05T17:23:14.372527"
     }
 }
