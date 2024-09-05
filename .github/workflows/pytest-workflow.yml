@@ -37,7 +37,7 @@ jobs:
         tags: ["${{ fromJson(needs.changes.outputs.modules) }}"]
         # FIXME: find a way to exclude conda on demand
         # profile: ["docker", "singularity", "conda"]
-        profile: ["docker", "singularity"]
+        profile: ["singularity"]
 
     env:
       NXF_ANSI_LOG: false
