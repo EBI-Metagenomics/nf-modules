@@ -1,9 +1,8 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/environment-schema.json
-name: "proovframe"
+name: "proovframe_map"
 channels:
   - conda-forge
   - bioconda
-  - defaults
 dependencies:
   - "bioconda::proovframe=0.9.7"

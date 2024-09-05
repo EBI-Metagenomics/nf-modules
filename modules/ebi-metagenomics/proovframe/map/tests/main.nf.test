@@ -1,0 +1,57 @@
+nextflow_process {
+
+    name "Test Process PROOVFRAME_MAP"
+    script "../main.nf"
+    process "PROOVFRAME_MAP"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "proovframe/map"
+    tag: "proovframe"
+
+    test("test - faa_fasta") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/fixtures/emales.faa", checkIfExists: true),
+                    file("${moduleDir}/tests/fixtures/emales-reads-sim.fa", checkIfExists: true),
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot([process.out, process.out.versions]).match() }
+            )
+        }
+    }
+
+
+    test("test - faa_fasta - stub") {
+        options '-stub'
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/fixtures/emales.faa", checkIfExists: true),
+                    file("${moduleDir}/tests/fixtures/emales-reads-sim.fa", checkIfExists: true),
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot([process.out.tsv, process.out.versions]).match() }
+            )
+        }
+    }
+}

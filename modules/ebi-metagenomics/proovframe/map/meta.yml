@@ -1,23 +1,20 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
-name: "proovframe"
-## TODO nf-core: Add a description of the module and list keywords
+name: "proovframe_map"
 description: "frame-shift correction for long read (meta)genomics"
 keywords:
-  - sort
-  - example
-  - genomics
+  - "frame-shift correction"
+  - "long-read sequencing"
+  - "sequence analysis"
 tools:
   - "proovframe":
-      ## TODO nf-core: Add a description and other details for the software below
       description: "frame-shift correction for long read (meta)genomics"
       homepage: "https://github.com/thackl/proovframe"
       documentation: "https://github.com/thackl/proovframe"
       tool_dev_url: "https://github.com/thackl/proovframe"
-      #      doi: ""
+      doi: "10.1101/2021.08.23.457338"
       licence: ["MIT"]
 
-## TODO nf-core: Add a description of all of the variables used as input
 input:
   # Only when we have meta
   - meta:
@@ -26,19 +23,16 @@ input:
         Groovy Map containing sample information
         e.g. `[ id:'sample1', single_end:false ]`
 
-  ## TODO nf-core: Delete / customise this example input
   - faa:
       type: file
-      description: "Input FASTA file"
+      description: "A FASTA file containing protein sequences"
       pattern: "*.{faa}"
   - fasta:
       type: file
-      description: "Input FASTA file"
+      description: "A FASTA file containing nucleotide sequences"
       pattern: "*.{fasta,fa}"
 
-## TODO nf-core: Add a description of all of the variables used as output
 output:
-  #Only when we have meta
   - meta:
       type: map
       description: |
@@ -49,13 +43,15 @@ output:
       type: file
       description: File containing software versions
       pattern: "versions.yml"
-  ## TODO nf-core: Delete / customise this example output
+
   - tsv:
       type: file
       description: "Output TSV file"
       pattern: "*.{tsv}"
 
 authors:
+  - "@manuelcarbajo"
   - "@MGS-sails"
 maintainers:
+  - "@manuelcarbajo"
   - "@MGS-sails"
