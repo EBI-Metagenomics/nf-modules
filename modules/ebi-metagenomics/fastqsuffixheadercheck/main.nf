@@ -21,36 +21,19 @@ process FASTQSUFFIXHEADERCHECK {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def fastq_input = meta.single_end ? "-f ${fastq}" : "-f ${fastq[0]} -r ${fastq[1]}"
 
-    if (meta.single_end){
-        """
-        fastq_suffix_header_check \\
-        -f ${fastq} \\
-        -s ${prefix} \\
-        -o ./
+    """
+    fastq_suffix_header_check \\
+    ${fastq_input} \\
+    -s ${prefix} \\
+    -o ./
 
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            mgnify-pipelines-toolkit: \$(get_mpt_version)
-        END_VERSIONS
-        """
-
-    } else{
-        """
-        fastq_suffix_header_check \\
-        -f ${fastq[0]} \\
-        -r ${fastq[1]} \\
-        -s ${prefix} \\
-        -o ./
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            mgnify-pipelines-toolkit: \$(get_mpt_version)
-        END_VERSIONS
-        """
-    }
-
-
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        mgnify-pipelines-toolkit: \$(get_mpt_version)
+    END_VERSIONS
+    """
 
     stub:
     def args = task.ext.args ?: ''
