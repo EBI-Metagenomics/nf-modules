@@ -1,0 +1,212 @@
+{
+    "fastqsuffixheadercheck - fail - PE": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_suffix_header_err.json:md5,735222eb9c22d4d81b312a9682d55679"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,cd9316e4086b766d70f49b7a69557c26"
+                ],
+                "json": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_suffix_header_err.json:md5,735222eb9c22d4d81b312a9682d55679"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,cd9316e4086b766d70f49b7a69557c26"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-09T14:48:28.258741825"
+    },
+    "fastqsuffixheadercheck - success - SE": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_suffix_header_err.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,cd9316e4086b766d70f49b7a69557c26"
+                ],
+                "json": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_suffix_header_err.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,cd9316e4086b766d70f49b7a69557c26"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-09T13:31:20.621231411"
+    },
+    "fastqsuffixheadercheck - pass - PE": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_suffix_header_err.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,cd9316e4086b766d70f49b7a69557c26"
+                ],
+                "json": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_suffix_header_err.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,cd9316e4086b766d70f49b7a69557c26"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-09T14:45:26.169439779"
+    },
+    "fastqsuffixheadercheck - fail - SE": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_suffix_header_err.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,cd9316e4086b766d70f49b7a69557c26"
+                ],
+                "json": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_suffix_header_err.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,cd9316e4086b766d70f49b7a69557c26"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-09T14:41:38.321920967"
+    },
+    "fastqsuffixheadercheck - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_suffix_header_err.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,cd9316e4086b766d70f49b7a69557c26"
+                ],
+                "json": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_suffix_header_err.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,cd9316e4086b766d70f49b7a69557c26"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-09T13:32:57.311904231"
+    },
+    "fastqsuffixheadercheck - pass - SE": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_suffix_header_err.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,cd9316e4086b766d70f49b7a69557c26"
+                ],
+                "json": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": true
+                        },
+                        "test_suffix_header_err.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,cd9316e4086b766d70f49b7a69557c26"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-09-09T14:45:18.034751483"
+    }
+}
