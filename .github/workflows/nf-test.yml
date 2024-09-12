@@ -1,7 +1,5 @@
 name: Run nf-tests
 on:
-  push:
-    branches: [main]
   pull_request:
     branches: [main]
 
