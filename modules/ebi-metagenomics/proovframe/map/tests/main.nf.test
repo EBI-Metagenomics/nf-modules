@@ -6,8 +6,8 @@ nextflow_process {
 
     tag "modules"
     tag "modules_nfcore"
+    tag "proovframe"
     tag "proovframe/map"
-    tag: "proovframe"
 
     test("test - faa_fasta") {
 

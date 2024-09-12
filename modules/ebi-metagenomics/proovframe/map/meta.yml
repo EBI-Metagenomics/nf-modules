@@ -25,11 +25,11 @@ input:
 
   - faa:
       type: file
-      description: "A FASTA file containing protein sequences"
-      pattern: "*.{faa}"
+      description: "A FASTA file containing a database of guide protein sequences"
+      pattern: "*.faa"
   - fasta:
       type: file
-      description: "A FASTA file containing nucleotide sequences"
+      description: "A FASTA file containing raw read nucleotide sequences"
       pattern: "*.{fasta,fa}"
 
 output:
@@ -46,8 +46,8 @@ output:
 
   - tsv:
       type: file
-      description: "Output TSV file"
-      pattern: "*.{tsv}"
+      description: "Output TSV file with the frameshift-aware protein to read alignments"
+      pattern: "*.tsv"
 
 authors:
   - "@manuelcarbajo"
