@@ -25,9 +25,10 @@ process SEQFU_CHECK {
     """
     seqfu \\
         check \\
+        -s \\
         ${args} \\
         ${fastq} \\
-        > ${prefix}_seqfu_out.tsv
+        > ${prefix}.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -40,7 +41,7 @@ process SEQFU_CHECK {
     def prefix = task.ext.prefix ?: "${meta.id}"
 
     """
-    touch ${prefix}_seqfu_out.tsv
+    touch ${prefix}.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

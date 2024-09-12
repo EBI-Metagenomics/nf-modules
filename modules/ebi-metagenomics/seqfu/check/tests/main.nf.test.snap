@@ -8,7 +8,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_seqfu_out.tsv:md5,1d4f71a6ba04410bfd300aa4530d955e"
+                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
@@ -20,7 +20,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_seqfu_out.tsv:md5,1d4f71a6ba04410bfd300aa4530d955e"
+                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions": [
@@ -32,7 +32,7 @@
             "nf-test": "0.8.4",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-10T11:23:03.713070234"
+        "timestamp": "2024-09-12T09:49:17.008906711"
     },
     "seqfu/check - brokenfile": {
         "content": [
@@ -43,7 +43,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_seqfu_out.tsv:md5,761c2afd618fa056d3de5d8cdd739e7d"
+                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
@@ -55,7 +55,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_seqfu_out.tsv:md5,761c2afd618fa056d3de5d8cdd739e7d"
+                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions": [
@@ -67,7 +67,7 @@
             "nf-test": "0.8.4",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-10T11:22:56.75696333"
+        "timestamp": "2024-09-12T09:49:06.348724787"
     },
     "seqfu/check - noerrors": {
         "content": [
@@ -78,7 +78,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_seqfu_out.tsv:md5,eae75f8da89015ce0138073fe6f11e66"
+                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
@@ -90,7 +90,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_seqfu_out.tsv:md5,eae75f8da89015ce0138073fe6f11e66"
+                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions": [
@@ -102,7 +102,7 @@
             "nf-test": "0.8.4",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-10T11:28:51.520377242"
+        "timestamp": "2024-09-12T09:48:55.057482741"
     },
     "seqfu/check - stub": {
         "content": [
@@ -113,7 +113,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_seqfu_out.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
@@ -125,7 +125,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_seqfu_out.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions": [
@@ -137,6 +137,6 @@
             "nf-test": "0.8.4",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-09-10T11:23:10.396869838"
+        "timestamp": "2024-09-12T09:49:28.377252135"
     }
 }

@@ -1,7 +1,7 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "seqfu_check"
-description: Perform sanity checking of FASTQ files
+description: Evaluates the integrity of DNA FASTQ files
 keywords:
   - fastq
   - reads
@@ -11,7 +11,7 @@ tools:
       description: "DNA sequence utilities for FASTX files"
       homepage: "https://telatin.github.io/seqfu2/"
       documentation: "https://telatin.github.io/seqfu2/"
-      tool_dev_url: "https://telatin.github.io/seqfu2/tools/derep.html"
+      tool_dev_url: "https://telatin.github.io/seqfu2/tools/check.html"
       doi: "10.3390/bioengineering8050059"
       licence: ["GPL v3"]
 input:
@@ -23,7 +23,7 @@ input:
   - fastq:
       type: file
       description: Either a single-end FASTQ file, or two paired-end FASTQ files
-      pattern: "*.{fastq,fastq.gz}"
+      pattern: "*.{fastq,fastq.gz,fq,fq.gz}"
 output:
   - meta:
       type: map
