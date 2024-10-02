@@ -77,7 +77,3 @@ subworkflows/combined_gene_caller:
 subworkflows/fasta_domainannotation:
   - subworkflows/ebi-metagenomics/fasta_domainannotation/**
   - tests/subworkflows/ebi-metagenomics/fasta_domainannotation/**
-
-subworkflows/reads_qc:
-  - subworkflows/ebi-metagenomics/reads_qc/**
-  - tests/subworkflows/ebi-metagenomics/reads_qc/**

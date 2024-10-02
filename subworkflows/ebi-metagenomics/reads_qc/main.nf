@@ -1,4 +1,5 @@
 
+include { SEQFU_CHECK } from '../../../modules/ebi-metagenomics/seqfu/check/main'
 include { FASTP      } from '../../../modules/ebi-metagenomics/fastp/main'
 include { SEQTK_SEQ     } from '../../../modules/ebi-metagenomics/seqtk/seq/main'
 
@@ -9,9 +10,8 @@ workflow  READS_QC {
     save_merged // channel:  val(boolean)
 
     main:
-
     ch_versions = Channel.empty()
-
+    
     FASTP ( ch_reads, params.save_trimmed_fail, save_merged )
     ch_versions = ch_versions.mix(FASTP.out.versions.first())
 
