@@ -1,0 +1,40 @@
+nextflow_workflow {
+
+    name "Test Subworkflow READS_QC"
+    script "../main.nf"
+    workflow "READS_QC"
+    config "./nextflow.config"
+
+    tag "subworkflows"
+    tag "subworkflows_nfcore"
+    tag "subworkflows/reads_qc"
+    tag "fastp"
+    tag "seqtk"
+    tag "seqtk/seq"
+
+    test("test_reads_qc") {
+
+        when {
+            params {
+                save_trimmed_fail = true
+            }
+            workflow {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    [ file("${moduleDir}/tests/fixtures/SRR21814853_1.fastq.gz", checkIfExists: true),
+                      file("${moduleDir}/tests/fixtures/SRR21814853_2.fastq.gz", checkIfExists: true)
+                    ]
+                    ]
+                input[1] = true
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }            
+            )
+        }
+    }
+}
