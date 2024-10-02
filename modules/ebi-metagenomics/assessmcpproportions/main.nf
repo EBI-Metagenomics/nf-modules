@@ -23,7 +23,7 @@ process ASSESSMCPPROPORTIONS {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def var_region = "${meta.var_region}"
+    def var_region = "${meta.var_region}" ?: ""
     def assess_mcp_prop_prefix = "${prefix}_${var_region}"
     def strands = ""
     def library_check_input = "${assess_mcp_prop_prefix}_mcp_cons.tsv"
