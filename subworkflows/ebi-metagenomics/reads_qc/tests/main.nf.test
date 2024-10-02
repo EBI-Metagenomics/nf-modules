@@ -12,7 +12,7 @@ nextflow_workflow {
     tag "seqtk"
     tag "seqtk/seq"
 
-    test("test_reads_qc") {
+    test("test_reads_qc_success") {
 
         when {
             params {
@@ -20,12 +20,14 @@ nextflow_workflow {
             }
             workflow {
                 """
-                input[0] = [
-                    [ id:'test', single_end:false ], // meta map
-                    [ file("${moduleDir}/tests/fixtures/SRR21814853_1.fastq.gz", checkIfExists: true),
-                      file("${moduleDir}/tests/fixtures/SRR21814853_2.fastq.gz", checkIfExists: true)
-                    ]
-                    ]
+                input[0] = Channel.fromList([
+                        [
+                            [ id:'SRR21814853', single_end:false ], // meta map
+                            [ file("${moduleDir}/tests/fixtures/SRR21814853_1.fastq.gz", checkIfExists: true),
+                            file("${moduleDir}/tests/fixtures/SRR21814853_2.fastq.gz", checkIfExists: true)
+                            ]
+                        ]
+                    ])
                 input[1] = true
                 """
             }
@@ -33,7 +35,75 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out).match() }            
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("test_reads_fail_seqfu") {
+
+        when {
+            params {
+                save_trimmed_fail = true
+            }
+            workflow {
+                """
+                input[0] = Channel.fromList([
+                    [
+                        [ id:'SRR21814853', single_end:false ], // meta map
+                        [ file("${moduleDir}/tests/fixtures/SRR21814853_1.fastq.gz", checkIfExists: true),
+                        file("${moduleDir}/tests/fixtures/SRR21814853_2.fastq.gz", checkIfExists: true)
+                        ]
+                    ],
+                    [
+                        [ id:'ERR4674038', single_end:false ], // meta map
+                        [ file("${moduleDir}/tests/fixtures/ERR4674038_test_readcount_1.fastq", checkIfExists: true),
+                        file("${moduleDir}/tests/fixtures/ERR4674038_test_readcount_2.fastq", checkIfExists: true)
+                        ]
+                    ]
+                ])
+                input[1] = true
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("test_reads_fail_suffixheader") {
+
+        when {
+            params {
+                save_trimmed_fail = true
+            }
+            workflow {
+                """
+                input[0] = Channel.fromList([
+                    [
+                        [ id:'SRR21814853', single_end:false ], // meta map
+                        [ file("${moduleDir}/tests/fixtures/SRR21814853_1.fastq.gz", checkIfExists: true),
+                        file("${moduleDir}/tests/fixtures/SRR21814853_2.fastq.gz", checkIfExists: true)
+                        ]
+                    ],
+                    [
+                        [ id:'ERR4674038', single_end:false ], // meta map
+                        [ file("${moduleDir}/tests/fixtures/ERR4674038witherror_1.fastq.gz", checkIfExists: true),
+                        file("${moduleDir}/tests/fixtures/ERR4674038witherror_2.fastq.gz", checkIfExists: true)
+                        ]
+                    ]
+                ])
+                input[1] = true
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
             )
         }
     }
