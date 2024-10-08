@@ -44,7 +44,7 @@ output:
       description: File containing software versions
       pattern: "versions.yml"
 
-  - tsv:
+  - reformat_tsv:
       type: file
       description: Reformated output TSV file
       pattern: "*.{tsv}"

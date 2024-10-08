@@ -12,7 +12,7 @@ process TAXONKIT_REFORMAT {
     path taxdb
 
     output:
-    tuple val(meta), path("*.tsv"), emit: tsv
+    tuple val(meta), path("*.tsv"), emit: reformat_tsv
     path "versions.yml"           , emit: versions
 
     when:
