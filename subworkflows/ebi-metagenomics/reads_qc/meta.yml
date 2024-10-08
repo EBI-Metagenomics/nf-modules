@@ -9,6 +9,9 @@ keywords:
   - fastq
   - fasta
 components:
+  - seqfu/check
+  - fastqsuffixheadercheck
+  - assessmcpproportions
   - fastp
   - seqtk/seq
 input:
@@ -28,6 +31,17 @@ output:
       description: |
         Groovy Map containing sample information
         e.g. `[ id:'test' ]`
+  - seqfu_check:
+      type: file
+      description: TSV file containing output from seqfu/check, first column is either OK or ERR depending on if anything is wrong with the file(s)
+      pattern: "*.tsv"
+  - suffix_header_check:
+      type: file
+      description: JSON log file that is empty if no errors were found, or that contains which reads had mismatches if there were errors
+      pattern: "*.json"
+  - amplicon_check:
+      type: env
+      description: Optional env variable containing either "AMPLICON", empty otherwise
   - reads:
       type: file
       description: The trimmed/modified/unmerged fastq reads

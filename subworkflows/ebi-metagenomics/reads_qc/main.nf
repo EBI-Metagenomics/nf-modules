@@ -49,6 +49,7 @@ workflow  READS_QC {
     // ***** Necessary mapping functions *****
 
     SEQFU_CHECK(ch_reads)
+    ch_versions = ch_versions.mix(SEQFU_CHECK.out.versions.first())
 
     passed_seqfu_reads = SEQFU_CHECK.out.tsv
                    .splitCsv(sep: "\t", elem: 1)
@@ -56,6 +57,8 @@ workflow  READS_QC {
                    .join(ch_reads)
 
     FASTQSUFFIXHEADERCHECK(passed_seqfu_reads)
+    ch_versions = ch_versions.mix(FASTQSUFFIXHEADERCHECK.out.versions.first())
+
 
     passed_suffixheader_reads = FASTQSUFFIXHEADERCHECK.out.json
                     .map(filterBySuffixHeaderStatus)
@@ -66,6 +69,7 @@ workflow  READS_QC {
                     .map(prepareForMCPCheck)
 
     ASSESSMCPPROPORTIONS(assess_mcp_proportions_input, true)
+    ch_versions = ch_versions.mix(ASSESSMCPPROPORTIONS.out.versions.first())
 
     passed_amplicon_check_reads = ASSESSMCPPROPORTIONS.out.library_check_out
                     .map(filterByAmpliconCheck)
@@ -85,10 +89,13 @@ workflow  READS_QC {
     ch_versions = ch_versions.mix(SEQTK_SEQ.out.versions.first())
 
     emit:
-    reads               = FASTP.out.reads           // channel: [ val(meta), [ fastq ] ]
-    reads_se_and_merged = ch_reads_se_and_merged    // channel: [ val(meta), [ fastq ] ]
-    fastp_summary_json  = FASTP.out.json            // channel: [ val(meta), [ json ] ]
-    reads_fasta         = SEQTK_SEQ.out.fastx       // channel: [ val(meta), [ fasta ] ]
-    versions            = ch_versions               // channel: [ versions.yml ]
+    seqfu_check           = SEQFU_CHECK.out.tsv                        // channel: [ val(meta), tsv  ]
+    suffix_header_check   = FASTQSUFFIXHEADERCHECK.out.json            // channel: [ val(meta), json  ]
+    amplicon_check        = ASSESSMCPPROPORTIONS.out.library_check_out // channel: [ val(meta), env  ]
+    reads                 = FASTP.out.reads                            // channel: [ val(meta), [ fastq ] ]
+    reads_se_and_merged   = ch_reads_se_and_merged                     // channel: [ val(meta), [ fastq ] ]
+    fastp_summary_json    = FASTP.out.json                             // channel: [ val(meta), [ json ] ]
+    reads_fasta           = SEQTK_SEQ.out.fastx                        // channel: [ val(meta), [ fasta ] ]
+    versions              = ch_versions                                // channel: [ versions.yml ]
 }
 
