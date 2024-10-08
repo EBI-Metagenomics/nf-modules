@@ -16,74 +16,73 @@ workflow  READS_QC {
 
     // ***** Necessary mapping functions *****
     filterBySeqFuStatus = { meta, seqfu_res ->
-            seqfu_check_status = seqfu_res[0]
-            if (seqfu_check_status == "OK"){
-                [ meta ]
-            }
-         }
+        seqfu_check_status = seqfu_res[0]
+        if (seqfu_check_status == "OK"){
+            [ meta ]
+        }
+    }
 
     filterBySuffixHeaderStatus = { meta, sufhd_res ->
-            if (sufhd_res.countLines() == 0){
-                [ meta ]
-            }
+        if (sufhd_res.countLines() == 0){
+            [ meta ]
         }
+    }
 
     add_mcp_flags = { meta, fastq ->
-            [ meta, "auto", "auto", fastq ]
-        }
+        [ meta, "auto", "auto", fastq ]
+    }
 
     prepareForMCPCheck = { meta, fwd_flag, rev_flag, fastq ->
-            if (meta.single_end){
-                [ meta, fwd_flag, rev_flag, fastq ]
-            }
-            else{
-                 [ meta, fwd_flag, rev_flag, fastq[0] ]
-            }
+        if (meta.single_end){
+            [ meta, fwd_flag, rev_flag, fastq ]
+        } else {
+                [ meta, fwd_flag, rev_flag, fastq[0] ]
         }
+    }
 
     filterByAmpliconCheck = { meta, strategy ->
-            if (strategy == "AMPLICON"){
-                [ meta ]
-            }
+        if (strategy == "AMPLICON"){
+            [ meta ]
         }
+    }
     // ***** Necessary mapping functions *****
 
     SEQFU_CHECK(ch_reads)
     ch_versions = ch_versions.mix(SEQFU_CHECK.out.versions.first())
 
     passed_seqfu_reads = SEQFU_CHECK.out.tsv
-                   .splitCsv(sep: "\t", elem: 1)
-                   .map(filterBySeqFuStatus)
-                   .join(ch_reads)
+        .splitCsv(sep: "\t", elem: 1)
+        .map(filterBySeqFuStatus)
+        .join(ch_reads)
 
     FASTQSUFFIXHEADERCHECK(passed_seqfu_reads)
     ch_versions = ch_versions.mix(FASTQSUFFIXHEADERCHECK.out.versions.first())
 
 
     passed_suffixheader_reads = FASTQSUFFIXHEADERCHECK.out.json
-                    .map(filterBySuffixHeaderStatus)
-                    .join(ch_reads)
+        .map(filterBySuffixHeaderStatus)
+        .join(ch_reads)
 
     assess_mcp_proportions_input = passed_suffixheader_reads
-                    .map(add_mcp_flags)
-                    .map(prepareForMCPCheck)
+        .map(add_mcp_flags)
+        .map(prepareForMCPCheck)
 
     ASSESSMCPPROPORTIONS(assess_mcp_proportions_input, true)
     ch_versions = ch_versions.mix(ASSESSMCPPROPORTIONS.out.versions.first())
 
     passed_amplicon_check_reads = ASSESSMCPPROPORTIONS.out.library_check_out
-                    .map(filterByAmpliconCheck)
-                    .join(ch_reads)
+        .map(filterByAmpliconCheck)
+        .join(ch_reads)
 
     FASTP ( passed_amplicon_check_reads, params.save_trimmed_fail, save_merged )
     ch_versions = ch_versions.mix(FASTP.out.versions.first())
 
     ch_se_fastp_reads = FASTP
-                        .out.reads
-                        .filter { it[0].single_end }
+        .out.reads
+        .filter { it[0].single_end }
 
     ch_reads_se_and_merged = ch_se_fastp_reads
-                            .mix(FASTP.out.reads_merged)
+        .mix(FASTP.out.reads_merged)
 
     SEQTK_SEQ(ch_reads_se_and_merged)
     ch_versions = ch_versions.mix(SEQTK_SEQ.out.versions.first())
