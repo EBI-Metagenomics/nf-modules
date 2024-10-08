@@ -8,6 +8,9 @@ nextflow_workflow {
     tag "subworkflows"
     tag "subworkflows_nfcore"
     tag "subworkflows/reads_qc"
+    tag "seqfu/check"
+    tag "fastqsuffixheadercheck"
+    tag "assessmcpproportions"
     tag "fastp"
     tag "seqtk"
     tag "seqtk/seq"
@@ -89,6 +92,34 @@ nextflow_workflow {
                         file("${moduleDir}/tests/fixtures/SRR21814853_2.fastq.gz", checkIfExists: true)
                         ]
                     ],
+                    [
+                        [ id:'ERR4674038', single_end:false ], // meta map
+                        [ file("${moduleDir}/tests/fixtures/ERR4674038witherror_1.fastq.gz", checkIfExists: true),
+                        file("${moduleDir}/tests/fixtures/ERR4674038witherror_2.fastq.gz", checkIfExists: true)
+                        ]
+                    ]
+                ])
+                input[1] = true
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("test_reads_onlyfail") {
+
+        when {
+            params {
+                save_trimmed_fail = true
+            }
+            workflow {
+                """
+                input[0] = Channel.fromList([
                     [
                         [ id:'ERR4674038', single_end:false ], // meta map
                         [ file("${moduleDir}/tests/fixtures/ERR4674038witherror_1.fastq.gz", checkIfExists: true),
