@@ -1,4 +1,5 @@
-name: Code Linting
+name: pre-commit
+
 on:
   push:
     branches: [main]
@@ -11,30 +12,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  Prettier:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - name: Install NodeJS
-        uses: actions/setup-node@v2
-
-      - name: Install Prettier
-        run: npm install -g prettier
-
-      - name: Run Prettier --check
-        run: prettier --check .
-
-  EditorConfig:
+  pre-commit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - uses: actions/setup-node@v2
-
-      - name: Install editorconfig-checker
-        run: npm install -g editorconfig-checker
-
-      - name: Run ECLint check
-        run: editorconfig-checker -exclude README.md $(git ls-files | grep -v test)
+      - uses: actions/setup-python@v3
+      - uses: pre-commit/action@v3.0.1
