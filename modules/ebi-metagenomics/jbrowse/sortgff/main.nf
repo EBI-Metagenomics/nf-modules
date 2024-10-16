@@ -1,9 +1,9 @@
-process TABIX_TABIX {
+process SORT_GFF {
     tag "$meta.id"
     label 'process_single'
 
     conda "${moduleDir}/environment.yml"
-    container 'quay.io/biocontainers/gnu-wget:1.18--h36e9172_9'
+    container 'quay.io/biocontainers/coreutils:8.25--0'
 
     input:
     tuple val(meta), path(tab)
@@ -20,7 +20,6 @@ process TABIX_TABIX {
     prefix   = task.ext.prefix ?: "${meta.id}"
 
     """
-
     (grep "^#" $tab; grep -v "^#" $tab | sort -t"`printf '\t'`" -k1,1 -k4,4n)  > ${prefix}.sorted.gff;
 
     cat <<-END_VERSIONS > versions.yml

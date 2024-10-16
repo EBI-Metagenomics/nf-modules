@@ -27,7 +27,7 @@ input:
     - tab:
         type: file
         description: |
-          tab-delimited genome position file (e.g., GFF file)
+          GFF file containig genomic annotations
         pattern: "*.{gff,gff3}"
 output:
   - gff:
@@ -52,5 +52,3 @@ authors:
 maintainers:
   - "@tgurbich"
   - "@vikasguptaebi"
-
-  

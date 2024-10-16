@@ -2,14 +2,14 @@ process GFF3_TRIM_FASTA {
     tag "$meta.id"
     label 'process_single'
 
-    container 'quay.io/biocontainers/gnu-wget:1.18--h36e9172_9'
+    container 'quay.io/biocontainers/gawk:4.1.3--0'
 
     input:
     tuple val(meta), path(tab)
 
     output:
-    tuple val(meta), path("*._trimmed.gff"), optional:true, emit: gff
-    path  "versions.yml"          , emit: versions
+    tuple val(meta), path("*._trimmed.gff"), optional: true, emit: gff
+    path  "versions.yml"                                   , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -17,7 +17,7 @@ process GFF3_TRIM_FASTA {
     script:
     def args = task.ext.args ?: ''
     prefix   = task.ext.prefix ?: "${meta.id}"
-"""
+    """
 
     awk '/##FASTA/{exit}1' "$tab" > "${prefix}_trimmed.gff"
 
