@@ -5,6 +5,7 @@ workflow INDEX_FASTA {
 
     take:
     ch_fasta  // channel: [ val(meta), [ fasta ] ]
+    output_dir   // The directory path to save output files
 
     main:
 
@@ -29,7 +30,7 @@ workflow INDEX_FASTA {
     versions       = ch_versions                                           // channel: [ versions.yml ]
 
     // Call the process to publish files
-    PUBLISH_OUTPUT_FILES(fasta_gz, fai, fa_gz_gzi)
+    PUBLISH_OUTPUT_FILES(fasta_gz, fai, fa_gz_gzi, output_dir)
 }
 
 // PUBLISH_OUTPUT_FILES process to save the output files
@@ -39,21 +40,22 @@ process PUBLISH_OUTPUT_FILES {
     path fasta_gz
     path fa_gz_gzi
     path fai
+    val output_dir
 
     script:
     """
     echo "Files in working directory before copying:"
     ls -lh
 
-    mkdir -p /Users/vikasg/Documents/ws/work/nf-modules/subworkflows/ebi-metagenomics/geneviewer_indexer/output
+    mkdir -p ${output_dir}
 
     echo "Copying files..."
-    cp $fasta_gz /Users/vikasg/Documents/ws/work/nf-modules/subworkflows/ebi-metagenomics/geneviewer_indexer/output/
-    cp $fa_gz_gzi /Users/vikasg/Documents/ws/work/nf-modules/subworkflows/ebi-metagenomics/geneviewer_indexer/output/
-    cp $fai /Users/vikasg/Documents/ws/work/nf-modules/subworkflows/ebi-metagenomics/geneviewer_indexer/output/
+    cp $fasta_gz ${output_dir}/
+    cp $fa_gz_gzi ${output_dir}/
+    cp $fai ${output_dir}/
 
     echo "Files in output folder after copying:"
-    ls -lh /Users/vikasg/Documents/ws/work/nf-modules/subworkflows/ebi-metagenomics/geneviewer_indexer/output/
+    ls -lh ${output_dir}/
     """
 }
 
