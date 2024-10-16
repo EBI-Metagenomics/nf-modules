@@ -12,13 +12,13 @@ components:
 
 input:
   - ch_assembly:
-      type: list
+      type: map
       description: |
         An input channel containing the following files:
         - assembly: One or more assembly or genome contigs fasta file
         Structure: [ meta, assembly ]
   - ch_mask_file:
-      type: list
+      type: map
       description: |
         An input channel containing the following files:
         - mask: One or more mask files.
