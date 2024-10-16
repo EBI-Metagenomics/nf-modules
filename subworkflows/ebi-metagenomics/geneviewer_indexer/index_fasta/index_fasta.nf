@@ -27,6 +27,12 @@ workflow INDEX_FASTA {
 
     // Call the process to publish files
     PUBLISH_OUTPUT_FILES(fasta_gz, fai, fa_gz_gzi, output_dir)
+
+    emit:
+    fasta_gz
+    fai
+    fa_gz_gzi
+    versions
 }
 
 // PUBLISH_OUTPUT_FILES process to save the output files
