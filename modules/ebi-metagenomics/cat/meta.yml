@@ -50,7 +50,7 @@ output:
   - contigs_classification:
       type: file
       description: "TSV file containing the taxonomic classification of each contig, cols: contig | classification | reason | lineage"
-      pattern: "*.{tx}"
+      pattern: "*_contig2classification_official_names.tsv"
 
   - versions:
       type: file

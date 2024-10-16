@@ -50,7 +50,7 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-16T14:40:43.552361"
+        "timestamp": "2024-10-16T14:53:22.855283"
     },
     "bins-fasta - cat taxonomy": {
         "content": [
@@ -103,6 +103,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-16T14:40:37.623655"
+        "timestamp": "2024-10-16T14:53:17.194335"
     }
 }

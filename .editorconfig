@@ -8,6 +8,14 @@ trim_trailing_whitespace = true
 indent_size = 4
 indent_style = space
 
+[*.dmnd]
+charset = off
+end_of_line = off
+insert_final_newline = off
+trim_trailing_whitespace = off
+indent_size = off
+indent_style = off
+
 [*.{md,yml,yaml,cff}]
 indent_size = 2
 
