@@ -1,0 +1,62 @@
+
+nextflow_process {
+
+    name "Test Process CAT"
+    script "../main.nf"
+    process "CAT"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "cat"
+
+    test("bins-fasta - cat taxonomy") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/fixtures/contigs.fasta", checkIfExists: true)
+                ]
+                input[1] = file("${moduleDir}/tests/fixtures/cat_db/db", checkIfExists: true)
+                input[2] = file("${moduleDir}/tests/fixtures/cat_db/tax", checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("bins-fasta - cat taxonomy - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/fixtures/contigs.fasta", checkIfExists: true)
+                ]
+                input[1] = file("${moduleDir}/tests/fixtures/cat_db/db", checkIfExists: true)
+                input[2] = file("${moduleDir}/tests/fixtures/cat_db/tax", checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}
