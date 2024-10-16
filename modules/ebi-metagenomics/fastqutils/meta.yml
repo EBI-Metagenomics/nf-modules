@@ -1,42 +1,48 @@
----
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "fastqutils"
-description: fastq_utils is a set of Linux utilities to validate and manipulate fastq files.
+description: fastq_utils is a set of Linux utilities to validate and manipulate fastq
+  files.
 keywords:
   - fastq
   - qc
   - sequencing
 tools:
   - "fastqutils":
-      description: "Validation and manipulation of FASTQ files, scRNA-seq barcode pre-processing and UMI quantification."
+      description: "Validation and manipulation of FASTQ files, scRNA-seq barcode pre-processing
+        and UMI quantification."
       homepage: "https://github.com/nunofonseca/fastq_utils"
       documentation: "https://github.com/nunofonseca/fastq_utils/wiki"
       tool_dev_url: "https://github.com/nunofonseca/fastq_utils"
       licence: ["GPL v3"]
+      identifier: ""
 input:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. `[ id:'sample1', single_end:false ]`
-  - fastq:
-      type: file
-      description: Fastq file(s) to be validated. If paired-end, expects both forward and reverse files.
-      pattern: "*.{fastq,fastq.gz}"
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - fastq:
+        type: file
+        description: Fastq file(s) to be validated. If paired-end, expects both forward
+          and reverse files.
+        pattern: "*.{fastq,fastq.gz}"
 output:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. `[ id:'sample1', single_end:false ]`
   - sanity:
-      type: file
-      description: Text file containing either "OK" if all sanity checks passed, or an error message describing the issue with the given fastq file(s)
-      pattern: "*.txt"
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*.txt":
+          type: file
+          description: Text file containing either "OK" if all sanity checks passed, or
+            an error message describing the issue with the given fastq file(s)
+          pattern: "*.txt"
   - versions:
-      type: file
-      description: File containing software versions
-      pattern: "versions.yml"
+      - versions.yml:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
 authors:
   - "@chrisata"
 maintainers:

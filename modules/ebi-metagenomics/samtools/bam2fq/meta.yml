@@ -11,45 +11,55 @@ tools:
       description: Tools for dealing with SAM, BAM and CRAM files
       documentation: http://www.htslib.org/doc/1.1/samtools.html
       licence: ["MIT"]
+      identifier: biotools:samtools
 input:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. [ id:'test', single_end:false ]
-  - bam_file:
-      type: file
-      description: |
-        Sorted BAM file
-  - split:
-      type: boolean
-      description: |
-        True or false indicating whether the output
-        is for single or paired-end reads
-
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. [ id:'test', single_end:false ]
+    - inputbam: {}
+    - split:
+        type: boolean
+        description: |
+          True or false indicating whether the output
+          is for single or paired-end reads
 output:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. [ id:'test', single_end:false ]
   - reads:
-      type: file
-      description: |
-        List of fastq files. Two files for paired-end reads and one file for single-end reads
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*{_1,_2,_interleaved}.fq.gz":
+          type: file
+          description: |
+            List of fastq files. Two files for paired-end reads and one file for single-end reads
   - singleton_reads:
-      type: file
-      description: |
-        Fastq files generated for unpaired paired-end reads
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*_singleton.fq.gz":
+          type: file
+          description: |
+            Fastq files generated for unpaired paired-end reads
   - other_reads:
-      type: file
-      description: |
-        Other fastq files generated for paired-end reads
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*_other.fq.gz":
+          type: file
+          description: |
+            Other fastq files generated for paired-end reads
   - versions:
-      type: file
-      description: |
-        File containing software versions
-
+      - versions.yml:
+          type: file
+          description: |
+            File containing software versions
 authors:
   - "@EBI-Metagenomics"
 maintainers:

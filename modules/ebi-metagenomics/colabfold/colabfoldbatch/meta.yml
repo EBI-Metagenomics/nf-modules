@@ -1,7 +1,7 @@
----
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "colabfold_colabfoldbatch"
-description: Perform protein folding predictions with ColabFold (current version queries the ColabFold server -with its limitations)
+description: Perform protein folding predictions with ColabFold (current version queries
+  the ColabFold server -with its limitations)
 keywords:
   - protein
   - prediction
@@ -15,30 +15,33 @@ tools:
       tool_dev_url: "https://github.com/sokrypton/ColabFold"
       doi: "10.1038/s41592-022-01488-1"
       licence: ["MIT"]
+      identifier: biotools:colabfold
 input:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. `[ id:'sample1', single_end:false ]`
-  - fasta:
-      type: file
-      description: Amino acid file or MSA file
-      pattern: "*.{fa,fasta,a3m}"
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - fasta:
+        type: file
+        description: Amino acid file or MSA file
+        pattern: "*.{fa,fasta,a3m}"
 output:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. `[ id:'sample1', single_end:false ]`
   - out_dir:
-      type: directory
-      description: Output directory containing output prediction files
-      pattern: "*"
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - ${meta.id}:
+          type: directory
+          description: Output directory containing output prediction files
+          pattern: "*"
   - versions:
-      type: file
-      description: File containing software versions
-      pattern: "versions.yml"
+      - versions.yml:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
 authors:
   - "@vagkaratzas"
 maintainers:

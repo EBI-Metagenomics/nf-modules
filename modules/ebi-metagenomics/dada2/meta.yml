@@ -1,7 +1,7 @@
----
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "dada2"
-description: Infer Amplicon Sequence Variants (ASVs) from amplicon reads using DADA2 package
+description: Infer Amplicon Sequence Variants (ASVs) from amplicon reads using DADA2
+  package
 keywords:
   - microbial taxonomy
   - amplicon sequence variant (asv)
@@ -17,37 +17,39 @@ tools:
       tool_dev_url: "https://github.com/benjjneb/dada2"
       doi: "10.1038/nmeth.3869"
       licence: ["LGPL>=3"]
+      identifier: biotools:dada2
 
 input:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. `[ id:'sample1', single_end:false ]`
-  - reads:
-      type: file
-      description: Reads after QC and filtering
-      pattern: "*.fastq"
-
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - reads:
+        type: file
+        description: Reads after QC and filtering
+        pattern: "*.fastq"
 output:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. `[ id:'sample1', single_end:false ]`
-  - versions:
-      type: file
-      description: File containing software versions
-      pattern: "versions.yml"
   - dada2_out:
-      type: file
-      description: Fasta file with ASV sequences
-      pattern: "*asvs.fasta"
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*asvs.fasta":
+          type: file
+          description: Fasta file with ASV sequences
+          pattern: "*asvs.fasta"
   - dada2_asv_counts:
-      type: file
-      description: Counts for unique ASV sequences
-      pattern: "*asv_counts.tsv"
-
+      - "*asv_counts.tsv":
+          type: file
+          description: Counts for unique ASV sequences
+          pattern: "*asv_counts.tsv"
+  - versions:
+      - versions.yml:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
 authors:
   - "@ochkalova"
 maintainers:
