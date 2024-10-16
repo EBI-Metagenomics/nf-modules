@@ -1,0 +1,39 @@
+{
+    "Index BU_ATCC8492VPI0062_NT5002.1.fa": {
+        "content": [
+            {
+                "0": [
+                    "BU_ATCC8492VPI0062_NT5002.1.fa.gz:md5,ab35866d72f54647e4c667ec1ca2d137"
+                ],
+                "1": [
+                    "BU_ATCC8492VPI0062_NT5002.1.fa.gz.fai:md5,a36bd3c02b024d33dfa8f97532379d17"
+                ],
+                "2": [
+                    "BU_ATCC8492VPI0062_NT5002.1.fa.gz.gzi:md5,3a3a8f48da13ed1d711a2dc94fa36961"
+                ],
+                "3": [
+                    "versions.yml:md5,aaffb8ec5b25d6ecf573c4244335305c",
+                    "versions.yml:md5,ddc8e0bded6474fcd99a4f5d198f2c5c"
+                ],
+                "fa_gz_gzi": [
+                    "BU_ATCC8492VPI0062_NT5002.1.fa.gz.gzi:md5,3a3a8f48da13ed1d711a2dc94fa36961"
+                ],
+                "fai": [
+                    "BU_ATCC8492VPI0062_NT5002.1.fa.gz.fai:md5,a36bd3c02b024d33dfa8f97532379d17"
+                ],
+                "fasta_gz": [
+                    "BU_ATCC8492VPI0062_NT5002.1.fa.gz:md5,ab35866d72f54647e4c667ec1ca2d137"
+                ],
+                "versions": [
+                    "versions.yml:md5,aaffb8ec5b25d6ecf573c4244335305c",
+                    "versions.yml:md5,ddc8e0bded6474fcd99a4f5d198f2c5c"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-10-16T16:20:10.706406"
+    }
+}

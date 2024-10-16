@@ -1,0 +1,29 @@
+
+nextflow_workflow {
+
+    name "Test Subworkflow INDEX_FASTA"
+    script "../index_fasta.nf"
+    workflow "INDEX_FASTA"
+
+    test("Index BU_ATCC8492VPI0062_NT5002.1.fa") {
+        when {
+            workflow {
+                """
+                // Define inputs of the workflow:
+                input[0] = Channel.of([
+                    [ id: "BU_ATCC8492VPI0062_NT5002.1" ],
+                    file("${moduleDir}/tests/data/BU_ATCC8492VPI0062_NT5002.1.fa", checkIfExists: true)
+                ])
+                input[1] = file("${moduleDir}/tests/output", type: 'dir')
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}
