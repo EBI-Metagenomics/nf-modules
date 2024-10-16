@@ -13,9 +13,9 @@ process CAT {
     path taxonomy_db
 
     output:
-    tuple val(meta), path('*_summary.txt'), emit: summary
+    tuple val(meta), path('*_summary.txt')                             , emit: summary
     tuple val(meta), path('*_contig2classification_official_names.tsv'), emit: contigs_classification
-    path "versions.yml", emit: versions
+    path "versions.yml"                                                , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
