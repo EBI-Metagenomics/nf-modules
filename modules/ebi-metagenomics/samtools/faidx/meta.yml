@@ -25,15 +25,6 @@ input:
         type: file
         description: FASTA file
         pattern: "*.{fa,fasta}"
-  - - meta2:
-        type: map
-        description: |
-          Groovy Map containing reference information
-          e.g. [ id:'test' ]
-    - fai:
-        type: file
-        description: FASTA index file
-        pattern: "*.{fai}"
 output:
   - fa:
       - meta:
