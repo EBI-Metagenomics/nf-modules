@@ -1,0 +1,37 @@
+{
+    "Index BU_ATCC8492_annotations.gff": {
+        "content": [
+            {
+                "0": [
+                    "BU_ATCC8492_annotations.gff.gz:md5,98234255a2ad85566e13d12453da28c5"
+                ],
+                "1": [
+                    "BU_ATCC8492_annotations.gff.gz.tbi:md5,bea4d5d9d96bf83af628e3a9eb6c2ae0"
+                ],
+                "2": [
+                    "versions.yml:md5,3de6daa89090703d5f53377ee292d211",
+                    "versions.yml:md5,9d413f7f6fda927ab3016a8c6d5a25f6",
+                    "versions.yml:md5,bf7424b55a2a76a9c8363ac68cb985e5",
+                    "versions.yml:md5,fe6ccdf0cb22377548a95cf44c94c7b3"
+                ],
+                "gff_gz": [
+                    "BU_ATCC8492_annotations.gff.gz:md5,98234255a2ad85566e13d12453da28c5"
+                ],
+                "tbi_files": [
+                    "BU_ATCC8492_annotations.gff.gz.tbi:md5,bea4d5d9d96bf83af628e3a9eb6c2ae0"
+                ],
+                "versions": [
+                    "versions.yml:md5,3de6daa89090703d5f53377ee292d211",
+                    "versions.yml:md5,9d413f7f6fda927ab3016a8c6d5a25f6",
+                    "versions.yml:md5,bf7424b55a2a76a9c8363ac68cb985e5",
+                    "versions.yml:md5,fe6ccdf0cb22377548a95cf44c94c7b3"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "23.10.1"
+        },
+        "timestamp": "2024-10-16T16:36:33.627851"
+    }
+}
