@@ -1,0 +1,54 @@
+name: sortgff
+description: sort gff file for jbrowse use
+keywords:
+  - gff
+  - jbrowse
+  - sort
+  - grep
+tools:
+  - grep:
+      description: Print lines matching a pattern
+      homepage: https://www.gnu.org/software/grep/
+      documentation: https://www.gnu.org/software/grep/manual/
+      licence: ["GPL-3.0-or-later"]
+      identifier: biotools:grep
+  - sort:
+      description: Sort lines of text files
+      homepage: https://www.gnu.org/software/coreutils/
+      documentation: https://www.gnu.org/software/coreutils/manual/html_node/sort-invocation.html
+      licence: ["GPL-3.0-or-later"]
+      identifier: biotools:sort
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. [ id:'test', single_end:false ]
+    - tab:
+        type: file
+        description: |
+          GFF file containig genomic annotations
+        pattern: "*.{gff,gff3}"
+output:
+  - gff:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*.sorted.gff":
+          type: file
+          description: Sorted GFF file
+          pattern: "*.sorted.gff"
+  - versions:
+      - versions.yml:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+authors:
+  - "@SantiagoSanchezF"
+  - "@tgurbich"
+  - "@vikasguptaebi"
+maintainers:
+  - "@tgurbich"
+  - "@vikasguptaebi"
