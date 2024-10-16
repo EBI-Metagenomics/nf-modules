@@ -1,9 +1,9 @@
 name: "combinedgenecaller_merge"
 description: MGnify gene combined calling merge script
 keywords:
-  - gene finding
-  - prokaryotes
-  - microbial
+  - "gene finding"
+  - "prokaryotes"
+  - "microbial"
 
 tools:
   - "combinedgenecaller":
@@ -12,72 +12,69 @@ tools:
       documentation: "https://docs.mgnify.org"
       tool_dev_url: "https://github.com/EBI-Metagenomics/combined-gene-caller"
       doi: "10.1093/nar/gkac1080"
-      licence: "Apache License 2.0"
+      licence: ["Apache License 2.0"]
+      identifier: ""
 
 input:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. `[ id:'test', single_end:false ]`
-
-  - prodigal_out:
-      type: file
-      description: simple coordinate output (sco)
-      pattern: "*.{out,sco}"
-
-  - prodigal_ffn:
-      type: file
-      description: nucleotide sequences file
-      pattern: "*.{ffn,fna}"
-
-  - prodigal_faa:
-      type: file
-      description: protein translations file
-      pattern: "*.{faa}"
-
-  - fgs-out:
-      type: file
-      description: Simple coordinate output
-      pattern: "*.{out,sco}"
-
-  - fgs_ffn:
-      type: file
-      description: nucleotide sequences file
-      pattern: "*.{ffn,fna}"
-
-  - fgs_faa:
-      type: file
-      description: protein translations file
-      pattern: "*.{faa}"
-
-  - mask_file:
-      type: file
-      description: sequence mask file (cmsearch tblout)
-      pattern: "*.*"
-
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. [ id:'test', single_end:false ]
+    - prodigal_sco:
+        type: file
+        description: Simple coordinate output (sco) from Prodigal
+        pattern: "*.out"
+    - prodigal_ffn:
+        type: file
+        description: nucleotide sequences file
+        pattern: "*.{ffn,fna}"
+    - prodigal_faa:
+        type: file
+        description: protein translations file
+        pattern: "*.{faa}"
+    - fgs_out:
+        type: file
+        description: Simple coordinate output
+        pattern: "*.{out,sco}"
+    - fgs_ffn:
+        type: file
+        description: nucleotide sequences file
+        pattern: "*.{ffn,fna}"
+    - fgs_faa:
+        type: file
+        description: protein translations file
+        pattern: "*.{faa}"
+    - mask_file:
+        type: file
+        description: sequence mask file (cmsearch tblout)
+        pattern: "*.*"
 output:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. `[ id:'test', single_end:false ]`
-
-  - versions:
-      type: file
-      description: File containing software versions
-      pattern: "versions.yml"
-
-  - ffn:
-      type: file
-      description: merged nucleotide sequences file
-      pattern: "*.{ffn,fna}"
-
   - faa:
-      type: file
-      description: merged protein translations file
-      pattern: "*.{faa}"
-
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*.faa.gz":
+          type: file
+          description: merged protein translations file
+          pattern: "*.{faa}"
+  - ffn:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*.ffn.gz":
+          type: file
+          description: merged nucleotide sequences file
+          pattern: "*.{ffn,fna}"
+  - versions:
+      - versions.yml:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
 authors:
   - "@mberacochea"
 
