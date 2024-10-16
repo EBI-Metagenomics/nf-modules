@@ -10,18 +10,14 @@ workflow INDEX_FASTA {
     main:
 
     ch_versions = Channel.empty()
-    ch_fasta.view { "Input FASTA: $it" }
 
     // Run bgzip on fasta files
     TABIX_BGZIP(ch_fasta)
     ch_versions = ch_versions.mix(TABIX_BGZIP.out.versions.first())
-    TABIX_BGZIP.out.output.view { "TABIX_BGZIP output: $it" }
 
     // Index the gzipped fasta files
     SAMTOOLS_FAIDX(TABIX_BGZIP.out.output)
     ch_versions = ch_versions.mix(SAMTOOLS_FAIDX.out.versions.first())
-    SAMTOOLS_FAIDX.out.fai.view { "SAMTOOLS fai output: $it" }
-    SAMTOOLS_FAIDX.out.gzi.view { "SAMTOOLS gzi output: $it" }
 
     // Extract paths from the tuple before passing them to the publish process
     fasta_gz       = TABIX_BGZIP.out.output.map { it[1] }.flatten()        // channel: [ val(meta), [ gz ] ]
@@ -54,8 +50,6 @@ process PUBLISH_OUTPUT_FILES {
     cp $fa_gz_gzi ${output_dir}/
     cp $fai ${output_dir}/
 
-    echo "Files in output folder after copying:"
-    ls -lh ${output_dir}/
     """
 }
 
