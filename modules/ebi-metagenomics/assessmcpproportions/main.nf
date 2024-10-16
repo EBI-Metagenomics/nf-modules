@@ -5,8 +5,8 @@ process ASSESSMCPPROPORTIONS {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:0.1.6--pyhdfd78af_0':
-        'biocontainers/mgnify-pipelines-toolkit:0.1.6--pyhdfd78af_0' }"
+        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:0.1.7--pyhdfd78af_0':
+        'biocontainers/mgnify-pipelines-toolkit:0.1.7--pyhdfd78af_0' }"
 
     input:
     tuple val(meta), val(fwd_flag), val(rev_flag), path(fastq)
@@ -88,6 +88,8 @@ process ASSESSMCPPROPORTIONS {
 
     """
     touch ${assess_mcp_prop_prefix}_mcp_cons.tsv
+
+    echo 'dummy' > ${assess_mcp_prop_prefix}_mcp_cons.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
