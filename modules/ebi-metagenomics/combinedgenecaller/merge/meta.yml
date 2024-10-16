@@ -1,10 +1,10 @@
----
 name: "combinedgenecaller_merge"
 description: MGnify gene combined calling merge script
 keywords:
   - gene finding
   - prokaryotes
   - microbial
+
 tools:
   - "combinedgenecaller":
       description: "This script will merge the gene called by prodigal and fraggenescan"
@@ -79,4 +79,7 @@ output:
       pattern: "*.{faa}"
 
 authors:
+  - "@mberacochea"
+
+maintainers:
   - "@mberacochea"

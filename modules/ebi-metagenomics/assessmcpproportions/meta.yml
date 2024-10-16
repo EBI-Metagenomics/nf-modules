@@ -51,7 +51,7 @@ output:
       description: .tsv file containing MCP proportion results for all given strands
       pattern: "*.tsv"
   - library_check_out:
-      type: env
+      type: string
       description: Optional env variable containing either "AMPLICON", empty otherwise
   - versions:
       type: file

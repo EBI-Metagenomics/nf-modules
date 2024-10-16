@@ -3,6 +3,9 @@ description: Map reads to reference genome
 keywords:
   - mapping
   - bwa
+  - reference
+  - index
+  - fasta
 tools:
   - "bwa2":
       description: "Mapping DNA sequences against a large reference genome"
