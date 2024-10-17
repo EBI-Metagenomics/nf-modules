@@ -45,7 +45,9 @@ process BWAMEM2_MEM {
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    touch ${prefix}.bam
+    touch ${prefix}_sorted.bam
+    touch ${prefix}_sorted.bam.bai
+
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         bwamem2: \$(echo \$(bwa-mem2 version 2>&1) | sed 's/.* //')
