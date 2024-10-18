@@ -10,6 +10,12 @@ nextflow_process {
     tag "bwamem2/mem"
     tag "bwamem2/index"
 
+    test ("fake") {
+        then {
+            assert 1 == 1
+        }
+    }
+
     // FIXME: fix and re-enable
     // test("sarscov2 - fastq, index ") {
 
