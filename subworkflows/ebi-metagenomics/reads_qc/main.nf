@@ -72,8 +72,8 @@ workflow  READS_QC {
         ch_versions = ch_versions.mix(ASSESSMCPPROPORTIONS.out.versions.first())
 
         fastp_input = ASSESSMCPPROPORTIONS.out.library_check_out
-                            .map(filterByAmpliconCheck)
-                            .join(ch_reads)
+                        .map(filterByAmpliconCheck)
+                        .join(ch_reads)
         amplicon_check = ASSESSMCPPROPORTIONS.out.library_check_out
     }
 
