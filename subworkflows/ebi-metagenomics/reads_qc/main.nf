@@ -13,13 +13,13 @@ workflow  READS_QC {
 
     main:
     ch_versions = Channel.empty()
-    
+
     // ***** Necessary mapping functions *****
     filterBySeqFuStatus = { meta, seqfu_res ->
             seqfu_check_status = seqfu_res[0]
             if (seqfu_check_status == "OK"){
                 [ meta ]
-            }            
+            }
          }
 
     filterBySuffixHeaderStatus = { meta, sufhd_res ->
