@@ -1,0 +1,61 @@
+nextflow_process {
+
+    name "Test Process TAXONKIT_REFORMAT"
+    script "../main.nf"
+    process "TAXONKIT_REFORMAT"
+
+    tag "modules"
+    tag "modules_ebimetagenomics"
+    tag "taxonkit"
+    tag "taxonkit/reformat"
+
+    config "./nextflow.config"
+
+    test("tsv with header") {
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("$moduleTestDir/fixtures/nucl_gb.accession2taxid", checkIfExists: true)
+                ]
+                input[1] = file("$moduleTestDir/fixtures/taxdump", checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("tsv with header - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("$moduleTestDir/fixtures/nucl_gb.accession2taxid", checkIfExists: true)
+                ]
+                input[1] = file("$moduleTestDir/fixtures/taxdump", checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}
