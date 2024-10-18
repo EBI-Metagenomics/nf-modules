@@ -6,7 +6,7 @@ process COMBINEDGENECALLER_MERGE {
     container 'microbiome-informatics/combined-gene-caller:v1.0.4'
 
     input:
-    tuple val(meta), path(prodigal_sco, stageAs: "pro.sco"), path(prodigal_ffn, stageAs: "pro.ffa"), path(prodigal_faa, stageAs: "pro.faa"), path(fgs_out, stageAs: "fgf.out"), path(fgs_ffn, stageAs: "fgf.ffn"), path(fgs_faa, stageAs: "fgs.faa"), file(mask_file)
+    tuple val(meta), path(prodigal_sco, stageAs: "pro.sco"), path(prodigal_ffn, stageAs: "pro.ffa"), path(prodigal_faa, stageAs: "pro.faa"), path(fgs_out, stageAs: "fgf.out"), path(fgs_ffn, stageAs: "fgf.ffn"), path(fgs_faa, stageAs: "fgs.faa"), path(mask_file)
 
     output:
     tuple val(meta), path("*.faa.gz"), emit: faa
