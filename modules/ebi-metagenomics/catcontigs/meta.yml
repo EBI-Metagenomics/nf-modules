@@ -1,12 +1,12 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
-name: "CAT"
-description: MGnify CAT based bins taxonomy assignation tool
+name: "CATCONTIGS"
+description: MGnify contig taxonomy assignation using CAT"
 keywords:
   - mags
   - taxonomy
   - genomics
 tools:
-  - "cat":
+  - "catcontigs":
       description: "CAT/BAT: tool for taxonomic classification of contigs and metagenome-assembled
         genomes (MAGs)"
       homepage: "https://github.com/MGXlab/CAT_pack"

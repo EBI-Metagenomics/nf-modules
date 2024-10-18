@@ -21,7 +21,7 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,0f2032bf504c399364490799f5962802"
+                    "versions.yml:md5,b7b6ee68280d52f554f92b37e972984d"
                 ],
                 "contigs_classification": [
                     [
@@ -42,7 +42,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,0f2032bf504c399364490799f5962802"
+                    "versions.yml:md5,b7b6ee68280d52f554f92b37e972984d"
                 ]
             }
         ],
@@ -50,7 +50,7 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-16T14:53:22.855283"
+        "timestamp": "2024-10-18T11:20:25.510416"
     },
     "bins-fasta - cat taxonomy": {
         "content": [
@@ -74,7 +74,7 @@
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,0f2032bf504c399364490799f5962802"
+                    "versions.yml:md5,b7b6ee68280d52f554f92b37e972984d"
                 ],
                 "contigs_classification": [
                     [
@@ -95,7 +95,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,0f2032bf504c399364490799f5962802"
+                    "versions.yml:md5,b7b6ee68280d52f554f92b37e972984d"
                 ]
             }
         ],
@@ -103,6 +103,6 @@
             "nf-test": "0.9.0",
             "nextflow": "24.04.4"
         },
-        "timestamp": "2024-10-16T14:53:17.194335"
+        "timestamp": "2024-10-18T11:20:19.529342"
     }
 }

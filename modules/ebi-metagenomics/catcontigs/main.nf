@@ -1,4 +1,4 @@
-process CAT {
+process CATCONTIGS {
     tag "$meta.id"
     label 'process_medium'
 
