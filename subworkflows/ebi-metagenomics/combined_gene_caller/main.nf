@@ -23,20 +23,32 @@ workflow COMBINED_GENE_CALLER {
     ch_mask_file = ch_mask_file ?: Channel.empty()
 
     ch_annotations = PRODIGAL.out.gene_annotations.join(
-        PRODIGAL.out.nucleotide_fasta, by: [0]
+        PRODIGAL.out.nucleotide_fasta,
     ).join(
-        PRODIGAL.out.amino_acid_fasta, by: [0]
+        PRODIGAL.out.amino_acid_fasta,
     ).join(
-        FRAGGENESCAN.out.gene_annotations, by: [0]
+        FRAGGENESCAN.out.gene_annotations,
     ).join(
-        FRAGGENESCAN.out.nucleotide_fasta, by: [0]
+        FRAGGENESCAN.out.nucleotide_fasta,
     ).join(
-        FRAGGENESCAN.out.amino_acid_fasta, by: [0]
+        FRAGGENESCAN.out.amino_acid_fasta,
     ).join(
-        ch_mask_file, by: [0], remainder: true
+        ch_mask_file, remainder: true
     )
 
-    COMBINEDGENECALLER_MERGE ( ch_annotations )
+    COMBINEDGENECALLER_MERGE( ch_annotations.map { meta, prodigal_gene_annot, prodigal_nt_fasta, prodigal_aa_fasta, frag_gene_annot, frag_nt_fasta, frag_aa_fasta, mask ->
+            return [
+                meta,
+                prodigal_gene_annot,
+                prodigal_nt_fasta,
+                prodigal_aa_fasta,
+                frag_gene_annot,
+                frag_nt_fasta,
+                frag_aa_fasta,
+                mask ?: []
+            ]
+        }
+    )
 
     ch_versions = ch_versions.mix(COMBINEDGENECALLER_MERGE.out.versions.first())
 

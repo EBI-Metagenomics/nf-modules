@@ -6,14 +6,14 @@ nextflow_process {
     process "ASSESSMCPPROPORTIONS"
 
     tag "modules"
-    tag "modules_nfcore"
+    tag "modules_ebimetagenomics"
     tag "assessmcpproportions"
 
     test("assessmcpproportions - FR") {
 
         when {
             process {
-                """                
+                """
                 input[0] = [
                     [ id:'test', single_end:false, var_region:'16S-V3-V4' ], // meta map
                     "auto",
@@ -38,7 +38,7 @@ nextflow_process {
 
         when {
             process {
-                """                
+                """
                 input[0] = [
                     [ id:'test', single_end:false, var_region:'16S-V3-V4' ], // meta map
                     "auto",
@@ -63,7 +63,7 @@ nextflow_process {
 
         when {
             process {
-                """                
+                """
                 input[0] = [
                     [ id:'test', single_end:false, var_region:'16S-V3-V4' ], // meta map
                     "none",
@@ -88,7 +88,7 @@ nextflow_process {
 
         when {
             process {
-                """                
+                """
                 input[0] = [
                     [ id:'test', single_end:false, var_region:'16S-V3-V4' ], // meta map
                     "none",
@@ -113,7 +113,7 @@ nextflow_process {
 
         when {
             process {
-                """                
+                """
                 input[0] = [
                     [ id:'test', single_end:false, var_region:'16S-V3-V4' ], // meta map
                     "auto",
@@ -140,7 +140,7 @@ nextflow_process {
 
         when {
             process {
-                """                
+                """
                 input[0] = [
                     [ id:'test', single_end:false, var_region:'16S-V3-V4' ], // meta map
                     "auto",
