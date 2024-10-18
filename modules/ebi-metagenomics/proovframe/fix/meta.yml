@@ -1,7 +1,7 @@
----
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
-name: "proovframe_map"
-description: frame-shift correction for long read (meta)genomics - maps proteins to reads
+name: "proovframe_fix"
+description: frame-shift correction for long read (meta)genomics - fix frameshifts
+  in reads
 keywords:
   - frame-shift correction
   - long-read sequencing
@@ -22,26 +22,32 @@ input:
         description: |
           Groovy Map containing sample information
           e.g. `[ id:'sample1', single_end:false ]`
-    - faa:
+    - fa:
         type: file
-        description: A FASTA file containing a database of guide protein sequences
+        description: "A FASTA file containing a database of guide protein sequences"
         pattern: "*.{faa,fasta,fa}"
-    - fasta:
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. [ id:'test' ]
+    - tsv:
         type: file
-        description: A FASTA file containing raw read nucleotide sequences
-        pattern: "*.{fasta,fa}"
+        description: "Output TSV file with the frameshift-aware protein to read alignments\
+          \ from proovframe/map"
+        pattern: "*.{tsv}"
 
 output:
-  - tsv:
+  - out_fa:
       - meta:
           type: map
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'sample1', single_end:false ]`
-      - "*.tsv":
+      - "*.fa":
           type: file
-          description: Output TSV file with the frameshift-aware protein to read alignments
-          pattern: "*.tsv"
+          description: "Result FASTA with fixed frameshift reads"
+          pattern: "*.{fa}"
   - versions:
       - "versions.yml":
           type: file
@@ -49,8 +55,7 @@ output:
           pattern: "versions.yml"
 
 authors:
-  - "@manuelcarbajo"
-  - "@MGS-sails"
+  - "@mcarbajo"
   - "@vagkaratzas"
 maintainers:
   - "@vagkaratzas"
