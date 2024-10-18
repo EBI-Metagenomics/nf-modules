@@ -8,6 +8,7 @@ include { SEQTK_SEQ              } from '../../../modules/ebi-metagenomics/seqtk
 workflow  READS_QC {
 
     take:
+    filter_amplicon // channel: val(boolean)
     ch_reads    // channel: [ val(meta), [ fastq ] ]
     save_merged // channel:  val(boolean)
 
@@ -58,23 +59,30 @@ workflow  READS_QC {
     FASTQSUFFIXHEADERCHECK(passed_seqfu_reads)
     ch_versions = ch_versions.mix(FASTQSUFFIXHEADERCHECK.out.versions.first())
 
-
     passed_suffixheader_reads = FASTQSUFFIXHEADERCHECK.out.json
         .map(filterBySuffixHeaderStatus)
         .join(ch_reads)
 
-    assess_mcp_proportions_input = passed_suffixheader_reads
-        .map(add_mcp_flags)
-        .map(prepareForMCPCheck)
+    if (filter_amplicon){
+        assess_mcp_proportions_input = passed_suffixheader_reads
+                        .map(add_mcp_flags)
+                        .map(prepareForMCPCheck)
 
-    ASSESSMCPPROPORTIONS(assess_mcp_proportions_input, true)
-    ch_versions = ch_versions.mix(ASSESSMCPPROPORTIONS.out.versions.first())
+        ASSESSMCPPROPORTIONS(assess_mcp_proportions_input, true)
+        ch_versions = ch_versions.mix(ASSESSMCPPROPORTIONS.out.versions.first())
 
-    passed_amplicon_check_reads = ASSESSMCPPROPORTIONS.out.library_check_out
-        .map(filterByAmpliconCheck)
-        .join(ch_reads)
+        fastp_input = ASSESSMCPPROPORTIONS.out.library_check_out
+                            .map(filterByAmpliconCheck)
+                            .join(ch_reads)
+        amplicon_check = ASSESSMCPPROPORTIONS.out.library_check_out
+    }
 
-    FASTP ( passed_amplicon_check_reads, params.save_trimmed_fail, save_merged )
+    else{
+        fastp_input = passed_suffixheader_reads
+        amplicon_check = Channel.empty()
+    }
+
+    FASTP ( fastp_input, params.save_trimmed_fail, save_merged )
     ch_versions = ch_versions.mix(FASTP.out.versions.first())
 
     ch_se_fastp_reads = FASTP
@@ -90,7 +98,7 @@ workflow  READS_QC {
     emit:
     seqfu_check           = SEQFU_CHECK.out.tsv                        // channel: [ val(meta), tsv  ]
     suffix_header_check   = FASTQSUFFIXHEADERCHECK.out.json            // channel: [ val(meta), json  ]
-    amplicon_check        = ASSESSMCPPROPORTIONS.out.library_check_out // channel: [ val(meta), env  ]
+    amplicon_check        = amplicon_check                             // channel: [ val(meta), env  ]
     reads                 = FASTP.out.reads                            // channel: [ val(meta), [ fastq ] ]
     reads_se_and_merged   = ch_reads_se_and_merged                     // channel: [ val(meta), [ fastq ] ]
     fastp_summary_json    = FASTP.out.json                             // channel: [ val(meta), [ json ] ]
