@@ -15,69 +15,49 @@ workflow  READS_QC {
     main:
     ch_versions = Channel.empty()
 
-    // ***** Necessary mapping functions *****
-    filterBySeqFuStatus = { meta, seqfu_res ->
-        seqfu_check_status = seqfu_res[0]
-        if (seqfu_check_status == "OK"){
-            [ meta ]
-        }
-    }
-
-    filterBySuffixHeaderStatus = { meta, sufhd_res ->
-        if (sufhd_res.countLines() == 0){
-            [ meta ]
-        }
-    }
-
-    add_mcp_flags = { meta, fastq ->
-        [ meta, "auto", "auto", fastq ]
-    }
-
-    prepareForMCPCheck = { meta, fwd_flag, rev_flag, fastq ->
-        if (meta.single_end){
-            [ meta, fwd_flag, rev_flag, fastq ]
-        } else {
-                [ meta, fwd_flag, rev_flag, fastq[0] ]
-        }
-    }
-
-    filterByAmpliconCheck = { meta, strategy ->
-        if (strategy == "AMPLICON"){
-            [ meta ]
-        }
-    }
-    // ***** Necessary mapping functions *****
-
     SEQFU_CHECK(ch_reads)
     ch_versions = ch_versions.mix(SEQFU_CHECK.out.versions.first())
 
     passed_seqfu_reads = SEQFU_CHECK.out.tsv
         .splitCsv(sep: "\t", elem: 1)
-        .map(filterBySeqFuStatus)
+        .filter { meta, seqfu_res ->
+            seqfu_res[0] == "OK"
+        }
+        .map { map, seqfu_res -> map }
         .join(ch_reads)
 
     FASTQSUFFIXHEADERCHECK(passed_seqfu_reads)
     ch_versions = ch_versions.mix(FASTQSUFFIXHEADERCHECK.out.versions.first())
 
     passed_suffixheader_reads = FASTQSUFFIXHEADERCHECK.out.json
-        .map(filterBySuffixHeaderStatus)
+        .filter { meta, sufhd_res ->
+            sufhd_res.countLines() == 0
+        }
+        .map { meta, _ -> [ meta ] }
         .join(ch_reads)
 
-    if (filter_amplicon){
+    if ( filter_amplicon ) {
         assess_mcp_proportions_input = passed_suffixheader_reads
-                        .map(add_mcp_flags)
-                        .map(prepareForMCPCheck)
+                        .map { meta, fastq ->
+                            if ( meta.single_end ) {
+                                [ meta, "auto", "auto", fastq ]
+                            } else {
+                                [ meta, "auto", "auto", fastq[0] ]
+                            }
+                        }
 
         ASSESSMCPPROPORTIONS(assess_mcp_proportions_input, true)
         ch_versions = ch_versions.mix(ASSESSMCPPROPORTIONS.out.versions.first())
 
         fastp_input = ASSESSMCPPROPORTIONS.out.library_check_out
-                        .map(filterByAmpliconCheck)
+                        .filter { meta, strategy ->
+                            strategy == "AMPLICON"
+                        }
+                        .map { meta, _ -> [ meta ] }
                         .join(ch_reads)
-        amplicon_check = ASSESSMCPPROPORTIONS.out.library_check_out
-    }
 
-    else{
+        amplicon_check = ASSESSMCPPROPORTIONS.out.library_check_out
+    } else {
         fastp_input = passed_suffixheader_reads
         amplicon_check = Channel.empty()
     }
