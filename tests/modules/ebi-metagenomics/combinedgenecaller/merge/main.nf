@@ -31,7 +31,7 @@ workflow test_combinedgenecaller_merge_no_mask {
         file("tests/modules/ebi-metagenomics/combinedgenecaller/merge/data/input_fgs.out.gz", checkIfExists: true),
         file("tests/modules/ebi-metagenomics/combinedgenecaller/merge/data/input_fgs.ffn.gz", checkIfExists: true),
         file("tests/modules/ebi-metagenomics/combinedgenecaller/merge/data/input_fgs.faa.gz", checkIfExists: true),
-        null // mask file
+        [] // mask file
     ]
 
     COMBINEDGENECALLER_MERGE ( input )

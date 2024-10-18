@@ -1,0 +1,90 @@
+nextflow_process {
+
+    name "Test Process DADA2"
+    script "../main.nf"
+    process "DADA2"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "dada2"
+
+    test("Toy test fastq paired reads") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+            }
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    [
+                        file('${moduleDir}/tests/fixtures/test_noambig_1.fastq.gz', checkIfExists: true),
+                        file('${moduleDir}/tests/fixtures/test_noambig_2.fastq.gz', checkIfExists: true)
+                    ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+test("Toy test fastq single reads") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:true ], // meta map
+                    [
+                        file('${moduleDir}/tests/fixtures/test_noambig_1.fastq.gz', checkIfExists: true),
+                    ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("Toy test fastq paired reads - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    [
+                        file('${moduleDir}/tests/fixtures/test_noambig_1.fastq.gz', checkIfExists: true),
+                        file('${moduleDir}/tests/fixtures/test_noambig_2.fastq.gz', checkIfExists: true)
+                    ]
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}

@@ -1,0 +1,2 @@
+fastqutils:
+  - "modules/ebi-metagenomics/fastqutils/**"
