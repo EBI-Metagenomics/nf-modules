@@ -1,0 +1,37 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "index_gff"
+description: Generate gff indices
+keywords:
+  - gff
+  - indexing
+  - genomics
+modules:
+  - tabix/bgzip
+  - jbrowse/sortgff
+  - gff3trim
+input:
+  - ch_gff3:
+      type: list
+      description: |
+        An input channel containing the following files:
+        - fasta: One or more fasta file
+        Structure: [ meta, gff ]
+output:
+  - fasta_gz:
+      type: file
+      description: gzipped fasta file
+      pattern: "*.gz"
+  - fa_gz_gzi:
+      type: file
+      description: gzipped index
+      pattern: "*.gz.gzi"
+  - fai:
+      type: file
+      description: indexed fasta
+      pattern: "*.fai"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+authors:
+  - "@SantiagoSanchezF, @tgurbich, @vikasguptaebi"

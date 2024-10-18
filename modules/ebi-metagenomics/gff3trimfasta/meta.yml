@@ -1,0 +1,48 @@
+name: gff3trimfasta
+description: Trim the FASTA section from a GFF3 file
+keywords:
+  - trim
+  - gff
+  - fasta
+  - awk
+tools:
+  - awk:
+      description: A program that you can use to select particular records in a file and perform operations upon them.
+      homepage: https://www.gnu.org/software/gawk/
+      documentation: https://www.gnu.org/software/gawk/manual/gawk.html
+      licence: ["GPL-3.0-or-later"]
+      identifier: biotools:awk
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. [ id:'test', single_end:false ]
+    - tab:
+        type: file
+        description: |
+          GFF3 file that includes a FASTA section to be trimmed
+        pattern: "*.{gff,gff3}"
+output:
+  - gff:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*_trimmed.gff":
+          type: file
+          description: GFF file with the FASTA section trimmed
+          pattern: "*_trimmed.gff"
+  - versions:
+      - versions.yml:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+authors:
+  - "@SantiagoSanchezF"
+  - "@tgurbich"
+  - "@vikasguptaebi"
+maintainers:
+  - "@tgurbich"
+  - "@vikasguptaebi"

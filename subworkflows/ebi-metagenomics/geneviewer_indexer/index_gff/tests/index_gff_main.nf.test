@@ -1,0 +1,29 @@
+
+nextflow_workflow {
+
+    name "Test Subworkflow INDEX_GFF"
+    script "../index_gff.nf"
+    workflow "INDEX_GFF"
+
+    test("Index BU_ATCC8492_annotations.gff") {
+        when {
+            workflow {
+                """
+                // Define inputs of the workflow:
+                input[0] = Channel.of([
+                    [ id: "BU_ATCC8492_annotations" ],
+                    file("${moduleDir}/tests/data/BU_ATCC8492_annotations.gff", checkIfExists: true)
+                ])
+                input[1] = file("${moduleDir}/tests/output", type: 'dir')
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}
