@@ -596,5 +596,148 @@
             "nextflow": "24.04.4"
         },
         "timestamp": "2024-10-08T11:27:10.337870186"
+    },
+    "test_reads_qc_notamplicon": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "SRR21814853",
+                            "single_end": false
+                        },
+                        "SRR21814853.tsv:md5,008673dad4dd80a742cc11669f24d6e8"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "SRR21814853",
+                            "single_end": false
+                        },
+                        "SRR21814853_suffix_header_err.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "SRR21814853",
+                            "single_end": false
+                        },
+                        [
+                            "SRR21814853_1.fastp.fastq.gz:md5,ab81a64d069ed8876432d8e3bad0b847",
+                            "SRR21814853_2.fastp.fastq.gz:md5,f8bf866d116205baa454b7a501a67b62"
+                        ]
+                    ]
+                ],
+                "4": [
+                    [
+                        {
+                            "id": "SRR21814853",
+                            "single_end": false
+                        },
+                        "SRR21814853.merged.fastq.gz:md5,58ededca56f023aa625f51ec241ba849"
+                    ]
+                ],
+                "5": [
+                    [
+                        {
+                            "id": "SRR21814853",
+                            "single_end": false
+                        },
+                        "SRR21814853.fastp.json:md5,f2fa2740350c702e0f7d6adec47858c4"
+                    ]
+                ],
+                "6": [
+                    [
+                        {
+                            "id": "SRR21814853",
+                            "single_end": false
+                        },
+                        "SRR21814853.seqtk-seq.fasta.gz:md5,a14b76b1e8c24d3f9d98e61d03a62a53"
+                    ]
+                ],
+                "7": [
+                    "versions.yml:md5,8d811725182283301014b4f776199d82",
+                    "versions.yml:md5,a5fd01ddb43380f5a73a5fcdb4dde637",
+                    "versions.yml:md5,caf2b2e3fac12c4d49e72d81275628ce",
+                    "versions.yml:md5,d2730aa327e9fd88847006cdcccc7df0"
+                ],
+                "amplicon_check": [
+                    
+                ],
+                "fastp_summary_json": [
+                    [
+                        {
+                            "id": "SRR21814853",
+                            "single_end": false
+                        },
+                        "SRR21814853.fastp.json:md5,f2fa2740350c702e0f7d6adec47858c4"
+                    ]
+                ],
+                "reads": [
+                    [
+                        {
+                            "id": "SRR21814853",
+                            "single_end": false
+                        },
+                        [
+                            "SRR21814853_1.fastp.fastq.gz:md5,ab81a64d069ed8876432d8e3bad0b847",
+                            "SRR21814853_2.fastp.fastq.gz:md5,f8bf866d116205baa454b7a501a67b62"
+                        ]
+                    ]
+                ],
+                "reads_fasta": [
+                    [
+                        {
+                            "id": "SRR21814853",
+                            "single_end": false
+                        },
+                        "SRR21814853.seqtk-seq.fasta.gz:md5,a14b76b1e8c24d3f9d98e61d03a62a53"
+                    ]
+                ],
+                "reads_se_and_merged": [
+                    [
+                        {
+                            "id": "SRR21814853",
+                            "single_end": false
+                        },
+                        "SRR21814853.merged.fastq.gz:md5,58ededca56f023aa625f51ec241ba849"
+                    ]
+                ],
+                "seqfu_check": [
+                    [
+                        {
+                            "id": "SRR21814853",
+                            "single_end": false
+                        },
+                        "SRR21814853.tsv:md5,008673dad4dd80a742cc11669f24d6e8"
+                    ]
+                ],
+                "suffix_header_check": [
+                    [
+                        {
+                            "id": "SRR21814853",
+                            "single_end": false
+                        },
+                        "SRR21814853_suffix_header_err.json:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,8d811725182283301014b4f776199d82",
+                    "versions.yml:md5,a5fd01ddb43380f5a73a5fcdb4dde637",
+                    "versions.yml:md5,caf2b2e3fac12c4d49e72d81275628ce",
+                    "versions.yml:md5,d2730aa327e9fd88847006cdcccc7df0"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.8.4",
+            "nextflow": "24.04.4"
+        },
+        "timestamp": "2024-10-18T09:48:20.39772264"
     }
 }
