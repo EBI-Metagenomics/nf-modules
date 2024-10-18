@@ -8,7 +8,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.fa:md5,3e35d8421d3b8f2a1d9ebd46495b8141"
+                        "test.fa:md5,4eec5c9af51768b73b265d92d4b4b8af"
                     ]
                 ],
                 "1": [
@@ -20,7 +20,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.fa:md5,3e35d8421d3b8f2a1d9ebd46495b8141"
+                        "test.fa:md5,4eec5c9af51768b73b265d92d4b4b8af"
                     ]
                 ],
                 "versions": [
@@ -32,7 +32,7 @@
             "nf-test": "0.9.0",
             "nextflow": "23.04.5"
         },
-        "timestamp": "2024-10-18T09:15:05.574270365"
+        "timestamp": "2024-10-18T10:04:21.396483827"
     },
     "test - faa_fasta - stub": {
         "content": [
@@ -67,6 +67,6 @@
             "nf-test": "0.9.0",
             "nextflow": "23.04.5"
         },
-        "timestamp": "2024-10-18T09:15:09.244102295"
+        "timestamp": "2024-10-18T10:04:25.241190676"
     }
 }

@@ -32,9 +32,9 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test', single_end:false ], // meta map
-                    file("${moduleDir}/tests/fixtures/emales.faa", checkIfExists: true),
                     file("${moduleDir}/tests/fixtures/emales-reads-sim.fa", checkIfExists: true)
                 ]
+                input[1] = PROOVFRAME_MAP.out.tsv
                 """
             }
         }
@@ -57,9 +57,9 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test', single_end:false ], // meta map
-                    file("${moduleDir}/tests/fixtures/emales.faa", checkIfExists: true),
                     file("${moduleDir}/tests/fixtures/emales-reads-sim.fa", checkIfExists: true)
                 ]
+                input[1] = PROOVFRAME_MAP.out.tsv
                 """
             }
         }

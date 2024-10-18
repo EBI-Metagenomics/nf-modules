@@ -26,6 +26,11 @@ input:
         type: file
         description: "A FASTA file containing a database of guide protein sequences"
         pattern: "*.{faa,fasta,fa}"
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing reference information
+          e.g. [ id:'test' ]
     - tsv:
         type: file
         description: "Output TSV file with the frameshift-aware protein to read alignments\

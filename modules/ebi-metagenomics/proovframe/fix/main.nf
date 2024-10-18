@@ -8,7 +8,8 @@ process PROOVFRAME_FIX {
         'biocontainers/proovframe:0.9.7--hdfd78af_1' }"
 
     input:
-    tuple val(meta), path(fa), path(tsv)
+    tuple val(meta), path(fa)
+    tuple val(meta2), path(tsv)
 
     output:
     tuple val(meta), path("*.fa"), emit: out_fa
