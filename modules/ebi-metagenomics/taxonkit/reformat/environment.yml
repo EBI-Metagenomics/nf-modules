@@ -1,5 +1,4 @@
 ---
-name: "taxonkit_reformat"
 channels:
   - conda-forge
   - bioconda
