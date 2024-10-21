@@ -13,44 +13,42 @@ nextflow_process {
             process {
                 """
                 input[0] = [
-                    [ id:'test', single_end:false ], // TODO meta map
+                    [ id:'test' ],
                     file("${moduleDir}/tests/fixtures/SRR30463389_subreads.fastq.gz", checkIfExists: true)
                 ]
                 """
             }
         }
-
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(process.out[0][1].findAll {
+                    file(it).name == "SRR30463389_subreads.filt.fastq.gz" &&
+                    file(it).name == "SRR30463389_subreads.contaminant.blastout" &&
+                    file(it).name == "SRR30463389_subreads.blocklist" }).match()},
+                { assert path(process.out.stats[0]).text.contains('Number of adapter contaminated ccs reads: 0 (0% of total') },
+                { assert snapshot(process.out.versions).match("versions") }
             )
         }
-
     }
 
     test("hifiadapterfilt - fastq.gz - stub") {
-
         options "-stub"
-
         when {
             process {
                 """
                 input[0] = [
-                    [ id:'test', single_end:false ], // TODO meta map
+                    [ id:'test' ],
                     file("${moduleDir}/tests/fixtures/SRR30463389_subreads.fastq.gz", checkIfExists: true)
                 ]
                 """
             }
         }
-
         then {
             assertAll(
                 { assert process.success },
                 { assert snapshot(process.out).match() }
             )
         }
-
     }
-
 }

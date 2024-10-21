@@ -2,7 +2,6 @@ process HIFIADAPTERFILT {
     tag "$meta.id"
     label 'process_medium'
 
-    conda "${moduleDir}/environment.yml"
     container 'quay.io/microbiome-informatics/hifiadapterfilt:v1.0.1'
 
     containerOptions {
@@ -43,7 +42,10 @@ process HIFIADAPTERFILT {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    touch ${prefix}.filt.fastq.gz
+    echo "" | gzip > ${prefix}.filt.fastq.gz
+    touch ${prefix}.contaminant.blastout
+    touch ${prefix}.stats
+    touch ${prefix}.blocklist
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
