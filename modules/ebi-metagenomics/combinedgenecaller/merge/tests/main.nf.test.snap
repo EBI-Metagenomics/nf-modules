@@ -1,0 +1,144 @@
+{
+    "combinedgenecaller merge without a maskfile": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.faa.gz:md5,7ce6ef4028ea567c8ba920d26de3ef65"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.ffn.gz:md5,2984c9d227d6a91bfebdcf9709c16a54"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.out.gz:md5,df20ed72adc003d1e6b53ed8135c4b94"
+                    ]
+                ],
+                "3": [
+                    "versions.yml:md5,f854b25479d87b99e278ea0cfe9aeac8"
+                ],
+                "faa": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.faa.gz:md5,7ce6ef4028ea567c8ba920d26de3ef65"
+                    ]
+                ],
+                "ffn": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.ffn.gz:md5,2984c9d227d6a91bfebdcf9709c16a54"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.out.gz:md5,df20ed72adc003d1e6b53ed8135c4b94"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,f854b25479d87b99e278ea0cfe9aeac8"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.10.2"
+        },
+        "timestamp": "2025-01-15T17:02:36.334483"
+    },
+    "combinedgenecaller merge with a maskfile": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.faa.gz:md5,1577a0613f7fa5c1d989dd5bd2b81397"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.ffn.gz:md5,9bac7cc2f074517fd8af849f0f3839e6"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.out.gz:md5,bf80a3415d4b404716f88b16f75636d9"
+                    ]
+                ],
+                "3": [
+                    "versions.yml:md5,f854b25479d87b99e278ea0cfe9aeac8"
+                ],
+                "faa": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.faa.gz:md5,1577a0613f7fa5c1d989dd5bd2b81397"
+                    ]
+                ],
+                "ffn": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.ffn.gz:md5,9bac7cc2f074517fd8af849f0f3839e6"
+                    ]
+                ],
+                "summary": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.out.gz:md5,bf80a3415d4b404716f88b16f75636d9"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,f854b25479d87b99e278ea0cfe9aeac8"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.10.2"
+        },
+        "timestamp": "2025-01-15T17:02:50.037018"
+    }
+}

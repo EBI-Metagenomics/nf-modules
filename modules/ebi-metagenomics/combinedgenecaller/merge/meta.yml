@@ -70,6 +70,16 @@ output:
           type: file
           description: merged nucleotide sequences file
           pattern: "*.{ffn,fna}"
+  - summary:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*.out.gz":
+          type: file
+          description: The summary the tool generates when merging the anntotations
+          pattern: "*.{out}"
   - versions:
       - versions.yml:
           type: file

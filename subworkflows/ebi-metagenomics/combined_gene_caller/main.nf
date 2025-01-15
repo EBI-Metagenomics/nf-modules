@@ -15,10 +15,10 @@ workflow COMBINED_GENE_CALLER {
     ch_versions = Channel.empty()
 
     PRODIGAL ( ch_assembly, channel.value("sco") )
-    ch_versions = ch_versions.mix(PRODIGAL.out.versions.first())
+    ch_versions = ch_versions.mix(PRODIGAL.out.versions)
 
     FRAGGENESCAN ( ch_assembly )
-    ch_versions = ch_versions.mix(FRAGGENESCAN.out.versions.first())
+    ch_versions = ch_versions.mix(FRAGGENESCAN.out.versions)
 
     ch_mask_file = ch_mask_file ?: Channel.empty()
 
@@ -36,10 +36,10 @@ workflow COMBINED_GENE_CALLER {
         ch_mask_file, remainder: true
     )
 
-    COMBINEDGENECALLER_MERGE( ch_annotations.map { meta, prodigal_gene_annot, prodigal_nt_fasta, prodigal_aa_fasta, frag_gene_annot, frag_nt_fasta, frag_aa_fasta, mask ->
+    COMBINEDGENECALLER_MERGE( ch_annotations.map { meta, prodigal_sco, prodigal_nt_fasta, prodigal_aa_fasta, frag_gene_annot, frag_nt_fasta, frag_aa_fasta, mask ->
             return [
                 meta,
-                prodigal_gene_annot,
+                prodigal_sco,
                 prodigal_nt_fasta,
                 prodigal_aa_fasta,
                 frag_gene_annot,
@@ -50,7 +50,7 @@ workflow COMBINED_GENE_CALLER {
         }
     )
 
-    ch_versions = ch_versions.mix(COMBINEDGENECALLER_MERGE.out.versions.first())
+    ch_versions = ch_versions.mix(COMBINEDGENECALLER_MERGE.out.versions)
 
     emit:
     faa      = COMBINEDGENECALLER_MERGE.out.faa  // channel: [ val(meta), [ faa ] ]

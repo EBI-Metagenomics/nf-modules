@@ -1,0 +1,2 @@
+combinedgenecaller:
+  - "modules/ebi-metagenomics/combinedgenecaller/**"

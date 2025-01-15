@@ -22,10 +22,6 @@ checkm2/download_db:
   - modules/ebi-metagenomics/checkm2/download_db/**
   - tests/modules/ebi-metagenomics/checkm2/download_db/**
 
-combinedgenecaller/merge:
-  - modules/ebi-metagenomics/combinedgenecaller/merge/**
-  - tests/modules/ebi-metagenomics/combinedgenecaller/merge/**
-
 cutadapt:
   - modules/ebi-metagenomics/cutadapt/**
   - tests/modules/ebi-metagenomics/cutadapt/**
@@ -69,10 +65,6 @@ prodigal:
 seqtk/seq:
   - modules/ebi-metagenomics/seqtk/seq/**
   - tests/modules/ebi-metagenomics/seqtk/seq/**
-
-subworkflows/combined_gene_caller:
-  - subworkflows/ebi-metagenomics/combined_gene_caller/**
-  - tests/subworkflows/ebi-metagenomics/combined_gene_caller/**
 
 subworkflows/fasta_domainannotation:
   - subworkflows/ebi-metagenomics/fasta_domainannotation/**
