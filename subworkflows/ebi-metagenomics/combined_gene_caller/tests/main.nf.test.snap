@@ -1,0 +1,59 @@
+{
+    "it should work properly with a fasta as input": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.faa.gz:md5,d8354102b645c1b1b97e3aef559b8a64"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.ffn.gz:md5,9b7a1ce6c2380e7be072e68c171d93cd"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,14ce365346593b2444c8be16843e3444",
+                    "versions.yml:md5,28fd31b6225ca75e7cd7a282a3198c44",
+                    "versions.yml:md5,6ce9415d5682dd2a5a1ad52ef05477a3"
+                ],
+                "faa": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.faa.gz:md5,d8354102b645c1b1b97e3aef559b8a64"
+                    ]
+                ],
+                "ffn": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.ffn.gz:md5,9b7a1ce6c2380e7be072e68c171d93cd"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,14ce365346593b2444c8be16843e3444",
+                    "versions.yml:md5,28fd31b6225ca75e7cd7a282a3198c44",
+                    "versions.yml:md5,6ce9415d5682dd2a5a1ad52ef05477a3"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.10.2"
+        },
+        "timestamp": "2025-01-15T16:47:31.100271"
+    }
+}

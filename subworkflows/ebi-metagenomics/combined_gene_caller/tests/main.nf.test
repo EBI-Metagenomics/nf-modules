@@ -1,0 +1,35 @@
+nextflow_workflow {
+
+    name "Test Subworkflow COMBINED_GENE_CALLER"
+    script "../main.nf"
+    workflow "COMBINED_GENE_CALLER"
+    config "./nextflow.config"
+
+    tag "subworkflows"
+    tag "subworkflows_ebimetagenomics"
+    tag "subworkflows/combined_gene_caller"
+    tag "combinedgenecaller/merge"
+    tag "prodigal"
+    tag "fraggenescan"
+
+    test("it should work properly with a fasta as input") {
+
+        when {
+            workflow {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ],
+                    file("${moduleDir}/tests/fixtures/ERZ19591644_FASTA_subsample.fasta.gz", checkIfExists: true)
+                ]
+                input[1] = channel.empty()
+            """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}
