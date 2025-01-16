@@ -20,7 +20,7 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test', single_end:false ],
-                    file('${moduleDir}/tests/fixtures/input_prodigal.out.gz', checkIfExists: true),
+                    file('${moduleDir}/tests/fixtures/input_prodigal.sco.gz', checkIfExists: true),
                     file('${moduleDir}/tests/fixtures/input_prodigal.ffn.gz', checkIfExists: true),
                     file('${moduleDir}/tests/fixtures/input_prodigal.faa.gz', checkIfExists: true),
                     file('${moduleDir}/tests/fixtures/input_fgs.out.gz', checkIfExists: true),
@@ -50,7 +50,7 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test', single_end:false ], // meta map
-                    file('${moduleDir}/tests/fixtures/input_prodigal.out.gz', checkIfExists: true),
+                    file('${moduleDir}/tests/fixtures/input_prodigal.sco.gz', checkIfExists: true),
                     file('${moduleDir}/tests/fixtures/input_prodigal.ffn.gz', checkIfExists: true),
                     file('${moduleDir}/tests/fixtures/input_prodigal.faa.gz', checkIfExists: true),
                     file('${moduleDir}/tests/fixtures/input_fgs.out.gz', checkIfExists: true),

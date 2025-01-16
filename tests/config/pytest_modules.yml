@@ -58,10 +58,6 @@ mapseq:
   - modules/ebi-metagenomics/mapseq/**
   - tests/modules/ebi-metagenomics/mapseq/**
 
-prodigal:
-  - modules/ebi-metagenomics/prodigal/**
-  - tests/modules/ebi-metagenomics/prodigal/**
-
 seqtk/seq:
   - modules/ebi-metagenomics/seqtk/seq/**
   - tests/modules/ebi-metagenomics/seqtk/seq/**
