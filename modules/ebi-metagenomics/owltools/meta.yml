@@ -22,11 +22,11 @@ input:
           e.g. `[ id:'sample1', single_end:false ]`
     - input_gaf:
         type: file
-        description: Input GAF file
+        description: Input GO Annotation (GAF) file. Format is described here https://geneontology.org/docs/go-annotation-file-gaf-format-2.1/
         pattern: "*.gaf"
   - - go_obo:
         type: file
-        description: Gene ontology .OBO file, for example go-basic.
+        description: Gene ontology .OBO file, for example go-basic. Can usually be downloaded here https://geneontology.org/docs/download-ontology/
         pattern: "*.go"
   - - goslim_ids:
         type: file
@@ -41,7 +41,7 @@ output:
             e.g. `[ id:'sample1', single_end:false ]`
       - "*.gaf":
           type: file
-          description: Output GAF file containing the GO-slim conversion
+          description: Output GAF file containing the GO-slim conversion. Format is described here https://geneontology.org/docs/go-annotation-file-gaf-format-2.1/
           pattern: "*.gaf"
   - versions:
       - "versions.yml":
