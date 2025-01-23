@@ -1,0 +1,67 @@
+
+nextflow_process {
+
+    name "Test Process OWLTOOLS"
+    script "../main.nf"
+    process "OWLTOOLS"
+    config "./nextflow.config"
+
+    tag "modules"
+    tag "modules_ebimetagenomics"
+    tag "owltools"
+
+    test("owltools") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/ERRTESTING_ips_annotations.gaf", checkIfExists: true)
+                    ]
+                input[1] = 
+                    file("${moduleDir}/tests/go-dummy.obo", checkIfExists: true)
+                input[2] = 
+                    file("${moduleDir}/tests/goslim_ids.txt", checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("owltools - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/ERRTESTING_ips_annotations.gaf", checkIfExists: true)
+                    ]
+                input[1] = 
+                    file("${moduleDir}/tests/go-dummy.obo", checkIfExists: true)
+                input[2] = 
+                    file("${moduleDir}/tests/goslim_ids.txt", checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}
