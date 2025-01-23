@@ -39,7 +39,7 @@ output:
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'sample1', single_end:false ]`
-      - ".gaf":
+      - "*.gaf":
           type: file
           description: Output GAF file containing the GO-slim conversion
           pattern: "*.gaf"
