@@ -1,44 +1,48 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
 name: "goslim_swf"
-## TODO nf-core: Add a description of the subworkflow and list keywords
-description: Sort SAM/BAM/CRAM file
+description: Get GO term and GO-slim term counts out of an InterProScan .tsv output file
 keywords:
-  - sort
-  - bam
-  - sam
-  - cram
-## TODO nf-core: Add a list of the modules and/or subworkflows used in the subworkflow
+  - GO
+  - GO-slim
+  - interpro
+  - interproscan
+  - owltools
 components:
-  - samtools/sort
-  - samtools/index
-## TODO nf-core: List all of the channels used as input with a description and their structure
+  - generategaf
+  - owltools
+  - summarisegoslims
 input:
-  - ch_bam:
+  - ch_ips:
       type: file
       description: |
-        The input channel containing the BAM/CRAM/SAM files
-        Structure: [ val(meta), path(bam) ]
-      pattern: "*.{bam/cram/sam}"
-## TODO nf-core: List all of the channels used as output with a descriptions and their structure
+        The input channel containing the InterProScan output file
+        Structure: [ val(meta), path(tsv) ]
+      pattern: "*.tsv"
+  - go_obo:
+      type: file
+      description: Gene ontology .OBO file, for example go-basic. Can usually be downloaded here https://geneontology.org/docs/download-ontology/
+      pattern: "*.go"
+  - goslim_ids:
+      type: file
+      description: txt file containing the GO terms that make up the input GO-slim
+      pattern: "*.txt"
+  - go_banding:
+      type: file
+      description: txt file containing the GO terms and descriptions that make up the input GO-slim
+      pattern: "*.txt"
 output:
-  - bam:
+  - go_summary:
       type: file
       description: |
-        Channel containing BAM files
-        Structure: [ val(meta), path(bam) ]
-      pattern: "*.bam"
-  - bai:
+        Channel containing GO term counts
+        Structure: [ val(meta), path(csv) ]
+      pattern: "*_summary"
+  - goslim_summary:
       type: file
       description: |
-        Channel containing indexed BAM (BAI) files
-        Structure: [ val(meta), path(bai) ]
-      pattern: "*.bai"
-  - csi:
-      type: file
-      description: |
-        Channel containing CSI files
-        Structure: [ val(meta), path(csi) ]
-      pattern: "*.csi"
+        Channel containing GO-slim term counts
+        Structure: [ val(meta), path(csv) ]
+      pattern: "*_slim"
   - versions:
       type: file
       description: |
