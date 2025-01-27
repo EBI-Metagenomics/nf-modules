@@ -16,13 +16,13 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test', single_end:false ], // meta map
-                    file("${moduleDir}/tests/ips_out.tsv", checkIfExists: true)
+                    file("${baseDir}/modules/ebi-metagenomics/generategaf/tests/ips_out.tsv", checkIfExists: true)
                 ]
                 input[1] = [
                     [ id:'test', single_end:false ], // meta map
-                    file("${moduleDir}/tests/ERRTESTING_ips_annotations.gaf", checkIfExists: true)
+                    file("${baseDir}/modules/ebi-metagenomics/owltools/tests/ERRTESTING_ips_annotations.gaf", checkIfExists: true)
                 ]
-                input[2] = file("${moduleDir}/tests/go-dummy.obo", checkIfExists: true)
+                input[2] = file("${baseDir}/modules/ebi-metagenomics/owltools/tests/go-dummy.obo", checkIfExists: true)
                 input[3] = file("${moduleDir}/tests/goslim_banding_2024.txt", checkIfExists: true)
                 """
             }
@@ -46,13 +46,13 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test', single_end:false ], // meta map
-                    file("${moduleDir}/tests/ips_out.tsv", checkIfExists: true)
+                    file("${baseDir}/modules/ebi-metagenomics/generategaf/tests/ips_out.tsv", checkIfExists: true)
                 ]
                 input[1] = [
                     [ id:'test', single_end:false ], // meta map
-                    file("${moduleDir}/tests/ERRTESTING_ips_annotations.gaf", checkIfExists: true)
+                    file("${baseDir}/modules/ebi-metagenomics/owltools/tests/ERRTESTING_ips_annotations.gaf", checkIfExists: true)
                 ]
-                input[2] = file("${moduleDir}/tests/go-dummy.obo", checkIfExists: true)
+                input[2] = file("${baseDir}/modules/ebi-metagenomics/owltools/tests/go-dummy.obo", checkIfExists: true)
                 input[3] = file("${moduleDir}/tests/goslim_banding_2024.txt", checkIfExists: true)
                 """
             }
