@@ -52,7 +52,7 @@ output:
             e.g. `[ id:'sample1', single_end:false ]`
       - "*_summary":
           type: file
-          description: Textfile containing the counts for the different GO terms in the InterProScan output.
+          description: CSV file containing the counts for the different GO terms in the InterProScan output.
           pattern: "*_summary"
   - goslim_summary:
       - meta:
@@ -62,7 +62,7 @@ output:
             e.g. `[ id:'sample1', single_end:false ]`
       - "*_slim":
           type: file
-          description: Textfile containing the counts for the different GO-Slim terms in the InterProScan output.
+          description: CSV file containing the counts for the different GO-Slim terms in the InterProScan output.
           pattern: "*_slim"
   - versions:
       - "versions.yml":
