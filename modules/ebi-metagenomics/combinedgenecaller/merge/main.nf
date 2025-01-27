@@ -2,7 +2,9 @@ process COMBINEDGENECALLER_MERGE {
     tag "${meta.id}"
     label 'process_single'
 
-    container 'microbiome-informatics/combined-gene-caller:v1.0.4'
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:0.2.0--pyhdfd78af_0':
+        'biocontainers/mgnify-pipelines-toolkit:0.2.0--pyhdfd78af_0' }"
 
     input:
     tuple val(meta), path(prodigal_sco, stageAs: "pro.sco"), path(prodigal_ffn, stageAs: "pro.ffn"), path(prodigal_faa, stageAs: "pro.faa"), path(fgs_out, stageAs: "fgf.out"), path(fgs_ffn, stageAs: "fgf.ffn"), path(fgs_faa, stageAs: "fgs.faa"), path(mask_file)
@@ -31,7 +33,7 @@ process COMBINEDGENECALLER_MERGE {
         gzip -cdf ${mask_file} > mask_file_uncompressed.txt
     fi
 
-    combined_gene_caller \\
+    cgc_merge \\
         ${args} \\
         -n ${prefix} \\
         --prodigal-out prodigal_uncompressed.sco \\
@@ -45,7 +47,7 @@ process COMBINEDGENECALLER_MERGE {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        combined_gene_caller: \$(combined_gene_caller --version)
+         mgnify-pipelines-toolkit: \$(get_mpt_version)
     END_VERSIONS
     """
 
@@ -60,7 +62,7 @@ process COMBINEDGENECALLER_MERGE {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        combined_gene_caller: \$(echo \$(combined_gene_caller --version))
+         mgnify-pipelines-toolkit: \$(get_mpt_version)
     END_VERSIONS
     """
 }
