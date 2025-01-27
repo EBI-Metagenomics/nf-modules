@@ -1,0 +1,70 @@
+
+nextflow_process {
+
+    name "Test Process SUMMARISEGOSLIMS"
+    script "../main.nf"
+    process "SUMMARISEGOSLIMS"
+
+    tag "modules"
+    tag "modules_ebimetagenomics"
+    tag "summarisegoslims"
+
+    test("summarisegoslims") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${baseDir}/modules/ebi-metagenomics/generategaf/tests/ips_out.tsv", checkIfExists: true)
+                ]
+                input[1] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${baseDir}/modules/ebi-metagenomics/owltools/tests/ERRTESTING_ips_annotations.gaf", checkIfExists: true)
+                ]
+                input[2] = file("${baseDir}/modules/ebi-metagenomics/owltools/tests/go-dummy.obo", checkIfExists: true)
+                input[3] = file("${moduleDir}/tests/goslim_banding_2024.txt", checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("summarisegoslims - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${baseDir}/modules/ebi-metagenomics/generategaf/tests/ips_out.tsv", checkIfExists: true)
+                ]
+                input[1] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${baseDir}/modules/ebi-metagenomics/owltools/tests/ERRTESTING_ips_annotations.gaf", checkIfExists: true)
+                ]
+                input[2] = file("${baseDir}/modules/ebi-metagenomics/owltools/tests/go-dummy.obo", checkIfExists: true)
+                input[3] = file("${moduleDir}/tests/goslim_banding_2024.txt", checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}

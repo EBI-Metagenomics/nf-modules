@@ -1,0 +1,60 @@
+
+nextflow_process {
+
+    name "Test Process GENERATEGAF"
+    script "../main.nf"
+    process "GENERATEGAF"
+
+    tag "modules"
+    tag "modules_ebimetagenomics"
+    tag "generategaf"
+
+    test("generategaf") {
+
+        when {
+            process {
+                """                
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/ips_out.tsv", checkIfExists: true)
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(path(process.out.gaf.get(0).get(1)).text.contains("EMG	GO:0042773	GO		GO:0042773")).match("gaf_test_1") },
+                { assert snapshot(path(process.out.gaf.get(0).get(1)).text.contains("EMG	GO:0003723	GO		GO:0003723")).match("gaf_test_2") },
+                { assert snapshot(path(process.out.gaf.get(0).get(1)).text.contains("EMG	GO:0003700	GO		GO:0003700")).match("gaf_test_3") }
+            )
+        }
+
+    }
+
+    test("generategaf - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${moduleDir}/tests/ips_out.tsv", checkIfExists: true)
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}

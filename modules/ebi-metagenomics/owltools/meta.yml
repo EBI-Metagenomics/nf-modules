@@ -1,0 +1,54 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "owltools"
+description: OWLTools is convenience java API on top of the OWL API, used here for mapping GO terms to GO-slims
+keywords:
+  - owl
+  - ontology
+  - gene ontology
+  - go
+tools:
+  - "owltools":
+      description: "OWLTools is convenience java API on top of the OWL API, used here for mapping GO terms to GO-slims"
+      homepage: "https://github.com/owlcollab/owltools"
+      documentation: "https://github.com/owlcollab/owltools"
+      tool_dev_url: "https://github.com/owlcollab/owltools"
+      licence: ["BSD-3-Clause"]
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - input_gaf:
+        type: file
+        description: Input GO Annotation (GAF) file. Format is described here https://geneontology.org/docs/go-annotation-file-gaf-format-2.1/
+        pattern: "*.gaf"
+  - - go_obo:
+        type: file
+        description: Gene ontology .OBO file, for example go-basic. Can usually be downloaded here https://geneontology.org/docs/download-ontology/
+        pattern: "*.go"
+  - - goslim_ids:
+        type: file
+        description: txt file containing the GO terms that make up the input GO-slim
+        pattern: "*.txt"
+output:
+  - gaf:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*.gaf":
+          type: file
+          description: Output GAF file containing the GO-slim conversion. Format is described here https://geneontology.org/docs/go-annotation-file-gaf-format-2.1/
+          pattern: "*.gaf"
+  - versions:
+      - "versions.yml":
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+authors:
+  - "@chrisata"
+maintainers:
+  - "@chrisata"
