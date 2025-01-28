@@ -20,9 +20,9 @@ workflow GOSLIM_SWF {
     ch_versions = ch_versions.mix(GENERATEGAF.out.versions.first())
 
     OWLTOOLS ( 
-                GENERATEGAF.out.gaf,
-                go_obo,
-                goslim_ids
+        GENERATEGAF.out.gaf,
+        go_obo,
+        goslim_ids
     )
     ch_versions = ch_versions.mix(OWLTOOLS.out.versions.first())
 
