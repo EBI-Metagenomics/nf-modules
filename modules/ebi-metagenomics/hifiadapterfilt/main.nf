@@ -2,15 +2,10 @@ process HIFIADAPTERFILT {
     tag "$meta.id"
     label 'process_medium'
 
-    container 'quay.io/microbiome-informatics/hifiadapterfilt:v1.0.1'
-
-    containerOptions {
-        if (workflow.containerEngine == 'singularity') {
-            return "--bind ${moduleDir}/tests/fixtures/:/data/"
-        } else {
-            return "-v ${moduleDir}/tests/fixtures/:/data/"
-        }
-    }
+    conda "${moduleDir}/environment.yml"
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/hifiadapterfilt:3.0.0--hdfd78af_0':
+        'biocontainers/hifiadapterfilt:3.0.0--hdfd78af_0'}"
 
     input:
     tuple val(meta), path(fastq)
@@ -27,10 +22,12 @@ process HIFIADAPTERFILT {
 
     script:
     def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}"
+    def prefix = task.ext.prefix ? "-p ${prefix}" : "-p ${meta.id}"
     
     """
-    hifiadapterfilt.sh ${args}
+    hifiadapterfilt.sh \\
+        ${args} \\
+        ${prefix}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
