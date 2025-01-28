@@ -36,13 +36,13 @@ output:
       description: |
         Channel containing GO term counts
         Structure: [ val(meta), path(csv) ]
-      pattern: "*_summary"
+      pattern: "*_summary.csv"
   - goslim_summary:
       type: file
       description: |
         Channel containing GO-slim term counts
         Structure: [ val(meta), path(csv) ]
-      pattern: "*_slim"
+      pattern: "*_slim.csv"
   - versions:
       type: file
       description: |
