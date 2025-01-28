@@ -9,7 +9,7 @@ tools:
   - "combinedgenecaller":
       description: "This script will merge the gene called by prodigal and fraggenescan"
       homepage: "https://www.ebi.ac.uk/metagenomics"
-      documentation: "https://docs.mgnify.org"
+      documentation: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
       tool_dev_url: "https://github.com/EBI-Metagenomics/combined-gene-caller"
       doi: "10.1093/nar/gkac1080"
       licence: ["Apache License 2.0"]
