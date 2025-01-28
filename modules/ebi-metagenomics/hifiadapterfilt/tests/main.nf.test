@@ -13,7 +13,7 @@ nextflow_process {
             process {
                 """
                 input[0] = [
-                    [ id:'test' ],
+                    [ id:'SRR30463389' ],
                     file("${moduleDir}/tests/fixtures/SRR30463389_subreads.fastq.gz", checkIfExists: true)
                 ]
                 """
@@ -38,7 +38,7 @@ nextflow_process {
             process {
                 """
                 input[0] = [
-                    [ id:'test' ],
+                    [ id:'SRR30463389' ],
                     file("${moduleDir}/tests/fixtures/SRR30463389_subreads.fastq.gz", checkIfExists: true)
                 ]
                 """

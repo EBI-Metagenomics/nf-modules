@@ -22,12 +22,10 @@ process HIFIADAPTERFILT {
 
     script:
     def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ? "-p ${prefix}" : "-p ${meta.id}"
     
     """
     hifiadapterfilt.sh \\
-        ${args} \\
-        ${prefix}
+        ${args}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
