@@ -1,0 +1,52 @@
+process HIFIADAPTERFILT {
+    tag "$meta.id"
+    label 'process_medium'
+
+    conda "${moduleDir}/environment.yml"
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/hifiadapterfilt:3.0.0--hdfd78af_0':
+        'biocontainers/hifiadapterfilt:3.0.0--hdfd78af_0'}"
+
+    input:
+    tuple val(meta), path(fastq)
+
+    output:
+    tuple val(meta), path("*.filt.fastq.gz"), emit: filt
+    path("*.contaminant.blastout")          , emit: blast_search
+    path("*.stats")                         , emit: stats
+    path("*.blocklist")                     , emit: headers
+    path "versions.yml"                     , emit: versions
+
+    when:
+    task.ext.when == null || task.ext.when
+
+    script:
+    def args = task.ext.args ?: ''
+    def prefix = task.ext.prefix ? "-p ${prefix}" : "-p ${meta.id}"
+    
+    """
+    hifiadapterfilt.sh \\
+        ${args} \\
+        ${prefix}
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        hifiadapterfilt: \$(hifiadapterfilt.sh -v)
+    END_VERSIONS
+    """
+
+    stub:
+    def args = task.ext.args ?: ''
+    def prefix = task.ext.prefix ?: "${meta.id}"
+    """
+    echo "" | gzip > ${prefix}.filt.fastq.gz
+    touch ${prefix}.contaminant.blastout
+    touch ${prefix}.stats
+    touch ${prefix}.blocklist
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        hifiadapterfilt: \$(hifiadapterfilt.sh -v)
+    END_VERSIONS
+    """
+}
