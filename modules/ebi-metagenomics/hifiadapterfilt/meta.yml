@@ -25,7 +25,7 @@ input:
           e.g. `[ id:'sample1', single_end:false ]`
     - fastq:
         type: file
-        description: Fastq pacbio hifi raw reads file
+        description: Fastq pacbio hifi raw reads file. The tool AUTOMATICALLY detects fastq files from the input folder, hence an explicit call of "fastq" is not needed.
         pattern: "*.fastq"
 output:
   - filt:
@@ -40,18 +40,33 @@ output:
             Fastq reads free of pacbio adapter sequence ready for assembly
           pattern: "*.filt.fastq.gz"
   - blast_search:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
       - "*.contaminant.blastout":
           type: file
           description: |
             Output of BLAST search
           pattern: "*.contaminant.blastout"
   - stats:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
       - "*.stats":
           type: file
           description: |
             File with simple math on number of reads removed, etc
           pattern: "*.stats"
   - headers:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
       - "*.blocklist":
           type: file
           description: |
