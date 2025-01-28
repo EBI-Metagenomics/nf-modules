@@ -13,8 +13,8 @@ nextflow_process {
             process {
                 """
                 input[0] = [
-                    [ id:'SRR30463389' ],
-                    file("${moduleDir}/tests/fixtures/SRR30463389_subreads.fastq.gz", checkIfExists: true)
+                    [ id:'HiFi-Col-0_test_data' ],
+                    file(params.test_data['genomeassembler']['A_thaliana']['hifi_fastq_gz'], checkIfExists: true)
                 ]
                 """
             }
@@ -23,10 +23,10 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert snapshot(process.out[0][1].findAll {
-                    file(it).name == "SRR30463389_subreads.filt.fastq.gz" &&
-                    file(it).name == "SRR30463389_subreads.contaminant.blastout" &&
-                    file(it).name == "SRR30463389_subreads.blocklist" }).match()},
-                { assert path(process.out.stats[0]).text.contains('Number of adapter contaminated ccs reads: 0 (0% of total') },
+                    file(it).name == "HiFi-Col-0_test_data.filt.fastq.gz" &&
+                    file(it).name == "HiFi-Col-0_test_data.contaminant.blastout" &&
+                    file(it).name == "HiFi-Col-0_test_data.blocklist" }).match()},
+                { assert path(process.out.stats[0].get(1)).text.contains('Number of adapter contaminated ccs reads: 0 (0% of total)') },
                 { assert snapshot(process.out.versions).match("versions") }
             )
         }
@@ -38,8 +38,8 @@ nextflow_process {
             process {
                 """
                 input[0] = [
-                    [ id:'SRR30463389' ],
-                    file("${moduleDir}/tests/fixtures/SRR30463389_subreads.fastq.gz", checkIfExists: true)
+                    [ id:'HiFi-Col-0_test_data' ],
+                    file(params.test_data['genomeassembler']['A_thaliana']['hifi_fastq_gz'], checkIfExists: true)
                 ]
                 """
             }
