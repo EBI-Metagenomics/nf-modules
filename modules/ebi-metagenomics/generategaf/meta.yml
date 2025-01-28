@@ -1,0 +1,46 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "generategaf"
+description: Script that generates a GO Annotation File (GAF) out of an InterProScan result tsv file.
+keywords:
+  - GO
+  - interpro
+  - interproscan
+  - GAF
+tools:
+  - "generategaf":
+      description: "Generate GAF file from interproscan output, uses mgnify-pipelines-toolkit as conda environment"
+      homepage: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
+      documentation: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
+      tool_dev_url: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
+      licence: ["Apache-2.0"]
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - ips:
+        type: file
+        description: InterProScan output tsv file.
+        pattern: "*.tsv"
+output:
+  - gaf:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*.gaf":
+          type: file
+          description: Output GAF file. Format is described here https://geneontology.org/docs/go-annotation-file-gaf-format-2.1/
+          pattern: "*.gaf"
+  - versions:
+      - "versions.yml":
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+authors:
+  - "@chrisata"
+maintainers:
+  - "@chrisata"
