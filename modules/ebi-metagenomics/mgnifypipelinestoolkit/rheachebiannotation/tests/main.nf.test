@@ -1,0 +1,62 @@
+nextflow_process {
+
+    name "Test Process MGNIFYPIPELINESTOOLKIT_RHEACHEBIANNOTATION"
+    script "../main.nf"
+    process "MGNIFYPIPELINESTOOLKIT_RHEACHEBIANNOTATION"
+
+    tag "modules"
+    tag "modules_ebimetagenomics"
+    tag "mgnifypipelinestoolkit"
+    tag "mgnifypipelinestoolkit/rheachebiannotation"
+
+    test("add the rhea mapping based on the diamond uniref90 annotations") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ],
+                    file(params.mgnify_pipelines_toolkit_testdata + 'diamond/proteins_short.faa', checkIfExists: true),
+                    file(params.mgnify_pipelines_toolkit_testdata + 'diamond/diamond_short.tsv', checkIfExists: true)
+                ]
+                input[1] = file(params.mgnify_pipelines_toolkit_testdata + 'diamond/rhea2chebi_short.tsv', checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("add the rhea mapping based on the diamond uniref90 annotations - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ],
+                    file(params.mgnify_pipelines_toolkit_testdata + 'diamond/proteins_short.faa', checkIfExists: true),
+                    file(params.mgnify_pipelines_toolkit_testdata + 'diamond/diamond_short.tsv', checkIfExists: true)
+                ]
+                input[1] = file(params.mgnify_pipelines_toolkit_testdata + 'diamond/rhea2chebi_short.tsv', checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}

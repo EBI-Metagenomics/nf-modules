@@ -1,0 +1,67 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "mgnifypipelinestoolkit_rheachebiannotation"
+description: Use diamond output file to create a table with Rhea and CHEBI reaction annotation for every protein
+keywords:
+  - mapping
+  - annotation
+  - rhea
+  - CHEBI
+tools:
+  - "mgnifypipelinestoolkit":
+      description: "Collection of scripts and tools for MGnify pipelines"
+      homepage: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
+      documentation: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
+      tool_dev_url: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
+      licence: ["Apache-2.0"]
+      identifier: ""
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - fasta:
+        type: file
+        description: Proteins fasta file (it can be compressed)
+        pattern: "*.{faa,fasta}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929"
+    - diamond_tsv:
+        type: file
+        description: TSV hits from Diamond against the post-processed UniProt90 + Rhea from the MGnify ref-dbs pipeline. It can be compressed.
+        pattern: "*.tsv"
+        ontologies:
+          - edam: "http://edamontology.org/format_3475"
+  - - rhea2chebi:
+        type: file
+        description: TSV file that maps rhea_ids to CHEBI, this file is available along the other MGnify Pipelines ref-dbs.
+        pattern: "*.tsv"
+        ontologies:
+          - edam: "http://edamontology.org/format_3475"
+
+output:
+  - rhea2proteins_tsv:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*.tsv":
+          type: file
+          description: "TSV file with columns: contig_id, protein_id, protein_hash, rhea_ids, chebi_reaction, reaction_definition, is_top_hit."
+          pattern: "*.tsv"
+          ontologies:
+            - edam: "http://edamontology.org/format_3475"
+
+  - versions:
+      - "versions.yml":
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+
+authors:
+  - "@mberacochea"
+maintainers:
+  - "@mberacochea"

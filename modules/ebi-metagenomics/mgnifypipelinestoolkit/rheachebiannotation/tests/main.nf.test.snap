@@ -1,0 +1,72 @@
+{
+    "add the rhea mapping based on the diamond uniref90 annotations - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,88927e8f6c9853475db255f3f08b6c30"
+                ],
+                "rhea2proteins_tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,88927e8f6c9853475db255f3f08b6c30"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.4"
+        },
+        "timestamp": "2025-01-29T20:19:49.503465"
+    },
+    "add the rhea mapping based on the diamond uniref90 annotations": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.tsv:md5,cbc725c9af469858b8ed48eb23ebbd40"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,88927e8f6c9853475db255f3f08b6c30"
+                ],
+                "rhea2proteins_tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.tsv:md5,cbc725c9af469858b8ed48eb23ebbd40"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,88927e8f6c9853475db255f3f08b6c30"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.4"
+        },
+        "timestamp": "2025-01-29T20:19:46.435638"
+    }
+}
