@@ -50,7 +50,7 @@ output:
             e.g. `[ id:'sample1', single_end:false ]`
       - "*.tsv":
           type: file
-          description: "TSV file with columns: contig_id, protein_id, UniRef90 cluster, rhea_ids, CHEBI reaction participants"
+          description: "TSV file with columns: contig_id, protein_id, protein_hash, rhea_ids, chebi_reaction, reaction_definition, is_top_hit."
           pattern: "*.tsv"
           ontologies:
             - edam: "http://edamontology.org/format_3475"

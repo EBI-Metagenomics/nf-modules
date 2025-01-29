@@ -3,8 +3,8 @@ process MGNIFYPIPELINESTOOLKIT_RHEACHEBIANNOTATION {
     label 'process_single'
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:0.2.0--pyhdfd78af_0':
-        'biocontainers/mgnify-pipelines-toolkit:0.2.0--pyhdfd78af_0' }"
+        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:0.2.1--pyhdfd78af_0':
+        'biocontainers/mgnify-pipelines-toolkit:0.2.1--pyhdfd78af_0' }"
 
     input:
     tuple val(meta), path(fasta), path(diamond_tsv)
@@ -33,9 +33,8 @@ process MGNIFYPIPELINESTOOLKIT_RHEACHEBIANNOTATION {
         gzip -c -d $diamond_tsv > ${diamond_file}
     fi
 
-    # FIXME: fix the toolkit, this script has to be called like this otherwise it complains about the argumentss
-    python /usr/local/lib/python3.11/site-packages/mgnify_pipelines_toolkit/analysis/assembly/add_rhea_chebi_annotation.py \\
-        --input ${diamond_file} \\
+    add_rhea_chebi_annotation \\
+        --diamond_hits ${diamond_file} \\
         --proteins ${fasta_file} \\
         --rhea2chebi ${rhea2chebi} ${args} \\
         --output ${prefix}.tsv
