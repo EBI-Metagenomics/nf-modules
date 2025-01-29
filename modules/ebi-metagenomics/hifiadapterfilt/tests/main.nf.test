@@ -1,0 +1,54 @@
+nextflow_process {
+
+    name "Test Process HIFIADAPTERFILT"
+    script "../main.nf"
+    process "HIFIADAPTERFILT"
+
+    tag "modules"
+    tag "modules_ebimetagenomics"
+    tag "hifiadapterfilt"
+
+    test("hifiadapterfilt - fastq.gz") {
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'HiFi-Col-0_test_data' ],
+                    file(params.test_data['genomeassembler']['A_thaliana']['hifi_fastq_gz'], checkIfExists: true)
+                ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out[0][1].findAll {
+                    file(it).name == "HiFi-Col-0_test_data.filt.fastq.gz" &&
+                    file(it).name == "HiFi-Col-0_test_data.contaminant.blastout" &&
+                    file(it).name == "HiFi-Col-0_test_data.blocklist" }).match()},
+                { assert path(process.out.stats[0].get(1)).text.contains('Number of adapter contaminated ccs reads: 0 (0% of total)') },
+                { assert snapshot(process.out.versions).match("versions") }
+            )
+        }
+    }
+
+    test("hifiadapterfilt - fastq.gz - stub") {
+        options "-stub"
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'HiFi-Col-0_test_data' ],
+                    file(params.test_data['genomeassembler']['A_thaliana']['hifi_fastq_gz'], checkIfExists: true)
+                ]
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
