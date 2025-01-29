@@ -15,9 +15,9 @@ process SUMMARISEGOSLIMS {
     path go_banding
 
     output:
-    tuple val(meta), path("*_summary"), emit: go_summary
-    tuple val(meta), path("*_slim")   , emit: goslim_summary
-    path "versions.yml"               , emit: versions
+    tuple val(meta), path("*_summary.csv"), emit: go_summary
+    tuple val(meta), path("*_slim.csv")   , emit: goslim_summary
+    path "versions.yml"                   , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -32,6 +32,9 @@ process SUMMARISEGOSLIMS {
         -gaf ${gaf} \\
         -o ${prefix}_summary
 
+    mv ${prefix}_summary ${prefix}_summary.csv
+    mv ${prefix}_summary_slim ${prefix}_summary_slim.csv
+
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         mgnify-pipelines-toolkit: \$(get_mpt_version)
@@ -41,8 +44,8 @@ process SUMMARISEGOSLIMS {
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    touch ${prefix}_summary
-    touch ${prefix}_summary_slim
+    touch ${prefix}_summary.csv
+    touch ${prefix}_summary_slim.csv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

@@ -50,20 +50,20 @@ output:
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'sample1', single_end:false ]`
-      - "*_summary":
+      - "*_summary.csv":
           type: file
           description: CSV file containing the counts for the different GO terms in the InterProScan output.
-          pattern: "*_summary"
+          pattern: "*_summary.csv"
   - goslim_summary:
       - meta:
           type: map
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'sample1', single_end:false ]`
-      - "*_slim":
+      - "*_slim.csv":
           type: file
           description: CSV file containing the counts for the different GO-Slim terms in the InterProScan output.
-          pattern: "*_slim"
+          pattern: "*_slim.csv"
   - versions:
       - "versions.yml":
           type: file

@@ -1,0 +1,39 @@
+
+nextflow_workflow {
+
+    name "Test Subworkflow GOSLIM_SWF"
+    script "../main.nf"
+    workflow "GOSLIM_SWF"
+    config "./nextflow.config"
+
+    tag "subworkflows"
+    tag "subworkflows_ebimetagenomics"
+    tag "subworkflows/goslim_swf"
+    tag "generategaf"
+    tag "owltools"
+    tag "summarisegoslims"
+
+    test("goslim_swf") {
+
+        when {
+            workflow {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ], // meta map
+                    file("${baseDir}/modules/ebi-metagenomics/generategaf/tests/ips_out.tsv", checkIfExists: true)
+                ]
+                input[1] = file("${baseDir}/modules/ebi-metagenomics/owltools/tests/go-dummy.obo", checkIfExists: true)
+                input[2] = file("${baseDir}/modules/ebi-metagenomics/owltools/tests/goslim_ids.txt", checkIfExists: true)
+                input[3] = file("${baseDir}/modules/ebi-metagenomics/summarisegoslims/tests/goslim_banding_2024.txt", checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+    }
+}
