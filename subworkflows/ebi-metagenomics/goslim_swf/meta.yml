@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "goslim_swf"
+description: Get GO term and GO-slim term counts out of an InterProScan .tsv output file
+keywords:
+  - GO
+  - GO-slim
+  - interpro
+  - interproscan
+  - owltools
+components:
+  - generategaf
+  - owltools
+  - summarisegoslims
+input:
+  - ch_ips:
+      type: file
+      description: |
+        The input channel containing the InterProScan output file
+        Structure: [ val(meta), path(tsv) ]
+      pattern: "*.tsv"
+  - go_obo:
+      type: file
+      description: Gene ontology .OBO file, for example go-basic. Can usually be downloaded here https://geneontology.org/docs/download-ontology/
+      pattern: "*.go"
+  - goslim_ids:
+      type: file
+      description: txt file containing the GO terms that make up the input GO-slim
+      pattern: "*.txt"
+  - go_banding:
+      type: file
+      description: txt file containing the GO terms and descriptions that make up the input GO-slim
+      pattern: "*.txt"
+output:
+  - go_summary:
+      type: file
+      description: |
+        Channel containing GO term counts
+        Structure: [ val(meta), path(csv) ]
+      pattern: "*_summary.csv"
+  - goslim_summary:
+      type: file
+      description: |
+        Channel containing GO-slim term counts
+        Structure: [ val(meta), path(csv) ]
+      pattern: "*_slim.csv"
+  - versions:
+      type: file
+      description: |
+        File containing software versions
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+authors:
+  - "@chrisata"
+maintainers:
+  - "@chrisata"

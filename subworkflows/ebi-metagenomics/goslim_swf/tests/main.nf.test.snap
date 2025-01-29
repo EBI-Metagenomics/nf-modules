@@ -1,0 +1,59 @@
+{
+    "goslim_swf": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_summary.csv:md5,ddf9aa47da0a848795fffb56d9ac3c96"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_summary_slim.csv:md5,ce50e0507a12ef0d70bd41b14926c5d5"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,9803d78712ef1091ff5f785e34209e66",
+                    "versions.yml:md5,db47fe42ea02f1cd3ecc4074727e8972",
+                    "versions.yml:md5,f7674bdfeee9a4d98dbb33e474dd7a68"
+                ],
+                "go_summary": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_summary.csv:md5,ddf9aa47da0a848795fffb56d9ac3c96"
+                    ]
+                ],
+                "goslim_summary": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test_summary_slim.csv:md5,ce50e0507a12ef0d70bd41b14926c5d5"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,9803d78712ef1091ff5f785e34209e66",
+                    "versions.yml:md5,db47fe42ea02f1cd3ecc4074727e8972",
+                    "versions.yml:md5,f7674bdfeee9a4d98dbb33e474dd7a68"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.4"
+        },
+        "timestamp": "2025-01-28T22:32:17.095895573"
+    }
+}
