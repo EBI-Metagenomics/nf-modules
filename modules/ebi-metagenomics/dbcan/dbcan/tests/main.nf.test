@@ -2,14 +2,13 @@ nextflow_process {
 
     name "Test Process DBCAN"
     script "../main.nf"
-    config "./nextflow.config"
     process "DBCAN"
 
     tag "modules"
     tag "modules_nfcore"
     tag "dbcan"
 
-    test("test go") {
+    test("running dbCAN") {
 
         when {
             process {
