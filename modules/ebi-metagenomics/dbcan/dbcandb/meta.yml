@@ -1,6 +1,6 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
-name: "dbcandb"
+name: "dbcan_db"
 description: Download and decompress the dbCAN reference database
 keywords:
   - dbCAN
@@ -12,7 +12,13 @@ tools:
       homepage: "https://www.gnu.org/software/wget/"
       documentation: "https://www.gnu.org/software/wget/manual/"
       tool_dev_url: "None"
-      licence: ["GPL v3"]
+      licence: "['GPL v3']"
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'test', single_end:false ]`
 output:
   - dbcan_db:
       type: directory

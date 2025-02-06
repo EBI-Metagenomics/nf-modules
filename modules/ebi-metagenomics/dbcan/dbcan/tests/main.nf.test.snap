@@ -1,5 +1,17 @@
 {
-    "test go": {
+    "versions": {
+        "content": [
+            [
+                "versions.yml:md5,388a3fc72b289c7823c5795d9e7c8ec6"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.1"
+        },
+        "timestamp": "2025-02-06T18:16:26.650448277"
+    },
+    "running dbCAN": {
         "content": [
             [
                 "dbcan-sub.hmm.out:md5,4eeb5ef0f231141879b72b2c480987ed",
@@ -22,25 +34,13 @@
                 "cgc_standard.out.json"
             ],
             [
-                "versions.yml:md5,783a377fa90ab564df8e08b86e53d839"
+                "versions.yml:md5,388a3fc72b289c7823c5795d9e7c8ec6"
             ]
         ],
         "meta": {
             "nf-test": "0.9.2",
             "nextflow": "24.10.1"
         },
-        "timestamp": "2025-01-28T09:08:23.829947458"
-    },
-    "versions": {
-        "content": [
-            [
-                "versions.yml:md5,783a377fa90ab564df8e08b86e53d839"
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.1"
-        },
-        "timestamp": "2025-01-28T09:23:00.019919622"
+        "timestamp": "2025-02-06T18:16:26.679854021"
     }
 }

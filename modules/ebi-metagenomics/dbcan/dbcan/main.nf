@@ -1,4 +1,5 @@
 process DBCAN {
+    tag "$meta.id"
     label 'process_medium'
 
     conda "${moduleDir}/environment.yml"
@@ -15,6 +16,9 @@ process DBCAN {
     path "versions.yml"                                      , emit: versions
 
     script:
+    def args = task.ext.args ?: ''
+    def dbcan_version = "${params.dbcan_version}"
+    def db_version = "${params.db_version}"
     """
     run_dbcan \\
         --dia_cpu ${task.cpus} \\
@@ -37,15 +41,15 @@ process DBCAN {
 
     stub:
     def args = task.ext.args ?: ''
-    def VERSION = "${params.dbcan_version}"
-    def DB_VERSION = "${params.db_version}"
+    def dbcan_version = "${params.dbcan_version}"
+    def db_version = "${params.db_version}"
     """
     mkdir dbcan
     
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        dbcan: ${VERSION}
-        dbcan_db: ${DB_VERSION}
+        dbcan: ${dbcan_version}
+        dbcan_db: ${db_version}
     END_VERSIONS
     """
 }

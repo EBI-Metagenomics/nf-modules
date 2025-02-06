@@ -13,14 +13,14 @@ tools:
       documentation: "https://dbcan.readthedocs.io/en/latest/"
       tool_dev_url: "https://github.com/linnabrown/run_dbcan"
       doi: "10.1093/nar/gkad328"
-      licence: ["GPL v3-or-later"]
+      licence: "['GPL v3-or-later']"
       identifier: biotools:dbcan
 input:
   - meta:
       type: map
       description: |
         Groovy Map containing sample information
-        e.g. `[ id:'sample1', single_end:false ]`
+        e.g. `[ id:'test', single_end:false ]`
   - faa:
       type: file
       description: Protein FASTA file containing query sequences
@@ -34,6 +34,11 @@ input:
       description: dbCAN database
       pattern: "dbcan_db"
 output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'test', single_end:false ]`
   - dbcan:
       type: directory
       description: directory containing all the dbcan output files

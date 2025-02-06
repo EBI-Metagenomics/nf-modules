@@ -13,8 +13,6 @@ nextflow_process {
         when {
             process {
                 """
-                def dbcan_version = "4.1.4"
-                def db_version = "4.1.4-V13"
                 input[0] = [
                     [ id:'test' ], // meta map
                     file("${moduleDir}/tests/dbcan_test_db/ecoliK12MG1655_test.faa", checkIfExists: true), // protein faa
