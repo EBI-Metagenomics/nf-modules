@@ -1,0 +1,46 @@
+nextflow_process {
+
+    name "Test Process DBCAN"
+    script "../main.nf"
+    config "./nextflow.config"
+    process "DBCAN"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "dbcan"
+
+    test("test go") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ], // meta map
+                    file("${moduleDir}/tests/dbcan_test_db/ecoliK12MG1655_test.faa", checkIfExists: true), // protein faa
+                    file("${moduleDir}/tests/dbcan_test_db/ecoliK12MG1655_test.gff", checkIfExists: true) // protein gff
+                    ]
+                input[1] = [
+                    file("${moduleDir}/tests/dbcan_test_db", type: 'dir', checkIfExists: true),
+                    "4.1.4_V13"
+                    ]
+                """
+            }
+        }
+
+        then {
+        def stablefiles = []
+            file(process.out.dbcan_output.get(0).get(0)).eachFileRecurse{ file -> if (!file.isDirectory() && !["cgc_standard.out.json", "cgc_standard.out",     "cgc.out", "cgc.gff", "PUL_blast.out", "CGC.faa"].find {file.toString().endsWith(it)}) {stablefiles.add(file)}}
+        def unstablefiles = []
+            file(process.out.dbcan_output.get(0).get(0)).eachFileRecurse{ file -> if (["cgc_standard.out.json", "cgc_standard.out", "cgc.out", "cgc.gff",     "PUL_blast.out", "CGC.faa"].find {file.toString().endsWith(it)}) {unstablefiles.add(file.getName().toString())}}
+        assertAll(
+            { assert process.success },
+            {assert snapshot(process.out.versions).match("versions")},
+            { assert snapshot(
+                    stablefiles.sort(),
+                    unstablefiles.sort(),
+                    process.out.versions
+                ).match() }
+        )
+        }
+    }
+}

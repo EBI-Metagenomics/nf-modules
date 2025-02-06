@@ -1,0 +1,46 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "dbcan"
+description: CAZyme annotation of proteins
+keywords:
+  - substrate prediction
+  - annotation
+  - cazyme
+tools:
+  - "dbcan":
+      description: "Standalone version of dbCAN annotation tool for automated CAZyme annotation"
+      homepage: "https://dbcan.readthedocs.io/en/latest/"
+      documentation: "https://dbcan.readthedocs.io/en/latest/"
+      tool_dev_url: "https://github.com/linnabrown/run_dbcan"
+      doi: "10.1093/nar/gkad328"
+      licence: ["GPL v3-or-later"]
+      identifier: biotools:dbcan
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+  - faa:
+      type: file
+      description: Protein FASTA file containing query sequences
+      pattern: "*.{fasta,faa,fa}"
+  - gff:
+      type: file
+      description: GFF file containing protein annotation information for the faa file
+      pattern: "*.gff"
+  - dbcan_db:
+      type: directory
+      description: dbCAN database
+      pattern: "dbcan_db"
+output:
+  - dbcan:
+      type: directory
+      description: directory containing all the dbcan output files
+      pattern: "dbcan"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+authors:
+  - "@jmattock5"

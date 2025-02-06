@@ -1,0 +1,774 @@
+Substrate_high_level	 Substrate_curated	Family	Name	EC_Number
+lignin	lignin	AA1	Laccase / p-diphenol:oxygen oxidoreductase / ferroxidase	1.10.3.2
+lignin	lignin	AA1	ferroxidase	1.10.3.-
+lignin	lignin	AA1	Laccase-like multicopper oxidase	1.10.3.-
+cellulose	cellulose	AA10	lytic cellulose monooxygenase (C4-dehydrogenating)	1.14.99.56
+cellulose	cellulose	AA10	lytic cellulose monooxygenase (C1-hydroxylating)	1.14.99.54
+chitin	chitin	AA10	lytic chitin monooxygenase	1.14.99.53
+xylan	xylan	AA10	lytic xylan monooxygenase / xylan oxidase (glycosidic bond-cleaving)	1.14.99.-
+chitin	chitin	AA11	AA11 proteins are copper-dependent lytic polysaccharide monooxygenases (LPMOs). cleavage of chitin chains with oxidation of C-1 has been demonstrated for a AA11 LPMO from Aspergillus oryzae	
+polyphenol	pyrroloquinoline quinone (PQQ, polyphenol)	AA12	The pyrroloquinoline quinone-dependent oxidoreductase activity was demonstrated for the CC1G_09525 protein of Coprinopsis cinerea.	
+starch	starch	AA13	lytic starch monooxygenase / starch oxidase (glycosidic bond-cleaving)	1.14.99.55
+xylan	xylan	AA14	AA14 proteins are copper-dependent lytic polysaccharide monooxygenases (LPMOs).cleavage of xylan with oxidation of C-1 has been demonstrated for two AA14 LPMOs from Trametes coccinea (Pycnoporus coccineus)	
+xylan	xylan	AA14	lytic xylan monooxygenase / xylan oxidase (glycosidic bond-cleaving)	1.14.99.-
+cellulose	cellulose	AA15	lytic cellulose monooxygenase (C1-hydroxylating)	1.14.99.54
+chitin	chitin	AA15	lytic chitin monooxygenase	1.14.99.53
+cellulose	cellulose	AA16	Lytic cellulose monooxygenase (C1-hydroxylating)	1.14.99.54
+pectin	pectin	AA17	Lytic polygalacturonic acid monooxygenase (C4-hydroxylating)	1.14.99.-
+pectin	pectin	AA17	Lytic polygalacturonic acid monooxygenase (C4-hydroxylating)	1.14.99.-
+lignin	lignin	AA2	cytochrome-c peroxidase	1.11.1.5
+lignin	lignin	AA2	versatile peroxidase	1.11.1.16
+lignin	lignin	AA2	lignin peroxidase	1.11.1.14
+lignin	lignin	AA2	manganese peroxidase	1.11.1.13
+lignin	lignin	AA2	ascorbate peroxidase	1.11.1.11
+lignin	lignin	AA2	peroxidase	1.11.1.-
+cellulose	cellulose	AA3	cellobiose dehydrogenase	1.1.99.18
+lignin	lignin	AA3	aryl alcohol oxidase	1.1.3.7
+lignin	lignin	AA3	glucose 1-oxidase	1.1.3.4
+lignin	lignin	AA3	alcohol oxidase	1.1.3.13
+lignin	lignin	AA3	pyranose oxidase	1.1.3.10
+lignin	lignin	AA4	vanillyl-alcohol oxidase	1.1.3.38
+lignin	lignin	AA5	glyoxal oxidase	1.2.3.15
+lignin	lignin	AA5	galactose oxidase	1.1.3.9
+lignin	lignin	AA5	alcohol oxidase	1.1.3.13
+lignin	lignin	AA5	Oxidase with oxygen as acceptor	1.1.3.-
+lignin	lignin	AA5	raffinose oxidase	1.1.3.-
+lignin	lignin	AA6	1,4-benzoquinone reductase	1.6.5.6
+cellooligosaccharide	cellooligosaccharide	AA7	cellooligosaccharide dehydrogenase	1.1.99.-
+chitooligosaccharide	chitooligosaccharide	AA7	chitooligosaccharide oxidase	1.1.3.-
+glucooligosaccharide	glucooligosaccharide	AA7	glucooligosaccharide oxidase	1.1.3.-
+lignin	lignin	AA8	Iron reductase domain	
+cellulose	cellulose	AA9	lytic cellulose monooxygenase (C4-dehydrogenating)	1.14.99.56
+cellulose	cellulose	AA9	lytic cellulose monooxygenase (C1-hydroxylating)	1.14.99.54
+cellulose	cellulose	AA9	AA9 (formerly GH61) proteins are copper-dependent lytic polysaccharide monooxygenases (LPMOs).cleavage of cellulose chains with oxidation of carbons C1 and/or C4 and C-6)	
+cellulose, chitin	cellulose, chitin	CBM1	Modules of approx. 40 residues found almost exclusively in fungi. The cellulose-binding function has been demonstrated in many cases, and appears to be mediated by three aromatic residues separated by about 10.4 angstrom and which form a flat surface. The only non-fungal occurence of CBM1 is in an algal non-hydrolytic polysaccharide-binding protein which is composed of four repeated CBM1 modules. Binding to chitin has been demonstrated in one case.	
+cellulose	cellulose	CBM10	Modules of approx. 50 residues. The cellulose-binding function has been demonstrated in one case.	
+beta-glucan	cellulose, mixed linked glucan	CBM11	Modules of approx. 180-200 residues. The CBM11 of Clotridium thermocellum Cel26A-Cel5E has been shown to bind both beta-1,4-glucan and beta-1,3-1,4-mixed linked glucans.	
+chitin	chitin	CBM12	Modules of approx. 40-60 residues. The majority of these modules is found among chitinases where the function is chitin-binding. Distantly related to the CBM5 family.	
+xylan	plant lectin, xylan 	CBM13	Modules of approx. 150 residues which always appear as a threefold internal repeat. The only apparent exception to this, xylanase II of Actinomadura sp. FC7 (GenBank U08894), is in fact not completely sequenced. These modules were first identified in several plant lectins such as ricin or agglutinin of Ricinus communis which bind galactose residues. The three-dimensional structure of a plant lectin has been determined and displays a pseudo-threefold symmetry in accord with the observed sequence threefold repeat. These modules have since been found in a number of other proteins of various functions including glycoside hydrolases and glycosyltransferases. While in the plant lectins this module binds mannose, binding to xylan has been demonstrated in the Streptomyces lividans xylanase A and arabinofuranosidase B. Binding to GalNAc has been shown for the corresponding module of GalNAc transferase 4. For the other proteins, the binding specificity of these modules has not been established. The pseudo three-fold symmetry of the CBM13 module has now been confirmed in the 3-D structure of the intact, two-domain, xylanase of Streptomyces olivaceoviridis.	
+chitin	chitin	CBM14	Modules of approx. 70 residues. The chitin-binding function has been demonstrated in several cases. These modules are found attached to a number of chitinase catalytic domains, but also in non-catalytic proteins either in isolation or as multiple repeats	
+xylan	xylan and xylooligosaccharide	CBM15	Binding to xylan and xylooligosaccharides has been demonstrated in the case of Xyn10C of Cellvibrio mixtus.	
+cellulose, glucomannan	cellulose and glucomannan	CBM16	Carbohydrate-binding module 16. Binding to cellulose and glucomannan demonstrated [B. Bae et al (2008) J Biol Chem. 283:12415-25 (PMID: 18025086)]	
+cellulose	amorphous cellulose, cellooligosaccharides and derivatized cellulose	CBM17	Modules of approx. 200 residues. Binding to amorphous cellulose, cellooligosaccharides and derivatized cellulose has been demonstrated.	
+chitin	chitin	CBM18	Modules of approx. 40 residues. The chitin-binding function has been demonstrated in many cases. These modules are found attached to a number of chitinase catalytic domains, but also in non-catalytic proteins either in isolation or as multiple repeats.	
+chitin	chitin	CBM19	Modules of 60-70 residues with chitin-binding function.	
+cellulose, chitin, xylan	cellulose, chitin, xylan	CBM2	Modules of approx. 100 residues and which are found in a large number of bacterial enzymes. The cellulose-binding function has been demonstrated in many cases. Several of these modules have been shown to also bind chitin or xylan.	
+starch	granular starch, cyclodextrin	CBM20	The granular starch-binding function has been demonstrated in several cases. Interact strongly with cyclodextrins. Often designated as starch-binding domains (SBD).	
+starch	granular starch	CBM21	Modules of approx. 100 residues. The granular starch-binding function has been demonstrated in one case. Sometimes designated as starch-binding domains (SBD).	
+xylan, beta-glucan	xylan,1,3/beta-1,4-glucans	CBM22	A xylan binding function has been demonstrated in several cases and affinity with mixed beta-1,3/beta-1,4-glucans in one. In several cases a thermostabilizing effect has also been seen.	
+beta-mannan	mannan	CBM23	Mannan-binding function demonstrated in one case.	
+beta-glucan	mutan	CBM24	alpha-1,3-glucan (mutan)-binding function demonstrated in two cases (PMID:10636904)	
+starch	starch	CBM25	Starch-binding function demonstrated in one case.	
+starch	starch	CBM26	Starch-binding function demonstrated in two cases.	
+beta-mannan	mannan	CBM27	Mannan-binding function demonstrated in two cases	
+cellulose	non-crystalline cellulose, cellooligosaccharides, and beta-(1,3)(1,4)-glucans	CBM28	The module from the endo-1,4-glucanase of Bacillus sp. 1139 binds to non-crystalline cellulose, cellooligosaccharides, and beta-(1,3)(1,4)-glucans	
+beta-mannan	mannan,glucomannan	CBM29	Binding to mannan/glucomannan has been demonstrated.	
+cellulose, chitin	cellulose,chitin	CBM3	Modules of approx. 150 residues found in bacterial enzymes. The cellulose-binding function has been demonstrated in many cases. In one instance binding to chitin has been reported.	
+cellulose	cellulose	CBM30	Binding to cellulose has been demonstrated for the N-terminal module of Fibrobacter succinogenes CelF.	
+xylan	beta-1,3-xylan	CBM31	Binding to beta-1,3-xylan has been demonstrated for the C-terminal module of the beta-1,3-xylanase of Alcaligenes sp. XY234.	
+host glycan	galactose, lactose, LacNAc	CBM32	Binding to galactose and lactose has been demonstrated for the module of Micromonospora viridifaciens sialidase (PMID: 16239725). Binding to polygalacturonic acid has been shown for a Yersinia member (PMID: 17292916). Binding to LacNAc (beta-D-galactosyl-1,4-beta-D-N-acetylglucosamine) has been shown for an N-acetylglucosaminidase from Clostridium perfingens (PMID: 16990278).	
+cellulose, chitin	cellulose, chitin	CBM33	Copper-dependent lytic polysaccharide monooxygenases now reclassified in family AA10	
+starch	granular starch	CBM34	Modules of approx. 120 residues. Granular starch-binding function has been demonstrated in the case of Thermoactinomyces vulgaris R-47 alpha-amylase 1 (TVAI).	
+xylan, beta-mannan, beta-galactan	xylan,decorated soluble mannan and mannooligosaccharide,beta-galactan	CBM35	Modules of approx. 130 residues. A module that is conserved in three Cellvibrio xylan-degrading enzymes binds to xylan and the interaction is calcium dependent, while a module from a Cellvibrio mannanase binds to decorated soluble mannans and mannooligosaccharides. A module in a Phanerochaete chrysosporium galactan 1,3-beta-galactosidase binds to beta-galactan.	
+xylan	xylan and xylooligosaccharide	CBM36	Modules of approx. 120-130 residues displaying structural similarities to CBM6 modules. The only CBM36 currently characterised, that from Paenbacillus polymyxa xylanase 43A, shows calcium-dependent binding of xylans and xylooligosaccharides. X-ray crystallography shows that there is a direct interaction between calcium and ligand.	
+xylan, chitin, cellulose	xylan, chitin, microcrystalline and phosphoric-acid swollen cellulose, as well as more heterogeneous substrates, such as alfalfa cell walls, banana stem and wheat straw.	CBM37	Modules of approx. 100 residues, conserved in numerous R. albus polysaccharide-degrading enzymes and other proteins from this bacterium. Several members of CBM37 have been shown to exhibit rather broad binding specificity to xylan, chitin, microcrystalline and phosphoric-acid swollen cellulose, as well as more heterogeneous substrates, such as alfalfa cell walls, banana stem and wheat straw.	
+fructan	inulin	CBM38	The inulin-binding function has been demonstrated in the case of the cycloinulo-oligosaccharide fructanotransferase from Paenibacillus macerans (Bacillus macerans) by Lee et al. (2004) FEMS Microbiol Lett 234:105-10. (PMID:15109727).	
+beta-glucan,lipopolysaccharide	beta-1,3-glucan,lipopolysaccharide and lipoteichoic acid	CBM39	Modules generally found at the N-terminus of a GH16 module (itself frequently lacking a catalytic machinery) and more seldomly in isolation. The beta-1,3-glucan binding function has been demonstrated, along with binding to lipopolysaccharide and lipoteichoic acid.	
+xylan, beta-glucan	xylan, beta-1,3-glucan, beta-1,3-1,4-glucan, beta-1,6-glucan and amorphous cellulose	CBM4	Modules of approx. 150 residues found in bacterial enzymes. Binding of these modules has been demonstrated with xylan, beta-1,3-glucan, beta-1,3-1,4-glucan, beta-1,6-glucan and amorphous cellulose but not with crystalline cellulose.	
+sialic acid	sialic acid	CBM40	Modules of approx. 200 residues, found at the N-terminus of GH33 sialidases. Can also be found inserted in the beta-propeller of GH33 sialidases. The sialic acid binding function has been demonstrated for the N-terminal CBM40 of Vibrio cholerae sialidase (Moustafa et al. (2004) J Biol Chem 279:40819-26) (PMID: 15226294).	
+beta-glucan	alpha-glucans amylose, amylopectin, pullulan, and oligosaccharide fragments derived from these polysaccharides	CBM41	Modules of approx. 100 residues found in primarily in bacterial pullulanases. The N-terminal module from Thermotoga maritima Pul13 has been shown to bind to the alpha-glucans amylose, amylopectin, pullulan, and oligosaccharide fragments derived from these polysaccharides (Lammerts van Bueren et al. (2004) Biochemistry 43:15633-42) (PMID: 15581376).	
+xylan	arabinoxylan	CBM42	Modules of approx. 160 residues found mostly at the C-terminus of GH54 catalytic domains. Binding to arabinofuranose (present in arabinoxylan) has been demonstrated.	
+beta-glucan	beta-1,3-glucan	CBM43	Modules of approx. 90-100 residues found at the C-terminus of GH17 or GH72 enzymatic modules and also sometimes isolated. CBM43 modules sometimes carry a C-terminal membrane anchor. The beta-1,3-glucan binding function has been demonstrated with the olive pollen protein Ole e 10.	
+cellulose, xyloglucan	cellulose and xyloglucan	CBM44	The C-terminal CBM44 module of the Clostridium thermocellum enzyme has been demonstrated to bind equally well cellulose and xyloglucan	
+starch	starch	CBM45	Modules of approx. 100 residues, found at the N-terminus of plastidial alpha-amylases and of alpha-glucan, water dikinases. Starch-binding activity demonstrated in the case of potato alpha-glucan, water dikinase.	
+cellulose	cellulose	CBM46	Modules of approx. 100 residues, found at the C-terminus of several GH5 cellulases. Cellulose-binding function demonstrated in one case.	
+fucose	fucose	CBM47	Modules of approx 150 residues. Fucose-binding activity demonstrated	
+glycogen	glycogen	CBM48	Modules of approx. 100 residues with glycogen-binding function, appended to GH13 modules. Also found in the beta subunit (glycogen-binding) of AMP-activated protein kinases (AMPK)	
+cellulose	crystalline cellulose	CBM49	Modules of approx. 100 residues found at the C-terminus of plant GH9 enzymes. Distantly related to CBM2 modules. Binding to crystalline cellulose demonstrated in the case of Solanum lycopersicum Cel8 enzyme (SlCel9C1).	
+chitin	chitin	CBM5	Modules of approx. 60 residues found in bacterial enzymes. Chitin-binding described in several cases. Distantly related to the CBM12 family.	
+chitin, peptidoglycan	chitin or peptidoglycan	CBM50	Modules of approx. 50 residues found attached to various enzymes from families GH18, GH19, GH23, GH24, GH25 and GH73, i.e. enzymes cleaving either chitin or peptidoglycan. Binding to chitopentaose demonstrated in the case of Pteris ryukyuensis chitinase A [Ohnuma T et al. (2008) J. Biol. Chem. 283:5178-87 (PMID: 18083709)]. CBM50 modules are also found in a multitude of other enzymes targeting the petidoglycan such as peptidases and amidases. These enzymes are not reported in the list below.	
+host glycan	galactose and to blood group A/B-antigens	CBM51	Modules of approx. 150 residues found attached to various enzymes from families GH2, GH27, GH31, GH95, GH98 and GH101 . Binding to galactose and to blood group A/B-antigens demonstrated in the case of C. perfringens GH95CBM51 and GH98CBM51 respectively [Gregg KJ et al. (2008) J. Biol. Chem. 283:12604-13 PMID: 18292090].	
+beta-glucan	beta-1,3-glucan	CBM52	Modules of approx. 60 residues attached to a few GH81 enzymes but present in other proteins. Binding to beta-1,3-glucan demonstrated for Schizosaccharomyces pombe 972h- endo-1,3-beta-glucanase Eng1 [Martin-Quadrado et al., Mol. Microbiol. (2008) 69:188-200 PMID:18466295]	
+starch	starch	CBM53	Starch-binding function demonstrated by Valdez et al. (2008) [PMID: 18260645]	
+xylan, beta-glucan, chitin	xylan, yeast cell wall glucan and chitin	CBM54	Binding to xylan, yeast cell wall glucan and chitin shown in Dvortsov et al., Microbiology UK (2009) in press.	
+chitin	chitin	CBM55	Binding to chitin demonstrated in the case of the CBM55 of Entamoeba histolytica chitinase (Van Dellen et al. (2002) Infect Immun. 70:3259-3263,PMID: 12011021).	
+beta-glucan	beta-1,3-glucan	CBM56	beta-1,3-glucan binding function demonstrated by Yamamoto et al. (1998) FEBS Letters 433:41-43 [PMID: 9738929]	
+glycosidases	glycosidases	CBM57	Created from reading Schallus et al (2008) Mol Biol Cell. 19:3404-3414 [PMID: 18524852] and finding related domains attached to various glycosidases.	
+starch	maltoheptaose	CBM58	The CBM58 module of the Bacteroides thetaiotaomicron SusG protein has been shown to bind maltoheptaose	
+mannan, xylan, and cellulose	mannan, xylan, and cellulose	CBM59	Binding to mannan, xylan, and cellulose demonstrated for the CBM59 of ManF-X10 xylanase from an environmental genomic DNA library (Li et al. (2009) World Journal of Microbiology and Biotechnology 25:2071-2078,doi:10.1007/s11274-009-0111-6)	
+beta-glucan, xylan, cellulose	amorphous cellulose, beta-1,4-xylan,beta-1,3-glucan, beta-1,3-1,4-glucan, and beta-1,4-glucan	CBM6	Modules of approx. 120 residues. The cellulose-binding function has been demonstrated in one case on amorphous cellulose and beta-1,4-xylan. Some of these modules also bind beta-1,3-glucan, beta-1,3-1,4-glucan, and beta-1,4-glucan.	
+xylan	xylan	CBM60	Modules of approx 120 residues usually found appended to xylanases. The xylan-binding function and the relatedness (circular permutation) to family CBM36 has been demonstrated [PMID: 20659893].	
+beta-galactan	beta-1,4-galactan	CBM61	Modules of approx. 150 residues found appended to GH16, GH30, GH31, GH43, GH53 and GH66 catalytic domains. A beta-1,4-galactan binding function has been demonstrated for the CBM61 of Thermotoga maritima GH53 galactanase [PMID: 20826814].	
+xyloglucan, arabinogalactan and galactomannan	xyloglucan, arabinogalactan and galactomannan	CBM62	The CBM62 module of Clostridium thermocellum Cthe_2193 protein binds galactose moieties found on xyloglucan, arabinogalactan and galactomannan.	
+cellulose	cellulose	CBM63	The CBM63 module of Bacillus subtilis expansin EXLX1 has been shown to bind cellulose.	
+cellulose	cellulose	CBM64	Module found at C-term of several Spirochaeta thermophila proteins. Binding to cellulose shown by Angelov, Loderer, Pompei Liebl (2011) AEM, 77:5483-5489 [PMID - 21685171]	
+xyloglucan	xyloglucan	CBM65	CBM65A and CBM65B, derived from Eubacterium cellulosolvens endoglucanase EcCel5A, bind to a range of beta-glucans but, uniquely, display significant preference for xyloglucan	
+fructan	fructan	CBM66	The CBM66 module, derived from the Bacillus subtilis exo-acting beta-fructosidase SacC, targets the terminal fructoside residue of fructans.	
+rhamnose	L-rhamnose	CBM67	Fujimoto et al. [PMID : 23486481] disclosed the L-rhamnose binding activity and 3-D structure of the CBM67 of Streptomyces avermitilis alpha-L-rhamnosidase (SaRha78A)	
+starch	maltotriose and maltotetraose	CBM68	Binding to maltotriose and maltotetraose shown for the pullulanase of Anoxybacillus sp. LM18-11. Binding function derived from crystal structure and deletion of the CBM, which showed reduced specific activity and increased Km value compared to the wild type enzyme.	
+starch	starch	CBM69	starch-binding function demonstrated in one case, distantly related to families CBM20 and CBM48	
+host glycan	hyaluronan	CBM70	The hyaluronan-specific binding function of the N-terminal CBM70 module of Streptococcus pneumoniae hyaluronate lyase has been demonstrated.	
+host glycan	lactose and LacNAc	CBM71	The two CBM71s of S. pneumoniae BgaA bind lactose and LacNAc.	
+beta-glucan, xylan, and beta-mannan	broad spectrum of polysaccharides including soluble and insoluble cellulose, beta-1,3/1,4-mixed linked glucans, xylan, and beta-mannan 	CBM72	Modules of 130-180 residues found at the C-terminus glycoside hydrolases from various families, sometimes as tandem repeats. The CBM72 found on an endoglucanase from an uncultivated microorganism was found to bind a broad spectrum of polysaccharides including soluble and insoluble cellulose, beta-1,3/1,4-mixed linked glucans, xylan, and beta-mannan [PMID=26765840].	
+chitin	chitin	CBM73	Modules of approx 65 residues found on various enzymes active of chitin. Chitin-binding function demonstrated for the Cellvibrio japonicus CjLPMO10A protein.	
+starch	starch	CBM74	Modules of approx. 300 residues appended to several alpha-amylases. The starch-binding function has been demonstrated for the CBM74 appended to the GH13 alpha-amylase of Microbacterium aureum B8.A	
+xyloglucan	xyloglucan	CBM75	Modules of 290 residues appended to GH43_16 enzymes. So far found exclusively in Ruminococci. The xyloglucan-binding function was demonstrated for the R. flavefaciens protein.	
+xyloglucan, glucomannan, and  beta-glucan	xyloglucan, glucomannan, and barley beta-glucan	CBM76	Modules of approx. 170 residues appended to GH44 enzymes. So far found exclusively in Ruminococci. Broad specificity binding to beta-glucans demontsrated for the R. flavefaciens module, which binds xyloglucan, glucomannan, and barley beta-glucan.	
+pectin	various	CBM77	Pectin binding modules of approx. 110 residues. The Ruminococcus flavefaciens CBM77 was shown to bind various pectins of low degree of esterification.	
+beta-glucan	beta-1,4-glucans	CBM78	Modules of approx. 150 residues appended to the C-terminus of GH5 and GH26 enzymes. So far found exclusively in Ruminococcal enzymes. The R. flavefaciens module has been shown to bind decorated beta-1,4-glucans with a preference for xyloglucan.	
+beta-glucan	beta-glucans	CBM79	Modules of approx. 130 residues found so far only in ruminococcal proteins. Binding to various beta-glucans was shown for the R. flavefaciens GH9 enzyme.	
+cellulose	cellulose	CBM8	The cellulose-binding module from a cellulase of the slime mold Dictyostelium discoideum has been experimentally shown to bind cellulose.	
+beta-glucan, beta-mannan	beta-glycans (xyloglucan, glucomannan, galactomannan, barley beta-glucan)	CBM80	Modules of approx. 90 residues found so far only in ruminococcal enzymes of families GH5 or GH26. Broad specificity for beta-glycans (xyloglucan, glucomannan, galactomannan, barley beta-glucan).	
+beta-glucan	beta-1,4-, beta-1,3,-glucans, xyloglucan, avicel and cellooligosaccharides	CBM81	Small family of modules of approx. 100 residues, appended to GH5_2 enzymes. So far found exclusively in a few gammaproteobacteria. The CBM81 from an uncultivated species was shown to have binding affinity for beta-1,4-, beta-1,3,-glucans, xyloglucan, avicel and cellooligosaccharides.	
+starch	starch	CBM82	The boundaries, structure and starch-binding function of the CBM82 module of Eubacterium rectale Amy13K have been reported by Cockburn and coworkers in Molec. Microbiol. (2017) (PMID=29139580)	
+starch	starch	CBM83	The boundaries, structure and starch-binding function of the CBM83 module of Eubacterium rectale Amy13K have been reported by Cockburn and coworkers in Molec. Microbiol. (2017) (PMID=29139580)	
+xanthan	xanthan	CBM84	Modules of approx. 140 aminoacids appended to enzymes of different families of CAZymes. A xanthan-binding function was reported for the GH9 xanthanase of Paenibacillus nanensis by Moroz et al. ACS Catal., 2018, 8 (7), pp 6021-6034.	
+cellulose, xylan, beta-glucan, beta-mannan	glycans (cellulose, glucuronoxylan, b-1,3-1,4-glucan and glucomannan)	CBM85	Created after Fredriksen et al. (2019) PMID=30635385; binds to a broad range of glycans (cellulose, glucuronoxylan, b-1,3-1,4-glucan and glucomannan)	
+xylan	xylan	CBM86	Created after the report of an activity [Leth et al. (2018), Nat. Microbiol, PMID:29610517] and a structure [Leth et al. (2019), FEBS J, PMID:31693302] of a xylan-binding module in the Xyn10A protein of Roseburia intestinalis L1-82.	
+galactosaminogalactan	galactosaminogalactan	CBM87	Binding to alpha-1,4-N-acetylgalactosamine-rich regions of galactosaminogalactan	
+galactoxyloglucan and galactomannan	galactoxyloglucan and galactomannan	CBM88	Binding to terminal galactose in galactoxyloglucan and galactomannan	
+xylan	xylan	CBM89		
+cellulose	cellulose	CBM9	Modules of approx. 170 residues found so far only in xylanases. The cellulose-binding function has been demonstrated in one case.	
+ulvan	ulvan	CBM90	Modules of approx 110 residues appended to PL24 and PL28 ulvan lyases; ulvan-binding function demonstrated for the CBM90 module of PL28 ulvan lyase from Nonlabens ulvanivorans	
+ulvan	ulvan	CBM90	Modules of approx 110 residues appended to PL24 and PL28 ulvan lyases; ulvan-binding function demonstrated for the CBM90 module of PL28 ulvan lyase from Nonlabens ulvanivorans	
+xylan	xylan	CBM91	Binding to xylans (birchwood and oat spelt)	
+xylan	xylan	CBM91	Created after Ito et al. 2022 [DOI=10.5458/jag.jag.JAG-2022_0001] who demonstrated the xylan binding activity in the PxXyl43A protein (Paenibacillus xylaniclasticus TW1) Modules of ~200aa, frequently associated with GH43 notably.	
+carrageenan, beta-glucan	carrageenan, b-1,3-glucan, b-1,6-glucan	CBM92	Carrageenan binding activity was reported for the module of Cgk16A protein in Wenyingzhuangia sp. OF219 (AST13124.1) [PubMed=35830544]	
+host glycan	sialylated and non-sialylated glycans	CBM93	Modules of approx. 160 residues with broad specificity glycan-binding properties, located at the N-terminus of GH33 sialidases.	
+host glycan	glycoprotein N-glycosylation	CBM94	Modules of approx. 150 residues found at the C-terminus of the GT54 in eukaryotes. Involved in N-glycosylation by the binding of N-Acetylglucosamine	
+pectin	rhamnogalacturonan-I 	CBM95	N-terminal modules of galactan synthases involved in pectic galactan side-chain addition	
+alginate	alginate	CBM96	Modules found with a large diversity of GH and PL families	
+pectin	polygalacturonic acid 	CBM97	Modules found in Bacteroidota, in the multimodular β-L-arabinofuranosidase/β-glucuronidase/CBM57 proteins involved in RGII breakdown	
+				
+polyphenol	Hydroxycinnamic acids(Phenolic acids)	CE1	cinnamoyl esterase	3.1.1.-
+trehalose	trehalose	CE1	trehalose 6-O-mycolyltransferase	2.3.1.122
+xylan	Feruloyl-polysaccharide(esterified sugar)	CE1	feruloyl esterase	3.1.1.73
+xylan	xylan	CE1	acetyl xylan esterase	3.1.1.72
+xylan	A carboxylic ester(ester)	CE1	carboxylesterase	3.1.1.1
+xylan	Acyl-CoA,Palmitoyl-CoA and other long-chain acyl-CoAs(ester)	CE1	diacylglycerol O-acyltransferase	2.3.1.20
+exo-polysaccharide	biosynthesis of lipid A	CE11	UDP-3-0-acyl N-acetylglucosamine deacetylase	3.5.1.108
+pectin	pectin	CE12	pectin acetylesterase	3.1.1.-
+pectin	pectin	CE12	rhamnogalacturonan acetylesterase	3.1.1.-
+xylan	acetyl xylan	CE12	acetyl xylan esterase	3.1.1.72
+pectin	pectin	CE13	pectin acetylesterase	3.1.1.-
+chitin	chitin	CE14	chitin disaccharide deacetylase	3.5.1.105
+chitin	chitin	CE14	diacetylchitobiose deacetylase	3.5.1.-
+chitin	alkylating agents and xenobiotics(organic compound)	CE14	mycothiol S-conjugate amidase	3.5.1.115
+exo-polysaccharide	glycosylphosphatidylinositol(lipid anchor )	CE14	N-acetyl-1-D-myo-inosityl-2-amino-2-deoxy-alpha-D-glucopyranoside deacetylase	3.5.1.89
+lignin	lignin	CE15	4-O-methyl-glucuronoyl methylesterase	3.5.1.-
+xylan	various carbohydrate acetyl ester	CE16	acetylesterase (active on various carbohydrate acetylesters)	3.1.1.6
+beta-mannan	acetylmannan	CE17	acetylmannan esterase	3.1.1.-
+pectin	pectin	CE19	Family created after Bamford and coworkers [PMID=28329766] demonstrated the pectin methylesterase activity of BT1017 protein from Bacteroides thetaiotaomicron VPI-5482	
+xylan	acetylxylan	CE2	acetyl xylan esterase	3.1.1.72
+xyloglucan	xyloglucan	CE20	xyloglucan acetylesterase (XAC1771)	3.1.1.6
+xylan	acetylxylan	CE3	acetyl xylan esterase	3.1.1.72
+chitin	chitin	CE4	chitin deacetylase	3.5.1.41
+chitin	Chitooligosaccharides	CE4	chitooligosaccharide deacetylase	3.5.1.-
+peptidoglycan	peptidoglycan	CE4	peptidoglycan GlcNAc deacetylase	3.5.1.-
+peptidoglycan	peptidoglycan	CE4	peptidoglycan N-acetylmuramic acid deacetylase	3.5.1.-
+xylan	acetylxylan	CE4	acetyl xylan esterase	3.1.1.72
+cutin	cutin	CE5	cutinase	3.1.1.74
+xylan	acetylxylan	CE5	acetyl xylan esterase	3.1.1.72
+xylan	acetylxylan	CE6	acetyl xylan esterase	3.1.1.72
+cephalosporin C	cephalosporin C(antibiotic)	CE7	cephalosporin-C deacetylase	3.1.1.41
+xylan	acetylxylan	CE7	acetyl xylan esterase	3.1.1.72
+pectin	pectin	CE8	pectin methylesterase	3.1.1.11
+host glycan	host glycan	CE9	N-acetylglucosamine 6-phosphate deacetylase	3.5.1.25
+alkaloid	strictosidine (monoterpene indole alkaloids)	GH1	strictosidine beta-glucosidase	3.2.1.105
+alkaloid	Raucaffricine (glucoalkaloid)	GH1	raucaffricine beta-glucosidase	3.2.1.125
+beta-fucosides	beta-fucosides	GH1	beta-D-fucosidase	3.2.1.38
+beta-galactan	beta-galactoside	GH1	beta-galactosidase	3.2.1.23
+beta-galactan	6-phospho-beta-galactoside	GH1	6-phospho-beta-galactosidase	3.2.1.85
+beta-glucan	beta-glucan	GH1	beta-glycosidase	3.2.1.-
+beta-glucan	beta-glucoside	GH1	beta-glucosidase	3.2.1.21
+beta-glucan	beta-glucoside	GH1	exo-beta-1,4-glucanase	3.2.1.74
+beta-glucan	6-phospho-beta-glucoside	GH1	6-phospho-beta-glucosidase	3.2.1.86
+beta-glucuronan	beta-glucuronoside	GH1	beta-glucuronidase	3.2.1.31
+beta-mannan	beta-mannoside	GH1	beta-mannosidase	3.2.1.25
+human milk polysaccharide	lactose in milk, phlorizin (polyphenols) in fruit	GH1	lactase	3.2.1.108
+polyphenol	rutin (polyphenol)	GH1	beta-rutinosidase /alpha-L-rhamnose-(1,6)-beta-D-glucosidase	3.2.1.-
+polyphenol	amygdalin (cyanogenic glycosides)	GH1	amygdalin beta-glucosidase	3.2.1.117
+polyphenol	prunasin (cyanogenic glycosides)	GH1	prunasin beta-glucosidase	3.2.1.118
+polyphenol	vicianin (cyanogenic glycosides)	GH1	vicianin hydrolase	3.2.1.119
+polyphenol	glucosinolates (sulfur-containing phytochemicals)	GH1	thioglucosidase	3.2.1.147
+polyphenol	beta--primeverosides (tea plant phytochemicals)	GH1	beta-primeverosidase	3.2.1.149
+polyphenol	Daidzin and genistin, Furcatin (polyphenol)	GH1	isoflavonoid 7-O-beta-apiosyl-beta-glucosidase	3.2.1.161
+polyphenol	abscisic acid (plant)	GH1	ABA-specific beta-glucosidase	3.2.1.175
+polyphenol	DIMBOA glucoside (polyphenol)	GH1	DIMBOA beta-glucosidase	3.2.1.182
+polyphenol	Furostanol (polyphenol)	GH1	protodioscin 26-O-beta--D-glucosidase	3.2.1.186
+polyphenol	phlorizin (polyphenols) in fruit	GH1	phlorizin hydrolase	3.2.1.62
+uric acid	5-Hydroxyisourate (uric acid)	GH1	hydroxyisourate hydrolase	3.-.-.-
+xylan	beta-glucoside, beta-xyloside	GH1	beta-xylosidase	3.2.1.37
+alkaloid	alpha-tomatine (glycoalkaloids)	GH10	tomatinase	3.2.1.-
+beta-glucan	cellulose, xylan, beta-1,4-glucan	GH10	endo-beta-1,4-glucanase	3.2.1.4
+xylan	xylan	GH10	xylan endotransglycosylase	2.4.2.-
+xylan	arabinoxylan	GH10	[retaining] arabinoxylan-specific endo-beta-1,4-xylanase	3.2.1.-
+xylan	xylan	GH10	endo-1,3-beta-xylanase	3.2.1.32
+xylan	xylan	GH10	endo-1,4-beta-xylanase	3.2.1.8
+sucrose	sucrose	GH100	alkaline and neutral invertase	3.2.1.26
+host glycan	mucin	GH101	endo-alpha-N-acetylgalactosaminidase	3.2.1.97
+peptidoglycan	peptidoglycan	GH102	peptidoglycan lytic transglycosylase	3.2.1.-
+peptidoglycan	peptidoglycan	GH103	peptidoglycan lytic transglycosylase	3.2.1.-
+peptidoglycan	peptidoglycan	GH104	peptidoglycan lytic transglycosylase	3.2.1.-
+pectin	pectin	GH105	d-4,5-unsaturated alpha-galacturonidase	3.2.1.-
+pectin	pectin (rhamnogalacturonan I)	GH105	unsaturated rhamnogalacturonyl hydrolase	3.2.1.172
+ulvan	ulvan	GH105	d-4,5-unsaturated beta-glucuronyl hydrolase	3.2.1.-
+pectin	pectin (rhamnogalacturonan I)	GH106	rhamnogalacturonan alpha-L-rhamnohydrolase	3.2.1.174
+pectin	pectin (rhamnogalacturonan II)	GH106	alpha-L-rhamnosidase	3.2.1.40
+fucoidan	fucoidan (brown algae)	GH107	endo-alpha-1,4-L-fucanase	3.2.1.212
+peptidoglycan	peptidoglycan	GH108	N-acetylmuramidase	3.2.1.17
+host glycan	mucin-type O-glycans	GH109	alpha-N-acetylgalactosaminidase	3.2.1.49
+host glycan	mucin-type O-glycans	GH109	beta-N-acetylhexosaminidase	3.2.1.52
+xylan	xylan	GH11	exo-1,4-beta-xylosidase	3.2.1.-
+xylan	xylan	GH11	endo-beta-1,4-xylanase	3.2.1.8
+host glycan	blood group B substances, host glycans	GH110	alpha-1,3-galactosidase	3.2.1.-
+host glycan	blood group B substances, host glycans	GH110	alpha-galactosidase	3.2.1.22
+host glycan	keratan, host glycans	GH111	keratan sulfate hydrolase (endo-beta-N-acetylglucosaminidase)	3.2.1.-
+human milk polysaccharide	human milk oligosaccharides, host glycans	GH112	lacto-N-biose phosphorylase or galacto-N-biose phosphorylase	2.4.1.211
+human milk polysaccharide	human milk oligosaccharides, host glycans	GH112	D-galactosyl-beta-1,4-L-rhamnose phosphorylase	2.4.1.247
+beta-mannan	beta-mannan	GH113	beta-mannanase	3.2.1.78
+alpha-mannan	galactosaminogalactan (fungal exopolysaccharide)	GH114	endo-alpha-1,4-polygalactosaminidase	3.2.1.109
+arabinogalactan protein	arabinogalactan	GH115	alpha-(4-O-methyl)-glucuronidase	3.2.1.-
+xylan	glucuronoxylan	GH115	xylan alpha-1,2-glucuronidase	3.2.1.131
+exo-polysaccharide	human bile acid, archaea exo-polysaccharide (EPS)	GH116	beta-glucosidase	3.2.1.21
+exo-polysaccharide	archaea exo-polysaccharide (EPS)	GH116	beta-xylosidase	3.2.1.37
+exo-polysaccharide	archaea exo-polysaccharide (EPS)	GH116	beta-N-acetylglucosaminidase	3.2.1.52
+host glycan	lipid glucosylceramide (host cell surface)	GH116	acid beta-glucosidase/beta-glucosylceramidase	3.2.1.45
+agarose	neoagarose (marine algae)	GH117	beta-D-galactofuranosidase	3.2.1.146
+agarose	neoagarose (marine algae)	GH117	alpha-neoagaro-oligosaccharide hydrolase	3.2.1.159
+agarose	agarose (marine algae)	GH118	beta-agarase	3.2.1.81
+starch	starch	GH119	alpha-amylase	3.2.1.1
+beta-glucan	mixed-linkage glucan	GH12	beta-1,3-1,4-glucanase	3.2.1.73
+cellulose	cellulose, beta-glucan	GH12	endoglucanase	3.2.1.4
+xyloglucan	xyloglucan	GH12	xyloglucan endotransglycosylase	2.4.1.207
+xyloglucan	xyloglucan	GH12	xyloglucan hydrolase	3.2.1.151
+xylan	xylan	GH120	beta-xylosidase	3.2.1.37
+arabinan	hydroxyproline-rich glyoproteins (arabinan in extensin and lectin)	GH121	beta-L-arabinobiosidase	3.2.1.-
+starch	starch	GH122	alpha-glucosidase	3.2.1.20
+host glycan	glycosphingolipid (host glycan)	GH123	glycosphingolipid beta-N-acetylgalactosaminidase	3.2.1.-
+host glycan	glycosphingolipid (host glycan)	GH123	beta-N-acetylgalactosaminidase	3.2.1.53
+cellulose	cellulose	GH124	endoglucanase	3.2.1.4
+alpha-mannan	alpha-mannan, plant N-glycan	GH125	exo-alpha-1,6-mannosidase	3.2.1.-
+alpha-glucan	starch, glycogen, and malto-oligosaccharides	GH126	alpha-amylase	3.2.1.-
+arabinogalactan protein	arabinogalactan proteins	GH127	beta-L-arabinofuranosidase	3.2.1.185
+carrageenan	carrageenan (marine algae)	GH127	alpha-1,3-(3,6)-anhydro-D-galactosidase	3.2.1.-
+pectin	pectin (rhamnogalacturonan II)	GH127	3-C-carboxy-5-deoxy-L-xylose (aceric acid) hydrolase	3.2.1.-
+beta-glucan	beta-1,3-glucan (bacteria, fungi, plant, algae)	GH128	beta-1,3-glucosidase	3.2.1.-
+beta-glucan	beta-1,3-glucan (bacteria, fungi, plant, algae)	GH128	beta-1,3-glucanase	3.2.1.39
+carrageenan	carrageenan (marine algae)	GH129	alpha-1,3-(3,6)-anhydro-D-galactosidase	3.2.1.-
+host glycan	mucin-type O-glycans	GH129	alpha-N-acetylgalactosaminidase	3.2.1.49
+alpha-glucan	starch, glycogen, and malto-oligosaccharides	GH13	oligosaccharide alpha-4-glucosyltransferase	2.4.1.161
+alpha-glucan	starch, glycogen, and malto-oligosaccharides	GH13	branching enzyme	2.4.1.18
+alpha-glucan	cyclodextrin (alpha-1,4 glycosidic glucan from starch degradation)	GH13	cyclomaltodextrin glucanotransferase	2.4.1.19
+glucosylglycerate	glucosylglycerate	GH13	Glucosylglycerate phosphorylase	2.4.1.352
+glucosylglycerol	glucosylglycerol	GH13	[retaining] glucosylglycerol phosphorylase	2.4.1.359
+glycogen	glycogen	GH13	4-alpha-glucanotransferase	2.4.1.25
+starch	starch, glycogen, and malto-oligosaccharides	GH13	alpha-1,4-glucan: phosphate alpha-maltosyltransferase	2.4.99.16
+starch	starch	GH13	maltopentaose-forming alpha-amylase	3.2.1.-
+starch	starch, glycogen, and malto-oligosaccharides	GH13	alpha-amylase	3.2.1.1
+starch	starch, glycogen, and malto-oligosaccharides	GH13	[retaining] alpha-amylase	3.2.1.1
+starch	amylopectin (starch)	GH13	oligo-alpha-glucosidase	3.2.1.10
+starch	starch	GH13	maltotriose-forming alpha-amylase	3.2.1.116
+starch	starch	GH13	maltogenic amylase	3.2.1.133
+starch	pullulan (starch degradation by fungi)	GH13	neopullulanase	3.2.1.135
+starch	starch	GH13	malto-oligosyltrehalose trehalohydrolase	3.2.1.141
+starch	starch	GH13	alpha-glucosidase	3.2.1.20
+starch	maltooligosaccharides	GH13	amylo-alpha-1,6-glucosidase	3.2.1.33
+starch	pullulan (starch degradation by fungi)	GH13	pullulanase	3.2.1.41
+starch	cyclomaltodextrins	GH13	cyclomaltodextrinase	3.2.1.54
+starch	starch	GH13	maltotetraose-forming alpha-amylase	3.2.1.60
+starch	starch, glycogen, and malto-oligosaccharides	GH13	isoamylase	3.2.1.68
+starch	starch, glycogen, and alpha-1,6 glucan	GH13	glucodextranase	3.2.1.70
+starch	starch, glycogen, and malto-oligosaccharides	GH13	maltohexaose-forming alpha-amylase	3.2.1.98
+starch	starch	GH13	malto-oligosyltrehalose synthase	5.4.99.15
+starch	maltose	GH13	trehalose synthase	5.4.99.16
+sucrose	sucrose	GH13	[retaining] sucrose 6(F)-phosphate phosphorylase	2.4.1.329
+sucrose	Sucrose	GH13	amylosucrase	2.4.1.4
+sucrose	Sucrose	GH13	sucrose phosphorylase	2.4.1.7
+sucrose	sucrose	GH13	[retaining] sucrose alpha-glucosidase	3.2.1.48
+sucrose	sucrose	GH13	isomaltulose synthase	5.4.99.11
+sucrose	sucrose 6(F)-phosphate	GH13	amino acid transporter	
+trehalose	trehalose	GH13	trehalose-6-phosphate hydrolase	3.2.1.93
+beta-mannan	mannooligosaccharides	GH130	beta-1,2-oligomannan phosphorylase	2.4.1.-
+beta-mannan	beta-mannan	GH130	beta-1,2-mannobiose phosphorylase	2.4.1.-
+beta-mannan	beta-mannan	GH130	beta-1,4-mannosylglucose phosphorylase	2.4.1.281
+beta-mannan	beta-mannan	GH130	beta-1,4-mannooligosaccharide phosphorylase	2.4.1.319
+beta-mannan	beta-mannan	GH130	beta--1,2-oligomannan phosphorylase	2.4.1.340
+beta-mannan	beta-mannan	GH130	beta--1,2-mannobiose phosphorylase	2.4.1.339
+beta-mannan	beta-mannan	GH130	beta-1,4-mannosyl-N-acetyl-glucosamine phosphorylase	2.4.1.320
+beta-mannan	beta-mannan	GH130	beta-1,2-mannosidase	3.2.1.-
+beta-glucan	beta-glucans, including laminarin, curdlan, pachyman, lichenan, pustulan, and cellulosic derivatives	GH131	broad specificity exo-beta-1,3/1,6-glucanase with endo-beta-1,4-glucanase activity	3.2.1.-
+beta-glucan	beta-1,3-glucan (fungi)	GH132	beta-1,3-glucosidase	3.2.1.-
+glycogen	glycogen	GH133	amylo-alpha-1,6-glucosidase	3.2.1.33
+beta-mannan	beta-mannan	GH134	endo-beta-1,4-mannanase	3.2.1.78
+alpha-galactan	exopolysaccharide galactosaminogalactan (fungal GAG)	GH135	alpha-1,4-galactosaminogalactan hydrolase	3.2.1.-
+human milk polysaccharide	human milk oligosaccharides	GH136	Lacto-N-biosidase (Lewis antigen a/b specificity)	3.2.1.-
+human milk polysaccharide	human milk oligosaccharides	GH136	lacto-N-biosidase	3.2.1.140
+pectin	pectin (rhamnogalacturonan II)	GH137	beta-L-arabinofuranosidase	3.2.1.185
+pectin	pectin (rhamnogalacturonan II)	GH138	rhamnogalacturonan alpha-1,2-galacturonohydrolase	3.2.1.173
+pectin	pectin (rhamnogalacturonan II)	GH139	alpha-2-O-Me-L-fucosidase	3.2.1.-
+alpha-glucan	starch, glycogen and related polysaccharides and oligosaccharides	GH14	beta-amylase	3.2.1.2
+pectin	pectin (rhamnogalacturonan II)	GH140	beta-1,2-apiosidase	3.2.1.-
+pectin	pectin (rhamnogalacturonan II)	GH141	alpha-L-fucosidase	3.2.1.51
+xylan	xylan	GH141	xylanase	3.2.1.8
+pectin	pectin (rhamnogalacturonan II)	GH142	beta-L-arabinofuranosidase	3.2.1.185
+pectin	pectin (rhamnogalacturonan II)	GH143	2-keto-3-deoxy-D-lyxo-heptulosaric acid hydrolase	3.2.1.-
+beta-glucan	beta-1,2-glucan (bacteria)	GH144	beta-1,2-glucooligosaccharide sophorohydrolase	3.2.1.214
+beta-glucan	beta-1,2-glucan (bacteria)	GH144	endo-beta-1,2-glucanase	3.2.1.71
+arabinan	arabinan	GH146	beta-L-arabinofuranosidase	3.2.1.185
+beta-galactan	galactan	GH147	beta-galactosidase	3.2.1.89
+beta-galactan	galactan	GH147	beta-galactosidase	3.2.1.23
+beta-glucan	beta-glucan and lichenin	GH148	beta-1,3-glucanase	3.2.1.-
+beta-mannan	glucomannan	GH148	beta-1,3-glucanase	3.2.1.4
+beta-glucan	beta-1,3-glucan	GH149	beta-1,3-glucan phosphorylase	2.4.1.97
+starch	starch	GH15	dextran dextrinase	2.4.1.2
+starch	starch	GH15	glucoamylase	3.2.1.3
+starch	starch	GH15	glucodextranase	3.2.1.70
+trehalose	trehalose	GH15	alpha,alpha-trehalase	3.2.1.28
+carrageenan	carrageenan	GH150	Iota-carrageenase	3.2.1.162
+human milk polysaccharide	fucosylated human milk oligosaccharides	GH151	alpha-L-fucosidase	3.2.1.51
+beta-glucan	beta-1,3-glucan (fungal lentinan)	GH152	beta-1,3-glucanase	3.2.1.39
+exo-polysaccharide	deacetylated poly-beta-(1,6)-N-acetyl-glucosamine (bacterial PNAG for biofilm)	GH153	poly-beta-1,6-D-glucosamine hydrolase	3.2.1.-
+arabinogalactan protein	arabinogalactan proteins	GH154	beta-1,6-D-glucuronidase	3.2.1.-
+arabinogalactan protein	arabinogalactan proteins	GH154	beta-glucuronidase	3.2.1.31
+host glycan	sialic acid (O-glycan, N-glycan, mucin, host glycan)	GH156	exo-alpha-sialidase	3.2.1.18
+beta-glucan	beta-glucans (bacteria curdlan)	GH157	endo-beta-1,3-glucanase / laminarinase	3.2.1.39
+beta-glucan	beta-glucans (yeast, seaweed, and plant)	GH158	endo-beta-1,3-glucanase	3.2.1.39
+beta-galactan	beta-galactoside	GH159	beta-D-galactofuranosidase	3.2.1.146
+agarose	agarose	GH16	beta-agarase	3.2.1.81
+arabinogalactan protein	arabinogalactan proteins 	GH16	endo-beta-1,3-galactanase	3.2.1.181
+beta-glucan	beta-1,3-glucan	GH16	beta-transglycosidase	2.4.1.-
+beta-glucan	beta-1,3-glucan (fungi, algae, plant)	GH16	endo-1,3-beta-glucanase / laminarinase	3.2.1.39
+beta-glucan	beta-1,3-1,4-glucan (laminarin, lichenin and cereal D-glucans)	GH16	endo-1,3(4)-beta-glucanase	3.2.1.6
+beta-glucan	beta-1,3-1,4-glucan (laminarin, lichenin and cereal D-glucans)	GH16	licheninase	3.2.1.73
+carrageenan	carrageenan	GH16	beta-carrageenase	3.2.1.-
+carrageenan	carrageenan	GH16	kappa-carrageenase	3.2.1.83
+chitin	chitin	GH16	chitin beta-1,6-glucanosyltransferase	2.4.1.-
+exo-polysaccharide	exopolysaccharides (bacteria)	GH16	beta-glycosidase	3.2.1.-
+host glycan	mucin-type O-glycans	GH16	endo-beta-1,4-galactosidase	3.2.1.-
+host glycan	keratan sulfate (host glycan)	GH16	keratan-sulfate endo-1,4-beta-galactosidase	3.2.1.103
+host glycan	hyaluronate (glycosaminoglycan of host glycan)	GH16	hyaluronidase	3.2.1.35
+porphyran	porphyran (red algal beta-galactose-sulfate)	GH16	[retaining] beta-porphyranase	3.2.1.178
+xyloglucan	xyloglucan (plant)	GH16	xyloglucan:xyloglucosyltransferase	2.4.1.207
+xyloglucan	xyloglucan	GH16	xyloglucanase	3.2.1.151
+exo-polysaccharide	exopolysaccharides (bacteria)	GH160	endo-beta-1,4-galactosidase	3.2.1.-
+beta-glucan	beta-1,3-glucan (fungi, algae, plant)	GH161	beta-1,3-glucan phosphorylase	2.4.1.97
+beta-glucan	beta-1,2-glucan (bacteria)	GH162	endo-beta-1,2-glucanase	3.2.1.71
+host glycan	N-glycan (host glycan)	GH163	endo-beta-N-acetylglucosaminidase cleaving GlcNAc-beta-1,2-Man	3.2.1.-
+beta-mannan	beta-mannoside	GH164	beta-mannosidase	3.2.1.25
+beta-galactan	beta-galactoside	GH165	beta-galactosidase	3.2.1.23
+alpha-galactan	exopolysaccharide galactosaminogalactan (fungal GAG)	GH166	alpha-1,4-galactosaminogalactan hydrolase	3.2.1.-
+carrageenan	carrageenan	GH167	beta-carrageenase	3.2.1.-
+fucoidan	Sulfated fucans (algae)	GH168	endo-alpha-(1,3)-L-fucanase	3.2.1.211
+exo-polysaccharide	capsular polysaccharide (bacteria)	GH169	beta-1,4-D-glucuronidase	3.2.1.-
+exo-polysaccharide	capsular polysaccharide (bacteria)	GH169	beta-glucuronidase	3.2.1.31
+abscisic acid	abscisic acid (plant)	GH17	ABA-specific beta-glucosidase	3.2.1.175
+beta-glucan	beta-1,3-glucan (fungi, algae, plant)	GH17	beta-1,3-glucanosyltransglycosylase	2.4.1.-
+beta-glucan	beta-1,3-glucan (fungi)	GH17	beta-1,3-glucosidase	3.2.1.-
+beta-glucan	beta-1,3-glucan (algae, plant)	GH17	glucan endo-1,3-beta-glucosidase	3.2.1.39
+beta-glucan	beta-1,3-1,4-glucan (laminarin, lichenin and cereal D-glucans)	GH17	licheninase	3.2.1.73
+peptidoglycan	peptidoglycan	GH170	6-phospho-N-acetylmuramidase	3.2.1.-
+peptidoglycan	peptidoglycan	GH171	peptidoglycan beta-N-acetylmuramidase	3.2.1.92
+arabinogalactan	arabinan	GH172	alpha-D-Fructofuranosidase	3.2.1.-
+arabinogalactan	arabinan	GH172	alpha-D-Arabinofuranosidase	3.2.1.-
+fructan	fructooligosaccharides	GH172	difructose-anhydride-I synthase	4.2.1.179
+pectin	beta-galactoside (pectin)	GH173	beta--galactosidase (EC 3.2.1.23)	3.2.1.23
+fucoidan	fucoidan	GH174	endo-alpha-1,3-L-fucanase	3.2.1.211
+beta-glucan	beta-glucosidase	GH175	beta-glucosidase	3.2.1.21
+starch	maltodextrin	GH176	isoamylase	3.2.1.68
+host glycan	glycoproteins	GH177	exo-alpha-sialidase	3.2.1.18
+alpha-mannan	3-O-methylmannose polysaccharide	GH178	mannan endo-alpha-1,4-mannosidase	3.2.1.-
+chitin	chitin or peptidoglycan	GH179	beta-N-acetylhexosaminidase (favor GlcNAc)	3.2.1.52
+beta-glucan	p-nitrophenyl-β-D-glucopyranoside (p-NPG) and cellobiose	GH180	beta-glucosidase	3.2.1.21
+host glycan	mucin-type O-glycans	GH181	exo-alpha-sialidase 	3.2.1.18
+arabinogalactan	beta-galactan	GH182	beta-D-galactofuranosidase	3.2.1.146
+arabinogalactan	arabinan	GH183	endo-alpha-1,5-D-arabinofuranosidase	3.2.1.-
+peptidoglycan	peptidoglycan	GH184	peptidoglycan beta-N-acetylmuramidase	3.2.1.92
+chitin	chitooligosaccharides (symbiotic nitrogen-fixing bacteria)	GH18	Nod factor hydrolase	3.2.1.-
+chitin	chitin	GH18	chitinase	3.2.1.14
+host glycan	N-glycan (host glycan)	GH18	endo-beta-N-acetylglucosaminidase	3.2.1.96
+peptidoglycan	peptidoglycan	GH18	peptidoglycan hydrolase with endo-beta-N-acetylglucosaminidase specificity	3.2.1.-
+peptidoglycan	peptidoglycan	GH18	lysozyme	3.2.1.17
+chitin	chitin	GH19	chitinase	3.2.1.14
+chitin	chitin	GH19	chitinase	3.2.1.-
+peptidoglycan	peptidoglycan	GH19	lysozyme	3.2.1.17
+alpha-mannan	galactomannan (fungi)	GH2	beta-D-galactofuranosidase	3.2.1.146
+arabinan	arabinan	GH2	alpha-L-arabinofuranosidase	3.2.1.55
+beta-galactan	beta-galactoside	GH2	beta-galactosidase	3.2.1.23
+beta-glucan	beta-glucoside	GH2	beta-glucosidase	3.2.1.21
+beta-glucuronan	beta-glucuronoside	GH2	beta-glucuronidase	3.2.1.31
+beta-mannan	beta-mannoside	GH2	beta-mannosidase	3.2.1.25
+chitosan	chitosan or chitosan oligosaccharides (nonacetylated chitin)	GH2	exo-beta-glucosaminidase	3.2.1.165
+host glycan	N-glycan (plant)	GH2	mannosylglycoprotein endo-beta-mannosidase	3.2.1.152
+pectin	pectin (rhamnogalacturonan II)	GH2	alpha-L-arabinopyranosidase	3.2.1.-
+pectin	pectin (rhamnogalacturonan II)	GH2	beta-galacturonidase	3.2.1.-
+xylan	beta-xyloside	GH2	beta-xylosidase	3.2.1.37
+exo-polysaccharide	capsular polysaccharide (bacteria)	GH20	beta-1,6-N-acetylglucosaminidase	3.2.1.-
+host glycan	mucin	GH20	beta-6-SO3-N-acetylglucosaminidase	3.2.1.-
+host glycan	N-glycan (host glycan, human milk oligosaccharides, chitin)	GH20	beta-hexosaminidase	3.2.1.52
+human milk polysaccharide	lacto-N-tetraose (human milk oligosaccharides)	GH20	lacto-N-biosidase	3.2.1.140
+peptidoglycan	peptidoglycan	GH22	lysozyme type C	3.2.1.17
+peptidoglycan	peptidoglycan	GH22	lysozyme type i	3.2.1.17
+chitin	chitin	GH23	chitinase	3.2.1.14
+peptidoglycan	peptidoglycan	GH23	lysozyme type G	3.2.1.17
+peptidoglycan	peptidoglycan	GH23	peptidoglycan lyase ( also known in the literature as peptidoglycan lytic transglycosylase)	4.2.2.n1
+peptidoglycan	peptidoglycan	GH24	lysozyme	3.2.1.17
+peptidoglycan	peptidoglycan	GH25	lysozyme	3.2.1.17
+beta-glucan	beta-glucan	GH26	lichenase / endo-beta-1,3-1,4-glucanase	3.2.1.73
+beta-mannan	beta-mannan	GH26	mannobiose-producing exo-beta-mannanase	3.2.1.-
+beta-mannan	beta-mannan (plant)	GH26	exo-beta-1,4-mannobiohydrolase	3.2.1.100
+beta-mannan	beta-mannan (plant)	GH26	beta-mannanase	3.2.1.78
+xylan	beta(1,3)-xylan (algae)	GH26	beta-1,3-xylanase	3.2.1.32
+alpha-galactan	alpha-galactoside, galactose oligosaccharides (plant), galactomannans (plant) and galactolipid (animal)	GH27	alpha-galactosidase	3.2.1.22
+arabinogalactan protein	arabinogalactan	GH27	beta-L-arabinopyranosidase	3.2.1.88
+host glycan	human blood group A, mucin, host glycan	GH27	alpha-N-acetylgalactosaminidase	3.2.1.49
+raffinose	raffinose family oligosaccharide (plant)	GH27	galactan:galactan galactosyltransferase	2.4.1.-
+starch	dextran and isomalto-oligosaccharides (bacteria)	GH27	isomalto-dextranase	3.2.1.94
+pectin	xylogalacturonan (pectin)	GH28	xylogalacturonan hydrolase	3.2.1.-
+pectin	galacturonan (pectin)	GH28	polygalacturonase	3.2.1.15
+pectin	rhamnogalacturonan (pectin)	GH28	rhamnogalacturonase	3.2.1.171
+pectin	pectin (rhamnogalacturonan I)	GH28	rhamnogalacturonan alpha-1,2-galacturonohydrolase	3.2.1.173
+pectin	galacturonan (pectin)	GH28	exo-polygalacturonase	3.2.1.67
+pectin	galacturonan (pectin)	GH28	exo-polygalacturonosidase	3.2.1.82
+host glycan	human milk oligosaccharides, mucin, host glycan	GH29	alpha-1,3/1,4-L-fucosidase	3.2.1.111
+host glycan	human milk oligosaccharides, mucin, host glycan	GH29	alpha-L-fucosidase	3.2.1.51
+host glycan	human milk oligosaccharides, mucin, host glycan	GH29	alpha-1,2-L-fucosidase	3.2.1.63
+arabinan	arabinan, arabinoxylan	GH3	alpha-L-arabinofuranosidase	3.2.1.55
+beta-glucan	beta-1,3-1,4-glucan (laminarin, lichenin and cereal D-glucans)	GH3	exo-1,3-1,4-glucanase	3.2.1.-
+beta-glucan	beta-1,2-glucan (bacteria)	GH3	beta-1,2-glucosidase	3.2.1.-
+beta-glucan	beta-1,3-glucan (laminarin, lichenin and cereal D-glucans)	GH3	beta-1,3-glucosidase	3.2.1.-
+beta-glucan	beta-glucan	GH3	beta-glucosidase	3.2.1.21
+beta-glucan	beta-1,3-glucan (laminarin, lichenin and cereal D-glucans)	GH3	lichenase / endo-beta-1,3-1,4-glucanase	3.2.1.73
+beta-glucan	cellodextrin (beta-1,3-glucan)	GH3	glucan 1,4-beta-glucosidase	3.2.1.74
+chitin	chitin, peptidoglycan	GH3	beta-N-acetylhexosaminidase	3.2.1.52
+host glycan	glycosphingolipid (host glycan)	GH3	beta-glucosylceramidase	3.2.1.45
+peptidoglycan	peptidoglycan	GH3	beta-N-acetylglucosaminide phosphorylases	2.4.1.-
+polyphenol	coniferin (glucoside of coniferyl alcohol)	GH3	coniferin beta-glucosidase	3.2.1.126
+polyphenol	protodioscin (plant steroidal saponin)	GH3	protodioscin 26-O-beta--D-glucosidase	3.2.1.186
+xylan	xylan	GH3	xylan 1,4-beta-xylosidase	3.2.1.37
+xyloglucan	xyloglucan (plant)	GH3	isoprimeverose-producing oligoxyloglucan hydrolase	3.2.1.120
+xyloglucan	xyloglucan (plant)	GH3	xyloglucan-specific exo-beta-1,4-glucanase / exo-xyloglucanase	3.2.1.155
+arabinogalactan protein	arabinogalactan proteins	GH30	endo-beta-1,6-galactanase	3.2.1.164
+beta-fucosides	beta-fucoside	GH30	beta-fucosidase	3.2.1.38
+beta-glucan	beta-glucan	GH30	beta-glucosidase	3.2.1.21
+beta-glucan	beta-1,6-glucan (fungal and algal cell wall)	GH30	beta-1,6-glucanase	3.2.1.75
+beta-glucuronan	beta-glucuronoside	GH30	beta-glucuronidase	3.2.1.31
+host glycan	glucosylsphingosine, glucosylceramide (host glycans)	GH30	glucosylceramidase	3.2.1.45
+xylan	xylan	GH30	[reducing end] beta-xylosidase	3.2.1.-
+xylan	xylan	GH30	glucuronoarabinoxylan endo-beta-1,4-xylanase	3.2.1.136
+xylan	xylan	GH30	beta-xylosidase	3.2.1.37
+xylan	xylan	GH30	endo-beta-1,4-xylanase	3.2.1.8
+alpha-galactan	alpha-galactoside	GH31	alpha-galactosidase	3.2.1.22
+alpha-mannan	alpha-mannoside	GH31	alpha-mannosidase	3.2.1.24
+host glycan	human blood group A, mucin, host glycan	GH31	alpha-N-acetylgalactosaminidase	3.2.1.217
+polyphenol	sulfoquinovoside (plant sulfolipid)	GH31	sulfoquinovosidase	3.2.1.199
+starch	glycogen and starch	GH31	oligosaccharide alpha-1,4-glucosyltransferase	2.4.1.161
+starch	starch	GH31	alpha-glucosidase	3.2.1.20
+starch	glycogen and starch	GH31	alpha-1,3-glucosidase	3.2.1.84
+starch	glycogen and starch	GH31	alpha-glucan lyase	4.2.2.13
+sucrose	sucrose 	GH31	sucrase-isomaltase	3.2.1.48
+xyloglucan	xyloglucan (plant)	GH31	alpha-xylosidase	3.2.1.177
+fructan	levan (fructan)	GH32	levan fructosyltransferase	2.4.1.-
+fructan	graminan- and levan-type fructans	GH32	[retaining] sucrose:sucrose 6-fructosyltransferase (6-SST)	2.4.1.-
+fructan	fructan(inulin, levan and sucrose)	GH32	cycloinulo-oligosaccharide fructanotransferase	2.4.1.-
+fructan	fructan(inulin, levan and sucrose)	GH32	sucrose:fructan 6-fructosyltransferase	2.4.1.10
+fructan	fructan(inulin, levan and sucrose)	GH32	fructan:fructan 1-fructosyltransferase	2.4.1.100
+fructan	fructan(inulin, levan and sucrose)	GH32	fructan:fructan 6G-fructosyltransferase	2.4.1.243
+fructan	fructan(inulin, levan and sucrose)	GH32	sucrose:sucrose 1-fructosyltransferase	2.4.1.99
+fructan	fructan	GH32	fructan beta-(2,1)-fructosidase/1-exohydrolase	3.2.1.153
+fructan	fructan	GH32	fructan beta-(2,6)-fructosidase/6-exohydrolase	3.2.1.154
+fructan	fructan(inulin, levan and sucrose)	GH32	invertase	3.2.1.26
+fructan	fructan(inulin, levan and sucrose)	GH32	beta-2,6-fructan 6-levanbiohydrolase	3.2.1.64
+fructan	levan (fructan)	GH32	endo-levanase	3.2.1.65
+fructan	inulin	GH32	endo-inulinase	3.2.1.7
+fructan	fructan(inulin, levan and sucrose)	GH32	exo-inulinase	3.2.1.80
+pectin	pectin (rhamnogalacturonan II), lipopolysaccharides (bacteria)	GH33	Kdo hydrolase	3.2.1.-
+sialic acid	sialic acid	GH33	trans-sialidase	2.4.1.-
+sialic acid	sialic acid (O-glycan, N-glycan, mucin, host glycan)	GH33	sialidase or neuraminidase	3.2.1.18
+sialic acid	sialic acid (O-glycan, N-glycan, mucin, host glycan)	GH33	anhydrosialidase	4.2.2.15
+sialic acid	sialic acid (O-glycan, N-glycan, mucin, host glycan)	GH34	sialidase or neuraminidase	3.2.1.18
+beta-galactan	galactan and arabinogalactan	GH35	beta-1,3-galactosidase	3.2.1.-
+chitin	chitosan, chitin	GH35	exo-beta-glucosaminidase	3.2.1.165
+pectin	beta-galactoside (pectin)	GH35	beta-galactosidase	3.2.1.23
+alpha-galactan	alpha-galactoside (galactose oligosaccharides, galactomannans and galactolipid)	GH36	alpha-galactosidase	3.2.1.22
+host glycan	acetylgalactosamine (human blood group A and b, mucin glycoproteins)	GH36	alpha-N-acetylgalactosaminidase	3.2.1.49
+raffinose	raffinose/stachyose oligosaccharides (plant seeds)	GH36	stachyose synthase	2.4.1.67
+raffinose	raffinose oligosaccharides	GH36	raffinose synthase	2.4.1.82
+trehalose	alpha-trehalose	GH37	alpha,alpha-trehalase	3.2.1.28
+alpha-mannan	alpha-mannan (fungi)	GH38	mannosyl-oligosaccharide alpha-1,3-mannosidase	3.2.1.-
+host glycan	N-glycan, O-glycans, alpha-mannan (fungi)	GH38	mannosyl-oligosaccharide alpha-1,2-mannosidase	3.2.1.113
+host glycan	N-glycan	GH38	mannosyl-oligosaccharide alpha-1,3-1,6-mannosidase	3.2.1.114
+host glycan	N-glycan, O-glycans, alpha-mannan (fungi)	GH38	alpha-mannosidase	3.2.1.24
+beta-galactan	beta-galactoside	GH39	beta-galactosidase	3.2.1.23
+beta-glucan	beta-glucoside (exopolysaccharide, cellubiose)	GH39	beta-glucosidase	3.2.1.21
+cellulose	beta-glucoside (cellubiose)	GH39	exo-beta-1,4-glucanase / cellodextrinase	3.2.1.74
+host glycan	glycosaminoglycans heparan sulfate and dermatan sulfate (host glycan)	GH39	alpha-L-iduronidase	3.2.1.76
+xylan	xylan	GH39	beta-xylosidase	3.2.1.37
+xylan	arabinoxylan (galacto-(alpha-1,2)-arabinosidase)	GH39	alpha-L-arabinofuranosidase	3.2.1.55
+beta-glucan	beta-glucoside (sinigrin, cellubiose)	GH4	6-phospho-beta-glucosidase	3.2.1.86
+palatinose	isomaltulose (palatinose, from honey and sugar cane)	GH4	palatinase	3.2.1.-
+pectin	galacturonides (polygalacturonan of pectin)	GH4	alpha-galacturonase	3.2.1.67
+raffinose	alpha-galactoside (raffinose family of oligosaccharides)	GH4	alpha-galactosidase	3.2.1.22
+starch	maltose and other small maltooligosaccharides	GH4	alpha-glucosidase	3.2.1.20
+sucrose	sucrose and its isomeric disaccharides	GH4	maltose-6-phosphate glucosidase	3.2.1.122
+xylan	alpha-glucuronide in glucuronoxylan	GH4	alpha-glucuronidase	3.2.1.139
+arabinan	paeonolide, ginsenoside, arabinoxylan, and arabinan	GH42	alpha-L-arabinopyranosidase	3.2.1.-
+arabinogalactan protein	beta-1,6/1,3-galactoside (arabinogalactan)	GH42	beta-galactosidase	3.2.1.23
+arabinan	arabinan, arabinoxylan	GH43	alpha-1,2-L-arabinofuranosidase	3.2.1.-
+arabinan	arabinan, arabinoxylan	GH43	exo-alpha-1,5-L-arabinofuranosidase	3.2.1.-
+arabinan	arabinan	GH43	[inverting] exo-alpha-1,5-L-arabinanase	3.2.1.-
+arabinan	arabinan	GH43	[inverting] endo-alpha-1,5-L-arabinanase	3.2.1.99
+arabinogalactan protein	beta-1,3-galactan, arabinogalactan	GH43	exo-beta-1,3-galactanase	3.2.1.145
+beta-galactan	beta-galactofuranoside	GH43	beta-D-galactofuranosidase	3.2.1.146
+xylan	beta-1,3-xylan (algae)	GH43	beta-1,3-xylosidase	3.2.1.-
+xylan	xylan	GH43	beta-xylosidase	3.2.1.37
+xylan	arabinoxylan	GH43	alpha-L-arabinofuranosidase	3.2.1.55
+xylan	xylan	GH43	xylanase	3.2.1.8
+beta-glucan	cellulose, lichenin and cereal beta-glucan	GH44	endoglucanase	3.2.1.4
+xyloglucan	xyloglucan	GH44	xyloglucanase	3.2.1.151
+beta-glucan	cellulose, lichenin and cereal beta-glucan	GH45	endoglucanase	3.2.1.4
+beta-mannan	mannans, galactomannans and glucomannan	GH45	endo-beta-1,4-mannanase	3.2.1.78
+xyloglucan	xyloglucan	GH45	xyloglucan-specific endo-beta-1,4-glucanase / endo-xyloglucanase	3.2.1.151
+chitosan	chitosan	GH46	chitosanase	3.2.1.132
+host glycan	protein-linked N-glycan (host glycan)	GH47	alpha-mannosidase	3.2.1.113
+cellulose	cellulose	GH48	reducing end-acting cellobiohydrolase	3.2.1.176
+cellulose	cellulose	GH48	endo-beta-1,4-glucanase	3.2.1.4
+chitin	chitin and chitodextrin	GH48	chitinase	3.2.1.14
+alpha-glucan	dextran (branched alpha-glucan)	GH49	dextranase	3.2.1.11
+alpha-glucan	pullulan (starch degradation by fungi)	GH49	isopullulanase	3.2.1.57
+alpha-glucan	dextran (branched alpha-glucan)	GH49	dextran 1,6-alpha-isomaltotriosidase	3.2.1.95
+arabinan	sulfated arabinan	GH49	sulfated arabinan endo-1,4-beta-L-arabinanase	3.2.1.-
+arabinan	arabinan	GH5	alpha-L-arabinofuranosidase	3.2.1.55
+arabinogalactan protein	arabinogalactan (bacteria)	GH5	beta-D-galactofuranosidase	3.2.1.146
+arabinogalactan protein	arabinogalactan	GH5	endo-beta-1,6-galactanase	3.2.1.164
+beta-glucan	laminarin (algae), pustulan (fungi)	GH5	endo-beta-1,3-glucanase / laminarinase	3.2.1.39
+beta-glucan	cellulose, beta-glucan	GH5	endo-beta-1,4-glucanase / cellulase	3.2.1.4
+beta-glucan	beta-1,3-glucans (laminarin)	GH5	glucan beta-1,3-glucosidase	3.2.1.58
+beta-glucan	beta-glucan(contains both (1->3)- and (1->4)-bonds),lichenin and cereal beta-glucan	GH5	lichenase / endo-beta-1,3-1,4-glucanase	3.2.1.73
+beta-glucan	laminarin (algae), pustulan (fungi)	GH5	glucan endo-1,6-beta-glucosidase	3.2.1.75
+beta-glycan	beta-glycoside	GH5	beta-glycosidase	3.2.1.-
+beta-glycan	beta-glycoside	GH5	beta-primeverosidase	3.2.1.149
+beta-mannan	beta-mannan (plant)	GH5	mannan transglycosylase	2.4.1.-
+beta-mannan	beta-mannan	GH5	beta-1,3-mannanase	3.2.1.-
+beta-mannan	glucomannan	GH5	glucomannan-specific endo-beta-1,4-glucanase	3.2.1.-
+beta-mannan	N-glycan, beta-mannan	GH5	beta-mannosidase	3.2.1.25
+beta-mannan	mannans, galactomannans and glucomannan	GH5	mannan endo-beta-1,4-mannosidase	3.2.1.78
+cellulose	cellulose and similar substrates	GH5	exo-beta-1,4-glucanase / cellodextrinase	3.2.1.74
+cellulose	cellulose 	GH5	cellulose beta-1,4-cellobiosidase	3.2.1.91
+chitin	chitin	GH5	beta-N-acetylhexosaminidase	3.2.1.52
+chitosan	chitosan	GH5	chitosanase	3.2.1.132
+glycolipid	sterylglucoside (fungi)	GH5	steryl beta-glucosidase	3.2.1.104
+glycolipid	glycosphingolipids	GH5	endoglycoceramidase	3.2.1.123
+glycolipid	fungus-specific glucosylceramide (glycolipid)	GH5	beta-glucosylceramidase	3.2.1.45
+glycolipid	glycosphingolipid, galactolipids	GH5	beta-galactosylceramidase	3.2.1.46
+polyphenol	rutin (polyphenol)	GH5	beta-rutinosidase /alpha-L-rhamnose-(1,6)-beta-D-glucosidase	3.2.1.-
+polyphenol	naringenin (flavonoid) and tea aroma	GH5	beta-glucosidase	3.2.1.21
+xylan	arabinoxylans	GH5	arabinoxylan-specific endo-beta-1,4-xylanase	3.2.1.-
+xylan	xylan	GH5	endo-beta-1,4-xylanase	3.2.1.8
+xyloglucan	xyloglucan	GH5	xyloglucan-specific endo-beta-1,4-glucanase	3.2.1.151
+agarose	porphyran, agarose	GH50	beta-agarase	3.2.1.81
+arabinan	arabinan	GH51	beta-xylosidase	3.2.1.37
+arabinan	arabinan, arabinoxylan	GH51	alpha-L-arabinofuranosidase	3.2.1.55
+beta-glucan	cellulose, beta-glucan	GH51	endoglucanase	3.2.1.4
+xylan	xylan	GH51	endo-beta-1,4-xylanase	3.2.1.8
+xylan	xylan	GH52	beta-xylosidase	3.2.1.37
+arabinogalactan protein	arabinogalactan	GH53	endo-beta-1,4-galactanase	3.2.1.89
+arabinan	arabinan, arabinoxylan	GH54	alpha-L-arabinofuranosidase	3.2.1.55
+xylan	arabinan, arabinoxylan	GH54	beta-xylosidase	3.2.1.37
+beta-glucan	laminarin (algae)	GH55	laminarin-degrading enzyme	3.2.1.-
+beta-glucan	laminarin (algae), pustulan (fungi)	GH55	endo-beta-1,3-glucanase	3.2.1.39
+beta-glucan	laminarin (algae), pustulan (fungi)	GH55	exo-beta-1,3-glucanase	3.2.1.58
+host glycan	glycosaminoglycan, hyaluronan, chondroitin sulfate, host glycan	GH56	chondroitin hydrolase	3.2.1.-
+host glycan	glycosaminoglycan, hyaluronan, chondroitin sulfate, host glycan	GH56	hyaluronidase	3.2.1.35
+alpha-galactan	alpha-galactoside, melibiose and raffinose	GH57	alpha-galactosidase	3.2.1.22
+alpha-glucan	pullulan, maltodextrins and cyclodextrin	GH57	amylopullulanase	3.2.1.41
+alpha-glucan	pullulan, maltodextrins and cyclodextrin	GH57	cyclomaltodextrinase	3.2.1.54
+beta-glucan	beta-1,4-glucan, glycogen	GH57	branching enzyme	2.4.1.18
+starch	starch, glycogen, and malto-oligosaccharides	GH57	4-alpha-glucanotransferase	2.4.1.25
+starch	starch, glycogen and related polysaccharides and oligosaccharides(containing three or more (1->4)-alpha-linked D-glucose units)	GH57	alpha-amylase	3.2.1.1
+sialic acid	sialic acid	GH58	endo-N-acetylneuraminidase or endo-sialidase	3.2.1.129
+beta-galactan	beta-galactoside	GH59	beta-galactosidase	3.2.1.23
+glycolipid	galactosylceramide, sphingolipids, galactolipids	GH59	galactocerebrosidase	3.2.1.46
+cellulose	cellulose	GH6	endoglucanase	3.2.1.4
+cellulose	cellulose	GH6	lichenase / endo-beta-1,3-1,4-glucanase	3.2.1.73
+cellulose	cellulose 	GH6	cellobiohydrolase	3.2.1.91
+arabinan	arabinoxylans, arabinogalactans, arabinan	GH62	alpha-L-arabinofuranosidase	3.2.1.55
+alpha-glucan	mannosylglycerate	GH63	mannosylglycerate alpha-mannosidase / mannosylglycerate hydrolase	3.2.1.170
+alpha-glucan	nigerose, trehalose, kojibiose, and maltooligosaccharide	GH63	alpha-glucosidase	3.2.1.20
+alpha-glucan	glucosylglycerate	GH63	glucosylglycerate hydrolase	3.2.1.208
+alpha-glucan	nigerose, trehalose, kojibiose, and maltooligosaccharide	GH63	alpha-1,3-glucosidase	3.2.1.84
+host glycan	N-glycan	GH63	processing alpha-glucosidase	3.2.1.106
+beta-glucan	beta-1,3-glucan (fungal cell walls)	GH64	beta-1,3-glucanase	3.2.1.39
+alpha-glucan	kojibiose and alpha-1,2-oligoglucan	GH65	α-glucan phosphorylase	2.4.1.-
+alpha-glucan	kojibiose 	GH65	1,2-α-glucosylglycerol phosphorylase	2.4.1.332
+alpha-glucan	trehalose, kojibiose	GH65	trehalose-6-phosphate phosphorylase	2.4.1.216
+alpha-glucan	kojibiose	GH65	kojibiose phosphorylase	2.4.1.230
+alpha-glucan	nigerose	GH65	nigerose phosphorylase	2.4.1.279
+alpha-glucan	1,3-alpha-oligoglucan 	GH65	1,3-alpha-oligoglucan phosphorylase	2.4.1.334
+alpha-glucan	trehalose	GH65	trehalose phosphorylase	2.4.1.64
+alpha-glucan	maltose (alpha-1,4)	GH65	maltose phosphorylase	2.4.1.8
+alpha-glucan	Glc-alpha-1,2-Gal of collagen (animal)	GH65	alpha-glucosyl-1,2-beta-galactosyl-L-hydroxylysine alpha-glucosidase	3.2.1.107
+alpha-glucan	trehalose	GH65	alpha,alpha-trehalase	3.2.1.28
+exo-polysaccharide	glucopyranosyl-alpha-1,3-rhamnose (bacteria lipopolysaccharides or capsule polysaccharides)	GH65	3-O-alpha-glucopyranosyl-L-rhamnose phosphorylase	2.4.1.282
+alpha-glucan	dextran (alpha-1,6)	GH66	cycloisomaltooligosaccharide glucanotransferase	2.4.1.248
+alpha-glucan	dextran	GH66	dextranase	3.2.1.11
+xylan	xylan side chain	GH67	xylan alpha-1,2-glucuronidase	3.2.1.131
+xylan	xylan side chain	GH67	alpha-glucuronidase	3.2.1.139
+fructan	synthesize beta-(2-6)-linked fructan levan with sucrose as substrate	GH68	levansucrase	2.4.1.10
+fructan	synthesize beta-(2-1)-linked fructan	GH68	inulosucrase	2.4.1.9
+fructan	synthesize beta-(2-1)-linked fructan	GH68	beta-fructofuranosidase	3.2.1.26
+cellulose	cellulose and similar substrates	GH7	reducing end-acting cellobiohydrolase	3.2.1.176
+cellulose	cellulose, lichenin and cereal beta-glucan	GH7	endo-beta-1,4-glucanase	3.2.1.4
+cellulose	beta-glucan, lichenin	GH7	endo-beta-1,3-1,4-glucanase	3.2.1.73
+chitosan	chitosan	GH7	chitosanase	3.2.1.132
+alpha-glucan	reuteran	GH70	reuteransucrase	2.4.1.-
+alpha-glucan	starch,maltose, beta-glucan ,lichenan,laminarin, xylan	GH70	alpha-4,6-glucanotransferase	2.4.1.-
+alpha-glucan	dextran 	GH70	alpha-1,2-branched dextransucrase	2.4.1.-
+alpha-glucan	glucan	GH70	alpha-4,3-glucanotransferase	2.4.1.-
+alpha-glucan	sucrose	GH70	alternansucrase	2.4.1.140
+alpha-glucan	sucrose	GH70	dextransucrase	2.4.1.5
+alpha-glucan	alpha-1,3-glucan	GH71	alpha-1,3-glucanase	3.2.1.59
+beta-glucan	beta-1,3-glucan	GH72	beta-1,3-glucanosyltransglycosylase	2.4.1.-
+peptidoglycan	peptidoglycan	GH73	peptidoglycan hydrolase with endo-beta-N-acetylglucosaminidase specificity	3.2.1.-
+peptidoglycan	peptidoglycan	GH73	lysozyme	3.2.1.17
+peptidoglycan	peptidoglycan	GH73	mannosyl-glycoprotein endo-beta-N-acetylglucosaminidase	3.2.1.96
+cellulose	carboxymethyl cellulose	GH74	endoglucanase	3.2.1.4
+xyloglucan	oligoxyloglucan	GH74	oligoxyloglucan reducing end-specific cellobiohydrolase	3.2.1.150
+xyloglucan	xyloglucan	GH74	xyloglucanase	3.2.1.151
+chitosan	chitosan	GH75	chitosanase	3.2.1.132
+alpha-glucan	alpha-glucose	GH76	alpha-glucosidase	3.2.1.20
+alpha-mannan	yeast alpha-mannan (yeast cell wall)	GH76	alpha-1,6-mannanase	3.2.1.101
+starch	amylomaltase	GH77	amylomaltase or 4-alpha-glucanotransferase	2.4.1.25
+alpha-rhamnoside	alpha-L-rhamnosidase in polyphenol (naringin, rutin, hesperidin), ulvan, pectin, arabinogalactan-protein	GH78	alpha-L-rhamnosidase	3.2.1.40
+pectin	rhamnogalacturonan	GH78	rhamnogalacturonan alpha-L-rhamnohydrolase	3.2.1.174
+arabinogalactan protein	arabinogalactan protein	GH79	beta-4-O-methyl-glucuronidase	3.2.1.-
+arabinogalactan protein	arabinogalactan protein	GH79	beta-glucuronidase	3.2.1.31
+host glycan	heparan sulfate proteoglycans	GH79	heparanase	3.2.1.166
+host glycan	heparan sulfate proteoglycans	GH79	baicalin beta-glucuronidase	3.2.1.167
+host glycan	hyaluronan	GH79	hyaluronoglucuronidase	3.2.1.36
+beta-glucan	beta-glucan (laminarin, lichenin and cereal D-glucans)	GH8	endo-beta-1,3(4)-glucanase / lichenase-laminarinase	3.2.1.6
+beta-glucan	beta-glucan (lichenin and cereal beta-glucan)	GH8	licheninase	3.2.1.73
+cellulose	cellulose	GH8	cellulase	3.2.1.4
+chitosan	chitosan	GH8	chitosanase	3.2.1.132
+xylan	xylan	GH8	reducing-end-xylose releasing exo-oligoxylanase	3.2.1.156
+xylan	xylan	GH8	endo-1,4-beta-xylanase	3.2.1.8
+chitosan	chitosan	GH80	chitosanase	3.2.1.132
+beta-glucan	beta--1,3-glucan 	GH81	endo-beta-1,3-glucanase	3.2.1.39
+carrageenan	iota-carrageenans	GH82	Œπ-carrageenase	3.2.1.157
+host glycan	paramyxovirus cleaves sialic acid of host glycans	GH83	neuraminidase	3.2.1.18
+host glycan	cleave beta-O-linked GlcNAc of host glycan	GH84	[protein]-3-O-(GlcNAc)-L-Ser/Thr beta-N-acetylglucosaminidase	3.2.1.169
+host glycan	hyaluronan	GH84	hyaluronidase	3.2.1.35
+host glycan	mucin	GH84	N-acetyl beta-glucosaminidase	3.2.1.52
+host glycan	N-linked glycans	GH85	endo-beta-N-acetylglucosaminidase	3.2.1.96
+agarose	porphyran	GH86	beta-porphyranase	3.2.1.178
+agarose	porphyran, agarose	GH86	beta-agarase	3.2.1.81
+alpha-glucan	alpha-1,3-glucan	GH87	alpha-1,3-glucanase	3.2.1.59
+alpha-glucan	nigeran (alpha-glucan  in fungi)	GH87	mycodextranase	3.2.1.61
+host glycan	sulfated glycosaminoglycans	GH88	d-4,5-unsaturated beta-glucuronyl hydrolase	3.2.1.-
+host glycan	sulfated glycosaminoglycans	GH88	unsaturated chondroitin disaccharide hydrolase	3.2.1.180
+host glycan	alpha-Linked N-acetylglucosamine mucin	GH89	alpha-N-acetylglucosaminidase	3.2.1.50
+beta-glucan	xanthan	GH9	endo-beta-1,4-glucanase (xanthanase)	3.2.1.-
+beta-glucan	xyloglucan	GH9	xyloglucan-specific endo-beta-1,4-glucanase / endo-xyloglucanase	3.2.1.151
+beta-glucan	beta-glucan(laminarin, lichenin and cereal D-glucans)	GH9	endo-beta-1,3(4)-glucanase / lichenase-laminarinase	3.2.1.6
+beta-glucan	beta-glucan, lichenin	GH9	lichenase / endo-beta-1,3-1,4-glucanase	3.2.1.73
+cellulose	cellulose	GH9	endoglucanase	3.2.1.4
+cellulose	cellulose	GH9	exo-beta-1,4-glucanase / cellodextrinase	3.2.1.74
+cellulose	cellulose and cellotetraose	GH9	cellobiohydrolase	3.2.1.91
+chitosan	chitosan or chitosan oligosaccharides	GH9	exo-beta-glucosaminidase	3.2.1.165
+exo-polysaccharide	lipo- or capsular polysaccharides	GH90	endorhamnosidase	3.2.1.-
+fructan	inulin	GH91	difructofuranose 1,2':2,3' dianhydride hydrolase [DFA-IIIase]	3.2.1.-
+fructan	inulin	GH91	inulin lyase [DFA-I-forming]	4.2.2.17
+fructan	inulin	GH91	inulin lyase [DFA-III-forming]	4.2.2.18
+host glycan	host N-glycan Man9(GlcNac)2	GH92	mannosyl-oligosaccharide alpha-1,3-mannosidase	3.2.1.-
+host glycan	host N-glycan	GH92	mannosyl-oligosaccharide alpha-1,6-mannosidase	3.2.1.-
+host glycan	host N-glycan	GH92	alpha-1,2-mannosidase	3.2.1.-
+host glycan	host N-glycan	GH92	alpha-1,3-mannosidase	3.2.1.-
+host glycan	host N-glycan	GH92	alpha-1,4-mannosidase	3.2.1.-
+host glycan	host N-glycan	GH92	mannosyl-1-phosphodiester alpha-1,P-mannosidase	3.2.1.-
+host glycan	host N-glycan	GH92	mannosyl-oligosaccharide alpha-1,2-mannosidase	3.2.1.113
+host glycan	host N-glycan	GH92	alpha-mannosidase	3.2.1.24
+arabinan	arabinan (pectin)	GH93	exo-alpha-L-1,5-arabinanase	3.2.1.-
+beta-glucan	1,2-beta--oligoglucan	GH94	beta--1,2-oligoglucan phosphorylase	2.4.1.333
+beta-glucan	laminarin	GH94	laminaribiose phosphorylase	2.4.1.31
+cellulose	cellobiose	GH94	cellobiose phosphorylase	2.4.1.20
+cellulose	cellobionic acid	GH94	cellobionic acid phosphorylase	2.4.1.321
+cellulose	cellodextrin	GH94	cellodextrin phosphorylase	2.4.1.49
+chitin	chitin	GH94	chitobiose phosphorylase	2.4.1.280
+chitin	4-O-beta--glucosyl-galactose	GH94	4-O-beta--D-glucosyl-D-galactose phosphorylase	2.4.1.-
+host glycan	alpha-L-fucoside	GH95	alpha-L-fucosidase	3.2.1.51
+pectin, xylan	plant pectic polysaccharide, xylan	GH95	alpha-L-galactosidase	3.2.1.-
+xyloglucan, host glycan	alpha1,2-L-fucosidase sugar	GH95	alpha-1,2-L-fucosidase	3.2.1.63
+agarose	agarose	GH96	alpha-agarase	3.2.1.158
+alpha-glucan	alpha-glucose residue	GH97	alpha-glucosidase	3.2.1.20
+alpha-glucan	alpha-galactoside, alpha-fucoside	GH97	alpha-galactosidase	3.2.1.22
+alpha-glucan	starch	GH97	glucoamylase	3.2.1.3
+host glycan	blood group A and B substances, host glycans	GH98	blood-group endo-beta-1,4-galactosidase	3.2.1.102
+xylan	xylan	GH98	endo-beta-1,4-xylanase	3.2.1.8
+alpha-mannan	alpha-mannans (fungi)	GH99	mannan endo-1,2-alpha-mannanase	3.2.1.198
+host glycan	host N-glycan	GH99	glycoprotein endo-alpha-1,2-mannosidase	3.2.1.130
+pectin	pectin	PL1	pectin lyase	4.2.2.10
+pectin	pectin	PL1	pectate lyase	4.2.2.2
+pectin	homogalacturonan(de-esterified pectin)	PL1	exo-pectate lyase	4.2.2.9
+pectin	pectin	PL10	pectate lyase	4.2.2.2
+pectin	rhamnogalacturonan I(pectin from the plant cell wall)	PL11	rhamnogalacturonan endolyase	4.2.2.23
+pectin	rhamnogalacturonan I(pectin from the plant cell wall)	PL11	rhamnogalacturonan exolyase	4.2.2.24
+host glycan	Heparin and heparan sulfate(host glycan)	PL12	heparin lyase / heparin lyase I	4.2.2.7
+host glycan	heparin sulfate(host glycan)	PL12	heparin-sulfate lyase	4.2.2.8
+host glycan	Heparin and heparan sulfate(host glycan)	PL13	heparin lyase	4.2.2.7
+alginate	alginate	PL14	exo-oligoalginate lyase	4.2.2.26
+alginate	alginate	PL14	poly(beta-mannuronate) lyase / M-specific alginate lyase	4.2.2.3
+host glycan	host glycan	PL14	beta-1,4-glucuronan lyase	4.2.2.14
+alginate	alginate	PL15	oligoalginate lyase / exo-alginate lyase	4.2.2.26
+alginate	alginate	PL15	alginate lyase	4.2.2.3
+host glycan	Heparin and heparan sulfate(host glycan)	PL15	heparin lyase / heparin lyase I	4.2.2.7
+host glycan	heparin sulfate(host glycan)	PL15	heparin-sulfate lyase / heparin lyase III	4.2.2.8
+host glycan	hyaluronan	PL16	hyaluronan lyase	4.2.2.1
+alginate	alginate	PL17	oligoalginate lyase	4.2.2.26
+alginate	alginate	PL17	alginate lyase	4.2.2.3
+alginate	alginate	PL18	poly(alpha-L-guluronate) lyase / G-specific alginate lyase	4.2.2.11
+alginate	alginate	PL18	alginate lyase	4.2.2.3
+pectin	pectin	PL2	pectate lyase	4.2.2.2
+pectin	homogalacturonan(de-esterified pectin)	PL2	exo-polygalacturonate lyase	4.2.2.9
+host glycan	host glycan	PL20	endo-beta-1,4-glucuronan lyase	4.2.2.14
+host glycan	Heparin and heparan sulfate(host glycan)	PL21	heparin lyase	4.2.2.7
+host glycan	heparin sulfate(host glycan)	PL21	heparin-sulfate lyase	4.2.2.8
+pectin	pectin( D-galacturonate)	PL22	oligogalacturonate lyase / oligogalacturonide lyase	4.2.2.6
+pectin	rhamnogalacturonan I(pectin from the plant cell wall)	PL26	rhamnogalacturonan exolyase	4.2.2.24
+host glycan	glycosaminoglycans(host glycan)	PL29	chondroitin-sulfate ABC endolyase	4.2.2.20
+pectin	pectate	PL3	pectate lyase	4.2.2.2
+host glycan	hyaluronate(host glycan)	PL30	hyaluronate lyase	4.2.2.1
+alginate	alginate	PL31	poly(beta-mannuronate) lyase / M-specific alginate lyase	4.2.2.3
+host glycan	host glycan	PL31	endo-beta-1,4-glucuronan lyase	4.2.2.14
+alginate	alginate	PL32	poly(beta-mannuronate) lyase / M-specific alginate lyase	4.2.2.3
+gellan	gellan(polysaccharide)	PL33	gellan lyase	4.2.2.25
+host glycan	hyaluronate(host glycan)	PL33	hyaluronate lyase	4.2.2.1
+host glycan	glycosaminoglycans(host glycan)	PL33	chondroitin sulfate lyase	4.2.2.20
+alginate	alginate	PL36	poly(beta-mannuronate) lyase / M-specific alginate lyase	4.2.2.3
+host glycan	glycosaminoglycans(host glycan)	PL37	chondroitin-sulfate ABC endolyase	4.2.2.20
+host glycan	heparin sulfate(host glycan)	PL37	heparin-sulfate lyase / heparin lyase III	4.2.2.8
+host glycan	host glycan	PL38	endo-beta-1,4-glucuronan lyase	4.2.2.14
+pectin	rhamnogalacturonan I(pectin from the plant cell wall)	PL4	rhamnogalacturonan endolyase	4.2.2.23
+alginate	alginate	PL41	alginate lyase	4.2.2.3
+arabinogalactan protein	arabinogalactan	PL42	L-rhamnose-alpha-1,4-D-glucuronate lyase 	4.2.2.-
+arabinogalactan protein	arabinogalactan	PL42	L-Rhalpha-alpha-1,4-GlcA alpha-L-rhamnohydrolase	3.2.1.-
+alginate	alginate	PL5	alginate lyase	4.2.2.3
+host glycan	host glycan	PL5	endo-beta-1,4-glucuronan lyase	4.2.2.14
+alginate	alginate	PL6	poly(alpha-L-guluronate) lyase / G-specific alginate lyase	4.2.2.11
+alginate	alginate	PL6	oligoalginate lyase / exo-alginate lyase	4.2.2.26
+alginate	alginate	PL6	MG-specific alginate lyase	4.2.2.-
+alginate	alginate	PL6	alginate lyase	4.2.2.3
+host glycan	dermatan sulfate(host glycan)	PL6	chondroitinase B	4.2.2.19
+alginate	alginate	PL7	alpha-L-guluronate lyase / G-specific alginate lyase	4.2.2.11
+alginate	alginate	PL7	oligoalginate lyase / exo-alginate lyase	4.2.2.26
+alginate	alginate	PL7	poly-(MG)-lyase / MG-specific alginate lyase	4.2.2.-
+alginate	alginate	PL7	poly(beta-mannuronate) lyase / M-specific alginate lyase	4.2.2.3
+host glycan	glucuronan(host glycan)	PL7	endo-beta-1,4-glucuronan lyase	4.2.2.14
+alginate	alginate	PL8	poly(beta-mannuronate) lyase / M-specific alginate lyase	4.2.2.3
+host glycan	hyaluronan	PL8	hyaluronate lyase	4.2.2.1
+host glycan	glycosaminoglycans(host glycan)	PL8	chondroitin ABC lyase	4.2.2.20
+host glycan	glycosaminoglycans(host glycan)	PL8	chondroitin AC lyase	4.2.2.5
+host glycan	Heparin and heparan sulfate(host glycan)	PL8	heparin lyase / heparin lyase I	4.2.2.7
+xanthan	xanthan	PL8	xanthan lyase	4.2.2.12
+pectin	pectate	PL9	pectate lyase	4.2.2.2
+pectin	rhamnogalacturonan I(pectin from the plant cell wall)	PL9	rhamnogalacturonan endolyase	4.2.2.23
+pectin	homogalacturonan(de-esterified pectin)	PL9	exopolygalacturonate lyase	4.2.2.9
