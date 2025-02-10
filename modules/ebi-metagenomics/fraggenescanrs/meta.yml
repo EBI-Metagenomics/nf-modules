@@ -38,8 +38,7 @@ input:
           - illumina_1
           - illumina_5
           - illumina_10
-        description: Name that contains model parameters, these models are part of the
-          installation of the tool
+        description: The name of the file that contains the model parameters. These models are part of the tool's installation, so the name is the only information needed.
 output:
   - nucleotide_fasta:
       - meta:
