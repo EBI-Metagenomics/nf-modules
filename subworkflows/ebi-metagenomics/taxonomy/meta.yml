@@ -4,6 +4,8 @@ description: Getting per contig taxonomic annotations for metagenomic assembly b
 keywords:
   - taxonomic classification
   - catpack
+  - protein classification
+  - metagenomics
 components:
   - diamond/blastp
   - catpack/contigs
