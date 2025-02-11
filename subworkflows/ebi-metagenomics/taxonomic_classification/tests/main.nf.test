@@ -1,8 +1,8 @@
 nextflow_workflow {
 
-    name "Test subworkflows/taxonomy/tests/main.nf.test"
+    name "Test subworkflow TAXONOMIC_CLASSIFICATION"
     script "../main.nf"
-    workflow "TAXONOMY"
+    workflow "TAXONOMIC_CLASSIFICATION"
 
     test("Run the pipeline on the test dataset") {
         when {

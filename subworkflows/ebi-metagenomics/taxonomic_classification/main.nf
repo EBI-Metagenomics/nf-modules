@@ -1,7 +1,7 @@
 include { DIAMOND_BLASTP  } from '../../../modules/nf-core/diamond/blastp/main'
 include { CATPACK_CONTIGS } from '../../../modules/nf-core/catpack/contigs/main'
 
-workflow TAXONOMY {
+workflow TAXONOMIC_CLASSIFICATION {
     take:
     contigs                     // [ val(meta), path(file) ]
     proteins                    // [ val(meta), path(file) ]
