@@ -1,5 +1,5 @@
-include { DIAMOND_BLASTP  } from '../../../modules/nf-core/diamond/blastp/main'
-include { CATPACK_CONTIGS } from '../../../modules/nf-core/catpack/contigs/main'
+include { DIAMOND_BLASTP  } from '../../../modules/ebi-metagenomics/diamond/blastp/main'
+include { CATPACK_CONTIGS } from '../../../modules/ebi-metagenomics/catpack/contigs/main'
 
 workflow TAXONOMIC_CLASSIFICATION {
     take:
