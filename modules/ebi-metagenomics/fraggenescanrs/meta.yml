@@ -29,15 +29,15 @@ input:
   - - training_file_name:
         type: string
         enum:
-          - complete
-          - sanger_5
-          - sanger_10
-          - 4_5_4_5
-          - 4_54_10
-          - 4_54_30
-          - illumina_1
-          - illumina_5
-          - illumina_10
+          - "complete"
+          - "sanger_5"
+          - "sanger_10"
+          - "454_5"
+          - "454_10"
+          - "454_30"
+          - "illumina_1"
+          - "illumina_5"
+          - "illumina_10"
         description: The name of the file that contains the model parameters. These models are part of the tool's installation, so the name is the only information needed.
 output:
   - nucleotide_fasta:
@@ -97,6 +97,7 @@ output:
           type: file
           description: File containing software versions
           pattern: "versions.yml"
+
 authors:
   - "@mberacochea"
 
