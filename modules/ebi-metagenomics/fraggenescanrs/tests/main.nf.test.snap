@@ -1,0 +1,180 @@
+{
+    "metagenomics-assembly - fasta": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.ffn.gz:md5,f5dee7552a6dc7428a153810a8a5fc29"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.faa.gz:md5,041e0629d6cc29699fbb5eda42fdbd9c"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.out.gz:md5,54e3f0864824f17f7a6ea234a9ca7d42"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.gff.gz:md5,cccd3d67491e5d20e9b7df9937a2f386"
+                    ]
+                ],
+                "4": [
+                    "versions.yml:md5,9889c439c3439a2cc2d535bab8dbd6e6"
+                ],
+                "amino_acid_fasta": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.faa.gz:md5,041e0629d6cc29699fbb5eda42fdbd9c"
+                    ]
+                ],
+                "gene_annotations": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.out.gz:md5,54e3f0864824f17f7a6ea234a9ca7d42"
+                    ]
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.gff.gz:md5,cccd3d67491e5d20e9b7df9937a2f386"
+                    ]
+                ],
+                "nucleotide_fasta": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.ffn.gz:md5,f5dee7552a6dc7428a153810a8a5fc29"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,9889c439c3439a2cc2d535bab8dbd6e6"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.4"
+        },
+        "timestamp": "2025-02-10T22:43:01.559958"
+    },
+    "metagenomics-assembly - fasta - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.ffn.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.faa.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.out.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.gff.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    "versions.yml:md5,9889c439c3439a2cc2d535bab8dbd6e6"
+                ],
+                "amino_acid_fasta": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.faa.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "gene_annotations": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.out.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.gff.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "nucleotide_fasta": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.ffn.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,9889c439c3439a2cc2d535bab8dbd6e6"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.4"
+        },
+        "timestamp": "2025-02-10T22:43:49.087012"
+    }
+}

@@ -1,0 +1,58 @@
+nextflow_process {
+
+    name "Test Process FRAGGENESCANRS"
+    script "../main.nf"
+    process "FRAGGENESCANRS"
+
+    tag "modules"
+    tag "modules_ebimetagenomics"
+    tag "fraggenescanrs"
+
+    test("metagenomics-assembly - fasta") {
+
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ],
+                    file("${moduleDir}/tests/data/example.fa.gz", checkIfExists: true),
+                ]
+                input[1] = "illumina_5" // train file - this is the default value we use in MGnify for short reads
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("metagenomics-assembly - fasta - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ],
+                    file("${moduleDir}/tests/data/example.fa.gz", checkIfExists: true),
+                ]
+                input[1] = "illumina_5" // train file - this is the default value we use in MGnify for short reads
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+    }
+}
