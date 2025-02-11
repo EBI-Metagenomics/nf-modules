@@ -1,5 +1,5 @@
 {
-    "it should work properly with a fasta as input": {
+    "assembly fasta ": {
         "content": [
             {
                 "0": [
@@ -8,7 +8,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.faa.gz:md5,d8354102b645c1b1b97e3aef559b8a64"
+                        "test.faa.gz:md5,c6434a1ba5e2cf8a3ddbeb77e19b9d49"
                     ]
                 ],
                 "1": [
@@ -17,12 +17,12 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.ffn.gz:md5,9b7a1ce6c2380e7be072e68c171d93cd"
+                        "test.ffn.gz:md5,212ee17697e730c66f5c874a738570f1"
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,14ce365346593b2444c8be16843e3444",
                     "versions.yml:md5,6ce9415d5682dd2a5a1ad52ef05477a3",
+                    "versions.yml:md5,a34f2510d6c7baad556ca16eb470e427",
                     "versions.yml:md5,e19d0b42602a46bc22cca0bdc9c71a49"
                 ],
                 "faa": [
@@ -31,7 +31,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.faa.gz:md5,d8354102b645c1b1b97e3aef559b8a64"
+                        "test.faa.gz:md5,c6434a1ba5e2cf8a3ddbeb77e19b9d49"
                     ]
                 ],
                 "ffn": [
@@ -40,20 +40,134 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.ffn.gz:md5,9b7a1ce6c2380e7be072e68c171d93cd"
+                        "test.ffn.gz:md5,212ee17697e730c66f5c874a738570f1"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,14ce365346593b2444c8be16843e3444",
                     "versions.yml:md5,6ce9415d5682dd2a5a1ad52ef05477a3",
+                    "versions.yml:md5,a34f2510d6c7baad556ca16eb470e427",
                     "versions.yml:md5,e19d0b42602a46bc22cca0bdc9c71a49"
                 ]
             }
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "24.10.2"
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.4"
         },
-        "timestamp": "2025-01-15T16:47:31.100271"
+        "timestamp": "2025-02-11T22:57:22.048737"
+    },
+    "assembly fasta and cmsearch mask file": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.faa.gz:md5,3ea1767188a55caac221cab6f352b702"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.ffn.gz:md5,c94d43216aa15fe3e4266b5dca09153d"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,6ce9415d5682dd2a5a1ad52ef05477a3",
+                    "versions.yml:md5,a34f2510d6c7baad556ca16eb470e427",
+                    "versions.yml:md5,e19d0b42602a46bc22cca0bdc9c71a49"
+                ],
+                "faa": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.faa.gz:md5,3ea1767188a55caac221cab6f352b702"
+                    ]
+                ],
+                "ffn": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.ffn.gz:md5,c94d43216aa15fe3e4266b5dca09153d"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,6ce9415d5682dd2a5a1ad52ef05477a3",
+                    "versions.yml:md5,a34f2510d6c7baad556ca16eb470e427",
+                    "versions.yml:md5,e19d0b42602a46bc22cca0bdc9c71a49"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.4"
+        },
+        "timestamp": "2025-02-11T22:57:25.968836"
+    },
+    "assembly fasta - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.faa.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.ffn.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    "versions.yml:md5,6ce9415d5682dd2a5a1ad52ef05477a3",
+                    "versions.yml:md5,a34f2510d6c7baad556ca16eb470e427",
+                    "versions.yml:md5,e19d0b42602a46bc22cca0bdc9c71a49"
+                ],
+                "faa": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.faa.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "ffn": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.ffn.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,6ce9415d5682dd2a5a1ad52ef05477a3",
+                    "versions.yml:md5,a34f2510d6c7baad556ca16eb470e427",
+                    "versions.yml:md5,e19d0b42602a46bc22cca0bdc9c71a49"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.4"
+        },
+        "timestamp": "2025-02-11T22:06:37.768536"
     }
 }

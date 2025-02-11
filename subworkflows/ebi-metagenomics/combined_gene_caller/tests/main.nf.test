@@ -12,14 +12,67 @@ nextflow_workflow {
     tag "prodigal"
     tag "fraggenescan"
 
-    test("it should work properly with a fasta as input") {
+    test("assembly fasta ") {
 
         when {
             workflow {
                 """
                 input[0] = [
                     [ id:'test', single_end:false ],
-                    file("${moduleDir}/tests/fixtures/ERZ19591644_FASTA_subsample.fasta.gz", checkIfExists: true)
+                    file("${moduleDir}/tests/data/test_assembly.fasta.gz", checkIfExists: true)
+                ]
+                input[1] = channel.empty()
+            """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("assembly fasta and cmsearch mask file") {
+
+        when {
+            workflow {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ],
+                    file("${moduleDir}/tests/data/test_assembly.fasta.gz", checkIfExists: true)
+                ]
+                input[1] = channel.of([
+                    [ id:'test', single_end:false ],
+                    file("${moduleDir}/tests/data/test_tblout.deoverlapped", checkIfExists: true)
+                ])
+            """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() },
+                {
+                    def fasta = path(workflow.out.faa.get(0).get(1)).fasta
+                    assert "MGYA1_3 # 2446 # 2682 # 1 # ID=1_3;partial=00;start_type=TTG;rbs_motif=AGGAG;rbs_spacer=5-10bp;gc_cont=0.287" in fasta
+                    assert "MGYA2_210_335_+" in fasta
+                    assert fasta.size() == 42
+                }
+            )
+        }
+    }
+
+    test("assembly fasta - stub") {
+
+        options "-stub"
+
+        when {
+            workflow {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false ],
+                    file("${moduleDir}/tests/data/test_assembly.fasta.gz", checkIfExists: true)
                 ]
                 input[1] = channel.empty()
             """

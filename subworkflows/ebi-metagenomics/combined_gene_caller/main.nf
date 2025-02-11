@@ -1,12 +1,11 @@
 
 include { PRODIGAL                 } from '../../../modules/ebi-metagenomics/prodigal/main'
-include { FRAGGENESCAN             } from '../../../modules/ebi-metagenomics/fraggenescan/main'
+include { FRAGGENESCANRS           } from '../../../modules/ebi-metagenomics/fraggenescanrs/main'
 include { COMBINEDGENECALLER_MERGE } from '../../../modules/ebi-metagenomics/combinedgenecaller/merge/main'
 
 workflow COMBINED_GENE_CALLER {
 
     take:
-    // Should the mask_file be merged into the assembly channel ?
     ch_assembly  // channel: [ val(meta), [ fasta ] ]
     ch_mask_file // channel: [ val(meta), [.out | .txt] ]
 
@@ -17,8 +16,8 @@ workflow COMBINED_GENE_CALLER {
     PRODIGAL ( ch_assembly, channel.value("sco") )
     ch_versions = ch_versions.mix(PRODIGAL.out.versions)
 
-    FRAGGENESCAN ( ch_assembly )
-    ch_versions = ch_versions.mix(FRAGGENESCAN.out.versions)
+    FRAGGENESCANRS ( ch_assembly, "illumina_5" )
+    ch_versions = ch_versions.mix(FRAGGENESCANRS.out.versions)
 
     ch_mask_file = ch_mask_file ?: Channel.empty()
 
@@ -27,28 +26,29 @@ workflow COMBINED_GENE_CALLER {
     ).join(
         PRODIGAL.out.amino_acid_fasta,
     ).join(
-        FRAGGENESCAN.out.gene_annotations,
+        FRAGGENESCANRS.out.gene_annotations,
     ).join(
-        FRAGGENESCAN.out.nucleotide_fasta,
+        FRAGGENESCANRS.out.nucleotide_fasta,
     ).join(
-        FRAGGENESCAN.out.amino_acid_fasta,
+        FRAGGENESCANRS.out.amino_acid_fasta,
     ).join(
         ch_mask_file, remainder: true
     )
 
-    COMBINEDGENECALLER_MERGE( ch_annotations.map { meta, prodigal_sco, prodigal_nt_fasta, prodigal_aa_fasta, frag_gene_annot, frag_nt_fasta, frag_aa_fasta, mask ->
-            return [
-                meta,
-                prodigal_sco,
-                prodigal_nt_fasta,
-                prodigal_aa_fasta,
-                frag_gene_annot,
-                frag_nt_fasta,
-                frag_aa_fasta,
-                mask ?: []
-            ]
-        }
-    )
+    ch_merge = ch_annotations.map { meta, prodigal_sco, prodigal_nt_fasta, prodigal_aa_fasta, frag_gene_annot, frag_nt_fasta, frag_aa_fasta, mask ->
+        return [
+            meta,
+            prodigal_sco,
+            prodigal_nt_fasta,
+            prodigal_aa_fasta,
+            frag_gene_annot,
+            frag_nt_fasta,
+            frag_aa_fasta,
+            mask ?: []
+        ]
+    }
+
+    COMBINEDGENECALLER_MERGE( ch_merge )
 
     ch_versions = ch_versions.mix(COMBINEDGENECALLER_MERGE.out.versions)
 
