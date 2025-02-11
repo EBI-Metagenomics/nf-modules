@@ -1,5 +1,5 @@
-include { DIAMOND_BLASTP  } from '../../modules/nf-core/diamond/blastp/main'
-include { CATPACK_CONTIGS } from '../../modules/nf-core/catpack/contigs/main'
+include { DIAMOND_BLASTP  } from '../../../modules/nf-core/diamond/blastp/main'
+include { CATPACK_CONTIGS } from '../../../modules/nf-core/catpack/contigs/main'
 
 workflow TAXONOMY {
     take:
@@ -7,7 +7,7 @@ workflow TAXONOMY {
     proteins                    // [ val(meta), path(file) ]
     cat_db                      // [ val(meta), path(db_folder)  ]
     taxonomy_db                 // [ val(meta), path(tax_folder) ]
-
+ 
     main:
 
     ch_versions = Channel.empty()
