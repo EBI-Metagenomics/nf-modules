@@ -1,0 +1,57 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "taxonomy"
+description: Getting per contig taxonomic annotations for metagenomic assembly based on taxonomic classification of predicted proteins with DIAMOND and CAT.
+keywords:
+  - taxonomic classification
+  - catpack
+components:
+  - diamond/blastp
+  - catpack/contigs
+input:
+  - contigs:
+      type: file
+      description: |
+        The input channel containing file of metagenomic assembly
+        Structure: [ val(meta), path(fasta) ]
+      pattern: "*.{fasta, fasta.gz, fa, fa.gz, fna, fna.gz}"
+  - proteins:
+      type: file
+      description: |
+        The input channel containing proteins predicted for the given metagenome
+        CAT assumes that predicted proteins have ids in format <contig_id>_<protein_id>
+        Structure: [ val(meta), path(fasta) ]
+      pattern: "*.{fasta, fasta.gz, fa, fa.gz, faa, faa.gz}"
+  - cat_db:
+      type: path
+      description: |
+        The input channel containing the db/ folder of the CAT database produced with catpack/prepare
+        Folder must contain DIAMOND db *.dmnd, *.fastaid2LCAtaxid, *.taxids_with_multiple_offspring
+        Structure: [ val(meta), path(db_folder) ]
+  - taxonomy_db:
+      type: path
+      description: |
+        The input channel containing the tax/ folder of the CAT database produced with catpack/prepare
+        Folder must contain names.dmp and nodes.dmp
+        Structure: [ val(meta), path(tax_db_folder) ]
+    
+output:
+  - diamond_output:
+      type: file
+      description: |
+        Channel containing results of alignment of predicted proteins to a database
+        Structure: [ val(meta), path(file) ]
+      pattern: '*.{txt, txt.gz}'
+  - cat_output:
+      type: file
+      description: |
+        Channel containing taxonomic classification of contigs
+        Structure: [ val(meta), path(file) ]
+      pattern: "*.{contig2classification.txt, contig2classification.txt.gz}"
+  - versions:
+      type: file
+      description: |
+        File containing software versions
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+authors:
+  - "@ochkalova"

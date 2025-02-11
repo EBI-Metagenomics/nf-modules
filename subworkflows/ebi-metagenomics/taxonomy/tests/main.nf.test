@@ -1,0 +1,29 @@
+nextflow_workflow {
+
+    name "Test subworkflows/taxonomy/tests/main.nf.test"
+    script "../main.nf"
+    workflow "TAXONOMY"
+
+    test("Run the pipeline on the test dataset") {
+        when {
+            params {
+                output_path    = "${outputDir}"
+            }
+            workflow {
+                """
+                input[0] = [ [id:'test'], file("${moduleDir}/tests/data/contigs.fasta", checkIfExists: true) ]
+                input[1] = [ [id:'test'], file("${moduleDir}/tests/data/proteins.fasta", checkIfExists: true) ]
+                input[2] = [ [id:'test'], file("${moduleDir}/tests/data/db", checkIfExists: true) ]
+                input[3] = [ [id:'test'], file("${moduleDir}/tests/data/tax", checkIfExists: true) ]
+                """
+            }
+        }
+        then {
+            assertAll(
+            { assert workflow.success },
+            { assert snapshot(workflow.out.diamond_output).match("diamond_output") },
+            { assert snapshot(workflow.out.cat_output).match("cat_output") },
+            )
+        }
+    }
+}

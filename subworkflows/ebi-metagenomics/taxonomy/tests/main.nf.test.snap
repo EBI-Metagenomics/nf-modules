@@ -1,0 +1,36 @@
+{
+    "cat_output": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test.contig2classification.txt:md5,3c3c79045bf6ae8b1292ae9afa2ec4af"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.10.0"
+        },
+        "timestamp": "2025-01-29T11:41:47.358582"
+    },
+    "diamond_output": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test.txt:md5,9e2f9c188b183c18dd9572395a48a066"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.10.0"
+        },
+        "timestamp": "2025-01-29T11:41:47.351764"
+    }
+}
