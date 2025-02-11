@@ -56,7 +56,7 @@ process INFERNAL_CMSEARCH {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        infernal: \$(cmsearch -h | grep -o '^# INFERNAL [0-9.]*' | sed 's/^# INFERNAL *//')
+        cmsearch: \$(cmsearch -h | grep -o '^# INFERNAL [0-9.]*' | sed 's/^# INFERNAL *//')
     END_VERSIONS
     """
 }
