@@ -42,7 +42,7 @@ output:
       description: |
         Channel containing a TSV file with matches of predicted proteins to a database
         Structure: [ val(meta), path(file) ]
-      pattern: '*.{txt, txt.gz}'
+      pattern: "*.{txt, txt.gz}"
   - cat_output:
       type: file
       description: |
