@@ -4,9 +4,16 @@ nextflow_process {
     script "../main.nf"
     process "DBCAN"
 
+    // dbCan will fail if the db is in a folder with a . at some point
+    // this is due to some bad coding to get a file extension
+    // https://github.com/linnabrown/run_dbcan/blob/master/dbcan/cli/syntenic_plot.py#L431
+    // so when running this test locally - use NFT_WORKDIR and set the nf-test to something different than .nf-test
+
     tag "modules"
     tag "modules_nfcore"
     tag "dbcan"
+    tag "modules_ebimetagenomics"
+    tag "dbcan/dbcan"
 
     test("running dbCAN") {
 
@@ -17,29 +24,55 @@ nextflow_process {
                     [ id:'test' ], // meta map
                     file("${moduleDir}/tests/dbcan_test_db/ecoliK12MG1655_test.faa", checkIfExists: true), // protein faa
                     file("${moduleDir}/tests/dbcan_test_db/ecoliK12MG1655_test.gff", checkIfExists: true) // protein gff
-                    ]
+                ]
                 input[1] = [
                     file("${moduleDir}/tests/dbcan_test_db", type: 'dir', checkIfExists: true),
                     "4.1.4_V13"
-                    ]
+                ]
                 """
             }
         }
 
         then {
-        def stablefiles = []
-            file(process.out.dbcan_output.get(0).get(0)).eachFileRecurse{ file -> if (!file.isDirectory() && !["cgc_standard.out.json", "cgc_standard.out",     "cgc.out", "cgc.gff", "PUL_blast.out", "CGC.faa"].find {file.toString().endsWith(it)}) {stablefiles.add(file)}}
-        def unstablefiles = []
-            file(process.out.dbcan_output.get(0).get(0)).eachFileRecurse{ file -> if (["cgc_standard.out.json", "cgc_standard.out", "cgc.out", "cgc.gff",     "PUL_blast.out", "CGC.faa"].find {file.toString().endsWith(it)}) {unstablefiles.add(file.getName().toString())}}
-        assertAll(
-            { assert process.success },
-            {assert snapshot(process.out.versions).match("versions")},
-            { assert snapshot(
-                    stablefiles.sort(),
-                    unstablefiles.sort(),
-                    process.out.versions
-                ).match() }
-        )
+            def unstableFileExtensions = [
+                "cgc_standard.out.json",
+                "cgc_standard.out",
+                "cgc.out",
+                "cgc.gff",
+                "PUL_blast.out",
+                "CGC.faa",
+                "-syntenic.pdf"
+            ]
+            def expectedMD5s = [
+                "dbcan-sub.hmm.out": "4eeb5ef0f231141879b72b2c480987ed",
+                "diamond.out": "3c812c9fbfd32c20bf4bf314b9ceec03",
+                "hmmer.out": "72b7bd7720e344da6967c723e571bb80",
+                "overview.txt": "a38606e637d917b51ec2ee10d69efed9",
+                "stp.out": "807a434fb0ce8078e863940858c463dd",
+                "substrate.out": "efca5ea50fef88b947ebdf89a34976a9",
+                "tp.out": "e9eb66ecff04b226deeb27a8fade736a",
+                "uniInput": "d6ccc30e774cac8b58fa4be247211d61"
+            ]
+            def emptyFiles = [
+                "tf-1.out",
+                "tf-2.out"
+            ]
+
+            file(process.out.dbcan_output.get(0).get(1)).eachFileRecurse { file ->
+                if (unstableFileExtensions.any { file.name.endsWith(it) }) {
+                    assert file.size() > 0
+                }
+                if (emptyFiles.any { file.name.contains(it) }) {
+                    assert file.size() == 0
+                }
+                if (expectedMD5s.containsKey(file.name)) {
+                    assert path(file.absolutePath).md5 == expectedMD5s[file.name]
+                }
+            }
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.versions).match("versions") }
+            )
         }
     }
 }
