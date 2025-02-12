@@ -35,7 +35,6 @@ input:
         The input channel containing the tax/ folder of the CAT database produced with catpack/prepare
         Folder must contain names.dmp and nodes.dmp
         Structure: [ val(meta), path(tax_db_folder) ]
-    
 output:
   - diamond_output:
       type: file
