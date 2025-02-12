@@ -92,9 +92,7 @@ process COMBINEDGENECALLER_MERGE {
     touch ${prefix}.ffn
     touch ${prefix}.out
 
-    gzip ${prefix}.faa
-    gzip ${prefix}.ffn
-    gzip ${prefix}.out
+gzip -n ${prefix}.{faa,ffn,out}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
