@@ -13,7 +13,7 @@ input:
   - contigs:
       type: file
       description: |
-        The input channel containing file of metagenomic assembly
+        The input channel containing file with metagenomic assembly
         Structure: [ val(meta), path(fasta) ]
       pattern: "*.{fasta, fasta.gz, fa, fa.gz, fna, fna.gz}"
   - proteins:
@@ -40,15 +40,15 @@ output:
   - diamond_output:
       type: file
       description: |
-        Channel containing results of alignment of predicted proteins to a database
+        Channel containing a TSV file with matches of predicted proteins to a database
         Structure: [ val(meta), path(file) ]
       pattern: '*.{txt, txt.gz}'
   - cat_output:
       type: file
       description: |
-        Channel containing taxonomic classification of contigs
+        Channel containing a TSV file with taxonomic classification of contigs
         Structure: [ val(meta), path(file) ]
-      pattern: "*.{contig2classification.txt, contig2classification.txt.gz}"
+      pattern: "*.contig2classification.txt"
   - versions:
       type: file
       description: |
