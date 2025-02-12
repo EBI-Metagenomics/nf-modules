@@ -1,0 +1,33 @@
+nextflow_process {
+
+    name "Test Process DBCANDB"
+    script "../main.nf"
+    process "DBCANDB"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "dbcan"
+    tag "modules_ebimetagenomics"
+    tag "dbcan/dbcandb"
+
+    test("dbcan download - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = "ftp://fake"
+                input[1] = "v4.1.4"
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+            )
+        }
+
+    }
+}

@@ -15,7 +15,7 @@ nextflow_process {
     tag "modules_ebimetagenomics"
     tag "dbcan/dbcan"
 
-    test("running dbCAN") {
+    test("dbCAN with the built in test ecoli faa and gbk") {
 
         when {
             process {
@@ -72,6 +72,33 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert snapshot(process.out.versions).match("versions") }
+            )
+        }
+    }
+
+    test("dbCAN with the built in test ecoli faa and gbk - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ], // meta map
+                    file("${moduleDir}/tests/dbcan_test_db/ecoliK12MG1655_test.faa", checkIfExists: true), // protein faa
+                    file("${moduleDir}/tests/dbcan_test_db/ecoliK12MG1655_test.gff", checkIfExists: true) // protein gff
+                ]
+                input[1] = [
+                    file("${moduleDir}/tests/dbcan_test_db", type: 'dir', checkIfExists: true),
+                    "4.1.4_V13"
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
             )
         }
     }

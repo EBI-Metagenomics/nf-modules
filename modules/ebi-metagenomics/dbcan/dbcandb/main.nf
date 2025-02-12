@@ -1,5 +1,5 @@
 process DBCANDB {
-    tag "$meta.id"
+
     tag "dbCAN $params.db_version"
     label 'process_single'
 
@@ -8,18 +8,18 @@ process DBCANDB {
         'https://depot.galaxyproject.org/singularity/gnu-wget:1.18--h5bf99c6_5' :
         'biocontainers/gnu-wget:1.18--h5bf99c6_5' }"
 
+    input:
+    val(db_ftp_link)
+    val(db_version)
+
     output:
-    tuple val(meta), path("dbcan_db/", type: "dir"), val("${params.db_version}"), emit: dbcan_db
+    tuple path("dbcan_db/", type: "dir"), val("${params.db_version}"), emit: dbcan_db
     path "versions.yml"           , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
 
-
-script:
-    def args = task.ext.args ?: ''
-    def db_ftp_link = "${params.db_ftp_link}"
-    def db_version = "${params.db_version}"
+    script:
     """
     wget ${db_ftp_link}
 
@@ -37,13 +37,11 @@ script:
         dbcan_db: "${db_version}"
     END_VERSIONS
     """
-    
-stub:
-    def args = task.ext.args ?: ''
-    def	db_version = "${db_version}"
+
+    stub:
     """
     mkdir dbcan_db
-    
+
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         dbcan_db: "${db_version}"
