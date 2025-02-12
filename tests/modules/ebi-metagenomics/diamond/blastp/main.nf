@@ -8,7 +8,7 @@ include { DIAMOND_BLASTP } from '../../../../../modules/ebi-metagenomics/diamond
 workflow test_diamond_blastp {
 
     fasta = [ file(params.test_data['sarscov2']['genome']['proteome_fasta'], checkIfExists: true) ]
-    out_ext = 'txt'
+    out_ext = 6
     blast_columns = 'qseqid qlen'
 
     DIAMOND_MAKEDB ( [ [id:'test'], fasta ] )
@@ -18,7 +18,7 @@ workflow test_diamond_blastp {
 workflow test_diamond_blastp_daa {
 
     fasta = [ file(params.test_data['sarscov2']['genome']['proteome_fasta'], checkIfExists: true) ]
-    out_ext = 'daa'
+    out_ext = 100
     blast_columns = []
 
     DIAMOND_MAKEDB ( [ [id:'test'], fasta ] )

@@ -19,7 +19,7 @@ workflow test_blast_blastp_xml {
     input = [ file(params.test_data['sarscov2']['genome']['proteome_fasta'], checkIfExists: true) ]
 
     BLAST_MAKEBLASTDB ( input )
-    out_ext = 'xml'
+    out_ext = 5
     BLAST_BLASTP ( [ [id:'test'], input ], BLAST_MAKEBLASTDB.out.db, out_ext )
 }
 
@@ -28,7 +28,7 @@ workflow test_blast_blastp_tsv {
     input = [ file(params.test_data['sarscov2']['genome']['proteome_fasta'], checkIfExists: true) ]
 
     BLAST_MAKEBLASTDB ( input )
-    out_ext = 'tsv'
+    out_ext = 102
     BLAST_BLASTP ( [ [id:'test'], input ], BLAST_MAKEBLASTDB.out.db, out_ext )
 }
 
@@ -37,6 +37,6 @@ workflow test_blast_blastp_csv {
     input = [ file(params.test_data['sarscov2']['genome']['proteome_fasta'], checkIfExists: true) ]
 
     BLAST_MAKEBLASTDB ( input )
-    out_ext = 'csv'
+    out_ext = 48
     BLAST_BLASTP ( [ [id:'test'], input ], BLAST_MAKEBLASTDB.out.db, out_ext )
 }
