@@ -12,7 +12,7 @@ nextflow_workflow {
     tag "prodigal"
     tag "fraggenescan"
 
-    test("assembly fasta ") {
+    test("cgc assembly fasta") {
 
         when {
             workflow {
@@ -33,7 +33,7 @@ nextflow_workflow {
         }
     }
 
-    test("assembly fasta and cmsearch mask file") {
+    test("cgc assembly fasta and cmsearch mask file") {
 
         when {
             workflow {
@@ -63,7 +63,7 @@ nextflow_workflow {
         }
     }
 
-    test("assembly fasta - stub") {
+    test("cgc assembly fasta - stub") {
 
         options "-stub"
 

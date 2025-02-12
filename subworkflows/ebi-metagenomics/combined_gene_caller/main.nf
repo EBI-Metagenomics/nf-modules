@@ -16,7 +16,7 @@ workflow COMBINED_GENE_CALLER {
     PRODIGAL ( ch_assembly, channel.value("sco") )
     ch_versions = ch_versions.mix(PRODIGAL.out.versions)
 
-    FRAGGENESCANRS ( ch_assembly, "illumina_5" )
+    FRAGGENESCANRS ( ch_assembly, params.fraggenescanrs_train_model )
     ch_versions = ch_versions.mix(FRAGGENESCANRS.out.versions)
 
     ch_mask_file = ch_mask_file ?: Channel.empty()

@@ -3,8 +3,8 @@ process COMBINEDGENECALLER_MERGE {
     label 'process_single'
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:0.2.0--pyhdfd78af_0':
-        'biocontainers/mgnify-pipelines-toolkit:0.2.0--pyhdfd78af_0' }"
+        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:0.2.1--pyhdfd78af_0':
+        'biocontainers/mgnify-pipelines-toolkit:0.2.1--pyhdfd78af_0' }"
 
     input:
     tuple val(meta), path(prodigal_sco, stageAs: "prodigal/"), path(prodigal_ffn, stageAs: "prodigal/"), path(prodigal_faa, stageAs: "prodigal/"), path(fgs_out, stageAs: "fgsrs/"), path(fgs_ffn, stageAs: "fgsrs/"), path(fgs_faa, stageAs: "fgsrs/"), path(mask)
@@ -88,11 +88,9 @@ process COMBINEDGENECALLER_MERGE {
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    touch ${prefix}.faa
-    touch ${prefix}.ffn
-    touch ${prefix}.out
+    touch ${prefix}.{faa,ffn,out}
 
-gzip -n ${prefix}.{faa,ffn,out}
+    gzip -n ${prefix}.{faa,ffn,out}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
