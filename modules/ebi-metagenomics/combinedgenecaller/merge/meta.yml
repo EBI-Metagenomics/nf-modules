@@ -45,7 +45,7 @@ input:
         type: file
         description: protein translations file
         pattern: "*.{faa}"
-    - mask_file:
+    - mask:
         type: file
         description: sequence mask file (cmsearch tblout)
         pattern: "*.*"

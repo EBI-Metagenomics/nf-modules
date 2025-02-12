@@ -25,7 +25,6 @@ process DEEPTMHMM {
     def prefix = task.ext.prefix ?: ""
     def is_compressed = fasta.name.endsWith(".gz")
     def fasta_name = fasta.name.replace(".gz", "")
-
     """
     if [ "$is_compressed" == "true" ]; then
         gzip -c -d $fasta > $fasta_name
