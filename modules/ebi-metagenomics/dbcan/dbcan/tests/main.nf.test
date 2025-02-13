@@ -15,7 +15,9 @@ nextflow_process {
     tag "modules_ebimetagenomics"
     tag "dbcan/dbcan"
 
-    test("dbCAN with the built in test ecoli faa and gbk") {
+    test("dbCAN with the built in test ecoli faa and gff in protein mode") {
+
+        config "./nextflow.config"
 
         when {
             process {
@@ -23,55 +25,40 @@ nextflow_process {
                 input[0] = [
                     [ id:'test' ], // meta map
                     file("${moduleDir}/tests/dbcan_test_db/ecoliK12MG1655_test.faa", checkIfExists: true), // protein faa
-                    file("${moduleDir}/tests/dbcan_test_db/ecoliK12MG1655_test.gff", checkIfExists: true) // protein gff
+
                 ]
                 input[1] = [
+                    [ id:'test' ], // meta map
+                    file("${moduleDir}/tests/dbcan_test_db/ecoliK12MG1655_test.gff", checkIfExists: true) // protein gff
+                ]
+                input[2] = [
                     file("${moduleDir}/tests/dbcan_test_db", type: 'dir', checkIfExists: true),
                     "4.1.4_V13"
                 ]
+                input[3] = "protein"
                 """
             }
         }
 
         then {
-            def unstableFileExtensions = [
-                "cgc_standard.out.json",
-                "cgc_standard.out",
-                "cgc.out",
-                "cgc.gff",
-                "PUL_blast.out",
-                "CGC.faa",
-                "-syntenic.pdf"
-            ]
-            def expectedMD5s = [
-                "dbcan-sub.hmm.out": "4eeb5ef0f231141879b72b2c480987ed",
-                "diamond.out": "3c812c9fbfd32c20bf4bf314b9ceec03",
-                "hmmer.out": "72b7bd7720e344da6967c723e571bb80",
-                "overview.txt": "a38606e637d917b51ec2ee10d69efed9",
-                "stp.out": "807a434fb0ce8078e863940858c463dd",
-                "substrate.out": "efca5ea50fef88b947ebdf89a34976a9",
-                "tp.out": "e9eb66ecff04b226deeb27a8fade736a",
-                "uniInput": "d6ccc30e774cac8b58fa4be247211d61"
-            ]
-            def emptyFiles = [
-                "tf-1.out",
-                "tf-2.out"
-            ]
-
-            file(process.out.dbcan_output.get(0).get(1)).eachFileRecurse { file ->
-                if (unstableFileExtensions.any { file.name.endsWith(it) }) {
-                    assert file.size() > 0
-                }
-                if (emptyFiles.any { file.name.contains(it) }) {
-                    assert file.size() == 0
-                }
-                if (expectedMD5s.containsKey(file.name)) {
-                    assert path(file.absolutePath).md5 == expectedMD5s[file.name]
-                }
-            }
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out.versions).match("versions") }
+                // Unstable files - we just check that they exist and that they are not empty
+                { assert process.out.cgc_gff.size() > 0 },
+                { assert process.out.cgc_standard_output.size() > 0 },
+                { assert process.out.cgc_standard_output_json.size() > 0 },
+                { assert process.out.synteny_pdfs.size() == 1 }, // one pdf
+                { assert snapshot(
+                    process.out.overview_output,
+                    process.out.dbsub_output,
+                    process.out.hmmer_output,
+                    process.out.diamond_output,
+                    process.out.substrate_out,
+                    process.out.uninput,
+                    process.out.tp_out,
+                    process.out.stp_out,
+                    process.out.versions,
+                ).match() }
             )
         }
     }
@@ -80,18 +67,25 @@ nextflow_process {
 
         options "-stub"
 
+        config "./nextflow.config"
+
         when {
             process {
                 """
                 input[0] = [
                     [ id:'test' ], // meta map
                     file("${moduleDir}/tests/dbcan_test_db/ecoliK12MG1655_test.faa", checkIfExists: true), // protein faa
-                    file("${moduleDir}/tests/dbcan_test_db/ecoliK12MG1655_test.gff", checkIfExists: true) // protein gff
+
                 ]
                 input[1] = [
+                    [ id:'test' ], // meta map
+                    file("${moduleDir}/tests/dbcan_test_db/ecoliK12MG1655_test.gff", checkIfExists: true) // protein gff
+                ]
+                input[2] = [
                     file("${moduleDir}/tests/dbcan_test_db", type: 'dir', checkIfExists: true),
                     "4.1.4_V13"
                 ]
+                input[3] = "protein"
                 """
             }
         }
