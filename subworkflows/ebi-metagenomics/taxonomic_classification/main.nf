@@ -18,7 +18,7 @@ workflow TAXONOMIC_CLASSIFICATION {
         }
         .set {diamond_db}
 
-    DIAMOND_BLASTP(proteins, diamond_db, 6, [])
+    DIAMOND_BLASTP(proteins, diamond_db.first(), 6, [])
     ch_versions = ch_versions.mix(DIAMOND_BLASTP.out.versions.first())
 
     // CAT does not use provided cat_db because alignment is already done by Diamond
