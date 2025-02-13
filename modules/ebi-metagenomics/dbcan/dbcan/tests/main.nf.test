@@ -15,7 +15,7 @@ nextflow_process {
     tag "modules_ebimetagenomics"
     tag "dbcan/dbcan"
 
-    test("dbCAN with the built in test ecoli faa and gff in protein mode") {
+    test("dbCAN with the built in subsampled test ecoli faa and gff in protein mode") {
 
         config "./nextflow.config"
 
@@ -63,7 +63,7 @@ nextflow_process {
         }
     }
 
-    test("dbCAN with the built in test ecoli faa and gbk - stub") {
+    test("dbCAN with the built in subsampled test ecoli faa and gbk - stub") {
 
         options "-stub"
 
