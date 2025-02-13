@@ -25,7 +25,7 @@ input:
         type: file
         description: A FASTA file containing query sequences, they can be proteins of
           contigs
-        pattern: "*.{fasta,faa,fa}"
+        pattern: "*.{fasta,faa,fa,fna}"
   - - meta2:
         type: map
         description: |
