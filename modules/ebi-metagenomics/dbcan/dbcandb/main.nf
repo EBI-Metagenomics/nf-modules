@@ -26,7 +26,7 @@ process DBCANDB {
     tar -xvzf dbcan_"${db_version}".tar.gz
 
     # delete the next line when using the right db version!
-    mv ${db_version} dbcan_db
+    mv 4.1.3-V12 dbcan_db
 
     rm dbcan_"${db_version}".tar.gz
 
