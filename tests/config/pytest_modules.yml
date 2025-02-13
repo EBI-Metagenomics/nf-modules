@@ -30,14 +30,6 @@ deeptmhmm:
   - modules/ebi-metagenomics/deeptmhmm/**
   - tests/modules/ebi-metagenomics/deeptmhmm/**
 
-diamond/blastp:
-  - modules/ebi-metagenomics/diamond/blastp/**
-  - tests/modules/ebi-metagenomics/diamond/blastp/**
-
-diamond/makedb:
-  - modules/ebi-metagenomics/diamond/makedb/**
-  - tests/modules/ebi-metagenomics/diamond/makedb/**
-
 easel/eslsfetch:
   - modules/ebi-metagenomics/easel/eslsfetch/**
   - tests/modules/ebi-metagenomics/easel/eslsfetch/**
@@ -61,7 +53,7 @@ mapseq:
 seqtk/seq:
   - modules/ebi-metagenomics/seqtk/seq/**
   - tests/modules/ebi-metagenomics/seqtk/seq/**
-
-subworkflows/fasta_domainannotation:
-  - subworkflows/ebi-metagenomics/fasta_domainannotation/**
-  - tests/subworkflows/ebi-metagenomics/fasta_domainannotation/**
+# Somewhat obsolete sub-workflow - update-or-deletion pending
+# subworkflows/fasta_domainannotation:
+#   - subworkflows/ebi-metagenomics/fasta_domainannotation/**
+#   - tests/subworkflows/ebi-metagenomics/fasta_domainannotation/**

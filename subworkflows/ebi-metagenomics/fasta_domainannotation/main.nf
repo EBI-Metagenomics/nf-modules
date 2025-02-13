@@ -25,7 +25,7 @@ workflow FASTA_DOMAINANNOTATION {
         DIAMOND_MAKEDB ( val_blast_fasta )
         ch_versions = ch_versions.mix(DIAMOND_MAKEDB.out.versions)
         blast_columns = '' // defaults: qseqid, sseqid, pident, length, mismatch, gapopen, qstart, qend, sstart, send, evalue, bitscore
-        DIAMOND_BLASTP ( ch_fasta, DIAMOND_MAKEDB.out.db.map { meta, dmnd -> dmnd }.first(), 'txt', blast_columns )
+        DIAMOND_BLASTP ( ch_fasta, DIAMOND_MAKEDB.out.db.map { meta, dmnd -> dmnd }.first(), 6, blast_columns )
         ch_versions = ch_versions.mix(DIAMOND_BLASTP.out.versions)
         blastp_tsv = DIAMOND_BLASTP.out.txt
     } else {
