@@ -27,7 +27,7 @@ process DBCAN {
         --hmm_cpu ${task.cpus} \\
         --tf_cpu ${task.cpus} \\
         --dbcan_thread ${task.cpus} \\
-        --db_dir \$(pwd)/dbcan_db \\
+        --db_dir dbcan_db \\
         --out_dir dbcan \\
         --cgc_substrate \\
         --cluster ${gff} \\
