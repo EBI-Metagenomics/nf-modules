@@ -31,8 +31,6 @@ nextflow_process {
                 { assert snapshot(process.out.versions).match('versions') }
             )
         }
-                
-
     }
 
     test("stub") {
