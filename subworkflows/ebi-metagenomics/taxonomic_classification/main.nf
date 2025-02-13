@@ -27,8 +27,8 @@ workflow TAXONOMIC_CLASSIFICATION {
     ch_versions = ch_versions.mix(CATPACK_CONTIGS.out.versions.first())
 
     emit:
-    diamond_output = DIAMOND_BLASTP.out.txt
-    cat_output = CATPACK_CONTIGS.out.contig2classification
+    diamond_tsv = DIAMOND_BLASTP.out.txt
+    contig2classification_tsv = CATPACK_CONTIGS.out.contig2classification
     versions = ch_versions
 
 }
