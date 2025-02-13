@@ -1,0 +1,66 @@
+{
+    "dbCAN with the built in test ecoli faa and gff in protein mode": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_overview.txt.gz:md5,a38606e637d917b51ec2ee10d69efed9"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_dbcan-sub.hmm.out.gz:md5,4eeb5ef0f231141879b72b2c480987ed"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_hmmer.out.gz:md5,72b7bd7720e344da6967c723e571bb80"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_diamond.out.gz:md5,3c812c9fbfd32c20bf4bf314b9ceec03"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_substrate.out.gz:md5,efca5ea50fef88b947ebdf89a34976a9"
+                ]
+            ],
+            null,
+            [
+                
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_stp.out.gz:md5,807a434fb0ce8078e863940858c463dd"
+                ]
+            ],
+            [
+                "versions.yml:md5,26dad3857629ad594f901a29013c805b"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.4"
+        },
+        "timestamp": "2025-02-13T14:17:21.265798"
+    }
+}

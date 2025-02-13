@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "dbcandb"
+description: Download and decompress the dbCAN reference database
+keywords:
+  - dbCAN
+  - CAZyme
+  - protein
+tools:
+  - "GNU Wget":
+      description: "Utility to download content from webs servers"
+      homepage: "https://www.gnu.org/software/wget/"
+      documentation: "https://www.gnu.org/software/wget/manual/"
+      tool_dev_url: "https://www.gnu.org/software/wget/"
+      licence: ["GPL v3"]
+      identifier: biotools:dbcan
+input:
+  - - db_ftp_link:
+        type: string
+        description: The FTP link to the dbCAN database
+        pattern: "ftp://*"
+  - - db_version:
+        type: string
+        description: The version of the database
+        pattern: "*"
+output:
+  - dbcan_db:
+      - 'dbcan_db/", type: "dir':
+          type: directory
+          description: dbCAN database
+          pattern: "dbcan_db"
+      - ${params.db_version}:
+          type: directory
+          description: dbCAN database
+          pattern: "dbcan_db"
+  - versions:
+      - versions.yml:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+authors:
+  - "@jmattock5"
