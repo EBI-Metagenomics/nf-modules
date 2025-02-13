@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
-name: "taxonomic_classification"
+name: "contigs_taxonomic_classification"
 description: Getting per contig taxonomic annotations for metagenomic assembly based on taxonomic classification of predicted proteins with DIAMOND and CAT.
 keywords:
   - taxonomic classification
@@ -26,14 +26,14 @@ input:
   - cat_db:
       type: path
       description: |
-        The input channel containing the db/ folder of the CAT database produced with catpack/prepare
-        Folder must contain DIAMOND db *.dmnd, *.fastaid2LCAtaxid, *.taxids_with_multiple_offspring
+        Directory containing the CAT database produced with catpack/prepare
+        The folder must contain DIAMOND db *.dmnd, *.fastaid2LCAtaxid, *.taxids_with_multiple_offspring
         Structure: [ val(meta), path(db_folder) ]
-  - taxonomy_db:
+  - cat_taxonomy_db:
       type: path
       description: |
-        The input channel containing the tax/ folder of the CAT database produced with catpack/prepare
-        Folder must contain names.dmp and nodes.dmp
+        Directory containing the tax/ folder of the CAT database produced with catpack/prepare
+        The folder must contain names.dmp and nodes.dmp
         Structure: [ val(meta), path(tax_db_folder) ]
 output:
   - diamond_output:

@@ -61,7 +61,7 @@ mapseq:
 seqtk/seq:
   - modules/ebi-metagenomics/seqtk/seq/**
   - tests/modules/ebi-metagenomics/seqtk/seq/**
-
-subworkflows/fasta_domainannotation:
-  - subworkflows/ebi-metagenomics/fasta_domainannotation/**
-  - tests/subworkflows/ebi-metagenomics/fasta_domainannotation/**
+# Somewhat obsolete sub-workflow - update-or-deletion pending
+# subworkflows/fasta_domainannotation:
+#   - subworkflows/ebi-metagenomics/fasta_domainannotation/**
+#   - tests/subworkflows/ebi-metagenomics/fasta_domainannotation/**

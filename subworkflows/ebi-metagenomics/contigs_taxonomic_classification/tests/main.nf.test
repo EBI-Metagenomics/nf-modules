@@ -1,8 +1,15 @@
 nextflow_workflow {
 
-    name "Test subworkflow TAXONOMIC_CLASSIFICATION"
+    name "Test subworkflow CONTIGS_TAXONOMIC_CLASSIFICATION"
     script "../main.nf"
-    workflow "TAXONOMIC_CLASSIFICATION"
+    workflow "CONTIGS_TAXONOMIC_CLASSIFICATION"
+
+    tag "subworkflows"
+    tag "subworkflows_ebimetagenomics"
+    tag "subworkflows/contigs_taxonomic_classification"
+    tag "diamond"
+    tag "diamond/blastp"
+    tag "catpack/contigs"
 
     test("Run the pipeline on the test dataset") {
         when {
@@ -20,9 +27,8 @@ nextflow_workflow {
         }
         then {
             assertAll(
-            { assert workflow.success },
-            { assert snapshot(workflow.out.diamond_output).match("diamond_output") },
-            { assert snapshot(workflow.out.cat_output).match("cat_output") },
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() },
             )
         }
     }
