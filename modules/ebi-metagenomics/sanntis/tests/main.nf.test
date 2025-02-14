@@ -5,19 +5,20 @@ nextflow_process {
     process "SANNTIS"
 
     tag "modules"
-    tag "modules_nfcore"
+    tag "modules_ebimetagenomics"
     tag "sanntis"
 
-    test("test_sanntis") {
+    test("interproscan tsv and gbk") {
 
         when {
             process {
                 """
                 input[0] = [
                     [ id:'MGYG000300113' ], // meta map
-                    file("${moduleDir}/tests/fixtures/IPS.subset.tsv", checkIfExists: true),
-                    file("${moduleDir}/tests/fixtures/MGYG000300113.gbk", checkIfExists: true)
-                    ]
+                    file("${moduleDir}/tests/fixtures/interproscan_subset.gff.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/fixtures/MGYG000300113_contig35.gbk.gz", checkIfExists: true),
+                    []
+                ]
                 """
             }
         }
@@ -31,17 +32,42 @@ nextflow_process {
 
     }
 
-    test("test_sanntis_stub") {
+    test("interproscan tsv and faa") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'MGYG000300113' ], // meta map
+                    file("${moduleDir}/tests/fixtures/interproscan_subset.gff.gz", checkIfExists: true),
+                    [],
+                    file("${moduleDir}/tests/fixtures/MGYG000300113_contig35_CGC.faa.gz", checkIfExists: true)
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("interproscan tsv and gbk - stub") {
         options '-stub'
 
         when {
             process {
                 """
                 input[0] = [
-				    [ id:'MGYG000300113' ], // meta map
-                    file("${moduleDir}/tests/fixtures/IPS.subset.tsv"),
-                    file("${moduleDir}/tests/fixtures/MGYG000300113.gbk")
-				]
+                    [ id:'MGYG000300113' ], // meta map
+                    file("${moduleDir}/tests/fixtures/interproscan_subset.gff.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/fixtures/MGYG000300113_contig35.gbk.gz", checkIfExists: true),
+                    []
+                ]
                 """
             }
         }
