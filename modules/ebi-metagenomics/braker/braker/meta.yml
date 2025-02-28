@@ -1,7 +1,7 @@
----
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "braker_braker"
-description: BRAKER is a gene prediction pipeline that integrates GeneMark and AUGUSTUS to annotate genomes using RNA-seq and protein evidence.
+description: BRAKER is a gene prediction pipeline that integrates GeneMark and AUGUSTUS
+  to annotate genomes using RNA-seq and protein evidence.
 keywords:
   - gene prediction
   - annotation
@@ -10,12 +10,13 @@ keywords:
   - genome
 tools:
   - "braker":
-      description: "Usage of RNA-seq and protein data in a fully automated pipeline to train and predict highly reliable genes with GeneMark-ETP and AUGUSTUS"
+      description: "Usage of RNA-seq and protein data in a fully automated pipeline\
+        \ to train and predict highly reliable genes with GeneMark-ETP and AUGUSTUS"
       homepage: "https://bioinf.uni-greifswald.de/bioinf/braker/"
       documentation: "https://github.com/Gaius-Augustus/BRAKER"
       tool_dev_url: "https://github.com/Gaius-Augustus/BRAKER"
       doi: "10.1101/gr.278090.123"
-      licence: ['Artistic license']
+      licence: ["Artistic license"]
       identifier: biotools:braker3
 input:
   - - meta:
@@ -41,20 +42,23 @@ input:
         pattern: "*.gff"
 output:
   - gtf:
-    - meta:
-        type: map
-        description: |
-          Groovy Map containing sample information
-          e.g. `[ id:'sample1', single_end:false ]`
-    - "*.gtf":
-        type: file
-        description: Annotated gene set
-        pattern: "*.gtf"
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+          pattern: "*.gtf"
+      - ${prefix}/*.gtf:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+          pattern: "*.gtf"
   - versions:
-    - "versions.yml":
-        type: file
-        description: File containing software versions
-        pattern: "versions.yml"
+      - versions.yml:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
 authors:
   - "@vagkaratzas"
 maintainers:
