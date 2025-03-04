@@ -4,4 +4,4 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - bioconda::sanntis=0.9.4.0
+  - bioconda::sanntis=0.9.4.1

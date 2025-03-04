@@ -22,7 +22,7 @@ process SANNTIS {
         error("SanntiS supports either a GBK or a FAA as the secondary input.")
     }
     if (!gbk && !faa) {
-        error "SanntiS needs either a GBK or FAA as input."
+        error("SanntiS needs either a GBK or FAA as input.")
     }
 
     def args = task.ext.args ?: ''
