@@ -4,7 +4,7 @@ process SANNTIS {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'biocontainers/sanntis:0.9.4.1--pyhdfd78af_0'
+        ? 'https://depot.galaxyproject.org/singularity/sanntis:0.9.4.1--pyhdfd78af_0'
         : 'biocontainers/sanntis:0.9.4.1--pyhdfd78af_0'}"
 
     input:
