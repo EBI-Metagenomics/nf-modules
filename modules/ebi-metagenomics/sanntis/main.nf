@@ -8,7 +8,7 @@ process SANNTIS {
         : 'biocontainers/sanntis:0.9.4.1--pyhdfd78af_0'}"
 
     input:
-    tuple val(meta), path(interproscan_gff), path(gbk), path(faa)
+    tuple val(meta), path(interproscan), path(gbk), path(faa)
 
     output:
     tuple val(meta), path("*_sanntis.gff.gz"), emit: gff
@@ -27,8 +27,8 @@ process SANNTIS {
 
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def is_ips_compressed = interproscan_gff.name.endsWith(".gz")
-    def  interproscan_file = interproscan_gff ? interproscan_gff.name.replace(".gz", "") : is_ips_compressed
+    def is_ips_compressed = interproscan.name.endsWith(".gz")
+    def  interproscan_file = interproscan ? interproscan.name.replace(".gz", "") : is_ips_compressed
 
     // Handle the GBK or FAA
     def input_arg = ""
@@ -55,7 +55,7 @@ process SANNTIS {
     }
     """
     if [ "${is_ips_compressed}" == "true" ]; then
-         gzip -c -d ${interproscan_gff} > ${interproscan_file}
+         gzip -c -d ${interproscan} > ${interproscan_file}
     fi
 
     ${decompress}
