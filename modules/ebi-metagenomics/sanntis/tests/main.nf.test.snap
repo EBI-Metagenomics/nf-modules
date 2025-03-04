@@ -1,68 +1,101 @@
 {
-    "test_sanntis": {
+    "interproscan tsv and faa both compress": {
         "content": [
             {
                 "0": [
                     [
                         {
-                            "id": "MGYG000300113"
+                            "id": "BGC0001472"
                         },
-                        "MGYG000300113_sanntis.gff:md5,587842de5d5ca8b731b97f03bec58101"
+                        "BGC0001472_sanntis.gff.gz:md5,ea6f1c2d950ca684a5e8ca77d2bf773e"
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,14d0b69d48fa9993cb4602246082d0de"
+                    "versions.yml:md5,5fc42785fbe619f4827b419532cde346"
                 ],
                 "gff": [
                     [
                         {
-                            "id": "MGYG000300113"
+                            "id": "BGC0001472"
                         },
-                        "MGYG000300113_sanntis.gff:md5,587842de5d5ca8b731b97f03bec58101"
+                        "BGC0001472_sanntis.gff.gz:md5,ea6f1c2d950ca684a5e8ca77d2bf773e"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,14d0b69d48fa9993cb4602246082d0de"
+                    "versions.yml:md5,5fc42785fbe619f4827b419532cde346"
                 ]
             }
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "23.04.5"
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.4"
         },
-        "timestamp": "2024-09-05T09:50:25.397800952"
+        "timestamp": "2025-03-04T10:07:37.995879"
     },
-    "test_sanntis_stub": {
+    "interproscan tsv and faa": {
         "content": [
             {
                 "0": [
                     [
                         {
-                            "id": "MGYG000300113"
+                            "id": "BGC0001472"
                         },
-                        "MGYG000300113_sanntis.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "BGC0001472_sanntis.gff.gz:md5,ea6f1c2d950ca684a5e8ca77d2bf773e"
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,14d0b69d48fa9993cb4602246082d0de"
+                    "versions.yml:md5,5fc42785fbe619f4827b419532cde346"
                 ],
                 "gff": [
                     [
                         {
-                            "id": "MGYG000300113"
+                            "id": "BGC0001472"
                         },
-                        "MGYG000300113_sanntis.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "BGC0001472_sanntis.gff.gz:md5,ea6f1c2d950ca684a5e8ca77d2bf773e"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,14d0b69d48fa9993cb4602246082d0de"
+                    "versions.yml:md5,5fc42785fbe619f4827b419532cde346"
                 ]
             }
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "23.04.5"
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.4"
         },
-        "timestamp": "2024-09-05T09:50:32.439151633"
+        "timestamp": "2025-03-03T22:44:54.79901"
+    },
+    "interproscan tsv and faa - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "BGC0001472"
+                        },
+                        "BGC0001472_sanntis.gff.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,5fc42785fbe619f4827b419532cde346"
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "BGC0001472"
+                        },
+                        "BGC0001472_sanntis.gff.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,5fc42785fbe619f4827b419532cde346"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.4"
+        },
+        "timestamp": "2025-03-03T22:45:03.056725"
     }
 }
