@@ -8,7 +8,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.tsv.gz:md5,1a3983f24f0018d9c1515fe91a1a7237"
+                        "test.tsv.gz:md5,600a46c642ef15959fc1f859139489fd"
                     ]
                 ],
                 "1": [
@@ -26,7 +26,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.gff3.gz:md5,964c009c6a5b22edecc336efcd6ca5bd"
+                        "test.gff3.gz:md5,d825f304a93bc3be063fb4d0164367c5"
                     ]
                 ],
                 "3": [
@@ -47,7 +47,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.gff3.gz:md5,964c009c6a5b22edecc336efcd6ca5bd"
+                        "test.gff3.gz:md5,d825f304a93bc3be063fb4d0164367c5"
                     ]
                 ],
                 "json": [
@@ -65,7 +65,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.tsv.gz:md5,1a3983f24f0018d9c1515fe91a1a7237"
+                        "test.tsv.gz:md5,600a46c642ef15959fc1f859139489fd"
                     ]
                 ],
                 "versions": [
@@ -84,8 +84,8 @@
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "24.10.4"
+            "nextflow": "24.10.5"
         },
-        "timestamp": "2025-03-04T21:52:55.725908"
+        "timestamp": "2025-03-05T16:55:07.428815"
     }
 }
