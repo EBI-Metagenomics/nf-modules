@@ -2,7 +2,7 @@ process INTERPROSCAN {
     tag "$meta.id"
     label 'process_long'
 
-    container 'microbiome-informatics/interproscan:5.73-104.0XX'
+    container 'microbiome-informatics/interproscan:5.73-104.0'
 
     containerOptions {
         if (workflow.containerEngine == 'singularity') {
