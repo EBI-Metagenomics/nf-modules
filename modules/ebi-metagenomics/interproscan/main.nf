@@ -2,7 +2,8 @@ process INTERPROSCAN {
     tag "$meta.id"
     label 'process_long'
 
-    container 'microbiome-informatics/interproscan:5.73-104.0'
+    container 'microbiome-informatics/interproscan:5.73-104.0XX'
+
     containerOptions {
         if (workflow.containerEngine == 'singularity') {
             return "--bind ${interproscan_db}:/opt/interproscan/data"
