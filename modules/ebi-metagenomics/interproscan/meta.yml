@@ -36,38 +36,34 @@ output:
       - meta:
           type: file
           description: Tab separated file containing with detailed hits
-          pattern: "*.{tsv}"
       - "*.tsv.gz":
           type: file
           description: Tab separated file containing with detailed hits
-          pattern: "*.{tsv}"
+          pattern: "*.tsv.gz"
   - xml:
       - meta:
           type: file
           description: XML file containing with detailed hits
-          pattern: "*.{xml}"
       - "*.xml.gz":
           type: file
           description: XML file containing with detailed hits
-          pattern: "*.{xml}"
+          pattern: "*.xml.gz"
   - gff3:
       - meta:
           type: file
           description: GFF3 file containing with detailed hits
-          pattern: "*.{gff3}"
       - "*.gff3.gz":
           type: file
           description: GFF3 file containing with detailed hits
-          pattern: "*.{gff3}"
+          pattern: "*.gff3.gz"
   - json:
       - meta:
           type: file
           description: JSON file containing with detailed hits
-          pattern: "*.{json}"
       - "*.json.gz":
           type: file
           description: JSON file containing with detailed hits
-          pattern: "*.{json}"
+          pattern: "*.json.gz"
   - versions:
       - versions.yml:
           type: file
