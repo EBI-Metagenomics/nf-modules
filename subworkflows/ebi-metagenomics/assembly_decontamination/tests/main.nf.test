@@ -1,0 +1,36 @@
+nextflow_workflow {
+    
+    name "Test subworkflow ASSEMBLY_DECONTAMINATION"
+    script "../main.nf"
+    config "./nextflow.config"
+    workflow "ASSEMBLY_DECONTAMINATION"
+
+    tag "subworkflows"
+    tag "subworkflows_nfcore"
+    tag "subworkflows/assembly_decontamination"
+    tag "blast/blastn"
+    tag "seqkit/grep"
+
+    test("Assembly host decontamination") {
+        when {
+            params {
+                blast_reference_genomes_folder    = "${moduleDir}/tests/data"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [ id: 'test' ], // meta map
+                    file("${moduleDir}/tests/data/test.fa", checkIfExists: true)
+                ])
+                input[1] = "contamination.fa"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out.cleaned_contigs).match() }
+            )
+        }
+    }
+}

@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ebi-metagenomics/modules/master/subworkflows/yaml-schema.json
+name: assembly_decontamination
+description: blasts assembly against host reference genome, removes contaminant hits
+keywords:
+  - blast
+  - seqkit
+  - quality control
+  - decontamination
+components:
+  - blast/blastn
+  - seqkit/grep
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - assembly:
+      type: file
+      description: |
+        assembly to check for contamination
+      pattern: "*.{fasta,fa,fna,fasta.gz,fa.gz,fna.gz}"
+  - reference_genome:
+      type: string
+      description: String containing prefix for the blast database files for a specific host, eg. chicken.fna
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - cleaned_contigs:
+      type: file
+      description: |
+        the decontaminated assembly
+      pattern: "*.{fasta.gz,fa.gz,fna.gz}"
+  - versions:
+      type: file
+      description: |
+        File containing software versions
+      pattern: "versions.yml"
+authors:
+  - "@jmattock5"
