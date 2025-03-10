@@ -1,5 +1,5 @@
 nextflow_workflow {
-    
+
     name "Test subworkflow ASSEMBLY_DECONTAMINATION"
     script "../main.nf"
     config "./nextflow.config"
