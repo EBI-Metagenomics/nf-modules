@@ -13,7 +13,7 @@ workflow ASSEMBLY_DECONTAMINATION {
     BLAST_BLASTN(assembly,ch_blast_ref)
     ch_versions = ch_versions.mix(BLAST_BLASTN.out.versions.first())
 
-    SEQKIT_GREP(assembly,BLAST_BLASTN.out.txt.flatten().last())
+    SEQKIT_GREP(assembly,BLAST_BLASTN.out.txt.map { meta, txt -> txt }.first() )
     ch_versions = ch_versions.mix(SEQKIT_GREP.out.versions.first())
 
     emit:
