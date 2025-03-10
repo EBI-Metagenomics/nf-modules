@@ -13,23 +13,30 @@ nextflow_workflow {
 
     test("Assembly host decontamination") {
         when {
-            params {
-                blast_reference_genomes_folder    = "${moduleDir}/tests/data"
-            }
             workflow {
                 """
                 input[0] = Channel.of([
                     [ id: 'test' ], // meta map
                     file("${moduleDir}/tests/data/test.fa", checkIfExists: true)
                 ])
-                input[1] = "contamination.fa"
+                input[1] = Channel.of([
+                    [id: 'reference_genome' ], // meta map
+                    file("${moduleDir}/tests/data/contamination.fa*", checkIfExists: true).collect()
+                ])
                 """
             }
+
         }
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out.cleaned_contigs).match() }
+                { assert snapshot(workflow.out.cleaned_contigs).match() },
+                {
+                  def cleaned_contigs = path(workflow.out.cleaned_contigs.get(0).get(1)).fasta
+                  assert "uncontaminated_contig" in cleaned_contigs
+                  assert "partially_contaminated_contig" in cleaned_contigs
+                  assert !("contaminated_contig" in cleaned_contigs)
+                }
             )
         }
     }
