@@ -20,9 +20,16 @@ input:
       description: |
         assembly to check for contamination
       pattern: "*.{fasta,fa,fna,fasta.gz,fa.gz,fna.gz}"
-  - reference_genome:
-      type: string
-      description: String containing prefix for the blast database files for a specific host, eg. chicken.fna
+  - meta2:
+      type: map
+      description: |
+        Groovy Map containing reference information
+        e.g. [ reference_genome:'chicken.fna' ]
+  - ch_blast_ref:
+      type: map
+      description: |
+        Channel containing path the collected blast database files for a specific host, eg. blast_dbs/chicken.fna
+      pattern: "*"
 output:
   - meta:
       type: map

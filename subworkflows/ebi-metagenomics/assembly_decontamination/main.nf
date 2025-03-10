@@ -4,16 +4,11 @@ include { SEQKIT_GREP  } from '../../../modules/ebi-metagenomics/seqkit/grep/mai
 workflow ASSEMBLY_DECONTAMINATION {
 
     take:
-    assembly               // [ val(meta), path(assembly_fasta) ]
-    reference_genome       // [ path(reference_genome) ]
+    assembly           // [ val(meta), path(assembly_fasta) ]
+    ch_blast_ref       // [ val(meta2), path(reference_genome_files) ]
 
     main:
     ch_versions = Channel.empty()
-    cleaned_contigs = Channel.empty()
-    ch_blast_ref = Channel.fromPath( "${params.blast_reference_genomes_folder}/${reference_genome}*", checkIfExists: true)
-            .collect().map {
-                files -> [ ["id": reference_genome], files ]
-            }
 
     BLAST_BLASTN(assembly,ch_blast_ref)
     ch_versions = ch_versions.mix(BLAST_BLASTN.out.versions.first())
