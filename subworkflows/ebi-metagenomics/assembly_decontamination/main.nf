@@ -1,5 +1,5 @@
 include { BLAST_BLASTN } from '../../../modules/ebi-metagenomics/blast/blastn/main'
-include { SEQKIT_GREP } from '../../../modules/ebi-metagenomics/seqkit/grep/main'
+include { SEQKIT_GREP  } from '../../../modules/ebi-metagenomics/seqkit/grep/main'
 
 workflow ASSEMBLY_DECONTAMINATION {
 
