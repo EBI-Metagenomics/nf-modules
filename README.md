@@ -46,6 +46,10 @@ Then import the desired module in your pipeline script:
 include { <subworkflow_name> } from '../subworkflows/ebi-metagenomics/<subworkflow_name>.nf'
 ```
 
+## nf-core modules
+
+The [nf-core](https://nf-co.re/) team supports a large number of high-quality modules, and our team contributes whenever we can. At the moment, the [nf-core tools](https://github.com/nf-core/tools/) don't support subworkflows that install modules from different repos ([#3083](https://github.com/nf-core/tools/pull/3083)). That is why we decided to copy some modules from nf-core into this repo (a nasty hack, but it works). The nf-core team has been making impressive progress on supporting this use case (subworkflows with modules from different repos), and we will remove the duplicated modules once they reach that point. In the meantime, you will find duplicated modules from nf-core here.
+
 ## References
 
 This pipeline uses code and infrastructure developed and maintained by the [nf-core](https://nf-co.re) community, reused here under the [MIT license](https://github.com/nf-core/tools/blob/master/LICENSE).

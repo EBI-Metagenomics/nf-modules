@@ -1,9 +1,10 @@
-name: blast_makeblastdb
-description: Builds a BLAST database
+name: blast_blastn
+description: Queries a BLAST DNA database
 keywords:
   - fasta
   - blast
-  - database
+  - blastn
+  - DNA sequence
 tools:
   - blast:
       description: |
@@ -21,19 +22,28 @@ input:
           e.g. [ id:'test', single_end:false ]
     - fasta:
         type: file
-        description: Input fasta file
+        description: Input fasta file containing queries sequences
         pattern: "*.{fa,fasta,fa.gz,fasta.gz}"
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing db information
+          e.g. [ id:'test2', single_end:false ]
+    - db:
+        type: directory
+        description: Directory containing the blast database
+        pattern: "*"
 output:
-  - db:
+  - txt:
       - meta:
           type: map
           description: |
             Groovy Map containing sample information
             e.g. [ id:'test', single_end:false ]
-      - ${meta.id}:
-          type: directory
-          description: Output directory containing blast database files
-          pattern: "*"
+      - "*.txt":
+          type: file
+          description: File containing blastn hits
+          pattern: "*.txt"
   - versions:
       - versions.yml:
           type: file

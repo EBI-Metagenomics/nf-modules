@@ -1,4 +1,4 @@
-process BLAST_MAKEBLASTDB {
+process BLAST_BLASTN {
     tag "$meta.id"
     label 'process_medium'
 
@@ -8,11 +8,12 @@ process BLAST_MAKEBLASTDB {
         'biocontainers/blast:2.15.0--pl5321h6f7f691_1' }"
 
     input:
-    tuple val(meta), path(fasta)
+    tuple val(meta) , path(fasta)
+    tuple val(meta2), path(db)
 
     output:
-    tuple val(meta), path("${meta.id}"), emit: db
-    path "versions.yml"                , emit: versions
+    tuple val(meta), path('*.txt'), emit: txt
+    path "versions.yml"           , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -22,16 +23,24 @@ process BLAST_MAKEBLASTDB {
     def prefix = task.ext.prefix ?: "${meta.id}"
     def is_compressed = fasta.getExtension() == "gz" ? true : false
     def fasta_name = is_compressed ? fasta.getBaseName() : fasta
+
     """
     if [ "${is_compressed}" == "true" ]; then
         gzip -c -d ${fasta} > ${fasta_name}
     fi
 
-    makeblastdb \\
-        -in ${fasta_name} \\
-        ${args}
-    mkdir ${prefix}
-    mv ${fasta_name}* ${prefix}
+    DB=`find -L ./ -name "*.nal" | sed 's/\\.nal\$//'`
+    if [ -z "\$DB" ]; then
+        DB=`find -L ./ -name "*.nin" | sed 's/\\.nin\$//'`
+    fi
+    echo Using \$DB
+
+    blastn \\
+        -num_threads ${task.cpus} \\
+        -db \$DB \\
+        -query ${fasta_name} \\
+        ${args} \\
+        -out ${prefix}.txt
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -42,20 +51,8 @@ process BLAST_MAKEBLASTDB {
     stub:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def is_compressed = fasta.getExtension() == "gz" ? true : false
-    def fasta_name = is_compressed ? fasta.getBaseName() : fasta
     """
-    touch ${fasta_name}.fasta
-    touch ${fasta_name}.fasta.ndb
-    touch ${fasta_name}.fasta.nhr
-    touch ${fasta_name}.fasta.nin
-    touch ${fasta_name}.fasta.njs
-    touch ${fasta_name}.fasta.not
-    touch ${fasta_name}.fasta.nsq
-    touch ${fasta_name}.fasta.ntf
-    touch ${fasta_name}.fasta.nto
-    mkdir ${prefix}
-    mv ${fasta_name}* ${prefix}
+    touch ${prefix}.txt
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

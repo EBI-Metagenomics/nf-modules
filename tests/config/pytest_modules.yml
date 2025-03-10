@@ -1,11 +1,3 @@
-blast/blastp:
-  - modules/ebi-metagenomics/blast/blastp/**
-  - tests/modules/ebi-metagenomics/blast/blastp/**
-
-blast/makeblastdb:
-  - modules/ebi-metagenomics/blast/makeblastdb/**
-  - tests/modules/ebi-metagenomics/blast/makeblastdb/**
-
 bmtagger/bmtagger:
   - modules/ebi-metagenomics/bmtagger/bmtagger/**
   - tests/modules/ebi-metagenomics/bmtagger/bmtagger/**
