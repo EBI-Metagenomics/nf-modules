@@ -18,8 +18,8 @@ nextflow_workflow {
             }
             workflow {
                 """
-                input[0] = [ [id:'test'], file("${moduleDir}/tests/data/contigs.fasta", checkIfExists: true) ]
-                input[1] = [ [id:'test'], file("${moduleDir}/tests/data/proteins.fasta", checkIfExists: true) ]
+                input[0] = Channel.of( [ [id:'test'], file("${moduleDir}/tests/data/contigs.fasta", checkIfExists: true) ] )
+                input[1] = Channel.of( [ [id:'test'], file("${moduleDir}/tests/data/proteins.fasta", checkIfExists: true) ] )
                 input[2] = [ [id:'test'], file("${moduleDir}/tests/data/db", checkIfExists: true) ]
                 input[3] = [ [id:'test'], file("${moduleDir}/tests/data/tax", checkIfExists: true) ]
                 """
