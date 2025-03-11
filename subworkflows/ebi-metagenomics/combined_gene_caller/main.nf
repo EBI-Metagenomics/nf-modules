@@ -2,6 +2,7 @@
 include { PRODIGAL                 } from '../../../modules/ebi-metagenomics/prodigal/main'
 include { FRAGGENESCANRS           } from '../../../modules/ebi-metagenomics/fraggenescanrs/main'
 include { COMBINEDGENECALLER_MERGE } from '../../../modules/ebi-metagenomics/combinedgenecaller/merge/main'
+include { GT_GFF3VALIDATOR         } from '../../../modules/ebi-metagenomics/gt/gff3validator/main'
 
 workflow COMBINED_GENE_CALLER {
 
@@ -52,7 +53,10 @@ workflow COMBINED_GENE_CALLER {
 
     ch_versions = ch_versions.mix(COMBINEDGENECALLER_MERGE.out.versions)
 
+    GT_GFF3VALIDATOR( COMBINEDGENECALLER_MERGE.out.gff )
+
     emit:
+    gff      = GT_GFF3VALIDATOR.out.gff          // channel: [ val(meta), [ gff ] ]
     faa      = COMBINEDGENECALLER_MERGE.out.faa  // channel: [ val(meta), [ faa ] ]
     ffn      = COMBINEDGENECALLER_MERGE.out.ffn  // channel: [ val(meta), [ ffn ] ]
     versions = ch_versions                       // channel: [ versions.yml ]
