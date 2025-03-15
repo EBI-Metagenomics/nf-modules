@@ -20,12 +20,12 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test', single_end:false ],
-                    file('${moduleDir}/tests/fixtures/input_prodigal.sco.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_prodigal.ffn.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_prodigal.faa.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_fgs.out.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_fgs.ffn.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_fgs.faa.gz', checkIfExists: true),
+                    file('${params.mgnify_pipelines_toolkit_testdata}/combined_gene_caller_merge/input_pyrodigal.gff.gz', checkIfExists: true),
+                    file('${params.mgnify_pipelines_toolkit_testdata}/combined_gene_caller_merge/input_pyrodigal.ffn.gz', checkIfExists: true),
+                    file('${params.mgnify_pipelines_toolkit_testdata}/combined_gene_caller_merge/input_pyrodigal.faa', checkIfExists: true),
+                    file('${params.mgnify_pipelines_toolkit_testdata}/combined_gene_caller_merge/input_fgsrs.gff.gz', checkIfExists: true),
+                    file('${params.mgnify_pipelines_toolkit_testdata}/combined_gene_caller_merge/input_fgsrs.ffn.gz', checkIfExists: true),
+                    file('${params.mgnify_pipelines_toolkit_testdata}/combined_gene_caller_merge/input_fgsrs.faa.gz', checkIfExists: true),
                     []
                 ]
                 """
@@ -50,13 +50,13 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test', single_end:false ], // meta map
-                    file('${moduleDir}/tests/fixtures/input_prodigal.sco.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_prodigal.ffn.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_prodigal.faa.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_fgs.out.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_fgs.ffn.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_fgs.faa.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/cmsearch.all.tblout.deoverlapped.gz', checkIfExists: true),
+                    file('${params.mgnify_pipelines_toolkit_testdata}/combined_gene_caller_merge/input_pyrodigal.gff.gz', checkIfExists: true),
+                    file('${params.mgnify_pipelines_toolkit_testdata}/combined_gene_caller_merge/input_pyrodigal.ffn.gz', checkIfExists: true),
+                    file('${params.mgnify_pipelines_toolkit_testdata}/combined_gene_caller_merge/input_pyrodigal.faa', checkIfExists: true),
+                    file('${params.mgnify_pipelines_toolkit_testdata}/combined_gene_caller_merge/input_fgsrs.gff.gz', checkIfExists: true),
+                    file('${params.mgnify_pipelines_toolkit_testdata}/combined_gene_caller_merge/input_fgsrs.ffn.gz', checkIfExists: true),
+                    file('${params.mgnify_pipelines_toolkit_testdata}/combined_gene_caller_merge/input_fgsrs.faa.gz', checkIfExists: true),
+                    file('${params.mgnify_pipelines_toolkit_testdata}/combined_gene_caller_merge/cmsearch.all.tblout.deoverlapped.gz', checkIfExists: true),
                 ]
                 """
             }

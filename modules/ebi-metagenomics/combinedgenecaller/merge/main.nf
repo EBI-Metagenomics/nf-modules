@@ -3,16 +3,16 @@ process COMBINEDGENECALLER_MERGE {
     label 'process_single'
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:0.2.1--pyhdfd78af_0':
-        'biocontainers/mgnify-pipelines-toolkit:0.2.1--pyhdfd78af_0' }"
+        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:1.0.0--pyhdfd78af_0':
+        'biocontainers/mgnify-pipelines-toolkit:1.0.0--pyhdfd78af_0' }"
 
     input:
-    tuple val(meta), path(prodigal_sco, stageAs: "prodigal/"), path(prodigal_ffn, stageAs: "prodigal/"), path(prodigal_faa, stageAs: "prodigal/"), path(fgs_out, stageAs: "fgsrs/"), path(fgs_ffn, stageAs: "fgsrs/"), path(fgs_faa, stageAs: "fgsrs/"), path(mask)
+    tuple val(meta), path(pyrodigal_gff, stageAs: "pyrodigal/"), path(pyrodigal_ffn, stageAs: "pyrodigal/"), path(pyrodigal_faa, stageAs: "pyrodigal/"), path(fgs_gff, stageAs: "fgsrs/"), path(fgs_ffn, stageAs: "fgsrs/"), path(fgs_faa, stageAs: "fgsrs/"), path(mask)
 
     output:
     tuple val(meta), path("*.faa.gz"), emit: faa
     tuple val(meta), path("*.ffn.gz"), emit: ffn
-    tuple val(meta), path("*.out.gz"), emit: summary
+    tuple val(meta), path("*.gff.gz"), emit: gff
     path "versions.yml", emit: versions
 
     when:
@@ -23,39 +23,39 @@ process COMBINEDGENECALLER_MERGE {
     def prefix = task.ext.prefix ?: "${meta.id}"
 
     // Check if files are compressed
-    def is_prod_sco_compressed = prodigal_sco.name.endsWith(".gz")
-    def is_prod_ffn_compressed = prodigal_ffn.name.endsWith(".gz")
-    def is_prod_faa_compressed = prodigal_faa.name.endsWith(".gz")
-    def is_fgs_out_compressed = fgs_out.name.endsWith(".gz")
+    def is_prod_gff_compressed = pyrodigal_gff.name.endsWith(".gz")
+    def is_prod_ffn_compressed = pyrodigal_ffn.name.endsWith(".gz")
+    def is_prod_faa_compressed = pyrodigal_faa.name.endsWith(".gz")
+    def is_fgs_gff_compressed = fgs_gff.name.endsWith(".gz")
     def is_fgs_ffn_compressed = fgs_ffn.name.endsWith(".gz")
     def is_fgs_faa_compressed = fgs_faa.name.endsWith(".gz")
 
     // Get uncompressed file names
-    def prodigal_sco_file = prodigal_sco.name.replace(".gz", "")
-    def prodigal_ffn_file = prodigal_ffn.name.replace(".gz", "")
-    def prodigal_faa_file = prodigal_faa.name.replace(".gz", "")
-    def fgs_out_file = fgs_out.name.replace(".gz", "")
+    def pyrodigal_gff_file = pyrodigal_gff.name.replace(".gz", "")
+    def pyrodigal_ffn_file = pyrodigal_ffn.name.replace(".gz", "")
+    def pyrodigal_faa_file = pyrodigal_faa.name.replace(".gz", "")
+    def fgs_gff_file = fgs_gff.name.replace(".gz", "")
     def fgs_ffn_file = fgs_ffn.name.replace(".gz", "")
     def fgs_faa_file = fgs_faa.name.replace(".gz", "")
 
     def is_mask_compressed = false
     def mask_parameter = ""
-    if ( mask ) {
+    if ( mask && mask.size() > 0 ) {
         is_mask_compressed = mask.name.endsWith(".gz")
         mask_parameter = "--mask ${mask.name.replace(".gz", "")} "
     }
     """
-    if [ "${is_prod_sco_compressed}" == "true" ]; then
-        gzip -d -c ${prodigal_sco} > ${prodigal_sco_file}
+    if [ "${is_prod_gff_compressed}" == "true" ]; then
+        gzip -d -c ${pyrodigal_gff} > ${pyrodigal_gff_file}
     fi
     if [ "${is_prod_ffn_compressed}" == "true" ]; then
-        gzip -d -c ${prodigal_ffn} > ${prodigal_ffn_file}
+        gzip -d -c ${pyrodigal_ffn} > ${pyrodigal_ffn_file}
     fi
     if [ "${is_prod_faa_compressed}" == "true" ]; then
-        gzip -d -c ${prodigal_faa} > ${prodigal_faa_file}
+        gzip -d -c ${pyrodigal_faa} > ${pyrodigal_faa_file}
     fi
-    if [ "${is_fgs_out_compressed}" == "true" ]; then
-        gzip -d -c ${fgs_out} > ${fgs_out_file}
+    if [ "${is_fgs_gff_compressed}" == "true" ]; then
+        gzip -d -c ${fgs_gff} > ${fgs_gff_file}
     fi
     if [ "${is_fgs_ffn_compressed}" == "true" ]; then
         gzip -d -c ${fgs_ffn} > ${fgs_ffn_file}
@@ -67,17 +67,17 @@ process COMBINEDGENECALLER_MERGE {
         gunzip ${mask}
     fi
 
-    cgc_merge \\
+    combined_gene_caller_merge \\
         ${args} \\
         -n ${prefix} \\
-        --prodigal-out ${prodigal_sco_file} \\
-        --prodigal-ffn ${prodigal_ffn_file} \\
-        --prodigal-faa ${prodigal_faa_file} \\
-        --fgs-out ${fgs_out_file} \\
-        --fgs-ffn ${fgs_ffn_file} \\
-        --fgs-faa ${fgs_faa_file} ${mask_parameter}
+        --pyrodigal-gff ${pyrodigal_gff_file} \\
+        --pyrodigal-ffn ${pyrodigal_ffn_file} \\
+        --pyrodigal-faa ${pyrodigal_faa_file} \\
+        --fgsrs-gff ${fgs_gff_file} \\
+        --fgsrs-ffn ${fgs_ffn_file} \\
+        --fgsrs-faa ${fgs_faa_file} ${mask_parameter}
 
-    gzip -n ${prefix}.{faa,ffn,out}
+    gzip -n ${prefix}.{faa,ffn,gff}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -88,9 +88,9 @@ process COMBINEDGENECALLER_MERGE {
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    touch ${prefix}.{faa,ffn,out}
+    touch ${prefix}.{faa,ffn,gff}
 
-    gzip -n ${prefix}.{faa,ffn,out}
+    gzip -n ${prefix}.{faa,ffn,gff}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
