@@ -8,7 +8,7 @@
                             "id": "test",
                             "prefix": "ERR4968564"
                         },
-                        "test_dram.html:md5,f265b885777333e5b702f75b50a88c14"
+                        "test_dram.html:md5,6df33f64b012a6650d5a7a0bbd20f5c5"
                     ]
                 ],
                 "1": [
@@ -21,6 +21,24 @@
                     ]
                 ],
                 "2": [
+                    [
+                        {
+                            "id": "test",
+                            "prefix": "ERR4968564"
+                        },
+                        "test_genome_stats.tsv:md5,b4b6e4e94112028e14c77cea5e325dbe"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test",
+                            "prefix": "ERR4968564"
+                        },
+                        "test_metabolism_summary.xlsx:md5,fc7ec7fa6f38f26b13f902d48135b02c"
+                    ]
+                ],
+                "4": [
                     "versions.yml:md5,474145e9ff22e5243cb59230b6f981ea"
                 ],
                 "html": [
@@ -29,10 +47,19 @@
                             "id": "test",
                             "prefix": "ERR4968564"
                         },
-                        "test_dram.html:md5,f265b885777333e5b702f75b50a88c14"
+                        "test_dram.html:md5,6df33f64b012a6650d5a7a0bbd20f5c5"
                     ]
                 ],
-                "tsv": [
+                "metabolism_xslx": [
+                    [
+                        {
+                            "id": "test",
+                            "prefix": "ERR4968564"
+                        },
+                        "test_metabolism_summary.xlsx:md5,fc7ec7fa6f38f26b13f902d48135b02c"
+                    ]
+                ],
+                "out_tsv": [
                     [
                         {
                             "id": "test",
@@ -41,15 +68,24 @@
                         "test_dram.tsv:md5,19bbfe1896d94d502acd846044d88007"
                     ]
                 ],
+                "stats_tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "prefix": "ERR4968564"
+                        },
+                        "test_genome_stats.tsv:md5,b4b6e4e94112028e14c77cea5e325dbe"
+                    ]
+                ],
                 "versions": [
                     "versions.yml:md5,474145e9ff22e5243cb59230b6f981ea"
                 ]
             }
         ],
         "meta": {
-            "nf-test": "0.8.4",
-            "nextflow": "24.04.1"
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.4"
         },
-        "timestamp": "2024-07-22T18:30:23.978510469"
+        "timestamp": "2025-03-14T17:39:55.208846687"
     }
 }

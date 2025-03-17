@@ -12,6 +12,10 @@ nextflow_process {
     test("test_dram_distill") {
 
         when {
+            params {
+                reference_dbs = "${moduleDir}/tests/fixtures"
+            }
+
             process {
                 """                
                 input[0] = [

@@ -1,26 +1,32 @@
 process DRAM_DISTILL {
-    tag "$meta.id"
+    tag "${meta.id}"
     label 'process_high'
 
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/dram:1.3.5--pyhdfd78af_0':
-        'quay.io/biocontainers/dram:1.3.5--pyhdfd78af_0' }"
+    container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container 
+        ? 'https://depot.galaxyproject.org/singularity/dram:1.3.5--pyhdfd78af_0'
+        : 'quay.io/biocontainers/dram:1.3.5--pyhdfd78af_0'}"
 
     containerOptions {
-        if (workflow.containerEngine == 'singularity') {
-            return "--bind ${moduleDir}/tests/fixtures/dram_distill_dbs/:/data/ --bind ${moduleDir}/tests/fixtures/dram_distill_dbs/CONFIG:/usr/local/lib/python3.10/site-packages/mag_annotator/CONFIG"
-        } else {
-            return "-v ${moduleDir}/tests/fixtures/dram_distill_dbs/:/data/ -v ${moduleDir}/tests/fixtures/dram_distill_dbs/CONFIG:/usr/local/lib/python3.10/site-packages/mag_annotator/CONFIG"
+        def arg = "--volume"
+        if (workflow.containerEngine == 'singularity' || workflow.containerEngine == 'apptainer') {
+            arg = "--bind"
         }
+        def mounts = [
+            "${params.reference_dbs}/dram_dbs/:/data/",
+            "${params.reference_dbs}/dram_dbs/DRAM_CONFIG.json:/usr/local/lib/python3.10/site-packages/mag_annotator/CONFIG",
+        ]
+        return "${arg} " + mounts.join(" ${arg} ")
     }
 
     input:
     tuple val(meta), path(tsv_input)
 
     output:
-    tuple val(meta), path("*_dram.html"), emit: html
-    tuple val(meta), path("*_dram.tsv") , emit: tsv
-    path "versions.yml"                 , emit: versions
+    tuple val(meta), path("*_dram.html")               , emit: html
+    tuple val(meta), path("*_dram.tsv")                , emit: out_tsv
+    tuple val(meta), path("*_genome_stats.tsv")        , emit: stats_tsv
+    tuple val(meta), path("*_metabolism_summary.xlsx") , emit: metabolism_xslx
+    path "versions.yml"                                , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -28,7 +34,8 @@ process DRAM_DISTILL {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def VERSION = '1.3.5' // WARN: dram has no option to print the tool version. This is the container version
+    // WARN: dram has no option to print the tool version. This is the container version
+    def VERSION = '1.3.5' 
 
     """
     DRAM.py \\
@@ -36,8 +43,11 @@ process DRAM_DISTILL {
         -i ${tsv_input}  \\
         -o dram_out \\
         ${args}
+
     mv dram_out/product.html ${prefix}_dram.html
     mv dram_out/product.tsv ${prefix}_dram.tsv
+    mv dram_out/genome_stats.tsv ${prefix}_genome_stats.tsv
+    mv dram_out/metabolism_summary.xlsx ${prefix}_metabolism_summary.xlsx
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -52,6 +62,8 @@ process DRAM_DISTILL {
     """
     touch ${prefix}_dram.html
     touch ${prefix}_dram.tsv
+    touch ${prefix}_genome_stats.tsv
+    touch ${prefix}_metabolism_summary.xlsx
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
