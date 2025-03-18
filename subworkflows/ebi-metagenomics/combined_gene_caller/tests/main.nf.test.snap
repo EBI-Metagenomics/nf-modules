@@ -1,151 +1,98 @@
 {
-    "cgc assembly fasta - stub": {
-        "content": [
-            {
-                "0": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false
-                        },
-                        "test.faa.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "1": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false
-                        },
-                        "test.ffn.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "2": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false
-                        },
-                        "test.gff.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "3": [
-                    "versions.yml:md5,a0aa6fafc64cd9247897bd866aa70b05",
-                    "versions.yml:md5,a34f2510d6c7baad556ca16eb470e427",
-                    "versions.yml:md5,d25d2650dfebfdb72b8e58b2d5878789"
-                ],
-                "faa": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false
-                        },
-                        "test.faa.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "ffn": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false
-                        },
-                        "test.ffn.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "gff": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": false
-                        },
-                        "test.gff.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
-                    ]
-                ],
-                "versions": [
-                    "versions.yml:md5,a0aa6fafc64cd9247897bd866aa70b05",
-                    "versions.yml:md5,a34f2510d6c7baad556ca16eb470e427",
-                    "versions.yml:md5,d25d2650dfebfdb72b8e58b2d5878789"
-                ]
-            }
-        ],
-        "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.5"
-        },
-        "timestamp": "2025-03-15T17:35:12.601001"
-    },
     "cgc assembly fasta and cmsearch mask file": {
         "content": [
-            {
-                "0": [
-                    
-                ],
-                "1": [
-                    
-                ],
-                "2": [
-                    
-                ],
-                "3": [
-                    "versions.yml:md5,a34f2510d6c7baad556ca16eb470e427",
-                    "versions.yml:md5,d25d2650dfebfdb72b8e58b2d5878789"
-                ],
-                "faa": [
-                    
-                ],
-                "ffn": [
-                    
-                ],
-                "gff": [
-                    
-                ],
-                "versions": [
-                    "versions.yml:md5,a34f2510d6c7baad556ca16eb470e427",
-                    "versions.yml:md5,d25d2650dfebfdb72b8e58b2d5878789"
-                ]
-            }
+            [
+                ">MGYA1_4 # 2985 # 6581 # 1 # ID=2_4;partial=01;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.604",
+                "MTTKAPTFQQPLQSVVRLEGSAAMFEAHISGFPVPEVSWYRDGQVLSAATLPGVQISFSD",
+                "GRAKLVISAVTAANSGRYTVQATNASGQATSTAELLVTAETAPPNFSQRLQSMTARQASR",
+                "VRLDVRVTGINTPVVKFYRDGVEIQSSPDFIILHEGDLYSLIIAEAYPEDSGTYSVNATN",
+                "SVGRATSTAELLVQGEDEAVPAKKTKTIVSTAQITQTTNQARVEKKIQAHFDARSDATAE",
+                "MTDEAPKFLQPLQSVVALEGSAATEEARISGFPVPEVSWFRDGQVLSAAAPPGVQISFSD",
+                "GRAKLMIPAVSTANSGRYSVRATNGAGQATSTAELLVTAETAMPNFTQRLQSTTARQGSQ",
+                "VRFDIRVNGIPTPVVKFYRWGAEIQSSHDFQIIQDADLYSYIITEVYNEDSGTYSVNATN",
+                "SVGRATSTCELIVQADEEIPAKKTKTIISAAQISQTRQARVEQRIESRFDARTIMSVEMT",
+                "ESMQLPSWLENPLFGWRLLVDWLLGHIPEADIDQMRERAESRWTTGDKWMALAESHEAAA",
+                "ADAGIHGSGVAATELAAAHRRMAQAWREQAEIQYSLAKQLYEGANEFEKTAWVIIISGIA"
+            ],
+            [
+                "##gff-version 3",
+                "MGYA1\tPyrodigal\tCDS\t1\t126\t.\t+\t.\tID=MGYA1_1",
+                "MGYA1\tPyrodigal\tCDS\t1223\t1894\t.\t+\t.\tID=MGYA1_2",
+                "MGYA1\tPyrodigal\tCDS\t2446\t2682\t.\t+\t.\tID=MGYA1_3",
+                "MGYA1\tPyrodigal\tCDS\t2985\t6581\t.\t+\t.\tID=MGYA1_4",
+                "MGYA2\tPyrodigal\tCDS\t347\t931\t.\t-\t.\tID=MGYA2_1",
+                "MGYA2\tPyrodigal\tCDS\t959\t1894\t.\t-\t.\tID=MGYA2_2",
+                "MGYA3\tPyrodigal\tCDS\t2\t616\t.\t-\t.\tID=MGYA3_1",
+                "MGYA3\tPyrodigal\tCDS\t719\t3562\t.\t+\t.\tID=MGYA3_2",
+                "MGYA4\tPyrodigal\tCDS\t229\t579\t.\t+\t.\tID=MGYA4_1",
+                "MGYA4\tPyrodigal\tCDS\t4935\t5108\t.\t+\t.\tID=MGYA4_5"
+            ],
+            [
+                "CAAGTCAATACAGAAGATATTCAAGCAGAACTACGACAAGAGATGCGTCAGGTTCAAGAT",
+                "GAAAACAAAGAAATGTTACGTGAAGTGAGAGCATCACATGAGCATTATCAGAAGAGACAA",
+                "AAACAATTATTTACAGGGATTGGATCGATGTTATTAGTCTTTATGCTGTTTGCTTTAATT",
+                "ATGACCATAGGCAGTGACTTTATGAGTTTCTTGCATGTAGATATATTACAAAAAGCTATA",
+                "GCAAGCAAAATCGAAGCTTCTGAAGGCTTTATGACATTTGTTTGGTATATTGCATACGGT",
+                "TTACCTTATATATTCGCTATAGGACTATTTATTGGCTTATATGAATGGATTAGAGCACGG",
+                "CTCCATGATTAA",
+                ">MGYA1_3 # 2446 # 2682 # 1 # ID=2_3;partial=00;start_type=TTG;rbs_motif=AGGAG;rbs_spacer=5-10bp;gc_cont=0.287",
+                "TTGAAATTTATAACTAAAATGTTAGATGGATTAGCTTTTATTTGTGCAGCATTATTATTT",
+                "TTAAAGTATGCAGTTATGTCTGCCAATATGATGTTTGATTGGCATTTGCGTTGGTATTTC",
+                "TTAGAAGATATTCCGCACATGGCAATTATATTATTCATCTTGATGTTTGTTTTTGCAGTT"
+            ]
         ],
         "meta": {
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-03-15T17:35:09.407769"
+        "timestamp": "2025-03-18T14:45:20.721789"
     },
     "cgc assembly fasta": {
         "content": [
-            {
-                "0": [
-                    
-                ],
-                "1": [
-                    
-                ],
-                "2": [
-                    
-                ],
-                "3": [
-                    "versions.yml:md5,a34f2510d6c7baad556ca16eb470e427",
-                    "versions.yml:md5,d25d2650dfebfdb72b8e58b2d5878789"
-                ],
-                "faa": [
-                    
-                ],
-                "ffn": [
-                    
-                ],
-                "gff": [
-                    
-                ],
-                "versions": [
-                    "versions.yml:md5,a34f2510d6c7baad556ca16eb470e427",
-                    "versions.yml:md5,d25d2650dfebfdb72b8e58b2d5878789"
-                ]
-            }
+            [
+                ">MGYA1_4 # 2985 # 6581 # 1 # ID=2_4;partial=01;start_type=ATG;rbs_motif=None;rbs_spacer=None;gc_cont=0.604",
+                "MTTKAPTFQQPLQSVVRLEGSAAMFEAHISGFPVPEVSWYRDGQVLSAATLPGVQISFSD",
+                "GRAKLVISAVTAANSGRYTVQATNASGQATSTAELLVTAETAPPNFSQRLQSMTARQASR",
+                "VRLDVRVTGINTPVVKFYRDGVEIQSSPDFIILHEGDLYSLIIAEAYPEDSGTYSVNATN",
+                "SVGRATSTAELLVQGEDEAVPAKKTKTIVSTAQITQTTNQARVEKKIQAHFDARSDATAE",
+                "MTDEAPKFLQPLQSVVALEGSAATEEARISGFPVPEVSWFRDGQVLSAAAPPGVQISFSD",
+                "GRAKLMIPAVSTANSGRYSVRATNGAGQATSTAELLVTAETAMPNFTQRLQSTTARQGSQ",
+                "VRFDIRVNGIPTPVVKFYRWGAEIQSSHDFQIIQDADLYSYIITEVYNEDSGTYSVNATN",
+                "SVGRATSTCELIVQADEEIPAKKTKTIISAAQISQTRQARVEQRIESRFDARTIMSVEMT",
+                "ESMQLPSWLENPLFGWRLLVDWLLGHIPEADIDQMRERAESRWTTGDKWMALAESHEAAA",
+                "ADAGIHGSGVAATELAAAHRRMAQAWREQAEIQYSLAKQLYEGANEFEKTAWVIIISGIA"
+            ],
+            [
+                "##gff-version 3",
+                "MGYA1\tPyrodigal\tCDS\t1\t126\t.\t+\t.\tID=MGYA1_1",
+                "MGYA1\tPyrodigal\tCDS\t1223\t1894\t.\t+\t.\tID=MGYA1_2",
+                "MGYA1\tPyrodigal\tCDS\t2446\t2682\t.\t+\t.\tID=MGYA1_3",
+                "MGYA1\tPyrodigal\tCDS\t2985\t6581\t.\t+\t.\tID=MGYA1_4",
+                "MGYA2\tPyrodigal\tCDS\t347\t931\t.\t-\t.\tID=MGYA2_1",
+                "MGYA2\tPyrodigal\tCDS\t959\t1894\t.\t-\t.\tID=MGYA2_2",
+                "MGYA3\tPyrodigal\tCDS\t2\t616\t.\t-\t.\tID=MGYA3_1",
+                "MGYA3\tPyrodigal\tCDS\t719\t3562\t.\t+\t.\tID=MGYA3_2",
+                "MGYA4\tPyrodigal\tCDS\t229\t579\t.\t+\t.\tID=MGYA4_1",
+                "MGYA4\tPyrodigal\tCDS\t4935\t5108\t.\t+\t.\tID=MGYA4_5"
+            ],
+            [
+                "CAAGTCAATACAGAAGATATTCAAGCAGAACTACGACAAGAGATGCGTCAGGTTCAAGAT",
+                "GAAAACAAAGAAATGTTACGTGAAGTGAGAGCATCACATGAGCATTATCAGAAGAGACAA",
+                "AAACAATTATTTACAGGGATTGGATCGATGTTATTAGTCTTTATGCTGTTTGCTTTAATT",
+                "ATGACCATAGGCAGTGACTTTATGAGTTTCTTGCATGTAGATATATTACAAAAAGCTATA",
+                "GCAAGCAAAATCGAAGCTTCTGAAGGCTTTATGACATTTGTTTGGTATATTGCATACGGT",
+                "TTACCTTATATATTCGCTATAGGACTATTTATTGGCTTATATGAATGGATTAGAGCACGG",
+                "CTCCATGATTAA",
+                ">MGYA1_3 # 2446 # 2682 # 1 # ID=2_3;partial=00;start_type=TTG;rbs_motif=AGGAG;rbs_spacer=5-10bp;gc_cont=0.287",
+                "TTGAAATTTATAACTAAAATGTTAGATGGATTAGCTTTTATTTGTGCAGCATTATTATTT",
+                "TTAAAGTATGCAGTTATGTCTGCCAATATGATGTTTGATTGGCATTTGCGTTGGTATTTC",
+                "TTAGAAGATATTCCGCACATGGCAATTATATTATTCATCTTGATGTTTGTTTTTGCAGTT"
+            ]
         ],
         "meta": {
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-03-15T17:35:06.076241"
+        "timestamp": "2025-03-18T14:55:47.296979"
     }
 }
