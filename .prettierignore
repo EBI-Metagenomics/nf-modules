@@ -16,3 +16,4 @@ __pycache__
 *.pyc
 .github/renovate.json5
 *.pac
+*.njs
