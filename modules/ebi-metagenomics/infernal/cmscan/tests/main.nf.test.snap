@@ -2,10 +2,10 @@
     "versions": {
         "content": [
             [
-                "versions.yml:md5,643c3b5b34f868d87511259bc33d3f3a"
+                "versions.yml:md5,cfb91b02c61394ebf3a823094a610492"
             ]
         ],
-        "timestamp": "2025-03-19T15:36:01.996661"
+        "timestamp": "2025-03-19T13:37:59.141979"
     },
     "stub": {
         "content": [
@@ -16,26 +16,26 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.cmsearch_matches.tbl.gz:md5,7029066c27ac6f5ef18d660d5741979a"
+                        "test.cmscan_matches.tbl.gz:md5,7029066c27ac6f5ef18d660d5741979a"
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,643c3b5b34f868d87511259bc33d3f3a"
+                    "versions.yml:md5,cfb91b02c61394ebf3a823094a610492"
                 ],
-                "cmsearch_tbl": [
+                "cmscan_tbl": [
                     [
                         {
                             "id": "test",
                             "single_end": false
                         },
-                        "test.cmsearch_matches.tbl.gz:md5,7029066c27ac6f5ef18d660d5741979a"
+                        "test.cmscan_matches.tbl.gz:md5,7029066c27ac6f5ef18d660d5741979a"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,643c3b5b34f868d87511259bc33d3f3a"
+                    "versions.yml:md5,cfb91b02c61394ebf3a823094a610492"
                 ]
             }
         ],
-        "timestamp": "2025-03-19T15:36:10.650364"
+        "timestamp": "2025-03-19T13:38:07.236497"
     }
 }

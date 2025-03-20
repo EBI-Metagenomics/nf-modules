@@ -1,17 +1,17 @@
 nextflow_process {
 
-    name "Test Process INERNAL/CMSEARCH"
+    name "Test Process INERNAL/CMSCAN"
     script "../main.nf"
-    process "INFERNAL_CMSEARCH"
+    process "INFERNAL_CMSCAN"
     config "./nextflow.config"
 
     tag "modules"
     tag "modules_nfcore"
     tag "infernal"
-    tag "cmsearch"
-    tag "infernal/cmsearch"
+    tag "cmscan"
+    tag "infernal/cmscan"
 
-    test("infernal cmsearch") {
+    test("infernal cmscan") {
         when {
             process {
                 """
@@ -19,7 +19,7 @@ nextflow_process {
                     [ id:'test', single_end:false ],                              // meta map
                     file("${moduleDir}/tests/example.fa.gz", checkIfExists: true) // seqdb
                     ]
-                input[1] = [file("${moduleDir}/tests/rfam", checkIfExists: true)]
+                input[1] = [file("${moduleDir}/tests/rfam/", checkIfExists: true)]
                 """
             }
         }
@@ -27,7 +27,7 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(path(process.out.cmsearch_tbl.get(0).get(1)).contains("# [ok]")) },
+                { assert snapshot(path(process.out.cmscan_tbl.get(0).get(1)).contains("# [ok]")) },
                 { assert snapshot(process.out.versions).match('versions') }
             )
         }

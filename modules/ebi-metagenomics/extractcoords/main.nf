@@ -13,10 +13,13 @@ process EXTRACTCOORDS {
     tuple val(meta), path(matched_seqs_with_coords)
 
     output:
-    tuple val(meta),  path("sequence-categorisation/*SSU.fasta") , optional: true, emit: ssu_fasta
-    tuple val(meta),  path("sequence-categorisation/*LSU.fasta") , optional: true, emit: lsu_fasta
-    tuple val(meta),  path("*concat_SSU_LSU_coords.txt")         , emit: concat_ssu_lsu_coords
-    path "versions.yml"                                          , emit: versions
+    tuple val(meta),  path("sequence-categorisation/*SSU.fasta")        , optional: true, emit: ssu_fasta
+    tuple val(meta),  path("sequence-categorisation/*LSU.fasta")        , optional: true, emit: lsu_fasta
+    tuple val(meta),  path("sequence-categorisation/*5S.fasta")         , optional: true, emit: 5s_fasta
+    tuple val(meta),  path("sequence-categorisation/*5_8S.fasta")       , optional: true, emit: 5_8s_fasta
+    tuple val(meta),  path("sequence-categorisation/*other_ncRNA.fasta"), optional: true, emit: ncrna_fasta
+    tuple val(meta),  path("*concat_SSU_LSU_coords.txt")                , emit: concat_ssu_lsu_coords
+    path "versions.yml"                                                 , emit: versions
 
     when:
     task.ext.when == null || task.ext.when

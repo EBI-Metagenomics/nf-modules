@@ -1,6 +1,6 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/yaml-schema.json
-name: "infernal_cmsearch"
+name: "infernal_cmscan"
 description: RNA secondary structure/sequence profiles for homology search and alignment
 keywords:
   - covariance models
@@ -27,7 +27,7 @@ input:
       pattern: "*.{fasta,fna,fasta.gz,fna.gz}"
   - covariance_model_database:
       type: file
-      description: Folder with Rfam models in .cm file
+      description: Folder with Rfam models in .cm file including indexes .i1f, .i1i, .i1m, .i1p
 
 output:
   - meta:
@@ -36,7 +36,7 @@ output:
         Groovy Map containing sample information
         e.g. `[ id:'test', single_end:false ]`
 
-  - cmsearch_tbl:
+  - cmscan_tbl:
       type: file
       description: Tabular (space-delimited) file summarizing the hits found, with one data line per hit.
       pattern: "*.tbl"
@@ -48,3 +48,4 @@ output:
 
 authors:
   - "@mberacochea"
+  - "@Kate_Sakharova"
