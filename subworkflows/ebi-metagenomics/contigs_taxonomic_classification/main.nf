@@ -1,6 +1,5 @@
 include { DIAMOND_BLASTP                    } from '../../../modules/ebi-metagenomics/diamond/blastp/main'
 include { CATPACK_CONTIGS                   } from '../../../modules/ebi-metagenomics/catpack/contigs/main'
-include { CATPACK_ADDNAMES                  } from '../../../modules/ebi-metagenomics/catpack/addnames/main'
 include { KRONA_TXT_FROM_CAT_CLASSIFICATION } from '../../../modules/local/krona_txt_from_cat_classification/main'
 include { KRONA_KTIMPORTTEXT                } from '../../../modules/ebi-metagenomics/krona/ktimporttext/main'
 
@@ -47,14 +46,9 @@ workflow CONTIGS_TAXONOMIC_CLASSIFICATION {
     )
     ch_versions = ch_versions.mix(CATPACK_CONTIGS.out.versions.first())
 
-    CATPACK_ADDNAMES(
+    KRONA_TXT_FROM_CAT_CLASSIFICATION(
         CATPACK_CONTIGS.out.contig2classification,
         taxonomy_db
-    )
-    ch_versions = ch_versions.mix(CATPACK_ADDNAMES.out.versions.first())
-
-    KRONA_TXT_FROM_CAT_CLASSIFICATION(
-        CATPACK_ADDNAMES.out.txt
     )
     ch_versions = ch_versions.mix(KRONA_TXT_FROM_CAT_CLASSIFICATION.out.versions.first())
 
