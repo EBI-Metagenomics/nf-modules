@@ -12,21 +12,22 @@ process DRAM_DISTILL {
             arg = "--bind"
         }
         def mounts = [
-            "${params.reference_dbs}/dram_dbs/:/data/",
-            "${params.reference_dbs}/dram_dbs/DRAM_CONFIG.json:/usr/local/lib/python3.10/site-packages/mag_annotator/CONFIG",
+            "${dram_dbs}/:/data/",
+            "${dram_dbs}/DRAM_CONFIG.json:/usr/local/lib/python3.10/site-packages/mag_annotator/CONFIG",
         ]
         return "${arg} " + mounts.join(" ${arg} ")
     }
 
     input:
     tuple val(meta), path(tsv_input)
+    path(dram_dbs)
 
     output:
-    tuple val(meta), path("*_dram.html")               , emit: html
-    tuple val(meta), path("*_dram.tsv")                , emit: out_tsv
-    tuple val(meta), path("*_genome_stats.tsv")        , emit: stats_tsv
-    tuple val(meta), path("*_metabolism_summary.xlsx") , emit: metabolism_xslx
-    path "versions.yml"                                , emit: versions
+    tuple val(meta), path("*_dram.html.gz")               , emit: html
+    tuple val(meta), path("*_dram.tsv.gz")                , emit: out_tsv
+    tuple val(meta), path("*_genome_stats.tsv.gz")        , emit: stats_tsv
+    tuple val(meta), path("*_metabolism_summary.xlsx.gz") , emit: metabolism_xslx
+    path "versions.yml"                                   , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -36,8 +37,14 @@ process DRAM_DISTILL {
     def prefix = task.ext.prefix ?: "${meta.id}"
     // WARN: dram has no option to print the tool version. This is the container version
     def VERSION = '1.3.5' 
+    def is_compressed = tsv_input.getExtension() == "gz"
+    def tsv_file_name = tsv_input.name.replace(".gz", "")
 
     """
+    if [ "$is_compressed" == "true" ]; then
+        gzip -c -d ${tsv_input} > ${tsv_file_name}
+    fi
+
     DRAM.py \\
         distill \\
         -i ${tsv_input}  \\
@@ -48,6 +55,11 @@ process DRAM_DISTILL {
     mv dram_out/product.tsv ${prefix}_dram.tsv
     mv dram_out/genome_stats.tsv ${prefix}_genome_stats.tsv
     mv dram_out/metabolism_summary.xlsx ${prefix}_metabolism_summary.xlsx
+
+    gzip ${prefix}_dram.html
+    gzip ${prefix}_dram.tsv
+    gzip ${prefix}_genome_stats.tsv
+    gzip ${prefix}_metabolism_summary.xlsx
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

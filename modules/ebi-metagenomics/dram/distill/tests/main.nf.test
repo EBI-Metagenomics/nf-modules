@@ -12,16 +12,13 @@ nextflow_process {
     test("test_dram_distill") {
 
         when {
-            params {
-                reference_dbs = "${moduleDir}/tests/fixtures"
-            }
-
             process {
                 """                
                 input[0] = [
                     [ id:'test', prefix:"ERR4968564"], // meta map
                     file("${moduleDir}/tests/fixtures/full_input.tsv", checkIfExists: true)
                     ]
+                    input[1] = file("${moduleDir}/tests/fixtures/dram_dbs", type: 'dir', checkIfExists: true)
                 """
             }
         }
