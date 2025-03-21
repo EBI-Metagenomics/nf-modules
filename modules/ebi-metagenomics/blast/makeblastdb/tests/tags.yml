@@ -1,0 +1,2 @@
+blast/makeblastdb:
+  - modules/ebi-metagenomics/blast/makeblastdb/**
