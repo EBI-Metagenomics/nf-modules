@@ -1,9 +1,17 @@
+// General subwf to detect RNA by using provided RFAM models. It uses cmscan or cmsearch.
+// Output: deoverlapped table and chosen fasta file with RNA sequences.
+
+// Use cmscan mode if input fasta file is small and models file is quite big (usecase: mags-catalogues-pipeline)
+// Important note: .cm file should be cmpress-ed before execution
+// Use cmsearch mode if input fasta is massive and models file contains chosen set of models (usecase: ASA)
+
 
 include { INFERNAL_CMSEARCH           } from '../../../modules/ebi-metagenomics/infernal/cmsearch/main'
 include { INFERNAL_CMSCAN             } from '../../../modules/ebi-metagenomics/infernal/cmscan/main'
-include { CONVERSTCMSCANTOCMSEARCH    } from '../../../modules/ebi-metagenomics/convertcmscantocmsearch/main'
+include { CONVERTCMSCANTOCMSEARCH     } from '../../../modules/ebi-metagenomics/convertcmscantocmsearch/main'
 include { CMSEARCHTBLOUTDEOVERLAP     } from '../../../modules/ebi-metagenomics/cmsearchtbloutdeoverlap/main'
 include { EASEL_ESLSFETCH             } from '../../../modules/ebi-metagenomics/easel/eslsfetch/main'
+
 
 workflow DETECT_RNA {
 
@@ -33,9 +41,10 @@ workflow DETECT_RNA {
        )
        ch_versions = ch_versions.mix(INFERNAL_CMSCAN.out.versions.first())
 
-       CONVERSTCMSCANTOCMSEARCH(INFERNAL_CMSCAN.out.cmscan_tbl)
-       // todo add version of toolkit
-       cmsearch_ch = CONVERSTCMSCANTOCMSEARCH.out.cmsearch_tblout
+       CONVERTCMSCANTOCMSEARCH(INFERNAL_CMSCAN.out.cmscan_tbl)
+       ch_versions = ch_versions.mix(CONVERTCMSCANTOCMSEARCH.out.versions.first())
+
+       cmsearch_ch = CONVERTCMSCANTOCMSEARCH.out.cmsearch_tblout
     }
 
     CMSEARCHTBLOUTDEOVERLAP(
