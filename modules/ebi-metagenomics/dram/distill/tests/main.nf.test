@@ -1,0 +1,40 @@
+nextflow_process {
+
+    name "Test Process DRAM_DISTILL"
+    script "../main.nf"
+    process "DRAM_DISTILL"
+    config "./nextflow.config"
+
+    tag "modules"
+    tag "dram/distill"
+    tag "dram"
+    tag "modules_ebimetagenomics"
+
+    test("test_dram_distill") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', prefix:"ERR4968564"], // meta map
+                    file("${moduleDir}/tests/fixtures/full_input.tsv", checkIfExists: true)
+                    ]
+                    input[1] = file("${moduleDir}/tests/fixtures/dram_dbs", type: 'dir', checkIfExists: true)
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    path(process.out.out_tsv.get(0).get(1)).grepLinesGzip(0,3),
+                    path(process.out.stats_tsv.get(0).get(1)).grepLinesGzip(0,3),
+                    // A random pick from the HTML
+                    path(process.out.html.get(0).get(1)).linesGzip.contains("K00134,K00845,K00873,K00927,K01624,K01689,K01803,K01810,K15633"),
+                    path(process.out.metabolism_xslx.get(0).get(1)).linesGzip.size() > 0 ).match()
+                }
+            )
+        }
+    }
+}
