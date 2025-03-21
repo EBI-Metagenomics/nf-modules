@@ -12,7 +12,7 @@ process INFERNAL_CMSCAN {
 
     input:
     tuple val(meta), path(seqdb)
-    path covariance_model_database
+    path(covariance_model_database)
 
     output:
     tuple val(meta), path("*.cmscan_matches.tbl.gz"), emit: cmscan_tbl
