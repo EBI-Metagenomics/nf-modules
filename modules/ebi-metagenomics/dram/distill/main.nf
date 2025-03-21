@@ -1,21 +1,19 @@
 process DRAM_DISTILL {
-    tag "${meta.id}"
+    tag "$meta.id"
     label 'process_high'
 
-    container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container 
-        ? 'https://depot.galaxyproject.org/singularity/dram:1.3.5--pyhdfd78af_0'
-        : 'quay.io/biocontainers/dram:1.3.5--pyhdfd78af_0'}"
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/dram:1.3.5--pyhdfd78af_0':
+        'biocontainers/dram:1.3.5--pyhdfd78af_0' }"
 
     containerOptions {
-        def arg = "--volume"
-        if (workflow.containerEngine == 'singularity' || workflow.containerEngine == 'apptainer') {
-            arg = "--bind"
+        // If we do anything more fancy to reduce the repeated code the linting fails, the nf-core tools
+        // container URL parsing code it's not handling this
+        if ( workflow.containerEngine == 'singularity' ) {
+            return "--bind ${task.workDir}/${dram_dbs}/:/data/ --bind ${task.workDir}/${dram_dbs}/DRAM_CONFIG.json:/usr/local/lib/python3.10/site-packages/mag_annotator/CONFIG"
+        } else {
+            return "--volume ${task.workDir}/${dram_dbs}/:/data/ --volume ${task.workDir}/${dram_dbs}/DRAM_CONFIG.json:/usr/local/lib/python3.10/site-packages/mag_annotator/CONFIG"
         }
-        def mounts = [
-            "${dram_dbs}/:/data/",
-            "${dram_dbs}/DRAM_CONFIG.json:/usr/local/lib/python3.10/site-packages/mag_annotator/CONFIG",
-        ]
-        return "${arg} " + mounts.join(" ${arg} ")
     }
 
     input:
@@ -36,7 +34,7 @@ process DRAM_DISTILL {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     // WARN: dram has no option to print the tool version. This is the container version
-    def VERSION = '1.3.5' 
+    def VERSION = '1.3.5'
     def is_compressed = tsv_input.getExtension() == "gz"
     def tsv_file_name = tsv_input.name.replace(".gz", "")
 
