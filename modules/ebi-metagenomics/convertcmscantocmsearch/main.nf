@@ -4,9 +4,7 @@ process CONVERTCMSCANTOCMSEARCH {
     label 'process_single'
 
     conda "${moduleDir}/environment.yml"
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:1.0.2--pyhdfd78af_0':
-        'biocontainers/mgnify-pipelines-toolkit:1.0.2--pyhdfd78af_0' }"
+    container "microbiome-informatics/mgnify-pipelines-toolkit:1.0.2"
 
     input:
     tuple val(meta), path(cmscan_tblout)
@@ -19,8 +17,15 @@ process CONVERTCMSCANTOCMSEARCH {
     task.ext.when == null || task.ext.when
 
     script:
+    def is_compressed = cmscan_tblout.name.contains(".gz")
+    def cmscan_input = is_compressed ? cmscan_tblout.name.replace(".gz", "") : cmscan_tblout
     """
-    convert-cmscan-to-cmsearch-tblout.py --input $cmscan_tblout --output ${meta.id}.cmsearch.tbl
+    if [ "$is_compressed" == "true" ]; then
+        gzip -c -d ${cmscan_tblout} > ${cmscan_input}
+    fi
+    convert_cmscan_to_cmsearch_tblout \\
+        --input ${cmscan_input} \\
+        --output ${meta.id}.cmsearch.tbl
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

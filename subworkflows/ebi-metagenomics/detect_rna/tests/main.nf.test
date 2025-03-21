@@ -6,12 +6,13 @@ nextflow_workflow {
     config "./nextflow.config"
 
     tag "subworkflows"
-    tag "subworkflows_nfcore"
+    tag "subworkflows_ebimetagenomics"
     tag "subworkflows/detect_rna"
     tag "infernal"
     tag "infernal/cmsearch"
     tag "infernal/cmscan"
     tag "cmsearchtbloutdeoverlap"
+    tag "convertcmscantocmsearch"
     tag "easel"
     tag "easel/eslsfetch"
 
