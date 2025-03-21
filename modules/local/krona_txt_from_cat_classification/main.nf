@@ -8,6 +8,7 @@ process KRONA_TXT_FROM_CAT_CLASSIFICATION {
 
     input:
     tuple val(meta), path(cat_output)
+    tuple val(meta2), path(taxonomy)
 
     output:
     tuple val(meta), path("${meta.id}.krona.txt"), emit: krona_txt
@@ -15,9 +16,12 @@ process KRONA_TXT_FROM_CAT_CLASSIFICATION {
 
     script:
     """
-    krona_txt_from_CAT_classification.py \\
-        -i ${cat_output} \\
-        -o ${meta.id}.krona.txt
+    krona_txt_from_cat_classification.py \\
+        --input ${cat_output} \\
+        --output ${meta.id}.krona.txt \\
+        --names_dmp ${taxonomy}/names.dmp \\
+        --nodes_dmp ${taxonomy}/nodes.dmp
+
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
