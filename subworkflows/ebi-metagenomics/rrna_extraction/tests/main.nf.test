@@ -6,7 +6,7 @@ nextflow_workflow {
     config "./nextflow.config"
 
     tag "subworkflows"
-    tag "subworkflows_nfcore"
+    tag "subworkflows_ebimetagenomics"
     tag "subworkflows/rrna_extraction"
     tag "infernal"
     tag "infernal/cmsearch"
@@ -19,7 +19,7 @@ nextflow_workflow {
 
         when {
             params {
-                rfam = "${moduleDir}/tests/test.cm"
+                rfam = "${moduleDir}/tests/"
                 rfam_clan = "${moduleDir}/tests/ribo.claninfo"
             }
             workflow {
@@ -35,7 +35,7 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success},
-                { assert snapshot(workflow.out).match() }            
+                { assert snapshot(workflow.out).match() }
             )
         }
     }

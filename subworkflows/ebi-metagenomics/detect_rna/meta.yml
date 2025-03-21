@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "detect_rna"
+description: Extraction of specific cmsearch-identified RNA sequences from a fasta
+  file using EASEL
+keywords:
+  - RNA
+  - fasta
+  - easel
+  - cmsearch
+  - cmscan
+  - covariance models
+components:
+  - infernal/cmsearch
+  - infernal/cmscan
+  - convertcmscantocmsearch
+  - cmsearchtbloutdeoverlap
+  - easel/eslsfetch
+input:
+  - ch_fasta:
+      type: file
+      description: |
+        The input channel containing the fasta files
+        Structure: [ val(meta), path(fasta) ]
+      pattern: "*.{fasta, fasta.gz, fa, fa.gz}"
+  - rfam:
+      type: directory
+      description: |
+        The folder containing Rfam database for use with cmsearch/cmscan
+        Structure: path(cm)
+  - claninfo:
+      type: file
+      description: |
+        The input file containing the claninfo to use for cmsearchtbloutdeoverlap
+        Structure: path(claninfo)
+      pattern: "*.claninfo"
+  - mode:
+      type: value
+      description: choose cmsearch or cmscan method to use
+output:
+  - versions:
+      type: file
+      description: |
+        File containing software versions
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+  - cmsearch_deoverlap_out:
+      description: ""
+  - easel_out:
+      description: ""
+authors:
+  - "@Kate_Sakharova"
