@@ -11,7 +11,7 @@ process MGNIFYPIPELINESTOOLKIT_RHEACHEBIANNOTATION {
     path(rhea2chebi)
 
     output:
-    tuple val(meta), path("*.tsv"), emit: rhea2proteins_tsv
+    tuple val(meta), path("*.tsv"), emit: proteins2rhea_tsv
     path "versions.yml"           , emit: versions
 
     when:
