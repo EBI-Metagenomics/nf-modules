@@ -1,0 +1,70 @@
+nextflow_workflow {
+
+    name "Test Subworkflow DETECT_RNA"
+    script "../main.nf"
+    workflow "DETECT_RNA"
+    config "./nextflow.config"
+
+    tag "subworkflows"
+    tag "subworkflows_ebimetagenomics"
+    tag "subworkflows/detect_rna"
+    tag "infernal"
+    tag "infernal/cmsearch"
+    tag "infernal/cmscan"
+    tag "cmsearchtbloutdeoverlap"
+    tag "convertcmscantocmsearch"
+    tag "easel"
+    tag "easel/eslsfetch"
+
+    test("test_detect_rna cmsearch") {
+
+        when {
+            params {
+                rfam = "${moduleDir}/tests/rfam"
+                rfam_clan = "${moduleDir}/tests/ribo.claninfo"
+            }
+            workflow {
+                """
+                input[0] = Channel.of( [ [ id:'test', single_end:false ], // meta map
+                    file('${moduleDir}/tests/test.fasta.gz', checkIfExists: true)
+                ])
+                input[1] = file(params.rfam)
+                input[2] = file(params.rfam_clan)
+                input[3] = "cmsearch"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+
+    test("test_detect_rna cmscan") {
+
+        when {
+            params {
+                rfam = "${moduleDir}/tests/rfam"
+                rfam_clan = "${moduleDir}/tests/ribo.claninfo"
+            }
+            workflow {
+                """
+                input[0] = Channel.of( [ [ id:'test', single_end:false ], // meta map
+                    file('${moduleDir}/tests/test.fasta.gz', checkIfExists: true)
+                ])
+                input[1] = file(params.rfam)
+                input[2] = file(params.rfam_clan)
+                input[3] = "cmscan"
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}

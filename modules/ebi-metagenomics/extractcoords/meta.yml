@@ -1,4 +1,3 @@
----
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "extractcoords"
 description: Process output from easel-sfetch to extract SSU and LSU sequences
@@ -9,50 +8,101 @@ keywords:
   - lsu
 tools:
   - "extractcoords":
-      description: "Process output from easel-sfetch to extract SSU and LSU sequences, uses mgnify-pipelines-toolkit as conda environment"
+      description: "Process output from easel-sfetch to extract SSU and LSU sequences,
+        uses mgnify-pipelines-toolkit as conda environment"
       homepage: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
       documentation: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
       tool_dev_url: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
       licence: ["Apache-2.0"]
+      identifier: ""
 
 input:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. `[ id:'sample1', single_end:false ]`
-  - easel_coords_fasta:
-      type: file
-      description: Fasta file output from running esl-sfetch to extract sequences by name
-      pattern: "*.fasta"
-  - matched_seqs_with_coords:
-      type: file
-      description: Space-separated cmsearchdeoverlap output formatted for use by esl-sfetch
-      pattern: "*.txt"
-
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - easel_coords_fasta:
+        type: file
+        description: Fasta file output from running esl-sfetch to extract sequences
+          by name
+        pattern: "*.fasta"
+  - - meta2:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+    - matched_seqs_with_coords:
+        type: file
+        description: Space-separated cmsearchdeoverlap output formatted for use by esl-sfetch
+        pattern: "*.txt"
 output:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. `[ id:'sample1', single_end:false ]`
   - ssu_fasta:
-      type: file
-      description: Fasta file containing the SSU sequences
-      pattern: "*.fasta"
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - sequence-categorisation/*SSU.fasta:
+          type: file
+          description: Fasta file containing the SSU sequences
+          pattern: "*.fasta"
   - lsu_fasta:
-      type: file
-      description: Fasta file containing the LSU sequences
-      pattern: "*.fasta"
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - sequence-categorisation/*LSU.fasta:
+          type: file
+          description: Fasta file containing the LSU sequences
+          pattern: "*.fasta"
+  - fiveS_fasta:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "sequence-categorisation/*5S.fasta":
+          type: file
+          description: "5S rRNA nucleotide sequences"
+  - five_eightS_fasta:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "sequence-categorisation/*5_8S.fasta":
+          type: file
+          description: "5 and 8S rRNA nucleotide sequences"
+  - ncrna_fasta:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "sequence-categorisation/*other_ncRNA.fasta":
+          type: file
+          description: "non-coding RNA nucleotide sequences"
   - concat_ssu_lsu_coords:
-      type: file
-      description: Space-separated concatenated file of coordinates of matches of both SSU and LSU
-      pattern: "*.txt"
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
+      - "*concat_SSU_LSU_coords.txt":
+          type: file
+          description: Space-separated concatenated file of coordinates of matches of
+            both SSU and LSU
+          pattern: "*.txt"
   - versions:
-      type: file
-      description: File containing software versions
-      pattern: "versions.yml"
+      - versions.yml:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
 authors:
   - "@chrisata"
 maintainers:
   - "@chrisata"
+  - "@mberacochea"
+  - "@KateSakharova"

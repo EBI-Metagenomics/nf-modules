@@ -5,7 +5,6 @@ nextflow_process {
     process "COMBINEDGENECALLER_MERGE"
 
     tag "modules"
-    tag "modules_nfcore"
     tag "modules_ebimetagenomics"
     tag "combinedgenecaller"
     tag "combinedgenecaller/merge"
@@ -13,19 +12,16 @@ nextflow_process {
     test("combinedgenecaller merge without a maskfile") {
 
         when {
-            params {
-                outdir = "$outputDir"
-            }
             process {
                 """
                 input[0] = [
                     [ id:'test', single_end:false ],
-                    file('${moduleDir}/tests/fixtures/input_prodigal.sco.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_prodigal.ffn.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_prodigal.faa.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_fgs.out.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_fgs.ffn.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_fgs.faa.gz', checkIfExists: true),
+                    file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_pyrodigal.gff', checkIfExists: true),
+                    file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_pyrodigal.ffn', checkIfExists: true),
+                    file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_pyrodigal.faa', checkIfExists: true),
+                    file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.gff', checkIfExists: true),
+                    file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.ffn', checkIfExists: true),
+                    file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.faa', checkIfExists: true),
                     []
                 ]
                 """
@@ -43,20 +39,17 @@ nextflow_process {
     test("combinedgenecaller merge with a maskfile") {
 
         when {
-            params {
-                outdir = "$outputDir"
-            }
             process {
                 """
                 input[0] = [
                     [ id:'test', single_end:false ], // meta map
-                    file('${moduleDir}/tests/fixtures/input_prodigal.sco.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_prodigal.ffn.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_prodigal.faa.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_fgs.out.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_fgs.ffn.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/input_fgs.faa.gz', checkIfExists: true),
-                    file('${moduleDir}/tests/fixtures/cmsearch.all.tblout.deoverlapped.gz', checkIfExists: true),
+                    file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_pyrodigal.gff', checkIfExists: true),
+                    file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_pyrodigal.ffn', checkIfExists: true),
+                    file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_pyrodigal.faa', checkIfExists: true),
+                    file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.gff', checkIfExists: true),
+                    file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.ffn', checkIfExists: true),
+                    file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.faa', checkIfExists: true),
+                    file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/cmsearch.all.tblout.deoverlapped', checkIfExists: true),
                 ]
                 """
             }
