@@ -1,0 +1,179 @@
+1	|	all	|		|	synonym	|
+1	|	root	|		|	scientific name	|
+1224	|	"Alphaproteobacteriota" Whitman et al. 2018	|		|	synonym	|
+1224	|	"Proteobacteria" Garrity et al. 2005	|		|	authority	|
+1224	|	"Proteobacteriota" Panda et al. 2022	|		|	authority	|
+1224	|	Alphaproteobacteriota	|		|	synonym	|
+1224	|	Proteobacteria	|		|	synonym	|
+1224	|	Proteobacteria Stackebrandt et al. 1988	|		|	authority	|
+1224	|	Proteobacteriota	|		|	synonym	|
+1224	|	Pseudomonadota	|		|	scientific name	|
+1224	|	Pseudomonadota corrig. Garrity et al. 2021	|		|	authority	|
+1224	|	proteobacteria	|		|	blast name	|
+1224	|	purple photosynthetic bacteria and relatives	|		|	common name	|
+1239	|	"Bacillaeota" Oren et al. 2015	|		|	authority	|
+1239	|	Bacillaeota	|		|	synonym	|
+1239	|	Bacillota	|		|	scientific name	|
+1239	|	Bacillota corrig. Gibbons and Murray 2021	|		|	synonym	|
+1239	|	Bacillus/Clostridium group	|		|	synonym	|
+1239	|	Clostridium group firmicutes	|		|	synonym	|
+1239	|	Low G+C firmicutes	|		|	synonym	|
+1239	|	clostridial firmicutes	|		|	synonym	|
+1239	|	firmicutes	|		|	blast name	|
+1239	|	low G+C Gram-positive bacteria	|		|	common name	|
+1239	|	low GC Gram+	|		|	common name	|
+1263032	|	Firmicutes bacterium CAG:822	|		|	scientific name	|
+131567	|	biota	|		|	synonym	|
+131567	|	cellular organisms	|		|	scientific name	|
+1485	|	Anaerobacter	|		|	synonym	|
+1485	|	Anaerobacter Duda et al. 1996	|		|	synonym	|
+1485	|	Clostridium	|		|	scientific name	|
+1485	|	Clostridium Prazmowski 1880 (Approved Lists 1980) emend. Lawson and Rainey 2016	|		|	authority	|
+171549	|	Bacteroidales	|		|	scientific name	|
+171549	|	Bacteroidales Krieg 2012 emend. Pikuta et al. 2017	|		|	authority	|
+171550	|	Rikenellaceae	|		|	scientific name	|
+171550	|	Rikenellaceae Krieg et al. 2012	|		|	authority	|
+1783270	|	FCB group	|		|	scientific name	|
+1783270	|	Fibrobacter/Acidobacteria group	|	Fibrobacter/Acidobacteria group <FCB group>	|	in-part	|
+1783270	|	Fibrobacteres-Chlorobi-Bacteroidetes superphylum	|		|	synonym	|
+1783270	|	Fibrobacteres/Acidobacteria group	|	Fibrobacteres/Acidobacteria group <FCB group>	|	in-part	|
+1783272	|	"Firmicuteota" Panda et al. 2022	|		|	authority	|
+1783272	|	"Terrabacteria" Battistuzzi et al. 2004	|		|	authority	|
+1783272	|	"Terrabacterida" Luketa 2012	|		|	authority	|
+1783272	|	Bacillati	|		|	scientific name	|
+1783272	|	Bacillati (Gibbons and Murray 1978) Oren and Goker 2024	|		|	authority	|
+1783272	|	Firmacutes	|		|	synonym	|
+1783272	|	Firmacutes Gibbons and Murray 1978 (Approved Lists 1980)	|		|	authority	|
+1783272	|	Firmicuteota	|		|	synonym	|
+1783272	|	Firmicutes	|		|	synonym	|
+1783272	|	Firmicutes corrig. Gibbons and Murray 1978 (Approved Lists 1980)	|		|	synonym	|
+1783272	|	Terrabacteria	|		|	synonym	|
+1783272	|	Terrabacteria group	|		|	common name	|
+1783272	|	Terrabacterida	|		|	synonym	|
+186801	|	Clostridia	|		|	scientific name	|
+186801	|	Clostridia Rainey 2010	|		|	authority	|
+186802	|	Clostridiales	|		|	synonym	|
+186802	|	Eubacteriales	|		|	scientific name	|
+186802	|	Eubacteriales Buchanan 1917 (Approved Lists 1980)	|		|	authority	|
+186802	|	Eubacteriales Buchanan 1917 (Approved Lists 1980) emend. Gerritsen et al. 2014	|		|	authority	|
+186802	|	Eubacteriales Buchanan 1917 (Approved Lists 1980) emend. Tindall 2019	|		|	authority	|
+186803	|	Lachnospiraceae	|		|	scientific name	|
+186803	|	Lachnospiraceae Rainey 2010	|		|	authority	|
+1896978	|	Clostridium sp. 26_22	|		|	scientific name	|
+1896979	|	Clostridium sp. 27_14	|		|	scientific name	|
+1896986	|	Clostridium sp. CAG:245_30_32	|		|	scientific name	|
+194924	|	Desulfovibrionaceae	|		|	scientific name	|
+194924	|	Desulfovibrionaceae Kuever et al. 2006	|		|	authority	|
+2	|	"Bacteria" Cavalier-Smith 1987	|		|	authority	|
+2	|	"Bacteriobiota" Luketa 2012	|		|	authority	|
+2	|	Bacteria	|	Bacteria <bacteria>	|	scientific name	|
+2	|	Bacteria (ex Cavalier-Smith 1987)	|		|	synonym	|
+2	|	Bacteria Woese et al. 2024	|		|	synonym	|
+2	|	Bacteriobiota	|		|	synonym	|
+2	|	Monera	|	Monera <bacteria>	|	in-part	|
+2	|	Procaryotae	|	Procaryotae <bacteria>	|	in-part	|
+2	|	Prokaryota	|	Prokaryota <bacteria>	|	in-part	|
+2	|	Prokaryotae	|	Prokaryotae <bacteria>	|	in-part	|
+2	|	bacteria	|		|	blast name	|
+2	|	eubacteria	|		|	genbank common name	|
+2	|	prokaryote	|	prokaryote <bacteria>	|	in-part	|
+2	|	prokaryotes	|	prokaryotes <bacteria>	|	in-part	|
+200643	|	Bacteroidetes	|	Bacteroidetes <Bacteroidia>	|	synonym	|
+200643	|	Bacteroidia	|		|	scientific name	|
+200643	|	Bacteroidia Krieg 2012	|		|	authority	|
+213115	|	Desulfovibrionales	|		|	scientific name	|
+213115	|	Desulfovibrionales Kuever et al. 2006	|		|	authority	|
+216572	|	Hungateiclostridiaceae	|		|	synonym	|
+216572	|	Hungateiclostridiaceae Zhang et al. 2018	|		|	authority	|
+216572	|	Oscillospiraceae	|		|	scientific name	|
+216572	|	Oscillospiraceae Peshkoff 1940 (Approved Lists 1980) emend. Tindall 2019	|		|	authority	|
+216572	|	Ruminococcaceae	|		|	synonym	|
+216572	|	Ruminococcaceae Rainey 2010	|		|	authority	|
+2211178	|	"Evtepia" Strandwitz et al. 2016	|		|	authority	|
+2211178	|	Evtepia	|		|	scientific name	|
+239759	|	Alistipes	|		|	scientific name	|
+239759	|	Alistipes Rautio et al. 2003	|		|	authority	|
+239759	|	Alistipes Rautio et al. 2003 emend. Sakamoto et al. 2020	|		|	authority	|
+2614128	|	unclassified Clostridium	|		|	scientific name	|
+2759	|	Eucarya	|		|	synonym	|
+2759	|	Eucaryotae	|		|	synonym	|
+2759	|	Eukarya	|		|	synonym	|
+2759	|	Eukaryota	|		|	scientific name	|
+2759	|	Eukaryotae	|		|	synonym	|
+2759	|	eucaryotes	|		|	genbank common name	|
+2759	|	eukaryotes	|	eukaryotes <blast name>	|	blast name	|
+2759	|	eukaryotes	|	eukaryotes <common name>	|	common name	|
+2773932	|	unclassified Evtepia	|		|	scientific name	|
+2773933	|	Evtepia sp.	|		|	scientific name	|
+28221	|	"Deltabacteria" Cavalier-Smith 1992	|		|	synonym	|
+28221	|	Deltabacteria Cavalier-Smith 2002	|		|	synonym	|
+28221	|	Deltaproteobacteria	|		|	scientific name	|
+28221	|	Deltaproteobacteria Kuever et al. 2006 emend. Hahn et al. 2017	|		|	authority	|
+28221	|	Dissimilatory sulfate or sulfur reducers	|		|	includes	|
+28221	|	Proteobacteria delta subdivision	|		|	synonym	|
+28221	|	Purple bacteria, delta subdivision	|		|	synonym	|
+28221	|	Sulfate- or sulfur-reducing dissimilatory bacteria	|		|	includes	|
+28221	|	Sulfate-reducing or sulfur-reducing dissimilatory bacteria	|		|	includes	|
+28221	|	d-proteobacteria	|		|	blast name	|
+28221	|	delta proteobacteria	|		|	synonym	|
+28221	|	delta subdivision	|		|	synonym	|
+28221	|	delta subgroup	|		|	synonym	|
+2840488	|	Bacillota incertae sedis	|		|	scientific name	|
+2840488	|	Firmicutes incertae sedis	|		|	synonym	|
+2840543	|	"Candidatus Faecenecus" Gilroy et al. 2021	|		|	authority	|
+2840543	|	Candidatus Faecenecus	|		|	scientific name	|
+2840543	|	Faecenecus	|		|	equivalent name	|
+2840793	|	"Candidatus Faecenecus gallistercoris" Gilroy et al. 2021	|		|	authority	|
+2840793	|	Candidatus Faecenecus gallistercoris	|		|	scientific name	|
+31979	|	Clostridiaceae	|		|	scientific name	|
+31979	|	Clostridiaceae Pribram 1933	|		|	authority	|
+357276	|	Bacteroides dorei Bakir et al. 2006	|		|	synonym	|
+357276	|	Bacteroides sp. 175T	|		|	includes	|
+357276	|	Bacteroides sp. 219	|		|	includes	|
+357276	|	DSM 17855	|	DSM 17855 <type strain>	|	type material	|
+357276	|	JCM 13471	|	JCM 13471 <type strain>	|	type material	|
+357276	|	Phocaeicola dorei	|		|	scientific name	|
+357276	|	Phocaeicola dorei (Bakir et al. 2006) Garcia-Lopez et al. 2020	|		|	synonym	|
+357276	|	strain 175	|	strain 175 <type strain>	|	type material	|
+47928	|	environmental samples	|	environmental samples <firmicutes,phylum Bacillota>	|	scientific name	|
+47928	|	low G+C firmicute environmental samples	|		|	synonym	|
+538999	|	Clostridiales incertae sedis	|		|	synonym	|
+538999	|	Eubacteriales incertae sedis	|		|	scientific name	|
+68336	|	Bacteroidetes/Chlorobi group	|		|	equivalent name	|
+68336	|	Bacteroidota/Chlorobiota group	|		|	scientific name	|
+68336	|	CFB/Chlorobi group	|		|	synonym	|
+68336	|	CFB/Green sulfur bacteria group	|		|	synonym	|
+68336	|	Cytophagales/Green sulfur bacteria group	|		|	synonym	|
+68525	|	delta/epsilon subdivisions	|		|	scientific name	|
+815	|	Bacteroidaceae	|		|	scientific name	|
+815	|	Bacteroidaceae Pribram 1933	|		|	authority	|
+841	|	Roseburia	|		|	scientific name	|
+841	|	Roseburia Stanton and Savage 1983	|		|	authority	|
+841	|	Roseburya	|		|	equivalent name	|
+841	|	Roseburyella	|		|	equivalent name	|
+872	|	"Sporovibrio" Starkey 1938	|		|	authority	|
+872	|	Desulfomonas	|		|	synonym	|
+872	|	Desulfomonas Moore et al. 1976 (Approved Lists 1980)	|		|	authority	|
+872	|	Desulfovibrio	|		|	scientific name	|
+872	|	Desulfovibrio Kluyver and van Niel 1936 (Approved Lists 1980) emend. Loubinoux et al. 2002	|		|	authority	|
+872	|	Sporovibrio	|		|	synonym	|
+901	|	ATCC 29098	|	ATCC 29098 <type strain>	|	type material	|
+901	|	DSM 749	|	DSM 749 <type strain>	|	type material	|
+901	|	Desulfomonas pigra	|		|	synonym	|
+901	|	Desulfomonas pigra Moore et al. 1976 (Approved Lists 1980)	|		|	authority	|
+901	|	Desulfovibrio piger	|		|	scientific name	|
+901	|	Desulfovibrio piger (Moore et al. 1976) Loubinoux et al. 2002	|		|	authority	|
+909656	|	Phocaeicola	|		|	scientific name	|
+909656	|	Phocaeicola Al Masalma et al. 2009	|		|	authority	|
+976	|	"Bacteroidetes" Krieg et al. 2012	|		|	authority	|
+976	|	"Bacteroidota" Whitman et al. 2018	|		|	synonym	|
+976	|	"Sphingobacteria" Cavalier-Smith 2002	|		|	authority	|
+976	|	BCF group	|		|	equivalent name	|
+976	|	Bacteroides-Cytophaga-Flexibacter group	|		|	common name	|
+976	|	Bacteroidetes	|	Bacteroidetes <Bacteroidota>	|	synonym	|
+976	|	Bacteroidota	|		|	scientific name	|
+976	|	Bacteroidota corrig. Krieg et al. 2021	|		|	authority	|
+976	|	CFB group	|		|	equivalent name	|
+976	|	CFB group bacteria	|		|	blast name	|
+976	|	Cytophaga-Flexibacter-Bacteroides phylum	|		|	common name	|
+976	|	Sphingobacteria	|		|	synonym	|

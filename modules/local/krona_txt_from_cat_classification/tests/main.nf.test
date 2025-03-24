@@ -1,0 +1,53 @@
+nextflow_process {
+
+    name "Test Process KRONA_TXT_FROM_CAT_CLASSIFICATION"
+    script "../main.nf"
+    process "KRONA_TXT_FROM_CAT_CLASSIFICATION"
+
+    tag "modules"
+    tag "modules_nfcore"
+    tag "modules_ebimetagenomics"
+
+    test("Run KRONA_TXT_FROM_CAT_CLASSIFICATION module - test dataset") {
+
+        when {
+            process {
+                """
+                input[0] = [ [id:'test'], [ file("${moduleDir}/tests/data/cat.tsv", checkIfExists: true) ] ]
+                input[1] = [ [id:'test_db'], [ file("${moduleDir}/tests/data/tax", checkIfExists: true) ] ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("Run KRONA_TXT_FROM_CAT_CLASSIFICATION module - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [ [id:'test'], [ file("${moduleDir}/tests/data/cat.tsv", checkIfExists: true) ] ]
+                input[1] = [ [id:'test_db'], [ file("${moduleDir}/tests/data/tax", checkIfExists: true) ] ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}

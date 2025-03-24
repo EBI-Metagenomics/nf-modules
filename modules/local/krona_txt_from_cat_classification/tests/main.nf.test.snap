@@ -1,0 +1,68 @@
+{
+    "Run KRONA_TXT_FROM_CAT_CLASSIFICATION module - test dataset": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.krona.txt:md5,62e1bcaac47b979cafb7364cdc48eafa"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,8f885e77b481995723e937c8ed106642"
+                ],
+                "krona_txt": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.krona.txt:md5,62e1bcaac47b979cafb7364cdc48eafa"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,8f885e77b481995723e937c8ed106642"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.10.4"
+        },
+        "timestamp": "2025-03-24T10:55:07.554155"
+    },
+    "Run KRONA_TXT_FROM_CAT_CLASSIFICATION module - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.krona.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,8f885e77b481995723e937c8ed106642"
+                ],
+                "krona_txt": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.krona.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,8f885e77b481995723e937c8ed106642"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.10.4"
+        },
+        "timestamp": "2025-03-24T10:56:06.833574"
+    }
+}

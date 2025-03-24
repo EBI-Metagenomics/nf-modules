@@ -28,4 +28,14 @@ process KRONA_TXT_FROM_CAT_CLASSIFICATION {
         python: \$(python --version 2>&1 | sed 's/Python //g')
     END_VERSIONS
     """
+
+    stub:
+    """
+    touch ${meta.id}.krona.txt
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        python: \$(python --version 2>&1 | sed 's/Python //g')
+    END_VERSIONS
+    """
 }
