@@ -1,7 +1,7 @@
-include { DIAMOND_BLASTP                    } from '../../../modules/ebi-metagenomics/diamond/blastp/main'
-include { CATPACK_CONTIGS                   } from '../../../modules/ebi-metagenomics/catpack/contigs/main'
-include { KRONA_TXT_FROM_CAT_CLASSIFICATION } from '../../../modules/ebi-metagenomics/krona_txt_from_cat_classification/main'
-include { KRONA_KTIMPORTTEXT                } from '../../../modules/ebi-metagenomics/krona/ktimporttext/main'
+include { DIAMOND_BLASTP                                       } from '../../../modules/ebi-metagenomics/diamond/blastp/main'
+include { CATPACK_CONTIGS                                      } from '../../../modules/ebi-metagenomics/catpack/contigs/main'
+include { MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION } from '../../../modules/ebi-metagenomics/mgnifypipelinestoolkit/kronatxtfromcatclassification/main'
+include { KRONA_KTIMPORTTEXT                                   } from '../../../modules/ebi-metagenomics/krona/ktimporttext/main'
 
 workflow CONTIGS_TAXONOMIC_CLASSIFICATION {
     take:
@@ -46,14 +46,14 @@ workflow CONTIGS_TAXONOMIC_CLASSIFICATION {
     )
     ch_versions = ch_versions.mix(CATPACK_CONTIGS.out.versions.first())
 
-    KRONA_TXT_FROM_CAT_CLASSIFICATION(
+    MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION(
         CATPACK_CONTIGS.out.contig2classification,
         taxonomy_db
     )
-    ch_versions = ch_versions.mix(KRONA_TXT_FROM_CAT_CLASSIFICATION.out.versions.first())
+    ch_versions = ch_versions.mix(MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION.out.versions.first())
 
     KRONA_KTIMPORTTEXT(
-        KRONA_TXT_FROM_CAT_CLASSIFICATION.out.krona_txt
+        MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION.out.krona_txt
     )
     ch_versions = ch_versions.mix(KRONA_KTIMPORTTEXT.out.versions.first())
 

@@ -1,4 +1,4 @@
-process KRONA_TXT_FROM_CAT_CLASSIFICATION {
+process MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION {
     tag "${meta.id}"
     label 'process_single'
 
@@ -12,6 +12,9 @@ process KRONA_TXT_FROM_CAT_CLASSIFICATION {
     tuple val(meta), path("${meta.id}.krona.txt"), emit: krona_txt
     path "versions.yml"                          , emit: versions
 
+    when:
+    task.ext.when == null || task.ext.when
+
     script:
     """
     krona_txt_from_cat_classification.py \\
@@ -19,7 +22,6 @@ process KRONA_TXT_FROM_CAT_CLASSIFICATION {
         --output ${meta.id}.krona.txt \\
         --names_dmp ${taxonomy}/names.dmp \\
         --nodes_dmp ${taxonomy}/nodes.dmp
-
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

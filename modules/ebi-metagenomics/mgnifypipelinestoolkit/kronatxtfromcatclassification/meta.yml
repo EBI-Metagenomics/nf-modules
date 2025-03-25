@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "mgnifypipelinestoolkit_kronatxtfromcatclassification"
+description: Use diamond output file to create a table with Rhea and CHEBI reaction
+  annotation for every protein
+keywords:
+  - taxonomy
+  - mgnify
+  - krona
+tools:
+  - "mgnifypipelinestoolkit":
+      description: "Collection of scripts and tools for MGnify pipelines"
+      homepage: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
+      documentation: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
+      tool_dev_url: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
+      licence: ["Apache-2.0"]
+      identifier: ""
+
+input:
+  - - meta:
+        type: map
+        description: Meta map
+    - cat_output:
+        type: file
+        description: "TSV file from CAT_pack contigs"
+  - - meta2:
+        type: map
+        description: Meta map
+    - taxonomy:
+        type: directory
+        description: "Folder with the NCBI taxonomy nodes.dmp and nodes.dmp"
+output:
+  - krona_txt:
+      - meta:
+          type: map
+          description: Meta map
+      - "${meta.id}.krona.txt":
+          type: file
+          description: "Krona TXT file"
+  - versions:
+      - versions.yml:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+authors:
+  - "@sofia"
+maintainers:
+  - "@mberacochea"

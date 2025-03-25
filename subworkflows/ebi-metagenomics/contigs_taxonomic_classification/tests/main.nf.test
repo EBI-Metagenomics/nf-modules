@@ -10,6 +10,8 @@ nextflow_workflow {
     tag "diamond"
     tag "diamond/blastp"
     tag "catpack/contigs"
+    tag "mgnifypipelinestoolkit/kronatxtfromcatclassification"
+    tag "krona/ktimporttext"
 
     test("Run the pipeline on the test dataset") {
         when {

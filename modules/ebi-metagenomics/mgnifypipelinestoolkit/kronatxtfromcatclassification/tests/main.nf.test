@@ -1,13 +1,15 @@
 nextflow_process {
 
-    name "Test Process KRONA_TXT_FROM_CAT_CLASSIFICATION"
+    name "Test Process MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION"
     script "../main.nf"
-    process "KRONA_TXT_FROM_CAT_CLASSIFICATION"
+    process "MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION"
 
     tag "modules"
     tag "modules_ebimetagenomics"
+    tag "mgnifypipelinestoolkit"
+    tag "mgnifypipelinestoolkit/kronatxtfromcatclassification"
 
-    test("Run KRONA_TXT_FROM_CAT_CLASSIFICATION module - test dataset") {
+    test("Run MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION module - test dataset") {
 
         when {
             process {
@@ -27,7 +29,7 @@ nextflow_process {
 
     }
 
-    test("Run KRONA_TXT_FROM_CAT_CLASSIFICATION module - stub") {
+    test("Run MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION module - stub") {
 
         options "-stub"
 

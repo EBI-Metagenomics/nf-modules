@@ -1,5 +1,5 @@
 {
-    "Run KRONA_TXT_FROM_CAT_CLASSIFICATION module - test dataset": {
+    "Run KRONATXTFROMCATCLASSIFICATION module - test dataset": {
         "content": [
             {
                 "0": [
@@ -32,7 +32,7 @@
         },
         "timestamp": "2025-03-25T14:26:22.938346"
     },
-    "Run KRONA_TXT_FROM_CAT_CLASSIFICATION module - stub": {
+    "Run KRONATXTFROMCATCLASSIFICATION module - stub": {
         "content": [
             {
                 "0": [
