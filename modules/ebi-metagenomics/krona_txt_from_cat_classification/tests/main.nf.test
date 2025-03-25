@@ -5,7 +5,6 @@ nextflow_process {
     process "KRONA_TXT_FROM_CAT_CLASSIFICATION"
 
     tag "modules"
-    tag "modules_nfcore"
     tag "modules_ebimetagenomics"
 
     test("Run KRONA_TXT_FROM_CAT_CLASSIFICATION module - test dataset") {

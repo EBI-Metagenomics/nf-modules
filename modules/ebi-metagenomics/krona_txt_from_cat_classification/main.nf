@@ -2,9 +2,7 @@ process KRONA_TXT_FROM_CAT_CLASSIFICATION {
     tag "${meta.id}"
     label 'process_single'
 
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'oras://community.wave.seqera.io/library/python:3.13.1--9856f872fdeac74e':
-        'community.wave.seqera.io/library/python:3.13.1--d00663700fcc8bcf' }"
+    container 'microbiome-informatics/mgnify-pipelines-toolkit:1.0.3'
 
     input:
     tuple val(meta), path(cat_output)

@@ -11,7 +11,7 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,8f885e77b481995723e937c8ed106642"
+                    "versions.yml:md5,c00b3368cbc9903a43cc612f18be4311"
                 ],
                 "krona_txt": [
                     [
@@ -22,15 +22,15 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,8f885e77b481995723e937c8ed106642"
+                    "versions.yml:md5,c00b3368cbc9903a43cc612f18be4311"
                 ]
             }
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "24.10.4"
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.5"
         },
-        "timestamp": "2025-03-24T10:55:07.554155"
+        "timestamp": "2025-03-25T14:26:22.938346"
     },
     "Run KRONA_TXT_FROM_CAT_CLASSIFICATION module - stub": {
         "content": [
@@ -44,7 +44,7 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,8f885e77b481995723e937c8ed106642"
+                    "versions.yml:md5,c00b3368cbc9903a43cc612f18be4311"
                 ],
                 "krona_txt": [
                     [
@@ -55,14 +55,14 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,8f885e77b481995723e937c8ed106642"
+                    "versions.yml:md5,c00b3368cbc9903a43cc612f18be4311"
                 ]
             }
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "24.10.4"
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.5"
         },
-        "timestamp": "2025-03-24T10:56:06.833574"
+        "timestamp": "2025-03-25T14:26:25.736553"
     }
 }
