@@ -17,7 +17,7 @@ process MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION {
 
     script:
     """
-    krona_txt_from_cat_classification.py \\
+    krona_txt_from_cat_classification \\
         --input ${cat_output} \\
         --output ${meta.id}.krona.txt \\
         --names_dmp ${taxonomy}/names.dmp \\
@@ -25,7 +25,7 @@ process MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        python: \$(python --version 2>&1 | sed 's/Python //g')
+        mgnify-pipelines-toolkit: \$(get_mpt_version)
     END_VERSIONS
     """
 
@@ -35,7 +35,7 @@ process MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        python: \$(python --version 2>&1 | sed 's/Python //g')
+        mgnify-pipelines-toolkit: \$(get_mpt_version)
     END_VERSIONS
     """
 }

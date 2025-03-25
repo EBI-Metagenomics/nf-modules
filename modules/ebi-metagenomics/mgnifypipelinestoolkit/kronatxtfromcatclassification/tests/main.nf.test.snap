@@ -1,5 +1,5 @@
 {
-    "Run KRONATXTFROMCATCLASSIFICATION module - test dataset": {
+    "Run MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION module - test dataset": {
         "content": [
             {
                 "0": [
@@ -11,7 +11,7 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,c00b3368cbc9903a43cc612f18be4311"
+                    "versions.yml:md5,90bc7292f251be3b9e670a6b6c3458b6"
                 ],
                 "krona_txt": [
                     [
@@ -22,7 +22,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,c00b3368cbc9903a43cc612f18be4311"
+                    "versions.yml:md5,90bc7292f251be3b9e670a6b6c3458b6"
                 ]
             }
         ],
@@ -30,9 +30,9 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-03-25T14:26:22.938346"
+        "timestamp": "2025-03-25T15:33:32.621415"
     },
-    "Run KRONATXTFROMCATCLASSIFICATION module - stub": {
+    "Run MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION module - stub": {
         "content": [
             {
                 "0": [
@@ -44,7 +44,7 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,c00b3368cbc9903a43cc612f18be4311"
+                    "versions.yml:md5,90bc7292f251be3b9e670a6b6c3458b6"
                 ],
                 "krona_txt": [
                     [
@@ -55,7 +55,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,c00b3368cbc9903a43cc612f18be4311"
+                    "versions.yml:md5,90bc7292f251be3b9e670a6b6c3458b6"
                 ]
             }
         ],
@@ -63,6 +63,6 @@
             "nf-test": "0.9.2",
             "nextflow": "24.10.5"
         },
-        "timestamp": "2025-03-25T14:26:25.736553"
+        "timestamp": "2025-03-25T15:33:35.090394"
     }
 }
