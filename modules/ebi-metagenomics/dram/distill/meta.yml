@@ -22,46 +22,46 @@ input:
           e.g. [ id:'test', single_end:false ]
     - tsv_input:
         type: file
-        description: Input tsv file containing sequence annotations from different tools
+        description: "Input tsv file containing sequence annotations from different tools"
         pattern: "*.tsv"
   - - dram_dbs:
         type: directory
-        description: The DRAM reference databases folder
+        description: "The DRAM reference databases folder"
 output:
   - html:
       - meta:
           type: file
-          description: HTML file containing heatmaps of summarised annotations
+          description: "The meta map"
           pattern: "*.html"
       - "*_dram.html.gz":
           type: file
-          description: HTML file containing heatmaps of summarised annotations
+          description: "HTML file containing heatmaps of summarised annotations"
           pattern: "*.html"
   - out_tsv:
       - meta:
           type: map
-          description: The meta map
+          description: "The meta map"
       - "*_dram.tsv.gz":
           type: file
           description: "TSV file containing summarised annotations"
   - stats_tsv:
       - meta:
           type: map
-          description: The meta map
+          description: "The meta map"
       - "*_genome_stats.tsv.gz":
           type: file
           description: "TSV file the stats per genome"
   - metabolism_xslx:
       - meta:
           type: map
-          description: The meta map
+          description: "The meta map"
       - "*_metabolism_summary.xlsx.gz":
           type: file
           description: "XLSX summary file of the metabolism"
   - versions:
       - versions.yml:
           type: file
-          description: File containing software versions
+          description: "File containing software versions"
           pattern: "versions.yml"
 authors:
   - "@Ales-ibt"
