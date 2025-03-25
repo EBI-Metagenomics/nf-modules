@@ -8,6 +8,8 @@ keywords:
   - metagenomics
 components:
   - diamond/blastp
+  - krona/ktimporttext
+  - mgnifypipelinestoolkit/kronatxtfromcatclassification
   - catpack/contigs
 input:
   - contigs:

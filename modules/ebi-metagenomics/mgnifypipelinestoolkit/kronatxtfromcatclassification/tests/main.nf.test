@@ -1,0 +1,54 @@
+nextflow_process {
+
+    name "Test Process MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION"
+    script "../main.nf"
+    process "MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION"
+
+    tag "modules"
+    tag "modules_ebimetagenomics"
+    tag "mgnifypipelinestoolkit"
+    tag "mgnifypipelinestoolkit/kronatxtfromcatclassification"
+
+    test("Run MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION module - test dataset") {
+
+        when {
+            process {
+                """
+                input[0] = [ [id:'test'], [ file("${moduleDir}/tests/data/cat.tsv", checkIfExists: true) ] ]
+                input[1] = [ [id:'test_db'], [ file("${moduleDir}/tests/data/tax", checkIfExists: true) ] ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+    test("Run MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION module - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [ [id:'test'], [ file("${moduleDir}/tests/data/cat.tsv", checkIfExists: true) ] ]
+                input[1] = [ [id:'test_db'], [ file("${moduleDir}/tests/data/tax", checkIfExists: true) ] ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
+        }
+
+    }
+
+}

@@ -10,6 +10,8 @@ nextflow_workflow {
     tag "diamond"
     tag "diamond/blastp"
     tag "catpack/contigs"
+    tag "mgnifypipelinestoolkit/kronatxtfromcatclassification"
+    tag "krona/ktimporttext"
 
     test("Run the pipeline on the test dataset") {
         when {
@@ -28,7 +30,10 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out).match() },
+                { assert snapshot(workflow.out.diamond_blast_tsv).match("diamond_blast_tsv") },
+                { assert snapshot(workflow.out.contig2classification_tsv).match("contig2classification_tsv") },
+                { assert snapshot(workflow.out.versions).match("versions") },
+                { assert snapshot(path(workflow.out.krona_html[0][1]).readLines().contains("DOCTYPE html PUBLIC")).match("html_contains_DOCTYPE_html_PUBLIC") }
             )
         }
     }
