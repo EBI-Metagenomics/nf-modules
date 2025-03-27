@@ -2,7 +2,7 @@ process MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION {
     tag "${meta.id}"
     label 'process_single'
 
-    container 'microbiome-informatics/mgnify-pipelines-toolkit:1.0.3'
+    container 'microbiome-informatics/mgnify-pipelines-toolkit:1.0.4'
 
     input:
     tuple val(meta), path(cat_output)
