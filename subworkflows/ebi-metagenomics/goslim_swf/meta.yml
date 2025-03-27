@@ -10,7 +10,7 @@ keywords:
 components:
   - generategaf
   - owltools
-  - summarisegoslims
+  - mgnifypipelinestoolkit/summarisegoslims
 input:
   - ch_ips:
       type: file
