@@ -50,6 +50,12 @@ output:
         Channel containing a TSV file with taxonomic classification of contigs
         Structure: [ val(meta), path(file) ]
       pattern: "*.contig2classification.txt"
+  - krona_html:
+      type: file
+      description: |
+        Channel containing a HTML file with Krona plot of taxonomic classification of contigs
+        Structure: [ val(meta), path(file) ]
+      pattern: "*.html"
   - versions:
       type: file
       description: |
