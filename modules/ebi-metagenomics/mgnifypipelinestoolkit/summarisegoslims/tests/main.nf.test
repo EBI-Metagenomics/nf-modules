@@ -1,15 +1,16 @@
 
 nextflow_process {
 
-    name "Test Process SUMMARISEGOSLIMS"
+    name "Test Process MGNIFYPIPELINESTOOLKIT_SUMMARISEGOSLIMS"
     script "../main.nf"
-    process "SUMMARISEGOSLIMS"
+    process "MGNIFYPIPELINESTOOLKIT_SUMMARISEGOSLIMS"
 
     tag "modules"
     tag "modules_ebimetagenomics"
-    tag "summarisegoslims"
+    tag "mgnifypipelinestoolkit"
+    tag "mgnifypipelinestoolkit/summarisegoslims"
 
-    test("summarisegoslims") {
+    test("summarise gos with interproscan tsv") {
 
         when {
             process {
@@ -37,7 +38,7 @@ nextflow_process {
 
     }
 
-    test("summarisegoslims - stub") {
+    test("summarise gos with interproscan tsv - stub") {
 
         options "-stub"
 

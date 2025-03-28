@@ -11,20 +11,20 @@ nextflow_workflow {
     tag "subworkflows/goslim_swf"
     tag "generategaf"
     tag "owltools"
-    tag "summarisegoslims"
+    tag "mgnifypipelinestoolkit/summarisegoslims"
 
     test("goslim_swf") {
 
         when {
             workflow {
                 """
-                input[0] = [
+                input[0] = channel.of([
                     [ id:'test', single_end:false ], // meta map
                     file("${baseDir}/modules/ebi-metagenomics/generategaf/tests/ips_out.tsv", checkIfExists: true)
-                ]
+                ])
                 input[1] = file("${baseDir}/modules/ebi-metagenomics/owltools/tests/go-dummy.obo", checkIfExists: true)
                 input[2] = file("${baseDir}/modules/ebi-metagenomics/owltools/tests/goslim_ids.txt", checkIfExists: true)
-                input[3] = file("${baseDir}/modules/ebi-metagenomics/summarisegoslims/tests/goslim_banding_2024.txt", checkIfExists: true)
+                input[3] = file("${baseDir}/modules/ebi-metagenomics/mgnifypipelinestoolkit/summarisegoslims/tests/goslim_banding_2024.txt", checkIfExists: true)
                 """
             }
         }

@@ -1,5 +1,5 @@
 {
-    "summarisegoslims": {
+    "summarise gos with interproscan tsv": {
         "content": [
             {
                 "0": [
@@ -8,7 +8,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_summary.csv:md5,ddf9aa47da0a848795fffb56d9ac3c96"
+                        "test_summary.tsv:md5,c24ea2f0b0763052a18190b77a61bd42"
                     ]
                 ],
                 "1": [
@@ -17,11 +17,11 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_summary_slim.csv:md5,ce50e0507a12ef0d70bd41b14926c5d5"
+                        "test_summary_slim.tsv:md5,c2ce302a04dd3cfa52488edf0b08744a"
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,c487c47425746717f82430c51a5688ec"
+                    "versions.yml:md5,635a55e2cce9bb169a9b4560a8ff0c18"
                 ],
                 "go_summary": [
                     [
@@ -29,7 +29,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_summary.csv:md5,ddf9aa47da0a848795fffb56d9ac3c96"
+                        "test_summary.tsv:md5,c24ea2f0b0763052a18190b77a61bd42"
                     ]
                 ],
                 "goslim_summary": [
@@ -38,21 +38,21 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_summary_slim.csv:md5,ce50e0507a12ef0d70bd41b14926c5d5"
+                        "test_summary_slim.tsv:md5,c2ce302a04dd3cfa52488edf0b08744a"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,c487c47425746717f82430c51a5688ec"
+                    "versions.yml:md5,635a55e2cce9bb169a9b4560a8ff0c18"
                 ]
             }
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "24.10.4"
+            "nextflow": "24.10.5"
         },
-        "timestamp": "2025-01-28T22:32:00.22627889"
+        "timestamp": "2025-03-27T22:15:13.348635"
     },
-    "summarisegoslims - stub": {
+    "summarise gos with interproscan tsv - stub": {
         "content": [
             {
                 "0": [
@@ -61,7 +61,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_summary.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_summary.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "1": [
@@ -70,11 +70,11 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_summary_slim.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_summary_slim.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "2": [
-                    "versions.yml:md5,c487c47425746717f82430c51a5688ec"
+                    "versions.yml:md5,635a55e2cce9bb169a9b4560a8ff0c18"
                 ],
                 "go_summary": [
                     [
@@ -82,7 +82,7 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_summary.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_summary.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "goslim_summary": [
@@ -91,18 +91,18 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test_summary_slim.csv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_summary_slim.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,c487c47425746717f82430c51a5688ec"
+                    "versions.yml:md5,635a55e2cce9bb169a9b4560a8ff0c18"
                 ]
             }
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "24.10.4"
+            "nextflow": "24.10.5"
         },
-        "timestamp": "2025-01-28T22:32:06.80636831"
+        "timestamp": "2025-03-27T22:06:10.801899"
     }
 }

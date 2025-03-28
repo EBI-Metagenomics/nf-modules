@@ -1,7 +1,7 @@
----
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
-name: "summarisegoslims"
-description: Script that generates counts from an InterProScan output and a GO Annotation File (GAF) for both GO terms and GO-Slim terms.
+name: "mgnifypipelinestoolkit_summarisegoslims"
+description: Script that generates counts from an InterProScan output and a GO Annotation
+  File (GAF) for both GO terms and GO-Slim terms.
 keywords:
   - GO
   - GO-slim
@@ -10,23 +10,25 @@ keywords:
   - GAF
   - owltools
 tools:
-  - "summarisegoslims":
-      description: "Script that summarises GO terms into GO-Slim terms, uses mgnify-pipelines-toolkit as conda environment"
+  - "mgnifypipelinestoolkit":
+      description: "Script that summarises GO terms into GO-Slim terms, uses mgnify-pipelines-toolkit
+        as conda environment"
       homepage: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
       documentation: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
       tool_dev_url: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
       licence: ["Apache-2.0"]
+      identifier: ""
 input:
   - - meta:
         type: map
         description: |
           Groovy Map containing sample information
           e.g. `[ id:'sample1', single_end:false ]`
-    - ips:
+    - interproscan_tsv:
         type: file
         description: InterProScan output tsv file.
         pattern: "*.tsv"
-  - - meta:
+  - - meta2:
         type: map
         description: |
           Groovy Map containing sample information
@@ -37,11 +39,13 @@ input:
         pattern: "*.gaf"
   - - go_obo:
         type: file
-        description: Gene ontology .OBO file, for example go-basic. Can usually be downloaded here https://geneontology.org/docs/download-ontology/
+        description: Gene ontology .OBO file, for example go-basic. Can usually be downloaded
+          here https://geneontology.org/docs/download-ontology/
         pattern: "*.go"
   - - go_banding:
         type: file
-        description: txt file containing the GO terms and descriptions that make up the input GO-slim
+        description: txt file containing the GO terms and descriptions that make up
+          the input GO-slim
         pattern: "*.txt"
 output:
   - go_summary:
@@ -50,9 +54,12 @@ output:
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'sample1', single_end:false ]`
-      - "*_summary.csv":
-          type: file
-          description: CSV file containing the counts for the different GO terms in the InterProScan output.
+          pattern: "*_summary.csv"
+      - "*_summary.tsv":
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
           pattern: "*_summary.csv"
   - goslim_summary:
       - meta:
@@ -60,12 +67,15 @@ output:
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'sample1', single_end:false ]`
-      - "*_slim.csv":
-          type: file
-          description: CSV file containing the counts for the different GO-Slim terms in the InterProScan output.
+          pattern: "*_slim.csv"
+      - "*_summary_slim.tsv":
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1', single_end:false ]`
           pattern: "*_slim.csv"
   - versions:
-      - "versions.yml":
+      - versions.yml:
           type: file
           description: File containing software versions
           pattern: "versions.yml"
@@ -73,3 +83,4 @@ authors:
   - "@chrisata"
 maintainers:
   - "@chrisata"
+  - "@mberacochea"
