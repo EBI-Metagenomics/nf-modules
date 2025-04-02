@@ -5,8 +5,8 @@ process EXTRACTCOORDS {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:1.0.1--pyhdfd78af_0':
-        'biocontainers/mgnify-pipelines-toolkit:1.0.1--pyhdfd78af_0' }"
+        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:1.0.4--pyhdfd78af_0':
+        'biocontainers/mgnify-pipelines-toolkit:1.0.4--pyhdfd78af_0' }"
 
     input:
     tuple val(meta), path(easel_coords_fasta)
@@ -19,7 +19,7 @@ process EXTRACTCOORDS {
     tuple val(meta), path("sequence-categorisation/*5_8S.fasta")       , optional: true, emit: five_eightS_fasta
     tuple val(meta), path("sequence-categorisation/*other_ncRNA.fasta"), optional: true, emit: ncrna_fasta
     tuple val(meta), path("*concat_SSU_LSU_coords.txt")                , emit: concat_ssu_lsu_coords
-    path "versions.yml"                                                 , emit: versions
+    path "versions.yml"                                                , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -35,7 +35,7 @@ process EXTRACTCOORDS {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        extractcoords: 0.1.2
+        mgnify-pipelines-toolkit: \$(get_mpt_version)
     END_VERSIONS
     """
 
@@ -46,7 +46,7 @@ process EXTRACTCOORDS {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        extractcoords: 0.1.2
+        mgnify-pipelines-toolkit: \$(get_mpt_version)
     END_VERSIONS
     """
 }
