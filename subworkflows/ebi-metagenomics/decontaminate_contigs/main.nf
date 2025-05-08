@@ -8,6 +8,8 @@ workflow DECONTAMINATE_CONTIGS {
     host_genome       // [ meta, path(reference_fasta)]
 
     main:
+    ch_versions = Channel.empty()
+
     MINIMAP2_ALIGN(
         contigs,
         host_genome,
@@ -16,12 +18,16 @@ workflow DECONTAMINATE_CONTIGS {
         false,        // cigar_paf_format
         false         // cigar_bam
     )
+    ch_versions = ch_versions.mix(MINIMAP2_ALIGN.out.versions.first())
 
     FILTER_PAF(MINIMAP2_ALIGN.out.paf)
+    ch_versions = ch_versions.mix(FILTER_PAF.out.versions.first())
 
     SEQKIT_GREP(contigs.join(FILTER_PAF.out.unmapped_contigs_txt))
+    ch_versions = ch_versions.mix(SEQKIT_GREP.out.versions.first())
 
     emit:
     cleaned_contigs = SEQKIT_GREP.out.filter
+    versions        = ch_versions
 
 }

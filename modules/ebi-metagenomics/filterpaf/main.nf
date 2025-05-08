@@ -1,14 +1,53 @@
 process FILTERPAF {
     tag "$meta.id"
+    label 'process_single'
+
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/gawk:5.3.0' :
+        'quay.io/biocontainers/gawk:5.3.1' }"
 
     input:
     tuple val(meta), path(paf_file)
 
     output:
     tuple val(meta), path("${meta.id}.txt"), emit: unmapped_contigs_txt
+    path "versions.yml"                    , emit: versions
 
     script:
+    def prefix = task.ext.prefix ?: "${meta.id}"
+
     """
-    awk '((\$4 - \$3) / \$2) > ${params.min_qcov} && \$12 > ${params.min_mapq}' ${paf_file} | cut -f 1 > ${meta.id}.txt
+    # Filter PAF by query coverage and MAPQ
+    awk '
+        {
+            query_len = \$2;
+            query_start = \$3;
+            query_end = \$4;
+            mapq = \$12;
+
+            query_coverage = (query_end - query_start) / query_len;
+
+            if (query_coverage > ${params.min_qcov} && mapq > ${params.min_mapq}) {
+                print \$1;
+            }
+        }
+    ' ${paf_file} > ${prefix}.txt
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        awk: \$(awk --version 2>&1)
+    END_VERSIONS
+    """
+
+    stub:
+    def prefix = task.ext.prefix ?: "${meta.id}"
+
+    """
+    touch ${prefix}.txt
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        awk: \$(awk --version 2>&1)
+    END_VERSIONS
     """
 }
