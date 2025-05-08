@@ -10,7 +10,7 @@ process FILTERPAF {
     tuple val(meta), path(paf_file)
 
     output:
-    tuple val(meta), path("${meta.id}.txt"), emit: unmapped_contigs_txt
+    tuple val(meta), path("${meta.id}.txt"), emit: mapped_contigs_txt
     path "versions.yml"                    , emit: versions
 
     script:

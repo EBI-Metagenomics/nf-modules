@@ -23,7 +23,7 @@ workflow DECONTAMINATE_CONTIGS {
     FILTER_PAF(MINIMAP2_ALIGN.out.paf)
     ch_versions = ch_versions.mix(FILTER_PAF.out.versions.first())
 
-    SEQKIT_GREP(contigs.join(FILTER_PAF.out.unmapped_contigs_txt))
+    SEQKIT_GREP(contigs.join(FILTER_PAF.out.mapped_contigs_txt))
     ch_versions = ch_versions.mix(SEQKIT_GREP.out.versions.first())
 
     emit:
