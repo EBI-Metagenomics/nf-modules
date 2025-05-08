@@ -1,0 +1,34 @@
+name: "decontaminate_contigs"
+description: |
+  MGnify decontamination workflow for contigs.
+keywords:
+  - host decontamination
+  - decontamination
+  - genome alignment
+  - minimap2
+
+components:
+  - minimap2
+  - seqkit
+
+input:
+  - contigs:
+      type: map
+      description: |
+        An input channel containing one or more files with assembly contigs.
+        Structure: [ meta, assembly_fasta ]
+  - host_genome:
+      type: map
+      description: |
+        An input channel containing one or more reference contigs to be removed from the assembly.
+        Structure: [ meta, reference_fasta ]
+
+output:
+  - cleaned_contigs:
+      type: map
+      description: |
+        Decontaminated assembly contigs.
+      pattern: "*.fa|*.fna|*.fasta"
+authors:
+  - "@ochkalova"
+  - "@"
