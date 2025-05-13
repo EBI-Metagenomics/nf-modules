@@ -1,0 +1,33 @@
+nextflow_workflow {
+
+    name "Test subworkflow DECONTAMINATE_CONTIGS"
+    script "../main.nf"
+    workflow "DECONTAMINATE_CONTIGS"
+
+    tag "subworkflows"
+    tag "subworkflows_ebimetagenomics"
+    tag "subworkflows/decontaminate_contigs"
+    tag "minimap2/align"
+    tag "seqkit/grep"
+    tag "filterpaf"
+
+    test("Run DECONTAMINATE_CONTIGS swf on the test dataset") {
+        when {
+            params {
+                output_path    = "${outputDir}"
+            }
+            workflow {
+                """
+                input[0] = Channel.of( [ [id:'test'], file("${moduleDir}/tests/data/test.fa", checkIfExists: true) ] )
+                input[1] = Channel.of( [ [id:'host'], file("${moduleDir}/tests/data/ref.fa", checkIfExists: true) ] )
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() },
+            )
+        }
+    }
+}

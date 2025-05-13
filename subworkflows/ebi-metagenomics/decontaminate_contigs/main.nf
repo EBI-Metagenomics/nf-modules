@@ -1,5 +1,5 @@
 include { MINIMAP2_ALIGN   } from '../../../modules/ebi-metagenomics/minimap2/align/main'
-include { FILTER_PAF       } from '../../../modules/ebi-metagenomics/filterpaf/main'
+include { FILTERPAF       } from '../../../modules/ebi-metagenomics/filterpaf/main'
 include { SEQKIT_GREP      } from '../../../modules/ebi-metagenomics/seqkit/grep/main'
 
 workflow DECONTAMINATE_CONTIGS {
@@ -20,10 +20,22 @@ workflow DECONTAMINATE_CONTIGS {
     )
     ch_versions = ch_versions.mix(MINIMAP2_ALIGN.out.versions.first())
 
-    FILTER_PAF(MINIMAP2_ALIGN.out.paf)
-    ch_versions = ch_versions.mix(FILTER_PAF.out.versions.first())
+    FILTERPAF(
+        MINIMAP2_ALIGN.out.paf
+    )
+    ch_versions = ch_versions.mix(FILTERPAF.out.versions.first())
 
-    SEQKIT_GREP(contigs.join(FILTER_PAF.out.mapped_contigs_txt))
+    contigs
+        .join(FILTERPAF.out.mapped_contigs_txt)
+        .multiMap { meta , metagenome, mapped_contigs_txt ->
+            contigs: [ meta, metagenome ]
+            pattern: mapped_contigs_txt
+        }
+        .set { seqkit_grep_input_ch }
+    SEQKIT_GREP(
+        seqkit_grep_input_ch.contigs,
+        seqkit_grep_input_ch.pattern,
+    )
     ch_versions = ch_versions.mix(SEQKIT_GREP.out.versions.first())
 
     emit:
