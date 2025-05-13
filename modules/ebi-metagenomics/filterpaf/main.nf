@@ -35,7 +35,7 @@ process FILTERPAF {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        awk: \$(awk --version 2>&1)
+        awk: \$(awk --version 2>&1 | grep -oE '[0-9]{8}')
     END_VERSIONS
     """
 
@@ -47,7 +47,7 @@ process FILTERPAF {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        awk: \$(awk --version 2>&1)
+        awk: \$(awk --version 2>&1 | grep -oE '[0-9]{8}')
     END_VERSIONS
     """
 }

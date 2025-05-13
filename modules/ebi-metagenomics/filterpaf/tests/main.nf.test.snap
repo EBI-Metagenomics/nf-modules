@@ -1,0 +1,52 @@
+{
+    "filterpaf - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,bf86bd30c1cabfa646fd76e44a2bee18"
+                ],
+                "mapped_contigs_txt": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,bf86bd30c1cabfa646fd76e44a2bee18"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.10.4"
+        },
+        "timestamp": "2025-05-13T11:42:23.253619"
+    },
+    "mapped_contigs_txt": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test.txt:md5,6f0b6fff6f66151d046e17255e8da705"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "24.10.4"
+        },
+        "timestamp": "2025-05-13T11:42:21.396957"
+    }
+}
