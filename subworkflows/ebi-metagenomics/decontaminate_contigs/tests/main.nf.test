@@ -2,7 +2,7 @@ nextflow_workflow {
 
     name "Test subworkflow DECONTAMINATE_CONTIGS"
     script "../main.nf"
-    config "./nextflow.config"
+    config "../nextflow.config"
     workflow "DECONTAMINATE_CONTIGS"
 
     tag "subworkflows"
