@@ -13,8 +13,9 @@ nextflow_process {
 
         when {
             params {
-                min_qcov = 0.5
-                min_mapq = 20
+                min_qcov      = 0.5
+                min_mapq      = 20
+                min_align_len = 10000
             }
             process {
                 """
@@ -41,8 +42,9 @@ nextflow_process {
 
         when {
             params {
-                min_qcov = 0.5
-                min_mapq = 20
+                min_qcov      = 0.5
+                min_mapq      = 20
+                min_align_len = 10000
             }
             process {
                 """

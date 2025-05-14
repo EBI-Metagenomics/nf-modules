@@ -9,7 +9,7 @@ keywords:
   - alignment
   - filtering
 tools:
-  - "awk":
+  - awk:
       description: GNU Awk is a powerful text-processing language used to manipulate structured text files.
       homepage: "https://www.gnu.org/software/gawk/"
       documentation: "https://www.gnu.org/software/gawk/manual/"
@@ -23,7 +23,7 @@ input:
           e.g. `[ id:'sample1', single_end:false ]`
     - paf_file:
         type: file
-        description: PAF file produced by minimap2 containing sequence alignment records, including unmapped contigs.
+        description: PAF file produced by minimap2 containing sequence alignment records.
         pattern: "*.paf"
 output:
   - mapped_contigs_txt:

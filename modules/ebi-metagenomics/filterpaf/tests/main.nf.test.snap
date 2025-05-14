@@ -39,14 +39,14 @@
                     {
                         "id": "test"
                     },
-                    "test.txt:md5,6f0b6fff6f66151d046e17255e8da705"
+                    "test.txt:md5,956a1a024dc0b1c6496923b14cd4077e"
                 ]
             ]
         ],
         "meta": {
             "nf-test": "0.9.0",
-            "nextflow": "24.10.4"
+            "nextflow": "25.04.1"
         },
-        "timestamp": "2025-05-13T11:42:21.396957"
+        "timestamp": "2025-05-14T16:00:27.247939"
     }
 }

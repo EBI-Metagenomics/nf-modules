@@ -25,9 +25,10 @@ process FILTERPAF {
             query_end = \$4;
             mapq = \$12;
 
-            query_coverage = (query_end - query_start) / query_len;
+            aligned_len = query_end - query_start;
+            query_coverage = aligned_len / query_len;
 
-            if (query_coverage > ${params.min_qcov} && mapq > ${params.min_mapq}) {
+            if ((aligned_len > ${params.min_align_len} || query_coverage > ${params.min_qcov}) && mapq > ${params.min_mapq}) {
                 print \$1;
             }
         }
