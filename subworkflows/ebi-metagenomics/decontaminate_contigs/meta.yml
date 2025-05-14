@@ -18,22 +18,25 @@ input:
       description: |
         An input channel containing one or more files with assembly contigs.
         Structure: [ meta, assembly_fasta ]
-  - host_genome:
+      pattern: "*.{fa,fna,fasta}[.gz]"
+  - contaminant_genome:
       type: map
       description: |
         An input channel containing one or more reference contigs to be removed from the assembly.
         Structure: [ meta, reference_fasta ]
-
+      pattern: "*.{fa,fna,fasta}[.gz]"
 output:
   - cleaned_contigs:
       type: map
       description: |
-        Decontaminated assembly contigs.
-      pattern: "*.{fa,fna,fasta}"
+        Channel containing decontaminated assembly contigs.
+        Structure: [ val(meta), path(fasta_file) ]
+      pattern: "*.{fa,fna,fasta}[.gz]"
   - versions:
       type: file
       description: |
-        File containing software versions
+        File containing software versions.
+        Structure: [ path(versions.yml) ]
       pattern: "versions.yml"
 authors:
   - "@ochkalova"

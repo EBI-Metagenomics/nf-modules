@@ -12,7 +12,7 @@ nextflow_workflow {
     tag "seqkit/grep"
     tag "filterpaf"
 
-    test("Run DECONTAMINATE_CONTIGS swf on the test dataset") {
+    test("Run DECONTAMINATE_CONTIGS swf - fasta input") {
         when {
             params {
                 output_path = "${outputDir}"
@@ -20,6 +20,26 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = Channel.of( [ [id:'test'], file("${moduleDir}/tests/data/test.fa", checkIfExists: true) ] )
+                input[1] = Channel.of( [ [id:'host'], file("${moduleDir}/tests/data/ref.fa", checkIfExists: true) ] )
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() },
+            )
+        }
+    }
+
+    test("Run DECONTAMINATE_CONTIGS swf - fasta.gz input") {
+        when {
+            params {
+                output_path = "${outputDir}"
+            }
+            workflow {
+                """
+                input[0] = Channel.of( [ [id:'test'], file("${moduleDir}/tests/data/test.fa.gz", checkIfExists: true) ] )
                 input[1] = Channel.of( [ [id:'host'], file("${moduleDir}/tests/data/ref.fa", checkIfExists: true) ] )
                 """
             }
