@@ -16,10 +16,10 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test', single_end:false ], // meta map
-                    file("${moduleDir}/tests/fixtures/test.fasta", checkIfExists: true)
+                    file("${moduleDir}/tests/fixtures/test.fasta.gz", checkIfExists: true)
                 ]
                 input[1] = [
-                    file("${moduleDir}/tests/fixtures/interproscan_db/data", type: 'dir', checkIfExists: true),
+                    file("${moduleDir}/tests/fixtures/interproscan_db/", type: 'dir', checkIfExists: true),
                     "5.73-104.0"
                 ]
                 """
