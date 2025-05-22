@@ -27,10 +27,10 @@
             }
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "24.10.4"
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.1"
         },
-        "timestamp": "2025-05-13T11:42:23.253619"
+        "timestamp": "2025-05-22T14:18:58.976714528"
     },
     "mapped_contigs_txt": {
         "content": [
@@ -39,14 +39,14 @@
                     {
                         "id": "test"
                     },
-                    "test.txt:md5,956a1a024dc0b1c6496923b14cd4077e"
+                    "test.txt:md5,51e09c5bb215ecd7e9bf0ad82316f13b"
                 ]
             ]
         ],
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.1"
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.1"
         },
-        "timestamp": "2025-05-14T16:00:27.247939"
+        "timestamp": "2025-05-22T14:18:53.933407596"
     }
 }

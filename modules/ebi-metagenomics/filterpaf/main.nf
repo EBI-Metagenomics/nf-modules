@@ -23,12 +23,19 @@ process FILTERPAF {
             query_len = \$2;
             query_start = \$3;
             query_end = \$4;
-            mapq = \$12;
+            target = \$6;
+            matching_bases = \$10;
+            total_bases = \$11;
+
+            if (target == "*") {
+                next;
+            }
 
             aligned_len = query_end - query_start;
             query_coverage = aligned_len / query_len;
+            pid = matching_bases / total_bases;
 
-            if ((aligned_len > ${params.min_align_len} || query_coverage > ${params.min_qcov}) && mapq > ${params.min_mapq}) {
+            if (query_coverage >= ${params.min_qcov} && pid >= ${params.min_pid}) {
                 print \$1;
             }
         }

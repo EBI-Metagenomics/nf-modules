@@ -1,7 +1,7 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "filterpaf"
-description: Module that uses awk to filter alignments in a PAF file based on query coverage and mapping quality (MAPQ).
+description: Module that uses awk to filter alignments in a PAF file based on query coverage and percentage identity (PID).
 keywords:
   - awk
   - paf
@@ -43,3 +43,4 @@ output:
           pattern: "versions.yml"
 authors:
   - "@ochkalova"
+  - "@jmattock5"
