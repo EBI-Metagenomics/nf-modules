@@ -4,18 +4,17 @@ process FILTERPAF {
 
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/gawk:5.3.0' :
-        'quay.io/biocontainers/gawk:5.3.1' }"
+        'biocontainers/gawk:5.3.1' }"
 
     input:
     tuple val(meta), path(paf_file)
 
     output:
-    tuple val(meta), path("${meta.id}.txt"), emit: mapped_contigs_txt
+    tuple val(meta), path("${prefix}.txt"), emit: mapped_contigs_txt
     path "versions.yml"                    , emit: versions
 
     script:
-    def prefix = task.ext.prefix ?: "${meta.id}"
-
+    prefix = task.ext.prefix ?: "${meta.id}"
     """
     # Filter PAF by query coverage and MAPQ
     awk '
@@ -48,8 +47,7 @@ process FILTERPAF {
     """
 
     stub:
-    def prefix = task.ext.prefix ?: "${meta.id}"
-
+    prefix = task.ext.prefix ?: "${meta.id}"
     """
     touch ${prefix}.txt
 

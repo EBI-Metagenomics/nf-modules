@@ -20,7 +20,7 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ],
-                    file("${moduleDir}/tests/data/test.paf", checkIfExists: true)
+                    [ id:'test', file("${moduleDir}/tests/data/test.paf", checkIfExists: true)]
                 ]
                 """
             }
@@ -29,7 +29,7 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out.mapped_contigs_txt).match("mapped_contigs_txt") }
+                { assert snapshot(process.out).match() }
             )
         }
 
@@ -48,7 +48,7 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'test' ],
-                    file("${moduleDir}/tests/data/test.paf", checkIfExists: true)
+                    [ id:'test', file("${moduleDir}/tests/data/test.paf", checkIfExists: true) ]
                 ]
                 """
             }
@@ -60,7 +60,5 @@ nextflow_process {
                 { assert snapshot(process.out).match() }
             )
         }
-
     }
-
 }
