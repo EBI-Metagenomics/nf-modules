@@ -29,6 +29,14 @@ nextflow_workflow {
                 { assert workflow.success },
                 { assert snapshot(workflow.out).match() },
                 {
+                    def contaminated_contigs = path("${moduleDir}/tests/data/test_contaminated.fa").fasta
+                    assert contaminated_contigs.size() == 4
+                    assert "ERZ18545498.1194 atg000172l" in contaminated_contigs
+                    assert "ERZ18545498.8 ptg000008l" in contaminated_contigs
+                    assert "ERZ18545498.980 ptg000980l" in contaminated_contigs
+                    assert "Fake contamination" in contaminated_contigs
+                },
+                {
                     def cleaned_contigs = path(workflow.out.cleaned_contigs.get(0).get(1)).fasta
                     assert "ERZ18545498.1194 atg000172l" in cleaned_contigs
                     assert "ERZ18545498.8 ptg000008l" in cleaned_contigs
@@ -56,6 +64,14 @@ nextflow_workflow {
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(workflow.out).match() },
+                {
+                    def contaminated_contigs = path("${moduleDir}/tests/data/test_contaminated.fa.gz").fasta
+                    assert contaminated_contigs.size() == 4
+                    assert "ERZ18545498.1194 atg000172l" in contaminated_contigs
+                    assert "ERZ18545498.8 ptg000008l" in contaminated_contigs
+                    assert "ERZ18545498.980 ptg000980l" in contaminated_contigs
+                    assert "Fake contamination" in contaminated_contigs
+                },
                 {
                     def cleaned_contigs = path(workflow.out.cleaned_contigs.get(0).get(1)).fasta
                     assert "ERZ18545498.1194 atg000172l" in cleaned_contigs
@@ -85,6 +101,12 @@ nextflow_workflow {
                 { assert workflow.success },
                 { assert snapshot(workflow.out).match() },
                 {
+                    def not_contaminated_contigs = path("${moduleDir}/tests/data/test_not_contaminated.fa").fasta
+                    assert not_contaminated_contigs.size() == 2
+                    assert "ERZ18545498.1194 atg000172l" in not_contaminated_contigs
+                    assert "ERZ18545498.8 ptg000008l" in not_contaminated_contigs
+                },
+                {
                     def cleaned_contigs = path(workflow.out.cleaned_contigs.get(0).get(1)).fasta
                     assert "ERZ18545498.1194 atg000172l" in cleaned_contigs
                     assert "ERZ18545498.8 ptg000008l" in cleaned_contigs
@@ -110,6 +132,12 @@ nextflow_workflow {
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(workflow.out).match() },
+                {
+                    def not_contaminated_contigs = path("${moduleDir}/tests/data/test_not_contaminated.fa.gz").fasta
+                    assert not_contaminated_contigs.size() == 2
+                    assert "ERZ18545498.1194 atg000172l" in not_contaminated_contigs
+                    assert "ERZ18545498.8 ptg000008l" in not_contaminated_contigs
+                },
                 {
                     def cleaned_contigs = path(workflow.out.cleaned_contigs.get(0).get(1)).fasta
                     assert "ERZ18545498.1194 atg000172l" in cleaned_contigs
