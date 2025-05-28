@@ -3,16 +3,37 @@ include { FILTERPAF      } from '../../../modules/ebi-metagenomics/filterpaf/mai
 include { SEQKIT_GREP    } from '../../../modules/ebi-metagenomics/seqkit/grep/main'
 
 workflow DECONTAMINATE_CONTIGS {
+    /*
+    * Important: meta compatibility requirement
+    *
+    * When using this subowkrflow, ensure that 'contigs' and 'contaminant_genomes'
+    * channels are joinable by the first element of their meta attributes.
+    *
+    * This is required to properly join the channels and prevent cleaning contigs
+    * with incorrect reference genomes.
+    */
+
+    // ================================================================================
+    // Decontamination
+    //  Remove contigs with alignment > min_align_len bp
+    //    OR
+    //  (query coverage ≥ min_qcov AND mapping quality ≥ min_mapq)
+    //
+    // Rationale: Long PacBio HiFi contigs (8+ Mbp) may have large partial
+    // alignments (3+ Mbp) to contaminants, making absolute length more
+    // informative than coverage percentage.
+    // ================================================================================
+
     take:
-    contigs            // [ meta, path(assembly_fasta)]
-    contaminant_genome // [ meta, path(reference_fasta)]
+    contigs             // [ meta, path(assembly_fasta)]
+    contaminant_genomes // [ meta, path(reference_fasta)]
 
     main:
     ch_versions = Channel.empty()
 
     // Mix and match the genomes and contigs
     contigs
-        .join(contaminant_genome)
+        .join(contaminant_genomes)
         .multiMap { meta, assembly, cont_genome ->
             contigs: [meta, assembly]
             genome: [meta, cont_genome]
