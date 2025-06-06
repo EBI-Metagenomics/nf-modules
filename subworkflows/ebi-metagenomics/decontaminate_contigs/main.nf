@@ -24,9 +24,9 @@ workflow DECONTAMINATE_CONTIGS {
     ch_versions = Channel.empty()
 
     contigs_and_reference
-        .multiMap { assembly, contaminant_genome ->
+        .multiMap { assembly, contaminant_reference ->
             contigs: assembly
-            reference: [[id: contaminant_genome.baseName], contaminant_genome ]
+            reference: [[id: contaminant_reference.baseName], contaminant_reference ]
         }
         .set { minimap2_input_ch }
 

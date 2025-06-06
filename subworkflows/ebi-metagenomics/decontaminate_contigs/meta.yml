@@ -22,7 +22,7 @@ input:
   - contigs_and_reference:
       type: tuple
       description: |
-        An input channel containing one or more tuples with pairs contigs - reference.
+        An input channel containing one or more tuples with pairs contigs - contaminant reference.
         Fasta files can be compressed or uncompressed.
         Structure: [ [meta, assembly_fasta], reference_fasta ]
       pattern: "*.{fa,fna,fasta}[.gz]"
