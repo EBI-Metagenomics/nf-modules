@@ -1,0 +1,100 @@
+nextflow_process {
+
+    name "Test Process DBCAN"
+    script "../main.nf"
+    process "DBCAN"
+
+    // dbCan will fail if the db is in a folder with a . at some point
+    // this is due to some bad coding to get a file extension
+    // https://github.com/linnabrown/run_dbcan/blob/master/dbcan/cli/syntenic_plot.py#L431
+    // so when running this test locally - use NFT_WORKDIR and set the nf-test to something different than .nf-test
+
+    tag "modules"
+    tag "dbcan"
+    tag "modules_ebimetagenomics"
+    tag "dbcan/easysubstrate"
+
+    test("dbCAN with the built in subsampled test ecoli faa and gff in protein mode") {
+
+        config "./nextflow.config"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ], // meta map
+                    file("${moduleDir}/tests/dbcan_test_db/ecoliK12MG1655_test.faa", checkIfExists: true), // protein faa
+
+                ]
+                input[1] = [
+                    [ id:'test' ], // meta map
+                    file("${moduleDir}/tests/dbcan_test_db/ecoliK12MG1655_test.gff", checkIfExists: true) // protein gff
+                ]
+                input[2] = [
+                    file("${moduleDir}/tests/dbcan_test_db", type: 'dir', checkIfExists: true),
+                    "5.1.2"
+                ]
+                input[3] = "protein"
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                // Unstable files - we just check that they exist and that they are not empty
+                { assert process.out.cgc_gff.size() > 0 },
+                { assert process.out.cgc_standard_tsv.size() > 0 },
+                // The folder is empty now (?)
+                // { assert process.out.synteny_pdfs.size() == 1 }, // one pdf
+                { assert snapshot(
+                    process.out.overview_txt,
+                    process.out.dbsub_output_tsv,
+                    process.out.diamond_output,
+                    process.out.substrate_prediction_tsv,
+                    process.out.uniinput_faa,
+                    process.out.versions,
+                    process.out.versions.collect{ path(it).yaml },
+                ).match() }
+            )
+        }
+    }
+
+    test("dbCAN with the built in subsampled test ecoli faa and gbk - stub") {
+
+        options "-stub"
+
+        config "./nextflow.config"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ], // meta map
+                    file("${moduleDir}/tests/dbcan_test_db/ecoliK12MG1655_test.faa", checkIfExists: true), // protein faa
+
+                ]
+                input[1] = [
+                    [ id:'test' ], // meta map
+                    file("${moduleDir}/tests/dbcan_test_db/ecoliK12MG1655_test.gff", checkIfExists: true) // protein gff
+                ]
+                input[2] = [
+                    file("${moduleDir}/tests/dbcan_test_db", type: 'dir', checkIfExists: true),
+                    "4.1.4_V13"
+                ]
+                input[3] = "protein"
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    process.out,
+                    process.out.versions.collect{ path(it).yaml }
+                ).match() }
+            )
+        }
+    }
+}
