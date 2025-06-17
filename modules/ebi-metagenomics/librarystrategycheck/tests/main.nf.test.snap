@@ -1,0 +1,107 @@
+{
+    "librarystrategycheck - NOT AMPLICON": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        ""
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,133827b2202b27d92ac3a1d9c74e3473"
+                ],
+                "library_check_out": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        ""
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,133827b2202b27d92ac3a1d9c74e3473"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.5"
+        },
+        "timestamp": "2025-06-17T11:02:14.135371"
+    },
+    "librarystrategycheck - AMPLICON": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "AMPLICON"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,133827b2202b27d92ac3a1d9c74e3473"
+                ],
+                "library_check_out": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "AMPLICON"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,133827b2202b27d92ac3a1d9c74e3473"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.5"
+        },
+        "timestamp": "2025-06-17T10:57:32.511379"
+    },
+    "librarystrategycheck - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "AMPLICON"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,133827b2202b27d92ac3a1d9c74e3473"
+                ],
+                "library_check_out": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "AMPLICON"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,133827b2202b27d92ac3a1d9c74e3473"
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.5"
+        },
+        "timestamp": "2025-06-17T10:57:40.537791"
+    }
+}
