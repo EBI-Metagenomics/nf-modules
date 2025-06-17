@@ -7,7 +7,8 @@ keywords:
   - qc
 tools:
   - "librarystrategycheck":
-      description: "Uses base-conservation vectors to assess whether a run is AMPLICON or not, uses mgnify-pipelines-toolkit
+      description:
+        "Uses base-conservation vectors to assess whether a run is AMPLICON or not, uses mgnify-pipelines-toolkit
         as conda environment"
       homepage: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
       documentation: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
