@@ -1,13 +1,13 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
-name: "assessmcpproportions"
-description: Assess proportions of Most Common Prefixes (MCP) in reads
+name: "librarystrategycheck"
+description: Uses base-conservation vectors to assess whether a run is AMPLICON or not
 keywords:
   - fastq
   - reads
   - qc
 tools:
-  - "assessmcpproportions":
-      description: "Assess proportions of MCPs in reads, uses mgnify-pipelines-toolkit
+  - "librarystrategycheck":
+      description: "Uses base-conservation vectors to assess whether a run is AMPLICON or not, uses mgnify-pipelines-toolkit
         as conda environment"
       homepage: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
       documentation: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
@@ -21,37 +21,12 @@ input:
         description: |
           Groovy Map containing sample information
           e.g. `[ id:'sample1', single_end:false ]`
-    - fwd_flag:
-        type: string
-        description: String that controls whether the forward strand of a merged fastq
-          file | should have its MCP proportions assessed. If it should, | string value
-          should be "auto"
-        pattern: "{auto,none}"
-    - rev_flag:
-        type: string
-        description: String that controls whether the reverse strand of a merged fastq
-          file | should have its MCP proportions assessed. If it should, | string value
-          should be "auto"
-        pattern: "{auto,none}"
-    - fastq:
+    - bcv:
         type: file
         description: Merged or single-end FASTQ file
         pattern: "*.fastq.gz"
-  - - library_check:
-        type: boolean
-        description: Boolean flag to control for whether library strategy | being amplicon
-          should be checked
+
 output:
-  - tsv:
-      - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. `[ id:'sample1', single_end:false ]`
-      - "*.tsv":
-          type: file
-          description: .tsv file containing MCP proportion results for all given strands
-          pattern: "*.tsv"
   - library_check_out:
       - meta:
           type: map
@@ -60,7 +35,7 @@ output:
             e.g. `[ id:'sample1', single_end:false ]`
       - check_out:
           type: string
-          description: Optional env variable containing either "AMPLICON", empty otherwise
+          description: Optional env variable containing string "AMPLICON", empty string otherwise
   - versions:
       - versions.yml:
           type: file
