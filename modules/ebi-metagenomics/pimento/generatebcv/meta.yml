@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "pimento_generatebcv"
-description: Generate base-conservation vectors in a stepwise and windowed manner for a fastq file.
+description: Generate Base-Conservation Vectors (BCV) in a stepwise and windowed manner for a fastq file.
 keywords:
   - primers
   - sequencing
