@@ -25,7 +25,11 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(
+                    process.out.library_check_out,
+                    process.out.versions.collect { path(it).yaml }
+                    ).match()
+                }
             )
         }
     }
@@ -46,7 +50,11 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(
+                    process.out.library_check_out,
+                    process.out.versions.collect { path(it).yaml }
+                    ).match()
+                }
             )
         }
     }
@@ -69,7 +77,11 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(
+                    process.out.library_check_out,
+                    process.out.versions.collect { path(it).yaml }
+                    ).match()
+                }
             )
         }
     }

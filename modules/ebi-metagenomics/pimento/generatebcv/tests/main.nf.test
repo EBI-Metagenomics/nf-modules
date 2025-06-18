@@ -28,7 +28,11 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(
+                    process.out.tsv,
+                    process.out.versions.collect { path(it).yaml }
+                    ).match()
+                }
             )
         }
 
@@ -52,7 +56,11 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(
+                    process.out.tsv,
+                    process.out.versions.collect { path(it).yaml }
+                    ).match()
+                }
             )
         }
 
@@ -76,7 +84,11 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(
+                    process.out.tsv,
+                    process.out.versions.collect { path(it).yaml }
+                    ).match()
+                }
             )
         }
 
@@ -100,7 +112,11 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(
+                    process.out.tsv,
+                    process.out.versions.collect { path(it).yaml }
+                    ).match()
+                }
             )
         }
 
@@ -126,7 +142,11 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(
+                    process.out.tsv,
+                    process.out.versions.collect { path(it).yaml }
+                    ).match()
+                }
             )
         }
 
