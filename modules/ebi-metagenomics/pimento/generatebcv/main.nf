@@ -4,18 +4,16 @@ process PIMENTO_GENERATEBCV {
     label 'process_single'
 
     conda "${moduleDir}/environment.yml"
-    // container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-    //     'https://depot.galaxyproject.org/singularity/YOUR-TOOL-HERE':
-    //     'biocontainers/YOUR-TOOL-HERE' }"
-
-    container "community.wave.seqera.io/library/mi-pimento:1.0.1--005ba0fa913f8400"
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/mi-pimento:1.0.1--pyhdfd78af_0':
+        'biocontainers/mi-pimento:1.0.1--pyhdfd78af_0' }"
 
     input:
     tuple val(meta), val(fwd_flag), val(rev_flag), path(fastq)
 
     output:
-    tuple val(meta), path("*.tsv") , emit: tsv
-    path "versions.yml"            , emit: versions
+    tuple val(meta), path("*.tsv"), emit: tsv
+    path "versions.yml"           , emit: versions
 
     when:
     task.ext.when == null || task.ext.when

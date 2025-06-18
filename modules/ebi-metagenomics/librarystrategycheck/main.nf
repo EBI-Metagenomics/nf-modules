@@ -4,12 +4,9 @@ process LIBRARYSTRATEGYCHECK {
     label 'process_single'
 
     conda "${moduleDir}/environment.yml"
-    // container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-    //     'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:1.2.1--pyhdfd78af_0':
-    //     'biocontainers/mgnify-pipelines-toolkit:1.2.1--pyhdfd78af_0' }"
-
-    // TODO: change this back once 1.2.1 is on bioconda
-    container "community.wave.seqera.io/library/pip_mgnify-pipelines-toolkit:e42550aa5320bc66"
+    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:1.2.1--pyhdfd78af_0':
+        'biocontainers/mgnify-pipelines-toolkit:1.2.1--pyhdfd78af_0' }"
 
     input:
     tuple val(meta), path(bcv)
