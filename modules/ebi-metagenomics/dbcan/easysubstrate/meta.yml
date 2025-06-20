@@ -63,7 +63,7 @@ output:
       - meta:
           type: map
           description: "Groovy Map containing sample information"
-      - results/${prefix}_dbcan_hmm_results.tsv.gz:
+      - results/${prefix}_dbcansub_hmm_results.tsv.gz:
           type: file
           description: "Output from the dbCAN_sub run."
           pattern: "results/*_dbcan_hmm_results.tsv.gz"
