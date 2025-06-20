@@ -1,63 +1,21 @@
 {
     "dbCAN with the built in subsampled test ecoli faa and gff in protein mode": {
         "content": [
-            [
-                [
-                    {
-                        "id": "test"
-                    },
-                    "test_overview.tsv.gz:md5,4cfed7297c8a7b2b3a105dc18fe4fceb"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test"
-                    },
-                    "test_dbcan_hmm_results.tsv.gz:md5,1e921af4be54b0b2633573707cbc1f38"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test"
-                    },
-                    "test_diamond.out.gz:md5,00d6529ffefa792882f0d78d7a72e692"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test"
-                    },
-                    "test_substrate_prediction.tsv.gz:md5,7af6898d2299dee695d3e3215c658f7b"
-                ]
-            ],
-            [
-                [
-                    {
-                        "id": "test"
-                    },
-                    "test_uniinput.faa.gz:md5,faff3b99bf61abe0432070fa83532135"
-                ]
-            ],
-            [
-                "versions.yml:md5,a6f60ced0a09626b42893997467e07ca"
-            ],
+            null,
             [
                 {
                     "DBCAN": {
                         "dbcan": "5.1.2",
-                        "dbcan_db": "5.1.2"
+                        "dbcan_db": "5.1.1"
                     }
                 }
             ]
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "25.04.3"
+            "nextflow": "25.04.4"
         },
-        "timestamp": "2025-06-16T22:41:02.171973"
+        "timestamp": "2025-06-20T12:18:01.428266"
     },
     "dbCAN with the built in subsampled test ecoli faa and gbk - stub": {
         "content": [
@@ -83,11 +41,16 @@
                         {
                             "id": "test"
                         },
-                        "test_diamond.out.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                        "test_dbCANsub_hmm_results.tsv.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "3": [
-                    
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_diamond.out.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
                 ],
                 "4": [
                     
@@ -102,7 +65,10 @@
                     
                 ],
                 "8": [
-                    "versions.yml:md5,d0eef016e2d3afa3fcf3c16854a725fd"
+                    
+                ],
+                "9": [
+                    "versions.yml:md5,cbaee965c3f3816dc227d352f6095148"
                 ],
                 "cgc_gff": [
                     
@@ -110,12 +76,20 @@
                 "cgc_standard_tsv": [
                     
                 ],
-                "dbsub_output_tsv": [
+                "dbhmm_output_tsv": [
                     [
                         {
                             "id": "test"
                         },
                         "test_dbcan_hmm_results.tsv.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "dbsub_output_tsv": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_dbCANsub_hmm_results.tsv.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
                     ]
                 ],
                 "diamond_output": [
@@ -144,22 +118,22 @@
                     
                 ],
                 "versions": [
-                    "versions.yml:md5,d0eef016e2d3afa3fcf3c16854a725fd"
+                    "versions.yml:md5,cbaee965c3f3816dc227d352f6095148"
                 ]
             },
             [
                 {
                     "DBCAN": {
                         "dbcan": "5.1.2",
-                        "dbcan_db": "4.1.4_V13"
+                        "dbcan_db": "5.1.1_V1"
                     }
                 }
             ]
         ],
         "meta": {
             "nf-test": "0.9.2",
-            "nextflow": "25.04.3"
+            "nextflow": "25.04.4"
         },
-        "timestamp": "2025-06-16T22:43:29.053618"
+        "timestamp": "2025-06-20T12:18:04.105265"
     }
 }

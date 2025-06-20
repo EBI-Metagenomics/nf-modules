@@ -16,7 +16,7 @@ process DBCAN {
     output:
     tuple val(meta), path("results/${prefix}_overview.tsv.gz"),                             emit: overview_txt
     tuple val(meta), path("results/${prefix}_dbcan_hmm_results.tsv.gz"),                    emit: dbhmm_output_tsv
-    tuple val(meta), path("results/${prefix}_dbCANsub_hmm_results.tsv.gz"),                    emit: dbsub_output_tsv
+    tuple val(meta), path("results/${prefix}_dbCANsub_hmm_results.tsv.gz"),                 emit: dbsub_output_tsv
     tuple val(meta), path("results/${prefix}_diamond.out.gz"),                              emit: diamond_output
     tuple val(meta), path("results/${prefix}_uniinput.faa.gz"),             optional: true, emit: uniinput_faa
     tuple val(meta), path("results/${prefix}_cgc.gff.gz"),                  optional: true, emit: cgc_gff
@@ -63,8 +63,8 @@ process DBCAN {
     mkdir results
     touch results/${prefix}_overview.tsv
     touch results/${prefix}_dbcan_hmm_results.tsv
+    touch results/${prefix}_dbCANsub_hmm_results.tsv
     touch results/${prefix}_diamond.out
-    touch results/${prefix}_hmm_results.tsv
 
     gzip results/*
 

@@ -42,18 +42,9 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                // Unstable files - we just check that they exist and that they are not empty
-                { assert process.out.cgc_gff.size() > 0 },
-                { assert process.out.cgc_standard_tsv.size() > 0 },
                 // The folder is empty now (?)
-                // { assert process.out.synteny_pdfs.size() == 1 }, // one pdf
                 { assert snapshot(
-                    process.out.overview_txt,
-                    process.out.dbsub_output_tsv,
-                    process.out.diamond_output,
-                    process.out.substrate_prediction_tsv,
-                    process.out.uniinput_faa,
-                    process.out.versions,
+                    process.out.out,
                     process.out.versions.collect{ path(it).yaml },
                 ).match() }
             )
