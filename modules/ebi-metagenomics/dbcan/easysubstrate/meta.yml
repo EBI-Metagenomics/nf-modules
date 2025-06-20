@@ -51,22 +51,30 @@ input:
           - meta
         description: Type of sequence input. protein=proteome; prok=prokaryote; meta=metagenome
 output:
-  - overview_output:
+  - overview_txt:
       - meta:
           type: map
           description: "Groovy Map containing sample information"
-      - results/${prefix}_overview.txt.gz:
+      - results/${prefix}_overview.tsv.gz:
           type: file
           description: "Summarizes CAZyme predictions across tools, including SignalP results."
-          pattern: "results/*_overview.txt.gz"
-  - dbsub_output:
+          pattern: "results/*_overview.tsv.gz"
+  - dbsub_output_tsv:
       - meta:
           type: map
           description: "Groovy Map containing sample information"
-      - results/${prefix}_*.hmm.out.gz:
+      - results/${prefix}_dbcansub_hmm_results.tsv.gz:
           type: file
           description: "Output from the dbCAN_sub run."
-          pattern: "results/*.hmm.out.gz"
+          pattern: "results/*_dbcan_hmm_results.tsv.gz"
+  - dbhmm_output_tsv:
+      - meta:
+          type: map
+          description: "Groovy Map containing sample information"
+      - results/${prefix}_dbcan_hmm_results.tsv.gz:
+          type: file
+          description: "Output from the dbCAN_hmm run."
+          pattern: "results/*_dbcan_hmm_results.tsv.gz"
   - diamond_output:
       - meta:
           type: map
@@ -75,62 +83,14 @@ output:
           type: file
           description: "Results from the Diamond BLAST."
           pattern: "results/*_diamond.out.gz"
-  - hmmer_output:
+  - uniinput_faa:
       - meta:
           type: map
           description: "Groovy Map containing sample information"
-      - results/${prefix}_hmmer.out.gz:
-          type: file
-          description: "Output from the HMMER run."
-          pattern: "results/$*_hmmer.out.gz"
-  - tf_output:
-      - meta:
-          type: map
-          description: "Groovy Map containing sample information"
-      - results/${prefix}_tf.out.gz:
-          type: file
-          description: "Diamond BLAST output predicting Transcription Factors (TFs) for CGCFinder."
-          pattern: "results/*_tf.out.gz"
-  - tc_output:
-      - meta:
-          type: map
-          description: "Groovy Map containing sample information"
-      - results/${prefix}_tc.out.gz:
-          type: file
-          description: "Diamond BLAST output predicting Transporter Classifications (TCs) for CGCFinder."
-          pattern: "results/*_tc.out.gz"
-  - tp_out:
-      - meta:
-          type: map
-          description: "Groovy Map containing sample information"
-      - results/${prefix}_tp_out.gz:
-          type: file
-          description: "DIAMOND search result against the TCDB 9 annotated protein sequences"
-          pattern: "results/*_tp.out.gz"
-  - stp_out:
-      - meta:
-          type: map
-          description: "Groovy Map containing sample information"
-      - results/${prefix}_stp.out.gz:
-          type: file
-          description: "HMMER search result against the MiST5 compiled signal transduction protein HMMs from Pfam"
-          pattern: "results/*_stp_out.gz"
-  - uniinput:
-      - meta:
-          type: map
-          description: "Groovy Map containing sample information"
-      - results/${prefix}_uniInput.gz:
+      - results/${prefix}_uniinput.faa.gz:
           type: file
           description: "The unified input file for subsequent tools, created by Prodigal if a nucleotide sequence is used."
-          pattern: "results/*_uniInput.out.gz"
-  - cgc_output:
-      - meta:
-          type: map
-          description: "Groovy Map containing sample information"
-      - results/${prefix}_cgc.out.gz:
-          type: file
-          description: "Output from the CGCFinder run."
-          pattern: "results/*_cgc.out.gz"
+          pattern: "results/*_uniinput.faa.gz"
   - cgc_gff:
       - meta:
           type: map
@@ -139,39 +99,30 @@ output:
           type: file
           description: "GFF input file for CGCFinder."
           pattern: "results/*_cgc.gff.gz"
-  - cgc_standard_output:
+  - cgc_standard_tsv:
       - meta:
           type: map
           description: "Groovy Map containing sample information"
-      - results/${prefix}_cgc_standard.out.gz:
+      - results/${prefix}_cgc_standard_out.tsv.gz:
           type: file
           description: "Simplified version of cgc.out, containing columns like CGC_id, Type, Contig_id, Gene_id, Start, End, Strand, and Annotation."
-          pattern: "results/*_cgc.out.gz"
-  - cgc_standard_output_json:
+          pattern: "results/*_cgc_standard_out.tsv.gz"
+  - substrate_prediction_tsv:
       - meta:
           type: map
           description: "Groovy Map containing sample information"
-      - results/${prefix}_cgc_standard.out.json.gz:
+      - results/${prefix}_substrate_prediction.tsv.gz:
           type: file
-          description: "Simplified version of cgc.out, containing columns like CGC_id, Type, Contig_id, Gene_id, Start, End, Strand, and Annotation but in json format."
-          pattern: "results/*_cgc_standard.out.json.gz"
+          description: "Summary of substrate prediction results for CGCs in TSV format from two approaches (dbCAN-PUL blast search and dbCAN-sub majority voting)"
+          pattern: "results/*_substrate_prediction.tsv.gz"
   - synteny_pdfs:
       - meta:
           type: map
           description: "Groovy Map containing sample information"
-      - results/synteny.pdf/*-syntenic.pdf.gz:
+      - results/synteny_pdf/*-syntenic.pdf.gz:
           type: file
           description: "Syntenic block alignment plots between all CGCs and PULs"
-          pattern: "results/synteny.pdf/*-syntenic.pdf.gz"
-  - substrate_out:
-      - meta:
-          type: map
-          description: "Groovy Map containing sample information"
-          pattern: "results/*_substrate.out.gz"
-      - results/${prefix}_substrate.out.gz:
-          type: file
-          description: "summary of substrate prediction results for CGCs in TSV format from two approaches3 (dbCAN-PUL blast search and dbCAN-sub majority voting)"
-          pattern: "results/*_substrate.out.gz"
+          pattern: "results/synteny_pdf/*-syntenic.pdf.gz"
   - versions:
       - versions.yml:
           type: file

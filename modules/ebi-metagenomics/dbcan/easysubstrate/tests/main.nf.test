@@ -4,16 +4,15 @@ nextflow_process {
     script "../main.nf"
     process "DBCAN"
 
-    // dbCan will fail if the db is in a folder with a . at some point
+    // dbCAN will fail if the db is in a folder with a . at some point
     // this is due to some bad coding to get a file extension
     // https://github.com/linnabrown/run_dbcan/blob/master/dbcan/cli/syntenic_plot.py#L431
     // so when running this test locally - use NFT_WORKDIR and set the nf-test to something different than .nf-test
 
     tag "modules"
-    tag "modules_nfcore"
     tag "dbcan"
     tag "modules_ebimetagenomics"
-    tag "dbcan/dbcan"
+    tag "dbcan/easysubstrate"
 
     test("dbCAN with the built in subsampled test ecoli faa and gff in protein mode") {
 
@@ -33,7 +32,7 @@ nextflow_process {
                 ]
                 input[2] = [
                     file("${moduleDir}/tests/dbcan_test_db", type: 'dir', checkIfExists: true),
-                    "4.1.4_V13"
+                    "5.1.1"
                 ]
                 input[3] = "protein"
                 """
@@ -43,21 +42,10 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                // Unstable files - we just check that they exist and that they are not empty
-                { assert process.out.cgc_gff.size() > 0 },
-                { assert process.out.cgc_standard_output.size() > 0 },
-                { assert process.out.cgc_standard_output_json.size() > 0 },
-                { assert process.out.synteny_pdfs.size() == 1 }, // one pdf
+                // The folder is empty now (?)
                 { assert snapshot(
-                    process.out.overview_output,
-                    process.out.dbsub_output,
-                    process.out.hmmer_output,
-                    process.out.diamond_output,
-                    process.out.substrate_out,
-                    process.out.uninput,
-                    process.out.tp_out,
-                    process.out.stp_out,
-                    process.out.versions,
+                    process.out.out,
+                    process.out.versions.collect{ path(it).yaml },
                 ).match() }
             )
         }
@@ -83,7 +71,7 @@ nextflow_process {
                 ]
                 input[2] = [
                     file("${moduleDir}/tests/dbcan_test_db", type: 'dir', checkIfExists: true),
-                    "4.1.4_V13"
+                    "5.1.1_V1"
                 ]
                 input[3] = "protein"
                 """
@@ -93,6 +81,10 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
+                { assert snapshot(
+                    process.out,
+                    process.out.versions.collect{ path(it).yaml }
+                ).match() }
             )
         }
     }

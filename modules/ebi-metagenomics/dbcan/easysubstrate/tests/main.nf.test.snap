@@ -1,0 +1,139 @@
+{
+    "dbCAN with the built in subsampled test ecoli faa and gff in protein mode": {
+        "content": [
+            null,
+            [
+                {
+                    "DBCAN": {
+                        "dbcan": "5.1.2",
+                        "dbcan_db": "5.1.1"
+                    }
+                }
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.4"
+        },
+        "timestamp": "2025-06-20T12:18:01.428266"
+    },
+    "dbCAN with the built in subsampled test ecoli faa and gbk - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_overview.tsv.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_dbcan_hmm_results.tsv.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_dbCANsub_hmm_results.tsv.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_diamond.out.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "4": [
+                    
+                ],
+                "5": [
+                    
+                ],
+                "6": [
+                    
+                ],
+                "7": [
+                    
+                ],
+                "8": [
+                    
+                ],
+                "9": [
+                    "versions.yml:md5,cbaee965c3f3816dc227d352f6095148"
+                ],
+                "cgc_gff": [
+                    
+                ],
+                "cgc_standard_tsv": [
+                    
+                ],
+                "dbhmm_output_tsv": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_dbcan_hmm_results.tsv.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "dbsub_output_tsv": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_dbCANsub_hmm_results.tsv.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "diamond_output": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_diamond.out.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "overview_txt": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_overview.tsv.gz:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "substrate_prediction_tsv": [
+                    
+                ],
+                "synteny_pdfs": [
+                    
+                ],
+                "uniinput_faa": [
+                    
+                ],
+                "versions": [
+                    "versions.yml:md5,cbaee965c3f3816dc227d352f6095148"
+                ]
+            },
+            [
+                {
+                    "DBCAN": {
+                        "dbcan": "5.1.2",
+                        "dbcan_db": "5.1.1_V1"
+                    }
+                }
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "25.04.4"
+        },
+        "timestamp": "2025-06-20T12:18:04.105265"
+    }
+}
