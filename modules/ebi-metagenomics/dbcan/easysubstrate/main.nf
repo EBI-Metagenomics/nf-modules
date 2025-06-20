@@ -59,10 +59,10 @@ process DBCAN {
 
     # Bulk rename of the results, dbcan doesn't have a prefix parameter
     find results -type f | while read -r file; do
-        mv "\$file" "\$(dirname "\$file")/${prefix}_\$(basename "\$file")"
-        # rename with the prefix
-        gzip "\$(dirname "\$file")/${prefix}_\$(basename "\$file" | tr [:upper:] [:lower:])"
+        mv "\$file" "\$(dirname "\$file")/${prefix}_\$(basename "\$file" | tr [:upper:] [:lower:])"
     done
+
+    gzip results/*.*
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
