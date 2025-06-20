@@ -31,17 +31,31 @@ process DBCAN {
     script:
     def args = task.ext.args ?: ''
     prefix = task.ext.prefix ?: "${meta.id}"
+
+    def is_fasta_compressed = fasta.getExtension() == "gz"
+    def fasta_name = is_fasta_compressed ? fasta.getBaseName() : fasta
+
+    def is_gff_compressed = gff.getExtension() == "gz"
+    def gff_name = is_gff_compressed ? gff.getBaseName() : gff
     """
+    if [ "${is_fasta_compressed}" == "true" ]; then
+        gzip -c -d ${fasta} > ${fasta_name}
+    fi
+
+    if [ "${is_gff_compressed}" == "true" ]; then
+        gzip -c -d ${gff} > ${gff_name}
+    fi
+
     run_dbcan \\
         easy_substrate \\
+        ${args} \\
         --threads ${task.cpus} \\
         --db_dir dbcan_db \\
         --output_dir results \\
-        --input_raw_data ${fasta} \\
+        --input_raw_data ${fasta_name} \\
         --gff_type prodigal \\
-        --input_gff ${gff} \\
-        --mode ${mode} \\
-        ${args}
+        --input_gff ${gff_name} \\
+        --mode ${mode}
 
     # Bulk rename of the results, dbcan doesn't have a prefix parameter
     find results -type f | while read -r file; do
