@@ -4,8 +4,8 @@ process DBCAN {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/dbcan:4.1.4--pyhdfd78af_0'
-        : 'biocontainers/dbcan:4.1.4--pyhdfd78af_0'}"
+        ? 'https://depot.galaxyproject.org/singularity/dbcan:5.1.2--pyhdfd78af_0'
+        : 'biocontainers/dbcan:5.1.2--pyhdfd78af_0'}"
 
     input:
     tuple val(meta), path(fasta)
@@ -39,7 +39,6 @@ process DBCAN {
     prefix = task.ext.prefix ?: "${meta.id}"
     """
     run_dbcan \\
-        --dia_cpu ${task.cpus} \\
         --hmm_cpu ${task.cpus} \\
         --tf_cpu ${task.cpus} \\
         --dbcan_thread ${task.cpus} \\

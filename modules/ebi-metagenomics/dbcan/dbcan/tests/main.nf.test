@@ -33,7 +33,7 @@ nextflow_process {
                 ]
                 input[2] = [
                     file("${moduleDir}/tests/dbcan_test_db", type: 'dir', checkIfExists: true),
-                    "4.1.4_V13"
+                    "5.1.2"
                 ]
                 input[3] = "protein"
                 """
@@ -58,6 +58,7 @@ nextflow_process {
                     process.out.tp_out,
                     process.out.stp_out,
                     process.out.versions,
+                    process.out.versions.collect{ path(it).yaml },
                 ).match() }
             )
         }
@@ -93,6 +94,10 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
+                { assert snapshot(
+                    process.out,
+                    process.out.versions.collect{ path(it).yaml }
+                ).match() }
             )
         }
     }
