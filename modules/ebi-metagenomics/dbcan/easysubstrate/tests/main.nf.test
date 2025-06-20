@@ -4,7 +4,7 @@ nextflow_process {
     script "../main.nf"
     process "DBCAN"
 
-    // dbCan will fail if the db is in a folder with a . at some point
+    // dbCAN will fail if the db is in a folder with a . at some point
     // this is due to some bad coding to get a file extension
     // https://github.com/linnabrown/run_dbcan/blob/master/dbcan/cli/syntenic_plot.py#L431
     // so when running this test locally - use NFT_WORKDIR and set the nf-test to something different than .nf-test
