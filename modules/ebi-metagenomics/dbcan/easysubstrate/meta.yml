@@ -71,12 +71,10 @@ output:
       - meta:
           type: map
           description: "Groovy Map containing sample information"
-      - results/${prefix}_*.hmm.out.gz:
       - results/${prefix}_dbcan_hmm_results.tsv.gz:
           type: file
           description: "Output from the dbCAN_hmm run."
-          pattern: "results/*.hmm.out.gz"
-          pattern: "results/*_dbcan_hmm_results.tsv.gz" 
+          pattern: "results/*_dbcan_hmm_results.tsv.gz"
   - diamond_output:
       - meta:
           type: map
