@@ -1,5 +1,5 @@
 
-process FASTQSUFFIXHEADERCHECK {
+process LIBRARYSTRATEGYCHECK {
     tag "$meta.id"
     label 'process_single'
 
@@ -9,10 +9,10 @@ process FASTQSUFFIXHEADERCHECK {
         'biocontainers/mgnify-pipelines-toolkit:1.2.1--pyhdfd78af_0' }"
 
     input:
-    tuple val(meta), path(fastq)
+    tuple val(meta), path(bcv)
 
     output:
-    tuple val(meta), path("*.json"), emit: json
+    tuple val(meta), env(check_out), emit: library_check_out
     path "versions.yml"            , emit: versions
 
     when:
@@ -21,13 +21,14 @@ process FASTQSUFFIXHEADERCHECK {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def fastq_input = meta.single_end ? "-f ${fastq}" : "-f ${fastq[0]} -r ${fastq[1]}"
 
     """
-    fastq_suffix_header_check \\
-    ${fastq_input} \\
-    -s ${prefix} \\
-    -o ./
+    library_strategy_check \\
+        -i ${bcv} \\
+        -s ${prefix} \\
+        -o ./
+
+    check_out=\$(cat ${prefix}_library_check_out.txt)
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -36,11 +37,8 @@ process FASTQSUFFIXHEADERCHECK {
     """
 
     stub:
-    def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}"
-
     """
-    touch ${prefix}_suffix_header_err.json
+    check_out="AMPLICON"
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

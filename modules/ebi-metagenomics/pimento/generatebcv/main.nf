@@ -1,21 +1,19 @@
 
-process ASSESSMCPPROPORTIONS {
+process PIMENTO_GENERATEBCV {
     tag "$meta.id"
     label 'process_single'
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:0.1.7--pyhdfd78af_0':
-        'biocontainers/mgnify-pipelines-toolkit:0.1.7--pyhdfd78af_0' }"
+        'https://depot.galaxyproject.org/singularity/mi-pimento:1.0.1--pyhdfd78af_0':
+        'biocontainers/mi-pimento:1.0.1--pyhdfd78af_0' }"
 
     input:
     tuple val(meta), val(fwd_flag), val(rev_flag), path(fastq)
-    val library_check
 
     output:
-    tuple val(meta), path("*.tsv") , emit: tsv
-    tuple val(meta), env(check_out), optional: true, emit: library_check_out
-    path "versions.yml"            , emit: versions
+    tuple val(meta), path("*.tsv"), emit: tsv
+    path "versions.yml"           , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -26,7 +24,6 @@ process ASSESSMCPPROPORTIONS {
     def var_region = "${meta.var_region}" ?: ""
     def assess_mcp_prop_prefix = "${prefix}_${var_region}"
     def strands = ""
-    def library_check_input = "${assess_mcp_prop_prefix}_mcp_cons.tsv"
 
     if (fwd_flag == "auto" && rev_flag == "auto") {
         strands = "FR"
@@ -38,44 +35,24 @@ process ASSESSMCPPROPORTIONS {
 
     if (strands == "") {
         """
-        touch ${prefix}_${var_region}_mcp_cons.tsv
+        touch ${assess_mcp_prop_prefix}_mcp_cons.tsv
 
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":
-            mgnify-pipelines-toolkit: \$(get_mpt_version)
+            mi-pimento: \$( pimento --version | cut -d" " -f3 )
         END_VERSIONS
         """
-    } else if (library_check) {
+    } else {
         """
-        assess_mcp_proportions \\
+        pimento \\
+            gen_bcv \\
             -i ${fastq} \\
-            -s ${assess_mcp_prop_prefix} \\
             -st ${strands} \\
-            -o ./
-
-        library_strategy_check \\
-            -i ${library_check_input} \\
-            -s ${prefix} \\
-            -o ./
-
-        check_out=\$(cat ${prefix}_library_check_out.txt)
+            -o ${assess_mcp_prop_prefix}
 
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":
-            mgnify-pipelines-toolkit: \$(get_mpt_version)
-        END_VERSIONS
-        """
-    }  else {
-        """
-        assess_mcp_proportions \\
-            -i ${fastq} \\
-            -s ${assess_mcp_prop_prefix} \\
-            -st ${strands} \\
-            -o ./
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            mgnify-pipelines-toolkit: \$(get_mpt_version)
+            mi-pimento: \$( pimento --version | cut -d" " -f3 )
         END_VERSIONS
         """
     }
@@ -93,7 +70,7 @@ process ASSESSMCPPROPORTIONS {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        mgnify-pipelines-toolkit: \$(get_mpt_version)
+        mi-pimento: \$( pimento --version | cut -d" " -f3 )
     END_VERSIONS
     """
 }
