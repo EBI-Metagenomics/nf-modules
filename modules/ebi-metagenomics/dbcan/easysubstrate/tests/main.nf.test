@@ -80,7 +80,7 @@ nextflow_process {
                 ]
                 input[2] = [
                     file("${moduleDir}/tests/dbcan_test_db", type: 'dir', checkIfExists: true),
-                    "4.1.4_V13"
+                    "5.1.1_V1"
                 ]
                 input[3] = "protein"
                 """
