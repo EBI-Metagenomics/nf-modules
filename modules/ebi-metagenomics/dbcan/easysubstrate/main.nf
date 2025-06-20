@@ -43,7 +43,7 @@ process DBCAN {
         --mode ${mode} \\
         ${args}
 
-    # Bulk rename of the results, dbcan has a prefix parameter but it breaks when (for example) using --clusters and/or --cgc_substrate
+    # Bulk rename of the results, dbcan doesn't have a prefix parameter
     find results -type f | while read -r file; do
         mv "\$file" "\$(dirname "\$file")/${prefix}_\$(basename "\$file")"
         # rename with the prefix
