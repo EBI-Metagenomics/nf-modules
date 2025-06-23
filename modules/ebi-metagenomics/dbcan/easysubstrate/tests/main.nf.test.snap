@@ -1,7 +1,148 @@
 {
     "dbCAN with the built in subsampled test ecoli faa and gff in protein mode": {
         "content": [
-            null,
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_overview.tsv.gz:md5,4cfed7297c8a7b2b3a105dc18fe4fceb"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_dbcan_hmm_results.tsv.gz:md5,1e921af4be54b0b2633573707cbc1f38"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_dbcansub_hmm_results.tsv.gz:md5,c4950c6d5d373bed78025c0f62f9fe73"
+                    ]
+                ],
+                "3": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_diamond.out.gz:md5,00d6529ffefa792882f0d78d7a72e692"
+                    ]
+                ],
+                "4": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_uniinput.faa.gz:md5,faff3b99bf61abe0432070fa83532135"
+                    ]
+                ],
+                "5": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_cgc.gff.gz:md5,3f9fdd42f1a22882baac07441ccbf0ba"
+                    ]
+                ],
+                "6": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_cgc_standard_out.tsv.gz:md5,da64b8475ecbf6e00e98d85817c39ffc"
+                    ]
+                ],
+                "7": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_substrate_prediction.tsv.gz:md5,7af6898d2299dee695d3e3215c658f7b"
+                    ]
+                ],
+                "8": [
+                    
+                ],
+                "9": [
+                    "versions.yml:md5,c68fb56cafebd50b29fb35d5087d56a3"
+                ],
+                "cgc_gff": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_cgc.gff.gz:md5,3f9fdd42f1a22882baac07441ccbf0ba"
+                    ]
+                ],
+                "cgc_standard_tsv": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_cgc_standard_out.tsv.gz:md5,da64b8475ecbf6e00e98d85817c39ffc"
+                    ]
+                ],
+                "dbhmm_output_tsv": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_dbcan_hmm_results.tsv.gz:md5,1e921af4be54b0b2633573707cbc1f38"
+                    ]
+                ],
+                "dbsub_output_tsv": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_dbcansub_hmm_results.tsv.gz:md5,c4950c6d5d373bed78025c0f62f9fe73"
+                    ]
+                ],
+                "diamond_output": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_diamond.out.gz:md5,00d6529ffefa792882f0d78d7a72e692"
+                    ]
+                ],
+                "overview_txt": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_overview.tsv.gz:md5,4cfed7297c8a7b2b3a105dc18fe4fceb"
+                    ]
+                ],
+                "substrate_prediction_tsv": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_substrate_prediction.tsv.gz:md5,7af6898d2299dee695d3e3215c658f7b"
+                    ]
+                ],
+                "synteny_pdfs": [
+                    
+                ],
+                "uniinput_faa": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_uniinput.faa.gz:md5,faff3b99bf61abe0432070fa83532135"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,c68fb56cafebd50b29fb35d5087d56a3"
+                ]
+            },
             [
                 {
                     "DBCAN": {
@@ -15,7 +156,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.4"
         },
-        "timestamp": "2025-06-20T12:18:01.428266"
+        "timestamp": "2025-06-23T13:54:33.556889"
     },
     "dbCAN with the built in subsampled test ecoli faa and gbk - stub": {
         "content": [
