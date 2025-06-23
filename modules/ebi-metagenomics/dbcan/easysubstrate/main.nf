@@ -77,7 +77,7 @@ process DBCAN {
     mkdir results
     touch results/${prefix}_overview.tsv
     touch results/${prefix}_dbcan_hmm_results.tsv
-    touch results/${prefix}_dbCANsub_hmm_results.tsv
+    touch results/${prefix}_dbcansub_hmm_results.tsv
     touch results/${prefix}_diamond.out
 
     gzip results/*

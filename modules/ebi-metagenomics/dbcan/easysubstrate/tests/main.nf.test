@@ -44,7 +44,7 @@ nextflow_process {
                 { assert process.success },
                 // The folder is empty now (?)
                 { assert snapshot(
-                    process.out.out,
+                    process.out,
                     process.out.versions.collect{ path(it).yaml },
                 ).match() }
             )
