@@ -42,7 +42,7 @@ process FILTERPAF {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        awk: \$(awk --version 2>&1 | grep -oE '[0-9]{8}')
+        gawk: \$(echo \$(gawk --version 2>&1) | sed 's/^.*GNU Awk //; s/, .*\$//')
     END_VERSIONS
     """
 
@@ -53,7 +53,7 @@ process FILTERPAF {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        awk: \$(awk --version 2>&1 | grep -oE '[0-9]{8}')
+        gawk: \$(echo \$(gawk --version 2>&1) | sed 's/^.*GNU Awk //; s/, .*\$//')
     END_VERSIONS
     """
 }
