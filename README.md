@@ -10,6 +10,53 @@ To use the modules and subworkflows from this repository make sure you have [nf-
 pip install nf-core
 ```
 
+## Development
+
+This repository includes a [Taskfile](https://taskfile.dev) to streamline common development workflows. The Taskfile automatically manages a Python virtual environment using [uv](https://github.com/astral-sh/uv) to manage the dependencies and run the most commonly used tasks in the repo.
+
+### Prerequisites
+
+- [Task](https://taskfile.dev/installation/) - Task runner
+- [uv](https://github.com/astral-sh/uv#installation) - Fast Python package installer
+
+### Available Tasks
+
+**Module Management:**
+
+- `task module-create` - Create a new nf-core module interactively
+- `task modules-lint` - Lint modules
+
+**Subworkflow Management:**
+
+- `task subworkflow-create` - Create a new nf-core subworkflow interactively
+- `task subworkflow-lint` - Lint subworkflows
+
+**Code Quality:**
+
+- `task pre-commit` - Run pre-commit hooks on staged files
+- `task pre-commit-all` - Run pre-commit hooks on all files
+- `task pre-commit-install` - Install pre-commit hooks
+
+**Utilities:**
+
+- `task setup-env` - Create, or re-create the Python virtual env.
+- `task clean` - Clean up virtual environment
+
+### Examples
+
+```bash
+# Create a new module
+task module-create
+
+# Lint modules (it will prompt the options)
+task modules-lint
+
+# Run pre-commit checks
+task pre-commit
+```
+
+The virtual environment (`.venv`) is automatically created and managed by the tasks. All nf-core commands are executed with the repository's custom module collection (`-g https://github.com/EBI-Metagenomics/nf-modules`).
+
 ## Modules Usage
 
 List the available modules:
