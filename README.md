@@ -19,13 +19,13 @@ The tasks for creating and linting modules are configured with this repository u
 
 **Module Management:**
 
-- `task module-create` - Create a new nf-core module interactively
+- `task modules-create` - Create a new nf-core module interactively
 - `task modules-lint` - Lint modules
 
 **Subworkflow Management:**
 
-- `task subworkflow-create` - Create a new nf-core subworkflow interactively
-- `task subworkflow-lint` - Lint subworkflows
+- `task subworkflows-create` - Create a new nf-core subworkflow interactively
+- `task subworkflows-lint` - Lint subworkflows
 
 **Code Quality:**
 
