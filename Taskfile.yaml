@@ -16,7 +16,7 @@ tasks:
     silent: true
 
   # Module management tasks
-  module-create:
+  modules-create:
     desc: "Create a new nf-core module interactively"
     deps: [setup-venv]
     cmds:
@@ -31,14 +31,14 @@ tasks:
     interactive: true
 
   # Subworkflow management tasks
-  subworkflow-create:
+  subworkflows-create:
     desc: "Create a new nf-core subworkflow interactively"
     deps: [setup-venv]
     cmds:
       - "uv run nf-core subworkflows -g {{.REPO_URL}} create"
     interactive: true
 
-  subworkflow-lint:
+  subworkflows-lint:
     desc: "Lint a specific subworkflow (usage: task subworkflow-lint -- <subworkflow_name>)"
     deps: [setup-venv]
     cmds:
