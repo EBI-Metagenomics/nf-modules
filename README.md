@@ -4,15 +4,11 @@ Welcome to the Microbiome Informatics Nextflow modules and subworkflows reposito
 
 ## Getting Started
 
-To use the modules and subworkflows from this repository make sure you have [nf-core/tools](https://github.com/nf-core/tools) installed:
-
-```bash
-pip install nf-core
-```
-
 ## Development
 
 This repository includes a [Taskfile](https://taskfile.dev) to streamline common development workflows. The Taskfile automatically manages a Python virtual environment using [uv](https://github.com/astral-sh/uv) to manage the dependencies and run the most commonly used tasks in the repo.
+
+The tasks for creating and linting modules are configured with this repository using the -g option in nf-core tools. This means they are designed to create and manage modules for this repository, not the main nf-core one.
 
 ### Prerequisites
 
@@ -54,8 +50,6 @@ task modules-lint
 # Run pre-commit checks
 task pre-commit
 ```
-
-The virtual environment (`.venv`) is automatically created and managed by the tasks. All nf-core commands are executed with the repository's custom module collection (`-g https://github.com/EBI-Metagenomics/nf-modules`).
 
 ## Modules Usage
 
