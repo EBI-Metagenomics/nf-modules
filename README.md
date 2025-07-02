@@ -4,10 +4,53 @@ Welcome to the Microbiome Informatics Nextflow modules and subworkflows reposito
 
 ## Getting Started
 
-To use the modules and subworkflows from this repository make sure you have [nf-core/tools](https://github.com/nf-core/tools) installed:
+## Development
+
+This repository includes a [Taskfile](https://taskfile.dev) to streamline common development workflows. The Taskfile automatically manages a Python virtual environment using [uv](https://github.com/astral-sh/uv) to manage the dependencies and run the most commonly used tasks in the repo.
+
+The tasks for creating and linting modules are configured with this repository using the -g option in nf-core tools. This means they are designed to create and manage modules for this repository, not the main nf-core one.
+
+### Prerequisites
+
+- [Task](https://taskfile.dev/installation/) - Task runner
+- [uv](https://github.com/astral-sh/uv#installation) - Fast Python package installer
+
+### Available Tasks
+
+**Module Management:**
+
+- `task modules-create` - Create a new nf-core module interactively
+- `task modules-lint` - Lint modules
+- `task modules-test` - test modules
+
+**Subworkflow Management:**
+
+- `task subworkflows-create` - Create a new nf-core subworkflow interactively
+- `task subworkflows-lint` - Lint subworkflows
+- `task subworkflows-test` - Lint subworkflows
+
+**Code Quality:**
+
+- `task pre-commit` - Run pre-commit hooks on staged files
+- `task pre-commit-all` - Run pre-commit hooks on all files
+- `task pre-commit-install` - Install pre-commit hooks
+
+**Utilities:**
+
+- `task setup-env` - Create, or re-create the Python virtual env.
+- `task clean` - Clean up virtual environment
+
+### Examples
 
 ```bash
-pip install nf-core
+# Create a new module
+task modules-create
+
+# Lint modules (it will prompt the options)
+task modules-lint -- dbcan/easysubstrate
+
+# Run pre-commit checks
+task pre-commit
 ```
 
 ## Modules Usage

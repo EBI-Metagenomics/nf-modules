@@ -1,0 +1,86 @@
+version: "3"
+
+vars:
+  VENV_DIR: .venv
+  REPO_URL: https://github.com/EBI-Metagenomics/nf-modules
+
+tasks:
+  # Setup Python virtual environment using uv
+  setup-venv:
+    desc: "Bootstrap Python virtual environment with uv"
+    status:
+      - test -d {{.VENV_DIR}}
+    cmds:
+      - uv venv {{.VENV_DIR}}
+      - uv pip install nf-core pre-commit
+    silent: true
+
+  # Module management tasks
+  modules-create:
+    desc: "Run the nf-core modules create command, it's possible to send arguments directly with task modules-create -- <arguments>"
+    deps: [setup-venv]
+    cmds:
+      - uv run nf-core modules -g {{.REPO_URL}} create {{.CLI_ARGS}}
+    interactive: true
+
+  modules-test:
+    desc: "Run the nf-core modules test command, it's possible to send arguments directly with task modules-test -- <arguments>"
+    deps: [setup-venv]
+    cmds:
+      - uv run nf-core modules -g {{.REPO_URL}} test {{.CLI_ARGS}}
+    interactive: true
+
+  modules-lint:
+    desc: "Run the nf-core modules lint command, it's possible to send arguments directly with task modules-lint -- <arguments>"
+    deps: [setup-venv]
+    cmds:
+      - uv run nf-core modules -g {{.REPO_URL}} lint {{.CLI_ARGS}}
+    interactive: true
+
+  # Subworkflow management tasks
+  subworkflows-create:
+    desc: "Run the nf-core subworkflows create command, it's possible to send arguments directly with task subworkflows-create -- <arguments>"
+    deps: [setup-venv]
+    cmds:
+      - uv run nf-core subworkflows -g {{.REPO_URL}} create {{.CLI_ARGS}}
+    interactive: true
+
+  subworkflows-test:
+    desc: "Run the nf-core subworkflows test command, it's possible to send arguments directly with task subworkflows-test -- <arguments>"
+    deps: [setup-venv]
+    cmds:
+      - uv run nf-core subworkflows -g {{.REPO_URL}} test {{.CLI_ARGS}}
+    interactive: true
+
+  subworkflows-lint:
+    desc: "Run the nf-core subworkflows lint command, it's possible to send arguments directly with task subworkflows-lint -- <arguments>"
+    deps: [setup-venv]
+    cmds:
+      - uv run nf-core subworkflows -g {{.REPO_URL}} lint {{.CLI_ARGS}}
+    interactive: true
+
+  # Pre-commit tasks
+  pre-commit:
+    desc: "Run pre-commit hooks on staged files"
+    deps: [setup-venv]
+    cmds:
+      - uv run pre-commit run
+
+  pre-commit-all:
+    desc: "Run pre-commit hooks on all files"
+    deps: [setup-venv]
+    cmds:
+      - uv run pre-commit run --all-files
+
+  pre-commit-install:
+    desc: "Install pre-commit hooks"
+    deps: [setup-venv]
+    cmds:
+      - uv run pre-commit install
+
+  # Utility tasks
+  clean:
+    desc: "Clean up virtual environment"
+    prompt: "This will destroy your virtual env, okay?"
+    cmds:
+      - rm -rf {{.VENV_DIR}}
