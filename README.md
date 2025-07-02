@@ -21,11 +21,13 @@ The tasks for creating and linting modules are configured with this repository u
 
 - `task modules-create` - Create a new nf-core module interactively
 - `task modules-lint` - Lint modules
+- `task modules-test` - test modules
 
 **Subworkflow Management:**
 
 - `task subworkflows-create` - Create a new nf-core subworkflow interactively
 - `task subworkflows-lint` - Lint subworkflows
+- `task subworkflows-test` - Lint subworkflows
 
 **Code Quality:**
 
@@ -42,10 +44,10 @@ The tasks for creating and linting modules are configured with this repository u
 
 ```bash
 # Create a new module
-task module-create
+task modules-create
 
 # Lint modules (it will prompt the options)
-task modules-lint
+task modules-lint -- dbcan/easysubstrate
 
 # Run pre-commit checks
 task pre-commit
