@@ -67,5 +67,6 @@ tasks:
   # Utility tasks
   clean:
     desc: "Clean up virtual environment"
+    prompt: "This will destroy your virtual env, okay?"
     cmds:
       - rm -rf {{.VENV_DIR}}
