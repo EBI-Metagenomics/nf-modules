@@ -34,7 +34,7 @@ process FILTERPAF {
             query_coverage = aligned_len / query_len;
             identity = matching_bases / total_bases;
 
-            if (query_coverage >= ${params.min_qcov} && indentity >= ${params.min_pid}) {
+            if (query_coverage >= ${params.min_qcov} && identity >= ${params.min_pid}) {
                 print \$1;
             }
         }
