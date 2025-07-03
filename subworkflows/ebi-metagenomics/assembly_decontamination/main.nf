@@ -39,7 +39,7 @@ workflow ASSEMBLY_DECONTAMINATION {
     * Input:
     * - assembly: Channel [ val(meta), path(assembly_fasta) ]
     *
-    * outputs:
+    * Outputs:
     * - cleaned_contigs: Channel [ val(meta), path(cleaned_assembly_fasta) ]
     * - versions: Channel containing software version information
     *
