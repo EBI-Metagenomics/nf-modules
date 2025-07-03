@@ -22,7 +22,6 @@ workflow ASSEMBLY_DECONTAMINATION {
     * - params.reference_genomes_folder: Path to directory containing reference genome files
     *
     * Parameters (via meta map):
-    * - params.reference_genomes_folder -> the base folder for the genomes
     *
     * - meta.phix_reference: Filename of PhiX reference genome (optional)
     *   - If null, PhiX decontamination is skipped
