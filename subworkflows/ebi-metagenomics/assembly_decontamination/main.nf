@@ -12,7 +12,7 @@ workflow ASSEMBLY_DECONTAMINATION {
     *
     * Rationale:
     * 1. PhiX sequences - commonly used as spike-in controls in Illumina sequencing
-    * 2. Human sequences - to remove human contamination samples
+    * 2. Human sequences - to remove human contamination from samples
     * 3. Host/contaminant sequences - custom contaminants specific to the experimental design
     *
     * Each decontamination step is optional and controlled by metadata parameters, allowing
