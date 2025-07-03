@@ -7,7 +7,7 @@ workflow ASSEMBLY_DECONTAMINATION {
     * Microbiome Informatics metagenomics assembly decontamination subworkflow
     *
     * Performs sequential decontamination of assembled contigs against the human genome, PhiX and a genome
-    * specified by the user (usually the sample host). It designed to remove any contigs that come from any
+    * specified by the user (usually the sample host). It is designed to remove any contigs that come from any
     * of those references.
     *
     * Rationale:
