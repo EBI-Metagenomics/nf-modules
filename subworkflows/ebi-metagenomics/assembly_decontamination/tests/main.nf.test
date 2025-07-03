@@ -1,42 +1,220 @@
 nextflow_workflow {
 
-    name "Test subworkflow ASSEMBLY_DECONTAMINATION"
+    name "Test Workflow ASSEMBLY_DECONTAMINATION"
     script "../main.nf"
-    config "./nextflow.config"
+    config "../nextflow.config"
     workflow "ASSEMBLY_DECONTAMINATION"
 
     tag "subworkflows"
-    tag "subworkflows_nfcore"
-    tag "subworkflows/assembly_decontamination"
-    tag "blast/blastn"
-    tag "seqkit/grep"
+    tag "assembly_decontamination"
 
-    test("Assembly host decontamination") {
+    tag "subworkflows"
+    tag "subworkflows_ebimetagenomics"
+    tag "subworkflows/assembly_decontamination"
+    tag "subworkflows/decontaminate_contigs"
+
+
+    test("assembly_decontamination - all references") {
+
         when {
+            params {
+                reference_genomes_folder = "${moduleDir}/tests/data"
+            }
             workflow {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test' ], // meta map
-                    file("${moduleDir}/tests/data/test.fa", checkIfExists: true)
-                ])
-                input[1] = Channel.of([
-                    [id: 'reference_genome' ], // meta map
-                    file("${moduleDir}/tests/data/contamination.fa*", checkIfExists: true).collect()
+                    [
+                        id: 'test_sample_all',
+                        phix_reference: 'phyx.fasta',
+                        human_reference: 'human.fasta',
+                        contaminant_reference: 'contamination.fasta'
+                    ],
+                    file("${moduleDir}/tests/data/test.fasta", checkIfExists: true)
                 ])
                 """
             }
-
         }
+
         then {
             assertAll(
                 { assert workflow.success },
-                { assert snapshot(workflow.out.cleaned_contigs).match() },
+                { assert snapshot(
+                    workflow.out.cleaned_contigs,
+                    workflow.out.versions.collect { path(it).yaml }.unique()
+                    ).match()
+                },
                 {
-                  def cleaned_contigs = path(workflow.out.cleaned_contigs.get(0).get(1)).fasta
-                  assert "uncontaminated_contig" in cleaned_contigs
-                  assert "partially_contaminated_contig" in cleaned_contigs
-                  assert !("contaminated_contig" in cleaned_contigs)
+                    def cleaned_contigs = path(workflow.out.cleaned_contigs.get(0).get(1)).fasta
+                    assert cleaned_contigs.size() == 1
+                    assert "uncontaminated_contig" in cleaned_contigs
                 }
+            )
+        }
+    }
+
+    test("assembly_decontamination - phix only") {
+
+        when {
+            params {
+                reference_genomes_folder = "${moduleDir}/tests/data"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [
+                        id: 'test_sample_phix',
+                        phix_reference: 'phyx.fasta',
+                        human_reference: null,
+                        contaminant_reference: null
+                    ],
+                    file("${moduleDir}/tests/data/test.fasta", checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.cleaned_contigs,
+                    workflow.out.versions.collect { path(it).yaml }.unique()
+                    ).match()
+                },
+                {
+                    def cleaned_contigs = path(workflow.out.cleaned_contigs.get(0).get(1)).fasta
+                    assert cleaned_contigs.size() == 4
+                    assert "uncontaminated_contig" in cleaned_contigs
+                    assert "contaminated_contig" in cleaned_contigs
+                    assert "partially_contaminated_contig" in cleaned_contigs
+                    assert "human_contanimated_contig" in cleaned_contigs
+                }
+            )
+        }
+    }
+
+    test("assembly_decontamination - human only") {
+
+        when {
+            params {
+                reference_genomes_folder = "${moduleDir}/tests/data"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [
+                        id: 'test_sample_human',
+                        phix_reference: null,
+                        human_reference: 'human.fasta',
+                        contaminant_reference: null
+                    ],
+                    file("${moduleDir}/tests/data/test.fasta", checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.cleaned_contigs,
+                    workflow.out.versions.collect { path(it).yaml }.unique()
+                    ).match()
+                },
+                {
+                    def cleaned_contigs = path(workflow.out.cleaned_contigs.get(0).get(1)).fasta
+                    assert cleaned_contigs.size() == 4
+                    assert "uncontaminated_contig" in cleaned_contigs
+                    assert "contaminated_contig" in cleaned_contigs
+                    assert "partially_contaminated_contig" in cleaned_contigs
+                    assert "phyx_contanimated_contig" in cleaned_contigs
+                }
+            )
+        }
+    }
+
+    test("assembly_decontamination - host only") {
+
+        when {
+            params {
+                reference_genomes_folder = "${moduleDir}/tests/data"
+            }
+            workflow {
+                """
+                input[0] = Channel.of([
+                    [
+                        id: 'test_sample_host',
+                        phix_reference: null,
+                        human_reference: null,
+                        contaminant_reference: 'contamination.fasta'
+                    ],
+                    file("${moduleDir}/tests/data/test.fasta", checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.cleaned_contigs,
+                    workflow.out.versions.collect { path(it).yaml }.unique()
+                    ).match()
+                },
+                {
+                    def cleaned_contigs = path(workflow.out.cleaned_contigs.get(0).get(1)).fasta
+                    assert cleaned_contigs.size() == 3
+                    assert "uncontaminated_contig" in cleaned_contigs
+                    assert "phyx_contanimated_contig" in cleaned_contigs
+                    assert "human_contanimated_contig" in cleaned_contigs
+                }
+            )
+        }
+    }
+
+    test("assembly_decontamination - multiple samples") {
+
+        when {
+            params {
+                reference_genomes_folder = "${moduleDir}/tests/data"
+            }
+            workflow {
+                """
+                input[0] = Channel.of(
+                    [
+                        [
+                            id: 'sample1',
+                            phix_reference: 'phyx.fasta',
+                            human_reference: 'human.fasta',
+                            contaminant_reference: null
+                        ],
+                        file("${moduleDir}/tests/data/test.fasta", checkIfExists: true)
+                    ],
+                    [
+                        [
+                            id: 'sample2',
+                            phix_reference: null,
+                            human_reference: null,
+                            contaminant_reference: 'contamination.fasta'
+                        ],
+                        file("${moduleDir}/tests/data/test.fasta", checkIfExists: true)
+                    ]
+                )
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(
+                    workflow.out.cleaned_contigs,
+                    workflow.out.versions.collect { path(it).yaml }.unique()
+                    ).match()
+                },
             )
         }
     }
