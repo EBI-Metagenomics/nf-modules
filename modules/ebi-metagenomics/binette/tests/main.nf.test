@@ -1,0 +1,61 @@
+nextflow_process {
+
+    name "Test Process BINETTE"
+    tag "modules_nfcore"
+    tag "modules"
+    tag "binette"
+    script "../main.nf"
+    process "BINETTE"
+
+
+    test("test_binette_fasta_input") {
+        when {
+            params {
+                outdir = "${launchDir}/tests/results"
+            }
+            process {
+                """
+                input[0] = [ [id: 'test'], [file('$moduleDir/tests/data/binner1', checkIfExists: true), file('$moduleDir/tests/data/binner2', checkIfExists: true)] ]
+                input[1] = [ [id: 'test'], [file('$moduleDir/tests/data/metagenome.fasta', checkIfExists: true)] ]
+                input[2] = "fasta"
+                input[3] = []
+                input[4] = [ file('$moduleDir/tests/data/CheckM2_database/uniref100.KO.1.dmnd', checkIfExists: true) ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.refined_bins, process.out.versions).match() }
+            )
+        }
+    }
+
+    test("test_binette - stub") {
+
+        options '-stub'
+
+        when {
+            params {
+                outdir = "${launchDir}/tests/results"
+            }
+            process {
+                """
+                input[0] = [ [id: 'test'], [file('$moduleDir/tests/data/binner1', checkIfExists: true), file('$moduleDir/tests/data/binner2', checkIfExists: true)] ]
+                input[1] = [ [id: 'test'], [file('$moduleDir/tests/data/metagenome.fasta', checkIfExists: true)] ]
+                input[2] = "fasta"
+                input[3] = []
+                input[4] = [ file('$moduleDir/tests/data/CheckM2_database/uniref100.KO.1.dmnd', checkIfExists: true) ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.refined_bins, process.out.versions).match() }
+            )
+        }
+    }
+}
