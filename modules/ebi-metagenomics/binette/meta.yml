@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/yaml-schema.json
-name: "binnete"
+name: "binette"
 description: Binette binning refinement tool
 keywords:
   - mag
@@ -11,7 +11,7 @@ keywords:
   - completeness
   - contamination
 tools:
-  - "binnete":
+  - "binette":
       description: "Binette: a fast and accurate bin refinement tool to construct high-quality Metagenome Assembled Genomes"
       homepage: "https://github.com/genotoul-bioinfo/Binette"
       doi: "doi.org/10.21105/joss.06782"
@@ -24,25 +24,16 @@ input:
         description: |
           Groovy Map containing sample information
           e.g. `[ id:'test' ]`
-    - fasta_files:
-        type: tuple
-        description: One or multiple FASTA files of each bin. Use [] if the binning is provided in contig2bin tables (see below).
-        pattern: "*.{fasta,fna,fa}"
-        ontologies: http://edamontology.org/format_1929  # FASTA
-  - - meta2:
-        type: map
-        description: |
-          Groovy Map containing sample information
-          e.g. `[ id:'test', version:1 ]`
-    - tsv_files:
+    - input:
         type: tuple
         description: |
-          One or multiple TSV contig2bin tables, which establish the relationship between each contig and its corresponding bin.
-          Use [] if the binning is provided in FASTA files (see above).
-        pattern: "*.tsv"
+          One or multiple folders with FASTA files of each bin OR
+          one or multiple TSV contig2bin tables, which establish the relationship between each contig and its corresponding bin.
+        pattern: "*.{(fasta|fna|fa)|tsv}"
         ontologies:
-            - edam: http://edamontology.org/format_3475 # TSV
-  - - meta3:
+          - edam: http://edamontology.org/format_1929  # FASTA
+          - edam: http://edamontology.org/format_3475  # TSV
+  - - meta2:
         type: map
         description: |
           Groovy Map containing sample information
@@ -54,16 +45,16 @@ input:
         pattern: "*.{fasta,fna,fa}"
         ontologies:
           - edam: http://edamontology.org/format_1929 # FASTA
-  - - meta4:
-        type: map
+  - - input_type:
+        type: string
         description: |
-          Groovy Map containing sample information
-          e.g. `[ id:'test', version:1 ]`
-    - proteins:
+          Type of input provided to Binette.
+          Choose between `fasta` (for folders with bins FASTA files) or `tsv` (for TSV files that map contigs to bins).
+  - - proteins:
         type: file
         description: |
           A FASTA file containing predicted proteins from the contigs used for binning.
-          Specify this input if you don't want Binnete to predict proteins from the contigs.
+          Specify this input if you don't want Binette to predict proteins from the contigs.
         pattern: "*.{fasta,fna,fa}"
         ontologies:
           - edam: http://edamontology.org/format_1929 # FASTA

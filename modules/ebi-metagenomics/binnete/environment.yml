@@ -1,5 +1,0 @@
-channels:
-- conda-forge
-- bioconda
-dependencies:
-- bioconda::binette=1.1.2
