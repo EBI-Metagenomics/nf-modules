@@ -19,7 +19,7 @@ nextflow_process {
                 input[1] = [ [id: 'test'], [file('$moduleDir/tests/data/metagenome.fasta', checkIfExists: true)] ]
                 input[2] = "fasta"
                 input[3] = []
-                input[4] = [ file('$moduleDir/tests/data/CheckM2_database/uniref100.KO.1.dmnd', checkIfExists: true) ]
+                input[4] = [ file('$moduleDir/tests/data/small_db.dmnd', checkIfExists: true) ]
                 """
             }
         }
@@ -31,6 +31,32 @@ nextflow_process {
             )
         }
     }
+
+
+    test("test_binette_tsv_input") {
+        when {
+            params {
+                outdir = "${launchDir}/tests/results"
+            }
+            process {
+                """
+                input[0] = [ [id: 'test'], [file('$moduleDir/tests/data/binner1.tsv', checkIfExists: true), file('$moduleDir/tests/data/binner2.tsv', checkIfExists: true)] ]
+                input[1] = [ [id: 'test'], [file('$moduleDir/tests/data/metagenome.fasta', checkIfExists: true)] ]
+                input[2] = "tsv"
+                input[3] = []
+                input[4] = [ file('$moduleDir/tests/data/small_db.dmnd', checkIfExists: true) ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.refined_bins, process.out.versions).match() }
+            )
+        }
+    }
+
 
     test("test_binette - stub") {
 
@@ -46,7 +72,7 @@ nextflow_process {
                 input[1] = [ [id: 'test'], [file('$moduleDir/tests/data/metagenome.fasta', checkIfExists: true)] ]
                 input[2] = "fasta"
                 input[3] = []
-                input[4] = [ file('$moduleDir/tests/data/CheckM2_database/uniref100.KO.1.dmnd', checkIfExists: true) ]
+                input[4] = [ file('$moduleDir/tests/data/small_db.dmnd', checkIfExists: true) ]
                 """
             }
         }
