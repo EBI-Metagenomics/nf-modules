@@ -4,7 +4,7 @@ process BINETTE {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/binette:1.0.4--pyh7e72e81_0'
+        ? 'oras://community.wave.seqera.io/library/binette:1.1.2--d469f6785354dd73'
         : 'biocontainers/binette:1.1.2--pyh7e72e81_0'}"
 
     input:
