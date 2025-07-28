@@ -14,7 +14,7 @@ tools:
   - "binette":
       description: "Binette: a fast and accurate bin refinement tool to construct high-quality Metagenome Assembled Genomes"
       homepage: "https://github.com/genotoul-bioinfo/Binette"
-      doi: "doi.org/10.21105/joss.06782"
+      doi: "10.21105/joss.06782"
       licence: ["GPL v3"]
       identifier: ""
 
@@ -29,7 +29,7 @@ input:
         description: |
           One or multiple folders with FASTA files of each bin OR
           one or multiple TSV contig2bin tables, which establish the relationship between each contig and its corresponding bin.
-        pattern: "*.{(fasta|fna|fa)|tsv}"
+        pattern: "*.{fasta,fna,fa,tsv}"
         ontologies:
           - edam: http://edamontology.org/format_1929 # FASTA
           - edam: http://edamontology.org/format_3475 # TSV
@@ -99,5 +99,6 @@ output:
         pattern: "versions.yml"
         ontologies:
           - edam: http://edamontology.org/format_3750 # YAML
+
 authors:
   - "@ochkalova"
