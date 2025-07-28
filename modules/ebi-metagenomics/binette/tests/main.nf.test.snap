@@ -10,16 +10,21 @@
                 ]
             ],
             [
-                "versions.yml:md5,a733c14a8248c5bd038523fd1a5ebc10"
+                [
+                    {
+                        "id": "test"
+                    },
+                    "final_bins_quality_reports.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
             ]
         ],
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "25.04.1"
         },
-        "timestamp": "2025-07-24T15:51:22.99098"
+        "timestamp": "2025-07-28T11:00:49.893291"
     },
-    "test_binette_tsv_input": {
+    "Should refine bins from FASTA input directories": {
         "content": [
             [
                 [
@@ -30,16 +35,21 @@
                 ]
             ],
             [
-                "versions.yml:md5,a733c14a8248c5bd038523fd1a5ebc10"
+                [
+                    {
+                        "id": "test"
+                    },
+                    "final_bins_quality_reports.tsv:md5,8b2381fadab2172048e56b86cabdf13a"
+                ]
             ]
         ],
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "25.04.1"
         },
-        "timestamp": "2025-07-28T10:24:28.976517"
+        "timestamp": "2025-07-28T11:00:20.28575"
     },
-    "test_binette_fasta_input": {
+    "Should refine bins from TSV contig2bin tables": {
         "content": [
             [
                 [
@@ -50,13 +60,18 @@
                 ]
             ],
             [
-                "versions.yml:md5,a733c14a8248c5bd038523fd1a5ebc10"
+                [
+                    {
+                        "id": "test"
+                    },
+                    "final_bins_quality_reports.tsv:md5,8b2381fadab2172048e56b86cabdf13a"
+                ]
             ]
         ],
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "25.04.1"
         },
-        "timestamp": "2025-07-28T10:24:08.42924"
+        "timestamp": "2025-07-28T11:00:40.321487"
     }
 }

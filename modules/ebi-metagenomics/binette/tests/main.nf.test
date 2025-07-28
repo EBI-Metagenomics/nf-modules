@@ -8,18 +8,24 @@ nextflow_process {
     process "BINETTE"
 
 
-    test("test_binette_fasta_input") {
+    test("Should refine bins from FASTA input directories") {
         when {
             params {
                 outdir = "${launchDir}/tests/results"
             }
             process {
                 """
-                input[0] = [ [id: 'test'], [file('$moduleDir/tests/data/binner1', checkIfExists: true), file('$moduleDir/tests/data/binner2', checkIfExists: true)] ]
-                input[1] = [ [id: 'test'], [file('$moduleDir/tests/data/metagenome.fasta', checkIfExists: true)] ]
+                input[0] = [
+                    [id: 'test'],
+                    [
+                        file('$moduleDir/tests/data/binner1', checkIfExists: true),
+                        file('$moduleDir/tests/data/binner2', checkIfExists: true)
+                    ]
+                ]
+                input[1] = [ [id: 'test'], file('$moduleDir/tests/data/metagenome.fasta', checkIfExists: true) ]
                 input[2] = "fasta"
                 input[3] = []
-                input[4] = [ file('$moduleDir/tests/data/small_db.dmnd', checkIfExists: true) ]
+                input[4] = file('$moduleDir/tests/data/small_db.dmnd', checkIfExists: true)
                 """
             }
         }
@@ -27,24 +33,31 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out.refined_bins, process.out.versions).match() }
+                { assert process.out.versions },
+                { assert snapshot(process.out.refined_bins, process.out.refined_bins_report).match() }
             )
         }
     }
 
 
-    test("test_binette_tsv_input") {
+    test("Should refine bins from TSV contig2bin tables") {
         when {
             params {
                 outdir = "${launchDir}/tests/results"
             }
             process {
                 """
-                input[0] = [ [id: 'test'], [file('$moduleDir/tests/data/binner1.tsv', checkIfExists: true), file('$moduleDir/tests/data/binner2.tsv', checkIfExists: true)] ]
-                input[1] = [ [id: 'test'], [file('$moduleDir/tests/data/metagenome.fasta', checkIfExists: true)] ]
-                input[2] = "tsv"
+                input[0] = [
+                    [id: 'test'],
+                    [
+                        file('$moduleDir/tests/data/binner1', checkIfExists: true),
+                        file('$moduleDir/tests/data/binner2', checkIfExists: true)
+                    ]
+                ]
+                input[1] = [ [id: 'test'], file('$moduleDir/tests/data/metagenome.fasta', checkIfExists: true) ]
+                input[2] = "fasta"
                 input[3] = []
-                input[4] = [ file('$moduleDir/tests/data/small_db.dmnd', checkIfExists: true) ]
+                input[4] = file('$moduleDir/tests/data/small_db.dmnd', checkIfExists: true)
                 """
             }
         }
@@ -52,7 +65,8 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out.refined_bins, process.out.versions).match() }
+                { assert process.out.versions },
+                { assert snapshot(process.out.refined_bins, process.out.refined_bins_report).match() }
             )
         }
     }
@@ -68,11 +82,17 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = [ [id: 'test'], [file('$moduleDir/tests/data/binner1', checkIfExists: true), file('$moduleDir/tests/data/binner2', checkIfExists: true)] ]
-                input[1] = [ [id: 'test'], [file('$moduleDir/tests/data/metagenome.fasta', checkIfExists: true)] ]
+                input[0] = [
+                    [id: 'test'],
+                    [
+                        file('$moduleDir/tests/data/binner1', checkIfExists: true),
+                        file('$moduleDir/tests/data/binner2', checkIfExists: true)
+                    ]
+                ]
+                input[1] = [ [id: 'test'], file('$moduleDir/tests/data/metagenome.fasta', checkIfExists: true) ]
                 input[2] = "fasta"
                 input[3] = []
-                input[4] = [ file('$moduleDir/tests/data/small_db.dmnd', checkIfExists: true) ]
+                input[4] = file('$moduleDir/tests/data/small_db.dmnd', checkIfExists: true)
                 """
             }
         }
@@ -80,7 +100,8 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out.refined_bins, process.out.versions).match() }
+                { assert process.out.versions },
+                { assert snapshot(process.out.refined_bins, process.out.refined_bins_report).match() }
             )
         }
     }

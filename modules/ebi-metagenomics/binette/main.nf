@@ -8,10 +8,10 @@ process BINETTE {
         : 'biocontainers/binette:1.1.2--pyh7e72e81_0'}"
 
     input:
-    tuple val(meta), path(input, stageAs: "input/*")
+    tuple val(meta), path(input, stageAs: "input_bins/*")
     tuple val(meta2), path(contigs)
-    val(input_type)
-    path(proteins)
+    val input_type
+    path proteins
     path db
 
     output:
@@ -25,22 +25,25 @@ process BINETTE {
     script:
     def args        = task.ext.args ?: ''
     def protein_arg = proteins ? "--proteins ${proteins}" : ""
+    def input_arg   = ""
+
     if (input_type == 'fasta') {
-        input_arg = "--bin_dirs input/*"
+        input_arg = "--bin_dirs input_bins/*"
     } else if (input_type == 'tsv') {
-        input_arg = "--contig2bin_tables input/*"
+        input_arg = "--contig2bin_tables input_bins/*"
     } else {
-        error "Either FASTA directories or TSV files must be provided"
+        error "Invalid input_type: ${input_type}. Must be 'fasta' or 'tsv'"
     }
+
     """
     binette \\
         ${input_arg} \\
         ${protein_arg} \\
         --contigs ${contigs} \\
-        -o . \\
-        -v \\
         --threads ${task.cpus} \\
         --checkm2_db ${db} \\
+        -o . \\
+        -v \\
         ${args}
 
     cat <<-END_VERSIONS > versions.yml
@@ -52,7 +55,8 @@ process BINETTE {
     stub:
     """
     mkdir final_bins/
-    touch final_bins_quality_reports.tsv final_bins/bin_1.fasta
+    touch final_bins/bin_1.fasta
+    touch final_bins_quality_reports.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

@@ -25,14 +25,14 @@ input:
           Groovy Map containing sample information
           e.g. `[ id:'test' ]`
     - input:
-        type: tuple
+        type: file
         description: |
           One or multiple folders with FASTA files of each bin OR
           one or multiple TSV contig2bin tables, which establish the relationship between each contig and its corresponding bin.
         pattern: "*.{(fasta|fna|fa)|tsv}"
         ontologies:
-          - edam: http://edamontology.org/format_1929  # FASTA
-          - edam: http://edamontology.org/format_3475  # TSV
+          - edam: http://edamontology.org/format_1929 # FASTA
+          - edam: http://edamontology.org/format_3475 # TSV
   - - meta2:
         type: map
         description: |
@@ -56,12 +56,17 @@ input:
           A FASTA file containing predicted proteins from the contigs used for binning.
           Specify this input if you don't want Binette to predict proteins from the contigs.
         pattern: "*.{fasta,fna,fa}"
+        required: false
         ontologies:
           - edam: http://edamontology.org/format_1929 # FASTA
   - - db:
         type: file
-        description: CheckM2 database.
-        ontologies: []
+        description: |
+          CheckM2 database in Diamond format (.dmnd).
+          Required for assessing bin quality and completeness.
+        pattern: "*.dmnd"
+        ontologies:
+          - edam: http://edamontology.org/format_3247 # Diamond database
 output:
   refined_bins:
     - - meta:
@@ -70,8 +75,8 @@ output:
             Groovy Map containing sample information
             e.g. `[ id:'test' ]`
       - final_bins/*:
-          type: directory
-          description: Directory that stores all the bins selected by Binette in fasta format.
+          type: file
+          description: All the bins selected by Binette in fasta format.
           pattern: "final_bins/*"
           ontologies:
             - edam: http://edamontology.org/format_1929 # FASTA
