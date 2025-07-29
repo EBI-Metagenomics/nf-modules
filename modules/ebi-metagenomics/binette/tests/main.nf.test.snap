@@ -1,0 +1,101 @@
+{
+    "test_binette - stub": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "bin_1.fasta:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_final_bins_quality_reports.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ],
+            [
+                "versions.yml:md5,a733c14a8248c5bd038523fd1a5ebc10"
+            ],
+            {
+                "BINETTE": {
+                    "binette": "1.1.2"
+                }
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.1"
+        },
+        "timestamp": "2025-07-28T16:26:24.512245"
+    },
+    "Should refine bins from FASTA input directories": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "bin_5.fa:md5,64cc2172b00c5accd60f10bbc96ea91a"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_final_bins_quality_reports.tsv:md5,8b2381fadab2172048e56b86cabdf13a"
+                ]
+            ],
+            [
+                "versions.yml:md5,a733c14a8248c5bd038523fd1a5ebc10"
+            ],
+            {
+                "BINETTE": {
+                    "binette": "1.1.2"
+                }
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.1"
+        },
+        "timestamp": "2025-07-28T16:27:28.552564"
+    },
+    "Should refine bins from TSV contig2bin tables": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "bin_5.fa:md5,64cc2172b00c5accd60f10bbc96ea91a"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_final_bins_quality_reports.tsv:md5,8b2381fadab2172048e56b86cabdf13a"
+                ]
+            ],
+            [
+                "versions.yml:md5,a733c14a8248c5bd038523fd1a5ebc10"
+            ],
+            {
+                "BINETTE": {
+                    "binette": "1.1.2"
+                }
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.1"
+        },
+        "timestamp": "2025-07-28T16:26:14.508337"
+    }
+}
