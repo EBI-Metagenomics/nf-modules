@@ -25,7 +25,7 @@ input:
         description: |
           Groovy Map containing sample information
           e.g. `[ id:'test' ]`
-    - input:
+    - input_binning:
         type: file
         description: |
           One or multiple folders with FASTA files of each bin OR
@@ -34,11 +34,6 @@ input:
         ontologies:
           - edam: http://edamontology.org/format_1929 # FASTA
           - edam: http://edamontology.org/format_3475 # TSV
-  - - meta2:
-        type: map
-        description: |
-          Groovy Map containing sample information
-          e.g. `[ id:'test', version:1 ]`
     - contigs:
         type: file
         description: |
@@ -46,61 +41,57 @@ input:
         pattern: "*.{fasta,fna,fa}"
         ontologies:
           - edam: http://edamontology.org/format_1929 # FASTA
-  - input_type:
-      type: string
-      description: |
-        Type of input provided to Binette.
-        Choose between `fasta` (for folders with bins FASTA files) or `tsv` (for TSV files that map contigs to bins).
-  - proteins:
-      type: file
-      description: |
-        A FASTA file containing predicted proteins from the contigs used for binning.
-        Specify this input if you don't want Binette to predict proteins from the contigs.
-      pattern: "*.{fasta,fna,fa}"
-      required: false
-      ontologies:
-        - edam: http://edamontology.org/format_1929 # FASTA
-  - db:
-      type: file
-      description: |
-        CheckM2 database in Diamond format (.dmnd).
-        Required for assessing bin quality and completeness.
-      pattern: "*.dmnd"
-      ontologies:
-        - edam: http://edamontology.org/format_3247 # Diamond database
-output:
-  refined_bins:
-    - - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. `[ id:'test' ]`
-      - final_bins/*:
-          type: file
-          description: All the bins selected by Binette in fasta format.
-          pattern: "final_bins/*"
-          ontologies:
-            - edam: http://edamontology.org/format_1929 # FASTA
-  refined_bins_report:
-    - - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. `[ id:'test' ]`
-      - final_bins_quality_reports.tsv:
-          type: file
-          description: TSV file containing quality information about the final
-            selected bins.
-          pattern: "*.tsv"
-          ontologies:
-            - edam: http://edamontology.org/format_3475 # TSV
-  versions:
-    - versions.yml:
+    - proteins:
         type: file
-        description: File containing software versions
-        pattern: "versions.yml"
+        description: |
+          A FASTA file containing predicted proteins from the contigs used for binning.
+          Specify this input if you don't want Binette to predict proteins from the contigs.
+        pattern: "*.{fasta,fna,fa}"
+        required: false
         ontologies:
-          - edam: http://edamontology.org/format_3750 # YAML
+          - edam: http://edamontology.org/format_1929 # FASTA
+  - - input_type:
+        type: string
+        description: |
+          Type of input binning format provided to Binette.
+          Choose between `fasta` (for folders with bins FASTA files) or `tsv` (for TSV files that map contigs to bins).
+  - - checkm2_db:
+        type: file
+        description: |
+          CheckM2 database in Diamond format (.dmnd).
+          Required for assessing bin quality and completeness.
+        pattern: "*.dmnd"
+        ontologies:
+          - edam: http://edamontology.org/format_3247 # Diamond database
+output:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'test' ]`
+    - "*_final_bins/*":
+        type: file
+        description: All the bins selected by Binette in fasta format.
+        pattern: "*_final_bins/*"
+        ontologies:
+          - edam: http://edamontology.org/format_1929 # FASTA
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'test' ]`
+    - "*_final_bins_quality_reports.tsv":
+        type: file
+        description: TSV file containing quality information about the final selected bins.
+        pattern: "*_final_bins_quality_reports.tsv"
+        ontologies:
+          - edam: http://edamontology.org/format_3475 # TSV
+  - - versions.yml:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+      ontologies:
+        - edam: http://edamontology.org/format_3750 # YAML
 
 authors:
   - "@ochkalova"

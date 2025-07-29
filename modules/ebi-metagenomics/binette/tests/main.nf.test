@@ -1,7 +1,7 @@
 nextflow_process {
 
     name "Test Process BINETTE"
-    tag "modules_nfcore"
+    tag "modules_ebimetagenomics"
     tag "modules"
     tag "binette"
     script "../main.nf"
@@ -20,12 +20,12 @@ nextflow_process {
                     [
                         file('$moduleDir/tests/data/binner1', checkIfExists: true),
                         file('$moduleDir/tests/data/binner2', checkIfExists: true)
-                    ]
+                    ],
+                    file('$moduleDir/tests/data/metagenome.fasta', checkIfExists: true),
+                    []
                 ]
-                input[1] = [ [id: 'test'], file('$moduleDir/tests/data/metagenome.fasta', checkIfExists: true) ]
-                input[2] = "fasta"
-                input[3] = []
-                input[4] = file('$moduleDir/tests/data/small_db.dmnd', checkIfExists: true)
+                input[1] = "fasta"
+                input[2] = file('$moduleDir/tests/data/small_db.dmnd', checkIfExists: true)
                 """
             }
         }
@@ -33,8 +33,14 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert process.out.versions },
-                { assert snapshot(process.out.refined_bins, process.out.refined_bins_report).match() }
+                {
+                    assert snapshot(
+                        process.out.refined_bins,
+                        process.out.refined_bins_report,
+                        process.out.versions,
+                        path(process.out.versions[0]).yaml
+                    ).match()
+                }
             )
         }
     }
@@ -50,14 +56,14 @@ nextflow_process {
                 input[0] = [
                     [id: 'test'],
                     [
-                        file('$moduleDir/tests/data/binner1', checkIfExists: true),
-                        file('$moduleDir/tests/data/binner2', checkIfExists: true)
-                    ]
+                        file('$moduleDir/tests/data/binner1.tsv', checkIfExists: true),
+                        file('$moduleDir/tests/data/binner2.tsv', checkIfExists: true)
+                    ],
+                    file('$moduleDir/tests/data/metagenome.fasta', checkIfExists: true),
+                    []
                 ]
-                input[1] = [ [id: 'test'], file('$moduleDir/tests/data/metagenome.fasta', checkIfExists: true) ]
-                input[2] = "fasta"
-                input[3] = []
-                input[4] = file('$moduleDir/tests/data/small_db.dmnd', checkIfExists: true)
+                input[1] = "tsv"
+                input[2] = file('$moduleDir/tests/data/small_db.dmnd', checkIfExists: true)
                 """
             }
         }
@@ -65,8 +71,14 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert process.out.versions },
-                { assert snapshot(process.out.refined_bins, process.out.refined_bins_report).match() }
+                {
+                    assert snapshot(
+                        process.out.refined_bins,
+                        process.out.refined_bins_report,
+                        process.out.versions,
+                        path(process.out.versions[0]).yaml
+                    ).match()
+                }
             )
         }
     }
@@ -87,12 +99,12 @@ nextflow_process {
                     [
                         file('$moduleDir/tests/data/binner1', checkIfExists: true),
                         file('$moduleDir/tests/data/binner2', checkIfExists: true)
-                    ]
+                    ],
+                    file('$moduleDir/tests/data/metagenome.fasta', checkIfExists: true),
+                    []
                 ]
-                input[1] = [ [id: 'test'], file('$moduleDir/tests/data/metagenome.fasta', checkIfExists: true) ]
-                input[2] = "fasta"
-                input[3] = []
-                input[4] = file('$moduleDir/tests/data/small_db.dmnd', checkIfExists: true)
+                input[1] = "fasta"
+                input[2] = file('$moduleDir/tests/data/small_db.dmnd', checkIfExists: true)
                 """
             }
         }
@@ -100,8 +112,14 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert process.out.versions },
-                { assert snapshot(process.out.refined_bins, process.out.refined_bins_report).match() }
+                {
+                    assert snapshot(
+                        process.out.refined_bins,
+                        process.out.refined_bins_report,
+                        process.out.versions,
+                        path(process.out.versions[0]).yaml
+                    ).match()
+                }
             )
         }
     }
