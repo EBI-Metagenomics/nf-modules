@@ -12,7 +12,8 @@ keywords:
   - contamination
 tools:
   - "binette":
-      description: "Binette: a fast and accurate bin refinement tool to construct high-quality Metagenome Assembled Genomes"
+      description: "Binette: a fast and accurate bin refinement tool to construct high-quality
+        Metagenome Assembled Genomes"
       homepage: "https://github.com/genotoul-bioinfo/Binette"
       doi: "10.21105/joss.06782"
       licence: ["GPL v3"]
@@ -45,28 +46,28 @@ input:
         pattern: "*.{fasta,fna,fa}"
         ontologies:
           - edam: http://edamontology.org/format_1929 # FASTA
-  - - input_type:
-        type: string
-        description: |
-          Type of input provided to Binette.
-          Choose between `fasta` (for folders with bins FASTA files) or `tsv` (for TSV files that map contigs to bins).
-  - - proteins:
-        type: file
-        description: |
-          A FASTA file containing predicted proteins from the contigs used for binning.
-          Specify this input if you don't want Binette to predict proteins from the contigs.
-        pattern: "*.{fasta,fna,fa}"
-        required: false
-        ontologies:
-          - edam: http://edamontology.org/format_1929 # FASTA
-  - - db:
-        type: file
-        description: |
-          CheckM2 database in Diamond format (.dmnd).
-          Required for assessing bin quality and completeness.
-        pattern: "*.dmnd"
-        ontologies:
-          - edam: http://edamontology.org/format_3247 # Diamond database
+  - input_type:
+      type: string
+      description: |
+        Type of input provided to Binette.
+        Choose between `fasta` (for folders with bins FASTA files) or `tsv` (for TSV files that map contigs to bins).
+  - proteins:
+      type: file
+      description: |
+        A FASTA file containing predicted proteins from the contigs used for binning.
+        Specify this input if you don't want Binette to predict proteins from the contigs.
+      pattern: "*.{fasta,fna,fa}"
+      required: false
+      ontologies:
+        - edam: http://edamontology.org/format_1929 # FASTA
+  - db:
+      type: file
+      description: |
+        CheckM2 database in Diamond format (.dmnd).
+        Required for assessing bin quality and completeness.
+      pattern: "*.dmnd"
+      ontologies:
+        - edam: http://edamontology.org/format_3247 # Diamond database
 output:
   refined_bins:
     - - meta:
@@ -88,7 +89,8 @@ output:
             e.g. `[ id:'test' ]`
       - final_bins_quality_reports.tsv:
           type: file
-          description: TSV file containing quality information about the final selected bins.
+          description: TSV file containing quality information about the final
+            selected bins.
           pattern: "*.tsv"
           ontologies:
             - edam: http://edamontology.org/format_3475 # TSV
