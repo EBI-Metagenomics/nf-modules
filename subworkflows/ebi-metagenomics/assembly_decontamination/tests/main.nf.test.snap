@@ -5,8 +5,8 @@
                 [
                     {
                         "id": "sample1",
-                        "phix_reference": "phyx/phyx.fna",
-                        "human_reference": "human/human.fna",
+                        "phix_reference": "phyx",
+                        "human_reference": "human",
                         "contaminant_reference": null
                     },
                     "sample1.fa.gz:md5,a9e09e2aa32fa94543bab203db8c65e2"
@@ -16,7 +16,7 @@
                         "id": "sample2",
                         "phix_reference": null,
                         "human_reference": null,
-                        "contaminant_reference": "contamination/contamination.fna"
+                        "contaminant_reference": "contamination"
                     },
                     "sample2.fa.gz:md5,e94629f8dec8ddd183beaae566c95c3f"
                 ]
@@ -75,8 +75,10 @@
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "25.04.1"
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.1"
         },
-        "timestamp": "2025-08-05T13:29:23.32956"
+        "timestamp": "2025-08-04T13:12:40.369467"
     },
     "assembly_decontamination - phix only": {
         "content": [
@@ -84,7 +86,7 @@
                 [
                     {
                         "id": "test_sample_phix",
-                        "phix_reference": "phyx/phyx.fna",
+                        "phix_reference": "phyx",
                         "human_reference": null,
                         "contaminant_reference": null
                     },
@@ -113,8 +115,10 @@
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "25.04.1"
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.1"
         },
-        "timestamp": "2025-08-05T13:29:05.962615"
+        "timestamp": "2025-08-04T13:12:16.951658"
     },
     "assembly_decontamination - host only": {
         "content": [
@@ -124,7 +128,7 @@
                         "id": "test_sample_host",
                         "phix_reference": null,
                         "human_reference": null,
-                        "contaminant_reference": "contamination/contamination.fna"
+                        "contaminant_reference": "contamination"
                     },
                     "test_sample_host.fa.gz:md5,e94629f8dec8ddd183beaae566c95c3f"
                 ]
@@ -151,8 +155,10 @@
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "25.04.1"
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.1"
         },
-        "timestamp": "2025-08-05T13:29:15.623387"
+        "timestamp": "2025-08-04T13:12:29.66431"
     },
     "assembly_decontamination - all references": {
         "content": [
@@ -160,9 +166,9 @@
                 [
                     {
                         "id": "test_sample_all",
-                        "phix_reference": "phyx/phyx.fna",
-                        "human_reference": "human/human.fna",
-                        "contaminant_reference": "contamination/contamination.fna"
+                        "phix_reference": "phyx",
+                        "human_reference": "human",
+                        "contaminant_reference": "contamination"
                     },
                     "test_sample_all.fa.gz:md5,25aa49239f327c6704ad4590eb1698c9"
                 ]
@@ -221,8 +227,10 @@
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "25.04.1"
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.1"
         },
-        "timestamp": "2025-08-05T13:29:01.098564"
+        "timestamp": "2025-08-04T13:12:10.563516"
     },
     "assembly_decontamination - human only": {
         "content": [
@@ -231,7 +239,7 @@
                     {
                         "id": "test_sample_human",
                         "phix_reference": null,
-                        "human_reference": "human/human.fna",
+                        "human_reference": "human",
                         "contaminant_reference": null
                     },
                     "test_sample_human.fa.gz:md5,34ac8d3b788517e6aae1c5e7c63c720a"
@@ -259,7 +267,9 @@
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "25.04.1"
+            "nf-test": "0.9.0",
+            "nextflow": "25.04.1"
         },
-        "timestamp": "2025-08-05T13:29:10.795379"
+        "timestamp": "2025-08-04T13:12:23.223994"
     }
 }

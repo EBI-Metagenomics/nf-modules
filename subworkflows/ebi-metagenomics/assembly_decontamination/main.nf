@@ -23,17 +23,17 @@ workflow ASSEMBLY_DECONTAMINATION {
     *
     * Parameters (via meta map):
     *
-    * - meta.phix_reference: Filename of PhiX reference genome (optional)
+    * - meta.phix_reference: Filename prefix of PhiX reference genome (optional)
     *   - If null, PhiX decontamination is skipped
-    *   - File must exist in params.reference_genomes_folder
+    *   - File must exist in "${params.reference_genomes_folder}/${meta.phix_reference}/${meta.phix_reference}.fna"
     *
-    * - meta.human_reference: Filename of human reference genome (optional)
+    * - meta.human_reference: Filename prefix of human reference genome (optional)
     *   - If null, human decontamination is skipped
-    *   - File must exist in params.reference_genomes_folder
+    *   - File must exist in "${params.reference_genomes_folder}/${meta.human_reference}/${meta.human_reference}.fna"
     *
-    * - meta.contaminant_reference: Filename of custom contaminant reference (optional)
+    * - meta.contaminant_reference: Filename prefix of custom contaminant reference (optional)
     *   - If null, host/contaminant decontamination is skipped
-    *   - File must exist in params.reference_genomes_folder
+    *   - File must exist in "${params.reference_genomes_folder}/${meta.contaminant_reference}/${meta.contaminant_reference}.fna"
     *
     * Input:
     * - assembly: Channel [ val(meta), path(assembly_fasta) ]
@@ -61,7 +61,7 @@ workflow ASSEMBLY_DECONTAMINATION {
 
     phix_subdivided_assemblies.run_decontamination
         .map { meta, contigs ->
-            [ [meta, contigs], file( "${params.reference_genomes_folder}/${meta.phix_reference}", checkIfExists: true )  ]
+            [ [meta, contigs], file( "${params.reference_genomes_folder}/${meta.phix_reference}/${meta.phix_reference}.fna", checkIfExists: true )  ]
         }
         .set { ch_phix_decontamination_input }
 
@@ -84,7 +84,7 @@ workflow ASSEMBLY_DECONTAMINATION {
 
     human_subdivided_assemblies.run_decontamination
         .map { meta, contigs ->
-            [ [meta, contigs], file( "${params.reference_genomes_folder}/${meta.human_reference}", checkIfExists: true ) ]
+            [ [meta, contigs], file( "${params.reference_genomes_folder}/${meta.human_reference}/${meta.human_reference}.fna", checkIfExists: true ) ]
         }
         .set { ch_human_decontamination_input }
 
@@ -107,7 +107,7 @@ workflow ASSEMBLY_DECONTAMINATION {
 
     subdivided_assemblies.run_decontamination
         .map { meta, contigs ->
-            [ [meta, contigs], file( "${params.reference_genomes_folder}/${meta.contaminant_reference}", checkIfExists: true ) ]
+            [ [meta, contigs], file( "${params.reference_genomes_folder}/${meta.contaminant_reference}/${meta.contaminant_reference}.fna", checkIfExists: true ) ]
         }
         .set { ch_decontamination_input }
 
