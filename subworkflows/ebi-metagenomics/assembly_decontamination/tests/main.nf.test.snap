@@ -75,10 +75,8 @@
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "25.04.1"
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.1"
         },
-        "timestamp": "2025-08-04T13:12:40.369467"
+        "timestamp": "2025-08-05T16:11:25.408034"
     },
     "assembly_decontamination - phix only": {
         "content": [
@@ -115,10 +113,8 @@
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "25.04.1"
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.1"
         },
-        "timestamp": "2025-08-04T13:12:16.951658"
+        "timestamp": "2025-08-05T16:11:08.355247"
     },
     "assembly_decontamination - host only": {
         "content": [
@@ -155,10 +151,8 @@
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "25.04.1"
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.1"
         },
-        "timestamp": "2025-08-04T13:12:29.66431"
+        "timestamp": "2025-08-05T16:11:17.964707"
     },
     "assembly_decontamination - all references": {
         "content": [
@@ -227,10 +221,8 @@
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "25.04.1"
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.1"
         },
-        "timestamp": "2025-08-04T13:12:10.563516"
+        "timestamp": "2025-08-05T16:11:02.969589"
     },
     "assembly_decontamination - human only": {
         "content": [
@@ -267,9 +259,7 @@
         "meta": {
             "nf-test": "0.9.0",
             "nextflow": "25.04.1"
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.1"
         },
-        "timestamp": "2025-08-04T13:12:23.223994"
+        "timestamp": "2025-08-05T16:11:13.132533"
     }
 }
