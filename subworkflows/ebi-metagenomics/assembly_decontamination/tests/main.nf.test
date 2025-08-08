@@ -25,9 +25,9 @@ nextflow_workflow {
                 input[0] = Channel.of([
                     [
                         id: 'test_sample_all',
-                        phix_reference: 'phyx.fasta',
-                        human_reference: 'human.fasta',
-                        contaminant_reference: 'contamination.fasta'
+                        phix_reference: 'phyx',
+                        human_reference: 'human',
+                        contaminant_reference: 'contamination'
                     ],
                     file("${moduleDir}/tests/data/test.fasta", checkIfExists: true)
                 ])
@@ -63,7 +63,7 @@ nextflow_workflow {
                 input[0] = Channel.of([
                     [
                         id: 'test_sample_phix',
-                        phix_reference: 'phyx.fasta',
+                        phix_reference: 'phyx',
                         human_reference: null,
                         contaminant_reference: null
                     ],
@@ -105,7 +105,7 @@ nextflow_workflow {
                     [
                         id: 'test_sample_human',
                         phix_reference: null,
-                        human_reference: 'human.fasta',
+                        human_reference: 'human',
                         contaminant_reference: null
                     ],
                     file("${moduleDir}/tests/data/test.fasta", checkIfExists: true)
@@ -147,7 +147,7 @@ nextflow_workflow {
                         id: 'test_sample_host',
                         phix_reference: null,
                         human_reference: null,
-                        contaminant_reference: 'contamination.fasta'
+                        contaminant_reference: 'contamination'
                     ],
                     file("${moduleDir}/tests/data/test.fasta", checkIfExists: true)
                 ])
@@ -187,8 +187,8 @@ nextflow_workflow {
                     [
                         [
                             id: 'sample1',
-                            phix_reference: 'phyx.fasta',
-                            human_reference: 'human.fasta',
+                            phix_reference: 'phyx',
+                            human_reference: 'human',
                             contaminant_reference: null
                         ],
                         file("${moduleDir}/tests/data/test.fasta", checkIfExists: true)
@@ -198,7 +198,7 @@ nextflow_workflow {
                             id: 'sample2',
                             phix_reference: null,
                             human_reference: null,
-                            contaminant_reference: 'contamination.fasta'
+                            contaminant_reference: 'contamination'
                         ],
                         file("${moduleDir}/tests/data/test.fasta", checkIfExists: true)
                     ]
