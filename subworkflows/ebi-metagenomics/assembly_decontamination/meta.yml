@@ -25,9 +25,9 @@ input:
       description: |
         Groovy Map containing sample information and decontamination parameters.
         Expected keys:
-        - phix_reference: Filename of PhiX reference genome (optional, null to skip)
-        - human_reference: Filename of human reference genome (optional, null to skip)
-        - contaminant_reference: Filename of custom contaminant reference (optional, null to skip)
+        - phix_reference: Filename prefix of PhiX reference genome (optional, null to skip)
+        - human_reference: Filename prefix of human reference genome (optional, null to skip)
+        - contaminant_reference: Filename prefix of custom contaminant reference (optional, null to skip)
   - assembly:
       type: file
       description: Assembly FASTA file containing contigs to be decontaminated
