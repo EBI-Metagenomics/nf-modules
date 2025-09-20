@@ -2,6 +2,27 @@
 
 Welcome to the Microbiome Informatics Nextflow modules and subworkflows repository. This repository uses the same tools and conventions as [nf-core modules](https://nf-co.re/).
 
+## Documentation
+
+Auto generated documentation for all modules and subworkflows is available at: https://ebi-metagenomics.github.io/nf-modules/
+
+The documentation includes information about each module and subworkflow.
+
+### Contributing to Documentation
+
+To contribute to the documentation or run it locally:
+
+```bash
+# Build documentation
+task docs-build
+
+# Serve documentation locally
+task docs-serve
+
+# Clean generated documentation
+task docs-clean
+```
+
 ## Getting Started
 
 ## Development
@@ -35,10 +56,17 @@ The tasks for creating and linting modules are configured with this repository u
 - `task pre-commit-all` - Run pre-commit hooks on all files
 - `task pre-commit-install` - Install pre-commit hooks
 
+**Documentation:**
+
+- `task docs-serve` - Generate and serve documentation locally
+- `task docs-build` - Generate and build documentation for production
+- `task docs-clean` - Clean generated documentation files
+
 **Utilities:**
 
 - `task setup-env` - Create, or re-create the Python virtual env.
 - `task clean` - Clean up virtual environment
+- `task clean-all` - Clean up all virtual environments and generated files
 
 ### Examples
 

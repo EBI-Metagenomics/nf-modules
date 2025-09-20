@@ -1,0 +1,71 @@
+---
+hide:
+  - navigation
+---
+
+## Description
+
+{{ meta.description | replace('\n', ' ') }}
+
+## Installation
+
+:material-github: [`{{ path_info.full_path }}`](https://github.com/EBI-Metagenomics/nf-modules/blob/main/subworkflows/{{ path_info.full_path }}/main.nf)
+
+```shell
+nf-core modules -g https://www.github.com/ebi-metagenomics/nf-modules install {{ meta.name | replace('_', '/') }}
+```
+
+{% if meta.keywords %}
+**Keywords:** {{ meta.keywords | join(', ') }}
+{% endif %}
+
+{% if meta.components %}
+
+## Components
+
+This subworkflow uses the following components:
+
+{% for component in meta.components %}
+- [`{{ component }}`](../../modules/ebi-metagenomics/{{ component }}.md)
+{% endfor %}
+{% endif %}
+
+## Input
+
+{% if meta.input %}
+| Name | Type | Description | Pattern |
+|------|------|-------------|---------|
+{% for input_name, input_info in meta.input.items() %}
+| `{{ input_name }}` | {{ input_info.type }} | {{ input_info.description | replace('\n', ' ') | replace('|', '\\|') }} | {% if input_info.pattern %}`{{ input_info.pattern }}`{% else %}-{% endif %} |
+{% endfor %}
+{% endif %}
+
+## Output
+
+{% if meta.output %}
+| Name | Type | Description | Pattern |
+|------|------|-------------|---------|
+{% for output_name, output_info in meta.output.items() %}
+| `{{ output_name }}` | {{ output_info.type }} | {{ output_info.description | replace('\n', ' ') | replace('|', '\\|') }} | {% if output_info.pattern %}`{{ output_info.pattern }}`{% else %}-{% endif %} |
+{% endfor %}
+{% endif %}
+
+### People
+
+{% if meta.authors %}
+### Authors
+<div class="grid cards" markdown>
+{% for username in meta.authors %}
+- [{{ username }}](https://github.com/{{ username }})
+{% endfor %}
+</div>
+{% endif %}
+
+{% if meta.maintainers %}
+Maintainers
+<div class="grid cards" markdown>
+{% for username in meta.maintainers %}
+- [{{ username }}](https://github.com/{{ username }})
+{% endfor %}
+</div>
+{% endif %}
