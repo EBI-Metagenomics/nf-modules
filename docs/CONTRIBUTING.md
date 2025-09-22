@@ -111,7 +111,7 @@ To modify generation logic, edit this script.
 
 ### Automatic Deployment
 
-- Documentation is automatically rebuilt and deployed when:
+  - Documentation is automatically rebuilt and deployed when:
   - Changes are pushed to the main branch
   - meta.yml files are modified
   - Documentation files are changed
