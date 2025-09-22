@@ -2,14 +2,14 @@ name: Build and Deploy Documentation
 
 on:
   push:
-    branches: [feature/docs]
+    branches: [main]
     paths:
       - "docs/**"
       - "modules/**/meta.yml"
       - "subworkflows/**/meta.yml"
       - ".github/workflows/docs.yml"
   pull_request:
-    branches: [feature/docs]
+    branches: [main]
     paths:
       - "docs/**"
       - "modules/**/meta.yml"
@@ -54,17 +54,17 @@ jobs:
         run: uv run mkdocs build
 
       - name: Setup Pages
-        if: github.ref == 'refs/heads/feature/docs'
+        if: github.ref == 'refs/heads/main'
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
-        if: github.ref == 'refs/heads/feature/docs'
+        if: github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
           path: docs/site
 
   deploy:
-    if: github.ref == 'refs/heads/feature/docs'
+    if: github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
