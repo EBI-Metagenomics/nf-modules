@@ -1,0 +1,73 @@
+---
+hide:
+  - navigation
+---
+
+# {{ title }}
+
+{% if item_type == "modules" %}
+This page lists all available nf-core modules in the Microbiome Informatics (EBI-Metagenomics) repository.
+{% else %}
+This page lists all available subworkflows in the Microbiome Informatics (EBI-Metagenomics) repository.
+{% endif %}
+
+{% for category, items in categories.items() %}
+{% if item_type == "modules" %}
+{# Group modules by subcategory #}
+{% set subcategories = {} %}
+{% for item in items %}
+{% set subcat = item.subcategory or 'standalone' %}
+{% if subcat not in subcategories %}
+{% set _ = subcategories.update({subcat: []}) %}
+{% endif %}
+{% set _ = subcategories[subcat].append(item) %}
+{% endfor %}
+
+{# Create alphabetically sorted list of all entry names #}
+{% set entry_names = [] %}
+{% if 'standalone' in subcategories %}
+{% for item in subcategories['standalone'] %}
+{% set _ = entry_names.append(item.name) %}
+{% endfor %}
+{% endif %}
+{% for subcat in subcategories.keys() %}
+{% if subcat != 'standalone' %}
+{% set _ = entry_names.append(subcat) %}
+{% endif %}
+{% endfor %}
+
+{# Sort and display all entries #}
+{% for entry_name in entry_names | sort %}
+{% if entry_name in subcategories.keys() and entry_name != 'standalone' %}
+{# This is a tool family #}
+## {{ entry_name }}
+
+{% for item in subcategories[entry_name] | sort(attribute='name') %}
+- **[{{ item.name.split('_')[-1] if '_' in item.name else item.name }}]({{ item.path }})** - {{ item.description }}
+{% endfor %}
+
+{% else %}
+{# This is a standalone module #}
+{% if 'standalone' in subcategories %}
+{% for item in subcategories['standalone'] %}
+{% if item.name == entry_name %}
+## [{{ item.name }}]({{ item.path }})
+
+{{ item.description }}
+
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}
+{% endfor %}
+
+{% else %}
+{# For subworkflows, keep the original format #}
+{% for item in items | sort(attribute='name') %}
+## [{{ item.name }}]({{ item.path }})
+
+{{ item.description }}
+
+{% endfor %}
+{% endif %}
+{% endfor %}
