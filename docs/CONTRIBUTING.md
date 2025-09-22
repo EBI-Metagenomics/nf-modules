@@ -100,10 +100,10 @@ To modify the website appearance or behavior:
 
 The `generate_docs.py` script handles:
 
-- Parsing meta.yml files
-- Processing input/output structures
-- Rendering Jinja2 templates
-- Creating directory structures
+  - Parsing meta.yml files
+  - Processing input/output structures
+  - Rendering Jinja2 templates
+  - Creating directory structures
 
 To modify generation logic, edit this script.
 
