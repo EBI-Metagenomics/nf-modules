@@ -71,7 +71,7 @@ nf-core modules -g https://www.github.com/ebi-metagenomics/nf-modules install {{
 ### Authors
 <div class="grid cards" markdown>
 {% for username in meta.authors %}
-- [{{ username }}](https://github.com/{{ username }})
+- [{{ username }}](https://github.com/{{ username | replace('@', '') }})
 {% endfor %}
 </div>
 {% endif %}
@@ -80,7 +80,7 @@ nf-core modules -g https://www.github.com/ebi-metagenomics/nf-modules install {{
 Maintainers
 <div class="grid cards" markdown>
 {% for username in meta.maintainers %}
-- [{{ username }}](https://github.com/{{ username }})
+- [{{ username }}](https://github.com/{{ username | replace('@', '') }})
 {% endfor %}
 </div>
 {% endif %}

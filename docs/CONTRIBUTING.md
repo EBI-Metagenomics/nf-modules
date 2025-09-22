@@ -100,10 +100,10 @@ To modify the website appearance or behavior:
 
 The `generate_docs.py` script handles:
 
-  - Parsing meta.yml files
-  - Processing input/output structures
-  - Rendering Jinja2 templates
-  - Creating directory structures
+- Parsing meta.yml files
+- Processing input/output structures
+- Rendering Jinja2 templates
+- Creating directory structures
 
 To modify generation logic, edit this script.
 
@@ -111,11 +111,11 @@ To modify generation logic, edit this script.
 
 ### Automatic Deployment
 
-  - Documentation is automatically rebuilt and deployed when:
-  - Changes are pushed to the main branch
-  - meta.yml files are modified
-  - Documentation files are changed
-  - Workflow file is updated
+- Documentation is automatically rebuilt and deployed when:
+- Changes are pushed to the main branch
+- meta.yml files are modified
+- Documentation files are changed
+- Workflow file is updated
 
 ### Manual Deployment
 
