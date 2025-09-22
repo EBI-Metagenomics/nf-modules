@@ -12,7 +12,7 @@ hide:
 :material-github: [`{{ path_info.full_path }}`](https://github.com/EBI-Metagenomics/nf-modules/blob/main/subworkflows/{{ path_info.full_path }}/main.nf)
 
 ```shell
-nf-core modules -g https://www.github.com/ebi-metagenomics/nf-modules install {{ meta.name | replace('_', '/') }}
+nf-core modules -g https://www.github.com/ebi-metagenomics/nf-modules install {{ meta.name }}
 ```
 
 {% if meta.keywords %}
@@ -26,7 +26,11 @@ nf-core modules -g https://www.github.com/ebi-metagenomics/nf-modules install {{
 This subworkflow uses the following components:
 
 {% for component in meta.components %}
-- [`{{ component }}`](../../modules/ebi-metagenomics/{{ component }}.md)
+{% if component.type == "module" %}
+- [`{{ component.name }}`](../../modules/ebi-metagenomics/{{ component.name }}.md) <small>*(module)*</small>
+{% elif component.type == "subworkflow" %}
+- [`{{ component.name }}`](../../subworkflows/ebi-metagenomics/{{ component.name }}.md) <small>*(subworkflow)*</small>
+{% endif %}
 {% endfor %}
 {% endif %}
 

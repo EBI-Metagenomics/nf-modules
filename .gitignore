@@ -22,4 +22,5 @@ package-lock.json
 
 # Generated documentation
 docs/docs/
+!docs/docs/stylesheets/
 docs/site/

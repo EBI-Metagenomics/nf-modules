@@ -68,6 +68,35 @@ class ModuleParser:
             "subcategory": "/".join(parts[1:-1]) if len(parts) > 2 else "",
         }
 
+    def _detect_component_types(self, components: list[str]) -> list[dict[str, str]]:
+        """Detect whether components are modules or subworkflows.
+
+        :param components: List of component names
+        :type components: list[str]
+        :returns: List of component info with type detection
+        :rtype: list[dict[str, str]]
+        """
+        component_info = []
+
+        for component in components:
+            # Check if component exists as a subworkflow
+            subworkflow_path = (
+                self.modules_repo_path
+                / "subworkflows"
+                / "ebi-metagenomics"
+                / component
+                / "meta.yml"
+            )
+
+            if subworkflow_path.exists():
+                component_type = "subworkflow"
+            else:
+                component_type = "module"
+
+            component_info.append({"name": component, "type": component_type})
+
+        return component_info
+
     def _process_meta_data(self, meta_data: dict[str, Any]) -> dict[str, Any]:
         """Process meta data to handle list structures in input/output.
 
@@ -123,6 +152,12 @@ class ModuleParser:
                     else:
                         processed_output[key] = value
                 processed["output"] = processed_output
+
+        # Process components to add type information
+        if "components" in processed and isinstance(processed["components"], list):
+            processed["components"] = self._detect_component_types(
+                processed["components"]
+            )
 
         return processed
 

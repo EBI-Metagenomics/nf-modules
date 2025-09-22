@@ -1,11 +1,13 @@
-site_name: EBI Metagenomics nf-core Modules
-site_description: Documentation for EBI Metagenomics nf-core modules and subworkflows
+site_name: Microbiome Informatics Nextflow Modules
+site_description: Documentation for the Microbiome Informatics team Nextflow modules and subworkflows
 site_url: https://ebi-metagenomics.github.io/nf-modules/
 repo_url: https://github.com/EBI-Metagenomics/nf-modules
 repo_name: EBI-Metagenomics/nf-modules
 
 theme:
   name: material
+  logo: assets/mgnify_logo.png
+  favicon: assets/mgnify_logo.png
   features:
     - navigation.tabs
     - navigation.sections
@@ -14,27 +16,31 @@ theme:
     - search.highlight
     - search.share
     - content.code.copy
+    - content.footnote.tooltips
+
   palette:
-    - scheme: default
-      primary: teal
-      accent: teal
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
       toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - scheme: slate
-      primary: teal
-      accent: teal
-      toggle:
-        icon: material/brightness-4
+        icon: material/brightness-auto
         name: Switch to light mode
-  theme:
-    features:
-      - content.code.select
+
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to dark mode
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/lightbulb
+        name: Switch to light mode
 
 nav:
   - Home: index.md
-  - Modules: modules/
-  - Subworkflows: subworkflows/
+  - Modules: modules/index.md
+  - Subworkflows: subworkflows/index.md
 
 plugins:
   - search
@@ -51,6 +57,7 @@ markdown_extensions:
   - pymdownx.details
   - attr_list
   - md_in_html
+  - footnotes
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
