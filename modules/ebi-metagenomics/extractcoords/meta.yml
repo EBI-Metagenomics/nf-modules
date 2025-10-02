@@ -40,8 +40,8 @@ input:
         pattern: "*.txt"
         ontologies: []
 output:
-  ssu_fasta:
-    - - meta:
+  - ssu_fasta:
+      - meta:
           type: map
           description: |
             Groovy Map containing sample information
@@ -51,8 +51,8 @@ output:
           description: Fasta file containing the SSU sequences
           pattern: "*.fasta"
           ontologies: []
-  lsu_fasta:
-    - - meta:
+  - lsu_fasta:
+      - meta:
           type: map
           description: |
             Groovy Map containing sample information
@@ -62,8 +62,8 @@ output:
           description: Fasta file containing the LSU sequences
           pattern: "*.fasta"
           ontologies: []
-  rrna_bacteria:
-    - - meta:
+  - rrna_bacteria:
+      - meta:
           type: map
           description: |
             Groovy Map containing sample information
@@ -73,8 +73,8 @@ output:
           description: Fasta file containing bacterial rRNA
           pattern: "*.fasta"
           ontologies: []
-  rrna_archaea:
-    - - meta:
+  - rrna_archaea:
+      - meta:
           type: map
           description: |
             Groovy Map containing sample information
@@ -84,8 +84,8 @@ output:
           description: Fasta file containing archaeal rRNA
           pattern: "*.fasta"
           ontologies: []
-  eukarya:
-    - - meta:
+  - eukarya:
+      - meta:
           type: map
           description: |
             Groovy Map containing sample information
@@ -95,8 +95,8 @@ output:
           description: Fasta file containing eukaryan rRNA
           pattern: "*.fasta"
           ontologies: []
-  fiveS_fasta:
-    - - meta:
+  - fiveS_fasta:
+      - meta:
           type: map
           description: |
             Groovy Map containing sample information
@@ -105,8 +105,8 @@ output:
           type: file
           description: "5S rRNA nucleotide sequences"
           ontologies: []
-  five_eightS_fasta:
-    - - meta:
+  - five_eightS_fasta:
+      - meta:
           type: map
           description: |
             Groovy Map containing sample information
@@ -115,8 +115,8 @@ output:
           type: file
           description: "5 and 8S rRNA nucleotide sequences"
           ontologies: []
-  ncrna_fasta:
-    - - meta:
+  - ncrna_fasta:
+      - meta:
           type: map
           description: |
             Groovy Map containing sample information
@@ -125,8 +125,8 @@ output:
           type: file
           description: "non-coding RNA nucleotide sequences"
           ontologies: []
-  concat_ssu_lsu_coords:
-    - - meta:
+  - concat_ssu_lsu_coords:
+      - meta:
           type: map
           description: |
             Groovy Map containing sample information
@@ -137,13 +137,13 @@ output:
             of both SSU and LSU
           pattern: "*.txt"
           ontologies: []
-  versions:
-    - versions.yml:
-        type: file
-        description: File containing software versions
-        pattern: "versions.yml"
-        ontologies:
-          - edam: http://edamontology.org/format_3750 # YAML
+  - versions:
+      - versions.yml:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+          ontologies:
+            - edam: http://edamontology.org/format_3750 # YAML
 authors:
   - "@chrisata"
 maintainers:
