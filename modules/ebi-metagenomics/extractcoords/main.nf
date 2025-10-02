@@ -11,6 +11,7 @@ process EXTRACTCOORDS {
     input:
     tuple val(meta), path(easel_coords_fasta)
     tuple val(meta2), path(matched_seqs_with_coords)
+    val separate_subunits
 
     output:
     tuple val(meta), path("sequence-categorisation/*SSU.fasta")           , optional: true, emit: ssu_fasta
@@ -29,8 +30,9 @@ process EXTRACTCOORDS {
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def separate_subunits_flag = separate_subunits ? "--separate-subunits-by-models" : ""
     """
-    get_subunits -i $easel_coords_fasta -n ${prefix} --separate-subunits-by-models
+    get_subunits -i $easel_coords_fasta -n ${prefix} ${separate_subunits_flag}
 
     get_subunits_coords -i $matched_seqs_with_coords -s SSU -l LSU
 
