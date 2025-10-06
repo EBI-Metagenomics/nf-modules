@@ -39,6 +39,9 @@ input:
           esl-sfetch
         pattern: "*.txt"
         ontologies: []
+  - - separate_subunits:
+        type: boolean
+        description: Specify true to separate hits into the different RNA subunits
 output:
   - ssu_fasta:
       - meta:
