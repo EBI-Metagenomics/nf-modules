@@ -1,0 +1,31 @@
+/* Import IBM Plex fonts */
+@import "https://fonts.googleapis.com/css?family=IBM+Plex+Sans";
+@import "https://fonts.googleapis.com/css?family=IBM+Plex+Mono";
+
+/* EBI header and navigation color override */
+.md-header {
+    background-color: #18974c !important;
+}
+
+.md-tabs {
+    background-color: #18974c !important;
+}
+
+/* Override font families */
+body,
+input {
+    font-family: "IBM Plex Sans", Helvetica, Arial, sans-serif !important;
+}
+
+code,
+kbd,
+pre {
+    font-family: "IBM Plex Mono", Menlo, Monaco, Consolas, "Courier New", monospace !important;
+}
+
+/* Additional styling for code blocks */
+.highlight code,
+.codehilite code,
+.md-typeset code {
+    font-family: "IBM Plex Mono", Menlo, Monaco, Consolas, "Courier New", monospace !important;
+}

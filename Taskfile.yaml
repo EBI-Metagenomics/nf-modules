@@ -3,6 +3,7 @@ version: "3"
 vars:
   VENV_DIR: .venv
   REPO_URL: https://github.com/EBI-Metagenomics/nf-modules
+  DOCS_DIR: docs
 
 tasks:
   # Setup Python virtual environment using uv
@@ -78,9 +79,51 @@ tasks:
     cmds:
       - uv run pre-commit install
 
+  # Documentation tasks
+  docs-setup:
+    desc: "Setup documentation environment"
+    status:
+      - test -d {{.DOCS_DIR}}/.venv
+    cmds:
+      - cd {{.DOCS_DIR}} && uv venv
+      - cd {{.DOCS_DIR}} && uv sync
+    silent: true
+
+  docs-build:
+    desc: "Generate and build documentation"
+    deps: [docs-setup]
+    cmds:
+      - cd {{.DOCS_DIR}} && uv run python generate_docs.py --modules-repo .. --output-dir .
+      - cd {{.DOCS_DIR}} && uv run mkdocs build
+
+  docs-serve:
+    desc: "Generate documentation and serve locally"
+    deps: [docs-setup]
+    cmds:
+      - cd {{.DOCS_DIR}} && uv run python generate_docs.py --modules-repo .. --output-dir .
+      - cd {{.DOCS_DIR}} && uv run mkdocs serve
+
+  docs-clean:
+    desc: "Clean generated documentation"
+    cmds:
+      - rm -rf {{.DOCS_DIR}}/docs/modules
+      - rm -rf {{.DOCS_DIR}}/docs/subworkflows
+      - rm -rf {{.DOCS_DIR}}/site
+      - rm -rf {{.DOCS_DIR}}/.venv
+
   # Utility tasks
   clean:
     desc: "Clean up virtual environment"
     prompt: "This will destroy your virtual env, okay?"
     cmds:
       - rm -rf {{.VENV_DIR}}
+
+  clean-all:
+    desc: "Clean up all virtual environments and generated files"
+    prompt: "This will destroy all virtual envs and generated docs, okay?"
+    cmds:
+      - rm -rf {{.VENV_DIR}}
+      - rm -rf {{.DOCS_DIR}}/.venv
+      - rm -rf {{.DOCS_DIR}}/docs/modules
+      - rm -rf {{.DOCS_DIR}}/docs/subworkflows
+      - rm -rf {{.DOCS_DIR}}/site

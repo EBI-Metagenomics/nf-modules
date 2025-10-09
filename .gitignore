@@ -19,3 +19,10 @@ package.json
 package-lock.json
 
 .venv/
+
+# Generated documentation
+docs/docs/*
+!docs/docs/stylesheets/
+!docs/docs/assets/
+!docs/docs/index.md
+docs/site/

@@ -1,0 +1,87 @@
+---
+hide:
+  - navigation
+title: {{ meta.name }}
+---
+
+## Description
+
+{{ meta.description | replace('\n', ' ') }}
+
+{% if meta.keywords %}
+**Keywords:** {{ meta.keywords | join(', ') }}
+{% endif %}
+
+## Installation
+
+:material-github: [`{{ path_info.full_path }}`](https://github.com/EBI-Metagenomics/nf-modules/blob/main/modules/{{ path_info.full_path }}/main.nf)
+
+```shell
+nf-core modules -g https://www.github.com/ebi-metagenomics/nf-modules install {{ meta.name | replace('_', '/') }}
+```
+
+{% if meta.tools %}
+## Tools
+
+{% for tool_name, tool_info in meta.tools.items() %}
+### {{ tool_name }}
+
+{{ tool_info.description }}
+
+<div class="grid cards" markdown>
+{% if tool_info.documentation %}
+- :simple-readthedocs: [{{ tool_info.documentation | replace('https://', '') }}]({{ tool_info.documentation }})
+{% endif %}
+{% if tool_info.doi %}
+- :simple-doi: [{{ tool_info.doi }}](https://doi.org/{{ tool_info.doi }})
+{% endif %}
+{% if tool_info.tool_dev_url %}
+- :material-github: [{{ tool_info.tool_dev_url | replace('https://', '') }}]({{ tool_info.tool_dev_url }})
+{% endif %}
+{% if tool_info.licence %}
+- :simple-unlicense: {{ tool_info.licence | join(', ') }}
+{% endif %}
+</div>
+
+{% endfor %}
+{% endif %}
+
+## Input
+
+{% if meta.input %}
+| Name | Type | Description | Pattern |
+|------|------|-------------|---------|
+{% for param_name, param_info in meta.input.items() %}
+| `{{ param_name }}` | {{ param_info.type }} | {{ param_info.description | replace('\n', ' ') | replace('|', '\\|') }} | {% if param_info.pattern %}`{{ param_info.pattern }}`{% else %}-{% endif %} |
+{% endfor %}
+{% endif %}
+
+## Output
+
+{% if meta.output %}
+| Name | Type | Description | Pattern |
+|------|------|-------------|---------|
+{% for output_name, output_info in meta.output.items() %}
+| `{{ output_name }}` | {{ output_info.type if output_info.type is defined else 'file' }} | {{ output_info.description | replace('\n', ' ') | replace('|', '\\|') if output_info.description is defined else '' }} | {% if output_info.pattern %}`{{ output_info.pattern }}`{% else %}-{% endif %} |
+{% endfor %}
+{% endif %}
+
+### People
+
+{% if meta.authors %}
+### Authors
+<div class="grid cards" markdown>
+{% for username in meta.authors %}
+- [{{ username }}](https://github.com/{{ username | replace('@', '') }})
+{% endfor %}
+</div>
+{% endif %}
+
+{% if meta.maintainers %}
+Maintainers
+<div class="grid cards" markdown>
+{% for username in meta.maintainers %}
+- [{{ username }}](https://github.com/{{ username | replace('@', '') }})
+{% endfor %}
+</div>
+{% endif %}
