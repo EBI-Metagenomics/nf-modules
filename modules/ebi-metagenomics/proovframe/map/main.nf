@@ -21,11 +21,12 @@ process PROOVFRAME_MAP {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    proovframe   \\
+    proovframe \\
         map \\
         ${args} \\
+        --threads ${task.cpus} \\
         -a ${faa} \\
-        -o ${prefix}.tsv  \\
+        -o ${prefix}.tsv \\
         ${fasta}
 
     cat <<-END_VERSIONS > versions.yml
