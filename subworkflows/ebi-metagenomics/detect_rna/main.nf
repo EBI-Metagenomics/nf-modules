@@ -8,7 +8,6 @@
 /* NF-CORE */
 include { SEQKIT_SPLIT2                             } from '../../../modules/nf-core/seqkit/split2/main'
 include { CAT_CAT as CONCATENATE_CMSEARCH_DEOVERLAP } from '../../../modules/nf-core/cat/cat/main'
-include { CAT_CAT as CONCATENATE_EASEL_FASTA        } from '../../../modules/nf-core/cat/cat/main'
 
 /* EBI-METAGENOMICS */
 include { INFERNAL_CMSEARCH                         } from '../../../modules/ebi-metagenomics/infernal/cmsearch/main'
@@ -27,15 +26,24 @@ workflow DETECT_RNA {
     claninfo          // file: claninfo for cmsearchtbloutdeoverlap
     mode              // cmsearch/cmscan
     separate_subunits // val: boolean
+    // analysis_type     // val: str (either AMPLICON or ASSEMBLY)
 
     main:
 
     ch_versions = Channel.empty()
     cmsearch_ch = Channel.empty()
 
+    // Chunk the fasta into files with at most params.proteins_chunksize sequences
+    SEQKIT_SPLIT2(
+        ch_fasta
+    )
+    ch_versions = ch_versions.mix(SEQKIT_SPLIT2.out.versions)
+
+    ch_sequences = SEQKIT_SPLIT2.out.reads.transpose()
+
     if ( mode == 'cmsearch' ) {
         INFERNAL_CMSEARCH(
-            ch_fasta,
+            ch_sequences,
             rfam
         )
         ch_versions = ch_versions.mix(INFERNAL_CMSEARCH.out.versions.first())
@@ -43,7 +51,7 @@ workflow DETECT_RNA {
     }
     else if (mode == 'cmscan') {
        INFERNAL_CMSCAN(
-            ch_fasta,
+            ch_sequences,
             rfam
        )
        ch_versions = ch_versions.mix(INFERNAL_CMSCAN.out.versions.first())
@@ -60,8 +68,13 @@ workflow DETECT_RNA {
     )
     ch_versions = ch_versions.mix(CMSEARCHTBLOUTDEOVERLAP.out.versions.first())
 
+    CONCATENATE_CMSEARCH_DEOVERLAP(
+        CMSEARCHTBLOUTDEOVERLAP.out.cmsearch_tblout_deoverlapped.groupTuple()
+    )
+    ch_versions = ch_versions.mix(CONCATENATE_CMSEARCH_DEOVERLAP.out.versions.first())
+
     ch_easel = ch_fasta
-                .join(CMSEARCHTBLOUTDEOVERLAP.out.cmsearch_tblout_deoverlapped)
+                .join(CONCATENATE_CMSEARCH_DEOVERLAP.out.file_out)
     EASEL_ESLSFETCH(
         ch_easel
     )

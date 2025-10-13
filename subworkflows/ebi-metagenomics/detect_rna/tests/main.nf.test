@@ -16,6 +16,18 @@ nextflow_workflow {
     tag "easel"
     tag "easel/eslsfetch"
 
+    setup {
+        nfcoreInitialise("${launchDir}/library/")
+        nfcoreInstall(
+            "${launchDir}/library/",
+            [
+                "seqkit/split2",
+                "cat/cat",
+            ]
+        )
+        nfcoreLink("${launchDir}/library/", "${baseDir}/modules/")
+    }
+
     test("test_detect_rna cmsearch") {
 
         when {
@@ -25,7 +37,7 @@ nextflow_workflow {
             }
             workflow {
                 """
-                input[0] = Channel.of( [ [ id:'test', single_end:false ], // meta map
+                input[0] = Channel.of( [ [ id:'test', single_end:true ], // meta map
                     file('${moduleDir}/tests/test.fasta.gz', checkIfExists: true)
                 ])
                 input[1] = file(params.rfam)
@@ -41,6 +53,9 @@ nextflow_workflow {
                 { assert snapshot(workflow.out).match() }
             )
         }
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
+        }
     }
 
     test("test_detect_rna cmscan") {
@@ -52,7 +67,7 @@ nextflow_workflow {
             }
             workflow {
                 """
-                input[0] = Channel.of( [ [ id:'test', single_end:false ], // meta map
+                input[0] = Channel.of( [ [ id:'test', single_end:true ], // meta map
                     file('${moduleDir}/tests/test.fasta.gz', checkIfExists: true)
                 ])
                 input[1] = file(params.rfam)
@@ -67,6 +82,9 @@ nextflow_workflow {
                 { assert workflow.success},
                 { assert snapshot(workflow.out).match() }
             )
+        }
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
         }
     }
 }
