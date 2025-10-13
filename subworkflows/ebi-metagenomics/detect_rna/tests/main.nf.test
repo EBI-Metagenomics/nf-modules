@@ -55,6 +55,7 @@ nextflow_workflow {
         }
         cleanup {
             nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
+            nfcoreDeleteLibrary("${baseDir}/modules/nf-core")
         }
     }
 
@@ -85,6 +86,8 @@ nextflow_workflow {
         }
         cleanup {
             nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
+            nfcoreDeleteLibrary("${baseDir}/modules/nf-core")
+
         }
     }
 }
