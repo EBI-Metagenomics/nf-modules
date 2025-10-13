@@ -31,6 +31,7 @@ nextflow_workflow {
                 input[1] = file(params.rfam)
                 input[2] = file(params.rfam_clan)
                 input[3] = "cmsearch"
+                input[4] = false
                 """
             }
         }
@@ -57,6 +58,7 @@ nextflow_workflow {
                 input[1] = file(params.rfam)
                 input[2] = file(params.rfam_clan)
                 input[3] = "cmscan"
+                input[4] = false
                 """
             }
         }
