@@ -25,21 +25,24 @@ workflow DETECT_RNA {
     rfam              // folder: rfam for cmsearch/cmscan
     claninfo          // file: claninfo for cmsearchtbloutdeoverlap
     mode              // cmsearch/cmscan
-    separate_subunits // val: boolean
-    // analysis_type     // val: str (either AMPLICON or ASSEMBLY)
+    separate_subunits // val: boolean (true: separate subnits (for Amplicon), false: don't separate (for ASA))
+    chunk_flag        // val: boolean (true: chunk (for ASA), false: no chunk (for Amplicon))
 
     main:
 
     ch_versions = Channel.empty()
     cmsearch_ch = Channel.empty()
 
-    // Chunk the fasta into files with at most params.proteins_chunksize sequences
-    SEQKIT_SPLIT2(
-        ch_fasta
-    )
-    ch_versions = ch_versions.mix(SEQKIT_SPLIT2.out.versions)
+    ch_sequences = ch_fasta
+    if (chunk_flag){
+        // Chunk the fasta into files with at most params.proteins_chunksize sequences
+        SEQKIT_SPLIT2(
+            ch_fasta
+        )
+        ch_versions = ch_versions.mix(SEQKIT_SPLIT2.out.versions)
 
-    ch_sequences = SEQKIT_SPLIT2.out.reads.transpose()
+        ch_sequences = SEQKIT_SPLIT2.out.reads.transpose()
+    }
 
     if ( mode == 'cmsearch' ) {
         INFERNAL_CMSEARCH(
@@ -68,13 +71,18 @@ workflow DETECT_RNA {
     )
     ch_versions = ch_versions.mix(CMSEARCHTBLOUTDEOVERLAP.out.versions.first())
 
-    CONCATENATE_CMSEARCH_DEOVERLAP(
-        CMSEARCHTBLOUTDEOVERLAP.out.cmsearch_tblout_deoverlapped.groupTuple()
-    )
-    ch_versions = ch_versions.mix(CONCATENATE_CMSEARCH_DEOVERLAP.out.versions.first())
+    ch_cmsearchdeoverlap = CMSEARCHTBLOUTDEOVERLAP.out.cmsearch_tblout_deoverlapped
+
+    if (chunk_flag){
+        CONCATENATE_CMSEARCH_DEOVERLAP(
+            CMSEARCHTBLOUTDEOVERLAP.out.cmsearch_tblout_deoverlapped.groupTuple()
+        )
+        ch_versions = ch_versions.mix(CONCATENATE_CMSEARCH_DEOVERLAP.out.versions.first())
+        ch_cmsearchdeoverlap = CONCATENATE_CMSEARCH_DEOVERLAP.out.file_out
+    }
 
     ch_easel = ch_fasta
-                .join(CONCATENATE_CMSEARCH_DEOVERLAP.out.file_out)
+                .join(ch_cmsearchdeoverlap)
     EASEL_ESLSFETCH(
         ch_easel
     )

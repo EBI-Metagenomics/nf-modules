@@ -44,6 +44,7 @@ nextflow_workflow {
                 input[2] = file(params.rfam_clan)
                 input[3] = "cmsearch"
                 input[4] = false
+                input[5] = true
                 """
             }
         }
@@ -75,6 +76,7 @@ nextflow_workflow {
                 input[2] = file(params.rfam_clan)
                 input[3] = "cmscan"
                 input[4] = false
+                input[5] = true
                 """
             }
         }
@@ -87,7 +89,38 @@ nextflow_workflow {
         cleanup {
             nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
             nfcoreDeleteLibrary("${baseDir}/modules/nf-core")
+        }
+    }
 
+    test("test_no_chunking_for_amplicon") {
+
+        when {
+            params {
+                rfam = "${moduleDir}/tests/rfam"
+                rfam_clan = "${moduleDir}/tests/ribo.claninfo"
+            }
+            workflow {
+                """
+                input[0] = Channel.of( [ [ id:'test', single_end:false ], // meta map
+                    file('${moduleDir}/tests/test.fasta.gz', checkIfExists: true)
+                ])
+                input[1] = file(params.rfam)
+                input[2] = file(params.rfam_clan)
+                input[3] = "cmsearch"
+                input[4] = true
+                input[5] = false
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
+            nfcoreDeleteLibrary("${baseDir}/modules/nf-core")
         }
     }
 }
