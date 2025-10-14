@@ -4,17 +4,21 @@ Generate MkDocs documentation from nf-core modules and subworkflows meta.yml fil
 """
 
 from pathlib import Path
-from typing import Any
+from typing import Any, Optional
 
 import click
 import yaml
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Environment, FileSystemLoader, Template
 
 
 class ModuleParser:
     """Parse nf-core module meta.yml files and generate documentation."""
 
-    def __init__(self, modules_repo_path: str, output_dir: str):
+    modules_repo_path: Path
+    output_dir: Path
+    jinja_env: Environment
+
+    def __init__(self, modules_repo_path: str, output_dir: str) -> None:
         """Initialize the parser.
 
         :param modules_repo_path: Path to the nf-core modules repository
@@ -68,32 +72,60 @@ class ModuleParser:
             "subcategory": "/".join(parts[1:-1]) if len(parts) > 2 else "",
         }
 
-    def _detect_component_types(self, components: list[str]) -> list[dict[str, str]]:
+    def _detect_component_types(
+        self, components: list[str | dict[str, Any]]
+    ) -> list[dict[str, str]]:
         """Detect whether components are modules or subworkflows.
 
-        :param components: List of component names
-        :type components: list[str]
+        :param components: List of component names or dicts with component info
+        :type components: list[str | dict[str, Any]]
         :returns: List of component info with type detection
         :rtype: list[dict[str, str]]
         """
-        component_info = []
+        component_info: list[dict[str, str]] = []
 
         for component in components:
+            # Handle both string format and dict format (for third-party modules)
+            component_name: Optional[str]
+            git_remote: Optional[str]
+
+            if isinstance(component, dict):
+                # Component is a dict like {"module_name": null, "git_remote": "..."}
+                # Extract the component name (first key that's not git_remote)
+                git_remote = component.get("git_remote")
+                component_name = None
+                for key in component.keys():
+                    if key != "git_remote":
+                        component_name = key
+                        break
+
+                if not component_name:
+                    continue
+            else:
+                # Component is a simple string
+                component_name = component
+                git_remote = None
+
             # Check if component exists as a subworkflow
-            subworkflow_path = (
+            subworkflow_path: Path = (
                 self.modules_repo_path
                 / "subworkflows"
                 / "ebi-metagenomics"
-                / component
+                / component_name
                 / "meta.yml"
             )
 
+            component_type: str
             if subworkflow_path.exists():
                 component_type = "subworkflow"
             else:
                 component_type = "module"
 
-            component_info.append({"name": component, "type": component_type})
+            comp_info: dict[str, str] = {"name": component_name, "type": component_type}
+            if git_remote:
+                comp_info["git_remote"] = git_remote
+
+            component_info.append(comp_info)
 
         return component_info
 
@@ -105,11 +137,11 @@ class ModuleParser:
         :returns: Processed meta data with flattened input/output structures
         :rtype: dict[str, Any]
         """
-        processed = meta_data.copy()
+        processed: dict[str, Any] = meta_data.copy()
 
         # Process tools section if it's a list
         if "tools" in processed and isinstance(processed["tools"], list):
-            processed_tools = {}
+            processed_tools: dict[str, Any] = {}
             for item in processed["tools"]:
                 if isinstance(item, dict):
                     processed_tools.update(item)
@@ -117,7 +149,7 @@ class ModuleParser:
 
         # Process input section if it's a list
         if "input" in processed and isinstance(processed["input"], list):
-            processed_input = {}
+            processed_input: dict[str, Any] = {}
             for item in processed["input"]:
                 if isinstance(item, list):
                     # Handle nested list structure (like diamond/blastp)
@@ -133,7 +165,7 @@ class ModuleParser:
         if "output" in processed:
             if isinstance(processed["output"], list):
                 # Handle list format (like antismash)
-                processed_output = {}
+                processed_output: dict[str, Any] = {}
                 for item in processed["output"]:
                     if isinstance(item, dict):
                         processed_output.update(item)
@@ -167,34 +199,36 @@ class ModuleParser:
         :returns: None
         :rtype: None
         """
-        meta_files = self.find_meta_files("modules")
-        template = self.jinja_env.get_template("module.md.j2")
+        meta_files: list[Path] = self.find_meta_files("modules")
+        template: Template = self.jinja_env.get_template("module.md.j2")
 
-        modules_output_dir = self.output_dir / "docs" / "modules"
+        modules_output_dir: Path = self.output_dir / "docs" / "modules"
         modules_output_dir.mkdir(parents=True, exist_ok=True)
 
-        module_index = []
+        module_index: list[dict[str, str]] = []
 
         for meta_file in meta_files:
             try:
-                meta_data = self.parse_meta_yml(meta_file)
-                path_info = self.get_module_path_info(meta_file, "modules")
+                meta_data: dict[str, Any] = self.parse_meta_yml(meta_file)
+                path_info: dict[str, str] = self.get_module_path_info(
+                    meta_file, "modules"
+                )
 
                 # Process input/output for better template handling
                 meta_data = self._process_meta_data(meta_data)
 
                 # Create subdirectories as needed
-                module_dir = modules_output_dir / path_info["category"]
+                module_dir: Path = modules_output_dir / path_info["category"]
                 if path_info["subcategory"]:
                     module_dir = module_dir / path_info["subcategory"]
                 module_dir.mkdir(parents=True, exist_ok=True)
 
                 # Generate documentation
-                content = template.render(
+                content: str = template.render(
                     meta=meta_data, path_info=path_info, module_type="module"
                 )
 
-                output_file = module_dir / f"{path_info['name']}.md"
+                output_file: Path = module_dir / f"{path_info['name']}.md"
                 with open(output_file, "w") as f:
                     f.write(content)
 
@@ -223,34 +257,36 @@ class ModuleParser:
         :returns: None
         :rtype: None
         """
-        meta_files = self.find_meta_files("subworkflows")
-        template = self.jinja_env.get_template("subworkflow.md.j2")
+        meta_files: list[Path] = self.find_meta_files("subworkflows")
+        template: Template = self.jinja_env.get_template("subworkflow.md.j2")
 
-        subworkflows_output_dir = self.output_dir / "docs" / "subworkflows"
+        subworkflows_output_dir: Path = self.output_dir / "docs" / "subworkflows"
         subworkflows_output_dir.mkdir(parents=True, exist_ok=True)
 
-        subworkflow_index = []
+        subworkflow_index: list[dict[str, str]] = []
 
         for meta_file in meta_files:
             try:
-                meta_data = self.parse_meta_yml(meta_file)
-                path_info = self.get_module_path_info(meta_file, "subworkflows")
+                meta_data: dict[str, Any] = self.parse_meta_yml(meta_file)
+                path_info: dict[str, str] = self.get_module_path_info(
+                    meta_file, "subworkflows"
+                )
 
                 # Process input/output for better template handling
                 meta_data = self._process_meta_data(meta_data)
 
                 # Create subdirectories as needed
-                subworkflow_dir = subworkflows_output_dir / path_info["category"]
+                subworkflow_dir: Path = subworkflows_output_dir / path_info["category"]
                 if path_info["subcategory"]:
                     subworkflow_dir = subworkflow_dir / path_info["subcategory"]
                 subworkflow_dir.mkdir(parents=True, exist_ok=True)
 
                 # Generate documentation
-                content = template.render(
+                content: str = template.render(
                     meta=meta_data, path_info=path_info, module_type="subworkflow"
                 )
 
-                output_file = subworkflow_dir / f"{path_info['name']}.md"
+                output_file: Path = subworkflow_dir / f"{path_info['name']}.md"
                 with open(output_file, "w") as f:
                     f.write(content)
 
@@ -274,12 +310,12 @@ class ModuleParser:
         self._generate_index(subworkflow_index, subworkflows_output_dir, "subworkflows")
 
     def _generate_index(
-        self, items: list[dict], output_dir: Path, item_type: str
+        self, items: list[dict[str, str]], output_dir: Path, item_type: str
     ) -> None:
         """Generate index page for modules or subworkflows.
 
         :param items: List of items to include in index
-        :type items: list[dict]
+        :type items: list[dict[str, str]]
         :param output_dir: Output directory
         :type output_dir: Path
         :param item_type: 'modules' or 'subworkflows'
@@ -287,21 +323,21 @@ class ModuleParser:
         :returns: None
         :rtype: None
         """
-        template = self.jinja_env.get_template("index.md.j2")
+        template: Template = self.jinja_env.get_template("index.md.j2")
 
         # Group by category
-        categories = {}
+        categories: dict[str, list[dict[str, str]]] = {}
         for item in items:
-            category = item["category"]
+            category: str = item["category"]
             if category not in categories:
                 categories[category] = []
             categories[category].append(item)
 
-        content = template.render(
+        content: str = template.render(
             categories=categories, item_type=item_type, title=item_type.capitalize()
         )
 
-        index_file = output_dir / "index.md"
+        index_file: Path = output_dir / "index.md"
         with open(index_file, "w") as f:
             f.write(content)
 
@@ -315,7 +351,7 @@ class ModuleParser:
     default=".",
     help="Output directory for generated documentation (default: current directory)",
 )
-def main(modules_repo: str, output_dir: str):
+def main(modules_repo: str, output_dir: str) -> None:
     """Generate MkDocs documentation from nf-core modules and subworkflows.
 
     :param modules_repo: Path to the nf-core modules repository
@@ -325,7 +361,7 @@ def main(modules_repo: str, output_dir: str):
     :returns: None
     :rtype: None
     """
-    parser = ModuleParser(modules_repo, output_dir)
+    parser: ModuleParser = ModuleParser(modules_repo, output_dir)
 
     print("Generating module documentation...")
     parser.generate_module_docs()
