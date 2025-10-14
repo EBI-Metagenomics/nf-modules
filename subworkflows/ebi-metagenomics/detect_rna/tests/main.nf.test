@@ -16,7 +16,83 @@ nextflow_workflow {
     tag "easel"
     tag "easel/eslsfetch"
 
+    setup {
+        nfcoreInitialise("${launchDir}/library/")
+        nfcoreInstall(
+            "${launchDir}/library/",
+            [
+                "seqkit/split2",
+                "cat/cat",
+            ]
+        )
+        nfcoreLink("${launchDir}/library/", "${baseDir}/modules/")
+    }
+
     test("test_detect_rna cmsearch") {
+
+        when {
+            params {
+                rfam = "${moduleDir}/tests/rfam"
+                rfam_clan = "${moduleDir}/tests/ribo.claninfo"
+            }
+            workflow {
+                """
+                input[0] = Channel.of( [ [ id:'test', single_end:true ], // meta map
+                    file('${moduleDir}/tests/test.fasta.gz', checkIfExists: true)
+                ])
+                input[1] = file(params.rfam)
+                input[2] = file(params.rfam_clan)
+                input[3] = "cmsearch"
+                input[4] = false
+                input[5] = true
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
+            nfcoreDeleteLibrary("${baseDir}/modules/nf-core")
+        }
+    }
+
+    test("test_detect_rna cmscan") {
+
+        when {
+            params {
+                rfam = "${moduleDir}/tests/rfam"
+                rfam_clan = "${moduleDir}/tests/ribo.claninfo"
+            }
+            workflow {
+                """
+                input[0] = Channel.of( [ [ id:'test', single_end:true ], // meta map
+                    file('${moduleDir}/tests/test.fasta.gz', checkIfExists: true)
+                ])
+                input[1] = file(params.rfam)
+                input[2] = file(params.rfam_clan)
+                input[3] = "cmscan"
+                input[4] = false
+                input[5] = true
+                """
+            }
+        }
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
+            nfcoreDeleteLibrary("${baseDir}/modules/nf-core")
+        }
+    }
+
+    test("test_no_chunking_for_amplicon") {
 
         when {
             params {
@@ -31,6 +107,8 @@ nextflow_workflow {
                 input[1] = file(params.rfam)
                 input[2] = file(params.rfam_clan)
                 input[3] = "cmsearch"
+                input[4] = true
+                input[5] = false
                 """
             }
         }
@@ -40,31 +118,9 @@ nextflow_workflow {
                 { assert snapshot(workflow.out).match() }
             )
         }
-    }
-
-    test("test_detect_rna cmscan") {
-
-        when {
-            params {
-                rfam = "${moduleDir}/tests/rfam"
-                rfam_clan = "${moduleDir}/tests/ribo.claninfo"
-            }
-            workflow {
-                """
-                input[0] = Channel.of( [ [ id:'test', single_end:false ], // meta map
-                    file('${moduleDir}/tests/test.fasta.gz', checkIfExists: true)
-                ])
-                input[1] = file(params.rfam)
-                input[2] = file(params.rfam_clan)
-                input[3] = "cmscan"
-                """
-            }
-        }
-        then {
-            assertAll(
-                { assert workflow.success},
-                { assert snapshot(workflow.out).match() }
-            )
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
+            nfcoreDeleteLibrary("${baseDir}/modules/nf-core")
         }
     }
 }
