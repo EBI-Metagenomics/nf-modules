@@ -95,7 +95,7 @@ jobs:
             ${{ runner.os }}-pip-pdiff
 
       - name: Install Python dependencies
-        run: python -m pip install --upgrade pip pdiff cryptography
+        run: python -m pip install --upgrade pip pdiff cryptography nf-core
 
       # Test the module
       - name: Run nf-test
