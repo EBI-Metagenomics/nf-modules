@@ -68,23 +68,41 @@ class ModuleParser:
             "subcategory": "/".join(parts[1:-1]) if len(parts) > 2 else "",
         }
 
-    def _detect_component_types(self, components: list[str]) -> list[dict[str, str]]:
+    def _detect_component_types(self, components: list) -> list[dict[str, str]]:
         """Detect whether components are modules or subworkflows.
 
-        :param components: List of component names
-        :type components: list[str]
+        :param components: List of component names or dicts with component info
+        :type components: list
         :returns: List of component info with type detection
         :rtype: list[dict[str, str]]
         """
         component_info = []
 
         for component in components:
+            # Handle both string format and dict format (for third-party modules)
+            if isinstance(component, dict):
+                # Component is a dict like {"module_name": null, "git_remote": "..."}
+                # Extract the component name (first key that's not git_remote)
+                git_remote = component.get("git_remote")
+                component_name = None
+                for key in component.keys():
+                    if key != "git_remote":
+                        component_name = key
+                        break
+
+                if not component_name:
+                    continue
+            else:
+                # Component is a simple string
+                component_name = component
+                git_remote = None
+
             # Check if component exists as a subworkflow
             subworkflow_path = (
                 self.modules_repo_path
                 / "subworkflows"
                 / "ebi-metagenomics"
-                / component
+                / component_name
                 / "meta.yml"
             )
 
@@ -93,7 +111,11 @@ class ModuleParser:
             else:
                 component_type = "module"
 
-            component_info.append({"name": component, "type": component_type})
+            comp_info = {"name": component_name, "type": component_type}
+            if git_remote:
+                comp_info["git_remote"] = git_remote
+
+            component_info.append(comp_info)
 
         return component_info
 

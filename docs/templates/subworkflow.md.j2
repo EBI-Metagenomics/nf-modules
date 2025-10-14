@@ -27,7 +27,9 @@ nf-core modules -g https://www.github.com/ebi-metagenomics/nf-modules install {{
 This subworkflow uses the following components:
 
 {% for component in meta.components %}
-{% if component.type == "module" %}
+{% if component.git_remote %}
+- `{{ component.name }}` <small>*({{ component.type }} from [{{ component.git_remote }}]({{ component.git_remote }}))*</small>
+{% elif component.type == "module" %}
 - [`{{ component.name }}`](../../modules/ebi-metagenomics/{{ component.name }}.md) <small>*(module)*</small>
 {% elif component.type == "subworkflow" %}
 - [`{{ component.name }}`](../../subworkflows/ebi-metagenomics/{{ component.name }}.md) <small>*(subworkflow)*</small>
