@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "bgc_integrator"
+## TODO nf-core: Add a description of the subworkflow and list keywords
+description: Integrates antismash, sanntis and gecco results
+keywords:
+  - bgc
+  - gff
+  - annotation
+## TODO nf-core: Add a list of the modules and/or subworkflows used in the subworkflow
+components:
+  - pyrodigal
+  - antismash
+  - interproscan
+  - sanntis
+  - bgc_mapper
+  - gecco/run
+    git_remote: https://github.com/nf-core/modules.git
+## TODO nf-core: List all of the channels used as input with a description and their structure
+input:
+  - ch_bam:
+      type: file
+      description: |
+        The input channel containing the BAM/CRAM/SAM files
+        Structure: [ val(meta), path(bam) ]
+      pattern: "*.{bam/cram/sam}"
+## TODO nf-core: List all of the channels used as output with a descriptions and their structure
+output:
+  - bam:
+      type: file
+      description: |
+        Channel containing BAM files
+        Structure: [ val(meta), path(bam) ]
+      pattern: "*.bam"
+  - bai:
+      type: file
+      description: |
+        Channel containing indexed BAM (BAI) files
+        Structure: [ val(meta), path(bai) ]
+      pattern: "*.bai"
+  - csi:
+      type: file
+      description: |
+        Channel containing CSI files
+        Structure: [ val(meta), path(csi) ]
+      pattern: "*.csi"
+  - versions:
+      type: file
+      description: |
+        File containing software versions
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+authors:
+  - "@Ales-ibt"
+maintainers:
+  - "@Ales-ibt"
