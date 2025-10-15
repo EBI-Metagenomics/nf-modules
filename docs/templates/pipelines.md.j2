@@ -1,0 +1,38 @@
+---
+hide:
+  - navigation
+---
+
+# Pipelines
+
+This page lists all Nextflow pipelines developed by the Microbiome Informatics team that use modules and subworkflows from this repository.
+
+{% for pipeline in pipelines %}
+## {{ pipeline.name }}
+
+[![GitHub stars](https://img.shields.io/github/stars/{{ pipeline.repo }}?style=social)](https://github.com/{{ pipeline.repo }}/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/{{ pipeline.repo }}?style=social)](https://github.com/{{ pipeline.repo }}/forks)
+
+{{ pipeline.description }}
+
+**Repository:** [{{ pipeline.repo }}](https://github.com/{{ pipeline.repo }})
+
+{% if pipeline.modules %}
+### Modules Used
+
+{% for module in pipeline.modules %}
+- [{{ module }}](modules/ebi-metagenomics/{{ module }}.md)
+{% endfor %}
+{% endif %}
+
+{% if pipeline.subworkflows %}
+### Subworkflows Used
+
+{% for subworkflow in pipeline.subworkflows %}
+- [{{ subworkflow }}](subworkflows/ebi-metagenomics/{{ subworkflow }}.md)
+{% endfor %}
+{% endif %}
+
+---
+
+{% endfor %}

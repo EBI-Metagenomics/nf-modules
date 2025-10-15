@@ -89,6 +89,11 @@ tasks:
       - cd {{.DOCS_DIR}} && uv sync
     silent: true
 
+  docs-pull-pipelines:
+    desc: "Pull pipeline information from EBI-Metagenomics organization"
+    cmds:
+      - bash {{.DOCS_DIR}}/pull-pipelines.sh
+
   docs-build:
     desc: "Generate and build documentation"
     deps: [docs-setup]

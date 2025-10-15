@@ -41,10 +41,14 @@ nav:
   - Home: index.md
   - Modules: modules/index.md
   - Subworkflows: subworkflows/index.md
+  - Pipelines: pipelines.md
+  - Tags: tags.md
 
 plugins:
   - search
   - awesome-pages
+  - tags:
+      tags_file: tags.md
 
 markdown_extensions:
   - pymdownx.highlight

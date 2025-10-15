@@ -26,6 +26,7 @@ Each module and subworkflow includes detailed information about:
 
 - [Browse modules](modules/index.md)
 - [Browse subworkflows](subworkflows/index.md)
+- [Browse pipelines](pipelines.md)
 
 ## Repository
 

@@ -1,0 +1,116 @@
+pipelines:
+  - name: mettannotator
+    repo: EBI-Metagenomics/mettannotator
+    branch: main
+    description: "No description"
+    has_modules_json: true
+  - name: mobilome-annotation-pipeline
+    repo: EBI-Metagenomics/mobilome-annotation-pipeline
+    branch: dev
+    description: "No description"
+    has_modules_json: true
+  - name: amplicon-pipeline
+    repo: EBI-Metagenomics/amplicon-pipeline
+    branch: main
+    description: "No description"
+    has_modules_json: true
+  - name: miassembler
+    repo: EBI-Metagenomics/miassembler
+    branch: main
+    description: "No description"
+    has_modules_json: true
+  - name: genomes-generation
+    repo: EBI-Metagenomics/genomes-generation
+    branch: main
+    description: "No description"
+    has_modules_json: true
+  - name: biosiftr
+    repo: EBI-Metagenomics/biosiftr
+    branch: dev
+    description: "BioSIFTR - Biome-specific Shallow-shotgun Inference of Functional Traits through Read-mapping"
+    has_modules_json: true
+  - name: datascout
+    repo: EBI-Metagenomics/datascout
+    branch: master
+    description: "This repo queries and gather data from different resources which can then be used to run bulk automatised annotation of microbial genomes.The different types of data are: OrthoDB and UniProt orthology data; Rfam (non coding Rna data); Transcriptomic data from ENA"
+    has_modules_json: true
+  - name: edna
+    repo: EBI-Metagenomics/edna
+    branch: main
+    description: "No description"
+    has_modules_json: true
+  - name: raw-reads-analysis-pipeline
+    repo: EBI-Metagenomics/raw-reads-analysis-pipeline
+    branch: master
+    description: "Raw Reads Analysis Pipeline"
+    has_modules_json: true
+  - name: assembly-analysis-pipeline
+    repo: EBI-Metagenomics/assembly-analysis-pipeline
+    branch: dev
+    description: "MGnify Assembly Analysis Pipeline"
+    has_modules_json: true
+  - name: datagrabber
+    repo: EBI-Metagenomics/datagrabber
+    branch: main
+    description: "No description"
+    has_modules_json: true
+  - name: emg-viral-pipeline
+    repo: EBI-Metagenomics/emg-viral-pipeline
+    branch: master
+    description: "VIRify: detection of phages and eukaryotic viruses from metagenomic and metatranscriptomic assemblies"
+    has_modules_json: false
+  - name: genomes-catalogue-pipeline
+    repo: EBI-Metagenomics/genomes-catalogue-pipeline
+    branch: master
+    description: "MGnify genome analysis pipeline"
+    has_modules_json: false
+  - name: motus_pipeline
+    repo: EBI-Metagenomics/motus_pipeline
+    branch: main
+    description: "Raw reads mOTUs and taxonomic classification pipeline"
+    has_modules_json: false
+  - name: mgnifams
+    repo: EBI-Metagenomics/mgnifams
+    branch: main
+    description: "No description"
+    has_modules_json: false
+  - name: reference-databases-preprocessing-pipeline
+    repo: EBI-Metagenomics/reference-databases-preprocessing-pipeline
+    branch: main
+    description: "No description"
+    has_modules_json: false
+  - name: mgbinrefinder
+    repo: EBI-Metagenomics/mgbinrefinder
+    branch: main
+    description: "Bin refinment tool "
+    has_modules_json: false
+  - name: microeuks-gene-benchmarker
+    repo: EBI-Metagenomics/microeuks-gene-benchmarker
+    branch: main
+    description: "Scripts to benchmark the outputs from gene annotation tools for microbial eukaryotes"
+    has_modules_json: false
+  - name: causal_multi-omics_recommender
+    repo: EBI-Metagenomics/causal_multi-omics_recommender
+    branch: feature/migration-to-nextflow
+    description: "No description"
+    has_modules_json: false
+  - name: miniqc-pipeline
+    repo: EBI-Metagenomics/miniqc-pipeline
+    branch: main
+    description: "No description"
+    has_modules_json: false
+  - name: deciphon-benchmark
+    repo: EBI-Metagenomics/deciphon-benchmark
+    branch: main
+    description: "Baseline benchmark."
+    has_modules_json: false
+  - name: iseq-prof-chlamydia
+    repo: EBI-Metagenomics/iseq-prof-chlamydia
+    branch: main
+    description: "Chlamydia benchmark."
+    has_modules_json: false
+  - name: iseq-prof-workflow
+    repo: EBI-Metagenomics/iseq-prof-workflow
+    branch: main
+    description: "No description"
+    has_modules_json: false

@@ -2,14 +2,28 @@
 hide:
   - navigation
 title: {{ meta.name }}
+{% if meta.keywords %}
+tags:
+{% for keyword in meta.keywords %}
+  - {{ keyword }}
+{% endfor %}
+{% endif %}
 ---
 
 ## Description
 
 {{ meta.description | replace('\n', ' ') }}
 
-{% if meta.keywords %}
-**Keywords:** {{ meta.keywords | join(', ') }}
+{% if pipelines %}
+
+## Pipelines
+
+This module is used by the following pipelines:
+
+{% for pipeline in pipelines %}
+- [{{ pipeline.name }}](https://github.com/{{ pipeline.repo }})
+{% endfor %}
+
 {% endif %}
 
 ## Installation
@@ -70,18 +84,22 @@ nf-core modules -g https://www.github.com/ebi-metagenomics/nf-modules install {{
 
 {% if meta.authors %}
 ### Authors
-<div class="grid cards" markdown>
+
 {% for username in meta.authors %}
-- [{{ username }}](https://github.com/{{ username | replace('@', '') }})
+<a href="https://github.com/{{ username | replace('@', '') }}">
+    <img src="https://github.com/{{ username | replace('@', '') }}.png?size=60" width="30" style="border-radius: 50%; vertical-align: middle;">
+</a>
+<a href="https://github.com/{{ username | replace('@', '') }}" style="vertical-align: middle;">{{ username }}</a>
 {% endfor %}
-</div>
 {% endif %}
 
 {% if meta.maintainers %}
-Maintainers
-<div class="grid cards" markdown>
+### Maintainers
+
 {% for username in meta.maintainers %}
-- [{{ username }}](https://github.com/{{ username | replace('@', '') }})
+<a href="https://github.com/{{ username | replace('@', '') }}">
+    <img src="https://github.com/{{ username | replace('@', '') }}.png?size=60" width="30" style="border-radius: 50%; vertical-align: middle;">
+</a>
+<a href="https://github.com/{{ username | replace('@', '') }}" style="vertical-align: middle;">{{ username }}</a>
 {% endfor %}
-</div>
 {% endif %}
