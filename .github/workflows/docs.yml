@@ -41,7 +41,7 @@ jobs:
       - name: "Set up Python"
         uses: actions/setup-python@v6
         with:
-          python-version-file: "pyproject.toml"
+          python-version-file: "docs/pyproject.toml"
 
       - name: Install dependencies
         working-directory: docs
