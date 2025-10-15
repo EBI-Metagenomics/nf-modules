@@ -3,13 +3,7 @@
         "content": [
             {
                 "0": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.tblout.deoverlapped:md5,eece0ccb016a5631dc33de1d0bb101d8"
-                    ]
+                    "test.tblout.deoverlapped:md5,eece0ccb016a5631dc33de1d0bb101d8"
                 ],
                 "1": [
                     [
@@ -69,13 +63,7 @@
                     
                 ],
                 "cmsearch_deoverlap_coords": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.tblout.deoverlapped:md5,eece0ccb016a5631dc33de1d0bb101d8"
-                    ]
+                    "test.tblout.deoverlapped:md5,eece0ccb016a5631dc33de1d0bb101d8"
                 ],
                 "concat_ssu_lsu_coords": [
                     [
@@ -140,19 +128,13 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.8"
         },
-        "timestamp": "2025-10-14T12:49:28.727438"
+        "timestamp": "2025-10-15T13:13:44.633262"
     },
     "test_detect_rna cmsearch": {
         "content": [
             {
                 "0": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.tblout.deoverlapped:md5,2ff422ba8581127bc95262d9751dbcba"
-                    ]
+                    "test.tblout.deoverlapped:md5,2ff422ba8581127bc95262d9751dbcba"
                 ],
                 "1": [
                     [
@@ -211,13 +193,7 @@
                     
                 ],
                 "cmsearch_deoverlap_coords": [
-                    [
-                        {
-                            "id": "test",
-                            "single_end": true
-                        },
-                        "test.tblout.deoverlapped:md5,2ff422ba8581127bc95262d9751dbcba"
-                    ]
+                    "test.tblout.deoverlapped:md5,2ff422ba8581127bc95262d9751dbcba"
                 ],
                 "concat_ssu_lsu_coords": [
                     [
@@ -281,7 +257,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.04.8"
         },
-        "timestamp": "2025-10-14T12:48:51.209224"
+        "timestamp": "2025-10-15T13:13:07.857435"
     },
     "test_no_chunking_for_amplicon": {
         "content": [
