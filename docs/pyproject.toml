@@ -12,3 +12,8 @@ dependencies = [
     "mkdocs-material>=9.6.16",
     "pyyaml>=6.0.2",
 ]
+
+[dependency-groups]
+dev = [
+    "black>=25.9.0",
+]
