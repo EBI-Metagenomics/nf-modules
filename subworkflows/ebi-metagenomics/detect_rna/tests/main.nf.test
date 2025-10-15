@@ -15,6 +15,11 @@ nextflow_workflow {
     tag "convertcmscantocmsearch"
     tag "easel"
     tag "easel/eslsfetch"
+    tag "extractcoords"
+    tag "nf-core/seqkit"
+    tag "nf-core/seqkit/split2"
+    tag "nf-core/cat"
+    tag "nf-core/cat/cat"
 
     setup {
         nfcoreInitialise("${launchDir}/library/")
