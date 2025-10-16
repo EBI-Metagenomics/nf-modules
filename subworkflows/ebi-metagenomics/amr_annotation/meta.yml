@@ -9,17 +9,17 @@ keywords:
   - hamronization
   - gff
 components:
-  - deeparg/predict
+  - deeparg/predict:
         git_remote: https://github.com/nf-core/modules.git
-  - hamronization/deeparg
+  - hamronization/deeparg:
         git_remote: https://github.com/nf-core/modules.git
-  - rgi
+  - rgi:
         git_remote: https://github.com/nf-core/modules.git
-  - hamronization/rgi
+  - hamronization/rgi:
         git_remote: https://github.com/nf-core/modules.git
-  - amrfinderplus/run
+  - amrfinderplus/run:
         git_remote: https://github.com/nf-core/modules.git
-  - hamronization/amrfinderplus
+  - hamronization/amrfinderplus:
         git_remote: https://github.com/nf-core/modules.git
   - amr_integrator
 input:
@@ -28,20 +28,17 @@ input:
       description: |
         The input channel containing the genes, proteins and gff files
         Structure: [ val(meta), path(genes), path(proteins), path(cds_gff) ]
-
-  - ch_deeparg_inputs
+  - ch_deeparg_inputs:
       type: file
       description: |
         The input channel containing the database for deeparg and versions
         Structure: [ path(deeparg_model), val(deeparg_version), val(deeparg_db_version) ]
-
-  - ch_rgi_inputs
+  - ch_rgi_inputs:
       type: file
       description: |
         The input channel containing the path to the RGI databases
         Structure: [ path(card_db), path(wildcard_db) ]
-
-  - ch_amrfinderplus_db
+  - ch_amrfinderplus_db:
       type: file
       description: |
         The input channel for the compressed tarball of the AMRFinderPlus database to query

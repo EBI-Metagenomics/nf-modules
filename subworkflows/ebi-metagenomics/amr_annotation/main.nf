@@ -1,10 +1,17 @@
+// Subworkflow to generate antimicrobial resistance annotation from protein and gene files
+// Outputs are standardised and integrated into a single GFF3 format output
+
+/* NF-CORE */
 include { DEEPARG                     } from '../../../modules/nf-core/deeparg/predict/main'
 include { HAMRONIZATION_DEEPARG       } from '../../../modules/nf-core/hamronization/deeparg/main'
 include { RGI                         } from '../../../modules/nf-core/rgi/main'
 include { HAMRONIZATION_RGI           } from '../../../modules/nf-core/hamronization/rgi/main'
 include { AMRFINDERPLUS               } from '../../../modules/nf-core/amrfinderplus/run/main'
 include { HAMRONIZATION_AMRFINDERPLUS } from '../../../modules/nf-core/hamronization/amrfinderplus/main'
-include { GFF_INTEGRATOR              } from '../../../modules/ebi-metagenomics/amr_integrator/main'
+
+/* EBI-METAGENOMICS */
+include { AMRINTEGRATOR               } from '../../../modules/ebi-metagenomics/amrintegrator/main'
+
 
 workflow AMR_ANNOTATION {
     ch_inputs            // channel: tuple( val(meta), path(genes), path(aminoacids), path(cds_gff) )
@@ -12,9 +19,7 @@ workflow AMR_ANNOTATION {
     ch_rgi_inputs        // channel: tuple( path(card_db), path(wildcard_db) )
     ch_amrfinderplus_db  // channel: path( amrfinderplus_db)
 
-
     main:
-
     ch_versions = Channel.empty()
 
     // Extract individual components from input channels
@@ -84,7 +89,7 @@ workflow AMR_ANNOTATION {
     
 
     // Integrate and transform into a single GFF3 output file
-    GFF_INTEGRATOR(
+    AMRINTEGRATOR(
             HAMRONIZATION_DEEPARG.out.tsv
         .join(
             HAMRONIZATION_RGI.out.tsv
@@ -95,6 +100,6 @@ workflow AMR_ANNOTATION {
     )
 
     emit:
-    gff      = GFF_INTEGRATOR.out.gff          // channel: [ val(meta), [ gff ] ]
+    gff      = AMRINTEGRATOR.out.gff           // channel: [ val(meta), [ gff ] ]
     versions = ch_versions                     // channel: [ versions.yml ]
 }
