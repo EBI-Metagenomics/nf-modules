@@ -100,6 +100,11 @@ workflow AMR_ANNOTATION {
     )
 
     emit:
-    gff      = AMRINTEGRATOR.out.gff           // channel: [ val(meta), [ gff ] ]
+    //gff      = AMRINTEGRATOR.out.gff           // channel: [ val(meta), [ gff ] ]
+
+    dea = HAMRONIZATION_DEEPARG.out.tsv
+    rgi = HAMRONIZATION_RGI.out.tsv
+    amr = HAMRONIZATION_AMRFINDERPLUS.out.tsv
+
     versions = ch_versions                     // channel: [ versions.yml ]
 }
