@@ -33,8 +33,8 @@ workflow AMR_ANNOTATION {
     ch_deeparg_db_version = ch_deeparg_inputs.map{ _deeparg_model, _version, db_version -> db_version }
 
     // Extract rgi components
-    ch_rgi_card = ch_rgi_inputs.amp{ card_db, _wildcard_db -> card_db }
-    ch_rgi_wildcard = ch_rgi_inputs.amp{ _card_db, wildcard_db -> wildcard_db }
+    ch_rgi_card = ch_rgi_inputs.map{ card_db, _wildcard_db -> card_db }
+    ch_rgi_wildcard = ch_rgi_inputs.map{ _card_db, wildcard_db -> wildcard_db }
 
 
     // RUNNING ANNOTATION TOOLS
@@ -82,7 +82,7 @@ workflow AMR_ANNOTATION {
     HAMRONIZATION_AMRFINDERPLUS(
         AMRFINDERPLUS.out.report,
         'tsv',
-        AMRFINDERPLUS.out.tool_version 
+        AMRFINDERPLUS.out.tool_version, 
         AMRFINDERPLUS.out.db_version,   
     )
     ch_versions = ch_versions.mix(HAMRONIZATION_AMRFINDERPLUS.out.versions.first())
