@@ -10,10 +10,11 @@ include { AMRFINDERPLUS               } from '../../../modules/nf-core/amrfinder
 include { HAMRONIZATION_AMRFINDERPLUS } from '../../../modules/nf-core/hamronization/amrfinderplus/main'
 
 /* EBI-METAGENOMICS */
-include { AMRINTEGRATOR               } from '../../../modules/ebi-metagenomics/amrintegrator/main'
+//include { AMRINTEGRATOR               } from '../../../modules/ebi-metagenomics/amrintegrator/main'
 
 
 workflow AMR_ANNOTATION {
+    take:
     ch_inputs            // channel: tuple( val(meta), path(genes), path(aminoacids), path(cds_gff) )
     ch_deeparg_inputs    // channel: tuple( path(deeparg_model), deeparg_version, deeparg_db_version )
     ch_rgi_inputs        // channel: tuple( path(card_db), path(wildcard_db) )
@@ -89,15 +90,15 @@ workflow AMR_ANNOTATION {
     
 
     // Integrate and transform into a single GFF3 output file
-    AMRINTEGRATOR(
-            HAMRONIZATION_DEEPARG.out.tsv
-        .join(
-            HAMRONIZATION_RGI.out.tsv
-        ).join(
-            HAMRONIZATION_AMRFINDERPLUS.out.tsv
-        ).join(
-            ch_gff
-    )
+    //AMRINTEGRATOR(
+    //        HAMRONIZATION_DEEPARG.out.tsv
+    //    .join(
+    //        HAMRONIZATION_RGI.out.tsv
+    //    ).join(
+    //        HAMRONIZATION_AMRFINDERPLUS.out.tsv
+    //    ).join(
+    //        ch_gff
+    //)
 
     emit:
     //gff      = AMRINTEGRATOR.out.gff           // channel: [ val(meta), [ gff ] ]
