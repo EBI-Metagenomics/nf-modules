@@ -9,8 +9,19 @@ nextflow_workflow {
     tag "subworkflows_ebimetagenomics"
     tag "subworkflows/combined_gene_caller"
     tag "combinedgenecaller/merge"
-    tag "prodigal"
-    tag "fraggenescan"
+    tag "fraggenescanrs"
+    tag "subworkflows/../../modules/nf-core/pyrodigal"
+
+    setup {
+        nfcoreInitialise("${launchDir}/library/")
+        nfcoreInstall(
+            "${launchDir}/library/",
+            [
+                "pyrodigal",
+            ]
+        )
+        nfcoreLink("${launchDir}/library/", "${baseDir}/modules/")
+    }
 
     test("cgc assembly fasta") {
 
@@ -37,6 +48,9 @@ nextflow_workflow {
                     ).match()
                 },
             )
+        }
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
         }
     }
 
@@ -75,6 +89,9 @@ nextflow_workflow {
                 }
             )
         }
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
+        }
     }
 
     test("cgc assembly fasta - stub") {
@@ -97,6 +114,9 @@ nextflow_workflow {
                 { assert workflow.success },
                 // { assert snapshot(workflow.out).match() }
             )
+        }
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
         }
     }
 }

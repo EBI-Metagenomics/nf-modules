@@ -1,2 +1,0 @@
-subworkflows/combined_gene_caller:
-  - subworkflows/ebi-metagenomics/combined_gene_caller/**
