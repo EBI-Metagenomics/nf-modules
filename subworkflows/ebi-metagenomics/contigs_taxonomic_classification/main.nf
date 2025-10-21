@@ -5,10 +5,10 @@ include { KRONA_KTIMPORTTEXT                                   } from '../../../
 
 workflow CONTIGS_TAXONOMIC_CLASSIFICATION {
     take:
-    ch_contigs    // [ val(meta), path(assembly_fasta) ]
-    ch_proteins   // [ val(meta), path(proteins_fasta) ]
-    cat_db        // [ val(meta), path(catdb_folder)   ]
-    taxonomy_db   // [ val(meta), path(cattax_folder)  ]
+    ch_contigs     // [ val(meta), path(assembly_fasta) ]
+    ch_proteins    // [ val(meta), path(proteins_fasta) ]
+    cat_db        // [ val(meta), path(catdb_folder)  ]
+    taxonomy_db   // [ val(meta), path(cattax_folder) ]
 
     main:
 
