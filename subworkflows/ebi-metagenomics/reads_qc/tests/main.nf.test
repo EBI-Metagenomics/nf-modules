@@ -11,9 +11,9 @@ nextflow_workflow {
     tag "seqfu/check"
     tag "fastqsuffixheadercheck"
     tag "assessmcpproportions"
-    tag "fastp"
+    tag "subworkflows/../../modules/nf-core/fastp"
     tag "seqtk"
-    tag "seqtk/seq"
+    tag "subworkflows/../../modules/nf-core/seqtk/seq"
 
     setup {
         nfcoreInitialise("${launchDir}/library/")
