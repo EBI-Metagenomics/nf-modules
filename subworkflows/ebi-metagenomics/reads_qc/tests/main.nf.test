@@ -12,7 +12,7 @@ nextflow_workflow {
     tag "fastqsuffixheadercheck"
     tag "assessmcpproportions"
     tag "subworkflows/../../modules/nf-core/fastp"
-    tag "seqtk"
+    tag "subworkflows/../../modules/nf-core/seqtk"
     tag "subworkflows/../../modules/nf-core/seqtk/seq"
 
     setup {
