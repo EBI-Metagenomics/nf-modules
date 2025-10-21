@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ebi-metagenomics/nf-modules/master/subworkflows/yaml-schema.json
 name: "combined_gene_caller"
 description: |
   MGnify combined gene calling.
@@ -12,7 +13,8 @@ keywords:
   - microbial
 
 components:
-  - pyrodigal
+  - pyrodigal:
+    git_remote: https://github.com/nf-core/modules.git
   - fraggenescanrs
   - combinedgenecaller/merge
 

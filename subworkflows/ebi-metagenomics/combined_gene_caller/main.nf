@@ -1,5 +1,6 @@
-
-include { PYRODIGAL                } from '../../../modules/ebi-metagenomics/pyrodigal/main'
+/* NF-CORE */
+include { PYRODIGAL                } from '../../../modules/nf-core/pyrodigal/main'
+/* EBI-METAGENOMICS */
 include { FRAGGENESCANRS           } from '../../../modules/ebi-metagenomics/fraggenescanrs/main'
 include { COMBINEDGENECALLER_MERGE } from '../../../modules/ebi-metagenomics/combinedgenecaller/merge/main'
 
