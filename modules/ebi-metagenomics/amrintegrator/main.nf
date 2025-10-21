@@ -22,8 +22,8 @@ process AMRINTEGRATOR {
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
     amrintegrator \\
-        --deeparg_out ${deeparg} \\
-        --rgi_out ${rgi} \\
+        --deeparg_hamr ${deeparg} \\
+        --rgi_hamr ${rgi} \\
         --amrfp_out ${amrfp} \\
         --cds_gff ${gff} \\
         --output ${prefix}.gff \\
