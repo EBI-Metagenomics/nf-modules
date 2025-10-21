@@ -1,5 +1,6 @@
-include { BWAMEM2_MEM     } from '../../../modules/ebi-metagenomics/bwamem2/mem/main'
-include { SAMTOOLS_BAM2FQ } from '../../../modules/ebi-metagenomics/samtools/bam2fq/main'
+/* NF-CORE */
+include { BWAMEM2_MEM     } from '../../../modules/nf-core/bwamem2/mem/main'
+include { SAMTOOLS_BAM2FQ } from '../../../modules/nf-core/samtools/bam2fq/main'
 
 
 workflow READS_BWAMEM2_DECONTAMINATION {
@@ -13,7 +14,7 @@ workflow READS_BWAMEM2_DECONTAMINATION {
 
     ch_versions = Channel.empty()
 
-    BWAMEM2_MEM(ch_reads, ch_reference)
+    BWAMEM2_MEM(ch_reads, ch_reference) // TODO needs 4 inputs
     ch_versions = ch_versions.mix(BWAMEM2_MEM.out.versions.first())
 
     SAMTOOLS_BAM2FQ( BWAMEM2_MEM.out.bam.map { meta, bam, _ -> [ meta, bam, meta.single_end == false ] } )

@@ -11,6 +11,18 @@ nextflow_workflow {
     tag "bwamem2/mem"
     tag "samtools/bam2fq"
 
+    setup {
+        nfcoreInitialise("${launchDir}/library/")
+        nfcoreInstall(
+            "${launchDir}/library/",
+            [
+                "bwamem2/mem",
+                "samtools/bam2fq",
+            ]
+        )
+        nfcoreLink("${launchDir}/library/", "${baseDir}/modules/")
+    }
+
     test("Illumina paired_end decontamination with MGYG000317500") {
         when {
             workflow {
@@ -47,6 +59,9 @@ nextflow_workflow {
                 { assert path(workflow.out.decontaminated_reads.get(0).get(1).get(1)).linesGzip.size() == 374028 }
             )
         }
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
+        }
     }
 
 
@@ -82,6 +97,9 @@ nextflow_workflow {
                 { assert workflow.success },
                 { assert path(workflow.out.decontaminated_reads.get(0).get(1)).linesGzip.size() == 378312 }
             )
+        }
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
         }
     }
 }
