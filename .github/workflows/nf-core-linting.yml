@@ -28,7 +28,7 @@ jobs:
           filters: "tests/config/pytest_modules.yml"
 
   lint:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     name: ${{ matrix.tags }}
     needs: changes
     if: needs.changes.outputs.modules != '[]'
