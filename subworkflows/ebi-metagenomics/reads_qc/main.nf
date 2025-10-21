@@ -1,17 +1,21 @@
 
+/* NF-CORE */
+include { FASTP                  } from '../../../modules/nf-core/fastp/main'
+include { SEQTK_SEQ              } from '../../../modules/nf-core/seqtk/seq/main'
+
+/* EBI-METAGENOMICS */
 include { SEQFU_CHECK            } from '../../../modules/ebi-metagenomics/seqfu/check/main'
 include { PIMENTO_GENERATEBCV    } from '../../../modules/ebi-metagenomics/pimento/generatebcv/main'
-include { LIBRARYSTRATEGYCHECK    } from '../../../modules/ebi-metagenomics/librarystrategycheck/main'
+include { LIBRARYSTRATEGYCHECK   } from '../../../modules/ebi-metagenomics/librarystrategycheck/main'
 include { FASTQSUFFIXHEADERCHECK } from '../../../modules/ebi-metagenomics/fastqsuffixheadercheck/main'
-include { FASTP                  } from '../../../modules/ebi-metagenomics/fastp/main'
-include { SEQTK_SEQ              } from '../../../modules/ebi-metagenomics/seqtk/seq/main'
 
 workflow  READS_QC {
 
     take:
-    filter_amplicon // channel: val(boolean)
-    ch_reads    // channel: [ val(meta), [ fastq ] ]
-    save_merged // channel:  val(boolean)
+    filter_amplicon       // channel: val(boolean)
+    ch_reads              // channel: [ val(meta), [ fastq ] ]
+    discard_trimmed_reads // channel:  val(boolean)
+    save_merged           // channel:  val(boolean)
 
     main:
     ch_versions = Channel.empty()
@@ -66,7 +70,11 @@ workflow  READS_QC {
         amplicon_check = Channel.empty()
     }
 
-    FASTP ( fastp_input, params.save_trimmed_fail, save_merged )
+    fastp_input = fastp_input.map{ meta, reads ->
+            [ meta, reads, [] ]
+         }
+
+    FASTP ( fastp_input, discard_trimmed_reads, params.save_trimmed_fail, save_merged )
     ch_versions = ch_versions.mix(FASTP.out.versions.first())
 
     ch_se_fastp_reads = FASTP
