@@ -1,4 +1,5 @@
 .nextflow*
+modules/nf-core
 work/
 results/
 test_output/
