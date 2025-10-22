@@ -46,24 +46,19 @@ input:
           - edam: http://edamontology.org/format_2330 # Text file
 
 output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
   - mseq:
-      - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. [ id:'test', single_end:false ]
-      - "*.mseq":
-          type: file
-          description: Read classification output file
-          pattern: "*.mseq"
-          ontologies: []
+      type: file
+      description: |
+        Read classification output file
   - versions:
-      - versions.yml:
-          type: file
-          description: File containing software versions
-          pattern: "versions.yml"
-          ontologies:
-            - edam: http://edamontology.org/format_3750 # YAML
+      type: file
+      description: |
+        File containing software versions
 
 authors:
   - "@chrisata"
