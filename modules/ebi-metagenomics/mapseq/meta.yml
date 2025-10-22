@@ -52,13 +52,13 @@ output:
           description: |
             Groovy Map containing sample information
             e.g. [ id:'test', single_end:false ]
-  - mseq:
+    mseq:
       - "*.mseq":
           type: file
           description: Read classification output file
           pattern: "*.mseq"
           ontologies: []
-  - versions:
+    versions:
       - versions.yml:
           type: file
           description: File containing software versions
