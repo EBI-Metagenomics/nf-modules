@@ -44,27 +44,25 @@ input:
         pattern: "*.txt"
         ontologies:
           - edam: http://edamontology.org/format_2330 # Text file
-
 output:
-  - meta:
-      - meta:
+  mseq:
+    - - meta:
           type: map
           description: |
             Groovy Map containing sample information
             e.g. [ id:'test', single_end:false ]
-    mseq:
       - "*.mseq":
           type: file
           description: Read classification output file
           pattern: "*.mseq"
           ontologies: []
-    versions:
-      - versions.yml:
-          type: file
-          description: File containing software versions
-          pattern: "versions.yml"
-          ontologies:
-            - edam: http://edamontology.org/format_3750
+  versions:
+    - versions.yml:
+        type: file
+        description: File containing software versions
+        pattern: "versions.yml"
+        ontologies:
+          - edam: "http://edamontology.org/format_3750" # YAML
 
 authors:
   - "@chrisata"
