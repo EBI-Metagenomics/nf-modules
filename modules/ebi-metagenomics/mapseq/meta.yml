@@ -12,7 +12,7 @@ tools:
       description: "Open source metagenomic 16S/18S read classifier enabling comparative metagenomics."
       documentation: https://github.com/jfmrod/MAPseq
       doi: "10.1093/bioinformatics/btx517"
-      licence: "['dual-licensed under GPL v3+ or BSD 2-clause']"
+      licence: ["dual-licensed under GPL v3+ or BSD 2-clause"]
 
 input:
   - meta:
@@ -38,19 +38,23 @@ input:
       pattern: "*.txt"
 
 output:
-  - meta:
-      type: map
-      description: |
-        Groovy Map containing sample information
-        e.g. `[ id:'test', single_end:false ]`
-  - versions:
-      type: file
-      description: File containing software versions
-      pattern: "versions.yml"
-  - mseq:
-      type: file
-      description: Read classification output file
-      pattern: "*.mseq"
+  annotations:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. [ id:'test', single_end:false ]
+      - "*.mseq":
+          type: file
+          description: Read classification output file
+          pattern: "*.mseq"
+  versions:
+    - versions.yml:
+        type: file
+        description: File containing software versions
+        pattern: "versions.yml"
+        ontologies:
+          - edam: http://edamontology.org/format_3750 # YAML
 
 authors:
   - "@chrisata"
