@@ -1,4 +1,3 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "mapseq"
 description: Perform taxonomic classification of rRNA reads using reference databases
 keywords:
@@ -8,8 +7,8 @@ keywords:
   - rRNA
 tools:
   - "mapseq":
-      description: "Open source metagenomic 16S/18S read classifier enabling comparative
-        metagenomics."
+      description: |
+        "Open source metagenomic 16S/18S read classifier enabling comparative metagenomics."
       documentation: https://github.com/jfmrod/MAPseq
       doi: "10.1093/bioinformatics/btx517"
       licence: ["dual-licensed under GPL v3+ or BSD 2-clause"]
@@ -38,16 +37,17 @@ input:
         description: Reference database OTU classifications file
         pattern: "*.txt"
         ontologies:
-          - edam: "http://edamontology.org/format_2330" # Text file
+          - edam: http://edamontology.org/format_2330 # Text file
     - db_mscluster:
         type: file
         description: Reference database OTU pre-clustering file
         pattern: "*.txt"
         ontologies:
-          - edam: "http://edamontology.org/format_2330" # Text file
+          - edam: http://edamontology.org/format_2330 # Text file
+
 output:
-  mseq:
-    - - meta:
+  - mseq:
+      - meta:
           type: map
           description: |
             Groovy Map containing sample information
@@ -57,13 +57,15 @@ output:
           description: Read classification output file
           pattern: "*.mseq"
           ontologies: []
-  versions:
-    - versions.yml:
-        type: file
-        description: File containing software versions
-        pattern: "versions.yml"
-        ontologies:
-          - edam: http://edamontology.org/format_3750 # YAML
+  - versions:
+      - versions.yml:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+          ontologies:
+            - edam: http://edamontology.org/format_3750 # YAML
 
 authors:
+  - "@chrisata"
+maintainers:
   - "@chrisata"
