@@ -46,6 +46,14 @@ workflow EUK_GENE_CALLING {
                 REPEATMASKER_REPEATMASKER.out.masked,
                 null
             )
+            EUKGENEOVERLAP(
+                genome_info.meta,
+                BRAKER3.out.gff3,
+                METAEUK_EASYPREDICT.out.gff,
+                BRAKER3.out.aa,
+                METAEUK_EASYPREDICT.out.faa,
+                overlap_threshold
+            )
         }
 
         if ( protein_evidence && !transcriptomic_evidence ) {
@@ -62,7 +70,15 @@ workflow EUK_GENE_CALLING {
                 REPEATMASKER_REPEATMASKER.out.masked,
                 null
             )
-        }
+            EUKGENEOVERLAP(
+                genome_info.meta,
+                BRAKER3.out.gff3,
+                METAEUK_EASYPREDICT.out.gff,
+                BRAKER3.out.aa,
+                METAEUK_EASYPREDICT.out.faa,
+                overlap_threshold
+            )
+            }
 
         if ( !protein_evidence && transcriptomic_evidence ) {
             BRAKER3(
@@ -86,14 +102,6 @@ workflow EUK_GENE_CALLING {
             )
         }
 
-        EUKGENEOVERLAP(
-            genome_info.meta,
-            BRAKER3.out.gff3,
-            METAEUK_EASYPREDICT.out.gff,
-            BRAKER3.out.aa,
-            METAEUK_EASYPREDICT.out.faa,
-            overlap_threshold
-        )
 
     emit:
         braker_gff = BRAKER3.out.gff3

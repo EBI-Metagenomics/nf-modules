@@ -39,6 +39,7 @@ def read_cds_coords(gff_file, source_type):
             # Determine gene ID. Gene ID in this case should be match partially the transcript ID in the protein fastas
             if source_type == "metaeuk":
                 '''
+                WARNING! Metaeuk repeats gene IDs so contig ID needs to be appended
                 raw_id: TCS_ID=425265_0:00066a|ENA_CALFLZ010000413_CALFLZ010000413.1|-|6151_CDS_0
                 gene_id: 425265_0:00066a|ENA_CALFLZ010000413_CALFLZ010000413.1
                 '''
