@@ -10,7 +10,7 @@ components:
   - mapseq
   - mapseq2biom
   - krona/ktimporttext:
-    git_remote: https://github.com/nf-core/modules.git
+       git_remote: https://github.com/nf-core/modules.git
 input:
   - ch_fasta:
       type: file
