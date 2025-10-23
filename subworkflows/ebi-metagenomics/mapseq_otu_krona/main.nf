@@ -1,7 +1,8 @@
-
+/* EBI-METAGENOMICS */
 include { MAPSEQ             } from '../../../modules/ebi-metagenomics/mapseq/main'
 include { MAPSEQ2BIOM        } from '../../../modules/ebi-metagenomics/mapseq2biom/main'
-include { KRONA_KTIMPORTTEXT } from '../../../modules/ebi-metagenomics/krona/ktimporttext/main'
+/* NF-CORE */
+include { KRONA_KTIMPORTTEXT } from '../../../modules/nf-core/krona/ktimporttext/main'
 
 workflow MAPSEQ_OTU_KRONA {
 
