@@ -10,8 +10,10 @@ def parse_args():
     )
     parser.add_argument('--gff_file1', type=str, required=True, help="BRAKER GFF file")
     parser.add_argument('--gff_file2', type=str, required=True, help="MetaEuk GFF file")
-    parser.add_argument('--fasta1', type=str, required=False, help="BRAKER protein fasta")
-    parser.add_argument('--fasta2', type=str, required=False, help="MetaEuk protein fasta")
+    parser.add_argument('--fasta_aa_1', type=str, required=False, help="BRAKER protein fasta")
+    parser.add_argument('--fasta_aa_2', type=str, required=False, help="MetaEuk protein fasta")
+    parser.add_argument('--fasta_fn_1', type=str, required=False, help="BRAKER nucleotide fasta")
+    parser.add_argument('--fasta_fn_2', type=str, required=False, help="MetaEuk nucleotide fasta")
     parser.add_argument('--output', type=str, required=True, help="Output prefix (sample name)")
     parser.add_argument('--threshold', type=float, default=0.9, help="Reciprocal exon/CDS overlap threshold")
     return parser.parse_args()
@@ -122,8 +124,20 @@ def parse_fasta(file_name, source_type):
             records[rec.id] = rec
     return records
 
+def rename_id_fasta(records_aa, records_fn, genes, tag, added_set):
+    aa_out, fn_out = [], []
+    for g in genes:
+        if g in records_aa and g in records_fn and g not in added_set:
+            for recs, out_list in [(records_aa, aa_out), (records_fn, fn_out)]:
+                rec = recs[g]
+                rec.id = f"{rec.id}|{tag}"
+                rec.description = ""
+                out_list.append(rec)
+            added_set.add(g)
+    return aa_out, fn_out
 
-def compare_genes(gff1_coords, gff2_coords, fasta1=None, fasta2=None, output="output", threshold=0.9):
+def compare_genes(gff1_coords, gff2_coords, fasta_aa_1=None, fasta_aa_2=None, fasta_fn_1=None, 
+                  fasta_fn_2=None, output="output", threshold=0.9):
     overlap = []
     uniq_braker = []
     uniq_metaeuk = []
@@ -170,67 +184,55 @@ def compare_genes(gff1_coords, gff2_coords, fasta1=None, fasta2=None, output="ou
         for row in uniq_metaeuk:
             out.write("\t".join(row) + "\n")
 
-    if fasta1 and fasta2:
+    if fasta_aa_1 and fasta_aa_2 and fasta_fn_1 and fasta_fn_2:
         '''
-        write four protein fasta files and append new tags to sequence IDs:
-        1. braker_overlap.faa
-        2. metaeuk_overlap.faa
-        3. braker_unique.faa
-        4. metaeuk_unique.faa
+        write four protein and four nucleotide fastas and append new tags to sequence IDs:
+        1. braker_overlap.faa & braker_overlap.ffn
+        2. metaeuk_overlap.faa & metaeuk_overlap.ffn
+        3. braker_unique.faa & braker_unique.ffn
+        4. metaeuk_unique.faa & metaeuk_unique.ffn
         '''
-        braker_records = parse_fasta(fasta1, "braker")
-        metaeuk_records = parse_fasta(fasta2, "metaeuk")
-        braker_overlap_records = []
-        metaeuk_overlap_records = []
-        braker_unique_records = []
-        metaeuk_unique_records = []
 
-        added_braker_overlap = set()
-        added_metaeuk_overlap = set()
-        added_braker_unique = set()
-        added_metaeuk_unique = set()
+        braker_aa_records = parse_fasta(fasta_aa_1, "braker")
+        metaeuk_aa_records = parse_fasta(fasta_aa_2, "metaeuk")
+        braker_fn_records = parse_fasta(fasta_fn_1, "braker")
+        metaeuk_fn_records = parse_fasta(fasta_fn_2, "metaeuk")
 
-        # Overlaps
-        for contig, g1, g2 in overlap:
-            # BRAKER
-            if g1 in braker_records and g1 not in added_braker_overlap:
-                rec = braker_records[g1]
-                rec.id = f"{rec.id}|overlap"
-                rec.description = ""
-                braker_overlap_records.append(rec)
-                added_braker_overlap.add(g1)
+        results = {
+            "braker_overlap": [],
+            "metaeuk_overlap": [],
+            "braker_unique": [],
+            "metaeuk_unique": [],
+        }
 
-            # MetaEuk
-            if g2 in metaeuk_records and g2 not in added_metaeuk_overlap:
-                rec = metaeuk_records[g2]
-                rec.id = f"{rec.id}|overlap"
-                rec.description = ""
-                metaeuk_overlap_records.append(rec)
-                added_metaeuk_overlap.add(g2)
+        added = {k: set() for k in results.keys()}
 
-        # Unique BRAKER
-        for contig, g1 in uniq_braker:
-            if g1 in braker_records and g1 not in added_braker_unique:
-                rec = braker_records[g1]
-                rec.id = f"{rec.id}|braker_only"
-                rec.description = ""
-                braker_unique_records.append(rec)
-                added_braker_unique.add(g1)
+        # Overlapping genes
+        braker_overlap_genes = [g1 for contig, g1, g2 in overlap]
+        print(braker_overlap_genes)
+        metaeuk_overlap_genes = [g2 for contig, g1, g2 in overlap]
 
-        # Unique MetaEuk
-        for contig, g2 in uniq_metaeuk:
-            if g2 in metaeuk_records and g2 not in added_metaeuk_unique:
-                rec = metaeuk_records[g2]
-                rec.id = f"{rec.id}|metaeuk_only"
-                rec.description = ""
-                metaeuk_unique_records.append(rec)
-                added_metaeuk_unique.add(g2)
+        results["braker_overlap"] = rename_id_fasta(
+            braker_aa_records, braker_fn_records, braker_overlap_genes, "overlap", added["braker_overlap"]
+        )
+        results["metaeuk_overlap"] = rename_id_fasta(
+            metaeuk_aa_records, metaeuk_fn_records, metaeuk_overlap_genes, "overlap", added["metaeuk_overlap"]
+        )
 
-    # Write FASTA outputs
-    SeqIO.write(braker_overlap_records, output + "_braker_overlap.faa", "fasta")
-    SeqIO.write(metaeuk_overlap_records, output + "_metaeuk_overlap.faa", "fasta")
-    SeqIO.write(braker_unique_records, output + "_braker_unique.faa", "fasta")
-    SeqIO.write(metaeuk_unique_records, output + "_metaeuk_unique.faa", "fasta")
+        # Unique genes
+        braker_unique_genes = [g1 for contig, g1 in uniq_braker]
+        metaeuk_unique_genes = [g2 for contig, g2 in uniq_metaeuk]
+
+        results["braker_unique"] = rename_id_fasta(
+            braker_aa_records, braker_fn_records, braker_unique_genes, "braker_only", added["braker_unique"]
+        )
+        results["metaeuk_unique"] = rename_id_fasta(
+            metaeuk_aa_records, metaeuk_fn_records, metaeuk_unique_genes, "metaeuk_only", added["metaeuk_unique"]
+        )
+
+        for key, (aa_records, fn_records) in results.items():
+            SeqIO.write(aa_records, f"{output}_{key}.faa", "fasta")
+            SeqIO.write(fn_records, f"{output}_{key}.ffn", "fasta")
 
 
 def main():
@@ -240,7 +242,7 @@ def main():
     gff1_coords = read_cds_coords(args.gff_file1, "braker")
     gff2_coords = read_cds_coords(args.gff_file2, "metaeuk")
 
-    compare_genes(gff1_coords, gff2_coords, args.fasta1, args.fasta2, args.output, args.threshold)
+    compare_genes(gff1_coords, gff2_coords, args.fasta_aa_1, args.fasta_aa_2, args.fasta_fn_1, args.fasta_fn_2, args.output, args.threshold)
     print("Comparison done!")
 
 

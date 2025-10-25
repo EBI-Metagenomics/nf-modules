@@ -7,6 +7,7 @@ include {REPEATMASKER_REPEATMASKER} from '../../../modules/ebi-metagenomics/repe
 include {BRAKER3} from '../../../modules/ebi-metagenomics/braker3/main.nf'
 include {METAEUK_EASYPREDICT} from '../../../modules/ebi-metagenomics/metaeuk/easypredict/main.nf'
 include {EUKGENEOVERLAP} from '../../../modules/ebi-metagenomics/eukgeneoverlap/main.nf'
+include {EUKGENERENAME} from '../../../modules/ebi-metagenomics/eukgenerename/main.nf'
 
 workflow EUK_GENE_CALLING {
     take:
@@ -17,7 +18,8 @@ workflow EUK_GENE_CALLING {
         
 
     main:
-        // de novo repeat identification and masking
+
+        // mask repeats in the genome
         REPEATMODELER_BUILDDATABASE(
             genome_info
         )
@@ -31,6 +33,12 @@ workflow EUK_GENE_CALLING {
             REPEATMODELER_REPEATMODELER.out.fasta
         )
 
+
+        overlap_results = Channel.empty()
+        braker_overlap_proteins = Channel.empty()
+        metaeuk_overlap_proteins = Channel.empty()
+        braker_unique_proteins = Channel.empty()
+        metaeuk_unique_proteins = Channel.empty()
 
         // call genes based on input evidence
         if ( protein_evidence && transcriptomic_evidence ) {
@@ -54,6 +62,18 @@ workflow EUK_GENE_CALLING {
                 METAEUK_EASYPREDICT.out.faa,
                 overlap_threshold
             )
+            
+            braker_gff = BRAKER3.out.gff3
+            metaeuk_gff = METAEUK_EASYPREDICT.out.gff
+            overlap_results = EUKGENEOVERLAP.out.overlap_tsv
+            braker_overlap_proteins = EUKGENEOVERLAP.out.braker_overlap_faa
+            braker_overlap_nucelotide = EUKGENEOVERLAP.out.braker_overlap_ffn
+            metaeuk_overlap_proteins = EUKGENEOVERLAP.out.metaeuk_overlap_faa
+            metaeuk_overlap_nucleotide = EUKGENEOVERLAP.out.metaeuk_overlap_ffn
+            braker_proteins = EUKGENEOVERLAP.out.braker_unique_faa
+            braker_ffn = EUKGENEOVERLAP.out.braker_unique_ffn
+            metaeuk_proteins = EUKGENEOVERLAP.out.metaeuk_unique_faa
+            metaeuk_ffn = EUKGENEOVERLAP.out.metaeuk_unique_ffn 
         }
 
         if ( protein_evidence && !transcriptomic_evidence ) {
@@ -78,7 +98,19 @@ workflow EUK_GENE_CALLING {
                 METAEUK_EASYPREDICT.out.faa,
                 overlap_threshold
             )
-            }
+            
+            braker_gff = BRAKER3.out.gff3
+            metaeuk_gff = METAEUK_EASYPREDICT.out.gff
+            overlap_results = EUKGENEOVERLAP.out.overlap_tsv
+            braker_overlap_proteins = EUKGENEOVERLAP.out.braker_overlap_faa
+            braker_overlap_nucelotide = EUKGENEOVERLAP.out.braker_overlap_ffn
+            metaeuk_overlap_proteins = EUKGENEOVERLAP.out.metaeuk_overlap_faa
+            metaeuk_overlap_nucleotide = EUKGENEOVERLAP.out.metaeuk_overlap_ffn
+            braker_proteins = EUKGENEOVERLAP.out.braker_unique_faa
+            braker_ffn = EUKGENEOVERLAP.out.braker_unique_ffn
+            metaeuk_proteins = EUKGENEOVERLAP.out.metaeuk_unique_faa
+            metaeuk_ffn = EUKGENEOVERLAP.out.metaeuk_unique_ffn 
+        }
 
         if ( !protein_evidence && transcriptomic_evidence ) {
             BRAKER3(
@@ -89,6 +121,16 @@ workflow EUK_GENE_CALLING {
                 null,
                 null
             )
+
+            EUKGENERENAME(
+                genome_info.meta,
+                BRAKER3.out.aa,
+                BRAKER3.out.cds
+            )
+
+            braker_gff = BRAKER3.out.gff3
+            braker_proteins = EUKGENERENAME.out.renamed_braker_aa
+            braker_ffn = EUKGENERENAME.out.renamed_braker_ffn
         }
 
         if ( !protein_evidence && !transcriptomic_evidence ) {
@@ -100,15 +142,30 @@ workflow EUK_GENE_CALLING {
                 null,
                 null
             )
+
+            EUKGENERENAME(
+                genome_info.meta,
+                BRAKER3.out.aa,
+                BRAKER3.out.cds
+            )
+
+            braker_gff = BRAKER3.out.gff3
+            braker_proteins = EUKGENERENAME.out.renamed_braker_aa
+            braker_ffn = EUKGENERENAME.out.renamed_braker_ffn
         }
 
 
     emit:
-        braker_gff = BRAKER3.out.gff3
-        braker_proteins = BRAKER3.out.aa
-        braker_ffn = BRAKER3.out.cds
-        metaeuk_gff = METAEUK_EASYPREDICT.out.gff
-        metaeuk_proteins = METAEUK_EASYPREDICT.out.faa
-        metaeuk_ffn = METAEUK_EASYPREDICT.out.codon
+        braker_gff = braker_gff
+        braker_proteins = braker_proteins
+        braker_ffn = braker_ffn
+        metaeuk_gff = metaeuk_gff
+        metaeuk_proteins = metaeuk_proteins
+        metaeuk_ffn = metaeuk_ffn
+        overlap_results = overlap_results
+        braker_overlap_proteins = braker_overlap_proteins
+        metaeuk_overlap_proteins = metaeuk_overlap_proteins
+        braker_unique_proteins = braker_unique_proteins
+        metaeuk_unique_proteins = metaeuk_unique_proteins
         softmasked_genome = REPEATMASKER_REPEATMASKER.out.masked
 }

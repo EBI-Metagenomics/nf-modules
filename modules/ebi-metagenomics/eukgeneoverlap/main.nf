@@ -14,11 +14,16 @@ process EUKGENEOVERLAP {
 
     output:
     path( "${meta.id}_overlap.tsv"         ), emit: overlap_tsv
-    path( "${meta.id}_braker_unique.tsv"   ), emit: braker_unique
-    path( "${meta.id}_metaeuk_unique.tsv"  ), emit: metaeuk_unique
-    path( "${meta.id}_overlap.faa"         ), emit: overlap_faa
+    path( "${meta.id}_braker_unique.tsv"   ), emit: braker_unique_faa
+    path( "${meta.id}_metaeuk_unique.tsv"  ), emit: metaeuk_unique_faa
+    path( "${meta.id}_braker_overlap.faa"  ), emit: braker_overlap_faa
+    path( "${meta.id}_metaeuk_overlap.faa" ), emit: metaeuk_overlap_faa
     path( "${meta.id}_braker_unique.faa"   ), emit: braker
     path( "${meta.id}_metaeuk_unique.faa"  ), emit: metaeuk
+    path( "${meta.id}_braker_overlap.ffn"  ), emit: braker_overlap_ffn
+    path( "${meta.id}_metaeuk_overlap.ffn" ), emit: metaeuk_overlap_ffn
+    path( "${meta.id}_braker_unique.ffn"   ), emit: braker_unique_ffn
+    path( "${meta.id}_metaeuk_unique.ffn"  ), emit: metaeuk_unique_ffn
 
 
     script:
