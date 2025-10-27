@@ -209,7 +209,6 @@ def compare_genes(gff1_coords, gff2_coords, fasta_aa_1=None, fasta_aa_2=None, fa
 
         # Overlapping genes
         braker_overlap_genes = [g1 for contig, g1, g2 in overlap]
-        print(braker_overlap_genes)
         metaeuk_overlap_genes = [g2 for contig, g1, g2 in overlap]
 
         results["braker_overlap"] = rename_id_fasta(
