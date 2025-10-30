@@ -38,6 +38,12 @@ tasks:
       - uv run nf-core modules -g {{.REPO_URL}} lint {{.CLI_ARGS}}
     interactive: true
 
+  modules-pytest:
+    desc: "Run Python unit tests for all module scripts using pytest"
+    cmds:
+      - uv run --with pytest --with boto3 --with botocore pytest modules -v
+    interactive: true
+
   # Subworkflow management tasks
   subworkflows-create:
     desc: "Run the nf-core subworkflows create command, it's possible to send arguments directly with task subworkflows-create -- <arguments>"
