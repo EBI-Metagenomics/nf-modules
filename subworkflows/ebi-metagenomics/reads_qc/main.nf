@@ -18,20 +18,25 @@ workflow  READS_QC {
     save_merged           // channel:  val(boolean)
 
     main:
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     SEQFU_CHECK(ch_reads)
     ch_versions = ch_versions.mix(SEQFU_CHECK.out.versions.first())
 
-    passed_seqfu_reads = SEQFU_CHECK.out.tsv
+    SEQFU_CHECK.out.tsv
         .splitCsv(sep: "\t", elem: 1)
         .filter { meta, seqfu_res ->
             seqfu_res[0] == "OK"
         }
         .map { map, seqfu_res -> map }
         .join(ch_reads)
+        .branch { meta, reads ->
+            pe: !meta.single_end
+            se: meta.single_end
+        }
+        .set { passed_seqfu_reads }
 
-    FASTQSUFFIXHEADERCHECK(passed_seqfu_reads)
+    FASTQSUFFIXHEADERCHECK(passed_seqfu_reads.pe)
     ch_versions = ch_versions.mix(FASTQSUFFIXHEADERCHECK.out.versions.first())
 
     passed_suffixheader_reads = FASTQSUFFIXHEADERCHECK.out.json
@@ -40,6 +45,7 @@ workflow  READS_QC {
         }
         .map { meta, _ -> [ meta ] }
         .join(ch_reads)
+        .mix(passed_seqfu_reads.se)
 
     if ( filter_amplicon ) {
         generatebcv_input = passed_suffixheader_reads
@@ -67,7 +73,7 @@ workflow  READS_QC {
         amplicon_check = LIBRARYSTRATEGYCHECK.out.library_check_out
     } else {
         fastp_input = passed_suffixheader_reads
-        amplicon_check = Channel.empty()
+        amplicon_check = channel.empty()
     }
 
     fastp_input = fastp_input.map{ meta, reads ->
