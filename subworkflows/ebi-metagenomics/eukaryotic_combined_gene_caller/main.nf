@@ -1,13 +1,13 @@
  /*
   Subworkflow to annotate eukaryotic genes
 */
-include {REPEATMODELER_BUILDDATABASE} from '../../../modules/ebi-metagenomics/repeatmodeler/builddatabase/main.nf'
-include {REPEATMODELER_REPEATMODELER} from '../../../modules/ebi-metagenomics/repeatmodeler/repeatmodeler/main.nf'
-include {REPEATMASKER_REPEATMASKER} from '../../../modules/ebi-metagenomics/repeatmasker/repeatmasker/main.nf'
-include {BRAKER3} from '../../../modules/ebi-metagenomics/braker3/main.nf'
-include {METAEUK_EASYPREDICT} from '../../../modules/ebi-metagenomics/metaeuk/easypredict/main.nf'
-include {EUKGENEOVERLAP} from '../../../modules/ebi-metagenomics/eukgeneoverlap/main.nf'
-include {EUKGENERENAME} from '../../../modules/ebi-metagenomics/eukgenerename/main.nf'
+include { REPEATMODELER_BUILDDATABASE } from '../../../modules/ebi-metagenomics/repeatmodeler/builddatabase/main.nf'
+include { REPEATMODELER_REPEATMODELER } from '../../../modules/ebi-metagenomics/repeatmodeler/repeatmodeler/main.nf'
+include { REPEATMASKER_REPEATMASKER   } from '../../../modules/ebi-metagenomics/repeatmasker/repeatmasker/main.nf'
+include { BRAKER3                     } from '../../../modules/ebi-metagenomics/braker3/main.nf'
+include { METAEUK_EASYPREDICT         } from '../../../modules/nf-core/metaeuk/easypredict/main.nf'
+include { EUKGENEOVERLAP              } from '../../../modules/ebi-metagenomics/eukgeneoverlap/main.nf'
+include { EUKGENERENAME               } from '../../../modules/ebi-metagenomics/eukgenerename/main.nf'
 
 workflow EUK_GENE_CALLING {
     take:
@@ -153,6 +153,14 @@ workflow EUK_GENE_CALLING {
             braker_proteins = EUKGENERENAME.out.renamed_braker_aa
             braker_ffn = EUKGENERENAME.out.renamed_braker_ffn
         }
+
+
+    
+
+
+
+
+
 
 
     emit:
