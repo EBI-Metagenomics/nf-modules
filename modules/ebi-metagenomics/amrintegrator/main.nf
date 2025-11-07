@@ -4,8 +4,8 @@ process AMRINTEGRATOR {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:1.2.11--pyhdfd78af_0':
-        'biocontainers/mgnify-pipelines-toolkit:1.2.11--pyhdfd78af_0' }"
+        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:1.4.1--pyhdfd78af_0':
+        'biocontainers/mgnify-pipelines-toolkit:1.4.1--pyhdfd78af_0' }"
 
     input:
     tuple val(meta), path(deeparg), path(rgi), path(amrfp), path(gff)
@@ -21,7 +21,7 @@ process AMRINTEGRATOR {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    amrintegrator \\
+    amr_integrator \\
         --deeparg_hamr ${deeparg} \\
         --rgi_hamr ${rgi} \\
         --amrfp_out ${amrfp} \\
