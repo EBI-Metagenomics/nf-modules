@@ -12,7 +12,7 @@ include { RGI_MAIN                         } from '../../../modules/nf-core/rgi/
 include { UNTAR as UNTAR_CARD              } from '../../../modules/nf-core/untar/main'
 include { HAMRONIZATION_RGI                } from '../../../modules/nf-core/hamronization/rgi/main'
 include { HAMRONIZATION_DEEPARG            } from '../../../modules/nf-core/hamronization/deeparg/main'
-include { AMR_INTEGRATOR                   } from '../../../modules/nf-core/amrintegrator/main'
+include { AMR_INTEGRATOR                   } from '../../../modules/ebi-metagenomics/amrintegrator/main'
 
 workflow AMR_ANNOTATION {
     take:
@@ -94,7 +94,6 @@ workflow AMR_ANNOTATION {
 
     // DeepARG run
     if (!params.arg_skip_deeparg) {
-
         ch_faa
             .map { it ->
                 def meta = it[0]
@@ -128,6 +127,6 @@ workflow AMR_ANNOTATION {
     )
 
     emit:
-    gff      = AMRINTEGRATOR.out.gff           // channel: [ val(meta), [ gff ] ]
-    versions = ch_versions                     // channel: [ versions.yml ]
+    gff      = AMR_INTEGRATOR.out.gff           // channel: [ val(meta), [ gff ] ]
+    versions = ch_versions                      // channel: [ versions.yml ]
 }
