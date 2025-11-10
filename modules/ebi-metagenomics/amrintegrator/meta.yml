@@ -53,8 +53,8 @@ output:
             e.g. `[ id:'sample1' ]`
       - "*.gff":
           type: file
-          description: The compressed GFF3 file containing the genes with AMR annotation
-          pattern: "*.gff.gz"
+          description: The GFF3 file containing the genes with AMR annotation
+          pattern: "*.gff"
           ontologies: []
   versions:
     - "versions.yml":
