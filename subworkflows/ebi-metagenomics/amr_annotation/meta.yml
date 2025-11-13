@@ -27,7 +27,9 @@ components:
       git_remote: https://github.com/nf-core/modules.git
   - untar:
       git_remote: https://github.com/nf-core/modules.git
-  - amrintegrator
+  - amrintegrator:
+      git_remote: https://github.com/EBI-Metagenomics/nf-modules.git
+      branch: feature/amr_prediction
 input:
   - ch_inputs:
       type: tuple
