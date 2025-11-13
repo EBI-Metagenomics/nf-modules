@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ebi-metagenomics/nf-modules/master/subworkflows/yaml-schema.json
 name: "amr_annotation"
 description: AMR annotation, harmonisation and integration
 keywords:
