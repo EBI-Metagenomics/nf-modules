@@ -27,7 +27,7 @@ components:
       git_remote: https://github.com/nf-core/modules.git
   - untar:
       git_remote: https://github.com/nf-core/modules.git
-  - amr_integrator
+  - amrintegrator
 input:
   - ch_inputs:
       type: tuple
