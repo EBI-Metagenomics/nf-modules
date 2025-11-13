@@ -20,7 +20,7 @@ nextflow_process {
                 ]
                 input[1] = [
                     file("${moduleDir}/tests/fixtures/interproscan_db/", type: 'dir', checkIfExists: true),
-                    "5.73-104.0"
+                    "5.76-107.0"
                 ]
                 """
             }
