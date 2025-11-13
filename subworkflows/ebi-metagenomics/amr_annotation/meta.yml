@@ -25,8 +25,6 @@ components:
       git_remote: https://github.com/nf-core/modules.git
   - amrfinderplus/run:
       git_remote: https://github.com/nf-core/modules.git
-  - hamronization/amrfinderplus:
-      git_remote: https://github.com/nf-core/modules.git
   - untar:
       git_remote: https://github.com/nf-core/modules.git
   - amr_integrator
