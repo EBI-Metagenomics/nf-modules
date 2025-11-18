@@ -125,6 +125,7 @@ workflow AMR_ANNOTATION {
         ).join(
             ch_gff
     )
+    ch_versions = ch_versions.mix(AMR_INTEGRATOR.out.versions)
 
     emit:
     gff      = AMR_INTEGRATOR.out.gff           // channel: [ val(meta), [ gff ] ]
