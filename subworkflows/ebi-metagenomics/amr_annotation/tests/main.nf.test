@@ -42,13 +42,11 @@ nextflow_workflow {
     }
 
     test("detect_amr - proteins") {
-
         when {
-
             params {
-                arg_amrfinderplus_db   = "${moduleDir}/tests/minidbs/amrfinderplus/amrfinderdb.tar.gz"
-                arg_rgi_db             = "${moduleDir}/tests/minidbs/rgi"
-                arg_deeparg_db         = "${moduleDir}/tests/minidbs/deeparg/db"
+                arg_amrfinderplus_db   = null
+                arg_rgi_db             = null
+                arg_deeparg_db         = null
                 arg_deeparg_model      = "LS"
                 arg_deeparg_db_version = "2"
  
@@ -61,8 +59,8 @@ nextflow_workflow {
             workflow {
                 """
                 input[0] = Channel.of( [ [ id:'test' ], // meta map
-                    file('${moduleDir}/tests/proteins.faa', checkIfExists: true),
-                    file('${moduleDir}/tests/annotation.gff', checkIfExists: true)
+                    file('${moduleDir}/tests/minitest.faa', checkIfExists: true),
+                    file('${moduleDir}/tests/minitest.gff', checkIfExists: true)
                 ])
                 """
             }
