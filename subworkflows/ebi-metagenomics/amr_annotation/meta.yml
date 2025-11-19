@@ -30,37 +30,26 @@ components:
   - amrintegrator
 input:
   - ch_inputs:
-      type: tuple
-      description: |
-        The input channel containing the genes, proteins and gff files
-        Structure: [ val(meta), path(genes), path(proteins), path(cds_gff) ]
-  - ch_deeparg_inputs:
-      type: file
-      description: |
-        The input channel containing the database for deeparg and versions
-        Structure: [ path(deeparg_model), val(deeparg_version), val(deeparg_db_version) ]
-  - ch_rgi_inputs:
-      type: file
-      description: |
-        The input channel containing the path to the RGI databases
-        Structure: [ path(card_db), path(wildcard_db) ]
-  - ch_amrfinderplus_db:
-      type: file
-      description: |
-        The input channel for the compressed tarball of the AMRFinderPlus database to query
-        Structure: [ path(amrfinderplus_db) ]
+      description: ""
 output:
-  - gff:
-      type: file
-      description: |
-        Channel containing a GFF3 file
-        Structure: [ val(meta), path(gff) ]
-      pattern: "*.gff"
   - versions:
       type: file
       description: |
         File containing software versions
         Structure: [ path(versions.yml) ]
       pattern: "versions.yml"
+  - gff: null
+    description: |
+      Channel containing a gff file with ARG annotation
+      Structure: [ val(meta), path("*.gff") ]
+    meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+    "*.gff":
+      type: file
+      description: gff file with ARG annotation
+      pattern: "*.gff"
 authors:
   - "@Ales-ibt"

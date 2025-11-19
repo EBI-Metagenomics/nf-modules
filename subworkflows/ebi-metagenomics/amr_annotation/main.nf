@@ -12,7 +12,7 @@ include { RGI_MAIN                         } from '../../../modules/nf-core/rgi/
 include { UNTAR as UNTAR_CARD              } from '../../../modules/nf-core/untar/main'
 include { HAMRONIZATION_RGI                } from '../../../modules/nf-core/hamronization/rgi/main'
 include { HAMRONIZATION_DEEPARG            } from '../../../modules/nf-core/hamronization/deeparg/main'
-include { AMR_INTEGRATOR                   } from '../../../modules/ebi-metagenomics/amrintegrator/main'
+include { AMRINTEGRATOR                   } from '../../../modules/ebi-metagenomics/amrintegrator/main'
 
 workflow AMR_ANNOTATION {
     take:
@@ -116,7 +116,7 @@ workflow AMR_ANNOTATION {
     }
 
     // Integrate and transform into a single GFF3 output file
-    AMR_INTEGRATOR(
+    AMRINTEGRATOR(
             HAMRONIZATION_DEEPARG.out.tsv
         .join(
             HAMRONIZATION_RGI.out.tsv
@@ -125,9 +125,9 @@ workflow AMR_ANNOTATION {
         ).join(
             ch_gff
     )
-    ch_versions = ch_versions.mix(AMR_INTEGRATOR.out.versions)
+    ch_versions = ch_versions.mix(AMRINTEGRATOR.out.versions)
 
     emit:
-    gff      = AMR_INTEGRATOR.out.gff           // channel: [ val(meta), [ gff ] ]
+    gff      = AMRINTEGRATOR.out.gff            // channel: [ val(meta), [ gff ] ]
     versions = ch_versions                      // channel: [ versions.yml ]
 }
