@@ -21,10 +21,14 @@ workflow AMR_ANNOTATION {
     main:
     ch_versions = Channel.empty()
 
+    // Initialize empty channels for optional outputs
+    ch_hamronization_deeparg = Channel.empty()
+    ch_hamronization_rgi = Channel.empty()
+    ch_amrfinderplus_tsv = Channel.empty()
+
     // Extract individual components from input channel
     ch_faa = ch_inputs.map{ meta, aminoacids, _cds_gff -> tuple(meta, aminoacids) }
     ch_gff = ch_inputs.map{ meta, _aminoacids, cds_gff -> tuple(meta, cds_gff) }
-
 
     // RUNNING ANNOTATION TOOLS
     // AMRfinderplus run
@@ -43,8 +47,8 @@ workflow AMR_ANNOTATION {
     if (!params.arg_skip_amrfinderplus) {
         AMRFINDERPLUS_RUN(ch_faa, ch_amrfinderplus_db)
         ch_versions = ch_versions.mix(AMRFINDERPLUS_RUN.out.versions)
+        ch_amrfinderplus_tsv = AMRFINDERPLUS_RUN.out.report
     }
-
 
     // RGI run
     if (!params.arg_skip_rgi) {
@@ -78,6 +82,7 @@ workflow AMR_ANNOTATION {
         // Reporting
         HAMRONIZATION_RGI(RGI_MAIN.out.tsv, 'tsv', RGI_MAIN.out.tool_version, RGI_MAIN.out.db_version)
         ch_versions = ch_versions.mix(HAMRONIZATION_RGI.out.versions)
+        ch_hamronization_rgi = HAMRONIZATION_RGI.out.tsv 
     }
 
     // DeepARG prepare download
@@ -113,18 +118,28 @@ workflow AMR_ANNOTATION {
         ch_input_to_hamronization_deeparg = DEEPARG_PREDICT.out.arg.mix(DEEPARG_PREDICT.out.potential_arg)
         HAMRONIZATION_DEEPARG(ch_input_to_hamronization_deeparg, 'tsv', '1.0.4', params.arg_deeparg_db_version)
         ch_versions = ch_versions.mix(HAMRONIZATION_DEEPARG.out.versions)
+        ch_hamronization_deeparg = HAMRONIZATION_DEEPARG.out.tsv
     }
 
     // Integrate and transform into a single GFF3 output file
-    AMRINTEGRATOR(
-            HAMRONIZATION_DEEPARG.out.tsv
-        .join(
-            HAMRONIZATION_RGI.out.tsv
-        ).join(
-            AMRFINDERPLUS_RUN.out.tsv
-        ).join(
-            ch_gff
-    )
+    // Handling missing inputs when any of the skip flag is on:
+    // arg_skip_amrfinderplus, arg_skip_rgi, arg_skip_deeparg
+
+    ch_gff
+        .join(ch_hamronization_deeparg, remainder: true)
+        .join(ch_hamronization_rgi, remainder: true)
+        .join(ch_amrfinderplus_tsv, remainder: true)
+        .filter { meta, gff, deeparg, rgi, amrfinder ->
+            // Only process if at least one tool produced results
+            deeparg != null || rgi != null || amrfinder != null
+        }
+        .map { meta, gff, deeparg, rgi, amrfinder ->
+            // Reorder to match AMRINTEGRATOR expected input: [meta, deeparg, rgi, amrfinder, gff]
+            [meta, deeparg, rgi, amrfinder, gff]
+        }
+        .set { ch_for_amrintegrator }
+
+    AMRINTEGRATOR(ch_for_amrintegrator)
     ch_versions = ch_versions.mix(AMRINTEGRATOR.out.versions)
 
     emit:
