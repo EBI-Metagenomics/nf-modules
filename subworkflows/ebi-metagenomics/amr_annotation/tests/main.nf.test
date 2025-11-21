@@ -3,6 +3,7 @@ nextflow_workflow {
     name "Test Subworkflow AMR_ANNOTATION"
     script "../main.nf"
     workflow "AMR_ANNOTATION"
+    config "./nextflow.config"
 
     tag "subworkflows"
     tag "subworkflows_ebimetagenomics"
@@ -12,12 +13,13 @@ nextflow_workflow {
     tag "nf-core/amrfinderplus/update"
     tag "nf-core/amrfinderplus/run"
     tag "nf-core/deeparg"
-    tag "nf-core/deeparg/downloaddata"
     tag "nf-core/deeparg/predict"
     tag "nf-core/rgi"
     tag "nf-core/rgi/cardannotation"
     tag "nf-core/rgi/main"
+    tag "nf-core/wget/main"
     tag "nf-core/untar"
+    tag "nf-core/unzip"
     tag "nf-core/hamronization"
     tag "nf-core/hamronization/rgi"
     tag "nf-core/hamronization/deeparg"
@@ -29,11 +31,12 @@ nextflow_workflow {
             [
                 "amrfinderplus/update",
                 "amrfinderplus/run",
-                "deeparg/downloaddata",
                 "deeparg/predict",
                 "rgi/cardannotation",
                 "rgi/main",
+                "wget",
                 "untar",
+                "unzip",
                 "hamronization/rgi",
                 "hamronization/deeparg"
             ]
@@ -41,7 +44,7 @@ nextflow_workflow {
         nfcoreLink("${launchDir}/library/", "${baseDir}/modules/")
     }
 
-    test("detect_amr - proteins") {
+    test("detect_amr - amrfinderplus") {
         when {
             params {
                 arg_amrfinderplus_db   = null
@@ -51,10 +54,117 @@ nextflow_workflow {
                 arg_deeparg_db_version = "2"
  
                 arg_skip_amrfinderplus = false 
+                arg_skip_rgi           = true
+                arg_skip_deeparg       = true
+            }
+
+            workflow {
+                """
+                input[0] = Channel.of( [ [ id:'test' ], // meta map
+                    file('${moduleDir}/tests/minitest.faa', checkIfExists: true),
+                    file('${moduleDir}/tests/minitest.gff', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
+        }
+    }
+
+    test("detect_amr - rgi") {
+        when {
+            params {
+                arg_amrfinderplus_db   = null
+                arg_rgi_db             = null
+                arg_deeparg_db         = null
+                arg_deeparg_model      = "LS"
+                arg_deeparg_db_version = "2"
+
+                arg_skip_amrfinderplus = true
                 arg_skip_rgi           = false
+                arg_skip_deeparg       = true
+            }
+
+            workflow {
+                """
+                input[0] = Channel.of( [ [ id:'test' ], // meta map
+                    file('${moduleDir}/tests/minitest.faa', checkIfExists: true),
+                    file('${moduleDir}/tests/minitest.gff', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
+        }
+    }
+
+    test("detect_amr - deeparg") {
+        when {
+            params {
+                arg_amrfinderplus_db   = null
+                arg_rgi_db             = null
+                arg_deeparg_db         = null
+                arg_deeparg_model      = "LS"
+                arg_deeparg_db_version = "2"
+
+                arg_skip_amrfinderplus = true
+                arg_skip_rgi           = true
                 arg_skip_deeparg       = false
             }
 
+            workflow {
+                """
+                input[0] = Channel.of( [ [ id:'test' ], // meta map
+                    file('${moduleDir}/tests/minitest.faa', checkIfExists: true),
+                    file('${moduleDir}/tests/minitest.gff', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(workflow.out).match()}
+            )
+        }
+
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
+        }
+    }
+
+    test("detect_amr - negative") {
+        when {
+            params {
+                arg_amrfinderplus_db   = null
+                arg_rgi_db             = null
+                arg_deeparg_db         = null
+                arg_deeparg_model      = "LS"
+                arg_deeparg_db_version = "2"
+
+                arg_skip_amrfinderplus = true
+                arg_skip_rgi           = true
+                arg_skip_deeparg       = true
+            }
 
             workflow {
                 """

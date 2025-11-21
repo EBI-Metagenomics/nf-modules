@@ -8,7 +8,11 @@ process AMRINTEGRATOR {
         'biocontainers/mgnify-pipelines-toolkit:1.4.1--pyhdfd78af_0' }"
 
     input:
-    tuple val(meta), path(deeparg), path(rgi), path(amrfp), path(gff)
+    tuple val(meta), 
+         path(deeparg, stageAs: 'deeparg_hamr.tsv'), 
+         path(rgi, stageAs: 'rgi_hamr.tsv'), 
+         path(amrfp, stageAs: 'amrfinder.tsv'), 
+         path(gff)
 
     output:
     tuple val(meta), path("*.gff"), emit: gff
@@ -20,13 +24,16 @@ process AMRINTEGRATOR {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def deeparg_param = deeparg.toString() ? "--deeparg_hamr ${deeparg}" : ""
+    def rgi_param = rgi.toString() ? "--rgi_hamr ${rgi}" : ""
+    def amrfp_param = amrfp.toString() ? "--amrfp_out ${amrfp}" : ""
     """
     amr_integrator \\
-        --deeparg_hamr ${deeparg} \\
-        --rgi_hamr ${rgi} \\
-        --amrfp_out ${amrfp} \\
+        ${deeparg_param} \\
+        ${rgi_param} \\
+        ${amrfp_param} \\
         --cds_gff ${gff} \\
-        --output ${prefix}.gff \\
+        --output integrated_${prefix}.gff \\
         $args
 
     cat <<-END_VERSIONS > versions.yml
