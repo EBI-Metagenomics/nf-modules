@@ -225,8 +225,6 @@ workflow AMR_ANNOTATION {
             [meta, deeparg, rgi, amrfinder, gff]
         }
 
-    ch_for_amrintegrator.view()
-
     AMRINTEGRATOR(ch_for_amrintegrator)
     ch_versions = ch_versions.mix(AMRINTEGRATOR.out.versions)
 
