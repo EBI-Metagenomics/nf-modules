@@ -45,7 +45,7 @@ input:
         pattern: "*.{gff,gff.gz}"
         ontologies: []
 output:
-  gff:
+  - gff:
     - - meta:
           type: map
           description: |
@@ -56,7 +56,7 @@ output:
           description: The GFF3 file containing the genes with AMR annotation
           pattern: "*.gff"
           ontologies: []
-  versions:
+  - versions:
     - "versions.yml":
         type: file
         description: File containing software versions
