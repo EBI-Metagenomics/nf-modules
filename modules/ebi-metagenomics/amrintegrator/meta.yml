@@ -46,16 +46,16 @@ input:
         ontologies: []
 output:
   - gff:
-      - - meta:
-            type: map
-            description: |
-              Groovy Map containing sample information
-              e.g. `[ id:'sample1' ]`
-        - "*.gff":
-            type: file
-            description: The GFF3 file containing the genes with AMR annotation
-            pattern: "*.gff"
-            ontologies: []
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.gff":
+          type: file
+          description: The GFF3 file containing the genes with AMR annotation
+          pattern: "*.gff"
+          ontologies: []
   - versions:
       - "versions.yml":
           type: file
