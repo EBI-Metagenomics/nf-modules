@@ -1,0 +1,64 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ebi-metagenomics/nf-modules/master/subworkflows/yaml-schema.json
+name: "amr_annotation"
+description: AMR annotation, harmonisation and integration
+keywords:
+  - amr
+  - deeparg
+  - rgi
+  - amrfinderplus
+  - hamronization
+  - gff
+components:
+  - deeparg/predict:
+      git_remote: https://github.com/nf-core/modules.git
+  - hamronization/deeparg:
+      git_remote: https://github.com/nf-core/modules.git
+  - rgi/cardannotation:
+      git_remote: https://github.com/nf-core/modules.git
+  - rgi/main:
+      git_remote: https://github.com/nf-core/modules.git
+  - hamronization/rgi:
+      git_remote: https://github.com/nf-core/modules.git
+  - amrfinderplus/update:
+      git_remote: https://github.com/nf-core/modules.git
+  - amrfinderplus/run:
+      git_remote: https://github.com/nf-core/modules.git
+  - wget:
+      git_remote: https://github.com/nf-core/modules.git
+  - untar:
+      git_remote: https://github.com/nf-core/modules.git
+  - unzip:
+      git_remote: https://github.com/nf-core/modules.git
+  - amrintegrator
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1', single_end:false ]`
+    ch_inputs:
+      type: file
+      description: |
+        The input channel containing the protein fasta file and gff file
+output:
+  - versions:
+      type: file
+      description: |
+        File containing software versions
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+  - gff:
+      description: |
+        Channel containing a gff file with ARG annotation
+        Structure: [ val(meta), path("*.gff") ]
+      meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+      "*.gff":
+        type: file
+        description: gff file with ARG annotation
+        pattern: "*.gff"
+authors:
+  - "@Ales-ibt"
