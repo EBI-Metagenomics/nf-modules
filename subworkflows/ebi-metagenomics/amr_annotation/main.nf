@@ -1,6 +1,5 @@
 // Subworkflow to generate antimicrobial resistance annotation from protein and gene files
 // Outputs are standardised and integrated into a single GFF3 format output
-
 include { AMRFINDERPLUS_UPDATE             } from '../../../modules/nf-core/amrfinderplus/update/main'
 include { AMRFINDERPLUS_RUN                } from '../../../modules/nf-core/amrfinderplus/run/main'
 include { WGET as WGET_DEEPARG             } from '../../../modules/nf-core/wget/main'
@@ -19,7 +18,7 @@ workflow AMR_ANNOTATION {
     ch_inputs            // channel: tuple( val(meta), path(aminoacids), path(cds_gff) )
 
     main:
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     // Extract individual components from input channel
     ch_faa = ch_inputs.map{ meta, aminoacids, _cds_gff ->
@@ -33,19 +32,19 @@ workflow AMR_ANNOTATION {
     // AMRfinderplus run
     // Prepare channel for database
     if (!params.arg_skip_amrfinderplus && params.arg_amrfinderplus_db) {
-        ch_amrfinderplus_db = Channel
+        ch_amrfinderplus_db = channel
             .fromPath(params.arg_amrfinderplus_db, checkIfExists: true)
             .first()
     }
     else if (!params.arg_skip_amrfinderplus && !params.arg_amrfinderplus_db) {
         AMRFINDERPLUS_UPDATE()
-        ch_versions = ch_versions.mix(AMRFINDERPLUS_UPDATE.out.versions)
+        ch_versions = ch_versions.mix(AMRFINDERPLUS_UPDATE.out.versions.first())
         ch_amrfinderplus_db = AMRFINDERPLUS_UPDATE.out.db
     }
 
     if (!params.arg_skip_amrfinderplus) {
         AMRFINDERPLUS_RUN(ch_faa, ch_amrfinderplus_db)
-        ch_versions = ch_versions.mix(AMRFINDERPLUS_RUN.out.versions)
+        ch_versions = ch_versions.mix(AMRFINDERPLUS_RUN.out.versions.first())
         ch_amrfinderplus_results = AMRFINDERPLUS_RUN.out.report
     }
 
@@ -53,18 +52,18 @@ workflow AMR_ANNOTATION {
     if (!params.arg_skip_rgi) {
         if (!params.arg_rgi_db) {
             // Download and untar CARD
-            ch_card_url = Channel.of([
+            ch_card_url = channel.of([
                 [id: 'card_database'],
                 'https://card.mcmaster.ca/latest/data'
             ])
             WGET_CARD(ch_card_url)
-            ch_versions = ch_versions.mix(WGET_CARD.out.versions)
+            ch_versions = ch_versions.mix(WGET_CARD.out.versions.first())
             UNTAR_CARD(WGET_CARD.out.outfile)
-            ch_versions = ch_versions.mix(UNTAR_CARD.out.versions)
+            ch_versions = ch_versions.mix(UNTAR_CARD.out.versions.first())
             rgi_db = UNTAR_CARD.out.untar.map { it[1] }
             RGI_CARDANNOTATION(rgi_db)
             card = RGI_CARDANNOTATION.out.db
-            ch_versions = ch_versions.mix(RGI_CARDANNOTATION.out.versions)
+            ch_versions = ch_versions.mix(RGI_CARDANNOTATION.out.versions.first())
         }
         else {
 
@@ -73,7 +72,7 @@ workflow AMR_ANNOTATION {
             if (!rgi_db.contains("card_database_processed")) {
                 RGI_CARDANNOTATION(rgi_db)
                 card = RGI_CARDANNOTATION.out.db
-                ch_versions = ch_versions.mix(RGI_CARDANNOTATION.out.versions)
+                ch_versions = ch_versions.mix(RGI_CARDANNOTATION.out.versions.first())
             }
             else {
                 card = rgi_db
@@ -81,33 +80,33 @@ workflow AMR_ANNOTATION {
         }
 
         RGI_MAIN(ch_faa, card, [])
-        ch_versions = ch_versions.mix(RGI_MAIN.out.versions)
+        ch_versions = ch_versions.mix(RGI_MAIN.out.versions.first())
 
         // Reporting
         HAMRONIZATION_RGI(RGI_MAIN.out.tsv, 'tsv', RGI_MAIN.out.tool_version, RGI_MAIN.out.db_version)
-        ch_versions = ch_versions.mix(HAMRONIZATION_RGI.out.versions)
+        ch_versions = ch_versions.mix(HAMRONIZATION_RGI.out.versions.first())
         ch_rgi_results = HAMRONIZATION_RGI.out.tsv
     }
 
     // DeepARG prepare download
     if (!params.arg_skip_deeparg && params.arg_deeparg_db) {
-        ch_deeparg_db = Channel
+        ch_deeparg_db = channel
             .fromPath(params.arg_deeparg_db, checkIfExists: true)
             .first()
     }
     else if (!params.arg_skip_deeparg && !params.arg_deeparg_db) {
-        ch_deeparg_url = Channel.of([
+        ch_deeparg_url = channel.of([
             [ id: 'deeparg_db' ],
             'https://zenodo.org/records/8280582/files/deeparg.zip?download=1'
         ])
     
         // Download the database using WGET
         WGET_DEEPARG( ch_deeparg_url )
-        ch_versions = ch_versions.mix(WGET_DEEPARG.out.versions)
+        ch_versions = ch_versions.mix(WGET_DEEPARG.out.versions.first())
     
         // Unzip the downloaded database
         UNZIP_DEEPARG(WGET_DEEPARG.out.outfile )
-        ch_versions = ch_versions.mix(UNZIP_DEEPARG.out.versions)
+        ch_versions = ch_versions.mix(UNZIP_DEEPARG.out.versions.first())
     
         // Extract the unzipped directory path
         ch_deeparg_db = UNZIP_DEEPARG.out.unzipped_archive.map { meta, dir -> dir }
@@ -125,13 +124,13 @@ workflow AMR_ANNOTATION {
             .set { ch_input_for_deeparg }
 
         DEEPARG_PREDICT(ch_input_for_deeparg, ch_deeparg_db)
-        ch_versions = ch_versions.mix(DEEPARG_PREDICT.out.versions)
+        ch_versions = ch_versions.mix(DEEPARG_PREDICT.out.versions.first())
 
         // Reporting
         // Note: currently hardcoding versions as unreported by DeepARG
         // Make sure to update on version bump
         HAMRONIZATION_DEEPARG(DEEPARG_PREDICT.out.arg, 'tsv', '1.0.4', params.arg_deeparg_db_version)
-        ch_versions = ch_versions.mix(HAMRONIZATION_DEEPARG.out.versions)
+        ch_versions = ch_versions.mix(HAMRONIZATION_DEEPARG.out.versions.first())
         ch_deeparg_results = HAMRONIZATION_DEEPARG.out.tsv
     }
 
@@ -144,15 +143,15 @@ workflow AMR_ANNOTATION {
 
     // Create flag channels for tools that ran (keyed by meta.id)
     ch_deeparg_flags = params.arg_skip_deeparg ? 
-        Channel.empty() : 
+        channel.empty() : 
         ch_deeparg_results.map { meta, _file -> [meta.id, 'deeparg'] }
     
     ch_rgi_flags = params.arg_skip_rgi ? 
-        Channel.empty() : 
+        channel.empty() : 
         ch_rgi_results.map { meta, _file -> [meta.id, 'rgi'] }
     
     ch_amrfinder_flags = params.arg_skip_amrfinderplus ? 
-        Channel.empty() : 
+        channel.empty() : 
         ch_amrfinderplus_results.map { meta, _file -> [meta.id, 'amrfinder'] }
 
     // Combine all flags to identify samples that have at least one tool result
@@ -226,7 +225,7 @@ workflow AMR_ANNOTATION {
         }
 
     AMRINTEGRATOR(ch_for_amrintegrator)
-    ch_versions = ch_versions.mix(AMRINTEGRATOR.out.versions)
+    ch_versions = ch_versions.mix(AMRINTEGRATOR.out.versions.first())
 
     emit:
     gff      = AMRINTEGRATOR.out.gff            // channel: [ val(meta), [ gff ] ]
