@@ -16,14 +16,14 @@ include { AMRINTEGRATOR                    } from '../../../modules/ebi-metageno
 workflow AMR_ANNOTATION {
     take:
     ch_inputs                  // channel: tuple( val(meta), path(aminoacids), path(cds_gff) )
-    arg_amrfinderplus_db       // channel: path( amrfinderplus_db )
-    arg_deeparg_db             // channel: path( deeparg_db )
-    arg_deeparg_db_version     // channel: val( deeparg_db_version )
-    arg_deeparg_model          // channel: val( deeparg_model )
-    arg_rgi_db                 // channel: path( rgi_db )
-    arg_skip_amrfinderplus     // boolean 
-    arg_skip_deeparg           // boolean
-    arg_skip_rgi               // boolean
+    ch_amrfinderplus_db       // channel: path( amrfinderplus_db )
+    ch_deeparg_db             // channel: path( deeparg_db )
+    ch_deeparg_db_version     // channel: val( deeparg_db_version )
+    ch_deeparg_model          // channel: val( deeparg_model )
+    ch_rgi_db                 // channel: path( rgi_db )
+    skip_amrfinderplus     // boolean 
+    skip_deeparg           // boolean
+    skip_rgi               // boolean
 
     main:
     ch_versions = channel.empty()
@@ -39,24 +39,24 @@ workflow AMR_ANNOTATION {
     // RUNNING ANNOTATION TOOLS
     // AMRfinderplus run
     // Prepare channel for database
-    if (!arg_skip_amrfinderplus && arg_amrfinderplus_db) {
-        ch_amrfinderplus_db = arg_amrfinderplus_db
+    if (!skip_amrfinderplus && ch_amrfinderplus_db) {
+        ch_amrfinderplus_db = ch_amrfinderplus_db
     }
-    else if (!arg_skip_amrfinderplus && !arg_amrfinderplus_db) {
+    else if (!skip_amrfinderplus && !ch_amrfinderplus_db) {
         AMRFINDERPLUS_UPDATE()
         ch_versions = ch_versions.mix(AMRFINDERPLUS_UPDATE.out.versions.first())
         ch_amrfinderplus_db = AMRFINDERPLUS_UPDATE.out.db
     }
 
-    if (!arg_skip_amrfinderplus) {
+    if (!skip_amrfinderplus) {
         AMRFINDERPLUS_RUN(ch_faa, ch_amrfinderplus_db)
         ch_versions = ch_versions.mix(AMRFINDERPLUS_RUN.out.versions.first())
         ch_amrfinderplus_results = AMRFINDERPLUS_RUN.out.report
     }
 
     // RGI run
-    if (!arg_skip_rgi) {
-        if (!arg_rgi_db) {
+    if (!skip_rgi) {
+        if (!ch_rgi_db) {
             // Download and untar CARD
             ch_card_url = channel.of([
                 [id: 'card_database'],
@@ -73,7 +73,7 @@ workflow AMR_ANNOTATION {
         }
         else {
             // Use user-supplied database
-            rgi_db = arg_rgi_db
+            rgi_db = ch_rgi_db
             if (!rgi_db.contains("card_database_processed")) {
                 RGI_CARDANNOTATION(rgi_db)
                 card = RGI_CARDANNOTATION.out.db
@@ -94,10 +94,10 @@ workflow AMR_ANNOTATION {
     }
 
     // DeepARG prepare download
-    if (!arg_skip_deeparg && arg_deeparg_db) {
-        ch_deeparg_db = arg_deeparg_db
+    if (!skip_deeparg && ch_deeparg_db) {
+        ch_deeparg_db = ch_deeparg_db
     }
-    else if (!arg_skip_deeparg && !arg_deeparg_db) {
+    else if (!skip_deeparg && !ch_deeparg_db) {
         ch_deeparg_url = channel.of([
             [ id: 'deeparg_db' ],
             'https://zenodo.org/records/8280582/files/deeparg.zip?download=1'
@@ -116,13 +116,11 @@ workflow AMR_ANNOTATION {
     }
 
     // DeepARG run
-    if (!arg_skip_deeparg) {
+    if (!skip_deeparg) {
         ch_faa
-            .map { it ->
-                def meta = it[0]
-                def anno = it[1]
-                def model = arg_deeparg_model
-                [meta, anno, model]
+           .map { meta, annotations ->
+                def model = params.ch_deeparg_model
+                [meta, annotations, model]
             }
             .set { ch_input_for_deeparg }
 
@@ -145,15 +143,15 @@ workflow AMR_ANNOTATION {
     ch_gff_keyed = ch_gff.map { meta, gff -> [meta.id, meta, gff] }
 
     // Create flag channels for tools that ran (keyed by meta.id)
-    ch_deeparg_flags = arg_skip_deeparg ? 
+    ch_deeparg_flags = skip_deeparg ? 
         channel.empty() : 
         ch_deeparg_results.map { meta, _file -> [meta.id, 'deeparg'] }
     
-    ch_rgi_flags = arg_skip_rgi ? 
+    ch_rgi_flags = skip_rgi ? 
         channel.empty() : 
         ch_rgi_results.map { meta, _file -> [meta.id, 'rgi'] }
     
-    ch_amrfinder_flags = arg_skip_amrfinderplus ? 
+    ch_amrfinder_flags = skip_amrfinderplus ? 
         channel.empty() : 
         ch_amrfinderplus_results.map { meta, _file -> [meta.id, 'amrfinder'] }
 
@@ -178,7 +176,7 @@ workflow AMR_ANNOTATION {
     // Join tool results (keyed by meta.id) with the filtered GFF
     
     // Add deeparg results (or empty list if skipped)
-    if (!arg_skip_deeparg) {
+    if (!skip_deeparg) {
         ch_deeparg_keyed = ch_deeparg_results.map { meta, file -> [meta.id, file] }
         ch_for_amrintegrator = ch_gff_filtered
             .join(ch_deeparg_keyed, remainder: true)
@@ -191,7 +189,7 @@ workflow AMR_ANNOTATION {
     }
 
     // Add rgi results (or empty list if skipped)
-    if (!arg_skip_rgi) {
+    if (!skip_rgi) {
         ch_rgi_keyed = ch_rgi_results.map { meta, file -> [meta.id, file] }
         ch_for_amrintegrator = ch_for_amrintegrator
             .join(ch_rgi_keyed, remainder: true)
@@ -206,7 +204,7 @@ workflow AMR_ANNOTATION {
     }
 
     // Add amrfinderplus results (or empty list if skipped)
-    if (!arg_skip_amrfinderplus) {
+    if (!skip_amrfinderplus) {
         ch_amrfinder_keyed = ch_amrfinderplus_results.map { meta, file -> [meta.id, file] }
         ch_for_amrintegrator = ch_for_amrintegrator
             .join(ch_amrfinder_keyed, remainder: true)

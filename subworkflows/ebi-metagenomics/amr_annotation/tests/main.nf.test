@@ -57,9 +57,9 @@ nextflow_workflow {
                 input[3] = null        // channel: val( deeparg_db_version )
                 input[4] = null        // channel: val( deeparg_model )
                 input[5] = null        // channel: path( rgi_db )
-                input[6] = false       // boolean arg_skip_amrfinderplus
-                input[7] = true        // boolean arg_skip_deeparg
-                input[8] = true        // boolean arg_skip_rgi
+                input[6] = false       // boolean skip_amrfinderplus
+                input[7] = true        // boolean skip_deeparg
+                input[8] = true        // boolean skip_rgi
                 """
             }
         }
@@ -89,9 +89,9 @@ nextflow_workflow {
                 input[3] = null        // channel: val( deeparg_db_version )
                 input[4] = null        // channel: val( deeparg_model )
                 input[5] = null        // channel: path( rgi_db )
-                input[6] = true        // boolean arg_skip_amrfinderplus
-                input[7] = true        // boolean arg_skip_deeparg
-                input[8] = false       // boolean arg_skip_rgi
+                input[6] = true        // boolean skip_amrfinderplus
+                input[7] = true        // boolean skip_deeparg
+                input[8] = false       // boolean skip_rgi
                 """
             }
         }
@@ -121,9 +121,9 @@ nextflow_workflow {
                 input[3] = "2"         // channel: val( deeparg_db_version )
                 input[4] = "LS"        // channel: val( deeparg_model )
                 input[5] = null        // channel: path( rgi_db )
-                input[6] = true        // boolean arg_skip_amrfinderplus
-                input[7] = false       // boolean arg_skip_deeparg
-                input[8] = true        // boolean arg_skip_rgi
+                input[6] = true        // boolean skip_amrfinderplus
+                input[7] = false       // boolean skip_deeparg
+                input[8] = true        // boolean skip_rgi
                 """
             }
         }
@@ -153,9 +153,9 @@ nextflow_workflow {
                 input[3] = null        // channel: val( deeparg_db_version )
                 input[4] = null        // channel: val( deeparg_model )
                 input[5] = null        // channel: path( rgi_db )
-                input[6] = true        // boolean arg_skip_amrfinderplus
-                input[7] = true        // boolean arg_skip_deeparg
-                input[8] = true        // boolean arg_skip_rgi
+                input[6] = true        // boolean skip_amrfinderplus
+                input[7] = true        // boolean skip_deeparg
+                input[8] = true        // boolean skip_rgi
                 """
             }
         }
@@ -185,9 +185,9 @@ nextflow_workflow {
                 input[3] = "2"         // channel: val( deeparg_db_version )
                 input[4] = "LS"        // channel: val( deeparg_model )
                 input[5] = null        // channel: path( rgi_db )
-                input[6] = false       // boolean arg_skip_amrfinderplus
-                input[7] = false       // boolean arg_skip_deeparg
-                input[8] = false       // boolean arg_skip_rgi
+                input[6] = false       // boolean skip_amrfinderplus
+                input[7] = false       // boolean skip_deeparg
+                input[8] = false       // boolean skip_rgi
                 """
             }
         }
