@@ -60,7 +60,7 @@ output:
           description: The GFF3 file containing the genes with AMR annotation
           pattern: "*.gff"
           ontologies:
-          - edam: "http://edamontology.org/format_1975" # GFF
+            - edam: "http://edamontology.org/format_1975" # GFF
   - versions:
       - "versions.yml":
           type: file
