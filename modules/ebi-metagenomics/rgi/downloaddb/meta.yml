@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: rgi_downloaddb
+description: Module to download and decompress CARD database for RGI tool
+keywords:
+  - rgi
+  - card_db
+  - wget
+  - tar
+tools:
+  - wget:
+      description: "wget is a free utility for non-interactive download of files from
+        the Web."
+      homepage: "https://www.gnu.org/software/wget/"
+      documentation: "https://www.gnu.org/software/wget/manual/wget.html"
+      licence: ["GPL"]
+      identifier: ""
+  - untar:
+      description: |
+        Extract tar, tar.gz, tar.bz2, tar.xz files.
+      documentation: https://www.gnu.org/software/tar/manual/
+      licence: ["GPL-3.0-or-later"]
+      identifier: ""
+# No input required for download module
+output:
+  - card_json:
+      - "card.json"
+          type: file
+          description: CARD database in json format
+          pattern: "card.json"
+          ontologies:
+            - edam: http://edamontology.org/format_3464 # JSON
+  - versions:
+      - "versions.yml":
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+          ontologies:
+            - edam: "http://edamontology.org/format_3750" # YAML
+authors:
+  - "@Ales-ibt"
+maintainers:
+  - "@Ales-ibt"

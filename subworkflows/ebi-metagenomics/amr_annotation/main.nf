@@ -5,10 +5,9 @@ include { AMRFINDERPLUS_RUN                } from '../../../modules/nf-core/amrf
 include { WGET as WGET_DEEPARG             } from '../../../modules/nf-core/wget/main'
 include { UNZIP as UNZIP_DEEPARG           } from '../../../modules/nf-core/unzip/main'
 include { DEEPARG_PREDICT                  } from '../../../modules/nf-core/deeparg/predict/main'
+include { RGI_DOWNLOADDB                   } from '../../../modules/ebi-metagenomics/rgi/downloaddb/main'
 include { RGI_CARDANNOTATION               } from '../../../modules/nf-core/rgi/cardannotation/main'
 include { RGI_MAIN                         } from '../../../modules/nf-core/rgi/main/main'
-include { WGET as WGET_CARD                } from '../../../modules/nf-core/wget/main'
-include { UNTAR as UNTAR_CARD              } from '../../../modules/nf-core/untar/main'
 include { HAMRONIZATION_RGI                } from '../../../modules/nf-core/hamronization/rgi/main'
 include { HAMRONIZATION_DEEPARG            } from '../../../modules/nf-core/hamronization/deeparg/main'
 include { AMRINTEGRATOR                    } from '../../../modules/ebi-metagenomics/amrintegrator/main'
@@ -58,17 +57,10 @@ workflow AMR_ANNOTATION {
     // RGI run
     if (!skip_rgi) {
         if (!ch_rgi_db) {
-            // Download and untar CARD
-            ch_card_url = channel.of([
-                [id: 'card_database'],
-                'https://card.mcmaster.ca/latest/data'
-            ])
-            WGET_CARD(ch_card_url)
-            ch_versions = ch_versions.mix(WGET_CARD.out.versions.first())
-            UNTAR_CARD(WGET_CARD.out.outfile)
-            ch_versions = ch_versions.mix(UNTAR_CARD.out.versions.first())
-            rgi_db = UNTAR_CARD.out.untar.map { it[1] }
-            RGI_CARDANNOTATION(rgi_db)
+            // Download and process CARD database
+            RGI_DOWNLOADDB()
+            ch_versions = ch_versions.mix(RGI_DOWNLOADDB.out.versions.first())
+            RGI_CARDANNOTATION(RGI_DOWNLOADDB.out.card_json)
             card = RGI_CARDANNOTATION.out.db
             ch_versions = ch_versions.mix(RGI_CARDANNOTATION.out.versions.first())
         }

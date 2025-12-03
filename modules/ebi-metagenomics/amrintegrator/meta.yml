@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "amrintegrator"
-description: write your description here
+description: Module that integrates the outputs of ARG annotation tools into a single GFF file
 keywords:
   - amr
   - deeparg
