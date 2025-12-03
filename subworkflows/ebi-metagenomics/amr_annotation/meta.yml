@@ -41,45 +41,45 @@ input:
       description: |
         The input channel containing the protein fasta file and gff file
         e.g. `[ [meta], aminoacids, cds_gff ]`
-  - ch_amrfinderplus_db
+  - ch_amrfinderplus_db:
       type: file
       description: |
         The input channel containing the path to the compressed amrfinderplus database
       pattern: "*.tar.gz"
-  - ch_deeparg_db
+  - ch_deeparg_db:
       type: file
       description: |
         The input channel containing the path to deeparg database
-  - ch_deeparg_db_version
+  - ch_deeparg_db_version:
       type: value
       description: |
         The input channel containing the database version of deeparg
       pattern: "1 or 2"
-  - ch_deeparg_model
+  - ch_deeparg_model:
       type: value
       description: |
         The input channel containing the deeparg model
         SS for reads or LS for genes/proteins
       pattern: "SS or LS"
-  - ch_deeparg_tool_version
+  - ch_deeparg_tool_version:
       type: value
       description: |
         The input channel containing the deeparg tool version
       pattern: "[0-9]\.[0-9]\.[0-9]"
-  - ch_rgi_db
+  - ch_rgi_db:
       type: file
       description: |
         The input channel containing the path to the CARD database
         properly formatted for RGI
-  - skip_amrfinderplus
+  - skip_amrfinderplus:
         type: boolean
         description: skip amrfinderplus (true) or run it (false)
         pattern: "true or false"
-  - skip_deeparg
+  - skip_deeparg:
         type: boolean
         description: skip deeparg (true) or run it (false)
         pattern: "true or false"
-  - skip_rgi
+  - skip_rgi:
         type: boolean
         description: skip rgi (true) or run it (false)
         pattern: "true or false"
