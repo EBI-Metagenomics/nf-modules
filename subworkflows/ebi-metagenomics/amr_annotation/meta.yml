@@ -54,7 +54,7 @@ input:
       type: value
       description: |
         The input channel containing the database version of deeparg
-      pattern: "1 or 2"
+      pattern: "[0-9]"
   - ch_deeparg_model:
       type: value
       description: |
@@ -65,7 +65,7 @@ input:
       type: value
       description: |
         The input channel containing the deeparg tool version
-      pattern: "[0-9]\.[0-9]\.[0-9]"
+      pattern: "[0-9].[0-9].[0-9]"
   - ch_rgi_db:
       type: file
       description: |
