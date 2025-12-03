@@ -9,10 +9,10 @@ process AMRINTEGRATOR {
 
     input:
     tuple val(meta), 
-         path(deeparg, stageAs: 'deeparg_hamr.tsv'), 
-         path(rgi, stageAs: 'rgi_hamr.tsv'), 
-         path(amrfp, stageAs: 'amrfinder.tsv'), 
-         path(gff)
+     path(deeparg, stageAs: 'deeparg_hamr.tsv'), 
+     path(rgi, stageAs: 'rgi_hamr.tsv'), 
+     path(amrfp, stageAs: 'amrfinder.tsv'), 
+     path(gff)
 
     output:
     tuple val(meta), path("*.gff"), optional: true, emit: gff
