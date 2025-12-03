@@ -72,17 +72,17 @@ input:
         The input channel containing the path to the CARD database
         properly formatted for RGI
   - skip_amrfinderplus:
-        type: boolean
-        description: skip amrfinderplus (true) or run it (false)
-        pattern: "true or false"
+      type: boolean
+      description: skip amrfinderplus (true) or run it (false)
+      pattern: "true or false"
   - skip_deeparg:
-        type: boolean
-        description: skip deeparg (true) or run it (false)
-        pattern: "true or false"
+      type: boolean
+      description: skip deeparg (true) or run it (false)
+      pattern: "true or false"
   - skip_rgi:
-        type: boolean
-        description: skip rgi (true) or run it (false)
-        pattern: "true or false"
+      type: boolean
+      description: skip rgi (true) or run it (false)
+      pattern: "true or false"
 output:
   - versions:
       type: file
