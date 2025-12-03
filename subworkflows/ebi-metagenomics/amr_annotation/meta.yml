@@ -61,6 +61,11 @@ input:
         The input channel containing the deeparg model
         SS for reads or LS for genes/proteins
       pattern: "SS or LS"
+  - ch_deeparg_tool_version
+      type: value
+      description: |
+        The input channel containing the deeparg tool version
+      pattern: "[0-9]\.[0-9]\.[0-9]"
   - ch_rgi_db
       type: file
       description: |

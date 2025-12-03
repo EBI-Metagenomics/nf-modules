@@ -15,15 +15,16 @@ include { AMRINTEGRATOR                    } from '../../../modules/ebi-metageno
 
 workflow AMR_ANNOTATION {
     take:
-    ch_inputs                  // channel: tuple( val(meta), path(aminoacids), path(cds_gff) )
+    ch_inputs                 // channel: tuple( val(meta), path(aminoacids), path(cds_gff) )
     ch_amrfinderplus_db       // channel: path( amrfinderplus_db )
     ch_deeparg_db             // channel: path( deeparg_db )
     ch_deeparg_db_version     // channel: val( deeparg_db_version )
     ch_deeparg_model          // channel: val( deeparg_model )
+    ch_deeparg_tool_version   // channel: val( deeparg_tool_version )
     ch_rgi_db                 // channel: path( rgi_db )
-    skip_amrfinderplus     // boolean 
-    skip_deeparg           // boolean
-    skip_rgi               // boolean
+    skip_amrfinderplus        // boolean 
+    skip_deeparg              // boolean
+    skip_rgi                  // boolean
 
     main:
     ch_versions = channel.empty()
@@ -130,7 +131,7 @@ workflow AMR_ANNOTATION {
         // Reporting
         // Note: currently hardcoding versions as unreported by DeepARG
         // Make sure to update on version bump
-        HAMRONIZATION_DEEPARG(DEEPARG_PREDICT.out.arg, 'tsv', '1.0.4', arg_deeparg_db_version)
+        HAMRONIZATION_DEEPARG(DEEPARG_PREDICT.out.arg, 'tsv', ch_deeparg_tool_version, ch_deeparg_db_version)
         ch_versions = ch_versions.mix(HAMRONIZATION_DEEPARG.out.versions.first())
         ch_deeparg_results = HAMRONIZATION_DEEPARG.out.tsv
     }

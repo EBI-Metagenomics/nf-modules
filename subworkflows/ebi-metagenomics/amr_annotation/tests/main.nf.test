@@ -56,10 +56,11 @@ nextflow_workflow {
                 input[2] = null        // channel: path( deeparg )
                 input[3] = null        // channel: val( deeparg_db_version )
                 input[4] = null        // channel: val( deeparg_model )
-                input[5] = null        // channel: path( rgi_db )
-                input[6] = false       // boolean skip_amrfinderplus
-                input[7] = true        // boolean skip_deeparg
-                input[8] = true        // boolean skip_rgi
+                input[5] = null        // channel: val( deeparg_tool_version )
+                input[6] = null        // channel: path( rgi_db )
+                input[7] = false       // boolean skip_amrfinderplus
+                input[8] = true        // boolean skip_deeparg
+                input[9] = true        // boolean skip_rgi
                 """
             }
         }
@@ -88,10 +89,11 @@ nextflow_workflow {
                 input[2] = null        // channel: path( deeparg )
                 input[3] = null        // channel: val( deeparg_db_version )
                 input[4] = null        // channel: val( deeparg_model )
-                input[5] = null        // channel: path( rgi_db )
-                input[6] = true        // boolean skip_amrfinderplus
-                input[7] = true        // boolean skip_deeparg
-                input[8] = false       // boolean skip_rgi
+                input[5] = null        // channel: val( deeparg_tool_version )
+                input[6] = null        // channel: path( rgi_db )
+                input[7] = true        // boolean skip_amrfinderplus
+                input[8] = true        // boolean skip_deeparg
+                input[9] = false       // boolean skip_rgi
                 """
             }
         }
@@ -120,10 +122,11 @@ nextflow_workflow {
                 input[2] = channel.of( file('${moduleDir}/tests/databases/minideeparg/db', checkIfExists: true) )       // channel: path( deeparg )
                 input[3] = "2"         // channel: val( deeparg_db_version )
                 input[4] = "LS"        // channel: val( deeparg_model )
-                input[5] = null        // channel: path( rgi_db )
-                input[6] = true        // boolean skip_amrfinderplus
-                input[7] = false       // boolean skip_deeparg
-                input[8] = true        // boolean skip_rgi
+                input[5] = "1.0.4"     // channel: val( deeparg_tool_version )
+                input[6] = null        // channel: path( rgi_db )
+                input[7] = true        // boolean skip_amrfinderplus
+                input[8] = false       // boolean skip_deeparg
+                input[9] = true        // boolean skip_rgi
                 """
             }
         }
@@ -152,10 +155,11 @@ nextflow_workflow {
                 input[2] = null        // channel: path( deeparg )
                 input[3] = null        // channel: val( deeparg_db_version )
                 input[4] = null        // channel: val( deeparg_model )
-                input[5] = null        // channel: path( rgi_db )
-                input[6] = true        // boolean skip_amrfinderplus
-                input[7] = true        // boolean skip_deeparg
-                input[8] = true        // boolean skip_rgi
+                input[5] = null        // channel: val( deeparg_tool_version )
+                input[6] = null        // channel: path( rgi_db )
+                input[7] = true        // boolean skip_amrfinderplus
+                input[8] = true        // boolean skip_deeparg
+                input[9] = true        // boolean skip_rgi
                 """
             }
         }
@@ -184,10 +188,11 @@ nextflow_workflow {
                 input[2] = channel.of( file('${moduleDir}/tests/databases/minideeparg/db', checkIfExists: true) )       // channel: path( deeparg )
                 input[3] = "2"         // channel: val( deeparg_db_version )
                 input[4] = "LS"        // channel: val( deeparg_model )
-                input[5] = null        // channel: path( rgi_db )
-                input[6] = false       // boolean skip_amrfinderplus
-                input[7] = false       // boolean skip_deeparg
-                input[8] = false       // boolean skip_rgi
+                input[5] = "1.0.4"     // channel: val( deeparg_tool_version )
+                input[6] = null        // channel: path( rgi_db )
+                input[7] = false       // boolean skip_amrfinderplus
+                input[8] = false       // boolean skip_deeparg
+                input[9] = false       // boolean skip_rgi
                 """
             }
         }
