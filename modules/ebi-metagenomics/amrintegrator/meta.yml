@@ -28,22 +28,26 @@ input:
         type: file
         description: Tab-delimited file of DEEPARG result after hAMRonization
         pattern: "*.tsv"
-        ontologies: []
+        ontologies:
+          - edam: "http://edamontology.org/format_3475" # TSV
     - rgi:
         type: file
         description: Tab-delimited file of RGI result after hAMRonization
         pattern: "*.tsv"
-        ontologies: []
+        ontologies:
+          - edam: "http://edamontology.org/format_3475" # TSV
     - amrfp:
         type: file
         description: Tab-delimited file of AMRfinderPlus result after hAMRonization
         pattern: "*.tsv"
-        ontologies: []
+        ontologies:
+          - edam: "http://edamontology.org/format_3475" # TSV
     - gff:
         type: file
         description: The GFF3 file corresponding to the annotated genes and proteins. It could be gz compressed
         pattern: "*.{gff,gff.gz}"
-        ontologies: []
+        ontologies:
+          - edam: "http://edamontology.org/format_1975" # GFF
 output:
   - gff:
       - meta:
@@ -55,7 +59,8 @@ output:
           type: file
           description: The GFF3 file containing the genes with AMR annotation
           pattern: "*.gff"
-          ontologies: []
+          ontologies:
+          - edam: "http://edamontology.org/format_1975" # GFF
   - versions:
       - "versions.yml":
           type: file
