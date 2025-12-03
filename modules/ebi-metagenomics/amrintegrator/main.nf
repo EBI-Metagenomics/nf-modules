@@ -24,9 +24,9 @@ process AMRINTEGRATOR {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def deeparg_param = deeparg.toString() ? "--deeparg_hamr ${deeparg}" : ""
-    def rgi_param = rgi.toString() ? "--rgi_hamr ${rgi}" : ""
-    def amrfp_param = amrfp.toString() ? "--amrfp_out ${amrfp}" : ""
+    def deeparg_param = deeparg ? "--deeparg_hamr ${deeparg}" : ""
+    def rgi_param = rgi ? "--rgi_hamr ${rgi}" : ""
+    def amrfp_param = amrfp ? "--amrfp_out ${amrfp}" : ""
     """
     amr_integrator \\
         ${deeparg_param} \\
