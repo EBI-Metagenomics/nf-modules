@@ -176,7 +176,7 @@ nextflow_workflow {
         when {
             workflow {
                 """
-                input[0] = Channel.of( [ [ id:'test' ], // meta map
+                input[0] = channel.of( [ [ id:'test' ], // meta map
                     file('${moduleDir}/tests/data/neg_minitest.faa', checkIfExists: true),
                     file('${moduleDir}/tests/data/minitest.gff', checkIfExists: true)
                 ])
