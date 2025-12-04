@@ -9,17 +9,16 @@ nextflow_workflow {
     tag "subworkflows_ebimetagenomics"
     tag "subworkflows/amr_annotation"
     tag "amrintegrator"
+    tag "rgi/downloaddata"
     tag "nf-core/amrfinderplus"
     tag "nf-core/amrfinderplus/update"
     tag "nf-core/amrfinderplus/run"
     tag "nf-core/deeparg"
     tag "nf-core/deeparg/predict"
+    tag "nf-core/deeparg/downloaddata"
     tag "nf-core/rgi"
     tag "nf-core/rgi/cardannotation"
     tag "nf-core/rgi/main"
-    tag "nf-core/wget/main"
-    tag "nf-core/untar"
-    tag "nf-core/unzip"
     tag "nf-core/hamronization"
     tag "nf-core/hamronization/rgi"
     tag "nf-core/hamronization/deeparg"
@@ -31,12 +30,10 @@ nextflow_workflow {
             [
                 "amrfinderplus/update",
                 "amrfinderplus/run",
+                "deeparg/downloaddata",
                 "deeparg/predict",
                 "rgi/cardannotation",
                 "rgi/main",
-                "wget",
-                "untar",
-                "unzip",
                 "hamronization/rgi",
                 "hamronization/deeparg"
             ]
