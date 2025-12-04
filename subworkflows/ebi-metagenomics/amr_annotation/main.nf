@@ -30,7 +30,8 @@ workflow AMR_ANNOTATION {
 
     // Extract individual components from input channel
     ch_faa = ch_inputs.map{ meta, aminoacids, _cds_gff ->
-        // Add is_proteins flag to meta
+        // Add is_proteins flag to meta for amrfinderplus nf-core module:
+        // https://github.com/nf-core/modules/blob/e3da0d1bd481776ac3ddbd652e1cd72c4d7426d5/modules/nf-core/amrfinderplus/run/main.nf#L33
         def meta_with_protein_flag = meta + [is_proteins: true]
         tuple(meta_with_protein_flag, aminoacids)
     }
