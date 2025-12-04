@@ -23,16 +23,16 @@ tools:
 # No input required for download module
 output:
   - card_json:
-      type: directory
-      description: Directory containing the CARD database in json format
-      pattern: "card_dir"
-      ontologies:
-        - edam: http://edamontology.org/format_3464 # JSON
+      - type: directory
+        description: Directory containing the CARD database in json format
+        pattern: "card_dir"
+        ontologies:
+          - edam: http://edamontology.org/format_3464
   - versions:
-      type: file
-      description: File containing software versions
-      pattern: "versions.yml"
-      ontologies:
-        - edam: "http://edamontology.org/format_3750" # YAML
+      - type: file
+        description: File containing software versions
+        pattern: "versions.yml"
+        ontologies:
+          - edam: "http://edamontology.org/format_3750"
 authors:
   - "@Ales-ibt"
