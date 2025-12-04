@@ -2,8 +2,7 @@
 // Outputs are standardised and integrated into a single GFF3 format output
 include { AMRFINDERPLUS_UPDATE             } from '../../../modules/nf-core/amrfinderplus/update/main'
 include { AMRFINDERPLUS_RUN                } from '../../../modules/nf-core/amrfinderplus/run/main'
-include { WGET as WGET_DEEPARG             } from '../../../modules/nf-core/wget/main'
-include { UNZIP as UNZIP_DEEPARG           } from '../../../modules/nf-core/unzip/main'
+include { DEEPARG_DOWNLOADDATA             } from '../../../modules/nf-core/deeparg/downloaddata/main'
 include { DEEPARG_PREDICT                  } from '../../../modules/nf-core/deeparg/predict/main'
 include { RGI_DOWNLOADDB                   } from '../../../modules/ebi-metagenomics/rgi/downloaddb/main'
 include { RGI_CARDANNOTATION               } from '../../../modules/nf-core/rgi/cardannotation/main'
@@ -89,24 +88,13 @@ workflow AMR_ANNOTATION {
 
     // DeepARG prepare download
     if (!skip_deeparg && ch_deeparg_db) {
-        ch_deeparg_db = ch_deeparg_db
+        deeparg_db = ch_deeparg_db
     }
     else if (!skip_deeparg && !ch_deeparg_db) {
-        ch_deeparg_url = channel.of([
-            [ id: 'deeparg_db' ],
-            'https://zenodo.org/records/8280582/files/deeparg.zip?download=1'
-        ])
-    
-        // Download the database using WGET
-        WGET_DEEPARG( ch_deeparg_url )
-        ch_versions = ch_versions.mix(WGET_DEEPARG.out.versions.first())
-    
-        // Unzip the downloaded database
-        UNZIP_DEEPARG(WGET_DEEPARG.out.outfile )
-        ch_versions = ch_versions.mix(UNZIP_DEEPARG.out.versions.first())
-    
-        // Extract the unzipped directory path
-        ch_deeparg_db = UNZIP_DEEPARG.out.unzipped_archive.map { meta, dir -> dir }
+        // Download deeparg database
+        DEEPARG_DOWNLOADDATA()
+        ch_versions = ch_versions.mix(DEEPARG_DOWNLOADDATA.out.versions.first())
+        deeparg_db = DEEPARG_DOWNLOADDATA.out.db
     }
 
     // DeepARG run
@@ -118,7 +106,7 @@ workflow AMR_ANNOTATION {
             }
             .set { ch_input_for_deeparg }
 
-        DEEPARG_PREDICT(ch_input_for_deeparg, ch_deeparg_db)
+        DEEPARG_PREDICT(ch_input_for_deeparg, deeparg_db)
         ch_versions = ch_versions.mix(DEEPARG_PREDICT.out.versions.first())
 
         HAMRONIZATION_DEEPARG(DEEPARG_PREDICT.out.arg, 'tsv', ch_deeparg_tool_version, ch_deeparg_db_version)
