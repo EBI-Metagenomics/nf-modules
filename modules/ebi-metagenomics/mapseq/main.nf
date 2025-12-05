@@ -3,10 +3,10 @@ process MAPSEQ {
     tag "$meta.id"
     label 'process_single'
 
-    conda "bioconda::mapseq=2.1.1"
+    conda "bioconda::mapseq=2.1.1b"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mapseq:2.1.1--ha34dc8c_0':
-        'biocontainers/mapseq:2.1.1--ha34dc8c_0' }"
+        'https://depot.galaxyproject.org/singularity/mapseq:2.1.1b--h3ab3c3b_0':
+        'biocontainers/mapseq:2.1.1b--h3ab3c3b_0' }"
 
     input:
     tuple val(meta), path(subunit_reads)
@@ -14,7 +14,7 @@ process MAPSEQ {
 
     output:
     tuple val(meta), path("*.mseq"), emit: mseq
-    path "versions.yml"           , emit: versions
+    path "versions.yml"            , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
