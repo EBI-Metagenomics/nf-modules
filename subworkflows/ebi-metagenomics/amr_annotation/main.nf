@@ -1,4 +1,4 @@
-// Subworkflow to generate antimicrobial resistance annotation from protein and gene files
+// Subworkflow to generate antimicrobial resistance annotation from protein sequences
 // Outputs are standardised and integrated into a single GFF3 format output
 include { AMRFINDERPLUS_UPDATE             } from '../../../modules/nf-core/amrfinderplus/update/main'
 include { AMRFINDERPLUS_RUN                } from '../../../modules/nf-core/amrfinderplus/run/main'

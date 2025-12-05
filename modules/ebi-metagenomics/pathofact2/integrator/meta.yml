@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "pathofact2_integrator"
+description: Module to integrate the toxins and virulence factor annotation results into a single GFF file
+keywords:
+  - pathofact2
+  - toxins
+  - virulence
+  - gff
+tools:
+  - "pathofact2_integrator.py":
+      description: "Integrates Pathofact2 tsv outputs into a single gff file"
+      licence: ["Apache-2.0"]
+      identifier: ""
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - toxins:
+        type: file
+        description: Tab-delimited file of toxins prediction result after filtering
+        pattern: "*.tsv"
+        ontologies:
+          - edam: "http://edamontology.org/format_3475" # TSV
+    - virulence:
+        type: file
+        description: Tab-delimited file of virulence factors prediction result after filtering
+        pattern: "*.tsv"
+        ontologies:
+          - edam: "http://edamontology.org/format_3475" # TSV
+    - gff:
+        type: file
+        description: The GFF3 file corresponding to the annotated genes. It could be gz compressed
+        pattern: "*.{gff,gff.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1975" # GFF
+output:
+  - gff:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.gff":
+          type: file
+          description: The GFF3 file containing the genes with AMR annotation
+          pattern: "*.gff"
+          ontologies:
+            - edam: "http://edamontology.org/format_1975" # GFF
+  - versions:
+      - "versions.yml":
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+          ontologies:
+            - edam: "http://edamontology.org/format_3750" # YAML
+
+authors:
+  - "@Ales-ibt"

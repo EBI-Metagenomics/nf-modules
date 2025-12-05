@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ebi-metagenomics/nf-modules/master/subworkflows/yaml-schema.json
+name: "pathofact2"
+description: Virulence factors and toxins annotation from protein sequences
+keywords:
+  - virulence
+  - toxin
+  - pathofact2
+  - gff3
+components:
+  - pathofact2/downloaddata
+  - pathofact2/toxins
+  - pathofact2/virulence
+  - pathofact2/integrator
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. `[ id:'sample1' ]`
+    ch_inputs:
+      type: file
+      description: |
+        The input channel containing the protein fasta file and gff file
+        e.g. `[ [meta], aminoacids, cds_gff ]`
+  - ch_models:
+      type: directory
+      description: |
+        The input channel containing the path to the Pathofact2 database directory
+output:
+  - versions:
+      type: file
+      description: |
+        File containing software versions
+        Structure: [ path(versions.yml) ]
+      pattern: "versions.yml"
+  - gff:
+      description: |
+        Channel containing a gff file with Pathofact2 annotation
+        Structure: [ val(meta), path("*.gff") ]
+      meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+      "*.gff":
+        type: file
+        description: gff file with Pathifact2 annotation
+        pattern: "*.gff"
+authors:
+  - "@lfdelzam"
+  - "@Ales-ibt"
