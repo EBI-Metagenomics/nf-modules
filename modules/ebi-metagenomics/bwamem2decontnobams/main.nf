@@ -42,7 +42,7 @@ process BWAMEM2DECONTNOBAMS {
             -t $task.cpus \\
             \$INDEX \\
             $reads \\
-            | samtools view -@ ${task.cpus} -f 4 -F 256 -uS - \\
+            | samtools view -@ ${task.cpus} -f 12 -F 256 -uS - \\
             | samtools sort -@ ${task.cpus} -n -O bam - \\
             | samtools bam2fq -@ ${task.cpus} -1 ${ref_prefix}_${prefix}_1.fq.gz -2 ${ref_prefix}_${prefix}_2.fq.gz -0 /dev/null -s /dev/null
     fi
