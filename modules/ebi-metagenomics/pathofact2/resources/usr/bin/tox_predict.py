@@ -45,7 +45,7 @@ def main():
     parser = argparse.ArgumentParser(description='Predict sequences using a pre-trained model.')
     parser.add_argument('-m', '--model', type=str, required=True, help='Path to the saved model (final_model.joblib)')
     parser.add_argument('-s', '--sequences', type=str, required=True, help='Path to the FASTA file containing new sequences')
-    parser.add_argument('-k', '--kmers', type=int, nargs='+', default=[3], help='List of k-mer sizes used during training')
+    parser.add_argument('-k', '--kmers', type=int, nargs='+', default=[5], help='List of k-mer sizes used during training')
     parser.add_argument('-v', '--vectorizer_dir', type=str, required=True, help='Directory containing the vectorizer files')
     parser.add_argument('-o', '--output', type=str, required=True, help='Path to the output file to save predictions')
     parser.add_argument('--cut_off', type=str, default="0", help='probaility cut_off to be cosidered as positive classification')
