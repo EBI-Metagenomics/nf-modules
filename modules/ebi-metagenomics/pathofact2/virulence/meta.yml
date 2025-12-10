@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "pathofact2_virulence"
-description: Pathofact2 - Machine Learning tool to annotate virulence factors in protein sequences
+description: Pathofact2 - Machine Learning tool to predict virulence factors in protein sequences
 keywords:
   - virulence
   - pathofact2
@@ -38,7 +38,7 @@ output:
             e.g. `[ id:'sample1' ]`
       - "*.tsv":
           type: file
-          description: Annotated toxins tsv file
+          description: Predicted toxins tsv file
           pattern: "*.tsv"
           ontologies:
             - edam: "http://edamontology.org/format_3475" # TSV

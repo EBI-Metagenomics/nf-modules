@@ -78,6 +78,8 @@ def parse_pathofact_tsv(
     Args:
         pathofact2_annotation: Nested defaultdict to store Pathofact2 annotations
         input_file: Path to the tsv input file
+                    This file has 3 columns:
+                    Sequence	Prediction	Probability
 
     Returns:
         Updated pathofact2_annotation defaultdict
@@ -87,11 +89,8 @@ def parse_pathofact_tsv(
         next(input_table)
         for line in input_table:
             line_l: List[str] = line.rstrip().split("\t")
-            analysis_software_name: str = line_l[6]
-            drug_class: str = normalize_drug_class(line_l[13])
-            protein_id: str = line_l[20].split(" ")[0]
-            seq_identity: str = line_l[35]
-            drug_class_list: List[str] = [cls.strip() for cls in drug_class.split(";")]
+            protein_id: str = line_l[0]
+            probability: int = line_l[2]
 
             pathofact2_annotation[protein_id][analysis_software_name] = {"drug_class": drug_class_list, "seq_identity": seq_identity}
 
@@ -194,7 +193,7 @@ def main() -> None:
     Main function to orchestrate Pathofact2 results
     """
     parser: argparse.ArgumentParser = argparse.ArgumentParser(
-        description="Integration of toxins and virulence factors annotated using Pathofact2 into a single gff3 file"
+        description="Integration of toxins and virulence factors predicted and annotated using Pathofact2 into a single gff3 file"
     )
     parser.add_argument("-t", "--toxins", dest="toxins_tsv", help="Result of Pathofact2 tool for toxins prediction after filtering", required=False, default=None)
     parser.add_argument("-r", "--virulence", dest="virulence_tsv", help="Result of Pathofact2 tool for virulence factors after filtering", required=False, default=None)

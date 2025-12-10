@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/ebi-metagenomics/nf-modules/master/subworkflows/yaml-schema.json
 name: "pathofact2"
-description: Virulence factors and toxins annotation from protein sequences
+description: Virulence factors and toxins prediction and annotation from protein sequences
 keywords:
   - virulence
   - toxin

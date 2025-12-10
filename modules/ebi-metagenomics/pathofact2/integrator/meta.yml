@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "pathofact2_integrator"
-description: Module to integrate the toxins and virulence factor annotation results into a single GFF file
+description: Module to integrate the toxins and virulence factor prediction results into a single GFF file
 keywords:
   - pathofact2
   - toxins
