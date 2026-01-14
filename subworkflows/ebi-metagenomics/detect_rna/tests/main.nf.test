@@ -16,10 +16,11 @@ nextflow_workflow {
     tag "easel"
     tag "easel/eslsfetch"
     tag "extractcoords"
-    tag "nf-core/seqkit"
+    tag "seqkit/split2"
     tag "nf-core/seqkit/split2"
-    tag "nf-core/cat"
     tag "nf-core/cat/cat"
+    tag "subworkflows/../../modules/nf-core/seqkit/split2"
+    tag "subworkflows/../../modules/nf-core/cat/cat"
 
     setup {
         nfcoreInitialise("${launchDir}/library/")
