@@ -1,0 +1,58 @@
+nextflow_process {
+
+    name "Test Process PATHOFACT2_DOWNLOADDATA"
+    script "../main.nf"
+    process "PATHOFACT2_DOWNLOADDATA"
+
+    tag "modules"
+    tag "modules_ebimetagenomics"
+    tag "pathofact2"
+    tag "pathofact2/downloaddata"
+
+    test("Pathofact2 downloader") {
+
+        when {
+            process {
+                """
+                // No input required
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    "${process.out.db[0]}/TOX/final_model.joblib",
+                    "${process.out.db[0]}/TOX/vectorizer_5.pkl",
+                    "${process.out.db[0]}/VF/final_model.joblib",
+                    process.out.findAll { key, val -> key.startsWith("versions")}
+                ).match() }
+            )
+        }
+    }
+
+    test("Pathofact2 downloader - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                // No input required
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    process.out.db,
+                    process.out.findAll { key, val -> key.startsWith("versions")}
+                ).match() }
+            )
+        }
+    }
+
+}

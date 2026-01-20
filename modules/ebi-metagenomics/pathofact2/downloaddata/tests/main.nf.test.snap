@@ -1,0 +1,46 @@
+{
+    "Pathofact2 downloader - stub": {
+        "content": [
+            [
+                [
+                    
+                ]
+            ],
+            {
+                "versions_pathofactdownloaddata": [
+                    [
+                        "PATHOFACT2_DOWNLOADDATA",
+                        "pathofactdownloaddata",
+                        "1.18"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-20T13:43:46.179573"
+    },
+    "Pathofact2 downloader": {
+        "content": [
+            "final_model.joblib:md5,1e42c4b9cb0c7f36b7bb76aa30a9da5a",
+            "vectorizer_5.pkl:md5,8e3dc6412949622474c8c0a0762cf941",
+            "final_model.joblib:md5,7300604857865a74065d73e0c64511c9",
+            {
+                "versions_pathofactdownloaddata": [
+                    [
+                        "PATHOFACT2_DOWNLOADDATA",
+                        "pathofactdownloaddata",
+                        "1.18"
+                    ]
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-20T13:43:42.448061"
+    }
+}

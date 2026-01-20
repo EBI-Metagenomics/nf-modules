@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "pathofact2_downloaddata"
+description: Module to download and decompress Pathofact2 models
+keywords:
+  - toxins
+  - virulence
+  - annotation
+  - models
+tools:
+  - "pathofact2":
+      description: "PathoFact 2.0, an enhanced pipeline for improved ARG, VF, and toxin prediction in prokaryotic protein sequences"
+      homepage: "https://gitlab.lcsb.uni.lu/ESB/PathoFact2"
+      documentation: "https://gitlab.lcsb.uni.lu/ESB/PathoFact2"
+      tool_dev_url: "https://gitlab.lcsb.uni.lu/ESB/PathoFact2"
+      doi: "10.1101/2024.12.09.627531"
+      licence: ["GNU v3.0"]
+      identifier: ""
+output:
+  db:
+    - "pathofact_db/Models":
+        type: directory
+        description: Directory containing the Pathofact2 models
+        ontologies:
+          - edam: http://edamontology.org/data_1049 # The name of a directory
+  versions_pathofactdownloaddata:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - pathofactdownloaddata:
+          type: string
+          description: The name of the tool
+      - wget --version | head -n1 | cut -d' ' -f3:
+          type: eval
+          description: The expression to obtain the version of the tool
+topics:
+  versions:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - pathofactdownloaddata:
+          type: string
+          description: The name of the tool
+      - wget --version | head -n1 | cut -d' ' -f3:
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@Ales-ibt"

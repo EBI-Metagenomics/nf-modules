@@ -1,0 +1,7 @@
+repository_type: modules
+org_path: ebi-metagenomics
+lint:
+  # Ignore meta.yml validation - using topics field from nf-core/tools 3.6+
+  # CI uses 3.5.1 which doesn't recognize topics yet
+  meta_yml:
+    - ./meta.yml
