@@ -30,7 +30,7 @@
             "type": "array",
             "description": "Modules and subworkflows used in the subworkflow",
             "items": {
-                "type": ["object", "string"]
+                "type": "string"
             },
             "minItems": 0
         },
