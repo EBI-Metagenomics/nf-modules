@@ -7,22 +7,22 @@
                         {
                             "id": "test"
                         },
-                        "test.krona.txt:md5,62e1bcaac47b979cafb7364cdc48eafa"
+                        "test.krona.txt:md5,d5ca626cab2eeee0b12032be423eda48"
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,62283ee3577cae81de28c239e6b6c997"
+                    "versions.yml:md5,515ca8d1bab994191a4a9a34081b19b9"
                 ],
                 "krona_txt": [
                     [
                         {
                             "id": "test"
                         },
-                        "test.krona.txt:md5,62e1bcaac47b979cafb7364cdc48eafa"
+                        "test.krona.txt:md5,d5ca626cab2eeee0b12032be423eda48"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,62283ee3577cae81de28c239e6b6c997"
+                    "versions.yml:md5,515ca8d1bab994191a4a9a34081b19b9"
                 ]
             }
         ],
@@ -30,7 +30,7 @@
             "nf-test": "0.9.2",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-20T21:04:17.264762"
+        "timestamp": "2026-01-21T15:52:15.104066"
     },
     "Run MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION module - stub": {
         "content": [
@@ -44,7 +44,7 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,62283ee3577cae81de28c239e6b6c997"
+                    "versions.yml:md5,515ca8d1bab994191a4a9a34081b19b9"
                 ],
                 "krona_txt": [
                     [
@@ -55,7 +55,7 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,62283ee3577cae81de28c239e6b6c997"
+                    "versions.yml:md5,515ca8d1bab994191a4a9a34081b19b9"
                 ]
             }
         ],
@@ -63,6 +63,6 @@
             "nf-test": "0.9.2",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-20T21:01:13.064534"
+        "timestamp": "2026-01-21T15:52:18.449345"
     }
 }

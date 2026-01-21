@@ -23,7 +23,7 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert path(process.out.krona_txt.get(0).get(1)).readLines().contains('5\tsk__Bacteria\tk__Bacillati\tp__Bacillota') },
+                { assert path(process.out.krona_txt.get(0).get(1)).readLines().contains('5\td__Bacteria\tk__Bacillati\tp__Bacillota') },
                 { assert snapshot(process.out).match() }
             )
         }

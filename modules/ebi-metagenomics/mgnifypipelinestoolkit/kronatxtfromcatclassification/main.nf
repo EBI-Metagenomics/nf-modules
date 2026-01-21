@@ -2,9 +2,7 @@ process MGNIFYPIPELINESTOOLKIT_KRONATXTFROMCATCLASSIFICATION {
     tag "${meta.id}"
     label 'process_single'
 
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:1.4.13--pyhdfd78af_0':
-        'biocontainers/mgnify-pipelines-toolkit:1.4.13--pyhdfd78af_0' }"
+    container 'microbiome-informatics/mgnify-pipelines-toolkit:1.4.14'
 
     input:
     tuple val(meta), path(cat_output)
