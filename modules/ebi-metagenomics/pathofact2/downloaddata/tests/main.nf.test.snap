@@ -1,46 +1,40 @@
 {
-    "Pathofact2 downloader - stub": {
+    "Pathofact2 downloader - zenodo id": {
         "content": [
             [
-                [
-                    
-                ]
+                "Models.tar.gz:md5,52c93b16ca66cc07716c66a04bf9ea37"
             ],
-            {
-                "versions_pathofactdownloaddata": [
-                    [
-                        "PATHOFACT2_DOWNLOADDATA",
-                        "pathofactdownloaddata",
-                        "1.18"
-                    ]
+            [
+                [
+                    "PATHOFACT2_DOWNLOADDATA",
+                    "python",
+                    "3.12.2"
                 ]
-            }
+            ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-20T13:43:46.179573"
+        "timestamp": "2026-01-21T14:03:25.511889"
     },
-    "Pathofact2 downloader": {
+    "Pathofact2 downloader - zenodo id - stub": {
         "content": [
-            "final_model.joblib:md5,1e42c4b9cb0c7f36b7bb76aa30a9da5a",
-            "vectorizer_5.pkl:md5,8e3dc6412949622474c8c0a0762cf941",
-            "final_model.joblib:md5,7300604857865a74065d73e0c64511c9",
-            {
-                "versions_pathofactdownloaddata": [
-                    [
-                        "PATHOFACT2_DOWNLOADDATA",
-                        "pathofactdownloaddata",
-                        "1.18"
-                    ]
+            [
+                "Models.tar.gz:md5,f50b84b1db4b83ba62ec1deacc69c260"
+            ],
+            [
+                [
+                    "PATHOFACT2_DOWNLOADDATA",
+                    "python",
+                    "3.12.2"
                 ]
-            }
+            ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-20T13:43:42.448061"
+        "timestamp": "2026-01-21T14:03:30.989673"
     }
 }

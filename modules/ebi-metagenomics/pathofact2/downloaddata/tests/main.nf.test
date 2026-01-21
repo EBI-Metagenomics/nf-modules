@@ -3,18 +3,19 @@ nextflow_process {
     name "Test Process PATHOFACT2_DOWNLOADDATA"
     script "../main.nf"
     process "PATHOFACT2_DOWNLOADDATA"
+    config "./nextflow.config"
 
     tag "modules"
     tag "modules_ebimetagenomics"
     tag "pathofact2"
     tag "pathofact2/downloaddata"
 
-    test("Pathofact2 downloader") {
+    test("Pathofact2 downloader - zenodo id") {
 
         when {
             process {
                 """
-                // No input required
+                input[0] = '18223764'
                 """
             }
         }
@@ -23,36 +24,36 @@ nextflow_process {
             assertAll(
                 { assert process.success },
                 { assert snapshot(
-                    "${process.out.db[0]}/TOX/final_model.joblib",
-                    "${process.out.db[0]}/TOX/vectorizer_5.pkl",
-                    "${process.out.db[0]}/VF/final_model.joblib",
-                    process.out.findAll { key, val -> key.startsWith("versions")}
+                    process.out.zenodo_file,
+                    process.out.versions_python
                 ).match() }
             )
         }
+
     }
 
-    test("Pathofact2 downloader - stub") {
+    test("Pathofact2 downloader - zenodo id - stub") {
 
         options "-stub"
 
         when {
             process {
                 """
-                // No input required
+                input[0] = '18223764'
                 """
             }
         }
 
         then {
+            assert process.success
             assertAll(
-                { assert process.success },
                 { assert snapshot(
-                    process.out.db,
-                    process.out.findAll { key, val -> key.startsWith("versions")}
+                    process.out.zenodo_file,
+                    process.out.versions_python
                 ).match() }
             )
         }
+
     }
 
 }
