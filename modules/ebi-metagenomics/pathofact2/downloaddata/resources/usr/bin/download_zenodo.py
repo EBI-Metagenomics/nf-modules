@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 # Copyright 2024-2026 EMBL - European Bioinformatics Institute
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,6 +18,7 @@ import sys
 import time
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
+
 
 def download_file(url, output_file, user_agent, max_retries=3, retry_delay=5):
     """Download file using urllib with retry logic"""
