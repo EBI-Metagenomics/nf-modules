@@ -21,13 +21,13 @@
     },
     "mapseq_output": {
         "content": [
-            true
+            false
         ],
         "meta": {
-            "nf-test": "0.8.4",
-            "nextflow": "23.04.3"
+            "nf-test": "0.9.3",
+            "nextflow": "25.04.8"
         },
-        "timestamp": "2024-04-18T12:06:53.975004502"
+        "timestamp": "2025-10-21T15:02:21.978283709"
     },
     "mapseq2biom_output_biom_notaxid": {
         "content": [
