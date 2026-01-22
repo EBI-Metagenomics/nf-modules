@@ -23,10 +23,8 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(
-                    process.out.zenodo_file,
-                    process.out.versions_python
-                ).match() }
+                { assert snapshot(process.out.zenodo_file).match("zenodo_file") },
+                { assert snapshot(process.out.versions_python).match("versions") }
             )
         }
 
@@ -45,12 +43,10 @@ nextflow_process {
         }
 
         then {
-            assert process.success
             assertAll(
-                { assert snapshot(
-                    process.out.zenodo_file,
-                    process.out.versions_python
-                ).match() }
+                { assert process.success },
+                { assert snapshot(process.out.zenodo_file).match("zenodo_file_stub") },
+                { assert snapshot(process.out.versions_python).match("versions_stub") }
             )
         }
 

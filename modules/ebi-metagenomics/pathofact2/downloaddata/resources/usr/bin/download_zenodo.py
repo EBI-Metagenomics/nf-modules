@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
+import argparse
 import json
 import sys
-import argparse
-from pathlib import Path
-from urllib.request import urlopen, Request
-from urllib.error import URLError, HTTPError
 import time
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
 
 
 def download_file(url, output_file, user_agent, max_retries=3, retry_delay=5):
