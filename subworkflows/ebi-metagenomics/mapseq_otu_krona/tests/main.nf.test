@@ -8,6 +8,7 @@ nextflow_workflow {
 
     tag "subworkflows"
     tag "subworkflows_nfcore"
+    tag "subworkflows_ebimetagenomics"
     tag "subworkflows/mapseq_otu_krona"
     tag "mapseq"
     tag "mapseq2biom"
