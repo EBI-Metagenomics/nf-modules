@@ -1,5 +1,6 @@
 name: "mapseq"
-description: Perform taxonomic classification of rRNA reads using reference databases
+description: Perform taxonomic classification of rRNA reads using reference
+  databases
 keywords:
   - taxonomy
   - reads
@@ -45,8 +46,8 @@ input:
         ontologies:
           - edam: http://edamontology.org/format_2330 # Text file
 output:
-  - mseq:
-      - meta:
+  mseq:
+    - - meta:
           type: map
           description: |
             Groovy Map containing sample information
@@ -56,13 +57,13 @@ output:
           description: Read classification output file
           pattern: "*.mseq"
           ontologies: []
-  - versions:
-      - "versions.yml":
-          type: file
-          description: File containing software versions
-          pattern: "versions.yml"
-          ontologies:
-            - edam: "http://edamontology.org/format_3750" # YAML
+  versions:
+    - versions.yml:
+        type: file
+        description: File containing software versions
+        pattern: "versions.yml"
+        ontologies:
+          - edam: "http://edamontology.org/format_3750" # YAML
 
 authors:
   - "@chrisata"
