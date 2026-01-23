@@ -1,0 +1,68 @@
+{
+    "versions_stub": {
+        "content": [
+            [
+                [
+                    "PATHOFACT2_VIRULENCE",
+                    "python",
+                    "3.11.14"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-23T13:22:26.501971"
+    },
+    "versions": {
+        "content": [
+            [
+                [
+                    "PATHOFACT2_VIRULENCE",
+                    "python",
+                    "3.11.14"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-23T13:22:22.403223"
+    },
+    "tsv_file_stub": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_classifier_virulence_filtered.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-23T13:22:26.499303"
+    },
+    "tsv_file": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_classifier_virulence_filtered.tsv:md5,2b5ec79db096d9d857aa5b7895f81e14"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-23T13:22:22.397512"
+    }
+}
