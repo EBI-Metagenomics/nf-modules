@@ -16,18 +16,19 @@ nextflow_process {
             script "../../downloaddata/main.nf"
             process {
                 """
+                input[0] = '18223764'
                 """
             }
         }
     }
 
-    test("proteins - toxins") {
+    test("pathofact2 - toxins") {
 
         when {
             process {
                 """
                 input[0] = [ [id:'test'], [ file("${moduleDir}/tests/data/test_protein.faa.gz", checkIfExists: true)  ] ]
-                input[1] = PATHOFACT2_DOWNLOADDATA.out.db
+                input[1] = PATHOFACT2_DOWNLOADDATA.out.zenodo_file
                 """
             }
         }
@@ -42,7 +43,7 @@ nextflow_process {
 
     }
 
-    test("proteins - toxins - stub") {
+    test("pathofact2 - toxins - stub") {
 
         options "-stub"
 
@@ -50,7 +51,7 @@ nextflow_process {
             process {
                 """
                 input[0] = [ [id:'test'], [ file("${moduleDir}/tests/data/test_protein.faa.gz", checkIfExists: true)  ] ]
-                input[1] = PATHOFACT2_DOWNLOADDATA.out.db
+                input[1] = PATHOFACT2_DOWNLOADDATA.out.zenodo_file
                 """
             }
         }
@@ -66,5 +67,3 @@ nextflow_process {
     }
 
 }
-
-

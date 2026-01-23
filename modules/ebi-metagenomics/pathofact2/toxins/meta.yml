@@ -27,7 +27,9 @@ input:
         pattern: "*{fasta,fasta.gz,fa,fa.gz,fna,fna.gz,faa,faa.gz}"
         ontologies:
           - edam: "http://edamontology.org/format_1929" # FASTA
-
+  - zenodo_file:
+      type: directory
+      description: File downloaded using Pathofact2 downloaddata module. Contains the Models db
 output:
   tsv:
     - - meta:
@@ -35,13 +37,12 @@ output:
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'sample1' ]`
-      - "*.tsv":
+      - "*_classifier_toxins_filtered.tsv":
           type: file
           description: Predicted toxins tsv file
           pattern: "*.tsv"
           ontologies:
             - edam: "http://edamontology.org/format_3475" # TSV
-
   versions_python:
     - - "${task.process}":
           type: string

@@ -3,10 +3,11 @@ process PATHOFACT2_TOXINS {
     label 'process_medium'
 
     conda "${moduleDir}/environment.yml"
-    container "quay.io/microbiome-informatics/pathofact2_env:v1.0.2"
+    container "microbiome-informatics/pathofact2_env:v1.0.2"
 
     input:
     tuple val(meta), path(fasta)
+    path zenodo_file
 
     output:
     tuple val(meta), path("*_classifier_toxins_filtered.tsv"), emit: tsv
@@ -25,11 +26,13 @@ process PATHOFACT2_TOXINS {
     """
     $uncompress_input
 
+    tar -xavf ${zenodo_file}
+
     tox_predict.py \\
         ${args} \\
         -s ${fasta_name} \\
-        -m ${pathofact_db}/TOX/final_model.joblib \\
-        -v ${pathofact_db}/TOX/ \\
+        -m Models/TOX/final_model.joblib \\
+        -v Models/TOX/ \\
         --cpus ${task.cpus} \\
         -o ${prefix}_classifier_toxins.tsv
 

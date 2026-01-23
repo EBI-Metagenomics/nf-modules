@@ -1,0 +1,68 @@
+{
+    "versions_stub": {
+        "content": [
+            [
+                [
+                    "PATHOFACT2_TOXINS",
+                    "python",
+                    "3.11.14"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-23T12:09:08.165155"
+    },
+    "versions": {
+        "content": [
+            [
+                [
+                    "PATHOFACT2_TOXINS",
+                    "python",
+                    "3.11.14"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-23T12:09:01.657115"
+    },
+    "tsv_file_stub": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_classifier_toxins_filtered.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-23T12:09:08.160599"
+    },
+    "tsv_file": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_classifier_toxins_filtered.tsv:md5,b4375d81c7c9e0c165f256f212120bf4"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-23T12:09:01.650328"
+    }
+}
