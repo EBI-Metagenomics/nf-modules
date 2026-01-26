@@ -1,11 +1,19 @@
 {
     "versions_stub": {
-        "content": null,
+        "content": [
+            [
+                [
+                    "PATHOFACT2_EXTRACTFASTA",
+                    "python",
+                    "3.12.12"
+                ]
+            ]
+        ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T10:27:08.051247"
+        "timestamp": "2026-01-26T10:35:22.863859"
     },
     "fasta_file_stub": {
         "content": [
@@ -22,15 +30,55 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T10:27:08.042673"
+        "timestamp": "2026-01-26T10:35:22.856231"
     },
     "versions": {
-        "content": null,
+        "content": [
+            [
+                [
+                    "PATHOFACT2_EXTRACTFASTA",
+                    "python",
+                    "3.12.12"
+                ]
+            ]
+        ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T10:27:04.878801"
+        "timestamp": "2026-01-26T10:35:19.685155"
+    },
+    "versions_empty": {
+        "content": [
+            [
+                [
+                    "PATHOFACT2_EXTRACTFASTA",
+                    "python",
+                    "3.12.12"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-26T10:36:50.782146"
+    },
+    "versions_empty_stub": {
+        "content": [
+            [
+                [
+                    "PATHOFACT2_EXTRACTFASTA",
+                    "python",
+                    "3.12.12"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-26T10:36:53.867109"
     },
     "tsv_file_stub": {
         "content": [
@@ -47,7 +95,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T10:27:08.046948"
+        "timestamp": "2026-01-26T10:35:22.8602"
     },
     "fasta_file": {
         "content": [
@@ -64,7 +112,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T10:27:04.868671"
+        "timestamp": "2026-01-26T10:35:19.677422"
     },
     "tsv_file": {
         "content": [
@@ -81,6 +129,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T10:27:04.875859"
+        "timestamp": "2026-01-26T10:35:19.683053"
     }
 }
