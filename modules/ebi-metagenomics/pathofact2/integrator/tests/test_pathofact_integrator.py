@@ -5,6 +5,10 @@ from pathlib import Path
 
 import pytest
 
+# Add the script directory to the path
+script_dir = Path(__file__).parent.parent / "resources" / "usr" / "bin"
+sys.path.insert(0, str(script_dir))
+
 # Import functions from the script
 from pathofact2_integrator import (
     parse_cdd,
@@ -13,10 +17,6 @@ from pathofact2_integrator import (
     parse_pathofact_support,
     validate_inputs,
 )
-
-# Add the script directory to the path
-script_dir = Path(__file__).parent.parent / "resources" / "usr" / "bin"
-sys.path.insert(0, str(script_dir))
 
 
 @pytest.fixture
