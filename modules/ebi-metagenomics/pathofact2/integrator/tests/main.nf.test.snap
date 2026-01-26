@@ -1,0 +1,150 @@
+{
+    "gff_cdd": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_pathofact2.gff:md5,a050f6f8339c9f356578704eae177c3b"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-26T12:55:21.788112"
+    },
+    "versions_ips_inv": {
+        "content": [
+            [
+                [
+                    "PATHOFACT2_INTEGRATOR",
+                    "python",
+                    "3.12.12"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-26T12:55:35.034399"
+    },
+    "versions_cdd_stub": {
+        "content": [
+            [
+                [
+                    "PATHOFACT2_INTEGRATOR",
+                    "python",
+                    "3.12.12"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-26T12:55:24.951939"
+    },
+    "versions_ips_stub": {
+        "content": [
+            [
+                [
+                    "PATHOFACT2_INTEGRATOR",
+                    "python",
+                    "3.12.12"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-26T12:55:31.632714"
+    },
+    "versions_cdd": {
+        "content": [
+            [
+                [
+                    "PATHOFACT2_INTEGRATOR",
+                    "python",
+                    "3.12.12"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-26T12:55:21.794242"
+    },
+    "gff_cdd_stub": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_pathofact2.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-26T12:55:24.94851"
+    },
+    "versions_ips": {
+        "content": [
+            [
+                [
+                    "PATHOFACT2_INTEGRATOR",
+                    "python",
+                    "3.12.12"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-26T12:55:28.376764"
+    },
+    "gff_ips_stub": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_pathofact2.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-26T12:55:31.62722"
+    },
+    "gff_ips": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_pathofact2.gff:md5,d9ec047494c3d398ac5277414053d6f6"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-01-26T12:55:28.371676"
+    }
+}
