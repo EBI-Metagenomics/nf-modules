@@ -19,9 +19,11 @@ process PATHOFACT2_EXTRACTFASTA {
     task.ext.when == null || task.ext.when
 
     script:
+    def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
     pathofact_fasta_extractor.py \\
+        ${args} \\
         -f ${fasta} \\
         -b ${blastp_out} \\
         -t ${pathofact2_tox} \\
