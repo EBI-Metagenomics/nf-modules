@@ -3,7 +3,7 @@ process PATHOFACT2_TOXINS {
     label 'process_medium'
 
     conda "${moduleDir}/environment.yml"
-    container "microbiome-informatics/pathofact2_env:v1.0.2"
+    container "microbiome-informatics/pathofact2_env:v1.0.4"
 
     input:
     tuple val(meta), path(fasta)
@@ -28,7 +28,7 @@ process PATHOFACT2_TOXINS {
 
     tar -xavf ${zenodo_file}
 
-    tox_predict.py \\
+    predict.py \\
         ${args} \\
         -s ${fasta_name} \\
         -m Models/TOX/final_model.joblib \\
