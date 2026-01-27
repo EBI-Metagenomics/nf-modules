@@ -28,7 +28,7 @@ input:
         ontologies:
           - edam: "http://edamontology.org/format_1929" # FASTA
   - zenodo_file:
-      type: directory
+      type: file
       description: File downloaded using Pathofact2 downloaddata module. Contains the Models db
 output:
   tsv:
