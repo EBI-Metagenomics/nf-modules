@@ -13,7 +13,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T10:35:22.863859"
+        "timestamp": "2026-01-27T10:28:03.655367"
     },
     "fasta_file_stub": {
         "content": [
@@ -30,7 +30,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T10:35:22.856231"
+        "timestamp": "2026-01-27T10:28:03.647296"
     },
     "versions": {
         "content": [
@@ -46,7 +46,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T10:35:19.685155"
+        "timestamp": "2026-01-27T10:28:00.471662"
     },
     "versions_empty": {
         "content": [
@@ -62,7 +62,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T10:36:50.782146"
+        "timestamp": "2026-01-27T10:28:07.627515"
     },
     "versions_empty_stub": {
         "content": [
@@ -78,7 +78,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T10:36:53.867109"
+        "timestamp": "2026-01-27T10:28:10.758328"
     },
     "tsv_file_stub": {
         "content": [
@@ -95,7 +95,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T10:35:22.8602"
+        "timestamp": "2026-01-27T10:28:03.651306"
     },
     "fasta_file": {
         "content": [
@@ -112,7 +112,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T10:35:19.677422"
+        "timestamp": "2026-01-27T10:28:00.462476"
     },
     "tsv_file": {
         "content": [
@@ -121,7 +121,7 @@
                     {
                         "id": "test"
                     },
-                    "test_support.tsv:md5,497f0091f4abaca9a647fc255e85d8cd"
+                    "test_support.tsv:md5,cf9d39f101da9219f9c31b37c55dee1f"
                 ]
             ]
         ],
@@ -129,6 +129,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T10:35:19.683053"
+        "timestamp": "2026-01-27T10:28:00.469186"
     }
 }

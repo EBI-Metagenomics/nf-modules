@@ -14,33 +14,28 @@
 # limitations under the License.
 
 import argparse
+import csv
 import gzip
 import logging
 import os
+from collections import namedtuple
 
-from Bio import SeqIO
+from Bio import SearchIO, SeqIO
 
 logger = logging.getLogger(__name__)
+
+# A lightweight container for best-hit info (replaces the custom class)
+BestBlastHit = namedtuple("BestBlastHit", ["sseqid", "evalue", "bitscore"])
 
 
 def _open_text_maybe_gzip(path):
     """
     Return a text-mode file handle for plain or gzipped files.
+    Caller is responsible for closing it (use a context manager).
     """
     if path.endswith(".gz"):
-        return gzip.open(path, "rt")
-    return open(path)
-
-
-class BlastHit:
-    """Selected best hit for a query."""
-
-    __slots__ = ("sseqid", "evalue", "bitscore")
-
-    def __init__(self, sseqid, evalue, bitscore):
-        self.sseqid = sseqid
-        self.evalue = evalue
-        self.bitscore = bitscore
+        return gzip.open(path, "rt", encoding="utf-8", errors="ignore")
+    return open(path, encoding="utf-8", errors="ignore")
 
 
 def _file_is_readable(path):
@@ -64,10 +59,10 @@ def read_fasta_to_dict(fasta_path):
     if not _file_is_readable(fasta_path):
         return sequences
 
-    handle = _open_text_maybe_gzip(fasta_path)
-    for record in SeqIO.parse(handle, "fasta"):
-        sequences[record.id] = record
-    handle.close()
+    # Use a context manager to avoid leaking file descriptors
+    with _open_text_maybe_gzip(fasta_path) as handle:
+        for record in SeqIO.parse(handle, "fasta"):
+            sequences[record.id] = record
 
     logger.info("Loaded %s sequences from FASTA: %s", len(sequences), fasta_path)
     return sequences
@@ -82,40 +77,54 @@ def parse_blastp_best_hits(blastp_out):
       - prefer highest bitscore
       - then lowest evalue
 
-    Store: {qseqid: BlastHit}
+    Store: {qseqid: BestBlastHit}
     """
     best = {}
     if not _file_is_readable(blastp_out):
         return best
 
-    handle = _open_text_maybe_gzip(blastp_out)
-    for line in handle:
-        line = line.strip()
-        if not line or line.startswith("#"):
-            continue
+    # Use Bio.SearchIO BLAST tabular parser (more robust than ad-hoc split)
+    # Explicitly declare the fields because DIAMOND outfmt 6 has no header.
+    fields = [
+        "qseqid",
+        "sseqid",
+        "pident",
+        "length",
+        "qlen",
+        "slen",
+        "evalue",
+        "bitscore",
+    ]
 
-        fields = line.split()
-        if len(fields) < 8:
-            continue
+    with _open_text_maybe_gzip(blastp_out) as handle:
+        for qresult in SearchIO.parse(handle, "blast-tab", fields=fields):
+            qseqid = qresult.id
+            current = best.get(qseqid)
 
-        qseqid = fields[0]
-        sseqid = fields[1].split("(")[0]
-        evalue = float(fields[6])
-        bitscore = float(fields[7])
+            # Iterate hits; each hit may have multiple HSPs. We evaluate per-HSP best.
+            for hit in qresult:
+                sseqid = (hit.id or "").split("(")[0]
+                for hsp in hit.hsps:
+                    candidate = BestBlastHit(
+                        sseqid=sseqid,
+                        evalue=float(hsp.evalue),
+                        bitscore=float(hsp.bitscore),
+                    )
 
-        candidate = BlastHit(sseqid=sseqid, evalue=evalue, bitscore=bitscore)
-        current = best.get(qseqid)
+                    if current is None:
+                        best[qseqid] = candidate
+                        current = candidate
+                        continue
 
-        if current is None:
-            best[qseqid] = candidate
-            continue
-
-        if candidate.bitscore > current.bitscore:
-            best[qseqid] = candidate
-        elif (
-            candidate.bitscore == current.bitscore and candidate.evalue < current.evalue
-        ):
-            best[qseqid] = candidate
+                    if candidate.bitscore > current.bitscore:
+                        best[qseqid] = candidate
+                        current = candidate
+                    elif (
+                        candidate.bitscore == current.bitscore
+                        and candidate.evalue < current.evalue
+                    ):
+                        best[qseqid] = candidate
+                        current = candidate
 
     logger.info(
         "Selected best BLASTP hits for %s queries from: %s", len(best), blastp_out
@@ -126,7 +135,7 @@ def parse_blastp_best_hits(blastp_out):
 def parse_pathofact2_predictions_tsv(tsv_path):
     """
     Parse PathoFact2 TSV output already filtered by threshold.
-    Header: Sequence	Prediction	Probability
+    Header: Sequence    Prediction    Probability
 
     Store: {sequence_id: probability}
     """
@@ -134,24 +143,21 @@ def parse_pathofact2_predictions_tsv(tsv_path):
     if not _file_is_readable(tsv_path):
         return preds
 
-    handle = _open_text_maybe_gzip(tsv_path)
-    # Read header line (file is non-empty by _file_is_readable)
-    header = next(handle).rstrip("\n").split("\t")
-    if len(header) < 3 or header[0] != "Sequence":
-        logger.warning("Unexpected header in %s: %s", tsv_path, header)
+    # Use csv module for robust TSV parsing
+    with _open_text_maybe_gzip(tsv_path) as handle:
+        reader = csv.reader(handle, delimiter="\t")
+        header = next(reader)
 
-    for line in handle:
-        line = line.strip()
-        if not line:
-            continue
+        if len(header) < 3 or header[0] != "Sequence":
+            logger.warning("Unexpected header in %s: %s", tsv_path, header)
 
-        fields = line.split("\t")
-        if len(fields) < 3:
-            continue
-
-        seq_id = fields[0]
-        probability = float(fields[2])
-        preds[seq_id] = probability
+        for row in reader:
+            if not row or len(row) < 3:
+                continue
+            seq_id = row[0]
+            # row[1] is prediction label; not needed for this script
+            probability = float(row[2])
+            preds[seq_id] = probability
 
     logger.info("Loaded %s PathoFact2 predictions from: %s", len(preds), tsv_path)
     return preds
@@ -189,10 +195,18 @@ def write_detected_fasta(sequences, detected_ids, output_fasta):
         )
 
 
+def _fmt_prob(value, ndigits=6):
+    """
+    Format probability floats neatly for TSV output.
+    Keeps a fixed number of decimals for column alignment.
+    """
+    return ("{0:." + str(ndigits) + "f}").format(float(value))
+
+
 def write_support_table(blast_hits, tox_preds, vf_preds, output_tsv):
     """
     Write support TSV with header:
-    sequence_id    detection_method    support_value_type    support_value
+    sequence_id    detection_method    support_value_type    support_value    vfdb_hit
 
     detection_method:
       - blastp
@@ -203,26 +217,47 @@ def write_support_table(blast_hits, tox_preds, vf_preds, output_tsv):
       - blastp -> evalue
       - pathofact2_tox / pathofact2_vf -> probability
     """
-    header = (
-        "sequence_id\tdetection_method\tsupport_value_type\tsupport_value\tvfdb_hit\n"
-    )
+    # Use csv module for safe TSV writing and consistent quoting/escaping
+    with open(output_tsv, "w", encoding="utf-8", newline="") as out:
+        writer = csv.writer(out, delimiter="\t", lineterminator="\n")
 
-    rows = [header]
+        writer.writerow(
+            [
+                "sequence_id",
+                "detection_method",
+                "support_value_type",
+                "support_value",
+                "vfdb_hit",
+            ]
+        )
 
-    for seq_id in sorted(blast_hits.keys()):
-        hit = blast_hits[seq_id]
-        rows.append(f"{seq_id}\tblastp\tevalue\t{hit.evalue}\t{hit.sseqid}\n")
+        for seq_id in sorted(blast_hits.keys()):
+            hit = blast_hits[seq_id]
+            writer.writerow([seq_id, "blastp", "evalue", hit.evalue, hit.sseqid])
 
-    for seq_id in sorted(tox_preds.keys()):
-        rows.append(f"{seq_id}\tpathofact2_tox\tprobability\t{tox_preds[seq_id]}\t\n")
+        for seq_id in sorted(tox_preds.keys()):
+            writer.writerow(
+                [
+                    seq_id,
+                    "pathofact2_tox",
+                    "probability",
+                    _fmt_prob(tox_preds[seq_id]),
+                    "",
+                ]
+            )
 
-    for seq_id in sorted(vf_preds.keys()):
-        rows.append(f"{seq_id}\tpathofact2_vf\tprobability\t{vf_preds[seq_id]}\t\n")
+        for seq_id in sorted(vf_preds.keys()):
+            writer.writerow(
+                [
+                    seq_id,
+                    "pathofact2_vf",
+                    "probability",
+                    _fmt_prob(vf_preds[seq_id]),
+                    "",
+                ]
+            )
 
-    with open(output_tsv, "w") as out:
-        out.writelines(rows)
-
-    logger.info("Wrote support table with %s rows to: %s", len(rows) - 1, output_tsv)
+    logger.info("Wrote support table to: %s", output_tsv)
 
 
 def main():
