@@ -3,7 +3,7 @@ process PATHOFACT2_VIRULENCE {
     label 'process_medium'
 
     conda "${moduleDir}/environment.yml"
-    container "microbiome-informatics/pathofact2_env:v1.0.2"
+    container "microbiome-informatics/pathofact2_env:v1.0.4"
 
     input:
     tuple val(meta), path(fasta)
@@ -27,7 +27,7 @@ process PATHOFACT2_VIRULENCE {
 
     tar -xavf ${zenodo_file}
 
-    vf_predict.py \\
+    vf_prediction2.py \\
         --file ${fasta_name} \
         --model Models/VF/final_model.joblib \
         --cpus ${task.cpus} \
