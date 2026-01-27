@@ -28,9 +28,9 @@ process PATHOFACT2_VIRULENCE {
     tar -xavf ${zenodo_file}
 
     vf_prediction2.py \\
-        --file ${fasta_name} \
-        --model Models/VF/final_model.joblib \
-        --cpus ${task.cpus} \
+        --file ${fasta_name} \\
+        --model Models/VF/final_model.joblib \\
+        --cpus ${task.cpus} \\
         --outfile ${prefix}_classifier_virulence.tsv
 
     awk -v ${args} -F'\\t' 'NR==1 || \$3 > thr { print }' ${prefix}_classifier_virulence.tsv > ${prefix}_classifier_virulence_filtered.tsv
