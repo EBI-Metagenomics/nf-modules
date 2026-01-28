@@ -13,7 +13,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-27T12:52:45.125148"
+        "timestamp": "2026-01-28T15:55:47.505679"
     },
     "versions": {
         "content": [
@@ -29,7 +29,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-27T12:52:40.064277"
+        "timestamp": "2026-01-28T15:55:40.976356"
     },
     "tsv_file_stub": {
         "content": [
@@ -38,7 +38,7 @@
                     {
                         "id": "test"
                     },
-                    "test_classifier_toxins_filtered.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    "test_classifier_toxins.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ]
             ]
         ],
@@ -46,7 +46,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-27T12:52:45.121691"
+        "timestamp": "2026-01-28T15:55:47.502389"
     },
     "tsv_file": {
         "content": [
@@ -55,7 +55,7 @@
                     {
                         "id": "test"
                     },
-                    "test_classifier_toxins_filtered.tsv:md5,b4375d81c7c9e0c165f256f212120bf4"
+                    "test_classifier_toxins.tsv:md5,1e96e09347d10da59a04ce48a75f5a70"
                 ]
             ]
         ],
@@ -63,6 +63,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-27T12:52:40.058017"
+        "timestamp": "2026-01-28T15:55:40.969455"
     }
 }

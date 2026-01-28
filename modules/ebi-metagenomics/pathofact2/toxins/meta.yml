@@ -37,7 +37,7 @@ output:
           description: |
             Groovy Map containing sample information
             e.g. `[ id:'sample1' ]`
-      - "*_classifier_toxins_filtered.tsv":
+      - "*_classifier_toxins.tsv":
           type: file
           description: Predicted toxins tsv file
           pattern: "*.tsv"
@@ -51,6 +51,16 @@ output:
           type: string
           description: The name of the tool
       - "python --version | sed 's/Python //g'":
+          type: string
+          description: Command used to obtain the tool version
+  versions_pathofact2:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - pathofact2:
+          type: string
+          description: The name of the tool
+      - "echo ${VERSION}":
           type: string
           description: Command used to obtain the tool version
 
