@@ -19,8 +19,8 @@ nextflow_process {
                     [id:'test'],
                     file("${moduleDir}/tests/data/test_protein.faa.gz", checkIfExists: true),
                     file("${moduleDir}/tests/data/test_diamond_vfdb.txt.gz", checkIfExists: true),
-                    file("${moduleDir}/tests/data/test_classifier_toxins_filtered.tsv.gz", checkIfExists: true),
-                    file("${moduleDir}/tests/data/test_classifier_virulence_filtered.tsv.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test_classifier_toxins.tsv.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test_classifier_virulence.tsv.gz", checkIfExists: true),
                 ]
                 """
             }
@@ -48,8 +48,8 @@ nextflow_process {
                     [id:'test'],
                     file("${moduleDir}/tests/data/test_protein.faa.gz", checkIfExists: true),
                     file("${moduleDir}/tests/data/test_diamond_vfdb.txt.gz", checkIfExists: true),
-                    file("${moduleDir}/tests/data/test_classifier_toxins_filtered.tsv.gz", checkIfExists: true),
-                    file("${moduleDir}/tests/data/test_classifier_virulence_filtered.tsv.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test_classifier_toxins.tsv.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test_classifier_virulence.tsv.gz", checkIfExists: true),
                 ]
                 """
             }

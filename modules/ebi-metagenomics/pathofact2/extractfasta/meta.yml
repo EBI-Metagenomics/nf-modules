@@ -35,13 +35,13 @@ input:
           - edam: "http://edamontology.org/format_1964" # TXT
     - pathofact2_tox:
         type: file
-        description: Result of Pathofact2 toxins prediction already filtered by threshold
+        description: Result of Pathofact2 toxins prediction
         pattern: "*.{tsv,tsv.gz}"
         ontologies:
           - edam: "http://edamontology.org/format_3475" # TSV
     - pathofact2_vf:
         type: file
-        description: Result of Pathofact2 virulence factors prediction already filtered by threshold
+        description: Result of Pathofact2 virulence factors prediction
         pattern: "*.{tsv,tsv.gz}"
         ontologies:
           - edam: "http://edamontology.org/format_3475" # TSV

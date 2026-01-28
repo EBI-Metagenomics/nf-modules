@@ -59,7 +59,6 @@ def read_fasta_to_dict(fasta_path):
     if not _file_is_readable(fasta_path):
         return sequences
 
-    # Use a context manager to avoid leaking file descriptors
     with _open_text_maybe_gzip(fasta_path) as handle:
         for record in SeqIO.parse(handle, "fasta"):
             sequences[record.id] = record
@@ -83,8 +82,6 @@ def parse_blastp_best_hits(blastp_out):
     if not _file_is_readable(blastp_out):
         return best
 
-    # Use Bio.SearchIO BLAST tabular parser (more robust than ad-hoc split)
-    # Explicitly declare the fields because DIAMOND outfmt 6 has no header.
     fields = [
         "qseqid",
         "sseqid",
@@ -101,7 +98,6 @@ def parse_blastp_best_hits(blastp_out):
             qseqid = qresult.id
             current = best.get(qseqid)
 
-            # Iterate hits; each hit may have multiple HSPs. We evaluate per-HSP best.
             for hit in qresult:
                 sseqid = (hit.id or "").split("(")[0]
                 for hsp in hit.hsps:
@@ -132,18 +128,17 @@ def parse_blastp_best_hits(blastp_out):
     return best
 
 
-def parse_pathofact2_predictions_tsv(tsv_path):
+def parse_pathofact2_predictions_tsv(tsv_path, threshold):
     """
-    Parse PathoFact2 TSV output already filtered by threshold.
+    Parse PathoFact2 TSV output and filter by a probability threshold.
     Header: Sequence    Prediction    Probability
 
-    Store: {sequence_id: probability}
+    Store: {sequence_id: probability} for predictions with probability >= threshold
     """
     preds = {}
     if not _file_is_readable(tsv_path):
         return preds
 
-    # Use csv module for robust TSV parsing
     with _open_text_maybe_gzip(tsv_path) as handle:
         reader = csv.reader(handle, delimiter="\t")
         header = next(reader)
@@ -154,12 +149,19 @@ def parse_pathofact2_predictions_tsv(tsv_path):
         for row in reader:
             if not row or len(row) < 3:
                 continue
-            seq_id = row[0]
-            # row[1] is prediction label; not needed for this script
-            probability = float(row[2])
-            preds[seq_id] = probability
 
-    logger.info("Loaded %s PathoFact2 predictions from: %s", len(preds), tsv_path)
+            seq_id = row[0]
+            probability = float(row[2])
+
+            if probability >= threshold:
+                preds[seq_id] = probability
+
+    logger.info(
+        "Loaded %s PathoFact2 predictions from: %s (threshold=%s)",
+        len(preds),
+        tsv_path,
+        threshold,
+    )
     return preds
 
 
@@ -217,7 +219,6 @@ def write_support_table(blast_hits, tox_preds, vf_preds, output_tsv):
       - blastp -> evalue
       - pathofact2_tox / pathofact2_vf -> probability
     """
-    # Use csv module for safe TSV writing and consistent quoting/escaping
     with open(output_tsv, "w", encoding="utf-8", newline="") as out:
         writer = csv.writer(out, delimiter="\t", lineterminator="\n")
 
@@ -271,12 +272,26 @@ def main():
         "-b", "--blastp_out", required=True, help="DIAMOND blastp tabular output"
     )
     parser.add_argument(
-        "-t", "--pathofact2_tox", required=True, help="PathoFact2 toxins TSV (filtered)"
+        "-t", "--pathofact2_tox", required=True, help="PathoFact2 toxins TSV"
     )
     parser.add_argument(
-        "-v", "--pathofact2_vf", required=True, help="PathoFact2 VF TSV (filtered)"
+        "-v", "--pathofact2_vf", required=True, help="PathoFact2 VF TSV"
     )
     parser.add_argument("-o", "--output_prefix", required=True, help="Output prefix")
+
+    parser.add_argument(
+        "--threshold_vf",
+        type=float,
+        default=0.9,
+        help="Minimum probability threshold for VF predictions (default: 0.9)",
+    )
+    parser.add_argument(
+        "--threshold_tox",
+        type=float,
+        default=0.6,
+        help="Minimum probability threshold for toxin predictions (default: 0.6)",
+    )
+
     parser.add_argument(
         "--verbose", action="store_true", default=False, help="Enable DEBUG logging"
     )
@@ -295,11 +310,15 @@ def main():
     logger.info("Parsing BLASTP output (best hit per query)")
     blast_hits = parse_blastp_best_hits(args.blastp_out)
 
-    logger.info("Parsing PathoFact2 toxin predictions")
-    tox_preds = parse_pathofact2_predictions_tsv(args.pathofact2_tox)
+    logger.info(
+        "Parsing PathoFact2 toxin predictions (threshold=%s)", args.threshold_tox
+    )
+    tox_preds = parse_pathofact2_predictions_tsv(
+        args.pathofact2_tox, args.threshold_tox
+    )
 
-    logger.info("Parsing PathoFact2 VF predictions")
-    vf_preds = parse_pathofact2_predictions_tsv(args.pathofact2_vf)
+    logger.info("Parsing PathoFact2 VF predictions (threshold=%s)", args.threshold_vf)
+    vf_preds = parse_pathofact2_predictions_tsv(args.pathofact2_vf, args.threshold_vf)
 
     detected_ids = collect_detected_sequence_ids(blast_hits, tox_preds, vf_preds)
     logger.info("Total detected sequence IDs (union of methods): %s", len(detected_ids))
