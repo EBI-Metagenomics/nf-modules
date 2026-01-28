@@ -12,11 +12,13 @@ process PATHOFACT2_VIRULENCE {
     output:
     tuple val(meta), path("*_classifier_virulence.tsv"), emit: tsv
     tuple val("${task.process}"), val('python'), eval("python --version | sed 's/Python //g'"), topic: versions, emit: versions_python
+    tuple val("${task.process}"), val('pathofact2'), eval("echo ${VERSION}"), topic: versions, emit: versions_pathofact2
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
+    VERSION = '1.0.4' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     def is_compressed = fasta.getExtension() == "gz"
@@ -36,6 +38,7 @@ process PATHOFACT2_VIRULENCE {
     """
 
     stub:
+    VERSION = '1.0.4' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
