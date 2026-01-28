@@ -10,14 +10,14 @@ process PATHOFACT2_VIRULENCE {
     path zenodo_file
 
     output:
-    tuple val(meta), path("*_classifier_virulence_filtered.tsv"), emit: tsv
+    tuple val(meta), path("*_classifier_virulence.tsv"), emit: tsv
     tuple val("${task.process}"), val('python'), eval("python --version | sed 's/Python //g'"), topic: versions, emit: versions_python
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
-    def args = task.ext.args ?: 'thr=0.9'     // This customizes the command: awk filtering
+    def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
     def is_compressed = fasta.getExtension() == "gz"
     def fasta_name = is_compressed ? fasta.getBaseName() : fasta
@@ -28,12 +28,11 @@ process PATHOFACT2_VIRULENCE {
     tar -xavf ${zenodo_file}
 
     vf_prediction2.py \\
+        ${args} \\
         --file ${fasta_name} \\
         --model Models/VF/final_model.joblib \\
         --cpus ${task.cpus} \\
         --outfile ${prefix}_classifier_virulence.tsv
-
-    awk -v ${args} -F'\\t' 'NR==1 || \$3 > thr { print }' ${prefix}_classifier_virulence.tsv > ${prefix}_classifier_virulence_filtered.tsv
     """
 
     stub:
@@ -42,6 +41,6 @@ process PATHOFACT2_VIRULENCE {
     """
     echo $args
 
-    touch ${prefix}_classifier_virulence_filtered.tsv
+    touch ${prefix}_classifier_virulence.tsv
     """
 }
