@@ -154,6 +154,38 @@ def parse_pathofact_support(input_file: str) -> dict[str, str]:
 
     return pathofact_attributes
 
+def _add_annotation_to_protein(
+    protein_id: str,
+    signature_acc: str,
+    signature_desc: str,
+    pathofact_attributes: dict[str, str],
+    proteins_annotation: dict[str, str],
+) -> None:
+    """
+    Add CDD annotation to a protein's annotation dictionary.
+
+    This helper function updates the proteins_annotation dictionary by either:
+    - Appending to existing CDD annotations (if protein already has some)
+    - Creating new CDD annotation entry with pathofact attributes
+
+    Args:
+        protein_id: Protein identifier
+        signature_acc: Signature accession (e.g., CDD accession)
+        signature_desc: Signature description (e.g., CDD short name)
+        pathofact_attributes: Dictionary with protein IDs and pathofact annotations
+        proteins_annotation: Dictionary to update with new annotations (modified in place)
+    """
+    if protein_id in pathofact_attributes:
+        current_line = signature_acc + ":" + signature_desc
+        if protein_id in proteins_annotation:
+            stored_line = proteins_annotation[protein_id]
+            updated_line = stored_line + "," + current_line
+            proteins_annotation[protein_id] = updated_line
+        else:
+            pathofact_values = pathofact_attributes[protein_id]
+            proteins_annotation[protein_id] = (
+                pathofact_values + ";cdd=" + current_line
+            )
 
 def parse_cdd(pathofact_attributes: dict[str, str], input_file: str) -> dict[str, str]:
     """
@@ -177,18 +209,10 @@ def parse_cdd(pathofact_attributes: dict[str, str], input_file: str) -> dict[str
             protein_id: str = line_l[0]
             cdd_acc: str = line_l[7]
             cdd_short: str = line_l[8]
-
-            if protein_id in pathofact_attributes:
-                current_line = cdd_acc + ":" + cdd_short
-                if protein_id in proteins_annotation:
-                    stored_line = proteins_annotation[protein_id]
-                    updated_line = stored_line + "," + current_line
-                    proteins_annotation[protein_id] = updated_line
-                else:
-                    pathofact_values = pathofact_attributes[protein_id]
-                    proteins_annotation[protein_id] = (
-                        pathofact_values + ";cdd=" + current_line
-                    )
+            
+            _add_annotation_to_protein(
+                protein_id, cdd_acc, cdd_short, pathofact_attributes, proteins_annotation
+            )
 
     return proteins_annotation
 
@@ -230,18 +254,10 @@ def parse_ips(pathofact_attributes: dict[str, str], input_file: str) -> dict[str
             signature_desc: str = line_l[5]
 
             if analysis == "CDD":
-                if protein_id in pathofact_attributes:
-                    current_line = signature_acc + ":" + signature_desc
-                    if protein_id in proteins_annotation:
-                        stored_line = proteins_annotation[protein_id]
-                        updated_line = stored_line + "," + current_line
-                        proteins_annotation[protein_id] = updated_line
-                    else:
-                        pathofact_values = pathofact_attributes[protein_id]
-                        proteins_annotation[protein_id] = (
-                            pathofact_values + ";cdd=" + current_line
-                        )
-
+                _add_annotation_to_protein(
+                    protein_id, signature_acc, signature_desc, pathofact_attributes, proteins_annotation
+                )
+                
     return proteins_annotation
 
 
