@@ -15,6 +15,7 @@
 
 
 import argparse
+import csv
 import fileinput
 import logging
 import os
@@ -22,54 +23,95 @@ import os
 # Set up logger
 logger = logging.getLogger(__name__)
 
-
-def validate_inputs(
-    to_validate_inputs: dict[str, str | None],
-) -> dict[str, str | None]:
+def _pred_support_has_data_rows(path: str) -> bool:
     """
-    Validate that input files exist and are not empty or header-only.
+    Return True if pred_support TSV has at least one data row (beyond the header).
 
-    Args:
-        to_validate_inputs: Dictionary mapping input names to file paths (can be None)
+    Expected header:
+      sequence_id, detection_method, support_value_type, support_value, vfdb_hit
+    """
+    with fileinput.hook_compressed(path, "r", encoding="utf-8", errors="ignore") as fh:
+        reader = csv.reader(fh, delimiter="\t")
+        header = next(reader, None)
 
-    Returns:
-        Dictionary of non-valid input names and reason. If the number of keys is >0, the output is not generated
+        # Empty file
+        if header is None:
+            return False
+
+        # Header-only file => no data rows
+        for row in reader:
+            # Skip blank lines
+            if not row:
+                continue
+            # Skip rows that are effectively empty (e.g. ["", "", ...])
+            if all((cell.strip() == "" for cell in row)):
+                continue
+            return True
+
+    return False
+
+def _has_gff_record_9cols(path: str, max_lines: int = 200) -> bool:
+    """
+    Return True if at least one non-comment, non-empty line with exactly 9 tab-separated
+    columns exists within the first `max_lines` lines.
+    """
+    with fileinput.hook_compressed(path, "r", encoding="utf-8", errors="ignore") as fh:
+        for _, line in zip(range(max_lines), fh):
+            s = line.strip()
+            if not s or s.startswith("#"):
+                continue
+            if len(s.split("\t")) == 9:
+                return True
+    return False
+
+def validate_inputs(to_validate_inputs: dict[str, str | None]) -> dict[str, str | None]:
+    """
+    Validation policy:
+
+      - annotation: must exist (content may be empty/header-only)
+      - pred_support: must contain at least one data row (header-only is invalid)
+      - gff: validated only if pred_support has data; then requires >=1 9-col record
     """
     non_valid_inputs: dict[str, str | None] = {}
 
+    # ---- Basic existence checks ----
     for name, path in to_validate_inputs.items():
-        if not path:
+        if not path or not path.strip():
             non_valid_inputs[name] = "No input provided"
             continue
 
-        # Check existence
         if not os.path.exists(path):
-            logger.warning(f"File not found for '{name}' → {path}")
-            non_valid_inputs[name] = f"File not found in {path}"
+            logger.warning("File not found for '%s' → %s", name, path)
+            non_valid_inputs[name] = "File not found"
             continue
 
-        # Read first few lines using hook_compressed (handles .gz automatically)
-        with fileinput.hook_compressed(
-            path, "r", encoding="utf-8", errors="ignore"
-        ) as input_table:
-            lines = [
-                line for _, line in zip(range(3), input_table)
-            ]  # read up to 3 lines
+    # If any required path is missing, stop early
+    if non_valid_inputs:
+        return non_valid_inputs
 
-        # Check for empty files
-        if not lines:
-            logger.info(f"Skipping empty file for '{name}' → {path}")
-            non_valid_inputs[name] = "Empty file"
-            continue
+    # ---- pred_support must have at least one predicted protein ----
+    pred_support_path = to_validate_inputs["pred_support"]
+    if pred_support_path is None:
+        non_valid_inputs["pred_support"] = "No input provided"
+        return non_valid_inputs
 
-        # Check for header-only file
-        if len(lines) == 1:
-            logger.info(f"Skipping header-only file for '{name}' → {path}")
-            non_valid_inputs[name] = "Header only"
-            continue
+    if not _pred_support_has_data_rows(pred_support_path):
+        logger.info("pred_support is empty or header-only → %s", pred_support_path)
+        non_valid_inputs["pred_support"] = "No predicted proteins (empty or header-only)"
+        return non_valid_inputs
 
+    # ---- Validate GFF only if pred_support has predicted proteins ----
+    gff_path = to_validate_inputs["gff"]
+    if gff_path is None:
+        non_valid_inputs["gff"] = "No input provided"
+        return non_valid_inputs
+
+    if not _has_gff_record_9cols(gff_path):
+        logger.info("GFF has no valid 9-column feature records → %s", gff_path)
+        non_valid_inputs["gff"] = "No valid GFF records (no 9-column features found)"
+
+    # ---- annotation: existence already checked; no content validation ----
     return non_valid_inputs
-
 
 def parse_pathofact_support(input_file: str) -> dict[str, str]:
     """
@@ -153,7 +195,7 @@ def parse_cdd(pathofact_attributes: dict[str, str], input_file: str) -> dict[str
 
 def parse_ips(pathofact_attributes: dict[str, str], input_file: str) -> dict[str, str]:
     """
-     Parse the Interproscan protein annotation file provided by the user
+     Parse the Interproscan protein annotation file provided by the user to extract CDD annotations
 
      Args:
          pathofact_attributes: Dictionary with protein IDs and pathofact annotations
@@ -266,7 +308,7 @@ def main() -> None:
         "--annot",
         dest="proteins_annot",
         help="Tab-delimited file of functional annotation. It can be the interproscan result for all the proteins provided by the user or the CDD annotation for relevant proteins generated as part of the pathofact subworkflow",
-        required=False,
+        required=True,
         default=None,
     )
     parser.add_argument(
@@ -274,7 +316,7 @@ def main() -> None:
         "--support",
         dest="pred_support",
         help="Tab-delimited file corresponding to the Pathofact2 result containing the blastp hits evalues and the probability of the predictions",
-        required=False,
+        required=True,
         default=None,
     )
     parser.add_argument(
@@ -283,7 +325,7 @@ def main() -> None:
         dest="annot_type",
         choices=["cdd", "ips"],
         help="Annotation type to be parsed. Valid strings are 'cdd' for results generated in the subworkflow by local-cd-search module or 'ips' for user provided interproscan annotation",
-        required=False,
+        required=True,
         default=None,
     )
     parser.add_argument(
@@ -314,10 +356,10 @@ def main() -> None:
         ],
     )
 
-
     to_validate_inputs: dict[str, str | None] = {
         "gff": args.cds_gff,
         "annotation": args.proteins_annot,
+        "pred_support": args.pred_support,
     }
 
     non_valid_inputs: dict[str, str | None] = validate_inputs(to_validate_inputs)
