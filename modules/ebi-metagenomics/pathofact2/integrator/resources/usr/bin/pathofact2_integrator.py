@@ -314,12 +314,6 @@ def main() -> None:
         ],
     )
 
-    valid_annot_types = ["cdd", "ips"]
-    if args.annot_type not in valid_annot_types:
-        logger.info(
-            f"Valid annotation types are cdd or ips. {args.annot_type} is not a valid string. Exiting..."
-        )
-        exit()
 
     to_validate_inputs: dict[str, str | None] = {
         "gff": args.cds_gff,
