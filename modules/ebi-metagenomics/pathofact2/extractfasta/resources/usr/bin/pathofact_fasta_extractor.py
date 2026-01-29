@@ -103,8 +103,8 @@ def parse_blastp_best_hits(blastp_out):
                 for hsp in hit.hsps:
                     candidate = BestBlastHit(
                         sseqid=sseqid,
-                        evalue=float(hsp.evalue),
-                        bitscore=float(hsp.bitscore),
+                        evalue=hsp.evalue,
+                        bitscore=hsp.bitscore,
                     )
 
                     if current is None:
@@ -173,29 +173,43 @@ def collect_detected_sequence_ids(blast_hits, tox_preds, vf_preds):
     ids.update(vf_preds.keys())
     return ids
 
-
 def write_detected_fasta(sequences, detected_ids, output_fasta):
     """
     Write a FASTA containing only sequences whose IDs are in detected_ids.
+    
+    Raises:
+        ValueError: If any detected protein IDs are missing from the FASTA file.
     """
     records = []
-    missing = 0
+    missing_ids = []
 
     for seq_id in sorted(detected_ids):
         rec = sequences.get(seq_id)
         if rec is None:
-            missing += 1
+            missing_ids.append(seq_id)
             continue
         records.append(rec)
 
+    # Check for missing sequences - this should never happen
+    if missing_ids:
+        # Show first 10 missing IDs, then summarize if more exist
+        max_display = 10
+        displayed_ids = missing_ids[:max_display]
+        id_list = "\n".join(f"  - {seq_id}" for seq_id in displayed_ids)
+        
+        if len(missing_ids) > max_display:
+            id_list += f"\n  ... and {len(missing_ids) - max_display} more"
+        
+        error_msg = (
+            f"FATAL ERROR: {len(missing_ids)} predicted protein(s) not found in FASTA file.\n"
+            f"This indicates a mismatch between prediction results and input sequences.\n"
+            f"Missing protein IDs:\n{id_list}"
+        )
+        logger.error(error_msg)
+        raise ValueError(error_msg)
+
     SeqIO.write(records, output_fasta, "fasta")
     logger.info("Wrote %s sequences to: %s", len(records), output_fasta)
-
-    if missing > 0:
-        logger.warning(
-            "%s detected IDs were not found in FASTA and were skipped.", missing
-        )
-
 
 def _fmt_prob(value, ndigits=6):
     """
