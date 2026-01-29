@@ -48,12 +48,6 @@ def validate_inputs(
             non_valid_inputs[name] = f"File not found in {path}"
             continue
 
-        # Check for empty files
-        if os.path.getsize(path) == 0:
-            logger.info(f"Skipping empty file for '{name}' → {path}")
-            non_valid_inputs[name] = "Empty file"
-            continue
-
         # Read first few lines using hook_compressed (handles .gz automatically)
         with fileinput.hook_compressed(
             path, "r", encoding="utf-8", errors="ignore"
@@ -62,11 +56,14 @@ def validate_inputs(
                 line for _, line in zip(range(3), input_table)
             ]  # read up to 3 lines
 
-        if len(lines) == 0:
+        # Check for empty files
+        if not lines:
             logger.info(f"Skipping empty file for '{name}' → {path}")
             non_valid_inputs[name] = "Empty file"
             continue
-        elif len(lines) == 1:
+
+        # Check for header-only file
+        if len(lines) == 1:
             logger.info(f"Skipping header-only file for '{name}' → {path}")
             non_valid_inputs[name] = "Header only"
             continue
