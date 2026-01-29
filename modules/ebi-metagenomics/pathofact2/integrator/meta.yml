@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "pathofact2_integrator"
-description: Module to integrate the Pathofact2 results with CDDS annotations into a single GFF file
+description: Module to integrate Pathofact2 results with CDD annotations into a single GFF file
 keywords:
   - pathofact2
   - toxins
