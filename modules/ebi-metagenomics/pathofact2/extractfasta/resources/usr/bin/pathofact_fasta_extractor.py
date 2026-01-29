@@ -127,6 +127,7 @@ def parse_blastp_best_hits(blastp_out):
     )
     return best
 
+
 def parse_pathofact2_predictions_tsv(tsv_path, threshold):
     """
     Parse PathoFact2 TSV output and filter by a probability threshold.
@@ -186,6 +187,7 @@ def parse_pathofact2_predictions_tsv(tsv_path, threshold):
     )
     return preds
 
+
 def collect_detected_sequence_ids(blast_hits, tox_preds, vf_preds):
     """Union of all sequence IDs detected by any method."""
     ids = set()
@@ -194,10 +196,11 @@ def collect_detected_sequence_ids(blast_hits, tox_preds, vf_preds):
     ids.update(vf_preds.keys())
     return ids
 
+
 def write_detected_fasta(sequences, detected_ids, output_fasta):
     """
     Write a FASTA containing only sequences whose IDs are in detected_ids.
-    
+
     Raises:
         ValueError: If any detected protein IDs are missing from the FASTA file.
     """
@@ -217,10 +220,10 @@ def write_detected_fasta(sequences, detected_ids, output_fasta):
         max_display = 10
         displayed_ids = missing_ids[:max_display]
         id_list = "\n".join(f"  - {seq_id}" for seq_id in displayed_ids)
-        
+
         if len(missing_ids) > max_display:
             id_list += f"\n  ... and {len(missing_ids) - max_display} more"
-        
+
         error_msg = (
             f"FATAL ERROR: {len(missing_ids)} predicted protein(s) not found in FASTA file.\n"
             f"This indicates a mismatch between prediction results and input sequences.\n"
@@ -231,6 +234,7 @@ def write_detected_fasta(sequences, detected_ids, output_fasta):
 
     SeqIO.write(records, output_fasta, "fasta")
     logger.info("Wrote %s sequences to: %s", len(records), output_fasta)
+
 
 def _fmt_prob(value, ndigits=6):
     """
