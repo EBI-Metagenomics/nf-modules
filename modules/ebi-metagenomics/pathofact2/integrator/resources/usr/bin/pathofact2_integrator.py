@@ -23,6 +23,7 @@ import os
 # Set up logger
 logger = logging.getLogger(__name__)
 
+
 def _pred_support_has_data_rows(path: str) -> bool:
     """
     Return True if pred_support TSV has at least one data row (beyond the header).
@@ -44,11 +45,12 @@ def _pred_support_has_data_rows(path: str) -> bool:
             if not row:
                 continue
             # Skip rows that are effectively empty (e.g. ["", "", ...])
-            if all((cell.strip() == "" for cell in row)):
+            if all(cell.strip() == "" for cell in row):
                 continue
             return True
 
     return False
+
 
 def _has_gff_record_9cols(path: str, max_lines: int = 200) -> bool:
     """
@@ -63,6 +65,7 @@ def _has_gff_record_9cols(path: str, max_lines: int = 200) -> bool:
             if len(s.split("\t")) == 9:
                 return True
     return False
+
 
 def validate_inputs(to_validate_inputs: dict[str, str | None]) -> dict[str, str | None]:
     """
@@ -97,7 +100,9 @@ def validate_inputs(to_validate_inputs: dict[str, str | None]) -> dict[str, str 
 
     if not _pred_support_has_data_rows(pred_support_path):
         logger.info("pred_support is empty or header-only → %s", pred_support_path)
-        non_valid_inputs["pred_support"] = "No predicted proteins (empty or header-only)"
+        non_valid_inputs["pred_support"] = (
+            "No predicted proteins (empty or header-only)"
+        )
         return non_valid_inputs
 
     # ---- Validate GFF only if pred_support has predicted proteins ----
@@ -112,6 +117,7 @@ def validate_inputs(to_validate_inputs: dict[str, str | None]) -> dict[str, str 
 
     # ---- annotation: existence already checked; no content validation ----
     return non_valid_inputs
+
 
 def parse_pathofact_support(input_file: str) -> dict[str, str]:
     """
@@ -154,6 +160,7 @@ def parse_pathofact_support(input_file: str) -> dict[str, str]:
 
     return pathofact_attributes
 
+
 def _add_annotation_to_protein(
     protein_id: str,
     signature_acc: str,
@@ -183,9 +190,8 @@ def _add_annotation_to_protein(
             proteins_annotation[protein_id] = updated_line
         else:
             pathofact_values = pathofact_attributes[protein_id]
-            proteins_annotation[protein_id] = (
-                pathofact_values + ";cdd=" + current_line
-            )
+            proteins_annotation[protein_id] = pathofact_values + ";cdd=" + current_line
+
 
 def parse_cdd(pathofact_attributes: dict[str, str], input_file: str) -> dict[str, str]:
     """
@@ -209,9 +215,13 @@ def parse_cdd(pathofact_attributes: dict[str, str], input_file: str) -> dict[str
             protein_id: str = line_l[0]
             cdd_acc: str = line_l[7]
             cdd_short: str = line_l[8]
-            
+
             _add_annotation_to_protein(
-                protein_id, cdd_acc, cdd_short, pathofact_attributes, proteins_annotation
+                protein_id,
+                cdd_acc,
+                cdd_short,
+                pathofact_attributes,
+                proteins_annotation,
             )
 
     return proteins_annotation
@@ -255,9 +265,13 @@ def parse_ips(pathofact_attributes: dict[str, str], input_file: str) -> dict[str
 
             if analysis == "CDD":
                 _add_annotation_to_protein(
-                    protein_id, signature_acc, signature_desc, pathofact_attributes, proteins_annotation
+                    protein_id,
+                    signature_acc,
+                    signature_desc,
+                    pathofact_attributes,
+                    proteins_annotation,
                 )
-                
+
     return proteins_annotation
 
 
