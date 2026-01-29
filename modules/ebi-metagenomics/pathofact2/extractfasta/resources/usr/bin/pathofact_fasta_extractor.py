@@ -127,31 +127,53 @@ def parse_blastp_best_hits(blastp_out):
     )
     return best
 
-
 def parse_pathofact2_predictions_tsv(tsv_path, threshold):
     """
     Parse PathoFact2 TSV output and filter by a probability threshold.
-    Header: Sequence    Prediction    Probability
 
-    Store: {sequence_id: probability} for predictions with probability >= threshold
+    Expected header:
+      Sequence    Prediction    Probability
+
+    Returns:
+      {sequence_id: probability} for predictions with probability >= threshold
+
+    Raises:
+      ValueError: if the file structure is not as expected.
     """
     preds = {}
     if not _file_is_readable(tsv_path):
         return preds
 
+    expected_header = ["Sequence", "Prediction", "Probability"]
+
     with _open_text_maybe_gzip(tsv_path) as handle:
         reader = csv.reader(handle, delimiter="\t")
-        header = next(reader)
 
-        if len(header) < 3 or header[0] != "Sequence":
-            logger.warning("Unexpected header in %s: %s", tsv_path, header)
+        header = next(reader, None)
+        if header is None:
+            raise ValueError(f"Empty PathoFact2 TSV (no header): {tsv_path}")
 
-        for row in reader:
-            if not row or len(row) < 3:
-                continue
+        header = [h.strip() for h in header]
+        if header[:3] != expected_header:
+            raise ValueError(
+                f"Unexpected header in {tsv_path}. "
+                f"Expected first 3 columns {expected_header} but got {header[:3]}"
+            )
+
+        for line_no, row in enumerate(reader, start=2):
+            if len(row) != 3:
+                raise ValueError(
+                    f"Malformed row in '{tsv_path}' at line {line_no}: {row}"
+                )
 
             seq_id = row[0]
-            probability = float(row[2])
+            try:
+                probability = float(row[2])
+            except ValueError as e:
+                raise ValueError(
+                    f"Invalid Probability value '{row[2]}' "
+                    f"in '{tsv_path}' at line {line_no}"
+                ) from e
 
             if probability >= threshold:
                 preds[seq_id] = probability
@@ -163,7 +185,6 @@ def parse_pathofact2_predictions_tsv(tsv_path, threshold):
         threshold,
     )
     return preds
-
 
 def collect_detected_sequence_ids(blast_hits, tox_preds, vf_preds):
     """Union of all sequence IDs detected by any method."""
