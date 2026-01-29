@@ -10,7 +10,10 @@ script_dir = Path(__file__).parent.parent / "resources" / "usr" / "bin"
 sys.path.insert(0, str(script_dir))
 
 # Import functions from the script
-from pathofact2_integrator import (
+from pathofact2_integrator import (  # noqa: E402
+    _add_annotation_to_protein,
+    _has_gff_record_9cols,
+    _pred_support_has_data_rows,
     parse_cdd,
     parse_gff,
     parse_ips,
@@ -313,9 +316,28 @@ def tmp_files(tmp_path):
     empty_file = tmp_path / "empty.tsv"
     empty_file.write_text("")
 
-    # Create header-only file
+    # Create header-only pred_support file
     header_only = tmp_path / "header_only.tsv"
-    header_only.write_text("sequence_id\tdetection_method\tsupport_value_type\n")
+    header_only.write_text(
+        "sequence_id\tdetection_method\tsupport_value_type\tsupport_value\tvfdb_hit\n"
+    )
+
+    # Create GFF file with only comments (no 9-column records)
+    gff_comments_only = tmp_path / "gff_comments_only.gff"
+    gff_comments_only.write_text(
+        "##gff-version 3\n##sequence-region Contig001 1 100000\n"
+    )
+
+    # Create GFF file with invalid format (not 9 columns)
+    gff_invalid = tmp_path / "gff_invalid.gff"
+    gff_invalid.write_text("##gff-version 3\nContig001\tProdigal\tCDS\n")
+
+    # Create pred_support with blank lines
+    pred_support_blank_lines = tmp_path / "pred_support_blank.tsv"
+    pred_support_blank_content = "\t".join(pred_support_data["header"]) + "\n"
+    pred_support_blank_content += "\n"  # blank line
+    pred_support_blank_content += "\t\t\t\t\n"  # empty columns
+    pred_support_blank_lines.write_text(pred_support_blank_content)
 
     return {
         "pred_support": str(pred_support),
@@ -324,18 +346,103 @@ def tmp_files(tmp_path):
         "gff_file": str(gff_file),
         "empty_file": str(empty_file),
         "header_only": str(header_only),
+        "gff_comments_only": str(gff_comments_only),
+        "gff_invalid": str(gff_invalid),
+        "pred_support_blank_lines": str(pred_support_blank_lines),
         "tmp_path": tmp_path,
     }
 
 
-class TestValidateInputs:
-    """Test input validation function."""
+class TestHelperFunctions:
+    """Test private helper functions."""
 
-    def test_valid_inputs(self, tmp_files):
-        """Test validation passes for valid files."""
+    def test_pred_support_has_data_rows_valid(self, tmp_files):
+        """Test that pred_support with data rows returns True."""
+        result = _pred_support_has_data_rows(tmp_files["pred_support"])
+        assert result is True
+
+    def test_pred_support_has_data_rows_empty(self, tmp_files):
+        """Test that empty file returns False."""
+        result = _pred_support_has_data_rows(tmp_files["empty_file"])
+        assert result is False
+
+    def test_pred_support_has_data_rows_header_only(self, tmp_files):
+        """Test that header-only file returns False."""
+        result = _pred_support_has_data_rows(tmp_files["header_only"])
+        assert result is False
+
+    def test_pred_support_has_data_rows_blank_lines(self, tmp_files):
+        """Test that file with only blank lines returns False."""
+        result = _pred_support_has_data_rows(tmp_files["pred_support_blank_lines"])
+        assert result is False
+
+    def test_has_gff_record_9cols_valid(self, tmp_files):
+        """Test that valid GFF with 9 columns returns True."""
+        result = _has_gff_record_9cols(tmp_files["gff_file"])
+        assert result is True
+
+    def test_has_gff_record_9cols_comments_only(self, tmp_files):
+        """Test that GFF with only comments returns False."""
+        result = _has_gff_record_9cols(tmp_files["gff_comments_only"])
+        assert result is False
+
+    def test_has_gff_record_9cols_invalid_format(self, tmp_files):
+        """Test that GFF with invalid format returns False."""
+        result = _has_gff_record_9cols(tmp_files["gff_invalid"])
+        assert result is False
+
+    def test_add_annotation_to_protein_new_protein(self):
+        """Test adding annotation to a new protein."""
+        pathofact_attrs = {"protein1": "vfdb=VFG123;blastp_eval=1e-10"}
+        proteins_annotation = {}
+
+        _add_annotation_to_protein(
+            "protein1", "cd12345", "Domain_Name", pathofact_attrs, proteins_annotation
+        )
+
+        assert "protein1" in proteins_annotation
+        assert (
+            proteins_annotation["protein1"]
+            == "vfdb=VFG123;blastp_eval=1e-10;cdd=cd12345:Domain_Name"
+        )
+
+    def test_add_annotation_to_protein_existing_protein(self):
+        """Test adding annotation to existing protein with CDD annotations."""
+        pathofact_attrs = {"protein1": "vfdb=VFG123;blastp_eval=1e-10"}
+        proteins_annotation = {
+            "protein1": "vfdb=VFG123;blastp_eval=1e-10;cdd=cd11111:Domain1"
+        }
+
+        _add_annotation_to_protein(
+            "protein1", "cd22222", "Domain2", pathofact_attrs, proteins_annotation
+        )
+
+        assert "cd11111:Domain1" in proteins_annotation["protein1"]
+        assert "cd22222:Domain2" in proteins_annotation["protein1"]
+        assert proteins_annotation["protein1"].count("cdd=") == 1
+        assert "," in proteins_annotation["protein1"]
+
+    def test_add_annotation_to_protein_not_in_pathofact(self):
+        """Test that proteins not in pathofact_attrs are not annotated."""
+        pathofact_attrs = {"protein1": "vfdb=VFG123;blastp_eval=1e-10"}
+        proteins_annotation = {}
+
+        _add_annotation_to_protein(
+            "protein2", "cd12345", "Domain_Name", pathofact_attrs, proteins_annotation
+        )
+
+        assert "protein2" not in proteins_annotation
+
+
+class TestValidateInputs:
+    """Test input validation function with new validation logic."""
+
+    def test_valid_inputs_all_files(self, tmp_files):
+        """Test validation passes for all valid files."""
         to_validate = {
             "gff": tmp_files["gff_file"],
             "annotation": tmp_files["cdd_annot"],
+            "pred_support": tmp_files["pred_support"],
         }
         result = validate_inputs(to_validate)
         assert len(result) == 0, "Valid files should pass validation"
@@ -344,37 +451,107 @@ class TestValidateInputs:
         """Test validation fails for non-existent files."""
         to_validate = {
             "gff": "/nonexistent/file.gff",
+            "annotation": tmp_files["cdd_annot"],
+            "pred_support": tmp_files["pred_support"],
         }
         result = validate_inputs(to_validate)
         assert len(result) == 1
         assert "File not found" in result["gff"]
 
-    def test_empty_file(self, tmp_files):
-        """Test validation fails for empty files."""
+    def test_pred_support_empty_file(self, tmp_files):
+        """Test validation fails for empty pred_support file."""
         to_validate = {
-            "annotation": tmp_files["empty_file"],
+            "gff": tmp_files["gff_file"],
+            "annotation": tmp_files["cdd_annot"],
+            "pred_support": tmp_files["empty_file"],
         }
         result = validate_inputs(to_validate)
         assert len(result) == 1
-        assert result["annotation"] == "Empty file"
+        assert "pred_support" in result
+        assert "No predicted proteins" in result["pred_support"]
 
-    def test_header_only_file(self, tmp_files):
-        """Test validation fails for header-only files."""
+    def test_pred_support_header_only(self, tmp_files):
+        """Test validation fails for header-only pred_support file."""
         to_validate = {
-            "support": tmp_files["header_only"],
+            "gff": tmp_files["gff_file"],
+            "annotation": tmp_files["cdd_annot"],
+            "pred_support": tmp_files["header_only"],
         }
         result = validate_inputs(to_validate)
         assert len(result) == 1
-        assert result["support"] == "Header only"
+        assert "pred_support" in result
+        assert "No predicted proteins" in result["pred_support"]
+
+    def test_gff_no_valid_records(self, tmp_files):
+        """Test validation fails for GFF with no valid 9-column records."""
+        to_validate = {
+            "gff": tmp_files["gff_comments_only"],
+            "annotation": tmp_files["cdd_annot"],
+            "pred_support": tmp_files["pred_support"],
+        }
+        result = validate_inputs(to_validate)
+        assert len(result) == 1
+        assert "gff" in result
+        assert "No valid GFF records" in result["gff"]
+
+    def test_gff_not_validated_when_pred_support_empty(self, tmp_files):
+        """Test that GFF validation is skipped when pred_support is empty."""
+        # Even if GFF is invalid, validation should stop at pred_support
+        to_validate = {
+            "gff": tmp_files["gff_comments_only"],
+            "annotation": tmp_files["cdd_annot"],
+            "pred_support": tmp_files["empty_file"],
+        }
+        result = validate_inputs(to_validate)
+        # Should only report pred_support error, not GFF error
+        assert "pred_support" in result
+        assert "gff" not in result
 
     def test_none_input(self):
         """Test validation handles None inputs."""
         to_validate = {
-            "optional_file": None,
+            "gff": None,
+            "annotation": "some_file.tsv",
+            "pred_support": "support.tsv",
         }
         result = validate_inputs(to_validate)
-        assert len(result) == 1
-        assert result["optional_file"] == "No input provided"
+        assert len(result) >= 1
+        assert "gff" in result
+        assert result["gff"] == "No input provided"
+
+    def test_empty_string_input(self):
+        """Test validation handles empty string inputs."""
+        to_validate = {
+            "gff": "",
+            "annotation": "some_file.tsv",
+            "pred_support": "support.tsv",
+        }
+        result = validate_inputs(to_validate)
+        assert len(result) >= 1
+        assert "gff" in result
+        assert result["gff"] == "No input provided"
+
+    def test_annotation_file_can_be_empty(self, tmp_files):
+        """Test that annotation file can be empty (no content validation)."""
+        to_validate = {
+            "gff": tmp_files["gff_file"],
+            "annotation": tmp_files["empty_file"],
+            "pred_support": tmp_files["pred_support"],
+        }
+        result = validate_inputs(to_validate)
+        # Annotation file should pass even if empty
+        assert len(result) == 0
+
+    def test_multiple_invalid_files(self, tmp_files):
+        """Test validation reports multiple errors."""
+        to_validate = {
+            "gff": tmp_files["gff_comments_only"],
+            "annotation": tmp_files["cdd_annot"],
+            "pred_support": tmp_files["header_only"],
+        }
+        result = validate_inputs(to_validate)
+        # Only pred_support should be reported (stops early)
+        assert "pred_support" in result
 
 
 class TestParsePathofactSupport:
@@ -407,6 +584,15 @@ class TestParsePathofactSupport:
         assert "vfdb=VFG049144" in wp_001273183_annot
         assert "pathofact2_tox_prob=1.0" in wp_001273183_annot
         assert "pathofact2_vf_prob=0.9977883" in wp_001273183_annot
+
+    def test_parse_support_file_semicolon_separator(self, tmp_files):
+        """Test that annotations are separated by semicolons."""
+        result = parse_pathofact_support(tmp_files["pred_support"])
+
+        # Check semicolon separation
+        assert ";" in result["WP_000031783.1"]
+        assert ";" in result["WP_000242755.1"]
+        assert ";" in result["WP_001273183.1"]
 
 
 class TestParseCDD:
@@ -460,6 +646,16 @@ class TestParseCDD:
         assert "WP_000242755.1" in result
         assert "WP_000031783.1" not in result
 
+    def test_parse_cdd_uses_helper_function(self, tmp_files):
+        """Test that parse_cdd uses _add_annotation_to_protein helper."""
+        pathofact_attrs = {"WP_000031783.1": "vfdb=VFG046459;blastp_eval=6.5e-248"}
+        result = parse_cdd(pathofact_attrs, tmp_files["cdd_annot"])
+
+        # Should have CDD annotations added via helper
+        assert "WP_000031783.1" in result
+        assert "cdd=" in result["WP_000031783.1"]
+        assert "cd01884:EF_Tu" in result["WP_000031783.1"]
+
 
 class TestParseIPS:
     """Test parsing of InterProScan annotation file."""
@@ -499,6 +695,16 @@ class TestParseIPS:
         # WP_000242755.1 has 2 CDD annotations
         wp_000242755_annot = result["WP_000242755.1"]
         assert wp_000242755_annot.count(",") == 1
+
+    def test_parse_ips_uses_helper_function(self, tmp_files):
+        """Test that parse_ips uses _add_annotation_to_protein helper."""
+        pathofact_attrs = {"WP_000242755.1": "vfdb=VFG042734;blastp_eval=2.58e-94"}
+        result = parse_ips(pathofact_attrs, tmp_files["ips_annot"])
+
+        # Should have CDD annotations added via helper
+        assert "WP_000242755.1" in result
+        assert "cdd=" in result["WP_000242755.1"]
+        assert "cd00038:CAP_ED" in result["WP_000242755.1"]
 
 
 class TestParseGFF:
@@ -586,21 +792,48 @@ class TestParseGFF:
         assert "blastp_eval=2.58e-94" in attributes
         assert "cdd=cd00038:CAP_ED" in attributes
 
+    def test_parse_gff_handles_comments(self, tmp_files):
+        """Test that GFF parser handles comment lines correctly."""
+        pathofact_attrs = parse_pathofact_support(tmp_files["pred_support"])
+        proteins_annotation = parse_cdd(pathofact_attrs, tmp_files["cdd_annot"])
+
+        output_file = tmp_files["tmp_path"] / "output.gff"
+        parse_gff(tmp_files["gff_file"], str(output_file), proteins_annotation)
+
+        content = output_file.read_text()
+        lines = content.strip().split("\n")
+
+        # Only first line should be the header we write
+        assert lines[0] == "##gff-version 3"
+
+        # All other lines should be data lines (9 columns)
+        for line in lines[1:]:
+            assert len(line.split("\t")) == 9
+
 
 class TestIntegration:
     """Integration tests for complete workflow."""
 
     def test_full_workflow_cdd(self, tmp_files):
         """Test complete workflow with CDD annotations."""
-        # Step 1: Parse PathOFact support
+        # Step 1: Validate inputs
+        to_validate = {
+            "gff": tmp_files["gff_file"],
+            "annotation": tmp_files["cdd_annot"],
+            "pred_support": tmp_files["pred_support"],
+        }
+        validation_result = validate_inputs(to_validate)
+        assert len(validation_result) == 0
+
+        # Step 2: Parse PathOFact support
         pathofact_attrs = parse_pathofact_support(tmp_files["pred_support"])
         assert len(pathofact_attrs) == 4
 
-        # Step 2: Parse CDD annotations
+        # Step 3: Parse CDD annotations
         proteins_annotation = parse_cdd(pathofact_attrs, tmp_files["cdd_annot"])
         assert len(proteins_annotation) == 2  # Only 2 proteins have CDD hits
 
-        # Step 3: Parse GFF and write output
+        # Step 4: Parse GFF and write output
         output_file = tmp_files["tmp_path"] / "final_output.gff"
         parse_gff(tmp_files["gff_file"], str(output_file), proteins_annotation)
 
@@ -614,8 +847,54 @@ class TestIntegration:
 
     def test_full_workflow_ips(self, tmp_files):
         """Test complete workflow with IPS annotations."""
+        # Step 1: Validate inputs
+        to_validate = {
+            "gff": tmp_files["gff_file"],
+            "annotation": tmp_files["ips_annot"],
+            "pred_support": tmp_files["pred_support"],
+        }
+        validation_result = validate_inputs(to_validate)
+        assert len(validation_result) == 0
+
+        # Step 2: Parse PathOFact support
+        pathofact_attrs = parse_pathofact_support(tmp_files["pred_support"])
+
+        # Step 3: Parse IPS annotations
+        proteins_annotation = parse_ips(pathofact_attrs, tmp_files["ips_annot"])
+        assert len(proteins_annotation) == 2
+
+        # Step 4: Parse GFF and write output
+        output_file = tmp_files["tmp_path"] / "final_output_ips.gff"
+        parse_gff(tmp_files["gff_file"], str(output_file), proteins_annotation)
+
+        # Verify output
+        content = output_file.read_text()
+        assert "##gff-version 3" in content
+        assert "WP_000242755.1" in content
+        assert "WP_000031783.1" in content
+
+    def test_workflow_with_invalid_pred_support(self, tmp_files):
+        """Test workflow fails gracefully with invalid pred_support."""
+        to_validate = {
+            "gff": tmp_files["gff_file"],
+            "annotation": tmp_files["cdd_annot"],
+            "pred_support": tmp_files["header_only"],
+        }
+        validation_result = validate_inputs(to_validate)
+
+        # Should fail at validation
+        assert len(validation_result) > 0
+        assert "pred_support" in validation_result
+
+
+class TestFullWorkflowIPS:
+    """Test complete workflow with IPS annotations."""
+
+    def test_workflow_ips_complete(self, tmp_files):
+        """Test full workflow using IPS annotation file."""
         # Step 1: Parse PathOFact support
         pathofact_attrs = parse_pathofact_support(tmp_files["pred_support"])
+        assert len(pathofact_attrs) > 0
 
         # Step 2: Parse IPS annotations
         proteins_annotation = parse_ips(pathofact_attrs, tmp_files["ips_annot"])
