@@ -70,6 +70,16 @@ output:
       - "python --version | sed 's/Python //g'":
           type: string
           description: Command used to obtain the tool version
+  versions_pathofact2:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - pathofact2:
+          type: string
+          description: The name of the tool
+      - "echo ${VERSION}":
+          type: string
+          description: Command used to obtain the tool version
 
 authors:
   - "@Ales-ibt"

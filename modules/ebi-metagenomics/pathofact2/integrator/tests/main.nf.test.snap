@@ -6,7 +6,7 @@
                     {
                         "id": "test"
                     },
-                    "test_pathofact2.gff:md5,a050f6f8339c9f356578704eae177c3b"
+                    "test_pathofact2.gff:md5,f651d6bb6893fbe9836509f3d8cdcf47"
                 ]
             ]
         ],
@@ -14,7 +14,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T12:55:21.788112"
+        "timestamp": "2026-01-28T16:26:56.066775"
     },
     "versions_ips_inv": {
         "content": [
@@ -30,7 +30,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T12:55:35.034399"
+        "timestamp": "2026-01-28T16:27:09.285697"
     },
     "versions_cdd_stub": {
         "content": [
@@ -46,7 +46,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T12:55:24.951939"
+        "timestamp": "2026-01-28T16:26:59.385777"
     },
     "versions_ips_stub": {
         "content": [
@@ -62,7 +62,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T12:55:31.632714"
+        "timestamp": "2026-01-28T16:27:05.964519"
     },
     "versions_cdd": {
         "content": [
@@ -78,7 +78,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T12:55:21.794242"
+        "timestamp": "2026-01-28T16:26:56.072423"
     },
     "gff_cdd_stub": {
         "content": [
@@ -95,7 +95,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T12:55:24.94851"
+        "timestamp": "2026-01-28T16:26:59.382243"
     },
     "versions_ips": {
         "content": [
@@ -111,7 +111,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T12:55:28.376764"
+        "timestamp": "2026-01-28T16:27:02.807614"
     },
     "gff_ips_stub": {
         "content": [
@@ -128,7 +128,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T12:55:31.62722"
+        "timestamp": "2026-01-28T16:27:05.959061"
     },
     "gff_ips": {
         "content": [
@@ -137,7 +137,7 @@
                     {
                         "id": "test"
                     },
-                    "test_pathofact2.gff:md5,d9ec047494c3d398ac5277414053d6f6"
+                    "test_pathofact2.gff:md5,d1c40a829335469dd9dc70daa1485de9"
                 ]
             ]
         ],
@@ -145,6 +145,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-01-26T12:55:28.371676"
+        "timestamp": "2026-01-28T16:27:02.80283"
     }
 }
