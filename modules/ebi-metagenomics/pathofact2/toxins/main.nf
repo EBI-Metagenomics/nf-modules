@@ -7,7 +7,7 @@ process PATHOFACT2_TOXINS {
 
     input:
     tuple val(meta), path(fasta)
-    path zenodo_file
+    path pathofact2_db
 
     output:
     tuple val(meta), path("*_classifier_toxins.tsv"), emit: tsv
@@ -21,19 +21,26 @@ process PATHOFACT2_TOXINS {
     VERSION = '1.0.4' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
+
+    // Handle compressed input
     def is_compressed = fasta.getExtension() == "gz"
     def fasta_name = is_compressed ? fasta.getBaseName() : fasta
     def uncompress_input = is_compressed ? "gzip -c -d ${fasta} > ${fasta_name}" : ''
+
+    // Handle compressed database
+    def db_is_tarball = pathofact2_db.toString().endsWith('.tar.gz') || pathofact2_db.toString().endsWith('.tgz')
+    def db_dir = db_is_tarball ? '.' : pathofact2_db
+    def uncompress_db = db_is_tarball ? "tar -xzf ${pathofact2_db}" : ''
+
     """
     $uncompress_input
-
-    tar -xavf ${zenodo_file}
+    $uncompress_db
 
     predict.py \\
         ${args} \\
         -s ${fasta_name} \\
-        -m Models/TOX/final_model.joblib \\
-        -v Models/TOX/ \\
+        -m ${db_dir}/Models/TOX/final_model.joblib \\
+        -v ${db_dir}/Models/TOX/ \\
         --cpus ${task.cpus} \\
         -o ${prefix}_classifier_toxins.tsv
     """

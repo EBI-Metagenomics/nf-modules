@@ -27,9 +27,13 @@ input:
         pattern: "*{fasta,fasta.gz,fa,fa.gz,fna,fna.gz,faa,faa.gz}"
         ontologies:
           - edam: "http://edamontology.org/format_1929" # FASTA
-  - zenodo_file:
-      type: file
-      description: Pathofact2 file downloaded rom zenodo. The tarball contains the Models db
+  - pathofact2_db:
+      type: directory
+      description: |
+        Pathofact2 database. Can be either:
+        - A compressed tarball (.tar.gz) that will be extracted
+        - An uncompressed directory containing the models
+      pattern: "*.{tar.gz,}"
 output:
   tsv:
     - - meta:
