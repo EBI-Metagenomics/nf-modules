@@ -281,6 +281,7 @@ def main() -> None:
         "-t",
         "--type",
         dest="annot_type",
+        choices=["cdd", "ips"],
         help="Annotation type to be parsed. Valid strings are 'cdd' for results generated in the subworkflow by local-cd-search module or 'ips' for user provided interproscan annotation",
         required=False,
         default=None,
