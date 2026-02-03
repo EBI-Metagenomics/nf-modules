@@ -59,19 +59,12 @@ workflow PATHOFACT2 {
         vfdb_diamond_db = DIAMOND_MAKEDB.out.db
     }
 
-    // Only prepare CDD database if there are samples without IPS annotation
-    ch_without_ips
-        .count()
-        .filter { count -> count > 0 }
-        .set { ch_needs_cdd }
-
-    if (ch_needs_cdd) {
-        if (ch_cdd) {
-            cdd_database = ch_cdd
-        } else {
-            LOCALCDSEARCH_DOWNLOAD(['cdd_ncbi'])
-            cdd_database = LOCALCDSEARCH_DOWNLOAD.out.db
-        }
+    // Prepare CDD database (will only be used if ch_without_ips has data)
+    if (ch_cdd) {
+        cdd_database = ch_cdd
+    } else {
+        LOCALCDSEARCH_DOWNLOAD(['cdd_ncbi'])
+        cdd_database = LOCALCDSEARCH_DOWNLOAD.out.db
     }
 
 
@@ -81,7 +74,7 @@ workflow PATHOFACT2 {
     PATHOFACT2_VIRULENCE( ch_faa, pathofact_models )
 
     // Searching for hits in VFDB
-    DIAMOND_BLASTP( ch_faa, vfdb_diamond_db, '6', 'qseqid sseqid pident length qlen slen evalue bitscore')
+    DIAMOND_BLASTP( ch_faa, vfdb_diamond_db, 6, 'qseqid sseqid pident length qlen slen evalue bitscore')
     ch_versions = ch_versions.mix(DIAMOND_BLASTP.out.versions.first())
 
     // Extracting positive matches
@@ -103,7 +96,7 @@ workflow PATHOFACT2 {
     annot_type = ch_with_ips
         .map { meta, _ips_tsv -> tuple(meta, 'ips') }
         .mix(
-            LOCALCDSEARCH_ANNOTATE.out.annot_sites.map { meta, _annot -> tuple(meta, 'cdd') }
+            LOCALCDSEARCH_ANNOTATE.out.result.map { meta, _annot -> tuple(meta, 'cdd') }
         )
 
     // Integrating results in a single gff file

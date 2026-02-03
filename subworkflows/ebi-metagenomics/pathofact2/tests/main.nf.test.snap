@@ -19,12 +19,17 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-02-02T16:03:59.245351"
+        "timestamp": "2026-02-03T12:06:24.978594"
     },
     "proteins_test - positive prediction - no ips, run cdd": {
         "content": [
             [
-                
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_pathofact2.gff:md5,de37e2d5e1e790abfe767bcc7a802731"
+                ]
             ],
             [
                 "versions.yml:md5,4c287e9f30be1720656657df175453ef",
@@ -36,6 +41,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-02-02T16:26:59.097205"
+        "timestamp": "2026-02-03T12:12:23.467282"
     }
 }

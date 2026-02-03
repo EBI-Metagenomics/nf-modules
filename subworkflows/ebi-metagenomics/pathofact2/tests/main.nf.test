@@ -78,7 +78,7 @@ nextflow_workflow {
                     [id:'test'],
                     file("${moduleDir}/tests/data/test_protein.faa.gz", checkIfExists: true),
                     file("${moduleDir}/tests/data/test_protein.gff.gz", checkIfExists: true),
-                    []
+                    null
                 ])
                 input[1] = null
                 input[2] = null
