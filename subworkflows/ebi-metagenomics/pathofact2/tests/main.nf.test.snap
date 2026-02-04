@@ -1,4 +1,21 @@
 {
+    "proteins_test - negative prediction - ips": {
+        "content": [
+            [
+                
+            ],
+            [
+                "versions.yml:md5,4c287e9f30be1720656657df175453ef",
+                "versions.yml:md5,6852c67539b59298b4c56b8907955e5a",
+                "versions.yml:md5,d28a54bb3b80600719af443deaa51f93"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-04T11:18:18.230053"
+    },
     "proteins_test - positive prediction - ips": {
         "content": [
             [
@@ -11,7 +28,7 @@
             ],
             [
                 "versions.yml:md5,4c287e9f30be1720656657df175453ef",
-                "versions.yml:md5,b7b14f3beb179022a6344fd8862a02a5",
+                "versions.yml:md5,6852c67539b59298b4c56b8907955e5a",
                 "versions.yml:md5,d28a54bb3b80600719af443deaa51f93"
             ]
         ],
@@ -19,7 +36,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-02-03T12:06:24.978594"
+        "timestamp": "2026-02-04T11:13:13.162976"
     },
     "proteins_test - positive prediction - no ips, run cdd": {
         "content": [
@@ -33,7 +50,7 @@
             ],
             [
                 "versions.yml:md5,4c287e9f30be1720656657df175453ef",
-                "versions.yml:md5,b7b14f3beb179022a6344fd8862a02a5",
+                "versions.yml:md5,6852c67539b59298b4c56b8907955e5a",
                 "versions.yml:md5,d28a54bb3b80600719af443deaa51f93"
             ]
         ],
@@ -41,6 +58,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-02-03T12:12:23.467282"
+        "timestamp": "2026-02-04T11:15:48.896303"
     }
 }

@@ -9,7 +9,7 @@ include { LOCALCDSEARCH_ANNOTATE   } from '../../../modules/nf-core/localcdsearc
 include { LOCALCDSEARCH_DOWNLOAD   } from '../../../modules/nf-core/localcdsearch/download/main'
 include { DIAMOND_BLASTP           } from '../../../modules/nf-core/diamond/blastp/main'
 include { DIAMOND_MAKEDB           } from '../../../modules/nf-core/diamond/makedb/main'
-include { WGET as VFDBDOWNLOAD     } from '../../../modules/nf-core/wget/main'
+include { WGET                     } from '../../../modules/nf-core/wget/main'
 
 workflow PATHOFACT2 {
     take:
@@ -50,10 +50,10 @@ workflow PATHOFACT2 {
     if (ch_vfdb) {
         vfdb_diamond_db = ch_vfdb
     } else {
-        def vfdb_input = channel.of([[id:'VFDB_setB_pro'], 'https://www.mgc.ac.cn/VFs/Down/VFDB_setB_pro.fas.gz'])
-        VFDBDOWNLOAD(vfdb_input)
-        ch_versions = ch_versions.mix(VFDBDOWNLOAD.out.versions.first())
-        DIAMOND_MAKEDB(VFDBDOWNLOAD.out.outfile, [], [], [])
+        def vfdb_url = channel.of([[id:'VFDB_setB_pro'], 'https://www.mgc.ac.cn/VFs/Down/VFDB_setB_pro.fas.gz'])
+        WGET(vfdb_url)
+        ch_versions = ch_versions.mix(WGET.out.versions.first())
+        DIAMOND_MAKEDB(WGET.out.outfile, [], [], [])
         ch_versions = ch_versions.mix(DIAMOND_MAKEDB.out.versions.first())
         vfdb_diamond_db = DIAMOND_MAKEDB.out.db
     }

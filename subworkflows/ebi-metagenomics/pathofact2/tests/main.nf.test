@@ -36,7 +36,7 @@ nextflow_workflow {
 
     test("proteins_test - positive prediction - ips") {
 
-        options "-dump-channels"  // debug flag
+        tag "positive_ips"
 
         when {
             workflow {
@@ -69,7 +69,7 @@ nextflow_workflow {
 
     test("proteins_test - positive prediction - no ips, run cdd") {
 
-        options "-dump-channels"  // debug flag
+        tag "positive_cdd"
 
         when {
             workflow {
@@ -79,6 +79,39 @@ nextflow_workflow {
                     file("${moduleDir}/tests/data/test_protein.faa.gz", checkIfExists: true),
                     file("${moduleDir}/tests/data/test_protein.gff.gz", checkIfExists: true),
                     null
+                ])
+                input[1] = null
+                input[2] = null
+                input[3] = null
+
+                """
+            }
+        }
+        then {
+            assert workflow.success
+            assert workflow.trace.tasks().size() > 0
+
+            assertAll(
+                { assert snapshot(
+                    workflow.out.gff,
+                    workflow.out.versions
+                ).match() }
+            )
+        }
+    }
+
+    test("proteins_test - negative prediction - ips") {
+
+        tag "negative_ips"
+
+        when {
+            workflow {
+                """
+                input[0] = channel.of([
+                    [id:'test'],
+                    file("${moduleDir}/tests/data/negative_test.faa.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test_protein.gff.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test_ips.tsv.gz", checkIfExists: true)
                 ])
                 input[1] = null
                 input[2] = null
