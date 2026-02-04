@@ -74,7 +74,7 @@ nextflow_workflow {
         when {
             workflow {
                 """
-                input[0] = Channel.of([
+                input[0] = channel.of([
                     [id:'test'],
                     file("${moduleDir}/tests/data/test_protein.faa.gz", checkIfExists: true),
                     file("${moduleDir}/tests/data/test_protein.gff.gz", checkIfExists: true),
