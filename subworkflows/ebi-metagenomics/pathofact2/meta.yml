@@ -48,7 +48,20 @@ input:
       type: directory
       description: |
         The input channel containing the path to Conserved Domains Database (CDD) directory
-
+  - ch_zenodo_id:
+      type: string
+      description: |
+        The id of the pathofact database in zenodo
+  - meta2:
+      type: map
+      description: |
+        Groovy Map containing the VFDB databse id
+        e.g. `[ id:'VFDB_setB_pro' ]`
+    ch_vfdb_url:
+      type: string
+      description: |
+        The url to download VFDB using wget
+        e.g. `[[id:'VFDB_setB_pro'], 'https://www.mgc.ac.cn/VFs/Down/VFDB_setB_pro.fas.gz']`
 output:
   - gff:
       description: |

@@ -17,6 +17,8 @@ workflow PATHOFACT2 {
     ch_models          // channel: path( pathofact2_db )
     ch_vfdb            // channel: path( vfdb )
     ch_cdd             // channel: path( cdd_db )
+    ch_zenodo_id          // channel: value( pathofact2_db_zenodo_id )
+    ch_vfdb_url        // channel: tuple( val(meta2), val(vfdb_url) )
 
     main:
     ch_versions = channel.empty()
@@ -43,15 +45,14 @@ workflow PATHOFACT2 {
     if (ch_models) {
         pathofact_models = ch_models
     } else {
-        PATHOFACT2_DOWNLOADDATA('18223764')
+        PATHOFACT2_DOWNLOADDATA(ch_zenodo_id)
         pathofact_models = PATHOFACT2_DOWNLOADDATA.out.zenodo_file
     }
 
     if (ch_vfdb) {
         vfdb_diamond_db = ch_vfdb
     } else {
-        def vfdb_url = channel.of([[id:'VFDB_setB_pro'], 'https://www.mgc.ac.cn/VFs/Down/VFDB_setB_pro.fas.gz'])
-        WGET(vfdb_url)
+        WGET(ch_vfdb_url)
         ch_versions = ch_versions.mix(WGET.out.versions.first())
         DIAMOND_MAKEDB(WGET.out.outfile, [], [], [])
         ch_versions = ch_versions.mix(DIAMOND_MAKEDB.out.versions.first())
@@ -104,8 +105,11 @@ workflow PATHOFACT2 {
         .join(annot_type)
     PATHOFACT2_INTEGRATOR(ch_for_integrator)
 
+    // Handle cases where no predictions are made (integrator produces no output)
+    ch_gff_output = PATHOFACT2_INTEGRATOR.out.gff.ifEmpty([])
+
     emit:
-    gff  =  PATHOFACT2_INTEGRATOR.out.gff         // channel: tuple( val(meta), path(gff) )
-    versions = ch_versions                        // channel: [ versions.yml ]
+    gff  =  ch_gff_output            // channel: tuple( val(meta), path(gff) )
+    versions = ch_versions           // channel: [ versions.yml ]
 
 }

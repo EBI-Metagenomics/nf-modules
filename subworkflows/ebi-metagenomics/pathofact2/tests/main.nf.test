@@ -50,7 +50,11 @@ nextflow_workflow {
                 input[1] = null
                 input[2] = null
                 input[3] = null
-
+                input[4] = '18223764'
+                input[5] = channel.of([
+                    [id:'VFDB_setB_pro'],
+                    'https://www.mgc.ac.cn/VFs/Down/VFDB_setB_pro.fas.gz'
+                ])
                 """
             }
         }
@@ -83,7 +87,11 @@ nextflow_workflow {
                 input[1] = null
                 input[2] = null
                 input[3] = null
-
+                input[4] = '18223764'
+                input[5] = channel.of([
+                    [id:'VFDB_setB_pro'],
+                    'https://www.mgc.ac.cn/VFs/Down/VFDB_setB_pro.fas.gz'
+                ])
                 """
             }
         }
@@ -116,7 +124,11 @@ nextflow_workflow {
                 input[1] = null
                 input[2] = null
                 input[3] = null
-
+                input[4] = '18223764'
+                input[5] = channel.of([
+                    [id:'VFDB_setB_pro'],
+                    'https://www.mgc.ac.cn/VFs/Down/VFDB_setB_pro.fas.gz'
+                ])
                 """
             }
         }
