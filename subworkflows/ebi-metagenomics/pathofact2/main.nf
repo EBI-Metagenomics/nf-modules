@@ -67,7 +67,6 @@ workflow PATHOFACT2 {
         cdd_database = LOCALCDSEARCH_DOWNLOAD.out.db
     }
 
-
     // Running prediction
     PATHOFACT2_TOXINS( ch_faa, pathofact_models )
 
