@@ -39,7 +39,6 @@ workflow PATHOFACT2 {
     ch_with_ips = ch_ips_branched.with_ips
     ch_without_ips = ch_ips_branched.without_ips
 
-
     // Preparing databases
     if (ch_models) {
         pathofact_models = ch_models
