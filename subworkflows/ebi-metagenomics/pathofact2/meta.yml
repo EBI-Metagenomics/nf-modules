@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/EBI-Metagenomics/nf-modules/main/subworkflows/yaml-schema.json
 name: "pathofact2"
 description: Pipeline for predicting virulence Factors and toxins in protein sequences
 keywords:
