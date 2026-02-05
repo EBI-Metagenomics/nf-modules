@@ -17,7 +17,7 @@ workflow PATHOFACT2 {
     ch_models          // channel: path( pathofact2_db )
     ch_vfdb            // channel: path( vfdb )
     ch_cdd             // channel: path( cdd_db )
-    ch_zenodo_id          // channel: value( pathofact2_db_zenodo_id )
+    ch_zenodo_id        // channel: value( pathofact2_db_zenodo_id )
     ch_vfdb_url        // channel: tuple( val(meta2), val(vfdb_url) )
 
     main:
