@@ -1,0 +1,114 @@
+nextflow_process {
+
+    name "Test Process GFF2GBK"
+    script "../main.nf"
+    process "GFF2GBK"
+    config "./nextflow.config"
+
+    tag "modules"
+    tag "modules_ebimetagenomics"
+    tag "gff2gbk"
+
+    test("Transform - gff - with proteins") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file("${moduleDir}/tests/data/test.fasta.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test.gff.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test.faa.gz", checkIfExists: true),
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.gbk).match("gbk_prots") },
+                { assert snapshot(process.out.versions_biopython).match("versions_biopython_prots") },
+                { assert snapshot(process.out.versions_bcbiogff).match("versions_bcbiogff_prots") }
+            )
+        }
+    }
+
+    test("Transform - gff - with proteins - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file("${moduleDir}/tests/data/test.fasta.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test.gff.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test.faa.gz", checkIfExists: true),
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.gbk).match("gbk_prots_stub") },
+                { assert snapshot(process.out.versions_biopython).match("versions_biopython_prots_stub") },
+                { assert snapshot(process.out.versions_bcbiogff).match("versions_bcbiogff_prots_stub") }
+            )
+        }
+    }
+
+    test("Transform - gff - without proteins") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file("${moduleDir}/tests/data/test.fasta.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test.gff.gz", checkIfExists: true),
+                    [],
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.versions_biopython).match("versions_biopython_noprots") },
+                { assert snapshot(process.out.versions_bcbiogff).match("versions_bcbiogff_noprots") }
+            )
+        }
+    }
+
+    test("Transform - gff - without proteins - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file("${moduleDir}/tests/data/test.fasta.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test.gff.gz", checkIfExists: true),
+                    [],
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.versions_biopython).match("versions_biopython_noprots_stub") },
+                { assert snapshot(process.out.versions_bcbiogff).match("versions_bcbiogff_noprots_stub") }
+            )
+        }
+    }
+
+}

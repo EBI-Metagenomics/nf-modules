@@ -1,0 +1,75 @@
+name: "gff2gbk"
+description: Transform GFF3 + contigs + proteins (optional) into GBK format
+keywords:
+  - gff3
+  - gbk
+  - bcbio-gff
+tools:
+  - "gff2gbk":
+      description: "Transform GFF3 + contigs + proteins (optional) into GBK format"
+      homepage: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
+      documentation: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
+      tool_dev_url: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
+      licence:
+        - "Apache-2.0"
+      identifier: ""
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - contigs:
+        type: file
+        description: FASTA file containing contigs/scaffolds/chromosomes
+        pattern: "*.{fasta,fna,fa,fasta.gz,fna.gz,fa.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929"
+    - gff:
+        type: file
+        description: GFF file containing genes annotation
+        pattern: "*.{gff,gff.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1975"
+    - proteins:
+        type: file
+        description: Optional FASTA file containing the CDSs translation into
+          protein sequences
+        pattern: "*.{fasta,fna,fa,fasta.gz,fna.gz,fa.gz}"
+        ontologies:
+          - edam: "http://edamontology.org/format_1929"
+output:
+  gbk:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+            e.g. `[id:'sample1' ]`
+      - "*_from_gff.gbk":
+          type: file
+          description: GBK file containing the translation feature
+          pattern: "*.gbk"
+  versions_python:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - python:
+          type: string
+          description: The name of the tool
+      - python --version | sed 's/Python //g':
+          type: eval
+          description: Command used to obtain the tool version
+topics:
+  versions:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - python:
+          type: string
+          description: The name of the tool
+      - python --version | sed 's/Python //g':
+          type: eval
+          description: Command used to obtain the tool version
+authors:
+  - "@Ales-ibt"
+maintainers:
+  - "@Ales-ibt"

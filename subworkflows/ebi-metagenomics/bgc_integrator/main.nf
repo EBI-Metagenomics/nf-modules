@@ -1,64 +1,77 @@
-include { PYRODIGAL                                      } from '../../../modules/ebi-metagenomics/pyrodigal/main'
-include { ANTISMASH                                      } from '../../../modules/ebi-metagenomics/antismash/main'
+// Subworkflow to generate BGCs annotation using Sanntis, Gecco and Antismash
+// Outputs are integrated into a single GFF3 format output
+include { GFF2GBK                                        } from '../../../modules/ebi-metagenomics/gff2gbk/main'
+include { ANTISMASH_ANTISMASH                            } from '../../../modules/nf-core/antismash/antismash/main'
+include { ANTISMASH_ANTISMASHDOWNLOADDATABASES           } from '../../../modules/nf-core/antismash/antismashdownloaddatabases/main'
 include { ANTISMASH_JSON_TO_GFF                          } from '../../../modules/ebi-metagenomics/antismash_json_to_gff/main'
-include { CONCATENATE_GFFS as CONCATENATE_ANTISMASH_GFFS } from '../../../modules/ebi-metagenomics/concatenate_gffs/main'
-include { INTERPROSCAN                                   } from '../../../modules/ebi-metagenomics/interproscan/main'
 include { SANNTIS                                        } from '../../../modules/ebi-metagenomics/sanntis/main'
-include { CONCATENATE_GFFS as CONCATENATE_SANNTIS_GFFS   } from '../../../modules/ebi-metagenomics/concatenate_gffs/main'
 include { GECCO_RUN                                      } from '../../../modules/nf-core/gecco/run/main'
 include { GECCO_CONVERT                                  } from '../../../modules/nf-core/gecco/convert/main'
-include { CONCATENATE_GFFS as CONCATENATE_GECCO_GFFS     } from '../../../modules/ebi-metagenomics/concatenate_gffs/main'
-include { MAPPER                                         } from '../../../modules/ebi-metagenomics/bgc_mapper/main'
+include { BGCSINTEGRATOR                                 } from '../../../modules/ebi-metagenomics/bgcsintegrator/main'
 
 workflow BGC_INTEGRATOR {
 
     take:
-    ch_inputs           // channel: tuple( val(meta), path(assembly), val(integ_type) )
+    ch_inputs           // channel: tuple( val(meta), path(contigs), path(gff), path(proteins), path(ips_annot) )
+    ch_antishmash_db    // channel: path( antishmash_db )
 
     main:
     ch_versions = Channel.empty()
 
-    ch_assem = ch_inputs.map{ meta, contigs, _integ_type -> tuple(meta, contigs) }
+    // Extract individual inputs from input channel
+    ch_togbk_input = ch_inputs.map{ meta, contigs, gff, proteins, _ips_annot -> tuple(meta, contigs, gff, proteins) }
+    ch_ips = ch_inputs.map{ meta, _contigs, _gff, proteins, ips_annot -> tuple(meta, ips_annot) }
 
-    PYRODIGAL( ch_assem, 'gbk' )
-    ch_versions = ch_versions.mix(PYRODIGAL.out.versions)
+    // Preparing databases
+    if (ch_antishmash_db) {
+        antishmash_db = ch_antishmash_db
+    } else {
+        ANTISMASH_ANTISMASHDOWNLOADDATABASES()
+        ch_versions = ch_versions.mix(ANTISMASH_ANTISMASHDOWNLOADDATABASES.out.versions)
+        antishmash_db = ANTISMASH_ANTISMASHDOWNLOADDATABASES.out.database
+    }
 
-    INTERPROSCAN(
-        PYRODIGAL.out.faa,
-        [file(params.interproscan_database, checkIfExists: true), params.interproscan_database_version],
-    )
-    ch_versions = ch_versions.mix(INTERPROSCAN.out.versions)
+    // Transforming gff into gbk format
+    GFF2GBK( ch_togbk_input )
 
-    SANNTIS(
-        INTERPROSCAN.out.ips_annotations.join( PYRODIGAL.out.faa ) 
-    )
+    // Running BGCs prediction tools
+    ch_sanntis_input = GFF2GBK.out.gbk
+        .join(ch_ips)
+        .map { meta, gbk, ips ->
+            [meta, gbk, ips, []]
+        }
+    SANNTIS( ch_sanntis_input )
     ch_versions = ch_versions.mix(SANNTIS.out.versions)
 
-    GECCO( PYRODIGAL.out.annotations, file(params.gecco_hmm, checkIfExists: true) )
-    ch_versions = ch_versions.mix(GECCO.out.versions)
+    GECCO_RUN( GFF2GBK.out.gbk )
+    ch_versions = ch_versions.mix(GECCO_RUN.out.versions)
 
-    def antismash_channel = channel.empty()
-    antismash_channel = ch_assem.join( PYRODIGAL.out.fna ).join( PYRODIGAL.out.annotations )
-    ANTISMASH( antismash_channel , antismash_db )
-    ch_versions = ch_versions.mix(ANTISMASH.out.versions)
+    ch_gecco_conv_input = GECCO_RUN.out.clusters
+        .mix(GECCO_RUN.out.gbk)
+        .groupTuple(by:0)
+        .map { meta, paths ->
+            [meta, paths[0], paths[1]]
+        }
+    GECCO_CONVERT( ch_gecco_conv_input, "clusters", "gff" )
+    ch_versions = ch_versions.mix(GECCO_CONVERT.out.versions)
 
-    
-    ANTISMASH_JSON_TO_GFF(
-        ANTISMASH.out.json
-    )
+    ANTISMASH_ANTISMASH( GFF2GBK.out.gbk, antismash_db, [] )
+    ch_versions = ch_versions.mix(ANTISMASH_ANTISMASH.out.versions)
+
+    ANTISMASH_JSON_TO_GFF( ANTISMASH_ANTISMASH.out.json )
     ch_versions = ch_versions.mix(ANTISMASH_JSON_TO_GFF.out.versions.first())
 
-
-    MAPPER(
+    BGCSINTEGRATOR(
         SANNTIS.out.gff
-        .join(GECCO.out.gff)
-        .join(ANTISMASH.out.gff)
-        .join(integ_type)
+        .join(GECCO_CONVERT.out.gff)
+        .join(ANTISMASH_JSON_TO_GFF.out.gff)
     )
-    ch_versions = ch_versions.mix(INTEGRATOR.out.versions)
+    ch_versions = ch_versions.mix(BGCSINTEGRATOR.out.versions)
 
+    // Handle cases where no predictions are made (integrator produces no output)
+    ch_gff_output = BGCSINTEGRATOR.out.gff.ifEmpty([])
 
     emit:
-    gff      = INTEGRATOR.out.gff           // channel: [ val(meta), [ bam ] ]
-    versions = ch_versions                  // channel: [ versions.yml ]
+    gff      = ch_gff_output           // channel: [ val(meta), [ bam ] ]
+    versions = ch_versions             // channel: [ versions.yml ]
 }

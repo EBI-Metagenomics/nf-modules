@@ -1,0 +1,100 @@
+{
+    "gbk_prots_stub": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_from_gff.gbk:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-06T13:02:23.393925"
+    },
+    "versions_bcbiogff_prots": {
+        "content": null,
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-06T13:02:20.154127"
+    },
+    "versions_biopython_noprots": {
+        "content": null,
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-06T13:02:29.28228"
+    },
+    "versions_bcbiogff_noprots_stub": {
+        "content": null,
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-06T13:02:32.47825"
+    },
+    "versions_biopython_prots": {
+        "content": null,
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-06T13:02:20.152723"
+    },
+    "versions_biopython_prots_stub": {
+        "content": null,
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-06T13:02:23.397208"
+    },
+    "versions_bcbiogff_prots_stub": {
+        "content": null,
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-06T13:02:23.399585"
+    },
+    "versions_bcbiogff_noprots": {
+        "content": null,
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-06T13:02:29.285295"
+    },
+    "versions_biopython_noprots_stub": {
+        "content": null,
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-06T13:02:32.474059"
+    },
+    "gbk_prots": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_from_gff.gbk:md5,c0c23d35049cbfeb7a208bc7fc09a14f"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-06T13:02:20.146684"
+    }
+}
