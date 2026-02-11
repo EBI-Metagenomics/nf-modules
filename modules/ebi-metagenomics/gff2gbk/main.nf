@@ -22,7 +22,7 @@ process GFF2GBK {
     def prefix = task.ext.prefix ?: "${meta.id}"
     def proteins_arg = proteins.size() > 0 ? "--proteins ${proteins}" : ""
     """
-    gff2gbk.py \\
+    gbk_generator.py \\
         $args \\
         --contigs ${contigs} \\
         --gff ${gff} \\

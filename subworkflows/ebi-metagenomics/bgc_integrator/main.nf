@@ -6,8 +6,7 @@ include { ANTISMASH_ANTISMASHDOWNLOADDATABASES           } from '../../../module
 include { ANTISMASH_JSON_TO_GFF                          } from '../../../modules/ebi-metagenomics/antismash_json_to_gff/main'
 include { SANNTIS                                        } from '../../../modules/ebi-metagenomics/sanntis/main'
 include { GECCO_RUN                                      } from '../../../modules/nf-core/gecco/run/main'
-include { GECCO_CONVERT                                  } from '../../../modules/nf-core/gecco/convert/main'
-include { BGCSINTEGRATOR                                 } from '../../../modules/ebi-metagenomics/bgcsintegrator/main'
+include { BGCSMAPPER                                     } from '../../../modules/ebi-metagenomics/bgcsmapper/main'
 
 workflow BGC_INTEGRATOR {
 
@@ -19,6 +18,7 @@ workflow BGC_INTEGRATOR {
     ch_versions = Channel.empty()
 
     // Extract individual inputs from input channel
+    ch_gff = ch_inputs.map{ meta, _contigs, gff, _proteins, _ips_annot -> tuple(meta, gff) }
     ch_togbk_input = ch_inputs.map{ meta, contigs, gff, proteins, _ips_annot -> tuple(meta, contigs, gff, proteins) }
     ch_ips = ch_inputs.map{ meta, _contigs, _gff, proteins, ips_annot -> tuple(meta, ips_annot) }
 
@@ -46,32 +46,23 @@ workflow BGC_INTEGRATOR {
     GECCO_RUN( GFF2GBK.out.gbk )
     ch_versions = ch_versions.mix(GECCO_RUN.out.versions)
 
-    ch_gecco_conv_input = GECCO_RUN.out.clusters
-        .mix(GECCO_RUN.out.gbk)
-        .groupTuple(by:0)
-        .map { meta, paths ->
-            [meta, paths[0], paths[1]]
-        }
-    GECCO_CONVERT( ch_gecco_conv_input, "clusters", "gff" )
-    ch_versions = ch_versions.mix(GECCO_CONVERT.out.versions)
-
     ANTISMASH_ANTISMASH( GFF2GBK.out.gbk, antismash_db, [] )
     ch_versions = ch_versions.mix(ANTISMASH_ANTISMASH.out.versions)
 
     ANTISMASH_JSON_TO_GFF( ANTISMASH_ANTISMASH.out.json )
     ch_versions = ch_versions.mix(ANTISMASH_JSON_TO_GFF.out.versions.first())
 
-    BGCSINTEGRATOR(
-        SANNTIS.out.gff
-        .join(GECCO_CONVERT.out.gff)
+    BGCSMAPPER(
+        ch_gff
+        .join(SANNTIS.out.gff)
+        .join(GECCO_RUN.out.gff)
         .join(ANTISMASH_JSON_TO_GFF.out.gff)
     )
-    ch_versions = ch_versions.mix(BGCSINTEGRATOR.out.versions)
 
     // Handle cases where no predictions are made (integrator produces no output)
-    ch_gff_output = BGCSINTEGRATOR.out.gff.ifEmpty([])
+    ch_gff_output = BGCSMAPPER.out.gff.ifEmpty([])
 
     emit:
-    gff      = ch_gff_output           // channel: [ val(meta), [ bam ] ]
+    gff      = ch_gff_output           // channel: [ val(meta), [ gff ] ]
     versions = ch_versions             // channel: [ versions.yml ]
 }

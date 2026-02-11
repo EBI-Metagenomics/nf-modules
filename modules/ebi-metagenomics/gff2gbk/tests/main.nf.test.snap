@@ -14,7 +14,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-02-06T13:02:23.393925"
+        "timestamp": "2026-02-10T12:42:14.377378"
     },
     "versions_bcbiogff_prots": {
         "content": null,
@@ -22,7 +22,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-02-06T13:02:20.154127"
+        "timestamp": "2026-02-10T12:42:11.171551"
     },
     "versions_biopython_noprots": {
         "content": null,
@@ -30,7 +30,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-02-06T13:02:29.28228"
+        "timestamp": "2026-02-10T12:42:18.935843"
     },
     "versions_bcbiogff_noprots_stub": {
         "content": null,
@@ -38,7 +38,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-02-06T13:02:32.47825"
+        "timestamp": "2026-02-10T12:42:22.176595"
     },
     "versions_biopython_prots": {
         "content": null,
@@ -46,7 +46,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-02-06T13:02:20.152723"
+        "timestamp": "2026-02-10T12:42:11.169839"
     },
     "versions_biopython_prots_stub": {
         "content": null,
@@ -54,7 +54,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-02-06T13:02:23.397208"
+        "timestamp": "2026-02-10T12:42:14.380924"
     },
     "versions_bcbiogff_prots_stub": {
         "content": null,
@@ -62,7 +62,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-02-06T13:02:23.399585"
+        "timestamp": "2026-02-10T12:42:14.383471"
     },
     "versions_bcbiogff_noprots": {
         "content": null,
@@ -70,7 +70,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-02-06T13:02:29.285295"
+        "timestamp": "2026-02-10T12:42:18.939795"
     },
     "versions_biopython_noprots_stub": {
         "content": null,
@@ -78,7 +78,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-02-06T13:02:32.474059"
+        "timestamp": "2026-02-10T12:42:22.173086"
     },
     "gbk_prots": {
         "content": [
@@ -87,7 +87,7 @@
                     {
                         "id": "test"
                     },
-                    "test_from_gff.gbk:md5,c0c23d35049cbfeb7a208bc7fc09a14f"
+                    "test_from_gff.gbk:md5,71d06f262ebedd6750b598d3382b88b2"
                 ]
             ]
         ],
@@ -95,6 +95,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-02-06T13:02:20.146684"
+        "timestamp": "2026-02-10T12:42:11.162143"
     }
 }
