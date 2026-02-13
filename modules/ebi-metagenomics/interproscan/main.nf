@@ -2,7 +2,7 @@ process INTERPROSCAN {
     tag "$meta.id"
     label 'process_long'
 
-    container 'microbiome-informatics/interproscan:5.76-107.0'
+    container 'microbiome-informatics/interproscan:5.76-107.0_patch1'
 
     containerOptions {
         def containerArgs = []
@@ -43,6 +43,9 @@ process INTERPROSCAN {
     if [ "$is_compressed" == "true" ]; then
         gzip -c -d ${fasta} > ${fasta_file_name}
     fi
+
+    # Set the max memory for the JVM
+    export JAVA_OPTS="-Xmx${task.memory.toGiga()}G"
 
     # -dp (disable precalculation) is on so no online dependency
     interproscan.sh \\
