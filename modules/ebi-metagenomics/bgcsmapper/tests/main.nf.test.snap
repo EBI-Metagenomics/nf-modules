@@ -1,0 +1,134 @@
+{
+    "versions_stub": {
+        "content": [
+            [
+                [
+                    "BGCSMAPPER",
+                    "python",
+                    "3.12.12"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-17T10:43:19.652129"
+    },
+    "gff_file_stub": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_bgcs.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-17T10:43:19.64811"
+    },
+    "versions": {
+        "content": [
+            [
+                [
+                    "BGCSMAPPER",
+                    "python",
+                    "3.12.12"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-17T10:43:16.498368"
+    },
+    "gff_sanntis": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_bgcs.gff:md5,49beb88b269c31f0f669cacdc1d8dbaf"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-17T10:43:23.016281"
+    },
+    "versions_sanntis_stub": {
+        "content": [
+            [
+                [
+                    "BGCSMAPPER",
+                    "python",
+                    "3.12.12"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-17T10:43:26.22529"
+    },
+    "gff_file": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_bgcs.gff:md5,c953069bbeae736ea2e7576857d5f913"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-17T10:43:16.491913"
+    },
+    "versions_sanntis": {
+        "content": [
+            [
+                [
+                    "BGCSMAPPER",
+                    "python",
+                    "3.12.12"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-17T10:43:23.0212"
+    },
+    "gff_sanntis_stub": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_bgcs.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-17T10:43:26.220614"
+    }
+}

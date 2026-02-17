@@ -1,0 +1,120 @@
+nextflow_process {
+
+    name "Test Process BGCSMAPPER"
+    script "../main.nf"
+    process "BGCSMAPPER"
+    config "./nextflow.config"
+
+    tag "modules"
+    tag "modules_ebimetagenomics"
+    tag "bgcsmapper"
+
+    test("bgcs - all inputs - positive output") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file("${moduleDir}/tests/data/test.gff.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test_sanntis.gff.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test_gecco.gff.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test_antismash.gff.gz", checkIfExists: true),
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.gff).match("gff_file") },
+                { assert snapshot(process.out.versions_python).match("versions") }
+            )
+        }
+
+    }
+
+    test("bgcs - all inputs - positive output - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file("${moduleDir}/tests/data/test.gff.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test_sanntis.gff.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test_gecco.gff.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test_antismash.gff.gz", checkIfExists: true),
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.gff).match("gff_file_stub") },
+                { assert snapshot(process.out.versions_python).match("versions_stub") }
+            )
+        }
+
+    }
+
+    test("bgcs - sanntis only - positive output") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file("${moduleDir}/tests/data/test.gff.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test_sanntis.gff.gz", checkIfExists: true),
+                    [],
+                    [],
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.gff).match("gff_sanntis") },
+                { assert snapshot(process.out.versions_python).match("versions_sanntis") }
+            )
+        }
+
+    }
+
+    test("bgcs - sanntis only - positive output - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file("${moduleDir}/tests/data/test.gff.gz", checkIfExists: true),
+                    file("${moduleDir}/tests/data/test_sanntis.gff.gz", checkIfExists: true),
+                    [],
+                    [],
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.gff).match("gff_sanntis_stub") },
+                { assert snapshot(process.out.versions_python).match("versions_sanntis_stub") }
+            )
+        }
+
+    }
+
+}
