@@ -31,6 +31,7 @@ process BBMAP_REFORMAT_STANDARDISE {
 
     """
     maxmem="${task.memory.toGiga()}G"
+    # reformat.sh is from BBMap (https://sourceforge.net/projects/bbmap/)
     reformat.sh \\
         -Xmx\$maxmem \\
         $in_reads \\
