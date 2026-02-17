@@ -1,4 +1,5 @@
 .nextflow*
+.claude/
 modules/nf-core
 work/
 results/
@@ -18,6 +19,7 @@ __pycache__
 node_modules/
 package.json
 package-lock.json
+CLAUDE.md
 
 .venv/
 
