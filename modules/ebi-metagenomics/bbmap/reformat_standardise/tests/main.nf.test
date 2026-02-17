@@ -16,8 +16,8 @@ nextflow_process {
                 input[0] = [
                     [ id:'test', single_end:false, interleaved:false ],
                     [
-                        file('${projectDir}/assets/test-fixtures/test-reads/ERR4334351_test_1.fastq.gz', checkIfExists: true),
-                        file('${projectDir}/assets/test-fixtures/test-reads/ERR4334351_test_2.fastq.gz', checkIfExists: true)
+                        file('${moduleDir}/tests/data/test-reads/ERR4334351_test_1.fastq.gz', checkIfExists: true),
+                        file('${moduleDir}/tests/data/test-reads/ERR4334351_test_2.fastq.gz', checkIfExists: true)
                     ]
                 ]
                 input[1] = 'fastq.gz'
@@ -44,8 +44,8 @@ nextflow_process {
                 input[0] = [
                     [ id:'test', single_end:false, interleaved:false ],
                     [
-                        file('${projectDir}/assets/test-fixtures/test-reads/ERR4334351_test_1.fastq.gz', checkIfExists: true),
-                        file('${projectDir}/assets/test-fixtures/test-reads/ERR4334351_test_2.fastq.gz', checkIfExists: true)
+                        file('${moduleDir}/tests/data/test-reads/ERR4334351_test_1.fastq.gz', checkIfExists: true),
+                        file('${moduleDir}/tests/data/test-reads/ERR4334351_test_2.fastq.gz', checkIfExists: true)
                     ]
                 ]
                 input[1] = 'fastq.gz'
