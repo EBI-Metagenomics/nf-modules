@@ -39,8 +39,6 @@ process BBMAP_REFORMAT_STANDARDISE {
         $interleaved_cmd \\
         $paired_cmd \\
         threads=${task.cpus} \\
-        allowidenticalnames=t \\
-        trimreaddescription=t \\
         ${args} \\
         &> ${prefix}.reformat.sh.log
 

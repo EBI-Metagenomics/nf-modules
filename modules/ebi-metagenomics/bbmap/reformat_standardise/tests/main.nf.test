@@ -10,6 +10,8 @@ nextflow_process {
 
     test("paired-end fastq") {
 
+        config "./nextflow.config"
+
         when {
             process {
                 """
@@ -37,6 +39,7 @@ nextflow_process {
     test("paired-end fastq - stub") {
 
         options "-stub"
+        config "./nextflow.config"
 
         when {
             process {
