@@ -1,0 +1,65 @@
+nextflow_process {
+
+    name "Test Process BBMAP_REFORMAT_STANDARDISE"
+    script "../main.nf"
+    process "BBMAP_REFORMAT_STANDARDISE"
+
+    tag "modules"
+    tag "bbmap"
+    tag "bbmap/reformat_standardise"
+
+    test("paired-end fastq") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false, interleaved:false ],
+                    [
+                        file('${projectDir}/assets/test-fixtures/test-reads/ERR4334351_test_1.fastq.gz', checkIfExists: true),
+                        file('${projectDir}/assets/test-fixtures/test-reads/ERR4334351_test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ]
+                input[1] = 'fastq.gz'
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.reformated, process.out.versions).match() }
+            )
+        }
+
+    }
+
+    test("paired-end fastq - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test', single_end:false, interleaved:false ],
+                    [
+                        file('${projectDir}/assets/test-fixtures/test-reads/ERR4334351_test_1.fastq.gz', checkIfExists: true),
+                        file('${projectDir}/assets/test-fixtures/test-reads/ERR4334351_test_2.fastq.gz', checkIfExists: true)
+                    ]
+                ]
+                input[1] = 'fastq.gz'
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.reformated, process.out.versions).match() }
+            )
+        }
+
+    }
+
+}
