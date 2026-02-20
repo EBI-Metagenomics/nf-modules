@@ -7,20 +7,20 @@ into a single GFF3, using the *mandatory* base GFF.
 
 Core rules:
   - Base CDS lines are preserved byte-for-byte for columns 1–9, except we append/replace ONLY:
-        bgc_score
+        bgc_support
         bgc_tools
         + selected tool metadata keys
     in column 9.
-  - Only CDS fully covered by at least one (merged) BGC region are written (i.e. only CDS with bgc_score).
+  - Only CDS fully covered by at least one (merged) BGC region are written (i.e. only CDS with bgc_support).
   - Merge overlapping BGC regions per contig (data-portal rule).
   - BGC feature rows:
       * col3 type = bgc_region
       * ID first: ID=contig_id|bgc:start-end
       * if merged (members>1): col2 source = bgc_merged
-      * if not merged (members==1): col2 source = original tool
+      * if not merged (members==1): col2 source = EXACT original source string from predictor GFF (may include version)
       * ALWAYS add bgc_tools=<comma-separated tools> to bgc_region rows (merged and non-merged)
   - CDS rows:
-      * ALWAYS add bgc_tools=<comma-separated tools that cover this CDS> when bgc_score is present.
+      * ALWAYS add bgc_tools=<comma-separated tools that cover this CDS> when bgc_support is present.
 
 Tool metadata propagation rules:
   - antiSMASH:
@@ -38,6 +38,15 @@ Tool metadata propagation rules:
   - SanntiS:
       nearest_MiBIG                ← from SanntiS nearest_MiBIG (BGC + CDS)
       nearest_MiBIG_class          ← from SanntiS nearest_MiBIG_class (BGC + CDS)
+
+Support/scoring rule (FIXED):
+  - Let N = number of tools provided as input (min=1, max=3).
+  - For each CDS covered by at least one merged region, compute:
+        bgc_support = (# DISTINCT tools whose predictions cover the CDS) / N
+    This yields only:
+      - N=3 → 0.33, 0.66, 1.00
+      - N=2 → 0.50, 1.00
+      - N=1 → 1.00
 """
 
 from __future__ import annotations
@@ -82,10 +91,9 @@ class BGCRegion:
     contig: str
     start: int
     end: int
-    tool: str  # gecco|sanntis|antismash
-    attrs: dict[str, str] = field(
-        default_factory=dict
-    )  # region metadata (antiSMASH region keeps ONLY product)
+    tool: str  # gecco|sanntis|antismash (normalized tool key)
+    source: str  # EXACT column 2 source string from the original predictor GFF (may include version)
+    attrs: dict[str, str] = field(default_factory=dict)
 
 
 @dataclass(slots=True)
@@ -293,7 +301,7 @@ def load_base_cds(base_gff: Path) -> dict[str, list[CDSRec]]:
 def parse_gecco_regions(path: Path) -> list[BGCRegion]:
     regs: list[BGCRegion] = []
     for _, cols in iter_gff_rows(path):
-        contig, _source, _ftype, start_s, end_s, *_rest, attr_s = cols
+        contig, source, _ftype, start_s, end_s, *_rest, attr_s = cols
         attrs = parse_attr_str(attr_s)
         if "Type" in attrs:
             regs.append(
@@ -302,6 +310,7 @@ def parse_gecco_regions(path: Path) -> list[BGCRegion]:
                     start=int(start_s),
                     end=int(end_s),
                     tool="gecco",
+                    source=source,  # preserve original column 2
                     attrs={"gecco_bgc_type": attrs["Type"]},
                 )
             )
@@ -312,7 +321,7 @@ def parse_gecco_regions(path: Path) -> list[BGCRegion]:
 def parse_sanntis_regions(path: Path) -> list[BGCRegion]:
     regs: list[BGCRegion] = []
     for _, cols in iter_gff_rows(path):
-        contig, _source, _ftype, start_s, end_s, *_rest, attr_s = cols
+        contig, source, _ftype, start_s, end_s, *_rest, attr_s = cols
         attrs = parse_attr_str(attr_s)
         if "nearest_MiBIG" in attrs or "nearest_MiBIG_class" in attrs:
             ra: dict[str, str] = {}
@@ -326,6 +335,7 @@ def parse_sanntis_regions(path: Path) -> list[BGCRegion]:
                     start=int(start_s),
                     end=int(end_s),
                     tool="sanntis",
+                    source=source,  # preserve original column 2
                     attrs=ra,
                 )
             )
@@ -340,14 +350,15 @@ def parse_antismash_regions_and_genes(
     Parse antiSMASH and return:
       1) regions: BGCRegion objects (one per antiSMASH region interval)
          - IMPORTANT: region attrs include ONLY antismash_product (and optional antismash_region_id)
+         - IMPORTANT: region.source preserves original antiSMASH column 2 (often includes version)
       2) gene_ann_by_id: gene-level annotations keyed by gene ID (for CDS entries only)
     """
-    regions_by_id: dict[str, tuple[str, int, int, str | None]] = {}
+    regions_by_id: dict[str, tuple[str, int, int, str | None, str]] = {}
     gene_parent_by_id: dict[str, str] = {}
     gene_ann_by_id: dict[str, dict[str, str]] = {}
 
     for _, cols in iter_gff_rows(path):
-        contig, _source, ftype, start_s, end_s, *_rest, attr_s = cols
+        contig, source, ftype, start_s, end_s, *_rest, attr_s = cols
         attrs = parse_attr_str(attr_s)
 
         if ftype in ("region", "biosynthetic-gene-cluster"):
@@ -355,7 +366,8 @@ def parse_antismash_regions_and_genes(
             if not rid:
                 continue
             product = attrs.get("product")
-            regions_by_id[rid] = (contig, int(start_s), int(end_s), product)
+            # store source too
+            regions_by_id[rid] = (contig, int(start_s), int(end_s), product, source)
             continue
 
         if ftype == "gene":
@@ -378,17 +390,24 @@ def parse_antismash_regions_and_genes(
                 gene_ann_by_id[gid] = g
 
     regions: list[BGCRegion] = []
-    for rid, (contig, start, end, product) in regions_by_id.items():
+    for rid, (contig, start, end, product, source) in regions_by_id.items():
         ra: dict[str, str] = {"antismash_region_id": rid}
         if product:
             ra["antismash_product"] = product
         regions.append(
-            BGCRegion(contig=contig, start=start, end=end, tool="antismash", attrs=ra)
+            BGCRegion(
+                contig=contig,
+                start=start,
+                end=end,
+                tool="antismash",
+                source=source,  # preserve original column 2
+                attrs=ra,
+            )
         )
 
     for gid, parent in gene_parent_by_id.items():
         if parent in regions_by_id:
-            _c, _s, _e, product = regions_by_id[parent]
+            _c, _s, _e, product, _src = regions_by_id[parent]
             if product:
                 gene_ann_by_id.setdefault(gid, {})
                 gene_ann_by_id[gid]["antismash_product"] = product
@@ -398,7 +417,7 @@ def parse_antismash_regions_and_genes(
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# Merge overlaps + scoring + metadata propagation to CDS
+# Merge overlaps + support + metadata propagation to CDS
 # ──────────────────────────────────────────────────────────────────────────────
 
 
@@ -446,14 +465,13 @@ def _tools_covering_cds(
     members: list[BGCRegion], cds_start: int, cds_end: int
 ) -> list[str]:
     """Return sorted unique tool names for member predictions that fully cover this CDS."""
-    tools = sorted(
+    return sorted(
         {
             m.tool
             for m in members
             if cds_within_region(cds_start, cds_end, m.start, m.end)
         }
     )
-    return tools
 
 
 def _collect_member_meta_for_cds(
@@ -481,19 +499,23 @@ def _collect_member_meta_for_cds(
     return out
 
 
-def score_and_filter_cds(
+def support_and_filter_cds(
     contig_to_cds: dict[str, list[CDSRec]],
     merged_regions: Sequence[MergedRegion],
     antismash_gene_ann_by_id: dict[str, dict[str, str]],
+    n_tools: int,
 ) -> dict[str, list[str]]:
     """
     For each CDS fully inside a merged region:
-      - compute bgc_score = (# member BGCs covering CDS) / (# member BGCs in region)
+      - compute bgc_support = (# DISTINCT tools covering CDS) / (n_tools provided as input)
       - add bgc_tools = comma-separated list of tools covering the CDS
       - add tool metadata keys (from covering member regions)
       - apply antiSMASH gene-level keys ONLY for the matching CDS ID
       - output only those CDS (filtering out non-BGC CDS)
     """
+    if n_tools < 1:
+        raise ValueError("n_tools must be >= 1")
+
     out: dict[str, list[str]] = {}
 
     for mr in merged_regions:
@@ -501,32 +523,28 @@ def score_and_filter_cds(
         if not cds_list or not mr.members:
             continue
 
-        denom = len(mr.members)
-
         for cds in cds_list:
             if cds.start > mr.end:
                 break
             if not cds_within_region(cds.start, cds.end, mr.start, mr.end):
                 continue
 
-            hits = 0
-            for m in mr.members:
-                if cds_within_region(cds.start, cds.end, m.start, m.end):
-                    hits += 1
-            score = hits / denom
+            tools = _tools_covering_cds(mr.members, cds.start, cds.end)
+            if not tools:
+                continue
+
+            bgc_support = len(tools) / n_tools
 
             cols = cds.line.split("\t")
             attr = cols[8]
 
-            # 1) bgc_tools: tools that cover this CDS
-            tools = _tools_covering_cds(mr.members, cds.start, cds.end)
-            if tools:
-                attr = replace_or_append_attr(attr, "bgc_tools", ",".join(tools))
+            # bgc_tools
+            attr = replace_or_append_attr(attr, "bgc_tools", ",".join(tools))
 
-            # 2) Metadata from region-members that cover the CDS
+            # metadata from members that cover CDS
             meta = _collect_member_meta_for_cds(mr.members, cds.start, cds.end)
 
-            # 3) antiSMASH gene-level metadata ONLY for this CDS (ID match)
+            # antiSMASH gene-level metadata ONLY for this CDS (ID match)
             cds_id = extract_id_from_attr(attr)
             if cds_id and cds_id in antismash_gene_ann_by_id:
                 gene_meta = antismash_gene_ann_by_id[cds_id]
@@ -543,8 +561,8 @@ def score_and_filter_cds(
                 if k in meta:
                     attr = replace_or_append_attr(attr, k, meta[k])
 
-            # bgc_score last
-            attr = replace_or_append_attr(attr, "bgc_score", f"{score:.2f}")
+            # bgc_support last
+            attr = replace_or_append_attr(attr, "bgc_support", f"{bgc_support:.2f}")
 
             cols[8] = attr
             out.setdefault(mr.contig, []).append("\t".join(cols))
@@ -583,7 +601,7 @@ def build_region_lines(
     """
     Emit region features:
       - members > 1 => source 'bgc_merged'
-      - members == 1 => source original tool
+      - members == 1 => source EXACT original source string from predictor GFF (member.source)
       - type 'bgc_region'
       - ID first: contig|bgc:start-end
       - ALWAYS add bgc_tools=<comma-separated tools in this region> (merged and non-merged)
@@ -606,7 +624,8 @@ def build_region_lines(
             attrs["member_bgcs"] = str(len(mr.members))
             attrs.update(_collect_member_meta_for_region(mr.members))
         else:
-            source = mr.members[0].tool
+            # FIX: preserve the *exact* source string from the original predictor file (col2)
+            source = mr.members[0].source
             attrs.update(mr.members[0].attrs)
 
         line = "\t".join(
@@ -666,6 +685,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         log.error(str(e))
         return 2
 
+    # number of provided tools (min=1, max=3) used as denominator for support
+    n_tools = len(optional_inputs)
+
     contig_to_cds = load_base_cds(args.base_gff)
 
     regions: list[BGCRegion] = []
@@ -690,10 +712,11 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     merged_regions = merge_overlaps(regions)
 
-    cds_lines_by_contig = score_and_filter_cds(
+    cds_lines_by_contig = support_and_filter_cds(
         contig_to_cds=contig_to_cds,
         merged_regions=merged_regions,
         antismash_gene_ann_by_id=antismash_gene_ann_by_id,
+        n_tools=n_tools,
     )
 
     region_lines = build_region_lines(merged_regions)

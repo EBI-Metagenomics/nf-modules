@@ -1,0 +1,25 @@
+{
+    "positive test - contigs, gff, proteins, ips - sanntis": {
+        "content": [
+            {
+                "0": [
+                    
+                ],
+                "1": [
+                    
+                ],
+                "gff": [
+                    
+                ],
+                "versions": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-18T16:13:05.892385"
+    }
+}
