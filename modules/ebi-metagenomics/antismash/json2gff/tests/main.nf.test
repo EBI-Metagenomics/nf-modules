@@ -1,0 +1,62 @@
+nextflow_process {
+
+    name "Test Process ANTISMASH_JSON2GFF"
+    script "../main.nf"
+    process "ANTISMASH_JSON2GFF"
+
+    tag "modules"
+    tag "modules_ebimetagenomics"
+    tag "antismash"
+    tag "antismash/json2gff"
+
+    test("antismash_json - gff") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file("${moduleDir}/tests/data/test_antismash.json", checkIfExists: true),
+                ]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.gff).match("gff") },
+                { assert snapshot(process.out.versions_mgnifypipelinestoolkit).match("versions") }
+            )
+        }
+
+    }
+
+    test("antismash_json - gff - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file("${moduleDir}/tests/data/test_antismash.json", checkIfExists: true),
+                ]
+                """
+            }
+        }
+
+        then {
+            assert process.success
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.gff).match("gff_stub") },
+                { assert snapshot(process.out.versions_mgnifypipelinestoolkit).match("versions_stub") }
+            )
+        }
+
+    }
+
+}

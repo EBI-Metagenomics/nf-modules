@@ -1,0 +1,68 @@
+{
+    "versions_stub": {
+        "content": [
+            [
+                [
+                    "ANTISMASH_JSON2GFF",
+                    "mgnify-pipelines-toolkit",
+                    "1.2.0"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-23T12:37:42.682095"
+    },
+    "versions": {
+        "content": [
+            [
+                [
+                    "ANTISMASH_JSON2GFF",
+                    "mgnify-pipelines-toolkit",
+                    "1.2.0"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-23T12:37:39.15095"
+    },
+    "gff_stub": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_antismash.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-23T12:37:42.677243"
+    },
+    "gff": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test_antismash.gff:md5,3b6b1938d0ee05283b80949f42692c8d"
+                ]
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-02-23T12:37:39.143788"
+    }
+}
