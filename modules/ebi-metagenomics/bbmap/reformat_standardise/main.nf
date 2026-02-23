@@ -14,8 +14,7 @@ process BBMAP_REFORMAT_STANDARDISE {
     output:
     tuple val(meta), path("*_reformated.${out_fmt}")       , emit: reformated
     tuple val(meta), path("${prefix}_singleton.${out_fmt}"), optional: true, emit: singleton
-    path  "versions.yml"                                      , emit: versions
-    path  "*.log"                                             , emit: log
+    path  "versions.yml"                                   , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -39,8 +38,7 @@ process BBMAP_REFORMAT_STANDARDISE {
         $interleaved_cmd \\
         $paired_cmd \\
         threads=${task.cpus} \\
-        ${args} \\
-        &> ${prefix}.reformat.sh.log
+        ${args}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
