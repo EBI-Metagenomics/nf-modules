@@ -24,8 +24,8 @@ nextflow_process {
                     file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.faa', checkIfExists: true),
                     []
                 ]
-                input[1] = null
-                input[2] = null
+                input[1] = ''
+                input[2] = ''
                 """
             }
         }
