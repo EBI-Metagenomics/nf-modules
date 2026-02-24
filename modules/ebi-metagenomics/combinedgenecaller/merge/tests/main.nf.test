@@ -22,10 +22,10 @@ nextflow_process {
                     file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.gff', checkIfExists: true),
                     file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.ffn', checkIfExists: true),
                     file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.faa', checkIfExists: true),
-                    [],
-                    null,
-                    null
+                    []
                 ]
+                input[1] = null
+                input[2] = null
                 """
             }
         }
@@ -51,10 +51,10 @@ nextflow_process {
                     file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.gff', checkIfExists: true),
                     file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.ffn', checkIfExists: true),
                     file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.faa', checkIfExists: true),
-                    file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/cmsearch.all.tblout.deoverlapped', checkIfExists: true),
-                    '2.0.0',
-                    '1.1.0'
+                    file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/cmsearch.all.tblout.deoverlapped', checkIfExists: true)
                 ]
+                input[1] = '2.0.0'
+                input[2] = '1.1.0'
                 """
             }
         }
