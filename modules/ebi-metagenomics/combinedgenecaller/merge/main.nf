@@ -2,7 +2,7 @@ process COMBINEDGENECALLER_MERGE {
     tag "${meta.id}"
     label 'process_single'
 
-    container "microbiome-informatics/mgnify-pipelines-toolkit:1.4.12"
+    container "microbiome-informatics/mgnify-pipelines-toolkit:1.4.17"
 
     input:
     tuple val(meta), path(pyrodigal_gff, stageAs: "pyrodigal/"), path(pyrodigal_ffn, stageAs: "pyrodigal/"), path(pyrodigal_faa, stageAs: "pyrodigal/"), path(fgs_gff, stageAs: "fgsrs/"), path(fgs_ffn, stageAs: "fgsrs/"), path(fgs_faa, stageAs: "fgsrs/"), path(mask)
