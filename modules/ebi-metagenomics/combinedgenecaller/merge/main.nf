@@ -5,7 +5,7 @@ process COMBINEDGENECALLER_MERGE {
     container "microbiome-informatics/mgnify-pipelines-toolkit:1.4.12"
 
     input:
-    tuple val(meta), path(pyrodigal_gff, stageAs: "pyrodigal/"), path(pyrodigal_ffn, stageAs: "pyrodigal/"), path(pyrodigal_faa, stageAs: "pyrodigal/"), path(fgs_gff, stageAs: "fgsrs/"), path(fgs_ffn, stageAs: "fgsrs/"), path(fgs_faa, stageAs: "fgsrs/"), path(mask)
+    tuple val(meta), path(pyrodigal_gff, stageAs: "pyrodigal/"), path(pyrodigal_ffn, stageAs: "pyrodigal/"), path(pyrodigal_faa, stageAs: "pyrodigal/"), path(fgs_gff, stageAs: "fgsrs/"), path(fgs_ffn, stageAs: "fgsrs/"), path(fgs_faa, stageAs: "fgsrs/"), path(mask), val(pyrodigal_version), val(fgsrs_version)
 
     output:
     tuple val(meta), path("*.faa.gz"), emit: faa
@@ -42,6 +42,9 @@ process COMBINEDGENECALLER_MERGE {
         is_mask_compressed = mask.name.endsWith(".gz")
         mask_parameter = "--mask ${mask.name.replace(".gz", "")} "
     }
+    
+    def pyrodigal_version_parameter = pyrodigal_version ? "--pyrodigal-version ${pyrodigal_version} " : ""
+    def fgsrs_version_parameter = fgsrs_version ? "--fgsrs-version ${fgsrs_version} " : ""
     """
     if [ "${is_prod_gff_compressed}" == "true" ]; then
         gzip -d -c ${pyrodigal_gff} > ${pyrodigal_gff_file}
@@ -73,7 +76,10 @@ process COMBINEDGENECALLER_MERGE {
         --pyrodigal-faa ${pyrodigal_faa_file} \\
         --fgsrs-gff ${fgs_gff_file} \\
         --fgsrs-ffn ${fgs_ffn_file} \\
-        --fgsrs-faa ${fgs_faa_file} ${mask_parameter}
+        --fgsrs-faa ${fgs_faa_file} \\
+        ${pyrodigal_version_parameter}\\
+        ${fgsrs_version_parameter}\\
+        ${mask_parameter}
 
     gzip -n ${prefix}.{faa,ffn,gff}
 

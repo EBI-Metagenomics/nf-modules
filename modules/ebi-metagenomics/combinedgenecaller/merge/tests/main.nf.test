@@ -9,7 +9,7 @@ nextflow_process {
     tag "combinedgenecaller"
     tag "combinedgenecaller/merge"
 
-    test("combinedgenecaller merge without a maskfile") {
+    test("combinedgenecaller merge without a maskfile and without tool version strings") {
 
         when {
             process {
@@ -22,7 +22,9 @@ nextflow_process {
                     file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.gff', checkIfExists: true),
                     file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.ffn', checkIfExists: true),
                     file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.faa', checkIfExists: true),
-                    []
+                    [],
+                    null,
+                    null
                 ]
                 """
             }
@@ -36,7 +38,7 @@ nextflow_process {
         }
     }
 
-    test("combinedgenecaller merge with a maskfile") {
+    test("combinedgenecaller merge with a maskfile and tool version strings") {
 
         when {
             process {
@@ -50,6 +52,8 @@ nextflow_process {
                     file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.ffn', checkIfExists: true),
                     file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/input_fgsrs.faa', checkIfExists: true),
                     file(params.mgnify_pipelines_toolkit_testdata + '/combined_gene_caller_merge/cmsearch.all.tblout.deoverlapped', checkIfExists: true),
+                    '2.0.0',
+                    '1.1.0'
                 ]
                 """
             }
