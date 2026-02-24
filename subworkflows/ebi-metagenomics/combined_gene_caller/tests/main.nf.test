@@ -33,6 +33,8 @@ nextflow_workflow {
                     file("${moduleDir}/tests/data/test_assembly.fasta.gz", checkIfExists: true)
                 ]
                 input[1] = channel.empty()
+                input[2] = ''
+                input[3] = ''
             """
             }
         }
@@ -67,6 +69,8 @@ nextflow_workflow {
                     [ id:'test', single_end:false ],
                     file("${moduleDir}/tests/data/test_tblout.deoverlapped", checkIfExists: true)
                 ])
+                input[2] = ''
+                input[3] = ''
             """
             }
         }
@@ -106,6 +110,8 @@ nextflow_workflow {
                     file("${moduleDir}/tests/data/test_assembly.fasta.gz", checkIfExists: true)
                 ]
                 input[1] = channel.empty()
+                input[2] = ''
+                input[3] = ''
             """
             }
         }
