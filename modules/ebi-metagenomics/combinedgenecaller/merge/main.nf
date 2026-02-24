@@ -44,7 +44,7 @@ process COMBINEDGENECALLER_MERGE {
         is_mask_compressed = mask.name.endsWith(".gz")
         mask_parameter = "--mask ${mask.name.replace(".gz", "")} "
     }
-    
+
     def pyrodigal_version_parameter = pyrodigal_version ? "--pyrodigal-version ${pyrodigal_version} " : ""
     def fgsrs_version_parameter = fgsrs_version ? "--fgsrs-version ${fgsrs_version} " : ""
     """
@@ -80,7 +80,7 @@ process COMBINEDGENECALLER_MERGE {
         --fgsrs-ffn ${fgs_ffn_file} \\
         --fgsrs-faa ${fgs_faa_file} ${mask_parameter} \\
         ${pyrodigal_version_parameter} \\
-        ${fgsrs_version_parameter}        
+        ${fgsrs_version_parameter}
 
     gzip -n ${prefix}.{faa,ffn,gff}
 
