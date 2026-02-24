@@ -78,10 +78,9 @@ process COMBINEDGENECALLER_MERGE {
         --pyrodigal-faa ${pyrodigal_faa_file} \\
         --fgsrs-gff ${fgs_gff_file} \\
         --fgsrs-ffn ${fgs_ffn_file} \\
-        --fgsrs-faa ${fgs_faa_file} \\
-        ${pyrodigal_version_parameter}\\
-        ${fgsrs_version_parameter}\\
-        ${mask_parameter}
+        --fgsrs-faa ${fgs_faa_file} ${mask_parameter} \\
+        ${pyrodigal_version_parameter} \\
+        ${fgsrs_version_parameter}        
 
     gzip -n ${prefix}.{faa,ffn,gff}
 
