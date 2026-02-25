@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+# yaml-language-server: $schema=https://raw.githubusercontent.com/EBI-Metagenomics/nf-modules/main/modules/meta-schema.json
 name: "antismash_json2gff"
 description: Transforms antismash json output file into GFF format
 keywords:

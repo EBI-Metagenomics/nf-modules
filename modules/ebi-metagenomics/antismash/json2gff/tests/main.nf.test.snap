@@ -1,37 +1,5 @@
 {
-    "versions_stub": {
-        "content": [
-            [
-                [
-                    "ANTISMASH_JSON2GFF",
-                    "mgnify-pipelines-toolkit",
-                    "1.2.0"
-                ]
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.0"
-        },
-        "timestamp": "2026-02-25T14:56:29.243105"
-    },
-    "versions": {
-        "content": [
-            [
-                [
-                    "ANTISMASH_JSON2GFF",
-                    "mgnify-pipelines-toolkit",
-                    "1.2.0"
-                ]
-            ]
-        ],
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.0"
-        },
-        "timestamp": "2026-02-25T14:56:17.796986"
-    },
-    "gff_stub": {
+    "antismash_json - gff - stub": {
         "content": [
             [
                 [
@@ -40,15 +8,24 @@
                     },
                     "test_antismash.gff:md5,d41d8cd98f00b204e9800998ecf8427e"
                 ]
-            ]
+            ],
+            {
+                "versions_mgnifypipelinestoolkit": [
+                    [
+                        "ANTISMASH_JSON2GFF",
+                        "mgnify-pipelines-toolkit",
+                        "1.4.16"
+                    ]
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-02-25T14:56:29.238692"
+        "timestamp": "2026-02-25T15:13:59.39256"
     },
-    "gff": {
+    "antismash_json - gff": {
         "content": [
             [
                 [
@@ -57,12 +34,21 @@
                     },
                     "test_antismash.gff:md5,3b6b1938d0ee05283b80949f42692c8d"
                 ]
-            ]
+            ],
+            {
+                "versions_mgnifypipelinestoolkit": [
+                    [
+                        "ANTISMASH_JSON2GFF",
+                        "mgnify-pipelines-toolkit",
+                        "1.4.16"
+                    ]
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-02-25T14:56:17.790348"
+        "timestamp": "2026-02-25T15:13:48.819629"
     }
 }
