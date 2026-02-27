@@ -7,8 +7,10 @@ include { COMBINEDGENECALLER_MERGE } from '../../../modules/ebi-metagenomics/com
 workflow COMBINED_GENE_CALLER {
 
     take:
-    ch_assembly  // channel: [ val(meta), [ fasta ] ]
-    ch_mask_file // channel: [ val(meta), [.out | .txt] ]
+    ch_assembly          // channel: [ val(meta), [ fasta ] ]
+    ch_mask_file         // channel: [ val(meta), [.out | .txt] ]
+    pyrodigal_version    // string: optional version string for pyrodigal
+    fgsrs_version        // string: optional version string for fraggenescanrs
 
     main:
 
@@ -49,7 +51,7 @@ workflow COMBINED_GENE_CALLER {
         ]
     }
 
-    COMBINEDGENECALLER_MERGE( ch_merge )
+    COMBINEDGENECALLER_MERGE( ch_merge, pyrodigal_version, fgsrs_version )
 
     ch_versions = ch_versions.mix(COMBINEDGENECALLER_MERGE.out.versions)
 
