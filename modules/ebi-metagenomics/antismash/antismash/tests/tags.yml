@@ -1,2 +1,2 @@
 antismash:
-  - "modules/ebi-metagenomics/antismash/**"
+  - "modules/ebi-metagenomics/antismash/antismash/**"
