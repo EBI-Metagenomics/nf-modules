@@ -9,7 +9,9 @@ keywords:
   - gff
 tools:
   - "bgcsmapper":
-      description: "Integrates BGC predictions from (optional) GECCO / antiSMASH / SanntiS outputs into a single GFF3 file"
+      description:
+        "Integrates BGC predictions from (optional) GECCO / antiSMASH / SanntiS outputs into a single GFF3 file,
+        uses mgnify-pipelines-toolkit as conda environment"
       homepage: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
       documentation: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
       tool_dev_url: "https://github.com/EBI-Metagenomics/mgnify-pipelines-toolkit"
@@ -57,28 +59,37 @@ output:
           type: file
           description: GFF file containing the integrated annotation of BGCs
           pattern: "*.gff"
-  versions_python:
-    - - ${task.process}:
+  json:
+    - - meta:
+          type: map
+          description: Groovy Map containing sample information
+            e.g. `[id:'sample1' ]`
+      - "*_bgcs.json":
+          type: file
+          description: JSON file containing the integrated annotation of BGCs following antismash schemas
+          pattern: "*.json"
+  versions_mgnifypipelinestoolkit:
+    - - "${task.process}":
           type: string
           description: The name of the process
-      - python:
+      - "mgnify-pipelines-toolkit":
           type: string
           description: The name of the tool
-      - python --version | sed 's/Python //g':
+      - "get_mpt_version":
           type: eval
-          description: Command used to obtain the tool version
+          description: The expression to obtain the version of the tool
 
 topics:
   versions:
     - - ${task.process}:
           type: string
           description: The name of the process
-      - python:
+      - mgnify-pipelines-toolkit:
           type: string
           description: The name of the tool
-      - python --version | sed 's/Python //g':
+      - get_mpt_version:
           type: eval
-          description: Command used to obtain the tool version
+          description: The expression to obtain the version of the tool
 
 authors:
   - "@Ales-ibt"
