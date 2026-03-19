@@ -13,17 +13,17 @@ process MAPSEQ2BIOM {
     tuple path(db_otu), val(db_label)
 
     output:
-    tuple val(meta), path("${meta.id}.txt")         , emit: krona_input
-    tuple val(meta), path("${meta.id}.tsv")         , emit: biom_out
-    tuple val(meta), path("${meta.id}.notaxid.tsv") , emit: biom_notaxid_out
-    path "versions.yml"                             , emit: versions
+    tuple val(meta), path("${prefix}.txt")         , emit: krona_input
+    tuple val(meta), path("${prefix}.tsv")         , emit: biom_out
+    tuple val(meta), path("${prefix}.notaxid.tsv") , emit: biom_notaxid_out
+    path "versions.yml"                            , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
     def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}"
+    prefix = task.ext.prefix ?: "${meta.id}"
 
     """
     mapseq2biom \
@@ -42,7 +42,7 @@ process MAPSEQ2BIOM {
     """
 
     stub:
-    def prefix = task.ext.prefix ?: "${meta.id}"
+    prefix = task.ext.prefix ?: "${meta.id}"
 
     """
     touch ${prefix}.txt
