@@ -35,15 +35,14 @@ workflow MAPSEQ_OTU_KRONA {
     MAPSEQ2BIOM(mapseq2biom_in)
     ch_versions = ch_versions.mix(MAPSEQ2BIOM.out.versions.first())
 
-    krona_in = MAPSEQ2BIOM.out.krona_input
-        .map { meta, mapseq2biom_out -> [meta, mapseq2biom_out, meta.db_label] }
-    KRONA_KTIMPORTTEXT(krona_in)
+    KRONA_KTIMPORTTEXT(MAPSEQ2BIOM.out.krona_input)
     ch_versions = ch_versions.mix(KRONA_KTIMPORTTEXT.out.versions.first())
 
     emit:
-    mseq                  = MAPSEQ.out.mseq                   // channel: [ val(meta), [ mseq ] ]
-    krona_input           = MAPSEQ2BIOM.out.krona_input       // channel: [ val(meta), [ txt ] ]
-    biom_out              = MAPSEQ2BIOM.out.biom_out          // channel: [ val(meta), [ tsv ] ]
-    html                  = KRONA_KTIMPORTTEXT.out.html       // channel: [ val(meta), [ html ] ]
-    versions              = ch_versions                       // channel: [ versions.yml ]
+    mseq                  = MAPSEQ.out.mseq                        // channel: [ val(meta), [ mseq ] ]
+    krona_input           = MAPSEQ2BIOM.out.krona_input            // channel: [ val(meta), [ txt ] ]
+    biom_out              = MAPSEQ2BIOM.out.biom_out               // channel: [ val(meta), [ tsv ] ]
+    biom_notaxid_out      = MAPSEQ2BIOM.out.biom_notaxid_out       // channel: [ val(meta), [ tsv ] ]
+    html                  = KRONA_KTIMPORTTEXT.out.html            // channel: [ val(meta), [ html ] ]
+    versions              = ch_versions                            // channel: [ versions.yml ]
 }
