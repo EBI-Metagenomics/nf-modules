@@ -21,8 +21,8 @@ nextflow_workflow {
         nfcoreInstall(
             "${launchDir}/library/",
             [
-                "fastp",
-                "seqtk/seq"
+                [name: "fastp",     sha: "d9ec4ef289ad39b8a662a7a12be50409b11df84b"],
+                [name: "seqtk/seq", sha: "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46"]
             ]
         )
         nfcoreLink("${launchDir}/library/", "${baseDir}/modules/")
