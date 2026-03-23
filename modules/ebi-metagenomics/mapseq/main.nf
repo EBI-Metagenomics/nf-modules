@@ -1,9 +1,9 @@
 
 process MAPSEQ {
     tag "$meta.id"
-    label 'process_single'
+    label 'medium'
 
-    conda "bioconda::mapseq=2.1.1b"
+    conda "bioconda::mapseq=2.1.1"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/mapseq:2.1.1b--h3ab3c3b_0':
         'biocontainers/mapseq:2.1.1b--h3ab3c3b_0' }"
@@ -14,7 +14,7 @@ process MAPSEQ {
 
     output:
     tuple val(meta), path("*.mseq"), emit: mseq
-    path "versions.yml"            , emit: versions
+    path "versions.yml"           , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -25,6 +25,7 @@ process MAPSEQ {
 
     """
     mapseq \\
+        -seed 12 \\
         $subunit_reads \\
         $db_fasta \\
         $db_tax \\
@@ -34,7 +35,7 @@ process MAPSEQ {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        mapseq: \$(mapseq -h 2>&1 | head -1 | cut -d" " -f3 | cut -d"v" -f2)
+        mapseq: \$(mapseq -h 2>&1 | head -1 | cut -d" " -f2 | cut -d"v" -f2)
     END_VERSIONS
     """
 
@@ -47,7 +48,7 @@ process MAPSEQ {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        mapseq: \$(mapseq -h 2>&1 | head -1 | cut -d" " -f3 | cut -d"v" -f2)
+        mapseq: \$(mapseq -h 2>&1 | head -1 | cut -d" " -f2 | cut -d"v" -f2)
     END_VERSIONS
     """
 }

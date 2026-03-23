@@ -15,6 +15,9 @@ workflow MAPSEQ_OTU_KRONA {
 
     input = ch_fasta
         .combine(ch_dbs)
+        .filter { reads_meta, _reads, db_meta, _db_files ->
+            reads_meta.db_id == null || reads_meta.db_id == db_meta.id
+        }
         .map { reads_meta, reads, db_meta, db_files ->
             def meta = reads_meta + ['db_id': db_meta.id, 'db_label': db_meta.db_label]
             def (fasta, tax, otu, mscluster, label) = db_files
@@ -46,10 +49,10 @@ workflow MAPSEQ_OTU_KRONA {
     ch_versions = ch_versions.mix(KRONA_KTIMPORTTEXT.out.versions.first())
 
     emit:
-    mseq                  = MAPSEQ.out.mseq                        // channel: [ val(meta), [ mseq ] ]
-    krona_input           = MAPSEQ2BIOM.out.krona_input            // channel: [ val(meta), [ txt ] ]
-    biom_out              = MAPSEQ2BIOM.out.biom_out               // channel: [ val(meta), [ tsv ] ]
-    biom_notaxid_out      = MAPSEQ2BIOM.out.biom_notaxid_out       // channel: [ val(meta), [ tsv ] ]
-    html                  = KRONA_KTIMPORTTEXT.out.html            // channel: [ val(meta), [ html ] ]
-    versions              = ch_versions                            // channel: [ versions.yml ]
+    mseq             = MAPSEQ.out.mseq                      // channel: [ val(meta), [ mseq ] ]
+    krona_input      = MAPSEQ2BIOM.out.krona_input         // channel: [ val(meta), [ txt ] ]
+    biom_out         = MAPSEQ2BIOM.out.biom_out            // channel: [ val(meta), [ tsv ] ]
+    biom_notaxid_out = MAPSEQ2BIOM.out.biom_notaxid_out    // channel: [ val(meta), [ tsv ] ]
+    html             = KRONA_KTIMPORTTEXT.out.html         // channel: [ val(meta), [ html ] ]
+    versions         = ch_versions                         // channel: [ versions.yml ]
 }

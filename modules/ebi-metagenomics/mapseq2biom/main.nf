@@ -1,22 +1,21 @@
-
 process MAPSEQ2BIOM {
     tag "$meta.id"
     label 'process_single'
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:1.2.11--pyhdfd78af_0' :
-        'biocontainers/mgnify-pipelines-toolkit:1.2.11--pyhdfd78af_0' }"
+        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:1.4.12--pyhdfd78af_0' :
+        'biocontainers/mgnify-pipelines-toolkit:1.4.12--pyhdfd78af_0' }"
 
     input:
     tuple val(meta), path(msq)
     tuple path(db_otu), val(db_label)
 
     output:
-    tuple val(meta), path("${prefix}.txt")         , emit: krona_input
-    tuple val(meta), path("${prefix}.tsv")         , emit: biom_out
-    tuple val(meta), path("${prefix}.notaxid.tsv") , emit: biom_notaxid_out
-    path "versions.yml"                            , emit: versions
+    tuple val(meta), path("${prefix}.txt")        , emit: krona_input
+    tuple val(meta), path("${prefix}.tsv")        , emit: biom_out
+    tuple val(meta), path("${prefix}.notaxid.tsv"), emit: biom_notaxid_out
+    path "versions.yml"                           , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -51,7 +50,7 @@ process MAPSEQ2BIOM {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        mapseq2biom: 0.1.1
+        mgnify-pipelines-toolkit: \$(get_mpt_version)
     END_VERSIONS
     """
 }
