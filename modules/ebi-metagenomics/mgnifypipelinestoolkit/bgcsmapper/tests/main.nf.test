@@ -6,7 +6,8 @@ nextflow_process {
 
     tag "modules"
     tag "modules_ebimetagenomics"
-    tag "bgcsmapper"
+    tag "mgnifypipelinestoolkit"
+    tag "mgnifypipelinestoolkit/bgcsmapper"
 
     test("bgcs - all inputs - positive output") {
 
