@@ -6,7 +6,8 @@ nextflow_process {
 
     tag "modules"
     tag "modules_ebimetagenomics"
-    tag "gff2gbk"
+    tag "mgnifypipelinestoolkit"
+    tag "mgnifypipelinestoolkit/gff2gbk"
 
     test("Transform - gff - proteins") {
 
