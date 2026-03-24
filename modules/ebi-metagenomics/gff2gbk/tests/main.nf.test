@@ -26,9 +26,10 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out.gbk).match("gbk_prots") },
-                { assert snapshot(process.out.versions_biopython).match("versions_biopython_prots") },
-                { assert snapshot(process.out.versions_bcbiogff).match("versions_bcbiogff_prots") }
+                { assert snapshot(
+                    process.out.gbk,
+                    process.out.findAll { key, val -> key.startsWith("versions")}
+                ).match() }
             )
         }
     }

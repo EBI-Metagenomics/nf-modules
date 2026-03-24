@@ -1,12 +1,4 @@
 {
-    "versions_bcbiogff_prots": {
-        "content": null,
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.0"
-        },
-        "timestamp": "2026-03-20T13:56:43.91629"
-    },
     "Transform - gff - proteins - stub": {
         "content": [
             [
@@ -33,15 +25,7 @@
         },
         "timestamp": "2026-03-20T13:56:49.720176"
     },
-    "versions_biopython_prots": {
-        "content": null,
-        "meta": {
-            "nf-test": "0.9.3",
-            "nextflow": "25.10.0"
-        },
-        "timestamp": "2026-03-20T13:56:43.914051"
-    },
-    "gbk_prots": {
+    "Transform - gff - proteins": {
         "content": [
             [
                 [
@@ -50,12 +34,21 @@
                     },
                     "test_from_gff.gbk:md5,1392f6e6857ce32efd3c1dab247328fe"
                 ]
-            ]
+            ],
+            {
+                "versions_mgnifypipelinestoolkit": [
+                    [
+                        "GFF2GBK",
+                        "mgnify-pipelines-toolkit",
+                        "1.4.19"
+                    ]
+                ]
+            }
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-03-20T13:56:43.903803"
+        "timestamp": "2026-03-24T16:17:46.706668"
     }
 }
