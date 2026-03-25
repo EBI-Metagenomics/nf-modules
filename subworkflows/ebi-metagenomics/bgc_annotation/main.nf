@@ -24,25 +24,28 @@ workflow BGC_ANNOTATION {
     ch_versions = channel.empty()
 
     // Extract individual inputs from input channel
-    ch_gff         = ch_inputs.map { meta, _contigs, gff, _proteins, _ips_annot -> tuple(meta, gff) }
-    ch_togbk_input = ch_inputs.map { meta, contigs, gff, proteins, _ips_annot -> tuple(meta, contigs, gff, proteins) }
-    ch_ips         = ch_inputs.map { meta, _contigs, _gff, _proteins, ips_annot -> tuple(meta, ips_annot) }
-    ch_prots       = ch_inputs.map { meta, _contigs, _gff, proteins, _ips_annot -> tuple(meta, proteins) }
+
+    def inputs = ch_inputs.multiMap { meta, contigs, gff, proteins, ips_annot ->
+        gff:         tuple(meta, gff)
+        togbk_input: tuple(meta, contigs, gff, proteins)
+        ips:         tuple(meta, ips_annot)
+        prots:       tuple(meta, proteins)
+    }
 
     // Transform GFF into GBK
-    GFF2GBK(ch_togbk_input)
+    GFF2GBK(inputs.togbk_input)
 
     // Run SanntiS
     if (!skip_sanntis) {
 
         // Split IPS input into provided vs missing
-        ch_ips_branched = ch_ips.branch { meta, ips_annot ->
+        ch_ips_branched = inputs.ips.branch { meta, ips_annot ->
             provided: ips_annot != null
             missing:  ips_annot == null
         }
 
         // Samples missing IPS: join with proteins to feed InterProScan
-        ch_prots_missing = ch_prots
+        ch_prots_missing = inputs.prots
             .join(ch_ips_branched.missing, by: 0)
             .map { meta, prots, _ips_missing -> tuple(meta, prots) }
 
@@ -130,7 +133,7 @@ workflow BGC_ANNOTATION {
         .map { meta, _vals -> tuple(meta, true) }
 
     // Filter base GFF to samples with >=1 tool output
-    ch_gff_filtered = ch_gff
+    ch_gff_filtered = inputs.gff
         .join(ch_has_bgc_results, remainder: true)
         .filter { meta, gff, has_results -> has_results == true }
         .map { meta, gff, _has_results -> tuple(meta, gff) }
