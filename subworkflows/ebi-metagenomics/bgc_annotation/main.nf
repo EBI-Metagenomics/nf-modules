@@ -81,9 +81,9 @@ workflow BGC_ANNOTATION {
 
         ch_gecco_convert_input = GECCO_RUN.out.clusters
             .join(GECCO_RUN.out.gbk, by: 0)
-            .map { meta, clusters, gbk -> tuple(meta, clusters, gbk) }
 
         GECCO_CONVERT(ch_gecco_convert_input, "clusters", "gff")
+        ch_versions = ch_versions.mix(GECCO_CONVERT.out.versions)
         ch_gecco_results = GECCO_CONVERT.out.gff
     }
 
