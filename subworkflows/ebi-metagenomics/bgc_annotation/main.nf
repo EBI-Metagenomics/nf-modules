@@ -21,7 +21,7 @@ workflow BGC_ANNOTATION {
     skip_antismash      // boolean
 
     main:
-    ch_versions = Channel.empty()
+    ch_versions = channel.empty()
 
     // Extract individual inputs from input channel
     ch_gff         = ch_inputs.map { meta, _contigs, gff, _proteins, _ips_annot -> tuple(meta, gff) }
