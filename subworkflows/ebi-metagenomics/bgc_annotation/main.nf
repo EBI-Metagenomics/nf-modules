@@ -50,6 +50,8 @@ workflow BGC_ANNOTATION {
          * No automatic DB download anymore.
          * If IPS is missing and INTERPROSCAN is needed, ch_ips_db must be provided.
          */
+        ch_ips_db.ifEmpty { error("The InterProScan database not found. Automatic download is no longer supported. Please provide it via 'ch_ips_db'.") }
+
         INTERPROSCAN(ch_prots_missing, ch_ips_db)
         ch_versions = ch_versions.mix(INTERPROSCAN.out.versions)
 
