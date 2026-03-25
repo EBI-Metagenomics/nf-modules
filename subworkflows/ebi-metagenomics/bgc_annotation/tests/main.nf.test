@@ -1,0 +1,182 @@
+nextflow_workflow {
+
+    name "Test Subworkflow BGC_ANNOTATION"
+    script "../main.nf"
+    workflow "BGC_ANNOTATION"
+    config "./nextflow.config"
+
+    tag "subworkflows"
+    tag "subworkflows_ebimetagenomics"
+    tag "subworkflows/bgc_annotation"
+    tag "sanntis"
+    tag "interproscan"
+    tag "antismash/json2gff"
+    tag "mgnifypipelinestoolkit/gff2gbk"
+    tag "mgnifypipelinestoolkit/bgcmapper"
+    tag "nf-core/antismash/antismash"
+    tag "nf-core/antismash/antismashdownloaddatabases"
+    tag "nf-core/gecco/run"
+    tag "nf-core/gecco/convert"
+
+    setup {
+        nfcoreInitialise("${launchDir}/library/")
+        nfcoreInstall(
+            "${launchDir}/library/",
+            [
+                "antismash/antismash",
+                "antismash/antismashdownloaddatabases",
+                "gecco/run",
+                "gecco/convert",
+            ]
+        )
+        nfcoreLink("${launchDir}/library/", "${baseDir}/modules/")
+    }
+
+    test("positive test - contigs, gff, proteins, ips - sanntis") {
+
+        tag "sanntis"
+
+        when {
+            workflow {
+                """
+                input[0] = channel.of( [ [ id:'test' ], // meta map
+                    file('${moduleDir}/tests/data/test.fasta.gz', checkIfExists: true),
+                    file('${moduleDir}/tests/data/test.gff.gz', checkIfExists: true),
+                    file('${moduleDir}/tests/data/test.faa.gz', checkIfExists: true),
+                    file('${moduleDir}/tests/data/test_ips.tsv.gz', checkIfExists: true),
+                ])
+                input[1] = Channel.value(null)      // ch_antismash_db
+                input[2] = Channel.value(null)      // ch_ips_db
+                input[3] = false                    // skip_sanntis
+                input[4] = true                     // skip_gecco
+                input[5] = true                     // skip_antismash
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            with(workflow.out.bgc_output) {
+                assert size() == 1
+                assert get(0)[0].id == "test"
+                assert get(0)[1].endsWith("_bgcs.gff")
+                assert get(0)[2].endsWith("_bgcs.json")
+            }
+        }
+
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
+            nfcoreDeleteLibrary("${baseDir}/modules/nf-core")
+        }
+    }
+
+    test("positive test - contigs, gff, proteins, ips - antismash") {
+
+        tag "antismash"
+
+        when {
+            workflow {
+                """
+                input[0] = channel.of( [ [ id:'test' ], // meta map
+                    file('${moduleDir}/tests/data/test.fasta.gz', checkIfExists: true),
+                    file('${moduleDir}/tests/data/test.gff.gz', checkIfExists: true),
+                    file('${moduleDir}/tests/data/test.faa.gz', checkIfExists: true),
+                    file('${moduleDir}/tests/data/test_ips.tsv.gz', checkIfExists: true),
+                ])
+                input[1] = Channel.value(null)      // ch_antismash_db
+                input[2] = Channel.value(null)      // ch_ips_db
+                input[3] = true                     // skip_sanntis
+                input[4] = true                     // skip_gecco
+                input[5] = false                    // skip_antismash
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            with(workflow.out.bgc_output) {
+                assert size() == 1
+                assert get(0)[0].id == "test"
+                assert get(0)[1].endsWith("_bgcs.gff")
+                assert get(0)[2].endsWith("_bgcs.json")
+            }
+        }
+
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
+            nfcoreDeleteLibrary("${baseDir}/modules/nf-core")
+        }
+    }
+
+    test("positive test - contigs, gff, proteins, ips - gecco") {
+
+        tag "gecco"
+
+        when {
+            workflow {
+                """
+                input[0] = channel.of( [ [ id:'test' ], // meta map
+                    file('${moduleDir}/tests/data/test.fasta.gz', checkIfExists: true),
+                    file('${moduleDir}/tests/data/test.gff.gz', checkIfExists: true),
+                    file('${moduleDir}/tests/data/test.faa.gz', checkIfExists: true),
+                    file('${moduleDir}/tests/data/test_ips.tsv.gz', checkIfExists: true),
+                ])
+                input[1] = Channel.value(null)      // ch_antismash_db
+                input[2] = Channel.value(null)      // ch_ips_db
+                input[3] = true                     // skip_sanntis
+                input[4] = false                    // skip_gecco
+                input[5] = true                     // skip_antismash
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            with(workflow.out.bgc_output) {
+                assert size() == 1
+                assert get(0)[0].id == "test"
+                assert get(0)[1].endsWith("_bgcs.gff")
+                assert get(0)[2].endsWith("_bgcs.json")
+            }
+        }
+
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
+            nfcoreDeleteLibrary("${baseDir}/modules/nf-core")
+        }
+    }
+
+    test("negative test - no BGCs expected - gecco") {
+
+        tag "negative"
+
+        when {
+            workflow {
+                """
+                input[0] = channel.of( [ [ id:'test_no_bgc' ], // meta map
+                    file('${moduleDir}/tests/data/test_no_bgc.fasta.gz', checkIfExists: true),
+                    file('${moduleDir}/tests/data/test_no_bgc.gff.gz', checkIfExists: true),
+                    file('${moduleDir}/tests/data/test_no_bgc.faa.gz', checkIfExists: true),
+                    [],
+                ])
+                input[1] = Channel.value(null)      // ch_antismash_db
+                input[2] = Channel.value(null)      // ch_ips_db
+                input[3] = true                     // skip_sanntis
+                input[4] = false                    // skip_gecco
+                input[5] = true                     // skip_antismash
+                """
+            }
+        }
+
+        then {
+            assert workflow.success
+            assert workflow.out.bgc_output.size() == 0
+        }
+
+        cleanup {
+            nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
+            nfcoreDeleteLibrary("${baseDir}/modules/nf-core")
+        }
+    }
+
+}
