@@ -36,10 +36,10 @@ workflow BGC_ANNOTATION {
     if (!skip_sanntis) {
 
         // Split IPS input into provided vs missing
-        ch_ips.branch { meta, ips_annot ->
+        ch_ips_branched = ch_ips.branch { meta, ips_annot ->
             provided: ips_annot != null
             missing:  ips_annot == null
-        }.set { ch_ips_branched }
+        }
 
         // Samples missing IPS: join with proteins to feed InterProScan
         ch_prots_missing = ch_prots
