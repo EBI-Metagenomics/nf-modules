@@ -103,9 +103,9 @@ workflow BGC_ANNOTATION {
     }
 
     // Ensure each optional result channel exists even if tool is skipped
-    ch_sanntis_results   = skip_sanntis   ? Channel.empty() : ch_sanntis_results
-    ch_gecco_results     = skip_gecco     ? Channel.empty() : ch_gecco_results
-    ch_antismash_results = skip_antismash ? Channel.empty() : ch_antismash_results
+    ch_sanntis_results   = skip_sanntis   ? channel.empty() : ch_sanntis_results
+    ch_gecco_results     = skip_gecco     ? channel.empty() : ch_gecco_results
+    ch_antismash_results = skip_antismash ? channel.empty() : ch_antismash_results
 
     // Per-tool flags: tuple(meta, true)
     ch_sanntis_flags = skip_sanntis
