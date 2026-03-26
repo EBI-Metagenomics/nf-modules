@@ -56,12 +56,54 @@ nextflow_workflow {
 
         then {
             assert workflow.success
+
             with(workflow.out.bgc_output) {
                 assert size() == 1
                 assert get(0)[0].id == "test"
                 assert get(0)[1].endsWith("_bgcs.gff")
                 assert get(0)[2].endsWith("_bgcs.json")
             }
+
+            def gff_file  = file(workflow.out.bgc_output.get(0)[1])
+            def json_file = file(workflow.out.bgc_output.get(0)[2])
+
+            def json = new groovy.json.JsonSlurper().parse(json_file)
+
+            def gff_lines = gff_file.readLines()
+
+            def bgc_regions = gff_lines
+                .findAll { it.contains("\tbgc_region\t") }
+
+            def cds_lines = gff_lines
+                .findAll { it.contains("\tCDS\t") }
+
+            def gff_summary = [
+                file          : gff_file.getName(),
+                n_lines       : gff_lines.size(),
+                n_bgc_regions : bgc_regions.size(),
+                bgc_regions   : bgc_regions,
+                n_cds         : cds_lines.size(),
+                first_cds     : cds_lines.size() > 0 ? cds_lines[0] : null
+            ]
+
+            def json_summary = [
+                file            : json_file.getName(),
+                tool_name       : json.tool.name,
+                tool_version    : json.tool.version,
+                n_records       : json.records.size(),
+                record_name     : json.records[0].name,
+                n_subregions    : json.records[0].subregions.size(),
+                subregions      : json.records[0].subregions.collect {
+                    [start: it.start, end: it.end, label: it.label]
+                },
+                bgc_tools       : json.records[0].subregions.collect { it.details.bgc_tools }
+            ]
+
+            assert snapshot(
+                gff_summary,
+                json_summary,
+                workflow.out.versions
+            ).match()
         }
 
         cleanup {
@@ -83,7 +125,8 @@ nextflow_workflow {
                     file('${moduleDir}/tests/data/test.faa.gz', checkIfExists: true),
                     file('${moduleDir}/tests/data/test_ips.tsv.gz', checkIfExists: true),
                 ])
-                input[1] = Channel.value(null)      // ch_antismash_db
+                //input[1] = Channel.value(file("/Users/ales/Documents/infectome/bgc_subwf/databases/antismash_db", type: 'dir', checkIfExists: true))
+                input[1] = Channel.value(file('${moduleDir}/tests/reference_databases/antismash',type: 'dir', checkIfExists: true))
                 input[2] = Channel.value(null)      // ch_ips_db
                 input[3] = true                     // skip_sanntis
                 input[4] = true                     // skip_gecco
@@ -94,12 +137,54 @@ nextflow_workflow {
 
         then {
             assert workflow.success
+
             with(workflow.out.bgc_output) {
                 assert size() == 1
                 assert get(0)[0].id == "test"
                 assert get(0)[1].endsWith("_bgcs.gff")
                 assert get(0)[2].endsWith("_bgcs.json")
             }
+
+            def gff_file  = file(workflow.out.bgc_output.get(0)[1])
+            def json_file = file(workflow.out.bgc_output.get(0)[2])
+
+            def json = new groovy.json.JsonSlurper().parse(json_file)
+
+            def gff_lines = gff_file.readLines()
+
+            def bgc_regions = gff_lines
+                .findAll { it.contains("\tbgc_region\t") }
+
+            def cds_lines = gff_lines
+                .findAll { it.contains("\tCDS\t") }
+
+            def gff_summary = [
+                file          : gff_file.getName(),
+                n_lines       : gff_lines.size(),
+                n_bgc_regions : bgc_regions.size(),
+                bgc_regions   : bgc_regions,
+                n_cds         : cds_lines.size(),
+                first_cds     : cds_lines.size() > 0 ? cds_lines[0] : null
+            ]
+
+            def json_summary = [
+                file            : json_file.getName(),
+                tool_name       : json.tool.name,
+                tool_version    : json.tool.version,
+                n_records       : json.records.size(),
+                record_name     : json.records[0].name,
+                n_subregions    : json.records[0].subregions.size(),
+                subregions      : json.records[0].subregions.collect {
+                    [start: it.start, end: it.end, label: it.label]
+                },
+                bgc_tools       : json.records[0].subregions.collect { it.details.bgc_tools }
+            ]
+
+            assert snapshot(
+                gff_summary,
+                json_summary,
+                workflow.out.versions
+            ).match()
         }
 
         cleanup {
@@ -132,13 +217,56 @@ nextflow_workflow {
 
         then {
             assert workflow.success
+
             with(workflow.out.bgc_output) {
                 assert size() == 1
                 assert get(0)[0].id == "test"
                 assert get(0)[1].endsWith("_bgcs.gff")
                 assert get(0)[2].endsWith("_bgcs.json")
             }
+
+            def gff_path  = workflow.out.bgc_output.get(0)[1].toString()
+            def json_path = workflow.out.bgc_output.get(0)[2].toString()
+
+            def gff_file  = new File(gff_path)
+            def json_file = new File(json_path)
+
+            def json = new groovy.json.JsonSlurper().parse(json_file)
+
+            def gff_lines = gff_file.readLines()
+            def bgc_regions = gff_lines
+                .findAll { it.contains("\tbgc_region\t") }
+
+            def cds_lines = gff_lines
+                .findAll { it.contains("\tCDS\t") }
+
+            def gff_summary = [
+                file          : gff_file.getName(),
+                n_lines       : gff_lines.size(),
+                n_bgc_regions : bgc_regions.size(),
+                bgc_regions   : bgc_regions,
+                n_cds         : cds_lines.size(),
+                first_cds     : cds_lines[0]
+            ]
+
+            def json_summary = [
+                file            : json_file.getName(),
+                tool_name       : json.tool.name,
+                tool_version    : json.tool.version,
+                n_records       : json.records.size(),
+                record_name     : json.records[0].name,
+                n_subregions    : json.records[0].subregions.size(),
+                subregions      : json.records[0].subregions.collect { [start: it.start, end: it.end, label: it.label] },
+                bgc_tools       : json.records[0].subregions.collect { it.details.bgc_tools }
+            ]
+
+            assert snapshot(
+                gff_summary,
+                json_summary,
+                workflow.out.versions
+            ).match()
         }
+
 
         cleanup {
             nfcoreUnlink("${launchDir}/library/", "${baseDir}/modules/nf-core")
@@ -171,6 +299,10 @@ nextflow_workflow {
         then {
             assert workflow.success
             assert workflow.out.bgc_output.size() == 0
+            assert snapshot(
+                workflow.out.bgc_output,
+                workflow.out.findAll { key, val -> key.startsWith("versions")}
+            ).match()
         }
 
         cleanup {
