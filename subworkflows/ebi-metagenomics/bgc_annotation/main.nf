@@ -137,7 +137,6 @@ workflow BGC_ANNOTATION {
         .filter { meta, gff, has_results -> has_results == true }
         .map { meta, gff, _has_results -> tuple(meta, gff) }
 
-
     /*
      * Build BGCSMAPPER input
      * Strategy: start from base GFF, join each optional tool result by meta key,

@@ -1,4 +1,21 @@
 {
+    "negative test - no BGCs expected - gecco": {
+        "content": [
+            [
+                
+            ],
+            {
+                "versions": [
+                    
+                ]
+            }
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-03-26T15:14:47.95106"
+    },
     "positive test - contigs, gff, proteins, ips - gecco": {
         "content": [
             {
@@ -48,7 +65,76 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-03-26T10:54:33.630402"
+        "timestamp": "2026-03-26T15:14:19.49424"
+    },
+    "positive test - contigs, gff, proteins, ips - sanntis": {
+        "content": [
+            {
+                "file": "test_bgcs.gff",
+                "n_lines": 87,
+                "n_bgc_regions": 4,
+                "bgc_regions": [
+                    "b1_04_2.circ\tSanntiSv0.9.4.1\tbgc_region\t142110\t148437\t.\t.\t.\tID=b1_04_2.circ|bgc:142110-148437;bgc_tools=sanntis;nearest_MiBIG=BGC0000849;nearest_MiBIG_class=Other",
+                    "b1_04_2.circ\tSanntiSv0.9.4.1\tbgc_region\t177406\t188436\t.\t.\t.\tID=b1_04_2.circ|bgc:177406-188436;bgc_tools=sanntis;nearest_MiBIG=BGC0001844;nearest_MiBIG_class=NRP",
+                    "b1_04_2.circ\tSanntiSv0.9.4.1\tbgc_region\t217314\t226605\t.\t.\t.\tID=b1_04_2.circ|bgc:217314-226605;bgc_tools=sanntis;nearest_MiBIG=BGC0000600;nearest_MiBIG_class=RiPP",
+                    "b1_04_2.circ\tSanntiSv0.9.4.1\tbgc_region\t234258\t330050\t.\t.\t.\tID=b1_04_2.circ|bgc:234258-330050;bgc_tools=sanntis;nearest_MiBIG=BGC0001059;nearest_MiBIG_class=NRP Polyketide"
+                ],
+                "n_cds": 82,
+                "first_cds": "b1_04_2.circ\tProdigal:002006\tCDS\t142110\t142544\t.\t+\t0\tID=b1_04_05961;inference=ab initio prediction:Prodigal:002006;locus_tag=b1_04_05961;product=hypothetical protein;bgc_tools=sanntis;nearest_MiBIG=BGC0000849;nearest_MiBIG_class=Other;bgc_support=1.00"
+            },
+            {
+                "file": "test_bgcs.json",
+                "tool_name": "MGnify BGC mapper",
+                "tool_version": "mgnify_pipelines_toolkit_v1.4.18",
+                "n_records": 1,
+                "record_name": "b1_04_2.circ",
+                "n_subregions": 4,
+                "subregions": [
+                    {
+                        "start": 142109,
+                        "end": 148437,
+                        "label": "Other"
+                    },
+                    {
+                        "start": 177405,
+                        "end": 188436,
+                        "label": "NRP"
+                    },
+                    {
+                        "start": 217313,
+                        "end": 226605,
+                        "label": "RiPP"
+                    },
+                    {
+                        "start": 234257,
+                        "end": 330050,
+                        "label": "NRP_Polyketide"
+                    }
+                ],
+                "bgc_tools": [
+                    [
+                        "sanntis"
+                    ],
+                    [
+                        "sanntis"
+                    ],
+                    [
+                        "sanntis"
+                    ],
+                    [
+                        "sanntis"
+                    ]
+                ]
+            },
+            [
+                "versions.yml:md5,918e0437f73ae0527d0f8e7d32b3d430"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-03-26T15:10:20.91029"
     },
     "positive test - contigs, gff, proteins, ips - antismash": {
         "content": [
@@ -99,6 +185,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-03-26T11:32:29.071094"
+        "timestamp": "2026-03-26T15:13:42.155677"
     }
 }
