@@ -113,15 +113,15 @@ workflow BGC_ANNOTATION {
 
     // Per-tool flags: tuple(meta, true)
     ch_sanntis_flags = skip_sanntis
-        ? Channel.empty()
+        ? channel.empty()
         : ch_sanntis_results.map { meta, _file -> tuple(meta, true) }
 
     ch_gecco_flags = skip_gecco
-        ? Channel.empty()
+        ? channel.empty()
         : ch_gecco_results.map { meta, _file -> tuple(meta, true) }
 
     ch_antismash_flags = skip_antismash
-        ? Channel.empty()
+        ? channel.empty()
         : ch_antismash_results.map { meta, _file -> tuple(meta, true) }
 
     // Combine flags -> per-sample has_results boolean
