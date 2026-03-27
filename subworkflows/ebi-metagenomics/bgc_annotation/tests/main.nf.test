@@ -45,8 +45,8 @@ nextflow_workflow {
                     file('${moduleDir}/tests/data/test.faa.gz', checkIfExists: true),
                     file('${moduleDir}/tests/data/test_ips.tsv.gz', checkIfExists: true),
                 ])
-                input[1] = Channel.value(null)      // ch_antismash_db
-                input[2] = Channel.value(null)      // ch_ips_db
+                input[1] = channel.value(null)      // ch_antismash_db
+                input[2] = channel.value(null)      // ch_ips_db
                 input[3] = false                    // skip_sanntis
                 input[4] = true                     // skip_gecco
                 input[5] = true                     // skip_antismash
@@ -125,9 +125,9 @@ nextflow_workflow {
                     file('${moduleDir}/tests/data/test.faa.gz', checkIfExists: true),
                     file('${moduleDir}/tests/data/test_ips.tsv.gz', checkIfExists: true),
                 ])
-                //input[1] = Channel.value(file("/Users/ales/Documents/infectome/bgc_subwf/databases/antismash_db", type: 'dir', checkIfExists: true))
-                input[1] = Channel.value(file('${moduleDir}/tests/reference_databases/antismash',type: 'dir', checkIfExists: true))
-                input[2] = Channel.value(null)      // ch_ips_db
+                //input[1] = channel.value(file("/Users/ales/Documents/infectome/bgc_subwf/databases/antismash_db", type: 'dir', checkIfExists: true))
+                input[1] = channel.value(file('${moduleDir}/tests/reference_databases/antismash',type: 'dir', checkIfExists: true))
+                input[2] = channel.value(null)      // ch_ips_db
                 input[3] = true                     // skip_sanntis
                 input[4] = true                     // skip_gecco
                 input[5] = false                    // skip_antismash
@@ -206,8 +206,8 @@ nextflow_workflow {
                     file('${moduleDir}/tests/data/test.faa.gz', checkIfExists: true),
                     file('${moduleDir}/tests/data/test_ips.tsv.gz', checkIfExists: true),
                 ])
-                input[1] = Channel.value(null)      // ch_antismash_db
-                input[2] = Channel.value(null)      // ch_ips_db
+                input[1] = channel.value(null)      // ch_antismash_db
+                input[2] = channel.value(null)      // ch_ips_db
                 input[3] = true                     // skip_sanntis
                 input[4] = false                    // skip_gecco
                 input[5] = true                     // skip_antismash
@@ -287,8 +287,8 @@ nextflow_workflow {
                     file('${moduleDir}/tests/data/test_no_bgc.faa.gz', checkIfExists: true),
                     [],
                 ])
-                input[1] = Channel.value(null)      // ch_antismash_db
-                input[2] = Channel.value(null)      // ch_ips_db
+                input[1] = channel.value(null)      // ch_antismash_db
+                input[2] = channel.value(null)      // ch_ips_db
                 input[3] = true                     // skip_sanntis
                 input[4] = false                    // skip_gecco
                 input[5] = true                     // skip_antismash
