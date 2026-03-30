@@ -1,18 +1,4 @@
 {
-    "silva ssu [fasta] - stub": {
-        "content": [
-            {
-                "versions": [
-                    "versions.yml:md5,c0b49fb0a689dedf30f3e63fac7ceac5"
-                ]
-            }
-        ],
-        "timestamp": "2026-03-23T12:41:16.93948",
-        "meta": {
-            "nf-test": "0.9.4",
-            "nextflow": "25.10.4"
-        }
-    },
     "silva ssu [fasta]": {
         "content": [
             {
@@ -21,7 +7,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-03-23T12:41:14.144709",
+        "timestamp": "2026-03-30T09:04:14.614158",
         "meta": {
             "nf-test": "0.9.4",
             "nextflow": "25.10.4"
