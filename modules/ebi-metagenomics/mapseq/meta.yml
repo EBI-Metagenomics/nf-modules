@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ebi-metagenomics/nf-modules/main/modules/meta-schema.json
 name: "mapseq"
 description: Perform taxonomic classification of rRNA reads using reference
   databases
@@ -8,13 +9,13 @@ keywords:
   - rRNA
 tools:
   - "mapseq":
-      description: |
-        "Open source metagenomic 16S/18S read classifier enabling comparative metagenomics."
+      description: "Open source metagenomic 16S/18S read classifier enabling comparative
+        metagenomics."
       documentation: https://github.com/jfmrod/MAPseq
       doi: "10.1093/bioinformatics/btx517"
-      licence: ["dual-licensed under GPL v3+ or BSD 2-clause"]
-      identifier: ""
-
+      licence:
+        - "dual-licensed under GPL v3+ or BSD 2-clause"
+      identifier: biotools:mapseq
 input:
   - - meta:
         type: map
@@ -51,20 +52,18 @@ output:
           type: map
           description: |
             Groovy Map containing sample information
-            e.g. [ id:'test', single_end:false ]
+            e.g. `[ id:'test', single_end:false ]`
       - "*.mseq":
           type: file
           description: Read classification output file
           pattern: "*.mseq"
-          ontologies: []
   versions:
-    - versions.yml:
+    - "versions.yml":
         type: file
         description: File containing software versions
         pattern: "versions.yml"
         ontologies:
           - edam: "http://edamontology.org/format_3750" # YAML
-
 authors:
   - "@chrisata"
 maintainers:
