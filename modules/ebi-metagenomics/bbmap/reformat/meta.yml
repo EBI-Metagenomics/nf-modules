@@ -1,0 +1,60 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "bbmap_reformat"
+description: "Reformat and convert sequencing reads using BBMap's reformat.sh tool. Handles single-end and interleaved FASTQ/FASTA files, adding unique names and trimming read descriptions."
+keywords:
+  - reformat
+  - fastq
+  - bbmap
+  - standardise
+tools:
+  - "bbmap":
+      description: "BBMap is a fast and memory-efficient aligner and toolkit for various bioinformatics operations, including read reformatting and validation."
+      homepage: "https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide"
+      documentation: "https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide"
+      tool_dev_url: "https://sourceforge.net/projects/bbmap"
+      doi: ""
+      licence: ["https://github.com/bbushnell/BBTools/blob/master/license.txt"]
+      identifier: null
+
+input:
+  - meta:
+      type: map
+      description: Metadata dictionary containing sample identifier and single_end flag
+      pattern: "id|single_end"
+  - reads:
+      type: file
+      description: "Input FASTQ file(s). Can be single-end or interleaved paired-end."
+      pattern: "*.{fastq,fq,fastq.gz,fq.gz}"
+      ontologies:
+        - edam: http://edamontology.org/format_1930 # FASTQ
+  - out_fmt:
+      type: string
+      description: "Output file format extension (e.g., 'fastq.gz', 'fasta.gz')"
+      pattern: "^\\w+(\\.\\w+)*$"
+
+output:
+  - meta:
+      type: map
+      description: Metadata passed through from input
+  - reformated:
+      type: file
+      description: "Reformatted reads with unique names and trimmed descriptions."
+      pattern: "*_reformated.{fastq,fq,fastq.gz,fq.gz,fasta,fa,fasta.gz,fa.gz}"
+      ontologies:
+        - edam: http://edamontology.org/format_1930 # FASTQ
+        - edam: http://edamontology.org/format_1929 # FASTA
+  - log:
+      type: file
+      description: "BBMap reformat.sh log file"
+      pattern: "*.log"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: versions.yml
+      ontologies:
+        - edam: http://edamontology.org/format_3750 # YAML
+
+authors:
+  - "@timrozday-mgnify"
+maintainers:
+  - "@timrozday-mgnify"

@@ -1,0 +1,72 @@
+nextflow_process {
+
+    name "Test Process BBMAP_REFORMAT"
+    script "../main.nf"
+    process "BBMAP_REFORMAT"
+
+    tag "modules"
+    tag "modules_ebi_metagenomics"
+    tag "bbmap"
+    tag "bbmap/reformat"
+
+    // The test FASTQ uses headers of the form:
+    //   @ERR4334351.N M05310:18:000000000-CB339:1:1101:x:y/1
+    // trimreaddescription=t removes everything after the first space,
+    // so output headers should be exactly @ERR4334351.N with no trailing tokens.
+
+    test("single-end fastq") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id: 'test', single_end: true ],
+                    file("${moduleDir}/tests/data/test-reads/ERR4334351_test_1.fastq.gz", checkIfExists: true)
+                ]
+                input[1] = "fastq.gz"
+                """
+            }
+        }
+
+        then {
+            // Extract headers by position: line 0, 4, 8, … in the FASTQ.
+            // Cannot use startsWith("@") — Phred+33 quality scores can contain '@'.
+            def lines   = path(process.out.reformated[0][1]).linesGzip
+            def headers = (0..<(lines.size().intdiv(4))).collect { lines[it * 4] }
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.reformated, process.out.versions).match() },
+                // all 6 000 reads are preserved (no pair filtering for single-end)
+                { assert lines.size() == 24000 },
+                // trimreaddescription=t: header trimmed to just @ERR4334351.N
+                { assert headers.every { it ==~ /@ERR4334351\.\d+/ } },
+                // no spaces in any header line
+                { assert headers.every { !it.contains(" ") } }
+            )
+        }
+    }
+
+    test("single-end fastq - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id: 'test', single_end: true ],
+                    file("${moduleDir}/tests/data/test-reads/ERR4334351_test_1.fastq.gz", checkIfExists: true)
+                ]
+                input[1] = "fastq.gz"
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out.reformated, process.out.versions).match() }
+            )
+        }
+    }
+}

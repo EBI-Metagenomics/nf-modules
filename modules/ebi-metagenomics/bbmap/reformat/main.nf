@@ -1,4 +1,4 @@
-process BBMAP_REFORMAT_STANDARDISE {
+process BBMAP_REFORMAT {
     tag "$meta.id"
     label 'process_single'
 
@@ -13,7 +13,6 @@ process BBMAP_REFORMAT_STANDARDISE {
 
     output:
     tuple val(meta), path("*_reformated.${out_fmt}")       , emit: reformated
-    tuple val(meta), path("${prefix}_singleton.${out_fmt}"), optional: true, emit: singleton
     path  "versions.yml"                                      , emit: versions
     path  "*.log"                                             , emit: log
 
@@ -23,11 +22,8 @@ process BBMAP_REFORMAT_STANDARDISE {
     script:
     def args   = task.ext.args ?: ''
     prefix = task.ext.prefix ?: "${meta.id}"
-    single_file = (reads instanceof Collection) ? (reads.size() == 1) : true
-    in_reads  = single_file ? "in=${reads[0]}" : "in=${reads[0]} in2=${reads[1]}"
-    out_reads = meta.single_end ? "out=${prefix}_reformated.${out_fmt}" : "out=${prefix}_1_reformated.${out_fmt} out2=${prefix}_2_reformated.${out_fmt} outs=${prefix}_singleton.${out_fmt}"
-    interleaved_cmd = meta.interleaved ? "int=t verifyinterleaved=t" : ""
-    paired_cmd = meta.single_end ? "" : "addslash=t spaceslash=f verifypaired=f"
+    in_reads  = "in=${reads}"
+    out_reads = "out=${prefix}_reformated.${out_fmt}"
 
     """
     maxmem=\$(echo \"$task.memory\"| sed 's/ GB/g/g')
@@ -35,10 +31,8 @@ process BBMAP_REFORMAT_STANDARDISE {
         -Xmx\$maxmem \\
         $in_reads \\
         $out_reads \\
-        $interleaved_cmd \\
-        $paired_cmd \\
         threads=${task.cpus} \\
-        allowidenticalnames=t \\
+        uniquenames=t \\
         trimreaddescription=t \\
         ${args} \\
         &> ${prefix}.reformat.sh.log
@@ -52,9 +46,7 @@ process BBMAP_REFORMAT_STANDARDISE {
     stub:
     prefix = task.ext.prefix ?: "${meta.id}"
     """
-    echo "" | gzip > ${prefix}_1_reformated.${out_fmt}
-    echo "" | gzip > ${prefix}_2_reformated.${out_fmt}
-    echo "" | gzip > ${prefix}_singleton.${out_fmt}
+    echo "" | gzip > ${prefix}_reformated.${out_fmt}
     touch ${prefix}.reformat.sh.log
 
     cat <<-END_VERSIONS > versions.yml
