@@ -1,4 +1,4 @@
-process BBMAP_REFORMAT_STANDARDISE {
+process BBMAP_REFORMAT {
     tag "$meta.id"
     label 'process_medium'
 
@@ -9,12 +9,10 @@ process BBMAP_REFORMAT_STANDARDISE {
 
     input:
     tuple val(meta), path(reads)
-    val(interleaved)
     val(out_fmt)
 
     output:
     tuple val(meta), path("*_reformated.${out_fmt}")                                             , emit: reformated
-    tuple val(meta), path("${prefix}_singleton.${out_fmt}")                                      , optional: true, emit: singleton
     tuple val("${task.process}"), val('bbmap'), eval('bbversion.sh | grep -v "Duplicate cpuset"'), emit: versions_bbmap, topic: versions
     path  "*.log"                                                                                , emit: log
 
@@ -23,13 +21,9 @@ process BBMAP_REFORMAT_STANDARDISE {
 
     script:
     def args = task.ext.args ?: ''
-    def interleaved_args = task.ext.interleaved_args ?: ''
-    def paired_args = task.ext.paired_args ?: ''
-    prefix = task.ext.prefix ?: "${meta.id}"
-    def in_reads = (meta.single_end || interleaved) ? "in=${reads[0]}" : "in=${reads[0]} in2=${reads[1]}"
-    def out_reads = meta.single_end ? "out=${prefix}_reformated.${out_fmt}" : "out=${prefix}_1_reformated.${out_fmt} out2=${prefix}_2_reformated.${out_fmt} outs=${prefix}_singleton.${out_fmt}"
-    def interleaved_cmd = interleaved ? "int=t " + interleaved_args : ""
-    def paired_cmd = meta.single_end ? "" : paired_args
+    def prefix = task.ext.prefix ?: "${meta.id}"
+    def in_reads  = "in=${reads}"
+    def out_reads = "out=${prefix}_reformated.${out_fmt}"
 
     """
     maxmem=\$(echo \"$task.memory\"| sed 's/ GB/g/g')
@@ -37,19 +31,15 @@ process BBMAP_REFORMAT_STANDARDISE {
         -Xmx\$maxmem \\
         $in_reads \\
         $out_reads \\
-        $interleaved_cmd \\
-        $paired_cmd \\
         threads=${task.cpus} \\
         ${args} \\
         &> ${prefix}.reformat.sh.log
     """
 
     stub:
-    prefix = task.ext.prefix ?: "${meta.id}"
+    def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    echo "" | gzip > ${prefix}_1_reformated.${out_fmt}
-    echo "" | gzip > ${prefix}_2_reformated.${out_fmt}
-    echo "" | gzip > ${prefix}_singleton.${out_fmt}
+    echo "" | gzip > ${prefix}_reformated.${out_fmt}
     touch ${prefix}.reformat.sh.log
     """
 }
