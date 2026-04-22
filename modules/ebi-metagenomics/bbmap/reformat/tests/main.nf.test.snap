@@ -10,11 +10,9 @@
                     "test_reformated.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
                 ]
             ],
-            [
-                "versions.yml:md5,6fe14e39943391a0917b8dd06f90185f"
-            ]
+            null
         ],
-        "timestamp": "2026-04-21T11:12:26.129732",
+        "timestamp": "2026-04-22T14:39:36.107244",
         "meta": {
             "nf-test": "0.9.4",
             "nextflow": "25.10.4"
@@ -31,11 +29,9 @@
                     "test_reformated.fastq.gz:md5,f6c13c1913cbfa82f77baff3410edde2"
                 ]
             ],
-            [
-                "versions.yml:md5,6fe14e39943391a0917b8dd06f90185f"
-            ]
+            null
         ],
-        "timestamp": "2026-04-21T11:12:21.315977",
+        "timestamp": "2026-04-22T14:39:32.383446",
         "meta": {
             "nf-test": "0.9.4",
             "nextflow": "25.10.4"

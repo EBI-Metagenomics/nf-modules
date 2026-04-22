@@ -13,7 +13,6 @@ process BBMAP_REFORMAT {
 
     output:
     tuple val(meta), path("*_reformated.${out_fmt}")                                             , emit: reformated
-    path  "versions.yml"                                                                         , emit: versions_bbmap_reformat, topic: versions
     tuple val("${task.process}"), val('bbmap'), eval('bbversion.sh | grep -v "Duplicate cpuset"'), emit: versions_bbmap, topic: versions
     path  "*.log"                                                                                , emit: log
 
