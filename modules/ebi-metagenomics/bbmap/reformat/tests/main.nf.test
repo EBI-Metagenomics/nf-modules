@@ -16,6 +16,8 @@ nextflow_process {
 
     test("single-end fastq") {
 
+        config "./nextflow.config"
+
         when {
             process {
                 """
@@ -35,7 +37,7 @@ nextflow_process {
             def headers = (0..<(lines.size().intdiv(4))).collect { lines[it * 4] }
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out.reformated, process.out.versions).match() },
+                { assert snapshot(process.out.reformated, process.out.versions_bbmap_reformat).match() },
                 // all 6 000 reads are preserved (no pair filtering for single-end)
                 { assert lines.size() == 24000 },
                 // trimreaddescription=t: header trimmed to just @ERR4334351.N
@@ -48,6 +50,7 @@ nextflow_process {
 
     test("single-end fastq - stub") {
 
+        config "./nextflow.config"
         options "-stub"
 
         when {
@@ -65,7 +68,7 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out.reformated, process.out.versions).match() }
+                { assert snapshot(process.out.reformated, process.out.versions_bbmap_reformat).match() }
             )
         }
     }

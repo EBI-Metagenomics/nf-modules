@@ -1,6 +1,6 @@
 process BBMAP_REFORMAT_STANDARDISE {
     tag "$meta.id"
-    label 'process_single'
+    label 'process_medium'
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -14,20 +14,21 @@ process BBMAP_REFORMAT_STANDARDISE {
     output:
     tuple val(meta), path("*_reformated.${out_fmt}")       , emit: reformated
     tuple val(meta), path("${prefix}_singleton.${out_fmt}"), optional: true, emit: singleton
-    path  "versions.yml"                                      , emit: versions
-    path  "*.log"                                             , emit: log
+    path  "versions.yml"                                   , emit: versions_bbmap_reformat_standardise, topic: versions
+    path  "*.log"                                          , emit: log
 
     when:
     task.ext.when == null || task.ext.when
 
     script:
-    def args   = task.ext.args ?: ''
+    def args = task.ext.args ?: ''
+    def interleaved_args = task.ext.interleaved_args ?: ''
+    def paired_args = task.ext.paired_args ?: ''
     prefix = task.ext.prefix ?: "${meta.id}"
-    single_file = (reads instanceof Collection) ? (reads.size() == 1) : true
-    in_reads  = single_file ? "in=${reads[0]}" : "in=${reads[0]} in2=${reads[1]}"
-    out_reads = meta.single_end ? "out=${prefix}_reformated.${out_fmt}" : "out=${prefix}_1_reformated.${out_fmt} out2=${prefix}_2_reformated.${out_fmt} outs=${prefix}_singleton.${out_fmt}"
-    interleaved_cmd = meta.interleaved ? "int=t verifyinterleaved=t" : ""
-    paired_cmd = meta.single_end ? "" : "addslash=t spaceslash=f verifypaired=f"
+    def in_reads = (meta.single_end || meta.interleaved) ? "in=${reads[0]}" : "in=${reads[0]} in2=${reads[1]}"
+    def out_reads = meta.single_end ? "out=${prefix}_reformated.${out_fmt}" : "out=${prefix}_1_reformated.${out_fmt} out2=${prefix}_2_reformated.${out_fmt} outs=${prefix}_singleton.${out_fmt}"
+    def interleaved_cmd = meta.interleaved ? "int=t " + interleaved_args : ""
+    def paired_cmd = meta.single_end ? "" : paired_args
 
     """
     maxmem=\$(echo \"$task.memory\"| sed 's/ GB/g/g')
@@ -38,8 +39,6 @@ process BBMAP_REFORMAT_STANDARDISE {
         $interleaved_cmd \\
         $paired_cmd \\
         threads=${task.cpus} \\
-        allowidenticalnames=t \\
-        trimreaddescription=t \\
         ${args} \\
         &> ${prefix}.reformat.sh.log
 

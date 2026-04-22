@@ -13,6 +13,8 @@ nextflow_process {
 
     test("paired-end fastq") {
 
+        config "./nextflow.config"
+
         when {
             process {
                 """
@@ -36,7 +38,7 @@ nextflow_process {
             def r2_hdrs = hdrs(path(process.out.reformated[0][1][1]).linesGzip)
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out.reformated, process.out.versions).match() },
+                { assert snapshot(process.out.reformated, process.out.versions_bbmap_reformat_standardise).match() },
                 // trimreaddescription=t removes everything after first whitespace; addslash appends /1 or /2
                 { assert r1_hdrs.every { it ==~ /@ERR4334351\.\d+\/1/ } },
                 { assert r2_hdrs.every { it ==~ /@ERR4334351\.\d+\/2/ } },
@@ -48,6 +50,7 @@ nextflow_process {
 
     test("paired-end fastq - stub") {
 
+        config "./nextflow.config"
         options "-stub"
 
         when {
@@ -68,7 +71,7 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out.reformated, process.out.versions).match() }
+                { assert snapshot(process.out.reformated, process.out.versions_bbmap_reformat_standardise).match() }
             )
         }
     }
@@ -80,6 +83,8 @@ nextflow_process {
     //           no singletons produced; all headers trimmed.
 
     test("paired-end fastq - wrong order") {
+
+        config "./nextflow.config"
 
         when {
             process {
@@ -121,6 +126,7 @@ nextflow_process {
     // PAIR.2 R2 is 5 bp, below minlength=20, so it is discarded.
     // Its surviving R1 mate (PAIR.2/1) goes to the singleton output (outs=).
     // PAIR.1 and PAIR.3 are fully paired and appear in the main outputs.
+    // addslash is not applied to singleton reads, so the singleton has no /1 suffix.
 
     test("paired-end fastq - short mate singleton") {
 
@@ -156,8 +162,7 @@ nextflow_process {
                 { assert r2_lines.size() == 8 },
                 { assert r1_hdrs == ["@PAIR.1/1", "@PAIR.3/1"] },
                 { assert r2_hdrs == ["@PAIR.1/2", "@PAIR.3/2"] },
-                // PAIR.2's surviving R1 mate goes to the singleton output.
-                // addslash is not applied to singleton reads, so no /1 suffix.
+                // PAIR.2's surviving R1 mate goes to the singleton output
                 { assert sing_lines.size() == 4 },
                 { assert sing_hdrs == ["@PAIR.2"] },
                 // no spaces in any header

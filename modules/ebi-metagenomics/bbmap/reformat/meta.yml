@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
 name: "bbmap_reformat"
-description: "Reformat and convert sequencing reads using BBMap's reformat.sh tool. Handles single-end and interleaved FASTQ/FASTA files, adding unique names and trimming read descriptions."
+description: "Reformat and convert sequencing reads using BBMap's reformat.sh tool. Handles only single-end or merged FASTQ/FASTA files, adding unique names and trimming read descriptions."
 keywords:
   - reformat
   - fastq
