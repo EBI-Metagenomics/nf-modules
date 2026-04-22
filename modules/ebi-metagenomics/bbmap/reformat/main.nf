@@ -12,9 +12,10 @@ process BBMAP_REFORMAT {
     val(out_fmt)
 
     output:
-    tuple val(meta), path("*_reformated.${out_fmt}"), emit: reformated
-    path  "versions.yml"                            , emit: versions_bbmap_reformat, topic: versions
-    path  "*.log"                                   , emit: log
+    tuple val(meta), path("*_reformated.${out_fmt}")                                             , emit: reformated
+    path  "versions.yml"                                                                         , emit: versions_bbmap_reformat, topic: versions
+    tuple val("${task.process}"), val('bbmap'), eval('bbversion.sh | grep -v "Duplicate cpuset"'), emit: versions_bbmap, topic: versions
+    path  "*.log"                                                                                , emit: log
 
     when:
     task.ext.when == null || task.ext.when
@@ -34,11 +35,6 @@ process BBMAP_REFORMAT {
         threads=${task.cpus} \\
         ${args} \\
         &> ${prefix}.reformat.sh.log
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        bbmap: \$(bbversion.sh | grep -v "Duplicate cpuset")
-    END_VERSIONS
     """
 
     stub:
@@ -46,10 +42,5 @@ process BBMAP_REFORMAT {
     """
     echo "" | gzip > ${prefix}_reformated.${out_fmt}
     touch ${prefix}.reformat.sh.log
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        bbmap: \$(bbversion.sh | grep -v "Duplicate cpuset")
-    END_VERSIONS
     """
 }
