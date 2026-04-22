@@ -9,6 +9,7 @@ process BBMAP_REFORMAT_STANDARDISE {
 
     input:
     tuple val(meta), path(reads)
+    val(interleaved)
     val(out_fmt)
 
     output:
@@ -25,9 +26,9 @@ process BBMAP_REFORMAT_STANDARDISE {
     def interleaved_args = task.ext.interleaved_args ?: ''
     def paired_args = task.ext.paired_args ?: ''
     prefix = task.ext.prefix ?: "${meta.id}"
-    def in_reads = (meta.single_end || meta.interleaved) ? "in=${reads[0]}" : "in=${reads[0]} in2=${reads[1]}"
+    def in_reads = (meta.single_end || interleaved) ? "in=${reads[0]}" : "in=${reads[0]} in2=${reads[1]}"
     def out_reads = meta.single_end ? "out=${prefix}_reformated.${out_fmt}" : "out=${prefix}_1_reformated.${out_fmt} out2=${prefix}_2_reformated.${out_fmt} outs=${prefix}_singleton.${out_fmt}"
-    def interleaved_cmd = meta.interleaved ? "int=t " + interleaved_args : ""
+    def interleaved_cmd = interleaved ? "int=t " + interleaved_args : ""
     def paired_cmd = meta.single_end ? "" : paired_args
 
     """
