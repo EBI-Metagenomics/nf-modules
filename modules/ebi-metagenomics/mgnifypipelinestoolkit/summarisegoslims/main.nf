@@ -3,9 +3,7 @@ process MGNIFYPIPELINESTOOLKIT_SUMMARISEGOSLIMS {
     tag "$meta.id"
     label 'process_single'
 
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/mgnify-pipelines-toolkit:1.4.13--pyhdfd78af_0':
-        'biocontainers/mgnify-pipelines-toolkit:1.4.13--pyhdfd78af_0' }"
+    container "microbiome-informatics/mgnify-pipelines-toolkit:1.5.3"
 
     input:
     tuple val(meta), path(interproscan_tsv)
@@ -24,16 +22,12 @@ process MGNIFYPIPELINESTOOLKIT_SUMMARISEGOSLIMS {
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
     def args = task.ext.args ?: ''
-    def interproscan_tsv_file = interproscan_tsv.name.replace(".gz", "")
     """
-    if [ "${interproscan_tsv.name.endsWith(".gz")}" == "true" ]; then
-        gzip -c -d $interproscan_tsv > $interproscan_tsv_file
-    fi
     summarise_goslims \\
         ${args} \\
         -go ${go_obo} \\
         -gb ${go_banding} \\
-        -i ${interproscan_tsv_file} \\
+        -i ${interproscan_tsv} \\
         -gaf ${gaf} \\
         -o ${prefix}_summary
 
