@@ -3,17 +3,16 @@ process GENOMEPROPERTIES {
     tag "$meta.id"
     label 'process_single'
 
-    conda "${moduleDir}/environment.yml"
-    container 'microbiome-informatics/genome-properties:2.0'
+    container 'microbiome-informatics/genome-properties:v2.0.2'
 
     input:
     tuple val(meta), path(ips)
 
     output:
-    tuple val(meta), path("*.txt") , emit: summary
-    tuple val(meta), path("*.json"), emit: json
-    tuple val(meta), path("*.tsv") , emit: tsv
-    path "versions.yml"            , emit: versions
+    tuple val(meta), path("*.txt.gz") , emit: summary
+    tuple val(meta), path("*.json.gz"), emit: json
+    tuple val(meta), path("*.tsv.gz") , emit: tsv
+    path "versions.yml"               , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -21,7 +20,7 @@ process GENOMEPROPERTIES {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def gp_version = "2.0" // No way to get the version from the tool directly so have to hardcode
+    def gp_version = "2.0.2" // No way to get the version from the tool directly so have to hardcode
 
     """
     assign_genome_properties.pl \\
@@ -35,6 +34,8 @@ process GENOMEPROPERTIES {
     mv SUMMARY_FILE_${prefix} ${prefix}_gp.txt
     mv TABLE_${prefix} ${prefix}_gp.tsv
 
+    gzip ${prefix}_gp.{json,txt,tsv}
+
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         Genome Properties: ${gp_version}
@@ -44,12 +45,14 @@ process GENOMEPROPERTIES {
     stub:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def gp_version = "2.0" // No way to get the version from the tool directly so have to hardcode
+    def gp_version = "2.0.2" // No way to get the version from the tool directly so have to hardcode
 
     """
     touch ${prefix}_gp.json
     touch ${prefix}_gp.txt
     touch ${prefix}_gp.tsv
+
+    gzip ${prefix}_gp.{json,txt,tsv}
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
