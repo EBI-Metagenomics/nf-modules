@@ -35,15 +35,15 @@ output:
   - summary:
       type: file
       description: Summary file of genome properties
-      pattern: "*.txt"
+      pattern: "*.txt.gz"
   - json:
       type: file
       description: JSON results file of genome properties
-      pattern: "*.txt"
+      pattern: "*.txt.gz"
   - tsv:
       type: file
       description: TSV results file of genome properties
-      pattern: "*.txt"
+      pattern: "*.txt.gz"
   - versions:
       type: file
       description: File containing software versions
