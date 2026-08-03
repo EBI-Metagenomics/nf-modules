@@ -3,7 +3,7 @@ process GENOMEPROPERTIES {
     tag "$meta.id"
     label 'process_single'
 
-    container 'microbiome-informatics/genome-properties:v2.0.2'
+    container 'microbiome-informatics/genome-properties:v2.1.0'
 
     input:
     tuple val(meta), path(ips)
@@ -20,7 +20,7 @@ process GENOMEPROPERTIES {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def gp_version = "2.0.2" // No way to get the version from the tool directly so have to hardcode
+    def gp_version = "2.1.0" // No way to get the version from the tool directly so have to hardcode
 
     """
     assign_genome_properties.pl \\
@@ -45,7 +45,7 @@ process GENOMEPROPERTIES {
     stub:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    def gp_version = "2.0.2" // No way to get the version from the tool directly so have to hardcode
+    def gp_version = "2.1.0" // No way to get the version from the tool directly so have to hardcode
 
     """
     touch ${prefix}_gp.json
