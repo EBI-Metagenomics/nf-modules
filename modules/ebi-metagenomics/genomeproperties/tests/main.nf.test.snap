@@ -7,14 +7,14 @@
                         "id": "test",
                         "single_end": false
                     },
-                    "test_gp.txt.gz:md5,6be55888c673b2b534e70cfb68dd8d84"
+                    "test_gp.txt.gz:md5,76496a18860294157ec36166fbf5e407"
                 ]
             ]
         ],
-        "timestamp": "2026-07-10T17:49:21.852448",
+        "timestamp": "2026-08-03T21:44:02.116076",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.3"
+            "nextflow": "26.04.6"
         }
     },
     "genome-properties - interproscan tsv - stub": {
@@ -48,7 +48,7 @@
                     ]
                 ],
                 "3": [
-                    "versions.yml:md5,56b2dd58c91ddee20a0ce00f25c179c9"
+                    "versions.yml:md5,5189ad7b0480541b53a873026fd893ca"
                 ],
                 "json": [
                     [
@@ -78,14 +78,14 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,56b2dd58c91ddee20a0ce00f25c179c9"
+                    "versions.yml:md5,5189ad7b0480541b53a873026fd893ca"
                 ]
             }
         ],
-        "timestamp": "2026-07-10T17:43:07.742326",
+        "timestamp": "2026-08-03T21:42:52.937797",
         "meta": {
             "nf-test": "0.9.5",
-            "nextflow": "26.04.3"
+            "nextflow": "26.04.6"
         }
     }
 }
