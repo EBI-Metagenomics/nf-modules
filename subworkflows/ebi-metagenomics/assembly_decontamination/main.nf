@@ -119,6 +119,12 @@ workflow ASSEMBLY_DECONTAMINATION {
     )
 
     emit:
-    cleaned_contigs = cleaned_contigs
-    versions        = ch_versions
+    cleaned_contigs                    = cleaned_contigs
+    phix_contaminated_contigs_tsv      = PHIX_DECONTAMINATE_CONTIGS.out.mapped_contigs_tsv
+    human_contaminated_contigs_tsv     = HUMAN_DECONTAMINATE_CONTIGS.out.mapped_contigs_tsv
+    host_contaminated_contigs_tsv      = HOST_DECONTAMINATE_CONTIGS.out.mapped_contigs_tsv
+    phix_contaminated_contigs_tsv_mqc  = PHIX_DECONTAMINATE_CONTIGS.out.mapped_contigs_tsv_mqc
+    human_contaminated_contigs_tsv_mqc = HUMAN_DECONTAMINATE_CONTIGS.out.mapped_contigs_tsv_mqc
+    host_contaminated_contigs_tsv_mqc  = HOST_DECONTAMINATE_CONTIGS.out.mapped_contigs_tsv_mqc
+    versions                           = ch_versions
 }
