@@ -17,7 +17,7 @@
                     
                 ],
                 "3": [
-                    "versions.yml:md5,62ff429cd5aa480858cc4682ff53748b"
+                    "versions.yml:md5,36fa37c1d22eb18fb4303cc848e8bf0a"
                 ],
                 "mapped_contigs_tsv": [
                     
@@ -34,11 +34,11 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,62ff429cd5aa480858cc4682ff53748b"
+                    "versions.yml:md5,36fa37c1d22eb18fb4303cc848e8bf0a"
                 ]
             }
         ],
-        "timestamp": "2026-09-11T14:05:03.147007",
+        "timestamp": "2026-09-14T15:52:41.618252",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.1"
@@ -72,7 +72,7 @@
                     ]
                 ],
                 "3": [
-                    "versions.yml:md5,e9184d7b844db2bf2a19c1aee8f439bc"
+                    "versions.yml:md5,36fa37c1d22eb18fb4303cc848e8bf0a"
                 ],
                 "mapped_contigs_tsv": [
                     [
@@ -99,11 +99,11 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,e9184d7b844db2bf2a19c1aee8f439bc"
+                    "versions.yml:md5,36fa37c1d22eb18fb4303cc848e8bf0a"
                 ]
             }
         ],
-        "timestamp": "2026-09-11T14:05:00.839536",
+        "timestamp": "2026-09-14T15:52:37.716074",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.1"
