@@ -41,6 +41,48 @@ output:
       type: file
       description: Decontaminated assembly FASTA file
       pattern: "*.{fasta,fa,fna}"
+  - phix_contaminated_contigs_tsv:
+      type: file
+      description: |
+        Optional gzipped TSV listing contigs flagged as PhiX contamination, with their
+        query coverage and identity to the PhiX reference. Only emitted when at least
+        one contig was flagged.
+      pattern: "*_mapped.tsv.gz"
+  - human_contaminated_contigs_tsv:
+      type: file
+      description: |
+        Optional gzipped TSV listing contigs flagged as human contamination, with their
+        query coverage and identity to the human reference. Only emitted when at least
+        one contig was flagged.
+      pattern: "*_mapped.tsv.gz"
+  - host_contaminated_contigs_tsv:
+      type: file
+      description: |
+        Optional gzipped TSV listing contigs flagged as host/custom contaminant
+        contamination, with their query coverage and identity to the reference. Only
+        emitted when at least one contig was flagged.
+      pattern: "*_mapped.tsv.gz"
+  - phix_contaminated_contigs_tsv_mqc:
+      type: file
+      description: |
+        Optional gzipped copy of the PhiX contaminated contigs TSV carrying a MultiQC
+        custom-content front-matter header, so MultiQC picks it up as a distinct table.
+        Only emitted when at least one contig was flagged.
+      pattern: "*_mapped_mqc.tsv.gz"
+  - human_contaminated_contigs_tsv_mqc:
+      type: file
+      description: |
+        Optional gzipped copy of the human contaminated contigs TSV carrying a MultiQC
+        custom-content front-matter header, so MultiQC picks it up as a distinct table.
+        Only emitted when at least one contig was flagged.
+      pattern: "*_mapped_mqc.tsv.gz"
+  - host_contaminated_contigs_tsv_mqc:
+      type: file
+      description: |
+        Optional gzipped copy of the host/custom contaminant contigs TSV carrying a
+        MultiQC custom-content front-matter header, so MultiQC picks it up as a distinct
+        table. Only emitted when at least one contig was flagged.
+      pattern: "*_mapped_mqc.tsv.gz"
   - versions:
       type: file
       description: File containing software versions
