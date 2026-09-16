@@ -25,7 +25,7 @@ nextflow_workflow {
                 input[0] = Channel.of([
                     [
                         id: 'test_sample_all',
-                        phix_reference: 'phyx',
+                        phix_reference: 'phix',
                         human_reference: 'human',
                         contaminant_reference: 'contamination'
                     ],
@@ -47,7 +47,37 @@ nextflow_workflow {
                     def cleaned_contigs = path(workflow.out.cleaned_contigs.get(0).get(1)).fasta
                     assert cleaned_contigs.size() == 1
                     assert "uncontaminated_contig" in cleaned_contigs
-                }
+                },
+                {
+                    def phix_mqc_lines = path(workflow.out.phix_contaminated_contigs_tsv_mqc.get(0).get(1)).linesGzip
+                    assert phix_mqc_lines[0] == "# id: 'phix_decontamination'"
+                    assert phix_mqc_lines[1] == "# section_name: 'PhiX contaminated contigs (phix)'"
+                    assert phix_mqc_lines[2] == "# plot_type: 'table'"
+                    assert phix_mqc_lines[3] == "# pconfig:"
+                    assert phix_mqc_lines[4] == "#     id: 'phix_decontamination_table'"
+                    assert phix_mqc_lines[5] == "#     title: 'PhiX Contamination Removal (phix)'"
+                    assert phix_mqc_lines[6] == "sequence_id\tquery_coverage\tidentity"
+                },
+                {
+                    def human_mqc_lines = path(workflow.out.human_contaminated_contigs_tsv_mqc.get(0).get(1)).linesGzip
+                    assert human_mqc_lines[0] == "# id: 'human_decontamination'"
+                    assert human_mqc_lines[1] == "# section_name: 'Human contaminated contigs (human)'"
+                    assert human_mqc_lines[2] == "# plot_type: 'table'"
+                    assert human_mqc_lines[3] == "# pconfig:"
+                    assert human_mqc_lines[4] == "#     id: 'human_decontamination_table'"
+                    assert human_mqc_lines[5] == "#     title: 'Human Contamination Removal (human)'"
+                    assert human_mqc_lines[6] == "sequence_id\tquery_coverage\tidentity"
+                },
+                {
+                    def host_mqc_lines = path(workflow.out.host_contaminated_contigs_tsv_mqc.get(0).get(1)).linesGzip
+                    assert host_mqc_lines[0] == "# id: 'host_decontamination'"
+                    assert host_mqc_lines[1] == "# section_name: 'Host/Contaminant contaminated contigs (contamination)'"
+                    assert host_mqc_lines[2] == "# plot_type: 'table'"
+                    assert host_mqc_lines[3] == "# pconfig:"
+                    assert host_mqc_lines[4] == "#     id: 'host_decontamination_table'"
+                    assert host_mqc_lines[5] == "#     title: 'Host/Contaminant Removal (contamination)'"
+                    assert host_mqc_lines[6] == "sequence_id\tquery_coverage\tidentity"
+                },
             )
         }
     }
@@ -63,7 +93,7 @@ nextflow_workflow {
                 input[0] = Channel.of([
                     [
                         id: 'test_sample_phix',
-                        phix_reference: 'phyx',
+                        phix_reference: 'phix',
                         human_reference: null,
                         contaminant_reference: null
                     ],
@@ -88,7 +118,17 @@ nextflow_workflow {
                     assert "contaminated_contig" in cleaned_contigs
                     assert "partially_contaminated_contig" in cleaned_contigs
                     assert "human_contanimated_contig" in cleaned_contigs
-                }
+                },
+                {
+                    def phix_mqc_lines = path(workflow.out.phix_contaminated_contigs_tsv_mqc.get(0).get(1)).linesGzip
+                    assert phix_mqc_lines[0] == "# id: 'phix_decontamination'"
+                    assert phix_mqc_lines[1] == "# section_name: 'PhiX contaminated contigs (phix)'"
+                    assert phix_mqc_lines[2] == "# plot_type: 'table'"
+                    assert phix_mqc_lines[3] == "# pconfig:"
+                    assert phix_mqc_lines[4] == "#     id: 'phix_decontamination_table'"
+                    assert phix_mqc_lines[5] == "#     title: 'PhiX Contamination Removal (phix)'"
+                    assert phix_mqc_lines[6] == "sequence_id\tquery_coverage\tidentity"
+                },
             )
         }
     }
@@ -128,8 +168,18 @@ nextflow_workflow {
                     assert "uncontaminated_contig" in cleaned_contigs
                     assert "contaminated_contig" in cleaned_contigs
                     assert "partially_contaminated_contig" in cleaned_contigs
-                    assert "phyx_contanimated_contig" in cleaned_contigs
-                }
+                    assert "phix_contanimated_contig" in cleaned_contigs
+                },
+                {
+                    def human_mqc_lines = path(workflow.out.human_contaminated_contigs_tsv_mqc.get(0).get(1)).linesGzip
+                    assert human_mqc_lines[0] == "# id: 'human_decontamination'"
+                    assert human_mqc_lines[1] == "# section_name: 'Human contaminated contigs (human)'"
+                    assert human_mqc_lines[2] == "# plot_type: 'table'"
+                    assert human_mqc_lines[3] == "# pconfig:"
+                    assert human_mqc_lines[4] == "#     id: 'human_decontamination_table'"
+                    assert human_mqc_lines[5] == "#     title: 'Human Contamination Removal (human)'"
+                    assert human_mqc_lines[6] == "sequence_id\tquery_coverage\tidentity"
+                },
             )
         }
     }
@@ -168,9 +218,19 @@ nextflow_workflow {
                     def cleaned_contigs = path(workflow.out.cleaned_contigs.get(0).get(1)).fasta
                     assert cleaned_contigs.size() == 3
                     assert "uncontaminated_contig" in cleaned_contigs
-                    assert "phyx_contanimated_contig" in cleaned_contigs
+                    assert "phix_contanimated_contig" in cleaned_contigs
                     assert "human_contanimated_contig" in cleaned_contigs
-                }
+                },
+                {
+                    def host_mqc_lines = path(workflow.out.host_contaminated_contigs_tsv_mqc.get(0).get(1)).linesGzip
+                    assert host_mqc_lines[0] == "# id: 'host_decontamination'"
+                    assert host_mqc_lines[1] == "# section_name: 'Host/Contaminant contaminated contigs (contamination)'"
+                    assert host_mqc_lines[2] == "# plot_type: 'table'"
+                    assert host_mqc_lines[3] == "# pconfig:"
+                    assert host_mqc_lines[4] == "#     id: 'host_decontamination_table'"
+                    assert host_mqc_lines[5] == "#     title: 'Host/Contaminant Removal (contamination)'"
+                    assert host_mqc_lines[6] == "sequence_id\tquery_coverage\tidentity"
+                },
             )
         }
     }
@@ -187,7 +247,7 @@ nextflow_workflow {
                     [
                         [
                             id: 'sample1',
-                            phix_reference: 'phyx',
+                            phix_reference: 'phix',
                             human_reference: 'human',
                             contaminant_reference: null
                         ],
