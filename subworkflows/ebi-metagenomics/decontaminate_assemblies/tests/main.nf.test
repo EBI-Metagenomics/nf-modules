@@ -1,20 +1,20 @@
 nextflow_workflow {
 
-    name "Test Workflow ASSEMBLY_DECONTAMINATION"
+    name "Test Workflow DECONTAMINATE_ASSEMBLIES"
     script "../main.nf"
     config "../nextflow.config"
-    workflow "ASSEMBLY_DECONTAMINATION"
+    workflow "DECONTAMINATE_ASSEMBLIES"
 
     tag "subworkflows"
-    tag "assembly_decontamination"
+    tag "decontaminate_assemblies"
 
     tag "subworkflows"
     tag "subworkflows_ebimetagenomics"
-    tag "subworkflows/assembly_decontamination"
+    tag "subworkflows/decontaminate_assemblies"
     tag "subworkflows/decontaminate_contigs"
 
 
-    test("assembly_decontamination - all references") {
+    test("decontaminate_assemblies - all references") {
 
         when {
             params {
@@ -52,7 +52,7 @@ nextflow_workflow {
         }
     }
 
-    test("assembly_decontamination - phix only") {
+    test("decontaminate_assemblies - phix only") {
 
         when {
             params {
@@ -93,7 +93,7 @@ nextflow_workflow {
         }
     }
 
-    test("assembly_decontamination - human only") {
+    test("decontaminate_assemblies - human only") {
 
         when {
             params {
@@ -134,7 +134,7 @@ nextflow_workflow {
         }
     }
 
-    test("assembly_decontamination - host only") {
+    test("decontaminate_assemblies - host only") {
 
         when {
             params {
@@ -175,7 +175,7 @@ nextflow_workflow {
         }
     }
 
-    test("assembly_decontamination - multiple samples") {
+    test("decontaminate_assemblies - multiple samples") {
 
         when {
             params {

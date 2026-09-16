@@ -1,5 +1,5 @@
 {
-    "assembly_decontamination - multiple samples": {
+    "decontaminate_assemblies - multiple samples": {
         "content": [
             [
                 [
@@ -23,50 +23,50 @@
             ],
             [
                 {
-                    "ASSEMBLY_DECONTAMINATION:HOST_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
+                    "DECONTAMINATE_ASSEMBLIES:HOST_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
                         "seqkit": "2.9.0"
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:HOST_DECONTAMINATE_CONTIGS:FILTERPAF": {
+                    "DECONTAMINATE_ASSEMBLIES:HOST_DECONTAMINATE_CONTIGS:FILTERPAF": {
                         "gawk": "5.3.0"
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:HOST_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
+                    "DECONTAMINATE_ASSEMBLIES:HOST_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
                         "minimap2": "2.29-r1283",
                         "samtools": 1.21
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:PHIX_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
+                    "DECONTAMINATE_ASSEMBLIES:PHIX_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
                         "minimap2": "2.29-r1283",
                         "samtools": 1.21
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:HUMAN_DECONTAMINATE_CONTIGS:FILTERPAF": {
+                    "DECONTAMINATE_ASSEMBLIES:HUMAN_DECONTAMINATE_CONTIGS:FILTERPAF": {
                         "gawk": "5.3.0"
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:PHIX_DECONTAMINATE_CONTIGS:FILTERPAF": {
+                    "DECONTAMINATE_ASSEMBLIES:PHIX_DECONTAMINATE_CONTIGS:FILTERPAF": {
                         "gawk": "5.3.0"
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:HUMAN_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
+                    "DECONTAMINATE_ASSEMBLIES:HUMAN_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
                         "seqkit": "2.9.0"
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:HUMAN_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
+                    "DECONTAMINATE_ASSEMBLIES:HUMAN_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
                         "minimap2": "2.29-r1283",
                         "samtools": 1.21
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:PHIX_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
+                    "DECONTAMINATE_ASSEMBLIES:PHIX_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
                         "seqkit": "2.9.0"
                     }
                 }
@@ -78,7 +78,7 @@
         },
         "timestamp": "2025-08-05T16:11:25.408034"
     },
-    "assembly_decontamination - phix only": {
+    "decontaminate_assemblies - phix only": {
         "content": [
             [
                 [
@@ -93,18 +93,18 @@
             ],
             [
                 {
-                    "ASSEMBLY_DECONTAMINATION:PHIX_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
+                    "DECONTAMINATE_ASSEMBLIES:PHIX_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
                         "minimap2": "2.29-r1283",
                         "samtools": 1.21
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:PHIX_DECONTAMINATE_CONTIGS:FILTERPAF": {
+                    "DECONTAMINATE_ASSEMBLIES:PHIX_DECONTAMINATE_CONTIGS:FILTERPAF": {
                         "gawk": "5.3.0"
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:PHIX_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
+                    "DECONTAMINATE_ASSEMBLIES:PHIX_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
                         "seqkit": "2.9.0"
                     }
                 }
@@ -116,7 +116,7 @@
         },
         "timestamp": "2025-08-05T16:11:08.355247"
     },
-    "assembly_decontamination - host only": {
+    "decontaminate_assemblies - host only": {
         "content": [
             [
                 [
@@ -131,17 +131,17 @@
             ],
             [
                 {
-                    "ASSEMBLY_DECONTAMINATION:HOST_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
+                    "DECONTAMINATE_ASSEMBLIES:HOST_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
                         "seqkit": "2.9.0"
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:HOST_DECONTAMINATE_CONTIGS:FILTERPAF": {
+                    "DECONTAMINATE_ASSEMBLIES:HOST_DECONTAMINATE_CONTIGS:FILTERPAF": {
                         "gawk": "5.3.0"
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:HOST_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
+                    "DECONTAMINATE_ASSEMBLIES:HOST_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
                         "minimap2": "2.29-r1283",
                         "samtools": 1.21
                     }
@@ -154,7 +154,7 @@
         },
         "timestamp": "2025-08-05T16:11:17.964707"
     },
-    "assembly_decontamination - all references": {
+    "decontaminate_assemblies - all references": {
         "content": [
             [
                 [
@@ -169,50 +169,50 @@
             ],
             [
                 {
-                    "ASSEMBLY_DECONTAMINATION:HOST_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
+                    "DECONTAMINATE_ASSEMBLIES:HOST_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
                         "seqkit": "2.9.0"
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:HOST_DECONTAMINATE_CONTIGS:FILTERPAF": {
+                    "DECONTAMINATE_ASSEMBLIES:HOST_DECONTAMINATE_CONTIGS:FILTERPAF": {
                         "gawk": "5.3.0"
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:HOST_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
+                    "DECONTAMINATE_ASSEMBLIES:HOST_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
                         "minimap2": "2.29-r1283",
                         "samtools": 1.21
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:PHIX_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
+                    "DECONTAMINATE_ASSEMBLIES:PHIX_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
                         "minimap2": "2.29-r1283",
                         "samtools": 1.21
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:HUMAN_DECONTAMINATE_CONTIGS:FILTERPAF": {
+                    "DECONTAMINATE_ASSEMBLIES:HUMAN_DECONTAMINATE_CONTIGS:FILTERPAF": {
                         "gawk": "5.3.0"
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:PHIX_DECONTAMINATE_CONTIGS:FILTERPAF": {
+                    "DECONTAMINATE_ASSEMBLIES:PHIX_DECONTAMINATE_CONTIGS:FILTERPAF": {
                         "gawk": "5.3.0"
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:HUMAN_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
+                    "DECONTAMINATE_ASSEMBLIES:HUMAN_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
                         "seqkit": "2.9.0"
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:HUMAN_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
+                    "DECONTAMINATE_ASSEMBLIES:HUMAN_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
                         "minimap2": "2.29-r1283",
                         "samtools": 1.21
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:PHIX_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
+                    "DECONTAMINATE_ASSEMBLIES:PHIX_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
                         "seqkit": "2.9.0"
                     }
                 }
@@ -224,7 +224,7 @@
         },
         "timestamp": "2025-08-05T16:11:02.969589"
     },
-    "assembly_decontamination - human only": {
+    "decontaminate_assemblies - human only": {
         "content": [
             [
                 [
@@ -239,17 +239,17 @@
             ],
             [
                 {
-                    "ASSEMBLY_DECONTAMINATION:HUMAN_DECONTAMINATE_CONTIGS:FILTERPAF": {
+                    "DECONTAMINATE_ASSEMBLIES:HUMAN_DECONTAMINATE_CONTIGS:FILTERPAF": {
                         "gawk": "5.3.0"
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:HUMAN_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
+                    "DECONTAMINATE_ASSEMBLIES:HUMAN_DECONTAMINATE_CONTIGS:SEQKIT_GREP": {
                         "seqkit": "2.9.0"
                     }
                 },
                 {
-                    "ASSEMBLY_DECONTAMINATION:HUMAN_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
+                    "DECONTAMINATE_ASSEMBLIES:HUMAN_DECONTAMINATE_CONTIGS:MINIMAP2_ALIGN": {
                         "minimap2": "2.29-r1283",
                         "samtools": 1.21
                     }

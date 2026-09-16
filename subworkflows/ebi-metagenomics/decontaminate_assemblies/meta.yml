@@ -1,4 +1,4 @@
-name: "assembly_decontamination"
+name: "decontaminate_assemblies"
 
 description: |
   MGnify Production assembly decontamination subworkflow.

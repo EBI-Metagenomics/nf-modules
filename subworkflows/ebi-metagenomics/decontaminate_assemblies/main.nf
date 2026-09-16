@@ -2,7 +2,7 @@ include { DECONTAMINATE_CONTIGS as HUMAN_DECONTAMINATE_CONTIGS } from '../decont
 include { DECONTAMINATE_CONTIGS as PHIX_DECONTAMINATE_CONTIGS  } from '../decontaminate_contigs/main'
 include { DECONTAMINATE_CONTIGS as HOST_DECONTAMINATE_CONTIGS  } from '../decontaminate_contigs/main'
 
-workflow ASSEMBLY_DECONTAMINATION {
+workflow DECONTAMINATE_ASSEMBLIES {
     /*
     * Microbiome Informatics metagenomics assembly decontamination subworkflow
     *
