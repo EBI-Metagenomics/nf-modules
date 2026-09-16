@@ -54,7 +54,7 @@ process FILTERPAF {
         touch ${prefix}.txt
     else
         # Extract just the sequence IDs from failed sequences
-        awk '{print \$1}' ${prefix}_mapped.tsv > ${prefix}.txt
+        awk 'NR > 1 {print \$1}' ${prefix}_mapped.tsv > ${prefix}.txt
 
         # Build the MultiQC custom-content copy: same data, with a front-matter
         # header (id, section_name, pconfig.title) prepended so MultiQC picks it
