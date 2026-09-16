@@ -1,4 +1,69 @@
 {
+    "filterpaf - mqc header": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.txt:md5,51e09c5bb215ecd7e9bf0ad82316f13b"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_mapped.tsv.gz:md5,e9a004b7de64717c075b9cfcbc13d6fd"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_mapped_mqc.tsv.gz:md5,40d0cf6f566fafc60e3a79d150f52ed1"
+                    ]
+                ],
+                "3": [
+                    "versions.yml:md5,36fa37c1d22eb18fb4303cc848e8bf0a"
+                ],
+                "mapped_contigs_tsv": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_mapped.tsv.gz:md5,e9a004b7de64717c075b9cfcbc13d6fd"
+                    ]
+                ],
+                "mapped_contigs_tsv_mqc": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test_mapped_mqc.tsv.gz:md5,40d0cf6f566fafc60e3a79d150f52ed1"
+                    ]
+                ],
+                "mapped_contigs_txt": [
+                    [
+                        {
+                            "id": "test"
+                        },
+                        "test.txt:md5,51e09c5bb215ecd7e9bf0ad82316f13b"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,36fa37c1d22eb18fb4303cc848e8bf0a"
+                ]
+            }
+        ],
+        "timestamp": "2026-09-16T14:33:45.709312",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.1"
+        }
+    },
     "filterpaf - stub": {
         "content": [
             {
@@ -52,7 +117,7 @@
                         {
                             "id": "test"
                         },
-                        "test.txt:md5,726157114ec04f710620ee1bc8fc1735"
+                        "test.txt:md5,51e09c5bb215ecd7e9bf0ad82316f13b"
                     ]
                 ],
                 "1": [
@@ -95,7 +160,7 @@
                         {
                             "id": "test"
                         },
-                        "test.txt:md5,726157114ec04f710620ee1bc8fc1735"
+                        "test.txt:md5,51e09c5bb215ecd7e9bf0ad82316f13b"
                     ]
                 ],
                 "versions": [
@@ -103,7 +168,7 @@
                 ]
             }
         ],
-        "timestamp": "2026-09-14T15:52:37.716074",
+        "timestamp": "2026-09-16T14:33:42.504413",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.1"
