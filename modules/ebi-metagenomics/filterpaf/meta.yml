@@ -34,7 +34,7 @@ output:
             e.g. `[ id:'sample1', single_end:false ]`
       - "*.txt":
           type: file
-          description: Plain text file containing the IDs of query sequences that mapped the reference with high confidence.
+          description: Plain text file containing the IDs of query sequences that mapped the reference with high confidence and were filtered out.
           pattern: "*.txt"
   - mapped_contigs_tsv:
       - meta:
