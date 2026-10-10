@@ -1,0 +1,149 @@
+{
+    "gff.gz": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test.gff.gz:md5,2c33df8e8eb748cd0f9c7aab468e524d"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test.gff.gz.gzi:md5,ae516cdccf54e18c35d9d77c7aae27f4"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test.gff.gz.csi:md5,fe80096c3b95fe5901dcebddbd558ba2"
+                ]
+            ],
+            {
+                "versions_bgzip": [
+                    [
+                        "HTSLIB_BGZIPTABIX",
+                        "bgzip",
+                        "1.24"
+                    ]
+                ],
+                "versions_tabix": [
+                    [
+                        "HTSLIB_BGZIPTABIX",
+                        "tabix",
+                        "1.24"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-10-10T21:09:34.042021",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "gff": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test.gff.gz:md5,2c33df8e8eb748cd0f9c7aab468e524d"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test.gff.gz.gzi:md5,ae516cdccf54e18c35d9d77c7aae27f4"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test.gff.gz.csi:md5,fe80096c3b95fe5901dcebddbd558ba2"
+                ]
+            ],
+            {
+                "versions_bgzip": [
+                    [
+                        "HTSLIB_BGZIPTABIX",
+                        "bgzip",
+                        "1.24"
+                    ]
+                ],
+                "versions_tabix": [
+                    [
+                        "HTSLIB_BGZIPTABIX",
+                        "tabix",
+                        "1.24"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-10-10T21:01:21.979614",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "gff - stub": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test.gff.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test.gff.gz.gzi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test"
+                    },
+                    "test.gff.gz.csi:md5,d41d8cd98f00b204e9800998ecf8427e"
+                ]
+            ],
+            {
+                "versions_bgzip": [
+                    [
+                        "HTSLIB_BGZIPTABIX",
+                        "bgzip",
+                        "1.24"
+                    ]
+                ],
+                "versions_tabix": [
+                    [
+                        "HTSLIB_BGZIPTABIX",
+                        "tabix",
+                        "1.24"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-10-10T21:01:24.680867",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    }
+}

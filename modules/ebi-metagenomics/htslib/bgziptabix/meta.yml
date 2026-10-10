@@ -1,0 +1,126 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "htslib_bgziptabix"
+description: |
+  Compress a file with bgzip and index it in one task.
+  The module makes a bgzip index (.gzi) for paginated access to the compressed file,
+  and a tabix CSI index (.csi) for access by genomic region.
+  The CSI index scales better than a TBI index for large contigs and metagenomes.
+  The input must be sorted by sequence name and start position.
+  The input can be uncompressed or compressed (gzip or BGZF). A compressed input is decompressed
+  and compressed again with BGZF.
+  tabix gets the column layout from the file extension (GFF, BED or VCF). For other formats,
+  give the columns in `ext.args2`, for example `-s 1 -b 2 -e 3`.
+keywords:
+  - bgzip
+  - tabix
+  - index
+  - compress
+  - gff
+tools:
+  - "bgzip":
+      description: "Block compression/decompression utility"
+      homepage: "https://www.htslib.org/doc/bgzip.html"
+      documentation: "https://www.htslib.org/doc/bgzip.html"
+      tool_dev_url: "https://github.com/samtools/htslib"
+      doi: "10.1093/gigascience/giab007"
+      licence: ["MIT"]
+      identifier: biotools:htslib
+  - "tabix":
+      description: "Generic indexer for TAB-delimited genome position files."
+      homepage: "https://www.htslib.org/doc/tabix.html"
+      documentation: "https://www.htslib.org/doc/tabix.1.html"
+      tool_dev_url: "https://github.com/samtools/htslib"
+      doi: "10.1093/bioinformatics/btq671"
+      licence: ["MIT"]
+      identifier: biotools:tabix
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - input:
+        type: file
+        description: |
+          Sorted TAB-delimited genome position file in GFF, BED or VCF format, uncompressed or compressed.
+          For other formats, give the columns in `ext.args2`.
+        pattern: "*.{gff,gff3,bed,vcf,gff.gz,gff3.gz,bed.gz,vcf.gz}"
+output:
+  gz:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.gz":
+          type: file
+          description: bgzip compressed file
+          pattern: "*.gz"
+          ontologies:
+            - edam: http://edamontology.org/format_3989 # GZIP format
+  gzi:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.gz.gzi":
+          type: file
+          description: bgzip index of the compressed file
+          pattern: "*.gz.gzi"
+  csi:
+    - - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.gz.csi":
+          type: file
+          description: tabix CSI index of the compressed file
+          pattern: "*.gz.csi"
+  versions_bgzip:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "bgzip":
+          type: string
+          description: The name of the tool
+      - "bgzip --version | sed '1!d;s/.* //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+  versions_tabix:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "tabix":
+          type: string
+          description: The name of the tool
+      - "tabix -h 2>&1 | sed -n 's/^Version: *//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+topics:
+  versions:
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "bgzip":
+          type: string
+          description: The name of the tool
+      - "bgzip --version | sed '1!d;s/.* //'":
+          type: eval
+          description: The expression to obtain the version of the tool
+    - - "${task.process}":
+          type: string
+          description: The name of the process
+      - "tabix":
+          type: string
+          description: The name of the tool
+      - "tabix -h 2>&1 | sed -n 's/^Version: *//p'":
+          type: eval
+          description: The expression to obtain the version of the tool
+
+authors:
+  - "@mberacochea"
+maintainers:
+  - "@mberacochea"

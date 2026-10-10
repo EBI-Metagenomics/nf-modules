@@ -1,0 +1,117 @@
+nextflow_process {
+
+    name "Test Process HTSLIB_BGZIPTABIX"
+    script "../main.nf"
+    process "HTSLIB_BGZIPTABIX"
+
+    tag "modules"
+    tag "modules_ebimetagenomics"
+    tag "htslib"
+    tag "htslib/bgziptabix"
+
+    test("gff") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file("${moduleDir}/tests/test_annotation_summary.gff", checkIfExists: true)
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    process.out.gz,
+                    process.out.gzi,
+                    process.out.csi,
+                    process.out.findAll { key, val -> key.startsWith("versions") }
+                ).match() }
+            )
+        }
+
+    }
+
+    test("gff.gz") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file("${moduleDir}/tests/test_annotation_summary.gff.gz", checkIfExists: true)
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    process.out.gz,
+                    process.out.gzi,
+                    process.out.csi,
+                    process.out.findAll { key, val -> key.startsWith("versions") }
+                ).match() }
+            )
+        }
+
+    }
+
+    test("gff.gz - same input and output name") {
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test_annotation_summary' ],
+                    file("${moduleDir}/tests/test_annotation_summary.gff.gz", checkIfExists: true)
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.failed },
+                { assert process.errorReport.contains("Input and output names are the same") }
+            )
+        }
+
+    }
+
+    test("gff - stub") {
+
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ],
+                    file("${moduleDir}/tests/test_annotation_summary.gff", checkIfExists: true)
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    process.out.gz,
+                    process.out.gzi,
+                    process.out.csi,
+                    process.out.findAll { key, val -> key.startsWith("versions") }
+                ).match() }
+            )
+        }
+
+    }
+
+}
