@@ -52,7 +52,7 @@ input:
   - chunk_flag:
       type: boolean
       description: |
-        Specify true to use seqkit/split2 to chunk contigs into sequences of specific length e.g. 50M. 
+        Specify true to use seqkit/split2 to chunk contigs into sequences of specific length e.g. 50M.
         IMPORTANT NOTE, YOU HAVE TO SPECIFY CHUNK LENGTH USING `ext.args`, e.g. `--by-length 50M`.
         See nextflow.config for unit test for a full example
 output:
@@ -211,7 +211,6 @@ output:
         type: file
         description: "non-coding RNA nucleotide sequences"
         ontologies: []
-        
 
 authors:
   - "@Kate_Sakharova"
