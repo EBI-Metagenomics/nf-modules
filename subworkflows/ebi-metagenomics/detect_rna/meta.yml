@@ -52,7 +52,7 @@ input:
   - chunk_flag:
       type: boolean
       description: |
-        Specify true to use seqkit/split2 to chunk contigs into sequences of specific length e.g. 50M. 
+        Specify true to use seqkit/split2 to chunk contigs into sequences of specific length e.g. 50M.
         IMPORTANT NOTE, YOU HAVE TO SPECIFY CHUNK LENGTH USING `ext.args`, e.g. `--by-length 50M`.
         See nextflow.config for unit test for a full example
 output:
@@ -62,9 +62,23 @@ output:
         File containing software versions
         Structure: [ path(versions.yml) ]
       pattern: "versions.yml"
-  - cmsearch_deoverlap_coords:
+  - cmsearch_deoverlap_empty:
       description: |
-        Channel containing deoverlapped cmsearch .tblout files
+        Channel containing runs for which an empty deoverlapped cmsearch .tblout file was produced.
+        Helps handling of discarded runs in downstream steps
+        Structure: [ val(meta), path("*.tblout.deoverlapped") ]
+      meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1', single_end:false ]`
+      "*.tblout.deoverlapped":
+        type: file
+        description: Deoverlapped .tblout file
+        pattern: "*.tblout.deoverlapped"
+  - cmsearch_deoverlap_non_empty:
+      description: |
+        Channel containing non-empty deoverlapped cmsearch .tblout files.
         Structure: [ val(meta), path("*.tblout.deoverlapped") ]
       meta:
         type: map
