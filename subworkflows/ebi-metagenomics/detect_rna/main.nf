@@ -129,4 +129,3 @@ workflow DETECT_RNA {
     all_identified_coords        = EASEL_ESLSFETCH.out.matched_seqs_with_coords  // channel: [ val(meta), [ txt ] ]
     versions                     = ch_versions                                   // channel: [ versions.yml ]
 }
-
