@@ -39,7 +39,7 @@ workflow DETECT_RNA {
         SEQKIT_SPLIT2(
             ch_fasta
         )
-        ch_versions = ch_versions.mix(SEQKIT_SPLIT2.out.versions)
+        ch_versions = ch_versions.mix(SEQKIT_SPLIT2.out.versions_seqkit)
 
         ch_sequences = SEQKIT_SPLIT2.out.reads.transpose()
     }
@@ -84,7 +84,7 @@ workflow DETECT_RNA {
         CONCATENATE_CMSEARCH_DEOVERLAP(
             ch_cmsearchdeoverlap.groupTuple()
         )
-        ch_versions = ch_versions.mix(CONCATENATE_CMSEARCH_DEOVERLAP.out.versions.first())
+        ch_versions = ch_versions.mix(CONCATENATE_CMSEARCH_DEOVERLAP.out.versions_cat.first())
         ch_cmsearchdeoverlap = CONCATENATE_CMSEARCH_DEOVERLAP.out.file_out
     }
 
