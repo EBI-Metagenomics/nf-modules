@@ -4,8 +4,8 @@ process SANNTIS {
 
     conda "${moduleDir}/environment.yml"
     container "${workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container
-        ? 'https://depot.galaxyproject.org/singularity/sanntis:0.9.4.1--pyhdfd78af_0'
-        : 'biocontainers/sanntis:0.9.4.1--pyhdfd78af_0'}"
+        ? 'oras://community.wave.seqera.io/library/sanntis:0.9.6--d3927ac45a974009'
+        : 'biocontainers/sanntis:0.9.6--pyhdfd78af_0'}"
 
     input:
     tuple val(meta), path(interproscan), path(gbk), path(faa)

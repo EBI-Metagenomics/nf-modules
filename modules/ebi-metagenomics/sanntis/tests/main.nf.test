@@ -15,9 +15,9 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'BGC0001472' ], // meta map
-                    file("https://raw.githubusercontent.com/Finn-Lab/SanntiS/refs/heads/master/test/files/BGC0001472.fna.prodigal.faa.gff3", checkIfExists: true),
+                    file("https://raw.githubusercontent.com/Finn-Lab/SanntiS/refs/tags/v0.9.6/test/files/BGC0001472.fna.prodigal.faa.gff3", checkIfExists: true),
                     [],
-                    file("https://raw.githubusercontent.com/Finn-Lab/SanntiS/refs/heads/master/test/files/BGC0001472.fna.prodigal.faa", checkIfExists: true),
+                    file("https://raw.githubusercontent.com/Finn-Lab/SanntiS/refs/tags/v0.9.6/test/files/BGC0001472.fna.prodigal.faa", checkIfExists: true),
                 ]
                 """
             }
@@ -65,9 +65,9 @@ nextflow_process {
                 """
                 input[0] = [
                     [ id:'BGC0001472' ], // meta map
-                    file("https://raw.githubusercontent.com/Finn-Lab/SanntiS/refs/heads/master/test/files/BGC0001472.fna.prodigal.faa.gff3", checkIfExists: true),
+                    file("https://raw.githubusercontent.com/Finn-Lab/SanntiS/refs/tags/v0.9.6/test/files/BGC0001472.fna.prodigal.faa.gff3", checkIfExists: true),
                     [],
-                    file("https://raw.githubusercontent.com/Finn-Lab/SanntiS/refs/heads/master/test/files/BGC0001472.fna.prodigal.faa", checkIfExists: true),
+                    file("https://raw.githubusercontent.com/Finn-Lab/SanntiS/refs/tags/v0.9.6/test/files/BGC0001472.fna.prodigal.faa", checkIfExists: true),
                 ]
                 """
             }
