@@ -34,11 +34,6 @@ pipelines:
     branch: master
     description: "This repo queries and gather data from different resources which can then be used to run bulk automatised annotation of microbial genomes.The different types of data are: OrthoDB and UniProt orthology data; Rfam (non coding Rna data); Transcriptomic data from ENA"
     has_modules_json: true
-  - name: edna
-    repo: EBI-Metagenomics/edna
-    branch: main
-    description: "No description"
-    has_modules_json: true
   - name: raw-reads-analysis-pipeline
     repo: EBI-Metagenomics/raw-reads-analysis-pipeline
     branch: master
@@ -46,7 +41,7 @@ pipelines:
     has_modules_json: true
   - name: assembly-analysis-pipeline
     repo: EBI-Metagenomics/assembly-analysis-pipeline
-    branch: dev
+    branch: main
     description: "MGnify Assembly Analysis Pipeline"
     has_modules_json: true
   - name: datagrabber

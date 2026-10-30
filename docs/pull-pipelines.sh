@@ -9,12 +9,12 @@ ORG="EBI-Metagenomics"
 echo "Fetching all repositories from $ORG organization..."
 echo ""
 
-# Get all repositories (excluding nf-modules)
+# Get all repositories (excluding nf-modules and edna)
 # Using a high limit since gh repo list doesn't support proper pagination with --page
 all_repos=$(gh repo list "$ORG" --limit 500 --json name --jq '.[].name' 2>/dev/null || echo "")
 
-# Filter out nf-modules and empty lines
-all_repos=$(echo "$all_repos" | grep -v '^nf-modules$' | grep -v '^$' || echo "")
+# Filter out nf-modules, edna and empty lines
+all_repos=$(echo "$all_repos" | grep -v -E '^(nf-modules|edna)$' | grep -v '^$' || echo "")
 
 if [ -z "$all_repos" ]; then
   echo "No repositories found"

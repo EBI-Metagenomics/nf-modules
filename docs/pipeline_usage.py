@@ -70,6 +70,9 @@ class PipelineUsageFetcher:
             branch = pipeline.get("branch", "main")
             description = pipeline.get("description", "")
 
+            if not pipeline.get("has_modules_json", True):
+                continue
+
             print(f"Fetching module usage from {name}...")
 
             modules_json = self._fetch_modules_json(repo, branch)

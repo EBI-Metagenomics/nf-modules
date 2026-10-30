@@ -42,8 +42,8 @@ This page lists all available subworkflows in the Microbiome Informatics (EBI-Me
 {# This is a tool family #}
 ## {{ entry_name }}
 
-{% for item in subcategories[entry_name] | sort(attribute='name') %}
-- **[{{ item.name.split('_')[-1] if '_' in item.name else item.name }}]({{ item.path }})** - {{ item.description }}
+{% for item in subcategories[entry_name] | sort(attribute='short_name') %}
+- **[{{ item.short_name }}]({{ item.path }})** - {{ item.description }}
 {% endfor %}
 
 {% else %}

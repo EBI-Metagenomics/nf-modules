@@ -10,10 +10,12 @@ This page lists the Nextflow pipelines developed by the Microbiome Informatics t
 {% for pipeline in pipelines %}
 ## {{ pipeline.name }}
 
-[![GitHub stars](https://img.shields.io/github/stars/{{ pipeline.repo }}?style=social)](https://github.com/{{ pipeline.repo }}/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/{{ pipeline.repo }}?style=social)](https://github.com/{{ pipeline.repo }})
 [![GitHub forks](https://img.shields.io/github/forks/{{ pipeline.repo }}?style=social)](https://github.com/{{ pipeline.repo }}/forks)
 
+{% if pipeline.description and pipeline.description != "No description" %}
 {{ pipeline.description }}
+{% endif %}
 
 **Repository:** [{{ pipeline.repo }}](https://github.com/{{ pipeline.repo }})
 
