@@ -18,9 +18,10 @@ Each module and subworkflow includes detailed information about:
 
 - Description and purpose
 - Input and output specifications
-- Tool information and requirements
-- Usage examples
-- Maintainer information
+- Tool information and links
+- Installation command
+- Pipelines that use it
+- Authors and maintainers
 
 ## Navigation
 
@@ -30,4 +31,4 @@ Each module and subworkflow includes detailed information about:
 
 ## Repository
 
-The source code for all modules and subworkflows is available at: :material-github: [ebi-metagenomics/nf-modules](https://github.com/EBI-Metagenomics/ebi-metagenomics-nf-modules)
+The source code for all modules and subworkflows is available at: :material-github: [ebi-metagenomics/nf-modules](https://github.com/EBI-Metagenomics/nf-modules)

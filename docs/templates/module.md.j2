@@ -31,7 +31,7 @@ This module is used by the following pipelines:
 :material-github: [`{{ path_info.full_path }}`](https://github.com/EBI-Metagenomics/nf-modules/blob/main/modules/{{ path_info.full_path }}/main.nf)
 
 ```shell
-nf-core modules -g https://www.github.com/ebi-metagenomics/nf-modules install {{ meta.name | replace('_', '/') }}
+nf-core modules -g https://github.com/EBI-Metagenomics/nf-modules install {{ path_info.component }}
 ```
 
 {% if meta.tools %}
@@ -47,13 +47,13 @@ nf-core modules -g https://www.github.com/ebi-metagenomics/nf-modules install {{
 - :simple-readthedocs: [{{ tool_info.documentation | replace('https://', '') }}]({{ tool_info.documentation }})
 {% endif %}
 {% if tool_info.doi %}
-- :simple-doi: [{{ tool_info.doi }}](https://doi.org/{{ tool_info.doi }})
+- :simple-doi: [{{ tool_info.doi }}](https://doi.org/{{ tool_info.doi | replace('(', '%28') | replace(')', '%29') }})
 {% endif %}
 {% if tool_info.tool_dev_url %}
 - :material-github: [{{ tool_info.tool_dev_url | replace('https://', '') }}]({{ tool_info.tool_dev_url }})
 {% endif %}
 {% if tool_info.licence %}
-- :simple-unlicense: {{ tool_info.licence | join(', ') }}
+- :material-scale-balance: {{ tool_info.licence | join(', ') }}
 {% endif %}
 </div>
 
@@ -80,7 +80,7 @@ nf-core modules -g https://www.github.com/ebi-metagenomics/nf-modules install {{
 {% endfor %}
 {% endif %}
 
-### People
+## People
 
 {% if meta.authors %}
 ### Authors

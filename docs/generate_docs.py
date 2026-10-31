@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
+import shutil
 from pathlib import Path
-from typing import Any, Optional
+from typing import Any
 
 import click
 import yaml
@@ -75,6 +76,8 @@ class ModuleParser:
         ).parts[:-1]
         return {
             "full_path": "/".join(parts),
+            # Name used by "nf-core modules/subworkflows install"
+            "component": "/".join(parts[1:]),
             "category": parts[0] if parts else "",
             "name": parts[-1] if parts else "",
             "subcategory": "/".join(parts[1:-1]) if len(parts) > 2 else "",
@@ -94,21 +97,18 @@ class ModuleParser:
 
         for component in components:
             # Handle both string format and dict format (for third-party modules)
-            component_name: Optional[str]
-            git_remote: Optional[str]
+            component_name: str | None
+            git_remote: str | None
 
             if isinstance(component, dict):
-                # Component is a dict like {"module_name": null, "git_remote": "..."}
-                # Extract the component name (first key that's not git_remote)
-                git_remote = component.get("git_remote")
-                component_name = None
-                for key in component.keys():
-                    if key != "git_remote":
-                        component_name = key
-                        break
-
+                # Component is a dict like {"module_name": {"git_remote": "..."}}
+                component_name = next(iter(component), None)
                 if not component_name:
                     continue
+                options = component[component_name]
+                git_remote = (
+                    options.get("git_remote") if isinstance(options, dict) else None
+                )
             else:
                 # Component is a simple string
                 component_name = component
@@ -132,10 +132,61 @@ class ModuleParser:
             comp_info: dict[str, str] = {"name": component_name, "type": component_type}
             if git_remote:
                 comp_info["git_remote"] = git_remote
+                if "nf-core/modules" in git_remote:
+                    comp_info["url"] = (
+                        f"https://nf-co.re/modules/{component_name.replace('/', '_')}"
+                    )
 
             component_info.append(comp_info)
 
         return component_info
+
+    def _flatten_elements(self, value: Any) -> list[tuple[str, dict[str, Any]]]:
+        """Flatten nested lists of single-key dicts into (name, info) pairs.
+
+        nf-core meta.yml files describe a channel as a list (or a list of tuples)
+        of dicts, for example ``[[{meta: {...}}, {"*.tsv": {...}}]]``.
+
+        :param value: Input or output section, or one channel of it
+        :type value: Any
+        :returns: List of (element name, element info) pairs
+        :rtype: list[tuple[str, dict[str, Any]]]
+        """
+        if isinstance(value, list):
+            return [pair for item in value for pair in self._flatten_elements(item)]
+        if isinstance(value, dict):
+            return [(k, v) for k, v in value.items() if isinstance(v, dict)]
+        return []
+
+    def _summarise_channel(self, value: Any) -> dict[str, Any]:
+        """Merge the elements of one output channel into one table row.
+
+        The meta map is skipped when the channel has other elements.
+
+        :param value: Channel definition from meta.yml
+        :type value: Any
+        :returns: Dictionary with type, description and pattern
+        :rtype: dict[str, Any]
+        """
+        # Old flat format: {"channel": {"type": ..., "description": ...}}
+        if isinstance(value, dict) and ("type" in value or "description" in value):
+            return value
+
+        elements = self._flatten_elements(value)
+        infos = [info for name, info in elements if not name.startswith("meta")]
+        infos = infos or [info for _, info in elements]
+        if not infos:
+            return {}
+
+        return {
+            "type": infos[-1].get("type", "file"),
+            "description": "; ".join(
+                str(info["description"]).strip()
+                for info in infos
+                if info.get("description")
+            ),
+            "pattern": infos[-1].get("pattern"),
+        }
 
     def _process_meta_data(self, meta_data: dict[str, Any]) -> dict[str, Any]:
         """Process meta data to handle list structures in input/output.
@@ -153,45 +204,30 @@ class ModuleParser:
             for item in processed["tools"]:
                 if isinstance(item, dict):
                     processed_tools.update(item)
+            for tool_info in processed_tools.values():
+                # Some meta.yml files have the licence as a string, not a list
+                if isinstance(tool_info, dict) and isinstance(
+                    tool_info.get("licence"), str
+                ):
+                    tool_info["licence"] = [tool_info["licence"]]
             processed["tools"] = processed_tools
 
-        # Process input section if it's a list
+        # Process input section: one row per channel element
         if "input" in processed and isinstance(processed["input"], list):
-            processed_input: dict[str, Any] = {}
-            for item in processed["input"]:
-                if isinstance(item, list):
-                    # Handle nested list structure (like diamond/blastp)
-                    for sub_item in item:
-                        if isinstance(sub_item, dict):
-                            processed_input.update(sub_item)
-                elif isinstance(item, dict):
-                    # Handle flat dict structure (like antismash)
-                    processed_input.update(item)
-            processed["input"] = processed_input
+            processed["input"] = dict(self._flatten_elements(processed["input"]))
 
-        # Process output section - handle both list and dict formats
+        # Process output section: one row per channel, in list or dict format
         if "output" in processed:
+            channels: list[tuple[str, Any]] = []
             if isinstance(processed["output"], list):
-                # Handle list format (like antismash)
-                processed_output: dict[str, Any] = {}
                 for item in processed["output"]:
                     if isinstance(item, dict):
-                        processed_output.update(item)
-                processed["output"] = processed_output
+                        channels.extend(item.items())
             elif isinstance(processed["output"], dict):
-                # Output is already a dict, but check for nested structures
-                processed_output = {}
-                for key, value in processed["output"].items():
-                    if isinstance(value, list) and len(value) > 0:
-                        # Handle list of dicts in output
-                        if isinstance(value[0], dict):
-                            # Take the first dict as the main definition
-                            processed_output[key] = value[0]
-                        else:
-                            processed_output[key] = value
-                    else:
-                        processed_output[key] = value
-                processed["output"] = processed_output
+                channels = list(processed["output"].items())
+            processed["output"] = {
+                name: self._summarise_channel(value) for name, value in channels
+            }
 
         # Process components to add type information
         if "components" in processed and isinstance(processed["components"], list):
@@ -211,6 +247,8 @@ class ModuleParser:
         template: Template = self.jinja_env.get_template("module.md.j2")
 
         modules_output_dir: Path = self.output_dir / "docs" / "modules"
+        # Remove pages of modules that were deleted since the last build
+        shutil.rmtree(modules_output_dir, ignore_errors=True)
         modules_output_dir.mkdir(parents=True, exist_ok=True)
 
         module_index: list[dict[str, str]] = []
@@ -232,8 +270,7 @@ class ModuleParser:
                 module_dir.mkdir(parents=True, exist_ok=True)
 
                 # Get pipeline usage for this module
-                module_key = path_info["full_path"].replace("ebi-metagenomics/", "", 1)
-                pipelines = self.pipeline_usage_index.get(module_key, [])
+                pipelines = self.pipeline_usage_index.get(path_info["component"], [])
 
                 # Generate documentation
                 content: str = template.render(
@@ -251,6 +288,7 @@ class ModuleParser:
                 module_index.append(
                     {
                         "name": meta_data.get("name", path_info["name"]),
+                        "short_name": path_info["name"],
                         "description": meta_data.get("description", ""),
                         "path": str(output_file.relative_to(modules_output_dir)),
                         "category": path_info["category"],
@@ -276,6 +314,8 @@ class ModuleParser:
         template: Template = self.jinja_env.get_template("subworkflow.md.j2")
 
         subworkflows_output_dir: Path = self.output_dir / "docs" / "subworkflows"
+        # Remove pages of subworkflows that were deleted since the last build
+        shutil.rmtree(subworkflows_output_dir, ignore_errors=True)
         subworkflows_output_dir.mkdir(parents=True, exist_ok=True)
 
         subworkflow_index: list[dict[str, str]] = []
@@ -297,10 +337,7 @@ class ModuleParser:
                 subworkflow_dir.mkdir(parents=True, exist_ok=True)
 
                 # Get pipeline usage for this subworkflow
-                subworkflow_key = path_info["full_path"].replace(
-                    "ebi-metagenomics/", "", 1
-                )
-                pipelines = self.pipeline_usage_index.get(subworkflow_key, [])
+                pipelines = self.pipeline_usage_index.get(path_info["component"], [])
 
                 # Generate documentation
                 content: str = template.render(

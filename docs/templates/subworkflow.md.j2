@@ -19,7 +19,7 @@ tags:
 :material-github: [`{{ path_info.full_path }}`](https://github.com/EBI-Metagenomics/nf-modules/blob/main/subworkflows/{{ path_info.full_path }}/main.nf)
 
 ```shell
-nf-core modules -g https://www.github.com/ebi-metagenomics/nf-modules install {{ meta.name }}
+nf-core subworkflows -g https://github.com/EBI-Metagenomics/nf-modules install {{ path_info.component }}
 ```
 
 {% if pipelines %}
@@ -41,7 +41,9 @@ This subworkflow is used by the following pipelines:
 This subworkflow uses the following components:
 
 {% for component in meta.components %}
-{% if component.git_remote %}
+{% if component.url %}
+- [`{{ component.name }}`]({{ component.url }}) <small>*(nf-core {{ component.type }})*</small>
+{% elif component.git_remote %}
 - `{{ component.name }}` <small>*({{ component.type }} from [{{ component.git_remote }}]({{ component.git_remote }}))*</small>
 {% elif component.type == "module" %}
 - [`{{ component.name }}`](../../modules/ebi-metagenomics/{{ component.name }}.md) <small>*(module)*</small>
@@ -71,7 +73,7 @@ This subworkflow uses the following components:
 {% endfor %}
 {% endif %}
 
-### People
+## People
 
 {% if meta.authors %}
 ### Authors
