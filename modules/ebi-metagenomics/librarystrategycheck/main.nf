@@ -12,8 +12,8 @@ process LIBRARYSTRATEGYCHECK {
     tuple val(meta), path(bcv)
 
     output:
-    tuple val(meta), env(check_out), emit: library_check_out
-    path "versions.yml"            , emit: versions
+    tuple val(meta), env("check_out"), emit: library_check_out
+    path "versions.yml"              , emit: versions
 
     when:
     task.ext.when == null || task.ext.when

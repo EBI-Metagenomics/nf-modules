@@ -28,4 +28,6 @@ docs/docs/*
 !docs/docs/stylesheets/
 !docs/docs/assets/
 !docs/docs/index.md
+!docs/docs/tags.md
 docs/site/
+.mi/

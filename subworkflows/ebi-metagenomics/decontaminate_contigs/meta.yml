@@ -14,9 +14,9 @@ keywords:
   - minimap2
 
 components:
-  - minimap2
+  - minimap2/align
   - filterpaf
-  - seqkit
+  - seqkit/grep
 
 input:
   - contigs_and_reference:

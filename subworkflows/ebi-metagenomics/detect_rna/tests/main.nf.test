@@ -27,8 +27,8 @@ nextflow_workflow {
         nfcoreInstall(
             "${launchDir}/library/",
             [
-                "seqkit/split2",
-                "cat/cat",
+                [name: "seqkit/split2", sha: "55a02f55949516773979bbff82bf3f6bdb09456e"],
+                [name: "cat/cat",       sha: "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46"]
             ]
         )
         nfcoreLink("${launchDir}/library/", "${baseDir}/modules/")
