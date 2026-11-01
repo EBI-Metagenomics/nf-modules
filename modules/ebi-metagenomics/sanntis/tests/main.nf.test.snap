@@ -7,30 +7,63 @@
                         {
                             "id": "BGC0001472"
                         },
-                        "BGC0001472_sanntis.gff.gz:md5,ea6f1c2d950ca684a5e8ca77d2bf773e"
+                        "BGC0001472_sanntis.gff.gz:md5,f2e20cddb9d944b26d12933692272fc6"
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,5fc42785fbe619f4827b419532cde346"
+                    "versions.yml:md5,b8a86bc469017eafebf82ed0f1a51e26"
                 ],
                 "gff": [
                     [
                         {
                             "id": "BGC0001472"
                         },
-                        "BGC0001472_sanntis.gff.gz:md5,ea6f1c2d950ca684a5e8ca77d2bf773e"
+                        "BGC0001472_sanntis.gff.gz:md5,f2e20cddb9d944b26d12933692272fc6"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,5fc42785fbe619f4827b419532cde346"
+                    "versions.yml:md5,b8a86bc469017eafebf82ed0f1a51e26"
                 ]
             }
         ],
+        "timestamp": "2026-10-30T21:29:15.735863",
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.4"
-        },
-        "timestamp": "2025-03-04T10:07:37.995879"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "interproscan gff and faa not in genomic order": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "BGC0001472"
+                        },
+                        "BGC0001472_sanntis.gff.gz:md5,f2e20cddb9d944b26d12933692272fc6"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,b8a86bc469017eafebf82ed0f1a51e26"
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "BGC0001472"
+                        },
+                        "BGC0001472_sanntis.gff.gz:md5,f2e20cddb9d944b26d12933692272fc6"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,b8a86bc469017eafebf82ed0f1a51e26"
+                ]
+            }
+        ],
+        "timestamp": "2026-11-01T18:01:25.720791604",
+        "meta": {
+            "nf-test": "0.9.4",
+            "nextflow": "25.10.4"
+        }
     },
     "interproscan tsv and faa": {
         "content": [
@@ -40,30 +73,30 @@
                         {
                             "id": "BGC0001472"
                         },
-                        "BGC0001472_sanntis.gff.gz:md5,ea6f1c2d950ca684a5e8ca77d2bf773e"
+                        "BGC0001472_sanntis.gff.gz:md5,f2e20cddb9d944b26d12933692272fc6"
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,5fc42785fbe619f4827b419532cde346"
+                    "versions.yml:md5,b8a86bc469017eafebf82ed0f1a51e26"
                 ],
                 "gff": [
                     [
                         {
                             "id": "BGC0001472"
                         },
-                        "BGC0001472_sanntis.gff.gz:md5,ea6f1c2d950ca684a5e8ca77d2bf773e"
+                        "BGC0001472_sanntis.gff.gz:md5,f2e20cddb9d944b26d12933692272fc6"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,5fc42785fbe619f4827b419532cde346"
+                    "versions.yml:md5,b8a86bc469017eafebf82ed0f1a51e26"
                 ]
             }
         ],
+        "timestamp": "2026-10-30T21:30:00.921307",
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.4"
-        },
-        "timestamp": "2025-03-03T22:44:54.79901"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
     },
     "interproscan tsv and faa - stub": {
         "content": [
@@ -77,7 +110,7 @@
                     ]
                 ],
                 "1": [
-                    "versions.yml:md5,5fc42785fbe619f4827b419532cde346"
+                    "versions.yml:md5,b8a86bc469017eafebf82ed0f1a51e26"
                 ],
                 "gff": [
                     [
@@ -88,14 +121,14 @@
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,5fc42785fbe619f4827b419532cde346"
+                    "versions.yml:md5,b8a86bc469017eafebf82ed0f1a51e26"
                 ]
             }
         ],
+        "timestamp": "2026-10-30T21:30:28.867352",
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "24.10.4"
-        },
-        "timestamp": "2025-03-03T22:45:03.056725"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
     }
 }
