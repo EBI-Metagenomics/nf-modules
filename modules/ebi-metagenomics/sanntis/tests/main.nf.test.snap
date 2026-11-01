@@ -32,6 +32,39 @@
             "nextflow": "26.04.6"
         }
     },
+    "interproscan gff and faa not in genomic order": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "BGC0001472"
+                        },
+                        "BGC0001472_sanntis.gff.gz:md5,f2e20cddb9d944b26d12933692272fc6"
+                    ]
+                ],
+                "1": [
+                    "versions.yml:md5,b8a86bc469017eafebf82ed0f1a51e26"
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "BGC0001472"
+                        },
+                        "BGC0001472_sanntis.gff.gz:md5,f2e20cddb9d944b26d12933692272fc6"
+                    ]
+                ],
+                "versions": [
+                    "versions.yml:md5,b8a86bc469017eafebf82ed0f1a51e26"
+                ]
+            }
+        ],
+        "timestamp": "2026-11-01T18:01:25.720791604",
+        "meta": {
+            "nf-test": "0.9.4",
+            "nextflow": "25.10.4"
+        }
+    },
     "interproscan tsv and faa": {
         "content": [
             {
