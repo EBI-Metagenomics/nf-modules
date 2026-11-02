@@ -23,10 +23,10 @@ nextflow_workflow {
         nfcoreInstall(
             "${launchDir}/library/",
             [
-                "antismash/antismash",
-                "antismash/antismashdownloaddatabases",
-                "gecco/run",
-                "gecco/convert",
+                [name: "antismash/antismash",                  sha: "96c57dfd98a0641886a67bd449fe33ee2ec0e374"],
+                [name: "antismash/antismashdownloaddatabases", sha: "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46"],
+                [name: "gecco/run",                            sha: "d55ff2efcf02419f2df246427d3646f2baee9e2e"],
+                [name: "gecco/convert",                        sha: "0d75d9a1f328368e06ccc5474cd5553a51672979"],
             ]
         )
         nfcoreLink("${launchDir}/library/", "${baseDir}/modules/")

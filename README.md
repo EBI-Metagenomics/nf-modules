@@ -4,7 +4,7 @@ Welcome to the Microbiome Informatics Nextflow modules and subworkflows reposito
 
 ## Documentation
 
-Auto generated documentation for all modules and subworkflows is available at: https://ebi-metagenomics.github.io/nf-modules/
+Auto generated documentation for all modules and subworkflows is available at: [https://ebi-metagenomics.github.io/nf-modules/](https://ebi-metagenomics.github.io/nf-modules/)
 
 The documentation includes information about each module and subworkflow.
 
