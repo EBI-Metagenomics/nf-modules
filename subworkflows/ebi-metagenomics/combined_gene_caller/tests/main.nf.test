@@ -17,7 +17,7 @@ nextflow_workflow {
         nfcoreInstall(
             "${launchDir}/library/",
             [
-                "pyrodigal",
+                [name: "pyrodigal", sha: "6d46786420b4d7bc88eba026eb389c0c5535d120"],
             ]
         )
         nfcoreLink("${launchDir}/library/", "${baseDir}/modules/")

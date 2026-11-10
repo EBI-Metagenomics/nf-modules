@@ -69,7 +69,7 @@ output:
       - "*.faa.gz":
           type: file
           description: merged protein translations file
-          pattern: "*.faa"
+          pattern: "*.faa.gz"
   - ffn:
       - meta:
           type: map
@@ -79,7 +79,7 @@ output:
       - "*.ffn.gz":
           type: file
           description: merged nucleotide sequences file
-          pattern: "*.{ffn,fna}"
+          pattern: "*.ffn.gz"
   - gff:
       - meta:
           type: map
@@ -88,8 +88,8 @@ output:
             e.g. [ id:'test', single_end:false ]
       - "*.gff.gz":
           type: file
-          description: merged gene annotations in GFF format
-          pattern: "*.gff"
+          description: merged gene annotations in GFF format, sorted by sequence and start position
+          pattern: "*.gff.gz"
   - versions:
       - versions.yml:
           type: file
