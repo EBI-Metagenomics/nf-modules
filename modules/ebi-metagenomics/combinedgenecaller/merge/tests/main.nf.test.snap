@@ -1,5 +1,5 @@
 {
-    "combinedgenecaller merge without a maskfile": {
+    "combinedgenecaller merge with a maskfile and tool version strings": {
         "content": [
             {
                 "0": [
@@ -26,11 +26,11 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.gff.gz:md5,774a5966f0cef53d3b17d4b5f432128e"
+                        "test.gff.gz:md5,0b317134bf4433d8ab73a02e0c9e37b7"
                     ]
                 ],
                 "3": [
-                    "versions.yml:md5,3fbac5e6bb7a54832348e1a9267d7b71"
+                    "versions.yml:md5,81bcb39ae7aa5755077d51f9c99a2853"
                 ],
                 "faa": [
                     [
@@ -56,21 +56,36 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.gff.gz:md5,774a5966f0cef53d3b17d4b5f432128e"
+                        "test.gff.gz:md5,0b317134bf4433d8ab73a02e0c9e37b7"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,3fbac5e6bb7a54832348e1a9267d7b71"
+                    "versions.yml:md5,81bcb39ae7aa5755077d51f9c99a2853"
                 ]
-            }
+            },
+            [
+                "##gff-version 3",
+                "ERZ1761047.1-contig-100\tPyrodigal_v2.0.0\tCDS\t1\t210\t.\t+\t.\tID=ERZ1761047.1-contig-100_1",
+                "ERZ1761047.10-contig-10009\tPyrodigal_v2.0.0\tCDS\t3\t221\t.\t-\t.\tID=ERZ1761047.10-contig-10009_1",
+                "ERZ1761047.10-contig-10009\tPyrodigal_v2.0.0\tCDS\t318\t587\t.\t-\t.\tID=ERZ1761047.10-contig-10009_2",
+                "ERZ1761047.10-contig-10009\tPyrodigal_v2.0.0\tCDS\t736\t1479\t.\t-\t.\tID=ERZ1761047.10-contig-10009_3"
+            ],
+            [
+                ">ERZ1761047.11-contig-1001_79 # 46945 # 50910 # -1 # ID=216_79;partial=00;start_type=ATG;rbs_motif=TATAA;rbs_spacer=3bp;gc_cont=0.475",
+                "MAFRKDTKIKSNFSKITIGLASPEEILENSYGEVLKPETINYRTYKPERDGLFCERIFGP"
+            ],
+            [
+                ">ERZ1761047.11-contig-1001_79 # 46945 # 50910 # -1 # ID=216_79;partial=00;start_type=ATG;rbs_motif=TATAA;rbs_spacer=3bp;gc_cont=0.475",
+                "ATGGCTTTTAGAAAAGATACTAAGATAAAGAGTAATTTCTCGAAGATTACAATCGGACTG"
+            ]
         ],
+        "timestamp": "2026-11-10T13:37:49.330807",
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-13T22:56:07.329831"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
     },
-    "combinedgenecaller merge with a maskfile": {
+    "combinedgenecaller merge without a maskfile and without tool version strings": {
         "content": [
             {
                 "0": [
@@ -97,11 +112,11 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.gff.gz:md5,774a5966f0cef53d3b17d4b5f432128e"
+                        "test.gff.gz:md5,3058a555059e5c22cb1d6e067e74efb5"
                     ]
                 ],
                 "3": [
-                    "versions.yml:md5,3fbac5e6bb7a54832348e1a9267d7b71"
+                    "versions.yml:md5,81bcb39ae7aa5755077d51f9c99a2853"
                 ],
                 "faa": [
                     [
@@ -127,18 +142,33 @@
                             "id": "test",
                             "single_end": false
                         },
-                        "test.gff.gz:md5,774a5966f0cef53d3b17d4b5f432128e"
+                        "test.gff.gz:md5,3058a555059e5c22cb1d6e067e74efb5"
                     ]
                 ],
                 "versions": [
-                    "versions.yml:md5,3fbac5e6bb7a54832348e1a9267d7b71"
+                    "versions.yml:md5,81bcb39ae7aa5755077d51f9c99a2853"
                 ]
-            }
+            },
+            [
+                "##gff-version 3",
+                "ERZ1761047.1-contig-100\tPyrodigal\tCDS\t1\t210\t.\t+\t.\tID=ERZ1761047.1-contig-100_1",
+                "ERZ1761047.10-contig-10009\tPyrodigal\tCDS\t3\t221\t.\t-\t.\tID=ERZ1761047.10-contig-10009_1",
+                "ERZ1761047.10-contig-10009\tPyrodigal\tCDS\t318\t587\t.\t-\t.\tID=ERZ1761047.10-contig-10009_2",
+                "ERZ1761047.10-contig-10009\tPyrodigal\tCDS\t736\t1479\t.\t-\t.\tID=ERZ1761047.10-contig-10009_3"
+            ],
+            [
+                ">ERZ1761047.11-contig-1001_79 # 46945 # 50910 # -1 # ID=216_79;partial=00;start_type=ATG;rbs_motif=TATAA;rbs_spacer=3bp;gc_cont=0.475",
+                "MAFRKDTKIKSNFSKITIGLASPEEILENSYGEVLKPETINYRTYKPERDGLFCERIFGP"
+            ],
+            [
+                ">ERZ1761047.11-contig-1001_79 # 46945 # 50910 # -1 # ID=216_79;partial=00;start_type=ATG;rbs_motif=TATAA;rbs_spacer=3bp;gc_cont=0.475",
+                "ATGGCTTTTAGAAAAGATACTAAGATAAAGAGTAATTTCTCGAAGATTACAATCGGACTG"
+            ]
         ],
+        "timestamp": "2026-11-10T13:37:37.956542",
         "meta": {
-            "nf-test": "0.9.2",
-            "nextflow": "25.10.2"
-        },
-        "timestamp": "2026-01-13T22:56:17.411419"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
     }
 }

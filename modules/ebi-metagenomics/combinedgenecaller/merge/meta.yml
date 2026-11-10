@@ -88,7 +88,7 @@ output:
             e.g. [ id:'test', single_end:false ]
       - "*.gff.gz":
           type: file
-          description: merged gene annotations in GFF format
+          description: merged gene annotations in GFF format, sorted by sequence and start position
           pattern: "*.gff"
   - versions:
       - versions.yml:

@@ -82,6 +82,11 @@ process COMBINEDGENECALLER_MERGE {
         ${pyrodigal_version_parameter} \\
         ${fgsrs_version_parameter}
 
+    # Sort the GFF by sequence and start position, keeping the header lines first (required by tabix)
+    awk '/^#/' ${prefix}.gff > ${prefix}.sorted.gff
+    awk '!/^#/' ${prefix}.gff | LC_ALL=C sort -t\$'\\t' -k1,1 -k4,4n >> ${prefix}.sorted.gff
+    mv ${prefix}.sorted.gff ${prefix}.gff
+
     gzip -n ${prefix}.{faa,ffn,gff}
 
     cat <<-END_VERSIONS > versions.yml

@@ -33,7 +33,12 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(
+                    process.out,
+                    path(process.out.gff[0][1]).linesGzip[0..4],
+                    path(process.out.faa[0][1]).linesGzip[0..1],
+                    path(process.out.ffn[0][1]).linesGzip[0..1]
+                ).match() }
             )
         }
     }
@@ -62,7 +67,12 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert snapshot(process.out).match() }
+                { assert snapshot(
+                    process.out,
+                    path(process.out.gff[0][1]).linesGzip[0..4],
+                    path(process.out.faa[0][1]).linesGzip[0..1],
+                    path(process.out.ffn[0][1]).linesGzip[0..1]
+                ).match() }
             )
         }
     }
