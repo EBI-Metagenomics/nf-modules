@@ -18,14 +18,14 @@
                 "##gff-version 3",
                 "MGYA1\tPyrodigal\tCDS\t1\t126\t.\t+\t.\tID=MGYA1_1",
                 "MGYA1\tPyrodigal\tCDS\t1223\t1894\t.\t+\t.\tID=MGYA1_2",
+                "MGYA1\tFragGeneScanRS\tCDS\t1970\t2245\t.\t+\t.\tID=MGYA1_1970_2245_+",
                 "MGYA1\tPyrodigal\tCDS\t2446\t2682\t.\t+\t.\tID=MGYA1_3",
                 "MGYA1\tPyrodigal\tCDS\t2985\t6581\t.\t+\t.\tID=MGYA1_4",
+                "MGYA2\tFragGeneScanRS\tCDS\t210\t335\t.\t+\t.\tID=MGYA2_210_335_+",
                 "MGYA2\tPyrodigal\tCDS\t347\t931\t.\t-\t.\tID=MGYA2_1",
                 "MGYA2\tPyrodigal\tCDS\t959\t1894\t.\t-\t.\tID=MGYA2_2",
                 "MGYA3\tPyrodigal\tCDS\t2\t616\t.\t-\t.\tID=MGYA3_1",
-                "MGYA3\tPyrodigal\tCDS\t719\t3562\t.\t+\t.\tID=MGYA3_2",
-                "MGYA4\tPyrodigal\tCDS\t229\t579\t.\t+\t.\tID=MGYA4_1",
-                "MGYA4\tPyrodigal\tCDS\t4935\t5108\t.\t+\t.\tID=MGYA4_5"
+                "MGYA3\tPyrodigal\tCDS\t719\t3562\t.\t+\t.\tID=MGYA3_2"
             ],
             [
                 "AGCGTGGGCCGCGCGACCAGCACCGCGGAACTGCTGGTGCAGGGCGAAGATGAAGCGGTG",
@@ -41,11 +41,11 @@
                 "GGCGCGGAAATTCAGAGCAGCCATGATTTTCAGATTATTCAGGATGCGGATCTGTATAGC"
             ]
         ],
+        "timestamp": "2026-11-10T14:17:00.768977",
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.1"
-        },
-        "timestamp": "2026-01-14T13:06:21.277835"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
     },
     "cgc assembly fasta": {
         "content": [
@@ -66,14 +66,14 @@
                 "##gff-version 3",
                 "MGYA1\tPyrodigal\tCDS\t1\t126\t.\t+\t.\tID=MGYA1_1",
                 "MGYA1\tPyrodigal\tCDS\t1223\t1894\t.\t+\t.\tID=MGYA1_2",
+                "MGYA1\tFragGeneScanRS\tCDS\t1970\t2245\t.\t+\t.\tID=MGYA1_1970_2245_+",
                 "MGYA1\tPyrodigal\tCDS\t2446\t2682\t.\t+\t.\tID=MGYA1_3",
                 "MGYA1\tPyrodigal\tCDS\t2985\t6581\t.\t+\t.\tID=MGYA1_4",
+                "MGYA2\tFragGeneScanRS\tCDS\t210\t335\t.\t+\t.\tID=MGYA2_210_335_+",
                 "MGYA2\tPyrodigal\tCDS\t347\t931\t.\t-\t.\tID=MGYA2_1",
                 "MGYA2\tPyrodigal\tCDS\t959\t1894\t.\t-\t.\tID=MGYA2_2",
                 "MGYA3\tPyrodigal\tCDS\t2\t616\t.\t-\t.\tID=MGYA3_1",
-                "MGYA3\tPyrodigal\tCDS\t719\t3562\t.\t+\t.\tID=MGYA3_2",
-                "MGYA4\tPyrodigal\tCDS\t229\t579\t.\t+\t.\tID=MGYA4_1",
-                "MGYA4\tPyrodigal\tCDS\t4935\t5108\t.\t+\t.\tID=MGYA4_5"
+                "MGYA3\tPyrodigal\tCDS\t719\t3562\t.\t+\t.\tID=MGYA3_2"
             ],
             [
                 "AGCGTGGGCCGCGCGACCAGCACCGCGGAACTGCTGGTGCAGGGCGAAGATGAAGCGGTG",
@@ -89,10 +89,10 @@
                 "GGCGCGGAAATTCAGAGCAGCCATGATTTTCAGATTATTCAGGATGCGGATCTGTATAGC"
             ]
         ],
+        "timestamp": "2026-11-10T14:16:46.211134",
         "meta": {
-            "nf-test": "0.9.0",
-            "nextflow": "25.04.1"
-        },
-        "timestamp": "2026-01-14T13:06:06.4451"
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
     }
 }
