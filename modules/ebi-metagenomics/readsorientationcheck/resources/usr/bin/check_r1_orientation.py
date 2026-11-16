@@ -23,7 +23,8 @@ def classify_reads(hits, tested, args):
     """Calculate the forward percentage using the requested read count."""
     best = defaultdict(dict)
     for line in hits:
-        if line.startswith("#") or not line.strip():
+        line = line.strip()
+        if line.startswith("#") or not line:
             continue
         fields = line.split()
         if len(fields) < 17 or fields[9] not in ("+", "-"):
