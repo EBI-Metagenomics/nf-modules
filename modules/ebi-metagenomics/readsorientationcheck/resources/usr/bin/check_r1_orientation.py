@@ -27,11 +27,18 @@ def classify_reads(hits, tested, args):
         if line.startswith("#") or not line:
             continue
         fields = line.split()
+        # example cmsearch --tblout row:
+        # 3 - 5S_rRNA RF00001 hmm 3 118 3 115 + - 6 0.68 0.1 77.8 1.8e-19 ! -
+        # number of columns: 0-17, 17th being target description, but we don't use that info; could be 18 as well.
+        # fields[9] is strand: the model matches the read in it's forward (+) or reverse (-) orientation.
+        # fields[16] is inclusion flag: the hit passed the inclusion threshold. 
+        
         if len(fields) < 17 or fields[9] not in ("+", "-"):
             raise ValueError(f"Unexpected cmsearch tblout row: {line.rstrip()}")
         if fields[16] != "!":  # Only included hits count.
             continue
-
+        
+        # fields[0] is the read name, fields[9] is strand, fields[14] is bit score for this hit
         read_id, strand, score = int(fields[0]), fields[9], float(fields[14])
         if not 1 <= read_id <= tested:
             raise ValueError(f"Unexpected target ID in cmsearch output: {read_id}")
