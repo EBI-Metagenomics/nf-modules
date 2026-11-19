@@ -1,0 +1,325 @@
+{
+    "paired-end - not mixed": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false
+                    },
+                    "test.orientation.tsv:md5,e4bb431d9f8e4d41664e57fc7b69ef12"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false
+                    },
+                    "not_mixed"
+                ]
+            ],
+            [
+                "3                    -         5S_rRNA              RF00001   hmm        3      118        3      115      +     -    6 0.68   0.1   77.8   1.8e-19 !   -",
+                "18                   -         5S_rRNA              RF00001   hmm        3      117        3      114      +     -    6 0.67   0.1   75.8   7.9e-19 !   -",
+                "2                    -         5S_rRNA              RF00001   hmm        3      118        3      115      +     -    6 0.65   0.1   75.7   8.4e-19 !   -",
+                "9                    -         5S_rRNA              RF00001   hmm        3      118        3      115      +     -    6 0.68   0.1   75.1   1.2e-18 !   -",
+                "4                    -         5S_rRNA              RF00001   hmm        3      118        3      115      +     -    6 0.68   0.1   72.1   1.1e-17 !   -",
+                "5                    -         5S_rRNA              RF00001   hmm        3      118        3      115      +     -    6 0.66   0.1   70.1   4.6e-17 !   -",
+                "7                    -         5S_rRNA              RF00001   hmm        3      118        3      115      +     -    6 0.65   0.0   69.6   6.6e-17 !   -",
+                "1                    -         5S_rRNA              RF00001   hmm        3      118        3      114      +     -    6 0.53   0.0   69.4   7.9e-17 !   -",
+                "12                   -         5S_rRNA              RF00001   hmm        3      118        3      115      +     -    6 0.63   0.0   68.1   1.9e-16 !   -",
+                "6                    -         5S_rRNA              RF00001   hmm        3      117        3      114      +     -    6 0.65   0.0   67.3   3.6e-16 !   -",
+                "8                    -         5S_rRNA              RF00001   hmm        3      117        3      115      +     -    6 0.67   0.1   65.4   1.4e-15 !   -",
+                "10                   -         5S_rRNA              RF00001   hmm        3      118        3      115      +     -    6 0.65   0.0   64.2   3.1e-15 !   -",
+                "16                   -         5S_rRNA              RF00001   hmm        3      117        3      114      +     -    6 0.64   0.0   63.2   6.7e-15 !   -",
+                "15                   -         5S_rRNA              RF00001   hmm        3      117        3      114      +     -    6 0.67   0.1   62.9   8.5e-15 !   -",
+                "11                   -         5S_rRNA              RF00001   hmm        3      117        3      114      +     -    6 0.62   0.0   62.1   1.4e-14 !   -",
+                "14                   -         5S_rRNA              RF00001   hmm        3      117        3      114      +     -    6 0.65   0.0   61.9   1.7e-14 !   -",
+                "13                   -         5S_rRNA              RF00001   hmm        3      117        3      114      +     -    6 0.67   0.0   60.0   6.5e-14 !   -",
+                "17                   -         5S_rRNA              RF00001   hmm        3      117        3      115      +     -    6 0.66   0.1   58.3   2.2e-13 !   -",
+                "19                   -         5S_rRNA              RF00001   hmm        3      117        3      111      +     -    6 0.69   0.1   57.7   3.5e-13 !   -",
+                "20                   -         5S_rRNA              RF00001   hmm        3      117        3      110      +     -    6 0.68   0.1   56.7   7.2e-13 !   -"
+            ],
+            {
+                "versions_infernal": [
+                    [
+                        "READSORIENTATIONCHECK",
+                        "infernal",
+                        "1.1.5"
+                    ]
+                ],
+                "versions_python": [
+                    [
+                        "READSORIENTATIONCHECK",
+                        "python",
+                        "3.15.0"
+                    ]
+                ],
+                "versions_seqkit": [
+                    [
+                        "READSORIENTATIONCHECK",
+                        "seqkit",
+                        "2.14.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-11-11T18:15:29.163722",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "paired-end - stub": {
+        "content": [
+            {
+                "0": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.orientation.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "1": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.cmsearch.tbl.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "2": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "not_mixed"
+                    ]
+                ],
+                "3": [
+                    [
+                        "READSORIENTATIONCHECK",
+                        "infernal",
+                        "1.1.5"
+                    ]
+                ],
+                "4": [
+                    [
+                        "READSORIENTATIONCHECK",
+                        "seqkit",
+                        "2.14.0"
+                    ]
+                ],
+                "5": [
+                    [
+                        "READSORIENTATIONCHECK",
+                        "python",
+                        "3.15.0"
+                    ]
+                ],
+                "classification": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "not_mixed"
+                    ]
+                ],
+                "cmsearch_tbl": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.cmsearch.tbl.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+                    ]
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "test",
+                            "single_end": false
+                        },
+                        "test.orientation.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_infernal": [
+                    [
+                        "READSORIENTATIONCHECK",
+                        "infernal",
+                        "1.1.5"
+                    ]
+                ],
+                "versions_python": [
+                    [
+                        "READSORIENTATIONCHECK",
+                        "python",
+                        "3.15.0"
+                    ]
+                ],
+                "versions_seqkit": [
+                    [
+                        "READSORIENTATIONCHECK",
+                        "seqkit",
+                        "2.14.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-11-11T18:15:36.175374",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "single-end - mixed": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": true
+                    },
+                    "test.orientation.tsv:md5,f362cccca9f14df97b849722d25c9f18"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": true
+                    },
+                    "mixed"
+                ]
+            ],
+            [
+                "3                    -         5S_rRNA              RF00001   hmm        3      118        3      115      +     -    6 0.68   0.1   77.8   1.8e-19 !   -",
+                "18                   -         5S_rRNA              RF00001   hmm        3      117      115        4      -     -    6 0.67   0.1   75.8   7.9e-19 !   -",
+                "2                    -         5S_rRNA              RF00001   hmm        3      118      115        3      -     -    6 0.65   0.1   75.7   8.4e-19 !   -",
+                "9                    -         5S_rRNA              RF00001   hmm        3      118        3      115      +     -    6 0.68   0.1   75.1   1.2e-18 !   -",
+                "4                    -         5S_rRNA              RF00001   hmm        3      118      115        3      -     -    6 0.68   0.1   72.1   1.1e-17 !   -",
+                "5                    -         5S_rRNA              RF00001   hmm        3      118        3      115      +     -    6 0.66   0.1   70.1   4.6e-17 !   -",
+                "7                    -         5S_rRNA              RF00001   hmm        3      118        3      115      +     -    6 0.65   0.0   69.6   6.6e-17 !   -",
+                "1                    -         5S_rRNA              RF00001   hmm        3      118        3      114      +     -    6 0.53   0.0   69.4   7.9e-17 !   -",
+                "12                   -         5S_rRNA              RF00001   hmm        3      118      115        3      -     -    6 0.63   0.0   68.1   1.9e-16 !   -",
+                "6                    -         5S_rRNA              RF00001   hmm        3      117      115        4      -     -    6 0.65   0.0   67.3   3.6e-16 !   -",
+                "8                    -         5S_rRNA              RF00001   hmm        3      117      116        4      -     -    6 0.67   0.1   65.4   1.4e-15 !   -",
+                "10                   -         5S_rRNA              RF00001   hmm        3      118      115        3      -     -    6 0.65   0.0   64.2   3.1e-15 !   -",
+                "16                   -         5S_rRNA              RF00001   hmm        3      117      115        4      -     -    6 0.64   0.0   63.2   6.7e-15 !   -",
+                "15                   -         5S_rRNA              RF00001   hmm        3      117        3      114      +     -    6 0.67   0.1   62.9   8.5e-15 !   -",
+                "11                   -         5S_rRNA              RF00001   hmm        3      117        3      114      +     -    6 0.62   0.0   62.1   1.4e-14 !   -",
+                "14                   -         5S_rRNA              RF00001   hmm        3      117      115        4      -     -    6 0.65   0.0   61.9   1.7e-14 !   -",
+                "13                   -         5S_rRNA              RF00001   hmm        3      117        3      114      +     -    6 0.67   0.0   60.0   6.5e-14 !   -",
+                "17                   -         5S_rRNA              RF00001   hmm        3      117        3      115      +     -    6 0.66   0.1   58.3   2.2e-13 !   -",
+                "19                   -         5S_rRNA              RF00001   hmm        3      117        3      111      +     -    6 0.69   0.1   57.7   3.5e-13 !   -",
+                "20                   -         5S_rRNA              RF00001   hmm        3      117      111        4      -     -    6 0.68   0.1   56.7   7.2e-13 !   -"
+            ],
+            {
+                "versions_infernal": [
+                    [
+                        "READSORIENTATIONCHECK",
+                        "infernal",
+                        "1.1.5"
+                    ]
+                ],
+                "versions_python": [
+                    [
+                        "READSORIENTATIONCHECK",
+                        "python",
+                        "3.15.0"
+                    ]
+                ],
+                "versions_seqkit": [
+                    [
+                        "READSORIENTATIONCHECK",
+                        "seqkit",
+                        "2.14.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-11-11T18:15:32.819737",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    },
+    "paired-end - mixed": {
+        "content": [
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false
+                    },
+                    "test.orientation.tsv:md5,f362cccca9f14df97b849722d25c9f18"
+                ]
+            ],
+            [
+                [
+                    {
+                        "id": "test",
+                        "single_end": false
+                    },
+                    "mixed"
+                ]
+            ],
+            [
+                "3                    -         5S_rRNA              RF00001   hmm        3      118        3      115      +     -    6 0.68   0.1   77.8   1.8e-19 !   -",
+                "18                   -         5S_rRNA              RF00001   hmm        3      117      115        4      -     -    6 0.67   0.1   75.8   7.9e-19 !   -",
+                "2                    -         5S_rRNA              RF00001   hmm        3      118      115        3      -     -    6 0.65   0.1   75.7   8.4e-19 !   -",
+                "9                    -         5S_rRNA              RF00001   hmm        3      118        3      115      +     -    6 0.68   0.1   75.1   1.2e-18 !   -",
+                "4                    -         5S_rRNA              RF00001   hmm        3      118      115        3      -     -    6 0.68   0.1   72.1   1.1e-17 !   -",
+                "5                    -         5S_rRNA              RF00001   hmm        3      118        3      115      +     -    6 0.66   0.1   70.1   4.6e-17 !   -",
+                "7                    -         5S_rRNA              RF00001   hmm        3      118        3      115      +     -    6 0.65   0.0   69.6   6.6e-17 !   -",
+                "1                    -         5S_rRNA              RF00001   hmm        3      118        3      114      +     -    6 0.53   0.0   69.4   7.9e-17 !   -",
+                "12                   -         5S_rRNA              RF00001   hmm        3      118      115        3      -     -    6 0.63   0.0   68.1   1.9e-16 !   -",
+                "6                    -         5S_rRNA              RF00001   hmm        3      117      115        4      -     -    6 0.65   0.0   67.3   3.6e-16 !   -",
+                "8                    -         5S_rRNA              RF00001   hmm        3      117      116        4      -     -    6 0.67   0.1   65.4   1.4e-15 !   -",
+                "10                   -         5S_rRNA              RF00001   hmm        3      118      115        3      -     -    6 0.65   0.0   64.2   3.1e-15 !   -",
+                "16                   -         5S_rRNA              RF00001   hmm        3      117      115        4      -     -    6 0.64   0.0   63.2   6.7e-15 !   -",
+                "15                   -         5S_rRNA              RF00001   hmm        3      117        3      114      +     -    6 0.67   0.1   62.9   8.5e-15 !   -",
+                "11                   -         5S_rRNA              RF00001   hmm        3      117        3      114      +     -    6 0.62   0.0   62.1   1.4e-14 !   -",
+                "14                   -         5S_rRNA              RF00001   hmm        3      117      115        4      -     -    6 0.65   0.0   61.9   1.7e-14 !   -",
+                "13                   -         5S_rRNA              RF00001   hmm        3      117        3      114      +     -    6 0.67   0.0   60.0   6.5e-14 !   -",
+                "17                   -         5S_rRNA              RF00001   hmm        3      117        3      115      +     -    6 0.66   0.1   58.3   2.2e-13 !   -",
+                "19                   -         5S_rRNA              RF00001   hmm        3      117        3      111      +     -    6 0.69   0.1   57.7   3.5e-13 !   -",
+                "20                   -         5S_rRNA              RF00001   hmm        3      117      111        4      -     -    6 0.68   0.1   56.7   7.2e-13 !   -"
+            ],
+            {
+                "versions_infernal": [
+                    [
+                        "READSORIENTATIONCHECK",
+                        "infernal",
+                        "1.1.5"
+                    ]
+                ],
+                "versions_python": [
+                    [
+                        "READSORIENTATIONCHECK",
+                        "python",
+                        "3.15.0"
+                    ]
+                ],
+                "versions_seqkit": [
+                    [
+                        "READSORIENTATIONCHECK",
+                        "seqkit",
+                        "2.14.0"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-11-11T18:15:25.569737",
+        "meta": {
+            "nf-test": "0.9.5",
+            "nextflow": "26.04.6"
+        }
+    }
+}
