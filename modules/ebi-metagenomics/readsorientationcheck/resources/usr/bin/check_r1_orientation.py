@@ -42,9 +42,10 @@ def classify_reads(hits, tested, args):
         read_id, strand, score = int(fields[0]), fields[9], float(fields[14])
         if not 1 <= read_id <= tested:
             raise ValueError(f"Unexpected target ID in cmsearch output: {read_id}")
-        scores = best[read_id]
-        if strand not in scores or score > scores[strand]:
-            scores[strand] = score
+        if read_id not in best:
+            best[read_id][strand] = score
+        elif strand not in best[read_id] or score > best[read_id][strand]:
+            best[read_id][strand] = score
 
     forward = reverse = 0
     for scores in best.values():
